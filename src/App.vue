@@ -32,6 +32,7 @@
       return {
         url: 'http://petstore.swagger.io/v2/swagger.json',
         schema: {},
+        spec: {},
         metas: [],
         resources: [],
         search: '',

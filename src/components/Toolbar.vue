@@ -9,6 +9,7 @@
                     label="Open API Specification URL"
                     single-line></v-text-field>
     </v-toolbar-items>
+    <v-toolbar-title>{{value.spec.info.title}}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <v-text-field prepend-icon="search"
