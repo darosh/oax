@@ -13,6 +13,10 @@
       </v-container>
     </main>
     <app-method-dialog></app-method-dialog>
+    <app-status-dialog></app-status-dialog>
+    <app-header-dialog></app-header-dialog>
+    <app-proxy-dialog></app-proxy-dialog>
+    <app-security-dialog></app-security-dialog>
   </v-app>
 </template>
 
@@ -28,7 +32,11 @@
       appOperationList: () => import('./components/OperationList'),
       appToolbar: () => import('./components/Toolbar'),
       appDetail: () => import('./components/Detail'),
-      appMethodDialog: () => import('./components/MethodDialog')
+      appMethodDialog: () => import('./components/MethodDialog'),
+      appStatusDialog: () => import('./components/StatusDialog'),
+      appHeaderDialog: () => import('./components/HeaderDialog'),
+      appProxyDialog: () => import('./components/ProxyDialog'),
+      appSecurityDialog: () => import('./components/SecurityDialog')
     },
     data () {
       return {

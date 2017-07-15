@@ -31,28 +31,23 @@
     <v-btn icon @click.native="value.viewDescription = !value.viewDescription">
       <v-icon>{{value.viewDescription ? 'speaker_notes_off' : 'speaker_notes'}}</v-icon>
     </v-btn>
-    <v-btn icon @click.native.stop="proxy.show = true">
+    <v-btn icon @click.native.stop="emitBus('dialog:proxy')">
       <v-icon>security</v-icon>
     </v-btn>
-    <v-btn icon @click.native.stop="security.show = true">
+    <v-btn icon @click.native.stop="emitBus('dialog:security')">
       <v-icon>vpn_key</v-icon>
     </v-btn>
     <v-btn icon @click.native.stop="value.dark = !value.dark">
       <v-icon>{{value.dark ? 'brightness_5' : 'brightness_4'}}</v-icon>
     </v-btn>
-
-    <app-proxy v-model="proxy"></app-proxy>
-    <app-security v-model="security"></app-security>
   </v-toolbar>
 </template>
 
 <script>
+  import { bus } from '../services/bus'
+
   export default {
     props: ['value'],
-    components: {
-      'appProxy': () => import('./Proxy'),
-      'appSecurity': () => import('./Security')
-    },
     data () {
       return {
         editing: false,
@@ -69,6 +64,9 @@
       },
       emit (e) {
         this.$emit(e)
+      },
+      emitBus (e) {
+        bus.$emit(e)
       }
     }
   }
