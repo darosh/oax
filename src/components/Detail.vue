@@ -18,7 +18,7 @@
         <v-tabs-slider></v-tabs-slider>
       </v-tabs-bar>
       <v-tabs-content id="tab-1">
-        <app-info></app-info>
+        <app-info v-model="operation"></app-info>
       </v-tabs-content>
       <v-tabs-content id="tab-2">
         <app-scripts></app-scripts>

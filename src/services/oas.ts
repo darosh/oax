@@ -34,6 +34,10 @@ interface OperationExtended extends Operation {
   _pathName: string
 }
 
+// interface SchemaExtended extends Schema {
+//   _obj: any
+// }
+
 interface Map {
   [tag: string]: number
 }
@@ -121,7 +125,7 @@ export class OAS {
         operation._pathName = pathName;
 
         // parseParameters(spec, operation, pathParameters, form, defaultContentType);
-        // parseResponses(spec, operation);
+        // OAS.parseResponses(spec, operation);
 
         operation.tags = (!operation.tags || !operation.tags.length) ? ['default'] : operation.tags;
 
@@ -209,6 +213,48 @@ export class OAS {
       // paramId++;
     }
   }
+
+  /*
+  static parseResponses(swagger: Spec, operation: OperationExtended) {
+    // var sampleJson;
+    var sampleObj;
+
+    operation.responses = operation.responses || {};
+    operation._responses = [];
+
+    for (const code in operation.responses) {
+      let response = operation.responses[code]
+
+      if (response.schema) {
+        if (response.examples && response.examples[operation.produces[0]]) {
+          // TODO: we prefer object(?)
+          // sampleJson = angular.toJson(response.examples[operation.produces[0]], true);
+          sampleObj = response.examples[operation.produces[0]];
+        } else {
+          // sampleJson = model.generateSampleJson(swagger, response.schema);
+          // sampleObj = model.getSampleObj(swagger, response.schema);
+        }
+
+        // response.schema.json = sampleJson;
+        (response.schema as SchemaExtended)._obj = sampleObj;
+
+        if (response.schema.type === 'object' || response.schema.type === 'array') {
+          response.display = 1; // display schema
+          response.schema.model = $sce.trustAsHtml(model.generateModel(swagger, response.schema));
+        } else if (response.schema.type === 'string') {
+          delete response.schema;
+        }
+
+        if (code === '200' || code === '201') {
+          operation.responseClass = response;
+          operation.responseClass.display = 1;
+          operation.responseClass.status = code;
+          delete operation.responses[code];
+        }
+      }
+    }
+  }
+  */
 
   static getMeta(spec: Spec, url: string, validatorUrl: string): Meta[] {
     const info: Info = spec.info
