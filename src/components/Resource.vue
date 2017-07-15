@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panel expand>
-    <v-expansion-panel-content v-model="value._opened">
+    <v-expansion-panel-content v-model="value._opened" ripple class="relative">
       <div slot="header" class="title">{{value.name}}</div>
       <v-divider></v-divider>
       <v-card>
@@ -10,11 +10,11 @@
           <a :href="value.externalDocs.url">{{value.externalDocs.description}}</a>
         </v-card-text>
         <v-divider v-if="value.externalDocs && value.externalDocs.url"></v-divider>
-        <v-card-text>
+        <div class="pt-2 pb-2">
           <div v-for="o in value._operations" :key="o._id">
-            <app-operation :o="o" @click.native="selected(o)"></app-operation>
+            <app-operation v-ripple :o="o" @click.native="selected(o)" class="relative pl-3 pr-3"></app-operation>
           </div>
-        </v-card-text>
+        </div>
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
@@ -37,4 +37,6 @@
 </script>
 
 <style scoped lang="stylus">
+  .relative
+    position relative
 </style>
