@@ -24,8 +24,8 @@
       <v-btn icon>
         <v-icon>keyboard_arrow_up</v-icon>
       </v-btn>
-      <v-btn icon>
-        <v-icon>_view_columns</v-icon>
+      <v-btn icon @click.native="viewResourceList = !viewResourceList">
+        <v-icon>{{viewResourceList ? '_view_columns' : 'view_comfy'}}</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>speaker_notes</v-icon>
@@ -45,14 +45,8 @@
           </v-flex>
         </v-layout>
       </v-container>
-
-      <v-container fluid grid-list-xl>
-        <v-layout row wrap>
-          <v-flex xs12 sm6 md3 v-for="r in resources" :key="r.name">
-            <app-resource :r="r"></app-resource>
-          </v-flex>
-        </v-layout>
-      </v-container>
+      <app-resource-list v-if="viewResourceList" :resources="resources"></app-resource-list>
+      <app-operation-list v-if="!viewResourceList"></app-operation-list>
     </main>
   </v-app>
 </template>
@@ -64,7 +58,8 @@
   export default {
     components: {
       appMeta: () => import('./components/Meta'),
-      appResource: () => import('./components/Resource')
+      appResourceList: () => import('./components/ResourceList'),
+      appOperationList: () => import('./components/OperationList')
     },
     data () {
       return {
@@ -73,7 +68,8 @@
         meta: [],
         resources: [],
         editing: false,
-        search: ''
+        search: '',
+        viewResourceList: true
       }
     },
     created () {
