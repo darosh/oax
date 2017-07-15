@@ -1,5 +1,6 @@
 <template>
-  <span :class="{deprecated: o.deprecated}"><app-method :m="o._method"></app-method> {{o._pathName}}</span>
+  <div :class="{deprecated: o.deprecated, operation: true}"><app-method
+    :m="o._method"></app-method> {{o._pathName}}</div>
 </template>
 
 <script>
@@ -14,4 +15,10 @@
 <style scoped lang="stylus">
   .deprecated
     text-decoration line-through
+
+  @import "../../node_modules/vuetify/src/stylus/settings/_theme.styl"
+
+  .operation:hover
+    background: $material-twelve-percent-dark
+    cursor pointer
 </style>
