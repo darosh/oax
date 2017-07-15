@@ -18,7 +18,7 @@
 
       <v-container fluid grid-list-xl>
         <v-layout row wrap>
-          <v-flex xs12 sm6 md3 v-for="r in resources" :key="name">
+          <v-flex xs12 sm6 md3 v-for="r in resources" :key="r.name">
             <app-resource :r="r"></app-resource>
           </v-flex>
         </v-layout>
