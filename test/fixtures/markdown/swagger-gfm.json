@@ -1,0 +1,17 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "GiHub Flavored Markdown Test",
+    "description": "# GitHub Flavoured Markdown Test\r\n\r\nCompare [GitHub](https://github.com/darosh/angular-swagger-ui-material/blob/master/test/fixtures/markdown/README.md) and [Swagger](http://darosh.github.io/angular-swagger-ui-material/#?url=http://darosh.github.io/angular-swagger-ui-material/swagger-gfm.json) render powered by [Showdown](https://github.com/showdownjs/showdown).\r\n\r\n## Header (level 2)\r\n\r\n### Header (level 3)\r\n\r\n#### Header (level 4)\r\n\r\n##### Table\r\n\r\n| Header | Header | Header |\r\n| --- | --- | --- |\r\n| Cell | Cell | Cell |\r\n| Cell | Cell | Cell |\r\n\r\n##### Auto-link\r\n\r\nwww.example.com\r\n\r\n##### List\r\n\r\n* A\r\n* B\r\n* C\r\n\r\n##### Block\r\n\r\n```\r\nHello block!\r\n```\r\n\r\n##### Blockquote\r\n\r\n> &hellip;in blockquote.\r\n\r\n##### Horizontal Rule\r\n\r\n---\r\n"
+  },
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {}
+}

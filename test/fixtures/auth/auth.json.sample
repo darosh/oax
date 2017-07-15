@@ -1,0 +1,14 @@
+{
+  "www.googleapis.com": {
+    "oauth2": {
+      "clientId": "..."
+    },
+    "apiKey": "..."
+  },
+  "api.github.com": {
+    "oauth2": {
+      "clientId": "...",
+      "clientSecret": "..."
+    }
+  }
+}
