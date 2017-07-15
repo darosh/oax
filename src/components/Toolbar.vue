@@ -19,10 +19,10 @@
                     label="Search"
                     single-line></v-text-field>
     </v-toolbar-items>
-    <v-btn icon>
+    <v-btn icon @click.native.stop="emit('open')">
       <v-icon>keyboard_arrow_down</v-icon>
     </v-btn>
-    <v-btn icon>
+    <v-btn icon @click.native.stop="emit('close')">
       <v-icon>keyboard_arrow_up</v-icon>
     </v-btn>
     <v-btn icon @click.native="value.viewResourceList = !value.viewResourceList">
@@ -66,6 +66,9 @@
         this.editing = !this.editing
         document.getElementsByName('url')[0][this.editing ? 'focus' : 'blur']()
         this.showTitle = !this.editing
+      },
+      emit (e) {
+        this.$emit(e)
       }
     }
   }

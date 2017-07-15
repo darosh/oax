@@ -3,7 +3,7 @@
     <v-navigation-drawer persistent v-model="drawerRight" right enable-resize-watcher overflow>
       <app-detail v-if="operation" :operation="operation"></app-detail>
     </v-navigation-drawer>
-    <app-toolbar v-model="that"></app-toolbar>
+    <app-toolbar v-model="that" v-on:open="open" v-on:close="close"></app-toolbar>
     <main>
       <v-container fluid>
         <app-meta-list :metas="metas"></app-meta-list>
@@ -52,17 +52,22 @@
     methods: {
       load () {
         Loader.load(this.url).then(res => {
-          this.schema = res
-          this.spec = res.bundled
-          const oas = new OAS(this.spec, this.url)
+          const oas = new OAS(res.bundled, this.url)
           this.metas = oas.metas
           this.resources = oas.resources
+          this.spec = res.bundled
+          this.schema = res
         }).catch(() => {
-          this.schema = {}
         })
       },
       selected (operation) {
         this.operation = operation
+      },
+      open () {
+        OAS.openAll(this.resources)
+      },
+      close () {
+        OAS.openAll(this.resources, false)
       }
     },
     watch: {

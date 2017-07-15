@@ -54,6 +54,12 @@ export class OAS {
     OAS.getOperations(spec, this.resources, this.map)
   }
 
+  static openAll(resources: Resource[], opened = true) {
+    for (const r in resources) {
+      resources[r]._opened = opened
+    }
+  }
+
   static fixInfo(spec: Spec, url: string, defaultContentType: string) {
     const a: any = document.createElement('a')
     a.href = url
@@ -81,8 +87,9 @@ export class OAS {
     } else {
       for (let i = 0, l = spec.tags.length; i < l; i++) {
         let tag = spec.tags[i];
-        resources.push(tag);
-        map[tag.name] = i;
+        (tag as Resource)._opened = true
+        resources.push(tag)
+        map[tag.name] = i
       }
     }
 

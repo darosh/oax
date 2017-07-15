@@ -1,13 +1,15 @@
 <template>
-  <v-expansion-panel>
-    <v-expansion-panel-content>
-      <div slot="header">{{r.name}}</div>
+  <v-expansion-panel expand>
+    <v-expansion-panel-content v-model="value._opened">
+      <div slot="header" class="title">{{value.name}}</div>
       <v-card>
-        <v-card-title>{{r.description}}</v-card-title>
-        <v-card-text v-if="r.externalDocs && r.externalDocs.url">
-          <a :href="r.externalDocs.url">{{r.externalDocs.description}}</a>
+        <v-card-title v-if="value.description">{{value.description}}</v-card-title>
+        <v-divider v-if="value.description"></v-divider>
+        <v-card-text v-if="value.externalDocs && value.externalDocs.url">
+          <a :href="value.externalDocs.url">{{value.externalDocs.description}}</a>
         </v-card-text>
-        <v-card-text v-for="o in r._operations" :key="o._id">
+        <v-divider v-if="value.externalDocs && value.externalDocs.url"></v-divider>
+        <v-card-text v-for="o in value._operations" :key="o._id">
           <app-operation :o="o" @click.native="selected(o)"></app-operation>
         </v-card-text>
       </v-card>
@@ -22,7 +24,7 @@
     components: {
       appOperation: () => import('./Operation')
     },
-    props: ['r'],
+    props: ['value'],
     methods: {
       selected (item) {
         bus.$emit('selected', item)
