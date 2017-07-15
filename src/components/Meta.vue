@@ -1,5 +1,5 @@
 <template>
-  <v-list two-line subheader class="list--single">
+  <v-list dense two-line subheader class="list--single">
     <v-list-tile avatar>
       <v-list-tile-avatar>
         <v-icon class="secondary white--text">{{m.icon}}</v-icon>
