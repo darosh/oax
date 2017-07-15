@@ -39,7 +39,7 @@ interface Map {
 }
 
 export class OAS {
-  meta: Meta[]
+  metas: Meta[]
   resources: Resource[]
   map: Map
 
@@ -49,7 +49,7 @@ export class OAS {
               validatorUrl: string = 'http://online.swagger.io/validator') {
     OAS.fixInfo(spec, url, defaultContentType)
     this.map = {}
-    this.meta = OAS.getMeta(spec, url, validatorUrl)
+    this.metas = OAS.getMeta(spec, url, validatorUrl)
     this.resources = OAS.getResources(spec, this.map)
     OAS.getOperations(spec, this.resources, this.map)
   }
