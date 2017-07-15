@@ -2,10 +2,40 @@
   <v-app>
     <v-toolbar fixed>
       <v-toolbar-items>
-        <v-text-field v-bind:style="{width: this.editing ? 'inherit' : '24px'}" prepend-icon="edit"
-                      :prepend-icon-cb="edit" v-model="url" name="url"
-                      label="Open API Specification URL" single-line></v-text-field>
+        <v-text-field v-bind:style="{width: this.editing ? 'inherit' : '24px'}"
+                      prepend-icon="edit"
+                      :prepend-icon-cb="edit"
+                      v-model="url"
+                      name="url"
+                      label="Open API Specification URL"
+                      single-line></v-text-field>
       </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-text-field prepend-icon="search"
+                      v-model="search"
+                      name="search"
+                      label="Search"
+                      single-line></v-text-field>
+      </v-toolbar-items>
+      <v-btn icon>
+        <v-icon>keyboard_arrow_down</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>keyboard_arrow_up</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>_view_columns</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>speaker_notes</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>security</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>vpn_key</v-icon>
+      </v-btn>
     </v-toolbar>
     <main>
       <v-container fluid>
@@ -42,7 +72,8 @@
         schema: {},
         meta: [],
         resources: [],
-        editing: false
+        editing: false,
+        search: ''
       }
     },
     created () {

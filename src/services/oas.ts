@@ -15,6 +15,7 @@ interface Meta {
 
 interface Resource extends Tag {
   _operations?: OperationExtended[]
+  _opened?: boolean
 }
 
 const HttpMethods: { [httpMethod: string]: boolean } = {
@@ -73,8 +74,8 @@ export class OAS {
 
     if (!spec.tags || (spec.tags.length === 0)) {
       resources.push({
-        name: 'default'
-        // open: true
+        name: 'default',
+        _opened: true
       })
       map['default'] = 0;
     } else {
@@ -94,8 +95,6 @@ export class OAS {
     for (const pathName in spec.paths) {
       const path: Path = spec.paths[pathName]
       // const pathParameters: Parameter[] = path.parameters || [];
-
-      // delete pathObject.parameters;
 
       for (const httpMethod in path) {
         if (!HttpMethods[httpMethod]) {
