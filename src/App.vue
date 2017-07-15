@@ -1,10 +1,19 @@
 <template>
   <v-app>
+    <v-navigation-drawer
+      persistent
+      clipped
+      v-model="drawerRight"
+      right
+      enable-resize-watcher
+      overflow
+      absolute></v-navigation-drawer>
     <app-toolbar v-model="that"></app-toolbar>
     <main>
       <app-meta-list :metas="metas"></app-meta-list>
-      <app-resource-list v-if="viewResourceList" :resources="resources" :description="viewDescription"></app-resource-list>
-      <app-operation-list v-if="!viewResourceList"  :description="viewDescription"></app-operation-list>
+      <app-resource-list v-if="viewResourceList" :resources="resources"
+                         :description="viewDescription"></app-resource-list>
+      <app-operation-list v-if="!viewResourceList" :description="viewDescription"></app-operation-list>
     </main>
   </v-app>
 </template>
@@ -12,6 +21,7 @@
 <script>
   import { OAS } from './services/oas'
   import Loader from './services/loader'
+  import { bus } from './services/bus'
 
   export default {
     components: {
@@ -29,12 +39,14 @@
         search: '',
         viewResourceList: true,
         viewDescription: false,
-        that: {}
+        that: {},
+        drawerRight: true
       }
     },
     created () {
       this.that = this
       this.load()
+      bus.$on('selected', this.selected)
     },
     methods: {
       load () {
@@ -47,6 +59,8 @@
         }).catch(() => {
           this.schema = {}
         })
+      },
+      selected (operation) {
       }
     },
     watch: {
