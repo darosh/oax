@@ -1,9 +1,9 @@
 export const Methods = {
-  get: 'primary',
-  put: 'accent',
-  post: 'accent',
+  get: 'success',
+  put: 'warning',
+  post: 'warning',
   'delete': 'error',
-  options: 'secondary',
-  head: 'warning',
-  patch: 'info'
+  options: 'info',
+  head: 'info',
+  patch: 'warning'
 }
