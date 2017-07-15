@@ -1,4 +1,4 @@
-import {Contact, Info, License, Operation, Parameter, Path, Spec} from "swagger-schema-official";
+import {Contact, Info, License, Operation, Parameter, Path, Spec, Tag} from "swagger-schema-official";
 
 interface X {
   [key: string]: any
@@ -13,9 +13,8 @@ interface Meta {
   image?: string
 }
 
-interface Resource {
-  name: string,
-  operations?: OperationExtended[]
+interface Resource extends Tag {
+  _operations?: OperationExtended[]
 }
 
 const HttpMethods: { [httpMethod: string]: boolean } = {
@@ -133,8 +132,8 @@ export class OAS {
 
         // operation.open = openPath && openPath === operation.operationId || openPath === resource.name + '*';
 
-        resource.operations = resource.operations || [];
-        resource.operations.push(operation);
+        resource._operations = resource._operations || [];
+        resource._operations.push(operation);
 
         // if (operation.open) {
         //   resource.open = true;

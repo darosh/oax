@@ -14,27 +14,14 @@
             <app-meta :m="m"></app-meta>
           </v-flex>
         </v-layout>
+      </v-container>
 
-        <!--<v-layout row wrap v-if="schema.bundled && schema.bundled.tags">-->
-        <!--<v-flex xs12 md4 v-for="tag in schema.bundled.tags" :key="tag">-->
-        <!--<v-card>-->
-        <!--<v-card-title primary-title>-->
-        <!--<div>-->
-        <!--<div class="headline">{{tag.name}}</div>-->
-        <!--<div class="subtitle">{{tag.description}}</div>-->
-        <!--<div v-if="tag.externalDocs">-->
-        <!--<a :href="tag.externalDocs.url">{{tag.externalDocs.description}}</a>-->
-        <!--</div>-->
-        <!--<div v-for="(path, pathName) in getTag(tag.name)">-->
-        <!--<div v-for="(method, methodName) in path">-->
-        <!--{{pathName}} {{methodName}}-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</v-card-title>-->
-        <!--</v-card>-->
-        <!--</v-flex>-->
-        <!--</v-layout>-->
+      <v-container fluid grid-list-xl>
+        <v-layout row wrap>
+          <v-flex xs12 sm6 md3 v-for="r in resources" :key="name">
+            <app-resource :r="r"></app-resource>
+          </v-flex>
+        </v-layout>
       </v-container>
     </main>
   </v-app>
@@ -46,7 +33,8 @@
 
   export default {
     components: {
-      appMeta: () => import('./components/Meta')
+      appMeta: () => import('./components/Meta'),
+      appResource: () => import('./components/Resource')
     },
     data () {
       return {

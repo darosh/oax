@@ -23,8 +23,7 @@
 </script>
 
 <style scoped lang="stylus">
-  .list.list--single {
+  .list.list--single
     background transparent
     padding 0
-  }
 </style>
