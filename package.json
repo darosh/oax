@@ -11,7 +11,10 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "http-method": "node tools/http-data.js method > src/assets/http-method.json",
+    "http-status": "node tools/http-data.js status > src/assets/http-status.json",
+    "http-header": "node tools/http-data.js header > src/assets/http-header.json"
   },
   "dependencies": {
     "@types/swagger-schema-official": "^2.0.5",
@@ -64,6 +67,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.30",
     "karma-webpack": "^2.0.2",
+    "know-your-http-well": "^0.5.0",
     "lolex": "^1.5.2",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.12",
