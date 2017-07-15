@@ -12,6 +12,7 @@
         <app-operation-list v-if="!viewResourceList" :description="viewDescription"></app-operation-list>
       </v-container>
     </main>
+    <app-method-dialog></app-method-dialog>
   </v-app>
 </template>
 
@@ -26,7 +27,8 @@
       appResourceList: () => import('./components/ResourceList'),
       appOperationList: () => import('./components/OperationList'),
       appToolbar: () => import('./components/Toolbar'),
-      appDetail: () => import('./components/Detail')
+      appDetail: () => import('./components/Detail'),
+      appMethodDialog: () => import('./components/MethodDialog')
     },
     data () {
       return {
@@ -48,6 +50,10 @@
       this.that = this
       this.load()
       bus.$on('selected', this.selected)
+
+      setTimeout(() => {
+        bus.$emit('dialog:method', 'get')
+      }, 2000)
     },
     methods: {
       load () {
