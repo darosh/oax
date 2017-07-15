@@ -1,4 +1,4 @@
-export const Methods = {
+export const MethodStyle  = {
   get: 'success',
   put: 'warning',
   post: 'warning',

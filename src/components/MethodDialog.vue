@@ -26,7 +26,7 @@
 
 <script>
   import { bus } from '../services/bus'
-  import { Methods } from '../services/methods'
+  import { MethodStyle } from '../services/method-syle'
   const methods = () => import('../assets/http-method.json')
 
   export default {
@@ -43,7 +43,7 @@
         methods().then((res) => {
           this.type = method
           this.method = res[method]
-          this.color = Methods[method]
+          this.color = MethodStyle[method]
           this.active = true
         })
       }

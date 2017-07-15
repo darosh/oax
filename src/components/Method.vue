@@ -3,13 +3,13 @@
 </template>
 
 <script>
-  import { Methods } from '../services/Methods'
+  import { MethodStyle } from '../services/method-syle'
 
   export default {
     props: ['m'],
     data () {
       return {
-        methods: Methods
+        methods: MethodStyle
       }
     }
   }
