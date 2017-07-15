@@ -1,19 +1,16 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      persistent
-      clipped
-      v-model="drawerRight"
-      right
-      enable-resize-watcher
-      overflow
-      absolute></v-navigation-drawer>
+    <v-navigation-drawer persistent v-model="drawerRight" right enable-resize-watcher overflow>
+      <app-detail v-if="operation" :operation="operation"></app-detail>
+    </v-navigation-drawer>
     <app-toolbar v-model="that"></app-toolbar>
     <main>
-      <app-meta-list :metas="metas"></app-meta-list>
-      <app-resource-list v-if="viewResourceList" :resources="resources"
-                         :description="viewDescription"></app-resource-list>
-      <app-operation-list v-if="!viewResourceList" :description="viewDescription"></app-operation-list>
+      <v-container fluid>
+        <app-meta-list :metas="metas"></app-meta-list>
+        <app-resource-list v-if="viewResourceList" :resources="resources"
+                           :description="viewDescription"></app-resource-list>
+        <app-operation-list v-if="!viewResourceList" :description="viewDescription"></app-operation-list>
+      </v-container>
     </main>
   </v-app>
 </template>
@@ -28,7 +25,8 @@
       appMetaList: () => import('./components/MetaList'),
       appResourceList: () => import('./components/ResourceList'),
       appOperationList: () => import('./components/OperationList'),
-      appToolbar: () => import('./components/Toolbar')
+      appToolbar: () => import('./components/Toolbar'),
+      appDetail: () => import('./components/Detail')
     },
     data () {
       return {
@@ -40,7 +38,8 @@
         viewResourceList: true,
         viewDescription: false,
         that: {},
-        drawerRight: true
+        drawerRight: true,
+        operation: null
       }
     },
     created () {
@@ -61,6 +60,7 @@
         })
       },
       selected (operation) {
+        this.operation = operation
       }
     },
     watch: {
