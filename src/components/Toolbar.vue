@@ -1,15 +1,16 @@
 <template>
   <v-toolbar fixed>
     <v-toolbar-items>
-      <v-text-field v-bind:style="{width: editing ? 'inherit' : '24px'}"
+      <v-text-field v-bind:style="{width: editing ? '240px' : '24px'}"
                     prepend-icon="edit"
                     :prepend-icon-cb="edit"
+                    class="transition--width"
                     v-model="value.url"
                     name="url"
                     label="Open API Specification URL"
                     single-line></v-text-field>
     </v-toolbar-items>
-    <v-toolbar-title>{{value.spec.info.title}}</v-toolbar-title>
+    <v-toolbar-title v-if="showTitle && value.spec && value.spec.info">{{value.spec.info.title}}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <v-text-field prepend-icon="search"
@@ -56,13 +57,21 @@
       return {
         editing: false,
         proxy: {show: false},
-        security: {show: false}
+        security: {show: false},
+        showTitle: true
       }
     },
     methods: {
       edit () {
         this.editing = !this.editing
+        document.getElementsByName('url')[0][this.editing ? 'focus' : 'blur']()
+        this.showTitle = !this.editing
       }
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  .transition--width
+    transition width 0.3s cubic-bezier(.25, .8, .25, 1)
+</style>
