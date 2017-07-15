@@ -5,7 +5,7 @@
     </v-toolbar>
     {{operation._pathName}}
     <v-tabs :scrollable="false">
-      <v-tabs-bar slot="activators" class="white">
+      <v-tabs-bar slot="activators" class="tabs--transparent">
         <v-tabs-item href="tab-1">Info</v-tabs-item>
         <v-tabs-item href="tab-2">Script</v-tabs-item>
         <v-tabs-item href="tab-3">Result</v-tabs-item>
@@ -30,4 +30,6 @@
 </script>
 
 <style scoped lang="stylus">
+  .tabs--transparent
+    background-color transparent
 </style>

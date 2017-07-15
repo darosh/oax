@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :dark="dark">
     <v-navigation-drawer persistent v-model="drawerRight" right enable-resize-watcher overflow>
       <app-detail v-if="operation" :operation="operation"></app-detail>
     </v-navigation-drawer>
@@ -39,7 +39,8 @@
         viewDescription: false,
         that: {},
         drawerRight: true,
-        operation: null
+        operation: null,
+        dark: true
       }
     },
     created () {

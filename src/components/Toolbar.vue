@@ -35,6 +35,9 @@
     <v-btn icon @click.native.stop="security.show = true">
       <v-icon>vpn_key</v-icon>
     </v-btn>
+    <v-btn icon @click.native.stop="value.dark = !value.dark">
+      <v-icon>{{value.dark ? 'brightness_5' : 'brightness_4'}}</v-icon>
+    </v-btn>
 
     <app-proxy v-model="proxy"></app-proxy>
     <app-security v-model="security"></app-security>
