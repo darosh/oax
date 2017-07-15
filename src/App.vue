@@ -3,8 +3,8 @@
     <app-toolbar v-model="that"></app-toolbar>
     <main>
       <app-meta-list :metas="metas"></app-meta-list>
-      <app-resource-list v-if="viewResourceList" :resources="resources"></app-resource-list>
-      <app-operation-list v-if="!viewResourceList"></app-operation-list>
+      <app-resource-list v-if="viewResourceList" :resources="resources" :description="viewDescription"></app-resource-list>
+      <app-operation-list v-if="!viewResourceList"  :description="viewDescription"></app-operation-list>
     </main>
   </v-app>
 </template>
@@ -28,6 +28,7 @@
         resources: [],
         search: '',
         viewResourceList: true,
+        viewDescription: false,
         that: {}
       }
     },

@@ -26,8 +26,8 @@
     <v-btn icon @click.native="value.viewResourceList = !value.viewResourceList">
       <v-icon>{{value.viewResourceList ? '_view_columns' : 'view_comfy'}}</v-icon>
     </v-btn>
-    <v-btn icon>
-      <v-icon>speaker_notes</v-icon>
+    <v-btn icon @click.native="value.viewDescription = !value.viewDescription">
+      <v-icon>{{value.viewDescription ? 'speaker_notes_off' : 'speaker_notes'}}</v-icon>
     </v-btn>
     <v-btn icon>
       <v-icon>security</v-icon>
