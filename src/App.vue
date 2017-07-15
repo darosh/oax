@@ -1,42 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar fixed>
-      <v-toolbar-items>
-        <v-text-field v-bind:style="{width: this.editing ? 'inherit' : '24px'}"
-                      prepend-icon="edit"
-                      :prepend-icon-cb="edit"
-                      v-model="url"
-                      name="url"
-                      label="Open API Specification URL"
-                      single-line></v-text-field>
-      </v-toolbar-items>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-text-field prepend-icon="search"
-                      v-model="search"
-                      name="search"
-                      label="Search"
-                      single-line></v-text-field>
-      </v-toolbar-items>
-      <v-btn icon>
-        <v-icon>keyboard_arrow_down</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>keyboard_arrow_up</v-icon>
-      </v-btn>
-      <v-btn icon @click.native="viewResourceList = !viewResourceList">
-        <v-icon>{{viewResourceList ? '_view_columns' : 'view_comfy'}}</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>speaker_notes</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>security</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>vpn_key</v-icon>
-      </v-btn>
-    </v-toolbar>
+    <app-toolbar v-model="that"></app-toolbar>
     <main>
       <v-container fluid>
         <v-layout row wrap>
@@ -59,7 +23,8 @@
     components: {
       appMeta: () => import('./components/Meta'),
       appResourceList: () => import('./components/ResourceList'),
-      appOperationList: () => import('./components/OperationList')
+      appOperationList: () => import('./components/OperationList'),
+      appToolbar: () => import('./components/Toolbar')
     },
     data () {
       return {
@@ -67,12 +32,13 @@
         schema: {},
         meta: [],
         resources: [],
-        editing: false,
         search: '',
-        viewResourceList: true
+        viewResourceList: true,
+        that: {}
       }
     },
     created () {
+      this.that = this
       this.load()
     },
     methods: {
@@ -86,9 +52,6 @@
         }).catch(() => {
           this.schema = {}
         })
-      },
-      edit () {
-        this.editing = !this.editing
       }
     },
     watch: {
