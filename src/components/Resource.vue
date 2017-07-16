@@ -11,7 +11,7 @@
         </v-card-text>
         <v-divider v-if="value.externalDocs && value.externalDocs.url"></v-divider>
         <div class="pt-2 pb-2">
-          <div v-for="o in value._operations" :key="o._id">
+          <div v-if="o._display" v-for="o in value._operations" :key="o._id">
             <app-operation v-ripple :o="o" @click.native="selected(o)" class="operation relative pl-3 pr-3"></app-operation>
           </div>
         </div>

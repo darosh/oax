@@ -81,7 +81,8 @@
       }
     },
     watch: {
-      url: function () { this.load() }
+      url: function () { this.load() },
+      search: function () { OAS.filterSearch(this.resources, OAS.getSearch(this.search)) }
     }
   }
 </script>

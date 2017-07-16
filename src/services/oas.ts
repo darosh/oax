@@ -4,7 +4,7 @@ interface X {
   [key: string]: any
 }
 
-interface Meta {
+interface IMeta {
   title?: string,
   icon: string,
   value?: string,
@@ -13,16 +13,17 @@ interface Meta {
   image?: string
 }
 
-interface Resource extends Tag {
+interface IResource extends Tag {
   _operations?: OperationExtended[]
   _opened?: boolean
+  _display?: boolean
 }
 
 const HttpMethods: { [httpMethod: string]: boolean } = {
   get: true,
   put: true,
   post: true,
-  'delete': true,
+  delete: true,
   options: true,
   head: true,
   patch: true
@@ -32,6 +33,7 @@ interface OperationExtended extends Operation {
   _id: number,
   _method: string,
   _pathName: string
+  _display?: boolean
 }
 
 // interface SchemaExtended extends Schema {
@@ -43,8 +45,8 @@ interface Map {
 }
 
 export class OAS {
-  metas: Meta[]
-  resources: Resource[]
+  metas: IMeta[]
+  resources: IResource[]
   map: Map
 
   constructor(spec: Spec,
@@ -58,9 +60,45 @@ export class OAS {
     OAS.getOperations(spec, this.resources, this.map)
   }
 
-  static openAll(resources: Resource[], opened = true) {
+  static openAll(resources: IResource[], opened = true) {
     for (const r in resources) {
       resources[r]._opened = opened
+    }
+  }
+
+  static getSearch(text: string) {
+    if (!text) {
+      return {}
+    } else {
+      const trimmed = text.toLowerCase().trim();
+      const parts = trimmed.split(' ');
+      const isMethod = HttpMethods[parts[0]];
+      const method = (parts.length > 1) ? parts[0] : (isMethod ? parts[0] : '');
+      const path = (parts.length > 1) ? parts[1] : (isMethod ? '' : parts[0]);
+
+      return {method, path}
+    }
+  }
+
+  static filterSearch(resources: IResource[], search: any) {
+    for (let i = 0; i < resources.length; i++) {
+      let r = resources[i]
+
+      r._display = false
+      r._opened = false
+
+      for (let j = 0; j < r._operations.length; j++) {
+        let o = r._operations[j];
+
+        if ((search.method ? search.method === o._method : true) &&
+          (search.path ? o._pathName.toLowerCase().indexOf(search.path) > -1 : true)) {
+          o._display = true
+          r._display = true
+          r._opened = true
+        } else {
+          o._display = false
+        }
+      }
     }
   }
 
@@ -79,19 +117,21 @@ export class OAS {
     spec.produces = spec.produces || [defaultContentType]
   }
 
-  static getResources(spec: Spec, map: Map): Resource[] {
-    const resources: Resource[] = []
+  static getResources(spec: Spec, map: Map): IResource[] {
+    const resources: IResource[] = []
 
     if (!spec.tags || (spec.tags.length === 0)) {
       resources.push({
         name: 'default',
-        _opened: true
+        _opened: true,
+        _display: true
       })
       map['default'] = 0;
     } else {
       for (let i = 0, l = spec.tags.length; i < l; i++) {
         let tag = spec.tags[i];
-        (tag as Resource)._opened = true
+        (tag as IResource)._opened = true;
+        (tag as IResource)._display = true;
         resources.push(tag)
         map[tag.name] = i
       }
@@ -100,7 +140,7 @@ export class OAS {
     return resources
   }
 
-  static getOperations(spec: Spec, resources: Resource[], map: Map/*, form, map, defaultContentType, openPath*/) {
+  static getOperations(spec: Spec, resources: IResource[], map: Map/*, form, map, defaultContentType, openPath*/) {
     let operationId: number = 0;
 
     for (const pathName in spec.paths) {
@@ -123,6 +163,7 @@ export class OAS {
 
         operation._method = httpMethod;
         operation._pathName = pathName;
+        operation._display = true;
 
         // parseParameters(spec, operation, pathParameters, form, defaultContentType);
         // OAS.parseResponses(spec, operation);
@@ -138,7 +179,7 @@ export class OAS {
           });
         }
 
-        const resource: Resource = resources[map[operation.tags[0]]];
+        const resource: IResource = resources[map[operation.tags[0]]];
 
         // operation.open = openPath && openPath === operation.operationId || openPath === resource.name + '*';
 
@@ -215,48 +256,48 @@ export class OAS {
   }
 
   /*
-  static parseResponses(swagger: Spec, operation: OperationExtended) {
-    // var sampleJson;
-    var sampleObj;
+   static parseResponses(swagger: Spec, operation: OperationExtended) {
+   // var sampleJson;
+   var sampleObj;
 
-    operation.responses = operation.responses || {};
-    operation._responses = [];
+   operation.responses = operation.responses || {};
+   operation._responses = [];
 
-    for (const code in operation.responses) {
-      let response = operation.responses[code]
+   for (const code in operation.responses) {
+   let response = operation.responses[code]
 
-      if (response.schema) {
-        if (response.examples && response.examples[operation.produces[0]]) {
-          // TODO: we prefer object(?)
-          // sampleJson = angular.toJson(response.examples[operation.produces[0]], true);
-          sampleObj = response.examples[operation.produces[0]];
-        } else {
-          // sampleJson = model.generateSampleJson(swagger, response.schema);
-          // sampleObj = model.getSampleObj(swagger, response.schema);
-        }
+   if (response.schema) {
+   if (response.examples && response.examples[operation.produces[0]]) {
+   // TODO: we prefer object(?)
+   // sampleJson = angular.toJson(response.examples[operation.produces[0]], true);
+   sampleObj = response.examples[operation.produces[0]];
+   } else {
+   // sampleJson = model.generateSampleJson(swagger, response.schema);
+   // sampleObj = model.getSampleObj(swagger, response.schema);
+   }
 
-        // response.schema.json = sampleJson;
-        (response.schema as SchemaExtended)._obj = sampleObj;
+   // response.schema.json = sampleJson;
+   (response.schema as SchemaExtended)._obj = sampleObj;
 
-        if (response.schema.type === 'object' || response.schema.type === 'array') {
-          response.display = 1; // display schema
-          response.schema.model = $sce.trustAsHtml(model.generateModel(swagger, response.schema));
-        } else if (response.schema.type === 'string') {
-          delete response.schema;
-        }
+   if (response.schema.type === 'object' || response.schema.type === 'array') {
+   response.display = 1; // display schema
+   response.schema.model = $sce.trustAsHtml(model.generateModel(swagger, response.schema));
+   } else if (response.schema.type === 'string') {
+   delete response.schema;
+   }
 
-        if (code === '200' || code === '201') {
-          operation.responseClass = response;
-          operation.responseClass.display = 1;
-          operation.responseClass.status = code;
-          delete operation.responses[code];
-        }
-      }
-    }
-  }
-  */
+   if (code === '200' || code === '201') {
+   operation.responseClass = response;
+   operation.responseClass.display = 1;
+   operation.responseClass.status = code;
+   delete operation.responses[code];
+   }
+   }
+   }
+   }
+   */
 
-  static getMeta(spec: Spec, url: string, validatorUrl: string): Meta[] {
+  static getMeta(spec: Spec, url: string, validatorUrl: string): IMeta[] {
     const info: Info = spec.info
     const contact: Contact = info.contact || {}
     const license: License = info.license || {} as any
