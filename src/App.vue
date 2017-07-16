@@ -58,10 +58,6 @@
       this.that = this
       this.load()
       bus.$on('selected', this.selected)
-
-      setTimeout(() => {
-        bus.$emit('dialog:method', 'get')
-      }, 2000)
     },
     methods: {
       load () {

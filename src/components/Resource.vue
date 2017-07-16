@@ -12,7 +12,7 @@
         <v-divider v-if="value.externalDocs && value.externalDocs.url"></v-divider>
         <div class="pt-2 pb-2">
           <div v-for="o in value._operations" :key="o._id">
-            <app-operation v-ripple :o="o" @click.native="selected(o)" class="relative pl-3 pr-3"></app-operation>
+            <app-operation v-ripple :o="o" @click.native="selected(o)" class="operation relative pl-3 pr-3"></app-operation>
           </div>
         </div>
       </v-card>
@@ -39,4 +39,10 @@
 <style scoped lang="stylus">
   .relative
     position relative
+
+  @import "../../node_modules/vuetify/src/stylus/settings/_theme.styl"
+
+  .operation:hover
+    background: $material-twelve-percent-dark
+    cursor pointer
 </style>

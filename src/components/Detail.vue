@@ -5,7 +5,7 @@
     </v-toolbar>
     <v-layout>
       <v-flex pt-4 pl-4 pr-4 pb-2>
-        <app-operation :o="operation"></app-operation>
+        <app-operation :o="operation" :clickable="true"></app-operation>
         <div class="subheading pt-3 pb-2">{{operation.summary}}</div>
         <div class="body-1">{{operation.description}}</div>
       </v-flex>
