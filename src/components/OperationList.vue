@@ -1,13 +1,40 @@
-<template>
+<template lang="pug">
+  v-container(fluid).pl-4.pr-4
+    v-layout(row wrap).stretch
+      v-flex(xs12 sm6 md4 lg3 v-ripple relative v-if="item._display" v-for="(item, key) in items" :key="item._id" @click="selected(item)").operation--block
+        v-divider
+        .pt-1.pb-1
+          app-operation(:o="items[key]")
+          div(v-if='$store.state.view.description')
+            .pt-1.pr-1.body-2(style='padding-left: 68px') {{item.description}}
 </template>
 
 <script>
+  import { bus } from '../services/bus'
+
   export default {
     components: {
+      appOperation: () => import('./Operation')
     },
-    props: ['operations']
+    props: ['items'],
+    methods: {
+      selected (item) {
+        bus.$emit('selected', item)
+      }
+    }
   }
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus">
+  .stretch
+    align-content stretch
+
+  .relative
+    position relative
+
+  @import "../../node_modules/vuetify/src/stylus/settings/_theme.styl"
+
+  .operation--block:hover
+    background: $material-twelve-percent-dark
+    cursor pointer
 </style>

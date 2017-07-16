@@ -47,6 +47,7 @@ interface Map {
 export class OAS {
   metas: IMeta[]
   resources: IResource[]
+  operations: OperationExtended[]
   map: Map
 
   constructor(spec: Spec,
@@ -57,7 +58,7 @@ export class OAS {
     this.map = {}
     this.metas = OAS.getMeta(spec, url, validatorUrl)
     this.resources = OAS.getResources(spec, this.map)
-    OAS.getOperations(spec, this.resources, this.map)
+    this.operations = OAS.getOperations(spec, this.resources, this.map)
   }
 
   static openAll(resources: IResource[], opened = true) {
@@ -142,6 +143,7 @@ export class OAS {
 
   static getOperations(spec: Spec, resources: IResource[], map: Map/*, form, map, defaultContentType, openPath*/) {
     let operationId: number = 0;
+    const operations: OperationExtended[] = [];
 
     for (const pathName in spec.paths) {
       const path: Path = spec.paths[pathName]
@@ -190,9 +192,13 @@ export class OAS {
         //   resource.open = true;
         // }
 
+        operations.push(operation)
+
         operationId++;
       }
     }
+
+    return operations;
   }
 
   static computeParameters(pathParameters: Parameter[], operation: OperationExtended): Parameter[] {

@@ -8,7 +8,7 @@
       <v-container fluid>
         <app-meta-list :metas="metas"></app-meta-list>
         <app-resource-list v-if="$store.state.view.grouped" :resources="resources"></app-resource-list>
-        <app-operation-list v-if="!$store.state.view.grouped"></app-operation-list>
+        <app-operation-list v-if="!$store.state.view.grouped" :items="operations"></app-operation-list>
       </v-container>
     </main>
     <app-method-dialog></app-method-dialog>
@@ -47,6 +47,7 @@
         search: '',
         that: {},
         operation: null,
+        operations: [],
         drawer: false,
         small: window.innerWidth < 1260
       }
@@ -66,6 +67,7 @@
           const oas = new OAS(res.bundled, this.url)
           this.metas = oas.metas
           this.resources = oas.resources
+          this.operations = oas.operations
           this.spec = res.bundled
           this.schema = res
         }).catch(() => {
