@@ -1,17 +1,12 @@
-<template>
-  <v-dialog v-model="active">
-    <v-card>
-      <v-card-title>
-        <span class="headline">Security</span>
-      </v-card-title>
-      <v-card-text>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn flat @click.native="active = false">Close</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+<template lang="pug">
+  v-dialog(v-model='active')
+    v-card
+      v-card-title
+        span.headline Security
+      v-card-text
+      v-card-actions
+        v-spacer
+        v-btn(flat @click.native='active = false') Close
 </template>
 
 <script>

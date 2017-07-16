@@ -1,22 +1,18 @@
-<template>
-  <v-app :dark="$store.state.view.dark">
-    <v-navigation-drawer right overflow persistent v-model="drawer">
-      <app-detail v-if="operation" :operation="operation"></app-detail>
-    </v-navigation-drawer>
-    <app-toolbar v-model="that" v-on:open="open" v-on:close="close"></app-toolbar>
-    <main>
-      <v-container fluid>
-        <app-meta-list :metas="metas"></app-meta-list>
-        <app-resource-list v-if="$store.state.view.grouped" :resources="resources"></app-resource-list>
-        <app-operation-list v-if="!$store.state.view.grouped" :items="operations"></app-operation-list>
-      </v-container>
-    </main>
-    <app-method-dialog></app-method-dialog>
-    <app-status-dialog></app-status-dialog>
-    <app-header-dialog></app-header-dialog>
-    <app-proxy-dialog></app-proxy-dialog>
-    <app-security-dialog></app-security-dialog>
-  </v-app>
+<template lang="pug">
+  v-app(:dark='$store.state.view.dark')
+    v-navigation-drawer(right overflow persistent v-model='drawer')
+      app-detail(v-if='operation', :operation='operation')
+    app-toolbar(v-model='that', v-on:open='open', v-on:close='close')
+    main
+      v-container(fluid)
+        app-meta-list(:metas='metas')
+        app-resource-list(v-if='$store.state.view.grouped', :resources='resources')
+        app-operation-list(v-if='!$store.state.view.grouped', :items='operations')
+    app-method-dialog
+    app-status-dialog
+    app-header-dialog
+    app-proxy-dialog
+    app-security-dialog
 </template>
 
 <script>

@@ -1,14 +1,10 @@
-<template>
-  <div>
-    <div v-if="value.responses && Object.keys(value.responses).length" class="subheader">Response messages</div>
-    <div class="pt-2 pb-2">
-      <div @click.stop="emitBus('dialog:status', code)" class="relative response pl-3 pr-3" v-ripple
-           v-for="(response, code) in value.responses" :key="code">
-          <v-btn small :class="responseStyle[code[0]] + ' btn--response'">{{code}}</v-btn>
-          <span class="response--message pl-2">{{response.description}}</span>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div
+    .subheader(v-if='value.responses && Object.keys(value.responses).length') Response messages
+    .pt-2.pb-2
+      .relative.response.pl-3.pr-3(@click.stop="emitBus('dialog:status', code)", v-ripple v-for='(response, code) in value.responses', :key='code')
+        v-btn(small :class="responseStyle[code[0]] + ' btn--response'") {{code}}
+        span.response--message.pl-2 {{response.description}}
 </template>
 
 <script>

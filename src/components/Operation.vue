@@ -1,9 +1,8 @@
-<template>
-  <div :class="{deprecated: o.deprecated, operation: true}">
-    <app-method v-if="!clickable" :m="o._method"></app-method>
-    <app-method v-else @click.native.stop="emitBus('dialog:method', o._method)" :m="o._method"></app-method>
-    <span class="operation--message pl-1">{{o._pathName}}</span>
-  </div>
+<template lang="pug">
+  div(:class='{deprecated: o.deprecated, operation: true}')
+    app-method(v-if='!clickable', :m='o._method')
+    app-method(v-else @click.native.stop="emitBus('dialog:method', o._method)", :m='o._method')
+    span.operation--message.pl-1 {{o._pathName}}
 </template>
 
 <script>

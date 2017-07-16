@@ -1,5 +1,5 @@
-<template>
-  <v-btn small round :class="methods[m] + ' btn--operation elevation-1'">{{m}}</v-btn>
+<template lang="pug">
+  v-btn(small round :class="methods[m] + ' btn--operation elevation-1'") {{m}}
 </template>
 
 <script>

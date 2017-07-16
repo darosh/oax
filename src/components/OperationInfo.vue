@@ -1,7 +1,7 @@
-<template>
-  <div :class="{deprecated: o.deprecated, operation: true}">
-    <app-method :m="o._method"></app-method> {{o._pathName}}
-  </div>
+<template lang="pug">
+  div(:class='{deprecated: o.deprecated, operation: true}')
+  app-method(:m='o._method')
+  |  {{o._pathName}}
 </template>
 
 <script>
