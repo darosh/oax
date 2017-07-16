@@ -1,15 +1,52 @@
 <template>
-  <div class="pa-2">
+  <div>
     <div v-if="value.responses && Object.keys(value.responses).length" class="subheader">Response messages</div>
-    <div class="pa-1" v-for="(response, code) in value.responses">
-      <v-btn small>{{code}}</v-btn>
-      {{response.description}}
+    <div class="pt-2 pb-2">
+      <div @click.stop="emitBus('dialog:status', code)" class="relative response pl-3 pr-3" v-ripple
+           v-for="(response, code) in value.responses" :key="code">
+          <v-btn small :class="responseStyle[code[0]] + ' btn--response'">{{code}}</v-btn>
+          {{response.description}}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { ResponseStyle } from '../services/response-style'
+  import { bus } from '../services/bus'
+
   export default {
-    props: ['value']
+    props: ['value'],
+    data () {
+      return {
+        responseStyle: ResponseStyle
+      }
+    },
+    methods: {
+      emitBus (e, v) {
+        bus.$emit(e, v)
+      }
+    }
   }
 </script>
+
+<style lang="stylus">
+  .btn--response
+    font-family "Roboto Mono", monospace
+    height 24px;
+    min-width 48px
+    padding 0
+    margin 4px 0
+
+  .btn.btn--response .btn__content
+    padding 0 4px !important
+
+  .relative
+    position relative
+
+  @import "../../node_modules/vuetify/src/stylus/settings/_theme.styl"
+
+  .response:hover
+    background: $material-twelve-percent-dark
+    cursor pointer
+</style>

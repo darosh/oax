@@ -26,7 +26,7 @@
 
 <script>
   import { bus } from '../services/bus'
-  import { MethodStyle } from '../services/method-syle'
+  import { MethodStyle } from '../services/method-style'
   const methods = () => import('../assets/http-method.json')
 
   export default {

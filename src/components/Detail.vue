@@ -10,11 +10,11 @@
         <div class="body-1">{{operation.description}}</div>
       </v-flex>
     </v-layout>
-    <v-tabs :scrollable="false">
+    <v-tabs :scrollable="false" class="app--tabs">
       <v-tabs-bar slot="activators" class="tabs--transparent">
-        <v-tabs-item href="tab-1">Info</v-tabs-item>
-        <v-tabs-item href="tab-2">Script</v-tabs-item>
-        <v-tabs-item href="tab-3">Result</v-tabs-item>
+        <v-tabs-item ripple href="tab-1">Info</v-tabs-item>
+        <v-tabs-item ripple class="relative" href="tab-2">Script</v-tabs-item>
+        <v-tabs-item ripple class="relative" href="tab-3">Result</v-tabs-item>
         <v-tabs-slider></v-tabs-slider>
       </v-tabs-bar>
       <v-tabs-content id="tab-1">
@@ -45,4 +45,7 @@
 <style scoped lang="stylus">
   .tabs--transparent
     background-color transparent
+
+  .relative
+    position relative
 </style>
