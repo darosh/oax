@@ -20,6 +20,18 @@
       v-icon vpn_key
     v-btn(icon @click.native.stop='toggleDark()' v-tooltip:bottom="{html: $store.state.view.dark ? 'Light theme' : 'Dark theme'}")
       v-icon {{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}
+    v-menu(bottom left)
+      v-btn(icon slot='activator')
+        v-icon more_vert
+      v-list
+        v-list-tile
+          v-list-tile-title
+            router-link(to="http-method") HTTP Method Reference
+        v-list-tile
+          v-list-tile-title HTTP Status Reference
+        v-list-tile
+          v-list-tile-title HTTP Header Reference
+
 </template>
 
 <script>

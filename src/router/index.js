@@ -5,5 +5,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path: '/', component: () => import('../components/Explorer')},
+    {path: '/http-method', component: () => import('../components/HttpMethod')}
   ]
 })
