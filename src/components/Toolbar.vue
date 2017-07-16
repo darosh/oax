@@ -25,8 +25,8 @@
     <v-btn icon @click.native.stop="emit('close')">
       <v-icon>keyboard_arrow_up</v-icon>
     </v-btn>
-    <v-btn icon @click.native="value.viewResourceList = !value.viewResourceList">
-      <v-icon>{{value.viewResourceList ? '_view_columns' : 'view_comfy'}}</v-icon>
+    <v-btn icon @click.native="toggleGrouped()">
+      <v-icon>{{$store.state.view.grouped ? '_view_columns' : 'view_comfy'}}</v-icon>
     </v-btn>
     <v-btn icon @click.native="toggleDescription()">
       <v-icon>{{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}</v-icon>
@@ -37,8 +37,8 @@
     <v-btn icon @click.native.stop="emitBus('dialog:security')">
       <v-icon>vpn_key</v-icon>
     </v-btn>
-    <v-btn icon @click.native.stop="value.dark = !value.dark">
-      <v-icon>{{value.dark ? 'brightness_5' : 'brightness_4'}}</v-icon>
+    <v-btn icon @click.native.stop="toggleDark()">
+      <v-icon>{{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}</v-icon>
     </v-btn>
   </v-toolbar>
 </template>
@@ -70,6 +70,8 @@
         bus.$emit(e)
       },
       ...mapMutations([
+        'toggleDark',
+        'toggleGrouped',
         'toggleDescription'
       ])
     }

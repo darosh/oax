@@ -13,6 +13,6 @@
     components: {
       appResource: () => import('./Resource')
     },
-    props: ['resources', 'description']
+    props: ['resources']
   }
 </script>

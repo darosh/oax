@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark">
+  <v-app :dark="$store.state.view.dark">
     <v-navigation-drawer right overflow persistent v-model="drawer">
       <app-detail v-if="operation" :operation="operation"></app-detail>
     </v-navigation-drawer>
@@ -7,9 +7,8 @@
     <main>
       <v-container fluid>
         <app-meta-list :metas="metas"></app-meta-list>
-        <app-resource-list v-if="viewResourceList" :resources="resources"
-                           :description="viewDescription"></app-resource-list>
-        <app-operation-list v-if="!viewResourceList" :description="viewDescription"></app-operation-list>
+        <app-resource-list v-if="$store.state.view.grouped" :resources="resources"></app-resource-list>
+        <app-operation-list v-if="!$store.state.view.grouped"></app-operation-list>
       </v-container>
     </main>
     <app-method-dialog></app-method-dialog>
@@ -46,11 +45,8 @@
         metas: [],
         resources: [],
         search: '',
-        viewResourceList: true,
-        viewDescription: false,
         that: {},
         operation: null,
-        dark: true,
         drawer: false,
         small: window.innerWidth < 1260
       }
