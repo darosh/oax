@@ -11,13 +11,13 @@
         div(class="group")
           div
             v-icon {{method[3] ? 'check_box' : 'check_box_outline_blank'}}
-            span Safe
+            |  Safe
           div
             v-icon {{method[4] ? 'check_box' : 'check_box_outline_blank'}}
-            span Idempotent
+            |  Idempotent
           div
             v-icon {{method[5] ? 'check_box' : 'check_box_outline_blank'}}
-            span Cacheable
+            |  Cacheable
       v-divider
       v-card-text(class="capitalize") {{method[0]}}
       v-card-actions
