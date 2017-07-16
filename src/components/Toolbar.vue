@@ -6,9 +6,9 @@
     v-spacer
     v-toolbar-items
       v-text-field(prepend-icon='search', v-model='value.search', name='search', label='Search', single-line)
-    v-btn(icon @click.native.stop="emit('open')")
+    v-btn(icon @click.native.stop="emit('open')" v-if="$store.state.view.grouped")
       v-icon keyboard_arrow_down
-    v-btn(icon @click.native.stop="emit('close')")
+    v-btn(icon @click.native.stop="emit('close')" v-if="$store.state.view.grouped")
       v-icon keyboard_arrow_up
     v-btn(icon @click.native='toggleGrouped()')
       v-icon {{$store.state.view.grouped ? '_view_columns' : 'view_comfy'}}
