@@ -14,7 +14,7 @@
           <div v-if="o._display" v-for="(o, i) in value._operations" :key="o._id">
             <div class="operation--block relative pt-1" v-ripple @click="selected(o)">
               <app-operation :o="o" class="pl-3 pr-3"></app-operation>
-              <div>
+              <div v-if="$store.state.view.description">
                 <div class="pt-1 pr-3 body-2" style="padding-left: 84px">{{o.description}}</div>
                 <div class="pl-3 pr-3 pt-1">
                   <v-divider v-if="i < (value._operations.length - 1)"></v-divider>

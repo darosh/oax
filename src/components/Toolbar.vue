@@ -28,8 +28,8 @@
     <v-btn icon @click.native="value.viewResourceList = !value.viewResourceList">
       <v-icon>{{value.viewResourceList ? '_view_columns' : 'view_comfy'}}</v-icon>
     </v-btn>
-    <v-btn icon @click.native="value.viewDescription = !value.viewDescription">
-      <v-icon>{{value.viewDescription ? 'speaker_notes_off' : 'speaker_notes'}}</v-icon>
+    <v-btn icon @click.native="toggleDescription()">
+      <v-icon>{{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}</v-icon>
     </v-btn>
     <v-btn icon @click.native.stop="emitBus('dialog:proxy')">
       <v-icon>security</v-icon>
@@ -45,6 +45,7 @@
 
 <script>
   import { bus } from '../services/bus'
+  import { mapMutations } from 'vuex'
 
   export default {
     props: ['value'],
@@ -67,7 +68,10 @@
       },
       emitBus (e) {
         bus.$emit(e)
-      }
+      },
+      ...mapMutations([
+        'toggleDescription'
+      ])
     }
   }
 </script>
