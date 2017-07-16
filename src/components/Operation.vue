@@ -2,7 +2,7 @@
   <div :class="{deprecated: o.deprecated, operation: true}">
     <app-method v-if="!clickable" :m="o._method"></app-method>
     <app-method v-else @click.native.stop="emitBus('dialog:method', o._method)" :m="o._method"></app-method>
-    {{o._pathName}}
+    <span class="operation--message pl-1">{{o._pathName}}</span>
   </div>
 </template>
 
@@ -25,4 +25,12 @@
 <style scoped lang="stylus">
   .deprecated
     text-decoration line-through
+
+  .operation
+    display flex
+    flex 1
+
+  .operation--message
+    padding-top 6px
+    word-break break-all
 </style>

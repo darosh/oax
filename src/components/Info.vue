@@ -5,7 +5,7 @@
       <div @click.stop="emitBus('dialog:status', code)" class="relative response pl-3 pr-3" v-ripple
            v-for="(response, code) in value.responses" :key="code">
           <v-btn small :class="responseStyle[code[0]] + ' btn--response'">{{code}}</v-btn>
-          {{response.description}}
+          <span class="response--message pl-2">{{response.description}}</span>
       </div>
     </div>
   </div>
@@ -49,4 +49,11 @@
   .response:hover
     background: $material-twelve-percent-dark
     cursor pointer
+
+  .response
+    display flex
+    flex 1
+
+  .response--message
+    padding-top 6px
 </style>

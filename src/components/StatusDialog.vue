@@ -7,7 +7,7 @@
         v-toolbar-title
           span(class="subheader") HTTP Status
       v-card-text
-        div(class="title mb-3 mt-2") {{status[0]}}
+        div(v-if="status[0]" class="title mb-3 mt-2") {{status[0]}}
         div(class="capitalize" v-html="status[1]")
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
@@ -15,7 +15,7 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a(class="btn btn--flat primary--text" target="_blank" @click.native="active = false" :href="status[3]")
+        a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" @click.native="active = false" :href="status[3]")
           div(class="btn__content btn--short") {{status[2]}}
         v-btn(flat @click.native="active = false") Close
 </template>
@@ -39,10 +39,20 @@
       show (code) {
         data().then((res) => {
           this.type = code
-          this.status = res[code] || ['', '', '', '']
+          this.status = res[code]
+
+          if (code === 'default') {
+            this.status = ['', '“Default” means this response is used for all HTTP codes that are not covered individually for this operation.', '', '']
+          }
+
+          if (!this.status) {
+            this.type = (code)[0] + 'xx'
+            this.status = res[this.type]
+          }
+
           this.status[1] = toHtml(this.status[1])
           this.status[2] = this.status[2].length > 15 ? this.status[2].substr(0, 14) + '\u2026' : this.status[2]
-          this.color = ResponseStyle[code[0]]
+          this.color = ResponseStyle[this.type[0]]
           this.active = true
         })
       },
