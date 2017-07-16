@@ -2,11 +2,13 @@
   v-dialog(v-model="active" width="360")
     v-card
       v-toolbar(:class="color")
-        v-toolbar-title {{type}}: {{status[0]}}
+        v-toolbar-title(class="main-title") {{type}}
         v-spacer
         v-toolbar-title
           span(class="subheader") HTTP Status
-      v-card-text(class="capitalize" v-html="status[1]")
+      v-card-text
+        div(class="title mb-3 mt-2") {{status[0]}}
+        div(class="capitalize" v-html="status[1]")
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
@@ -61,3 +63,8 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .main-title.toolbar__title
+    max-width: 220px
+</style>
