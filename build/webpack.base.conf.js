@@ -26,19 +26,6 @@ module.exports = {
       '@': resolve('src')
     }
   },
-  // plugins: [
-  //   new webpack.LoaderOptionsPlugin({
-  //     test: /\.xxx$/, // may apply this only for some modules
-      // options: {
-      //   vue: {
-      //     loaders: {
-      //       ts: 'vue-ts-loader'
-      //     },
-      //     esModule: true
-      //   }
-      // }
-    // })
-  // ],
   module: {
     rules: [
       {
