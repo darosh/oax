@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import { OAS } from './services/oas'
+  import { OAS } from './models/oas'
   import Loader from './services/loader'
   import { bus } from './services/bus'
 
