@@ -6,19 +6,19 @@
     v-spacer
     v-toolbar-items
       v-text-field(prepend-icon='search', v-model='value.search', name='search', label='Search', single-line)
-    v-btn(icon @click.native.stop="emit('open')" v-if="$store.state.view.grouped")
+    v-btn(icon @click.native.stop="emit('open')" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Expand all groups'}")
       v-icon keyboard_arrow_down
-    v-btn(icon @click.native.stop="emit('close')" v-if="$store.state.view.grouped")
+    v-btn(icon @click.native.stop="emit('close')" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Collapse all groups'}")
       v-icon keyboard_arrow_up
-    v-btn(icon @click.native='toggleGrouped()')
-      v-icon {{$store.state.view.grouped ? '_view_columns' : 'view_comfy'}}
-    v-btn(icon @click.native='toggleDescription()')
+    v-btn(icon @click.native='toggleGrouped()' v-tooltip:bottom="{html: $store.state.view.grouped ? 'View list' : 'View groups'}")
+      v-icon {{$store.state.view.grouped ? 'view_column' : 'view_comfy'}}
+    v-btn(icon @click.native='toggleDescription()' v-tooltip:bottom="{html: $store.state.view.description ? 'Hide descriptions' : 'Show descriptions'}")
       v-icon {{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}
     v-btn(icon @click.native.stop="emitBus('dialog:proxy')")
       v-icon security
     v-btn(icon @click.native.stop="emitBus('dialog:security')")
       v-icon vpn_key
-    v-btn(icon @click.native.stop='toggleDark()')
+    v-btn(icon @click.native.stop='toggleDark()' v-tooltip:bottom="{html: $store.state.view.dark ? 'Light theme' : 'Dark theme'}")
       v-icon {{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}
 </template>
 

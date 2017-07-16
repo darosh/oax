@@ -11,7 +11,7 @@
         v-divider(v-if='value.externalDocs && value.externalDocs.url')
         .pt-2.pb-2
           div(v-if='o._display', v-for='(o, i) in value._operations', :key='o._id')
-            .operation--block.relative.pt-1(v-ripple @click='selected(o)')
+            .operation--block.relative.pt-1(v-ripple='' @click='selected(o)')
               app-operation.pl-3.pr-3(:o='o')
               div(v-if='$store.state.view.description')
                 .pt-1.pr-3.body-2(style='padding-left: 84px') {{o.description}}
