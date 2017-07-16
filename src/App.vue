@@ -1,6 +1,6 @@
 <template>
   <v-app :dark="dark">
-    <v-navigation-drawer persistent v-model="drawerRight" right enable-resize-watcher overflow>
+    <v-navigation-drawer right overflow persistent v-model="drawer">
       <app-detail v-if="operation" :operation="operation"></app-detail>
     </v-navigation-drawer>
     <app-toolbar v-model="that" v-on:open="open" v-on:close="close"></app-toolbar>
@@ -49,15 +49,20 @@
         viewResourceList: true,
         viewDescription: false,
         that: {},
-        drawerRight: true,
         operation: null,
-        dark: true
+        dark: true,
+        drawer: false,
+        small: window.innerWidth < 1260
       }
     },
     created () {
       this.that = this
       this.load()
       bus.$on('selected', this.selected)
+      window.addEventListener('resize', this.resize)
+    },
+    destroyed () {
+      window.removeEventListener('resize', this.resize)
     },
     methods: {
       load () {
@@ -72,12 +77,16 @@
       },
       selected (operation) {
         this.operation = operation
+        this.drawer = true
       },
       open () {
         OAS.openAll(this.resources)
       },
       close () {
         OAS.openAll(this.resources, false)
+      },
+      resize () {
+        this.small = window.innerWidth < 1260
       }
     },
     watch: {

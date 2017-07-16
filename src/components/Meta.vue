@@ -6,7 +6,7 @@
       </v-list-tile-avatar>
       <v-list-tile-content>
         <v-list-tile-title>{{ m.title }}</v-list-tile-title>
-        <v-list-tile-sub-title><a v-if="m.link || m.image" :href="m.link">
+        <v-list-tile-sub-title><a v-if="m.link || m.image" :href="m.link" target="_blank">
           <span v-if="m.value">{{m.value}}</span>
           <img v-if="m.image" :src="m.image" alt=""></a>
           <span v-if="m.value && !m.link">{{m.value}}</span>
@@ -26,4 +26,7 @@
   .list.list--single
     background transparent
     padding 0
+
+  img
+    margin-top: 4px
 </style>
