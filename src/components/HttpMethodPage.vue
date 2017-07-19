@@ -30,12 +30,12 @@
       return {
         items: [],
         headers: [
-          {text: 'Method', value: '6', align: 'left', sortable: false},
-          {text: 'Description', value: '0', align: 'left', sortable: false},
-          {text: 'Specification', value: '1', sortable: false},
-          {text: 'Safe', value: '3', sortable: false},
-          {text: 'Idempotent', value: '4', sortable: false},
-          {text: 'Cacheable', value: '5', sortable: false}
+          {text: 'Method', value: '6', align: 'left'},
+          {text: 'Description', value: '0', align: 'left'},
+          {text: 'Specification', value: '1'},
+          {text: 'Safe', value: '3'},
+          {text: 'Idempotent', value: '4'},
+          {text: 'Cacheable', value: '5'}
         ]
       }
     },
@@ -44,7 +44,13 @@
         Object.keys(res).map(k => {
           const item = res[k].slice()
           item.push(k)
-          this.items.push(item)
+          const obj = {}
+
+          for (const i in item) {
+            obj[i] = item[i]
+          }
+
+          this.items.push(obj)
         })
       })
     }
