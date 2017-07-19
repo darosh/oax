@@ -28,23 +28,41 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a(class="btn btn--flat primary--text" target="_blank" @click.native="active = false" :href="method[2]")
+        a(class="btn btn--flat primary--text" target="_blank" :href="method[2]")
           div(class="btn__content") {{method[1]}}
-        v-btn(flat @click.native="active = false") Close
+        v-btn(flat @click.native="setDialog()") Close
 </template>
 
 <script>
-  import { bus } from '../services/bus'
   import { MethodStyle } from '../services/method-style'
   const methods = () => import('../assets/http-method.json')
+  import { mapMutations } from 'vuex'
 
   export default {
     data () {
       return {
-        active: false,
         method: {},
         type: '',
         color: ''
+      }
+    },
+    computed: {
+      active: {
+        get () {
+          return this.$store.state.dialog.name === 'method'
+        },
+        set (value) {
+          if (!value) {
+            this.setDialog()
+          }
+        }
+      }
+    },
+    watch: {
+      active: function (val) {
+        if (val) {
+          this.show(this.$store.state.dialog.payload)
+        }
       }
     },
     methods: {
@@ -53,7 +71,6 @@
           this.type = method
           this.method = res[method]
           this.color = MethodStyle[method]
-          this.active = true
         })
       },
       next (prev) {
@@ -63,13 +80,10 @@
           ind = ind < 0 ? ms.length - 1 : ind >= ms.length ? 0 : ind
           this.show(ms[ind])
         })
-      }
-    },
-    created () {
-      bus.$on('dialog:method', this.show)
-    },
-    destroyed () {
-      bus.$off('dialog:method', this.show)
+      },
+      ...mapMutations([
+        'setDialog'
+      ])
     }
   }
 </script>

@@ -14,9 +14,9 @@
       v-icon {{$store.state.view.grouped ? 'view_column' : 'view_comfy'}}
     v-btn(icon @click.native='toggleDescription()' v-tooltip:bottom="{html: $store.state.view.description ? 'Hide descriptions' : 'Show descriptions'}")
       v-icon {{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}
-    v-btn(icon @click.native.stop="emitBus('dialog:proxy')")
+    v-btn(icon @click.native.stop="setDialog('proxy')")
       v-icon security
-    v-btn(icon @click.native.stop="emitBus('dialog:security')")
+    v-btn(icon @click.native.stop="setDialog('security')")
       v-icon vpn_key
     v-btn(icon @click.native.stop='toggleDark()' v-tooltip:bottom="{html: $store.state.view.dark ? 'Light theme' : 'Dark theme'}")
       v-icon {{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-  import { bus } from '../services/bus'
   import { mapMutations } from 'vuex'
 
   export default {
@@ -59,13 +58,11 @@
       emit (e) {
         this.$emit(e)
       },
-      emitBus (e) {
-        bus.$emit(e)
-      },
       ...mapMutations([
         'toggleDark',
         'toggleGrouped',
-        'toggleDescription'
+        'toggleDescription',
+        'setDialog'
       ])
     }
   }

@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid).pl-4.pr-4
     v-layout(row wrap).stretch
-      v-flex(xs12 sm6 md4 lg3 v-ripple='' relative v-if="item._display" v-for="(item, key) in items" :key="item._id" @click="selected(item)").operation--block
+      v-flex(xs12 sm6 md4 lg3 v-ripple='' relative v-if="item._display" v-for="(item, key) in items" :key="item._id" @click="setOperation(item)").operation--block
         v-divider
         .pt-1.pb-1
           app-operation(:o="items[key]")
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import { bus } from '../services/bus'
+  import { mapMutations } from 'vuex'
 
   export default {
     components: {
@@ -18,9 +18,9 @@
     },
     props: ['items'],
     methods: {
-      selected (item) {
-        bus.$emit('selected', item)
-      }
+      ...mapMutations([
+        'setOperation'
+      ])
     }
   }
 </script>

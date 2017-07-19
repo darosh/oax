@@ -1,33 +1,34 @@
 <template lang="pug">
-  v-dialog(v-model='active')
+  v-dialog(v-model="active")
     v-card
       v-card-title
         span.headline Security
       v-card-text
       v-card-actions
         v-spacer
-        v-btn(flat @click.native='active = false') Close
+        v-btn(flat @click.native='setDialog()') Close
 </template>
 
 <script>
-  import { bus } from '../services/bus'
+  import { mapMutations } from 'vuex'
 
   export default {
-    data () {
-      return {
-        active: false
+    computed: {
+      active: {
+        get () {
+          return this.$store.state.dialog.name === 'security'
+        },
+        set (value) {
+          if (!value) {
+            this.setDialog()
+          }
+        }
       }
     },
     methods: {
-      show () {
-        this.active = true
-      }
-    },
-    created () {
-      bus.$on('dialog:security', this.show)
-    },
-    destroyed () {
-      bus.$off('dialog:security', this.show)
+      ...mapMutations([
+        'setDialog'
+      ])
     }
   }
 </script>

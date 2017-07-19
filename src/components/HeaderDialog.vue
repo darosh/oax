@@ -17,7 +17,6 @@
 </template>
 
 <script>
-  import { bus } from '../services/bus'
   import { MethodStyle } from '../services/method-style'
   const methods = () => import('../assets/http-method.json')
 
@@ -39,12 +38,6 @@
           this.active = true
         })
       }
-    },
-    created () {
-      bus.$on('dialog:header', this.show)
-    },
-    destroyed () {
-      bus.$off('dialog:header', this.show)
     }
   }
 </script>

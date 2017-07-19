@@ -1,12 +1,12 @@
 <template lang="pug">
   div(:class='{deprecated: o.deprecated, operation: true}')
     app-method(v-if='!clickable', :m='o._method')
-    app-method(v-else @click.native.stop="emitBus('dialog:method', o._method)", :m='o._method')
+    app-method(v-else @click.native.stop="setDialog({name: 'method', payload: o._method})", :m='o._method')
     span.operation--message.pl-1 {{o._pathName}}
 </template>
 
 <script>
-  import { bus } from '../services/bus'
+  import { mapMutations } from 'vuex'
 
   export default {
     components: {
@@ -14,9 +14,9 @@
     },
     props: ['o', 'clickable'],
     methods: {
-      emitBus (e, v) {
-        bus.$emit(e, v)
-      }
+      ...mapMutations([
+        'setDialog'
+      ])
     }
   }
 </script>

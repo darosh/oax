@@ -10,7 +10,12 @@ export const state = {
     dark: false,
     grouped: true,
     description: false
-  }
+  },
+  dialog: {
+    name: null,
+    payload: null
+  },
+  operation: null
 }
 
 export const mutations = {
@@ -22,5 +27,12 @@ export const mutations = {
   },
   toggleDescription () {
     state.view.description = !state.view.description
+  },
+  setDialog (state, payload = {name: null, payload: null}) {
+    state.dialog.name = typeof payload === 'string' ? payload : payload.name
+    state.dialog.payload = typeof payload === 'string' ? null : payload.payload
+  },
+  setOperation (state, payload) {
+    state.operation = payload
   }
 }

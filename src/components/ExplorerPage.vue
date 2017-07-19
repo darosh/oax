@@ -18,7 +18,6 @@
 <script>
   import { OAS } from '../models/oas'
   import Loader from '../services/loader'
-  import { bus } from '../services/bus'
 
   export default {
     components: {
@@ -42,7 +41,6 @@
         resources: [],
         search: '',
         that: {},
-        operation: null,
         operations: [],
         drawer: false,
         small: window.innerWidth < 1260
@@ -51,7 +49,6 @@
     created () {
       this.that = this
       this.load()
-      bus.$on('selected', this.selected)
       window.addEventListener('resize', this.resize)
     },
     destroyed () {
@@ -83,9 +80,19 @@
         this.small = window.innerWidth < 1260
       }
     },
+    computed: {
+      operation: {
+        get () {
+          return this.$store.state.operation
+        }
+      }
+    },
     watch: {
       url: function () { this.load() },
-      search: function () { OAS.filterSearch(this.resources, OAS.getSearch(this.search)) }
+      search: function () { OAS.filterSearch(this.resources, OAS.getSearch(this.search)) },
+      operation: function (val) {
+        this.selected(val)
+      }
     }
   }
 </script>

@@ -2,14 +2,14 @@
   div
     .subheader(v-if='value.responses && Object.keys(value.responses).length') Response messages
     .pt-2.pb-2
-      .relative.response.pl-3.pr-3(@click.stop="emitBus('dialog:status', code)", v-ripple='' v-for='(response, code) in value.responses', :key='code')
+      .relative.response.pl-3.pr-3(@click.stop="setDialog({name: 'status', payload: code})", v-ripple='' v-for='(response, code) in value.responses', :key='code')
         v-btn(small :class="responseStyle[code[0]] + ' btn--response'") {{code}}
         span.response--message.pl-2 {{response.description}}
 </template>
 
 <script>
   import { ResponseStyle } from '../services/response-style'
-  import { bus } from '../services/bus'
+  import { mapMutations } from 'vuex'
 
   export default {
     props: ['value'],
@@ -19,9 +19,9 @@
       }
     },
     methods: {
-      emitBus (e, v) {
-        bus.$emit(e, v)
-      }
+      ...mapMutations([
+        'setDialog'
+      ])
     }
   }
 </script>

@@ -17,24 +17,42 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" @click.native="active = false" :href="status[3]")
+        a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" :href="status[3]")
           div(class="btn__content btn--short") {{status[2]}}
-        v-btn(flat @click.native="active = false") Close
+        v-btn(flat @click.native="setDialog()") Close
 </template>
 
 <script>
-  import { bus } from '../services/bus'
   import { ResponseStyle } from '../services/response-style'
   import { toHtml } from '../services/markdown'
+  import { mapMutations } from 'vuex'
   const data = () => import('../assets/http-status.json')
 
   export default {
     data () {
       return {
-        active: false,
         status: {},
         type: '',
         color: ''
+      }
+    },
+    computed: {
+      active: {
+        get () {
+          return this.$store.state.dialog.name === 'status'
+        },
+        set (value) {
+          if (!value) {
+            this.setDialog()
+          }
+        }
+      }
+    },
+    watch: {
+      active: function (val) {
+        if (val) {
+          this.show(this.$store.state.dialog.payload)
+        }
       }
     },
     methods: {
@@ -65,13 +83,10 @@
           ind = ind < 0 ? ms.length - 1 : ind >= ms.length ? 0 : ind
           this.show(ms[ind])
         })
-      }
-    },
-    created () {
-      bus.$on('dialog:status', this.show)
-    },
-    destroyed () {
-      bus.$off('dialog:status', this.show)
+      },
+      ...mapMutations([
+        'setDialog'
+      ])
     }
   }
 </script>
