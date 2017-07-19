@@ -1,41 +1,34 @@
 <template lang="pug">
   div
-    v-toolbar
+    v-toolbar(fixed)
       v-toolbar-title HTTP Methods
     main
       v-container.app-table
         v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
           template(slot="items" scope="props")
             td
-              app-method(:m="props.item[6]")
+              app-response(:code="props.item[4]")
             td.capitalize {{ props.item[0] }}
+            td.capitalize {{ props.item[1] }}
             td
-              a(:href="props.item[2]" target="_blank") {{ props.item[1] }}
-            td
-              v-icon {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
-            td
-              v-icon {{props.item[4] ? 'check_box' : 'check_box_outline_blank'}}
-            td
-              v-icon {{props.item[5] ? 'check_box' : 'check_box_outline_blank'}}
+              a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
 </template>
 
 <script>
-  const items = () => import('../assets/http-method.json')
+  const items = () => import('../assets/http-status.json')
 
   export default {
     components: {
-      appMethod: () => import('./Method')
+      appResponse: () => import('./Response')
     },
     data () {
       return {
         items: [],
         headers: [
-          {text: 'Method', value: '6', align: 'left'},
-          {text: 'Description', value: '0', align: 'left'},
-          {text: 'Specification', value: '1'},
-          {text: 'Safe', value: '3'},
-          {text: 'Idempotent', value: '4'},
-          {text: 'Cacheable', value: '5'}
+          {text: 'Code', value: '4', align: 'left'},
+          {text: 'Title', value: '0', align: 'left'},
+          {text: 'Description', value: '1', align: 'left'},
+          {text: 'Specification', value: '2'}
         ]
       }
     },

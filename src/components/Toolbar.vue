@@ -28,7 +28,8 @@
           v-list-tile-title
             router-link(to="http-method") HTTP Method Reference
         v-list-tile
-          v-list-tile-title HTTP Status Reference
+          v-list-tile-title
+            router-link(to="http-status") HTTP Status Reference
         v-list-tile
           v-list-tile-title HTTP Header Reference
 

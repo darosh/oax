@@ -12,6 +12,8 @@
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
+        router-link(to="http-status" class="btn btn--flat btn--icon")
+          v-icon list
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer

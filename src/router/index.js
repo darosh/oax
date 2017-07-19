@@ -12,6 +12,10 @@ export default new Router({
     {
       path: '/http-method',
       component: () => import('../components/HttpMethodPage')
+    },
+    {
+      path: '/http-status',
+      component: () => import('../components/HttpStatusPage')
     }
   ]
 })
