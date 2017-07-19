@@ -10,7 +10,7 @@
               app-method(:m="props.item[6]")
             td.capitalize {{ props.item[0] }}
             td
-              a(href="props.item[2]") {{ props.item[1] }}
+              a(:href="props.item[2]" target="blank") {{ props.item[1] }}
             td
               v-icon {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
             td
