@@ -16,6 +16,10 @@ export default new Router({
     {
       path: '/http-status',
       component: () => import('../components/HttpStatusPage')
+    },
+    {
+      path: '/http-header',
+      component: () => import('../components/HttpHeaderPage')
     }
   ]
 })
