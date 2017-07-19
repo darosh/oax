@@ -26,6 +26,7 @@
     "vue-router": "^2.3.1",
     "vuetify": "^0.13.1",
     "vuex": "^2.3.1",
+    "vuex-router-sync": "^4.2.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
