@@ -1,5 +1,8 @@
 export const STORAGE_KEY = 'oas-ui'
 
+import Loader from '../services/loader'
+import { OAS } from '../models/oas'
+
 // for testing
 if (navigator.userAgent.indexOf('PhantomJS') > -1) {
   window.localStorage.clear()
@@ -15,7 +18,14 @@ export const state = {
     name: null,
     payload: null
   },
-  operation: null
+  url: null,
+  title: null,
+  search: null,
+  operation: null,
+  resources: null,
+  operations: null,
+  spec: null,
+  metas: null
 }
 
 export const mutations = {
@@ -34,5 +44,32 @@ export const mutations = {
   },
   setOperation (state, payload) {
     state.operation = payload
+  },
+  toggleResources (state, payload) {
+    OAS.openAll(state.resources, payload)
+  },
+  setUrl (state, payload) {
+    state.url = payload
+  },
+  setSpec (state, payload) {
+    state.resources = payload.resources
+    state.operations = payload.operations
+    state.spec = payload.spec
+    state.metas = payload.metas
+  }
+}
+
+export const actions = {
+  loadUrl ({commit}, url) {
+    commit('setUrl', url)
+    Loader.load(url).then((res) => {
+      const oas = new OAS(res.bundled, url)
+      commit('setSpec', {
+        resources: oas.resources,
+        operations: oas.operations,
+        spec: res.bundled,
+        metas: oas.metas
+      })
+    })
   }
 }

@@ -1,14 +1,14 @@
 <template lang="pug">
   v-toolbar(fixed)
     v-toolbar-items
-      v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='value.url', name='url', label='Open API Specification URL', single-line)
-    v-toolbar-title(v-if='showTitle && value.spec && value.spec.info') {{value.spec.info.title}}
+      v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
+    v-toolbar-title(v-if='showTitle && $store.state.spec && $store.state.spec.info') {{$store.state.spec.info.title}}
     v-spacer
     v-toolbar-items
-      v-text-field(prepend-icon='search', v-model='value.search', name='search', label='Search', single-line)
-    v-btn(icon @click.native.stop="emit('open')" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Expand all groups'}")
+      v-text-field(prepend-icon='search', v-model='search', name='search', label='Search', single-line)
+    v-btn(icon @click.native.stop="toggleResources(true)" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Expand all groups'}")
       v-icon keyboard_arrow_down
-    v-btn(icon @click.native.stop="emit('close')" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Collapse all groups'}")
+    v-btn(icon @click.native.stop="toggleResources(false)" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Collapse all groups'}")
       v-icon keyboard_arrow_up
     v-btn(icon @click.native='toggleGrouped()' v-tooltip:bottom="{html: $store.state.view.grouped ? 'View list' : 'View groups'}")
       v-icon {{$store.state.view.grouped ? 'view_column' : 'view_comfy'}}
@@ -37,16 +37,30 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapActions } from 'vuex'
 
   export default {
-    props: ['value'],
     data () {
       return {
         editing: false,
-        proxy: {show: false},
-        security: {show: false},
         showTitle: true
+      }
+    },
+    computed: {
+      url: {
+        get () {
+          return this.$store.state.url
+        },
+        set (value) {
+          this.loadUrl(value)
+        }
+      },
+      search: {
+        get () {
+          return this.$store.state.search
+        },
+        set (value) {
+        }
       }
     },
     methods: {
@@ -55,14 +69,15 @@
         document.getElementsByName('url')[0][this.editing ? 'focus' : 'blur']()
         this.showTitle = !this.editing
       },
-      emit (e) {
-        this.$emit(e)
-      },
       ...mapMutations([
         'toggleDark',
         'toggleGrouped',
         'toggleDescription',
-        'setDialog'
+        'setDialog',
+        'toggleResources'
+      ]),
+      ...mapActions([
+        'loadUrl'
       ])
     }
   }

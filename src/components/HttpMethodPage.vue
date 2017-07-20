@@ -2,6 +2,12 @@
   div
     v-toolbar
       v-toolbar-title HTTP Methods
+      v-spacer
+      v-toolbar-items
+        v-btn(flat href="/" tag="a") Explorer
+        v-btn(flat) Methods
+        v-btn(flat) Statuses
+        v-btn(flat) Headers
     main
       v-container.app-table
         v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
