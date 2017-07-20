@@ -1,27 +1,27 @@
 <template lang="pug">
   v-toolbar(fixed)
-    v-toolbar-items
+    v-toolbar-items(v-if="main")
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
-    v-toolbar-title(v-if='showTitle && $store.state.spec && $store.state.spec.info') {{$store.state.spec.info.title}}
-    v-toolbar-title HTTP Methods
+    v-toolbar-title(v-if="main && showTitle && $store.state.spec && $store.state.spec.info") {{$store.state.spec.info.title}}
+    v-toolbar-title(v-if="!main") HTTP Methods
     v-spacer
-    v-toolbar-items
+    v-toolbar-items(v-if="main")
       v-text-field(prepend-icon='search', v-model='search', name='search', label='Search', single-line)
-    v-btn(icon @click.native.stop="toggleResources(true)" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Expand all groups'}")
+    v-btn(v-if="main && $store.state.view.grouped" icon @click.native.stop="toggleResources(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
       v-icon keyboard_arrow_down
-    v-btn(icon @click.native.stop="toggleResources(false)" v-if="$store.state.view.grouped" v-tooltip:bottom="{html: 'Collapse all groups'}")
+    v-btn(v-if="main && $store.state.view.grouped" icon @click.native.stop="toggleResources(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
       v-icon keyboard_arrow_up
-    v-btn(icon @click.native='toggleGrouped()' v-tooltip:bottom="{html: $store.state.view.grouped ? 'View list' : 'View groups'}")
+    v-btn(v-if="main" icon @click.native='toggleGrouped()' v-tooltip:bottom="{html: $store.state.view.grouped ? 'View list' : 'View groups'}")
       v-icon {{$store.state.view.grouped ? 'view_column' : 'view_comfy'}}
-    v-btn(icon @click.native='toggleDescription()' v-tooltip:bottom="{html: $store.state.view.description ? 'Hide descriptions' : 'Show descriptions'}")
+    v-btn(v-if="main" icon @click.native='toggleDescription()' v-tooltip:bottom="{html: $store.state.view.description ? 'Hide descriptions' : 'Show descriptions'}")
       v-icon {{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}
-    v-btn(icon @click.native.stop="setDialog('proxy')")
+    v-btn(v-if="main" icon @click.native.stop="setDialog('proxy')")
       v-icon security
-    v-btn(icon @click.native.stop="setDialog('security')")
+    v-btn(v-if="main" icon @click.native.stop="setDialog('security')")
       v-icon vpn_key
-    v-btn(icon @click.native.stop='toggleDark()' v-tooltip:bottom="{html: $store.state.view.dark ? 'Light theme' : 'Dark theme'}")
+    v-btn(v-if="main" icon @click.native.stop='toggleDark()' v-tooltip:bottom="{html: $store.state.view.dark ? 'Light theme' : 'Dark theme'}")
       v-icon {{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}
-    v-menu(bottom left)
+    v-menu(v-if="main" bottom left)
       v-btn(icon slot='activator')
         v-icon more_vert
       v-list
@@ -34,8 +34,8 @@
         v-list-tile
           v-list-tile-title
             router-link(to="http-header") HTTP Header Reference
-    v-toolbar-items
-      v-btn(flat href="/" tag="a") Explorer
+    v-toolbar-items(v-if="!main")
+      v-btn(flat href="#/" tag="a") Explorer
       v-btn(flat href="#/http-methods" tag="a") Methods
       v-btn(flat href="#/http-statuses" tag="a") Statuses
       v-btn(flat href="#/http-headers" tag="a") Headers
@@ -65,6 +65,16 @@
           return this.$store.state.search
         },
         set (value) {
+        }
+      },
+      path: {
+        get () {
+          return this.$store.state.route.path
+        }
+      },
+      main: {
+        get () {
+          return this.$store.state.route.path === '/'
         }
       }
     },

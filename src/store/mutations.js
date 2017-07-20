@@ -26,7 +26,8 @@ export const state = {
   operations: null,
   spec: null,
   metas: null,
-  error: null
+  error: null,
+  loading: false
 }
 
 export const mutations = {
@@ -60,13 +61,18 @@ export const mutations = {
     state.operations = payload.operations
     state.spec = payload.spec
     state.metas = payload.metas
+  },
+  setLoading (state, payload) {
+    state.loading = payload
   }
 }
 
 export const actions = {
   loadUrl ({commit}, url) {
+    commit('setLoading', true)
     commit('setUrl', url)
     Loader.load(url).then((res) => {
+      commit('setLoading', false)
       commit('setError', null)
       const oas = new OAS(res.bundled, url)
       commit('setSpec', {
@@ -76,6 +82,7 @@ export const actions = {
         metas: oas.metas
       })
     }).catch((err) => {
+      commit('setLoading', false)
       commit('setError', err)
       commit('setSpec', {
         resources: null,
