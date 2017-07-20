@@ -64,6 +64,9 @@ export const mutations = {
   },
   setLoading (state, payload) {
     state.loading = payload
+  },
+  setSearch (state, payload) {
+    OAS.filterSearch(state.resources, OAS.getSearch(payload))
   }
 }
 

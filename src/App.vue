@@ -1,5 +1,6 @@
 <template lang="pug">
   v-app(:dark='$store.state.view.dark')
+    app-drawer
     app-toolbar
     main
       router-view
@@ -8,6 +9,7 @@
 <script>
   export default {
     components: {
+      appDrawer: () => import('./components/Drawer'),
       appToolbar: () => import('./components/Toolbar')
     }
   }

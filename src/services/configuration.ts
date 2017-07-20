@@ -1,8 +1,13 @@
 export default class Configuration {
-  url: string,
-  allowUrlEdit: boolean = true,
-  allowSwithTheme: boolean = true,
-  defaultDarkTheme: boolean = false,
-  allowEditProxy: boolean = true,
-  defaultTitle: string = 'API'
+  public url: string;
+  public defaultTitle: string = 'API';
+  public validatorImageUrl = '';
+  public validatorDebugUrl = '';
+  public defaultDarkTheme: boolean = false;
+
+  public allowUrlEdit: boolean = true;
+  public allowSwithTheme: boolean = true;
+  public allowEditProxy: boolean = true;
+  public allowValidator:boolean = false;
+  public allowDownload:boolean = false;
 }
