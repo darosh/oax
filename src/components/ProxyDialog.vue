@@ -4,7 +4,7 @@
       v-card-title
         span.headline Proxy
       v-card-text
-        v-text-field(label='URL')
+        v-text-field(label='URL' v-model="proxy")
       v-card-actions
         v-spacer
         v-btn(flat @click.native='setDialog') Close
@@ -24,11 +24,20 @@
             this.setDialog()
           }
         }
+      },
+      proxy: {
+        get () {
+          return this.$store.state.proxy
+        },
+        set (value) {
+          this.setProxy(value)
+        }
       }
     },
     methods: {
       ...mapMutations([
-        'setDialog'
+        'setDialog',
+        'setProxy'
       ])
     }
   }

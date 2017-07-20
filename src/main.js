@@ -9,10 +9,11 @@ import { sync } from 'vuex-router-sync'
 
 sync(store, router)
 
-// const url = './static/specs/uber.yaml'
-// const url = './static/specs/petstore-expanded.yaml'
-const url = './static/specs/openapi-specification/yaml/petstore-separate/spec/swagger.yaml'
-// const url = './static/specs/api-with-examples.yaml'
+// const url = './static/specs/openapi-specification/yaml/uber.yaml'
+// const url = './static/specs/openapi-specification/yaml/petstore-expanded.yaml'
+// const url = './static/specs/openapi-specification/yaml/petstore-separate/spec/swagger.yaml'
+// const url = './static/specs/examples/swagger-drupal.json'
+const url = './static/specs/openapi-specification/yaml/api-with-examples.yaml'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
