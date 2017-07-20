@@ -10,7 +10,7 @@
     },
     data () {
       return {
-        drawer: false
+        _drawer: false
       }
     },
     computed: {
@@ -18,12 +18,20 @@
         get () {
           return this.$store.state.operation
         }
+      },
+      drawer: {
+        get () {
+          return this.$store.state.operation || this._drawer
+        },
+        set (value) {
+          this._drawer = value
+        }
       }
     },
     watch: {
       operation: function (val) {
         if (val) {
-          this.drawer = true
+          this._drawer = true
         }
       }
     }
