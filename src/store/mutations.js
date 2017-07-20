@@ -18,6 +18,8 @@ export const state = {
     name: null,
     payload: null
   },
+  proxy: null,
+  security: null,
   url: null,
   title: null,
   search: null,
