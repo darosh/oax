@@ -65,6 +65,7 @@
           return this.$store.state.search
         },
         set (value) {
+          this.setSearch(value)
         }
       },
       path: {
@@ -89,6 +90,7 @@
         'toggleGrouped',
         'toggleDescription',
         'setDialog',
+        'setSearch',
         'toggleResources'
       ]),
       ...mapActions([
