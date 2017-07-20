@@ -21,7 +21,7 @@
       },
       drawer: {
         get () {
-          return this.$store.state.operation || this._drawer
+          return (this.$store.state.route.path === '/') && (this.$store.state.operation || this._drawer)
         },
         set (value) {
           this._drawer = value

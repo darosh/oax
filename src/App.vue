@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app(:dark='$store.state.view.dark')
-    app-drawer(v-if="main")
+    app-drawer
     app-toolbar
     main
       router-view
@@ -11,13 +11,6 @@
     components: {
       appDrawer: () => import('./components/Drawer'),
       appToolbar: () => import('./components/Toolbar')
-    },
-    computed: {
-      main: {
-        get () {
-          return this.$store.state.route.path === '/'
-        }
-      }
     }
   }
 </script>
