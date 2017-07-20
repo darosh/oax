@@ -25,17 +25,14 @@
       v-btn(icon slot='activator')
         v-icon more_vert
       v-list
-        v-list-tile
-          v-list-tile-title
-            router-link(to="http-method") HTTP Method Reference
-        v-list-tile
-          v-list-tile-title
-            router-link(to="http-status") HTTP Status Reference
-        v-list-tile
-          v-list-tile-title
-            router-link(to="http-header") HTTP Header Reference
+        v-list-tile(to="/http-methods" tag="a")
+          v-list-tile-title.upper Methods
+        v-list-tile(to="/http-statuses" tag="a")
+          v-list-tile-title.upper Statuses
+        v-list-tile(to="/http-headers" tag="a")
+          v-list-tile-title.upper Headers
     v-toolbar-items(v-if="!main")
-      v-btn(flat href="#/" tag="a") Explorer
+      v-btn(flat href="#/" tag="a") API
       v-btn(flat href="#/http-methods" tag="a") Methods
       v-btn(flat href="#/http-statuses" tag="a") Statuses
       v-btn(flat href="#/http-headers" tag="a") Headers
@@ -103,4 +100,7 @@
 <style scoped lang="stylus">
   .transition--width
     transition width 0.3s cubic-bezier(.25, .8, .25, 1)
+
+  .upper
+    text-transform uppercase
 </style>
