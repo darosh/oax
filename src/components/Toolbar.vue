@@ -3,7 +3,7 @@
     v-toolbar-items(v-if="main")
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
     v-toolbar-title(v-if="main && showTitle && $store.state.spec && $store.state.spec.info") {{$store.state.spec.info.title}}
-    v-toolbar-title(v-if="!main") HTTP Methods
+    v-toolbar-title(v-if="!main") HTTP {{$store.state.route.meta.name}}
     v-spacer
     v-toolbar-items(v-if="main")
       v-text-field(prepend-icon='search', v-model='search', name='search', label='Search', single-line)
