@@ -12,7 +12,7 @@
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
-        router-link(to="http-statuses" class="btn btn--flat btn--icon")
+        v-btn(flat icon to="http-statuses" tag="a")
           v-icon list
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
@@ -27,6 +27,7 @@
   import { toHtml } from '../services/markdown'
   import { mapMutations } from 'vuex'
   const data = () => import('../assets/http-status.json')
+  import limit from '../services/limit'
 
   export default {
     data () {
@@ -71,7 +72,7 @@
           }
 
           this.status[1] = toHtml(this.status[1])
-          this.status[2] = this.status[2].length > 15 ? this.status[2].substr(0, 14) + '\u2026' : this.status[2]
+          this.status[2] = limit(this.status[2])
           this.color = ResponseStyle[this.type[0]]
           this.active = true
         })

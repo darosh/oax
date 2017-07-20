@@ -23,7 +23,7 @@
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
-        router-link(to="http-methods" class="btn btn--flat btn--icon")
+        v-btn(flat icon to="http-methods" tag="a")
           v-icon list
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
@@ -37,6 +37,7 @@
   import { MethodStyle } from '../services/method-style'
   const methods = () => import('../assets/http-method.json')
   import { mapMutations } from 'vuex'
+  import limit from '../services/limit'
 
   export default {
     data () {
@@ -70,6 +71,7 @@
         methods().then((res) => {
           this.type = method
           this.method = res[method]
+          this.method[1] = limit(this.method[1])
           this.color = MethodStyle[method]
         })
       },

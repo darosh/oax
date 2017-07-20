@@ -1,4 +1,4 @@
-export default class Configuration {
+export class Configuration {
   public url: string;
   public defaultTitle: string = 'API';
   public validatorImageUrl = '';
@@ -8,6 +8,12 @@ export default class Configuration {
   public allowUrlEdit: boolean = true;
   public allowSwithTheme: boolean = true;
   public allowEditProxy: boolean = true;
-  public allowValidator:boolean = false;
-  public allowDownload:boolean = false;
+  public allowValidator: boolean = false;
+  public allowDownload: boolean = false;
+
+  public limitSpecButtonText: number = 8;
 }
+
+const configuration = new Configuration()
+
+export default configuration;
