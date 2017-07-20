@@ -3,6 +3,7 @@
     v-toolbar-items
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
     v-toolbar-title(v-if='showTitle && $store.state.spec && $store.state.spec.info') {{$store.state.spec.info.title}}
+    v-toolbar-title HTTP Methods
     v-spacer
     v-toolbar-items
       v-text-field(prepend-icon='search', v-model='search', name='search', label='Search', single-line)
@@ -33,7 +34,11 @@
         v-list-tile
           v-list-tile-title
             router-link(to="http-header") HTTP Header Reference
-
+    v-toolbar-items
+      v-btn(flat href="/" tag="a") Explorer
+      v-btn(flat href="#/http-methods" tag="a") Methods
+      v-btn(flat href="#/http-statuses" tag="a") Statuses
+      v-btn(flat href="#/http-headers" tag="a") Headers
 </template>
 
 <script>

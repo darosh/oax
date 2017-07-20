@@ -10,15 +10,15 @@ export default new Router({
       component: () => import('../components/ExplorerPage')
     },
     {
-      path: '/http-method',
+      path: '/http-methods',
       component: () => import('../components/HttpMethodPage')
     },
     {
-      path: '/http-status',
+      path: '/http-statuses',
       component: () => import('../components/HttpStatusPage')
     },
     {
-      path: '/http-header',
+      path: '/http-headers',
       component: () => import('../components/HttpHeaderPage')
     }
   ]

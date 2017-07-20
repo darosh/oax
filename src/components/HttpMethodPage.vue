@@ -1,28 +1,18 @@
 <template lang="pug">
-  div
-    v-toolbar
-      v-toolbar-title HTTP Methods
-      v-spacer
-      v-toolbar-items
-        v-btn(flat href="/" tag="a") Explorer
-        v-btn(flat) Methods
-        v-btn(flat) Statuses
-        v-btn(flat) Headers
-    main
-      v-container.app-table
-        v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
-          template(slot="items" scope="props")
-            td
-              app-method(:m="props.item[6]")
-            td.capitalize {{ props.item[0] }}
-            td
-              a(:href="props.item[2]" target="_blank") {{ props.item[1] }}
-            td
-              v-icon {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
-            td
-              v-icon {{props.item[4] ? 'check_box' : 'check_box_outline_blank'}}
-            td
-              v-icon {{props.item[5] ? 'check_box' : 'check_box_outline_blank'}}
+  v-container.app-table
+    v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
+      template(slot="items" scope="props")
+        td
+          app-method(:m="props.item[6]")
+        td.capitalize {{ props.item[0] }}
+        td
+          a(:href="props.item[2]" target="_blank") {{ props.item[1] }}
+        td
+          v-icon {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
+        td
+          v-icon {{props.item[4] ? 'check_box' : 'check_box_outline_blank'}}
+        td
+          v-icon {{props.item[5] ? 'check_box' : 'check_box_outline_blank'}}
 </template>
 
 <script>

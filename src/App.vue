@@ -1,10 +1,15 @@
 <template lang="pug">
   v-app(:dark='$store.state.view.dark')
-    router-view
+    app-toolbar
+    main
+      router-view
 </template>
 
 <script>
   export default {
+    components: {
+      appToolbar: () => import('./components/Toolbar')
+    }
   }
 </script>
 

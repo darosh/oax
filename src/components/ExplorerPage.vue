@@ -1,13 +1,9 @@
 <template lang="pug">
-  div
-    v-navigation-drawer(right overflow persistent v-model='drawer')
-      app-detail(v-if='operation', :operation='operation')
-    app-toolbar
-    main
-      v-container(fluid)
-        app-meta-list(:metas='$store.state.metas')
-        app-resource-list(v-if='$store.state.view.grouped', :resources='$store.state.resources')
-        app-operation-list(v-if='!$store.state.view.grouped', :items='$store.state.operations')
+  v-container(fluid)
+    v-alert(error v-model="$store.state.error") {{$store.state.error}}
+    app-meta-list(:metas='$store.state.metas')
+    app-resource-list(v-if='$store.state.view.grouped', :resources='$store.state.resources')
+    app-operation-list(v-if='!$store.state.view.grouped', :items='$store.state.operations')
     app-method-dialog
     app-status-dialog
     app-header-dialog

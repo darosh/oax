@@ -1,17 +1,13 @@
 <template lang="pug">
-  div
-    v-toolbar(fixed)
-      v-toolbar-title HTTP Methods
-    main
-      v-container.app-table
-        v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
-          template(slot="items" scope="props")
-            td
-              app-response(:code="props.item[4]")
-            td.capitalize {{ props.item[0] }}
-            td.capitalize {{ props.item[1] }}
-            td
-              a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
+  v-container.app-table
+    v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
+      template(slot="items" scope="props")
+        td
+          app-response(:code="props.item[4]")
+        td.capitalize {{ props.item[0] }}
+        td.capitalize {{ props.item[1] }}
+        td
+          a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
 </template>
 
 <script>
