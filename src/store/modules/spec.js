@@ -1,6 +1,7 @@
 import Loader from '../../services/loader'
 import { OAS } from '../../models/oas/index'
 import * as types from '../types'
+import search from '../../models/oas/search'
 
 export const state = {
   spec: null,
@@ -24,7 +25,7 @@ export const mutations = {
     state.operation = payload
   },
   [types.FILTER_RESOURCES] (state, payload) {
-    OAS.filterSearch(state.resources, OAS.getSearch(payload))
+    search(state.resources, payload)
   }
 }
 

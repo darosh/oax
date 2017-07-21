@@ -16,12 +16,19 @@ export const mutations = {
   [types.SET_DIALOG] (state, payload = {type: null, param: null}) {
     state.dialog.type = typeof payload === 'string' ? payload : payload.type
     state.dialog.param = typeof payload === 'string' ? null : payload.param
+  },
+  [types.SET_LOADING] (state, payload) {
+    state.loading = payload
+  },
+  [types.SET_ERROR] (state, payload) {
+    state.error = payload
   }
 }
 
 export const getters = {
   [types.DIALOG_IS]: state => type => state.dialog.type === type,
-  [types.DIALOG_PARAM]: state => state.dialog.param
+  [types.DIALOG_PARAM]: state => state.dialog.param,
+  [types.ERROR]: state => state.error
 }
 
 export default {

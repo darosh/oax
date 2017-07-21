@@ -74,6 +74,7 @@
         },
         set (value) {
           this.SET_SEARCH(value)
+          this.FILTER_RESOURCES(value)
         }
       }
     },
@@ -84,6 +85,7 @@
         types.TOGGLE_DESCRIPTION,
         types.SET_DIALOG,
         types.SET_SEARCH,
+        types.FILTER_RESOURCES,
         types.TOGGLE_RESOURCES
       ]),
       ...mapActions([
