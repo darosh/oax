@@ -1,8 +1,8 @@
 <template lang="pug">
-  div(:class='{deprecated: o.deprecated, operation: true}')
-    app-method(v-if='!clickable', :m='o._method')
-    app-method(v-else @click.native.stop="SET_DIALOG({type: 'method', param: o._method})", :m='o._method')
-    span.operation--message.pl-1 {{o._pathName}}
+  div(:class='{deprecated: item.deprecated, operation: true}')
+    app-method(v-if='!clickable', :m='item._method')
+    app-method(v-else @click.native.stop="SET_DIALOG({type: 'method', param: item._method})", :m='item._method')
+    span.operation--message.pl-1 {{item._pathName}}
 </template>
 
 <script>
@@ -13,7 +13,7 @@
     components: {
       appMethod: () => import('./Method')
     },
-    props: ['o', 'clickable'],
+    props: ['item', 'clickable'],
     methods: {
       ...mapMutations([
         types.SET_DIALOG
