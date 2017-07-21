@@ -1,13 +1,13 @@
 <template lang="pug">
-  v-dialog(v-model='active')
+  v-dialog(v-model="active")
     v-card
       v-card-title
         span.headline Proxy
       v-card-text
-        v-text-field(label='URL' v-model="proxy")
+        v-text-field(label="URL" v-model="proxy")
       v-card-actions
         v-spacer
-        v-btn(flat @click.native='SET_DIALOG') Close
+        v-btn(flat @click.native="SET_DIALOG") Close
 </template>
 
 <script>

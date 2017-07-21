@@ -1,7 +1,7 @@
 <template lang="pug">
-  div(:class='{deprecated: item.deprecated, operation: true}')
-    app-method(v-if='!clickable', :m='item._method')
-    app-method(v-else @click.native.stop="SET_DIALOG({type: 'method', param: item._method})", :m='item._method')
+  div(:class="{deprecated: item.deprecated, operation: true}")
+    app-method(v-if="!clickable", :m="item._method")
+    app-method(v-else @click.native.stop="SET_DIALOG({type: 'method', param: item._method})", :m="item._method")
     span.operation--message.pl-1 {{item._pathName}}
 </template>
 

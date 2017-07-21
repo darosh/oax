@@ -6,7 +6,7 @@
       v-card-text
       v-card-actions
         v-spacer
-        v-btn(flat @click.native='SET_DIALOG()') Close
+        v-btn(flat @click.native="SET_DIALOG()") Close
 </template>
 
 <script>

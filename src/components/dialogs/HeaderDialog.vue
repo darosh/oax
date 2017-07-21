@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-dialog(v-model='active')
+  v-dialog(v-model="active")
     v-card
-      v-toolbar(:class='color')
+      v-toolbar(:class="color")
         v-toolbar-title
           span.headline {{type}}
         v-spacer
@@ -10,10 +10,10 @@
       v-card-text
         | {{method[0]}}
       v-card-actions
-        a.btn.btn--flat.primary--text(target='_blank', @click.native='active = false', :href='method[2]')
+        a.btn.btn--flat.primary--text(target="_blank", @click.native="active = false", :href="method[2]")
           .btn__content {{method[1]}}
         v-spacer
-        v-btn(flat @click.native='active = false') Close
+        v-btn(flat @click.native="active = false") Close
 </template>
 
 <script>

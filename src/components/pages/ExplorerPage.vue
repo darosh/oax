@@ -1,9 +1,9 @@
 <template lang="pug">
   v-container(fluid)
     v-alert(error v-model="ERROR") {{ERROR}}
-    app-meta-list(:metas='METAS')
-    app-resource-list(v-if='IS_GROUPED')
-    app-operation-list(v-if='!IS_GROUPED')
+    app-meta-list(:metas="METAS")
+    app-resource-list(v-if="IS_GROUPED")
+    app-operation-list(v-if="!IS_GROUPED")
     app-method-dialog
     app-status-dialog
     app-header-dialog

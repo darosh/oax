@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(:dark='IS_DARK')
+  v-app(:dark="IS_DARK")
     app-drawer
     app-toolbar
     main
