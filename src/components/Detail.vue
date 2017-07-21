@@ -6,7 +6,6 @@
       v-flex(pt-4 pl-4 pr-4 pb-2)
         app-operation(:item="operation", :clickable="true")
         .subheading.pt-3.pb-2 {{operation.summary}}
-        .body-1 {{operation.description}}
     v-tabs.app--tabs(:scrollable="false")
       v-tabs-bar.tabs--transparent(slot="activators")
         v-tabs-item(ripple href="tab-1") Info

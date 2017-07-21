@@ -36,6 +36,7 @@ export const SET_ERROR = 'SET_ERROR'
 export const SET_LOADING = 'SET_LOADING'
 export const SET_TITLE = 'SET_TITLE'
 
+export const FAB = 'FAB'
 export const ERROR = 'ERROR'
 export const DIALOG_IS = 'DIALOG_IS'
 export const DIALOG_PARAM = 'DIALOG_PARAM'

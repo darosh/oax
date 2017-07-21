@@ -9,6 +9,8 @@
     app-header-dialog
     app-proxy-dialog
     app-security-dialog
+    v-btn(v-if="FAB" fab fixed bottom right class="fab--on-top")
+      v-icon play_arrow
 </template>
 
 <script>
@@ -32,8 +34,14 @@
         types.ERROR,
         types.IS_GROUPED,
         types.OPERATIONS,
-        types.RESOURCES
+        types.RESOURCES,
+        types.FAB
       ])
     }
   }
 </script>
+
+<style lang="stylus">
+  .fab--on-top
+    z-index 4
+</style>
