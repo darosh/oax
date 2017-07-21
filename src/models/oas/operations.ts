@@ -21,11 +21,12 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
       const operation: IOperationExtended = (path as IExtra)[httpMethod]
 
       operation._id = operationId;
-
       operation.produces = operation.produces || spec.produces;
       // form[operationId] = {
       //   responseType: defaultContentType
       // };
+
+      operation._produces = operation.produces[0]
 
       operation._method = httpMethod;
       operation._pathName = pathName;

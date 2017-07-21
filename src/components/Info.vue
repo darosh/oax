@@ -4,6 +4,7 @@
     .body-1.pl-3.pr-3(v-if="item.description") {{item.description}}
     .subheader Response class
     .subheader Response type
+    v-select.pl-3.pr-3.no-hint(v-bind:items="item.produces" v-model="item._produces" single-line)
     .subheader Parameters
     .subheader(v-if="item.responses && Object.keys(item.responses).length") Response messages
     .pt-2.pb-2
@@ -58,4 +59,8 @@
 
   .response--message
     padding-top 6px
+
+  .no-hint
+    margin-top 0
+    margin-bottom 0
 </style>
