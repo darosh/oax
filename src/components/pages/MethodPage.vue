@@ -3,7 +3,7 @@
     v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
       template(slot="items" scope="props")
         td
-          app-method(:m="props.item[6]")
+          app-method(:item="props.item[6]")
         td.capitalize {{ props.item[0] }}
         td
           a(:href="props.item[2]" target="_blank") {{ props.item[1] }}

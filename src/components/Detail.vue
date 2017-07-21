@@ -4,7 +4,7 @@
       v-toolbar-title {{operation.tags[0]}}
     v-layout
       v-flex(pt-4 pl-4 pr-4 pb-2)
-        app-operation(:o="operation", :clickable="true")
+        app-operation(:item="operation", :clickable="true")
         .subheading.pt-3.pb-2 {{operation.summary}}
         .body-1 {{operation.description}}
     v-tabs.app--tabs(:scrollable="false")

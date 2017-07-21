@@ -1,12 +1,12 @@
 <template lang="pug">
-  v-btn(small round :class="methods[m] + ' btn--operation elevation-1'") {{m}}
+  v-btn(small round :class="methods[item] + ' btn--operation elevation-1'") {{item}}
 </template>
 
 <script>
   import { MethodStyle } from '../services/method-style'
 
   export default {
-    props: ['m'],
+    props: ['item'],
     data () {
       return {
         methods: MethodStyle

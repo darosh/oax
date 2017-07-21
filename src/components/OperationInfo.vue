@@ -1,7 +1,9 @@
+<!--TODO: Unused?-->
+
 <template lang="pug">
-  div(:class="{deprecated: o.deprecated, operation: true}")
-  app-method(:m="o._method")
-  |  {{o._pathName}}
+  div(:class="{deprecated: item.deprecated, operation: true}")
+  app-method(:item="item._method")
+  |  {{item._pathName}}
 </template>
 
 <script>
@@ -9,7 +11,7 @@
     components: {
       appMethod: () => import('./Method')
     },
-    props: ['o']
+    props: ['item']
   }
 </script>
 
