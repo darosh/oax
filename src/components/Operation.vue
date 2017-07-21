@@ -1,12 +1,13 @@
 <template lang="pug">
   div(:class='{deprecated: o.deprecated, operation: true}')
     app-method(v-if='!clickable', :m='o._method')
-    app-method(v-else @click.native.stop="setDialog({name: 'method', payload: o._method})", :m='o._method')
+    app-method(v-else @click.native.stop="SET_DIALOG({type: 'method', param: o._method})", :m='o._method')
     span.operation--message.pl-1 {{o._pathName}}
 </template>
 
 <script>
   import { mapMutations } from 'vuex'
+  import * as types from '../store/types'
 
   export default {
     components: {
@@ -15,7 +16,7 @@
     props: ['o', 'clickable'],
     methods: {
       ...mapMutations([
-        'setDialog'
+        types.SET_DIALOG
       ])
     }
   }

@@ -30,7 +30,7 @@
         v-spacer
         a(class="btn btn--flat primary--text" target="_blank" :href="method[2]")
           div(class="btn__content") {{method[1]}}
-        v-btn(flat @click.native="setDialog()") Close
+        v-btn(flat @click.native="SET_DIALOG()") Close
 </template>
 
 <script>
@@ -43,14 +43,20 @@
   export default {
     data () {
       return {
-        method: {},
+        method: [],
         type: '',
         color: ''
       }
     },
+    created () {
+      if (this.DIALOG_PARAM && this.active) {
+        this.show(this.DIALOG_PARAM)
+      }
+    },
     computed: {
       ...mapGetters([
-        types.DIALOG_IS
+        types.DIALOG_IS,
+        types.DIALOG_PARAM
       ]),
       active: {
         get () {
@@ -66,11 +72,14 @@
     watch: {
       active: function (val) {
         if (val) {
-          this.show(this.$store.state.dialog.payload)
+          this.show(this.DIALOG_PARAM)
         }
       }
     },
     methods: {
+      ...mapMutations([
+        types.SET_DIALOG
+      ]),
       show (method) {
         methods().then((res) => {
           this.type = method
@@ -86,10 +95,7 @@
           ind = ind < 0 ? ms.length - 1 : ind >= ms.length ? 0 : ind
           this.show(ms[ind])
         })
-      },
-      ...mapMutations([
-        types.SET_DIALOG
-      ])
+      }
     }
   }
 </script>

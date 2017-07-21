@@ -24,7 +24,8 @@ export const mutations = {
 
 export const getters = {
   [types.URL]: state => state.url,
-  [types.PROXY]: state => state.proxy
+  [types.PROXY]: state => state.proxy,
+  [types.ERROR]: state => state.error
 }
 
 export default {

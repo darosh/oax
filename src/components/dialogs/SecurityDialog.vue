@@ -6,7 +6,7 @@
       v-card-text
       v-card-actions
         v-spacer
-        v-btn(flat @click.native='setDialog()') Close
+        v-btn(flat @click.native='SET_DIALOG()') Close
 </template>
 
 <script>
@@ -24,15 +24,14 @@
         },
         set (value) {
           if (!value) {
-            this.setDialog()
+            this.SET_DIALOG()
           }
         }
-      },
-      ...mapGetters(['dialogIsType'])
+      }
     },
     methods: {
       ...mapMutations([
-        'setDialog'
+        types.SET_DIALOG
       ])
     }
   }

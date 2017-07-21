@@ -11,25 +11,31 @@
         v-divider(v-if='value.externalDocs && value.externalDocs.url')
         .pt-2.pb-2
           div(v-if='o._display', v-for='(o, i) in value._operations', :key='o._id')
-            .operation--block.relative.pt-1(v-ripple='' @click='setOperation(o)')
+            .operation--block.relative.pt-1(v-ripple='' @click='SET_OPERATION(o)')
               app-operation.pl-3.pr-3(:o='o')
-              div(v-if='$store.state.view.description')
+              div(v-if='IS_DESCRIPTION')
                 .pt-1.pr-3.body-2(style='padding-left: 84px') {{o.description}}
                 .pl-3.pr-3.pt-1
                   v-divider(v-if='i < (value._operations.length - 1)')
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapGetters } from 'vuex'
+  import * as types from '../store/types'
 
   export default {
     components: {
       appOperation: () => import('./Operation')
     },
     props: ['value'],
+    computed: {
+      ...mapGetters([
+        types.IS_DESCRIPTION
+      ])
+    },
     methods: {
       ...mapMutations([
-        'setOperation'
+        types.SET_OPERATION
       ])
     }
   }
