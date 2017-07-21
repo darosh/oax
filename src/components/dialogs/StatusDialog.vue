@@ -39,6 +39,11 @@
         color: ''
       }
     },
+    created () {
+      if (this.DIALOG_PARAM && this.active) {
+        this.show(this.DIALOG_PARAM)
+      }
+    },
     computed: {
       ...mapGetters([
         types.DIALOG_IS,
