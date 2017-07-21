@@ -15,6 +15,7 @@ export const SET_SEARCH = 'SET_SEARCH'
 
 export const PROXY = 'PROXY'
 export const URL = 'URL'
+export const SEARCH = 'SEARCH'
 
 // spec
 export const SET_SPEC = 'SET_SPEC'

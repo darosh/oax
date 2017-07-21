@@ -57,7 +57,8 @@
         types.IS_GROUPED,
         types.URL,
         types.SPEC,
-        types.PAGE_NAME
+        types.PAGE_NAME,
+        types.SEARCH
       ]),
       url: {
         get () {
@@ -69,10 +70,10 @@
       },
       search: {
         get () {
-          return this.$store.state.search
+          return this.SEARCH
         },
         set (value) {
-          this.setSearch(value)
+          this.SET_SEARCH(value)
         }
       }
     },
