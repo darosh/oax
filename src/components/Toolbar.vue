@@ -3,7 +3,7 @@
     v-toolbar-items(v-if="IS_API")
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
     v-toolbar-title(v-if="IS_API && showTitle && SPEC && SPEC.info") {{SPEC.info.title}}
-    v-toolbar-title(v-if="!IS_API") HTTP {{$store.state.route.meta.name}}
+    v-toolbar-title(v-if="!IS_API") HTTP {{PAGE_NAME}}
     v-spacer
     v-toolbar-items(v-if="IS_API")
       v-text-field(prepend-icon='search', v-model='search', name='search', label='Search', single-line)
@@ -12,15 +12,15 @@
     v-btn(v-if="IS_API && IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
       v-icon keyboard_arrow_up
     v-btn(v-if="IS_API" icon @click.native='TOGGLE_GROUPED()' v-tooltip:bottom="{html: IS_GROUPED ? 'View list' : 'View groups'}")
-      v-icon {{$store.state.view.grouped ? 'view_column' : 'view_comfy'}}
+      v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
     v-btn(v-if="IS_API" icon @click.native='TOGGLE_DESCRIPTION()' v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
-      v-icon {{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}
+      v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
     v-btn(v-if="IS_API" icon @click.native.stop="SET_DIALOG('proxy')")
       v-icon security
     v-btn(v-if="IS_API" icon @click.native.stop="SET_DIALOG('security')")
       v-icon vpn_key
     v-btn(v-if="IS_API" icon @click.native.stop='TOGGLE_DARK()' v-tooltip:bottom="{html: IS_DARK ? 'Light theme' : 'Dark theme'}")
-      v-icon {{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}
+      v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
     v-menu(v-if="IS_API" bottom left)
       v-btn(icon slot='activator')
         v-icon more_vert
@@ -56,7 +56,8 @@
         types.IS_DESCRIPTION,
         types.IS_GROUPED,
         types.URL,
-        types.SPEC
+        types.SPEC,
+        types.PAGE_NAME
       ]),
       url: {
         get () {

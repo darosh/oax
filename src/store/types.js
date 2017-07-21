@@ -43,3 +43,4 @@ export const DIALOG_PARAM = 'DIALOG_PARAM'
 
 export const IS_API = 'IS_API'
 export const PATH = 'PATH'
+export const PAGE_NAME = 'PAGE_NAME'

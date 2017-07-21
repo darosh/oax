@@ -17,7 +17,8 @@
   export default {
     computed: {
       ...mapGetters([
-        types.DIALOG_IS
+        types.DIALOG_IS,
+        types.PROXY
       ]),
       active: {
         get () {
@@ -31,7 +32,7 @@
       },
       proxy: {
         get () {
-          return this.$store.state.proxy
+          return this.PROXY
         },
         set (value) {
           this.SET_PROXY(value)
