@@ -2,6 +2,7 @@ import Loader from '../../services/loader'
 import { OAS } from '../../models/oas/index'
 import * as types from '../types'
 import search from '../../models/oas/search'
+import {openAll} from '../../models/oas/resources'
 
 export const state = {
   spec: null,
@@ -19,7 +20,7 @@ export const mutations = {
     state.metas = payload.metas
   },
   [types.TOGGLE_RESOURCES] (state, payload) {
-    OAS.openAll(state.resources, payload)
+    openAll(state.resources, payload)
   },
   [types.SET_OPERATION] (state, payload) {
     state.operation = payload

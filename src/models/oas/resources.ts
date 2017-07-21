@@ -24,3 +24,9 @@ export function resources(spec: Spec, map: IMap): IResource[] {
 
   return resources
 }
+
+export function openAll(resources: IResource[], opened = true) {
+  for (const r in resources) {
+    resources[r]._opened = opened
+  }
+}
