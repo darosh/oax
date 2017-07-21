@@ -13,7 +13,7 @@
         v-tabs-item.relative(ripple href="tab-3") Result
         v-tabs-slider
       v-tabs-content#tab-1
-        app-info(v-model="operation")
+        app-info(:item="operation")
       v-tabs-content#tab-2
         app-scripts
       v-tabs-content#tab-3

@@ -1,13 +1,13 @@
 <template lang="pug">
   div
-    .subheader(v-if="value.description") Description
-    .body-1.pl-3.pr-3(v-if="value.description") {{value.description}}
+    .subheader(v-if="item.description") Description
+    .body-1.pl-3.pr-3(v-if="item.description") {{item.description}}
     .subheader Response class
     .subheader Response type
     .subheader Parameters
-    .subheader(v-if="value.responses && Object.keys(value.responses).length") Response messages
+    .subheader(v-if="item.responses && Object.keys(item.responses).length") Response messages
     .pt-2.pb-2
-      .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="" v-for="(response, code) in value.responses", :key="code")
+      .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="" v-for="(response, code) in item.responses", :key="code")
         v-btn(small :class="responseStyle[code[0]] + ' btn--response'") {{code}}
         span.response--message.pl-2 {{response.description}}
 </template>
@@ -18,7 +18,7 @@
   import * as types from '../store/types'
 
   export default {
-    props: ['value'],
+    props: ['item'],
     data () {
       return {
         responseStyle: ResponseStyle
