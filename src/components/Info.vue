@@ -2,7 +2,9 @@
   div
     .subheader(v-if="item.description") Description
     .body-1.pl-3.pr-3(v-if="item.description") {{item.description}}
-    .subheader Response class
+    v-layout.ml-0(row)
+      .subheader.no-wrap Response class
+      v-btn-toggle.pt-2(v-bind:items="schemaSwitch" v-model="item._schema")
     .subheader Response type
     v-select.pl-3.pr-3.no-hint(v-bind:items="item.produces" v-model="item._produces" single-line)
     .subheader Parameters
@@ -22,7 +24,11 @@
     props: ['item'],
     data () {
       return {
-        responseStyle: ResponseStyle
+        responseStyle: ResponseStyle,
+        schemaSwitch: [
+          {text: 'Example', value: 'example'},
+          {text: 'Model', value: 'model'}
+        ]
       }
     },
     methods: {
@@ -63,4 +69,7 @@
   .no-hint
     margin-top 0
     margin-bottom 0
+
+  .no-wrap
+    white-space nowrap
 </style>
