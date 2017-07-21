@@ -5,21 +5,27 @@
         v-divider
         .pt-1.pb-1
           app-operation(:o="items[key]")
-          div(v-if='$store.state.view.description')
+          div(v-if='IS_DESCRIPTION')
             .pt-1.pr-1.body-2(style='padding-left: 68px') {{item.description}}
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapGetters } from 'vuex'
+  import * as types from '../store/types'
 
   export default {
     components: {
       appOperation: () => import('./Operation')
     },
     props: ['items'],
+    computed: {
+      ...mapGetters([
+        types.IS_DESCRIPTION
+      ])
+    },
     methods: {
       ...mapMutations([
-        'setOperation'
+        types.SET_OPERATION
       ])
     }
   }
