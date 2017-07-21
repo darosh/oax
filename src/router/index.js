@@ -7,22 +7,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: () => import('../components/ExplorerPage'),
+      component: () => import('../components/pages/ExplorerPage'),
       meta: {name: 'API'}
     },
     {
       path: '/http-methods',
-      component: () => import('../components/HttpMethodPage'),
+      component: () => import('../components/pages/MethodPage'),
       meta: {name: 'Methods'}
     },
     {
       path: '/http-statuses',
-      component: () => import('../components/HttpStatusPage'),
+      component: () => import('../components/pages/StatusPage'),
       meta: {name: 'Statuses'}
     },
     {
       path: '/http-headers',
-      component: () => import('../components/HttpHeaderPage'),
+      component: () => import('../components/pages/HeaderPage'),
       meta: {name: 'Headers'}
     }
   ]

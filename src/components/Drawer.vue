@@ -1,9 +1,12 @@
 <template lang="pug">
-  v-navigation-drawer(right overflow persistent v-model='drawer')
-    app-detail(v-if='operation', :operation='operation')
+  v-navigation-drawer(right overflow persistent :disable-route-watcher="true" v-model="drawer")
+    app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import * as types from '../store/types'
+
   export default {
     components: {
       appDetail: () => import('./Detail')
@@ -14,14 +17,13 @@
       }
     },
     computed: {
-      operation: {
-        get () {
-          return this.$store.state.operation
-        }
-      },
+      ...mapGetters([
+        types.OPERATION,
+        types.IS_API
+      ]),
       drawer: {
         get () {
-          return (this.$store.state.route.path === '/') && (this.$store.state.operation || this._drawer)
+          return this.IS_API && (this.OPERATION || this._drawer)
         },
         set (value) {
           this._drawer = value
@@ -29,7 +31,7 @@
       }
     },
     watch: {
-      operation: function (val) {
+      OPERATION: function (val) {
         if (val) {
           this._drawer = true
         }

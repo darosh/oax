@@ -1,27 +1,27 @@
 <template lang="pug">
   v-toolbar(fixed)
-    v-toolbar-items(v-if="main")
+    v-toolbar-items(v-if="IS_API")
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
-    v-toolbar-title(v-if="main && showTitle && $store.state.spec && $store.state.spec.info") {{$store.state.spec.info.title}}
-    v-toolbar-title(v-if="!main") HTTP {{$store.state.route.meta.name}}
+    v-toolbar-title(v-if="IS_API && showTitle && $store.state.spec && $store.state.spec.info") {{$store.state.spec.info.title}}
+    v-toolbar-title(v-if="!IS_API") HTTP {{$store.state.route.meta.name}}
     v-spacer
-    v-toolbar-items(v-if="main")
+    v-toolbar-items(v-if="IS_API")
       v-text-field(prepend-icon='search', v-model='search', name='search', label='Search', single-line)
-    v-btn(v-if="main && $store.state.view.grouped" icon @click.native.stop="toggleResources(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
+    v-btn(v-if="IS_API && IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
       v-icon keyboard_arrow_down
-    v-btn(v-if="main && $store.state.view.grouped" icon @click.native.stop="toggleResources(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
+    v-btn(v-if="IS_API && IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
       v-icon keyboard_arrow_up
-    v-btn(v-if="main" icon @click.native='toggleGrouped()' v-tooltip:bottom="{html: $store.state.view.grouped ? 'View list' : 'View groups'}")
+    v-btn(v-if="IS_API" icon @click.native='TOGGLE_GROUPED()' v-tooltip:bottom="{html: IS_GROUPED ? 'View list' : 'View groups'}")
       v-icon {{$store.state.view.grouped ? 'view_column' : 'view_comfy'}}
-    v-btn(v-if="main" icon @click.native='toggleDescription()' v-tooltip:bottom="{html: $store.state.view.description ? 'Hide descriptions' : 'Show descriptions'}")
+    v-btn(v-if="IS_API" icon @click.native='TOGGLE_DESCRIPTION()' v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
       v-icon {{$store.state.view.description ? 'speaker_notes_off' : 'speaker_notes'}}
-    v-btn(v-if="main" icon @click.native.stop="setDialog('proxy')")
+    v-btn(v-if="IS_API" icon @click.native.stop="SET_DIALOG('proxy')")
       v-icon security
-    v-btn(v-if="main" icon @click.native.stop="setDialog('security')")
+    v-btn(v-if="IS_API" icon @click.native.stop="SET_DIALOG('security')")
       v-icon vpn_key
-    v-btn(v-if="main" icon @click.native.stop='toggleDark()' v-tooltip:bottom="{html: $store.state.view.dark ? 'Light theme' : 'Dark theme'}")
+    v-btn(v-if="IS_API" icon @click.native.stop='TOGGLE_DARK()' v-tooltip:bottom="{html: IS_DARK ? 'Light theme' : 'Dark theme'}")
       v-icon {{$store.state.view.dark ? 'brightness_5' : 'brightness_4'}}
-    v-menu(v-if="main" bottom left)
+    v-menu(v-if="IS_API" bottom left)
       v-btn(icon slot='activator')
         v-icon more_vert
       v-list
@@ -31,7 +31,7 @@
           v-list-tile-title.upper Statuses
         v-list-tile(to="/http-headers" tag="a")
           v-list-tile-title.upper Headers
-    v-toolbar-items(v-if="!main")
+    v-toolbar-items(v-if="!IS_API")
       v-btn(flat href="#/" tag="a") API
       v-btn(flat href="#/http-methods" tag="a") Methods
       v-btn(flat href="#/http-statuses" tag="a") Statuses
@@ -39,7 +39,8 @@
 </template>
 
 <script>
-  import { mapMutations, mapActions } from 'vuex'
+  import { mapMutations, mapActions, mapGetters } from 'vuex'
+  import * as types from '../store/types'
 
   export default {
     data () {
@@ -49,12 +50,19 @@
       }
     },
     computed: {
+      ...mapGetters([
+        types.IS_API,
+        types.IS_DARK,
+        types.IS_DESCRIPTION,
+        types.IS_GROUPED,
+        types.URL
+      ]),
       url: {
         get () {
-          return this.$store.state.url
+          return this.URL
         },
         set (value) {
-          this.loadUrl(value)
+          this.LOAD_URL(value)
         }
       },
       search: {
@@ -64,35 +72,25 @@
         set (value) {
           this.setSearch(value)
         }
-      },
-      path: {
-        get () {
-          return this.$store.state.route.path
-        }
-      },
-      main: {
-        get () {
-          return this.$store.state.route.path === '/'
-        }
       }
     },
     methods: {
+      ...mapMutations([
+        types.TOGGLE_DARK,
+        types.TOGGLE_GROUPED,
+        types.TOGGLE_DESCRIPTION,
+        types.SET_DIALOG,
+        types.SET_SEARCH,
+        types.TOGGLE_RESOURCES
+      ]),
+      ...mapActions([
+        types.LOAD_URL
+      ]),
       edit () {
         this.editing = !this.editing
         document.getElementsByName('url')[0][this.editing ? 'focus' : 'blur']()
         this.showTitle = !this.editing
-      },
-      ...mapMutations([
-        'toggleDark',
-        'toggleGrouped',
-        'toggleDescription',
-        'setDialog',
-        'setSearch',
-        'toggleResources'
-      ]),
-      ...mapActions([
-        'loadUrl'
-      ])
+      }
     }
   }
 </script>

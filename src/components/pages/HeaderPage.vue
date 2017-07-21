@@ -2,18 +2,19 @@
   v-container.app-table
     v-data-table(v-bind:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
       template(slot="items" scope="props")
-        td.nowrap {{ props.item[0] }}
+        td.nowrap
+          app-header(:item="props.item[0]")
         td.capitalize {{ props.item[1] }}
         td
           a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
 </template>
 
 <script>
-  const items = () => import('../assets/http-header.json')
+  const items = () => import('../../assets/http-header.json')
 
   export default {
     components: {
-      appResponse: () => import('./Response')
+      appHeader: () => import('../Header')
     },
     data () {
       return {

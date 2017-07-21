@@ -23,11 +23,12 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../services/response-style'
-  import { toHtml } from '../services/markdown'
-  import { mapMutations } from 'vuex'
-  const data = () => import('../assets/http-status.json')
-  import limit from '../services/limit'
+  import { ResponseStyle } from '../../services/response-style'
+  import { toHtml } from '../../services/markdown'
+  import { mapMutations, mapGetters } from 'vuex'
+  import * as types from '../../store/types'
+  const data = () => import('../../assets/http-status.json')
+  import limit from '../../services/limit'
 
   export default {
     data () {
@@ -38,21 +39,25 @@
       }
     },
     computed: {
+      ...mapGetters([
+        types.DIALOG_IS
+      ]),
       active: {
         get () {
-          return this.$store.state.dialog.name === 'status'
+          return this.DIALOG_IS('status')
         },
         set (value) {
           if (!value) {
             this.setDialog()
           }
         }
-      }
+      },
+      ...mapGetters(['dialogIsType'])
     },
     watch: {
       active: function (val) {
         if (val) {
-          this.show(this.$store.state.dialog.payload)
+          this.show(this.$store.state.dialog.param)
         }
       }
     },
@@ -63,7 +68,11 @@
           this.status = res[code]
 
           if (code === 'default') {
-            this.status = ['', '“Default” means this response is used for all HTTP codes that are not covered individually for this operation.', '', '']
+            this.status = [
+              '',
+              '“Default” means this response is used for all HTTP codes that are not covered individually for this operation.',
+              '',
+              '']
           }
 
           if (!this.status) {

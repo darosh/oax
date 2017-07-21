@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  const items = () => import('../assets/http-status.json')
+  const items = () => import('../../assets/http-status.json')
 
   export default {
     components: {
-      appResponse: () => import('./Response')
+      appResponse: () => import('../Response')
     },
     data () {
       return {

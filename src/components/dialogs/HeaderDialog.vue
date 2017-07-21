@@ -17,8 +17,10 @@
 </template>
 
 <script>
-  import { MethodStyle } from '../services/method-style'
-  const methods = () => import('../assets/http-method.json')
+  import { MethodStyle } from '../../services/method-style'
+  import { mapMutations, mapGetters } from 'vuex'
+  const methods = () => import('../../assets/http-method.json')
+  import * as types from '../../store/types'
 
   export default {
     data () {
@@ -29,7 +31,15 @@
         color: ''
       }
     },
+    computed: {
+      ...mapGetters([
+        types.DIALOG_IS
+      ])
+    },
     methods: {
+      ...mapMutations([
+        types.SET_DIALOG
+      ]),
       show (method) {
         methods().then((res) => {
           this.type = method

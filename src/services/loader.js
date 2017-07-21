@@ -12,7 +12,9 @@ export default class Loader {
           schema.bundle()
           schema.deref()
           resolve(schema)
-        }).catch(err => {
+        }).catch((err, res) => {
+          console.log(err)
+          console.log(res)
           reject(err)
         })
       })

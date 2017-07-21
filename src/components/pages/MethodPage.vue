@@ -16,11 +16,11 @@
 </template>
 
 <script>
-  const items = () => import('../assets/http-method.json')
+  const items = () => import('../../assets/http-method.json')
 
   export default {
     components: {
-      appMethod: () => import('./Method')
+      appMethod: () => import('../Method')
     },
     data () {
       return {

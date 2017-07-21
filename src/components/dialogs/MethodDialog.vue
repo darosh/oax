@@ -34,10 +34,11 @@
 </template>
 
 <script>
-  import { MethodStyle } from '../services/method-style'
-  const methods = () => import('../assets/http-method.json')
-  import { mapMutations } from 'vuex'
-  import limit from '../services/limit'
+  import { MethodStyle } from '../../services/method-style'
+  const methods = () => import('../../assets/http-method.json')
+  import { mapMutations, mapGetters } from 'vuex'
+  import * as types from '../../store/types'
+  import limit from '../../services/limit'
 
   export default {
     data () {
@@ -48,13 +49,16 @@
       }
     },
     computed: {
+      ...mapGetters([
+        types.DIALOG_IS
+      ]),
       active: {
         get () {
-          return this.$store.state.dialog.name === 'method'
+          return this.DIALOG_IS('method')
         },
         set (value) {
           if (!value) {
-            this.setDialog()
+            this.SET_DIALOG()
           }
         }
       }
@@ -84,7 +88,7 @@
         })
       },
       ...mapMutations([
-        'setDialog'
+        types.SET_DIALOG
       ])
     }
   }

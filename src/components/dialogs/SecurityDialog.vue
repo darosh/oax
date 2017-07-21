@@ -10,20 +10,25 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapGetters } from 'vuex'
+  import * as types from '../../store/types'
 
   export default {
     computed: {
+      ...mapGetters([
+        types.DIALOG_IS
+      ]),
       active: {
         get () {
-          return this.$store.state.dialog.name === 'security'
+          return this.DIALOG_IS('security')
         },
         set (value) {
           if (!value) {
             this.setDialog()
           }
         }
-      }
+      },
+      ...mapGetters(['dialogIsType'])
     },
     methods: {
       ...mapMutations([

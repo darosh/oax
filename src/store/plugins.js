@@ -1,4 +1,4 @@
-import { STORAGE_KEY } from './mutations'
+import { STORAGE_KEY } from './modules/ui'
 import createLogger from 'vuex/dist/logger'
 
 const localStoragePlugin = store => {

@@ -1,5 +1,5 @@
 export class Configuration {
-  public url: string;
+  public url: string = 'http://petstore.swagger.io/v2/swagger.json';
   public defaultTitle: string = 'API';
   public validatorImageUrl = '';
   public validatorDebugUrl = '';
