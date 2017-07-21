@@ -19,7 +19,7 @@
         v-spacer
         a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" :href="status[3]")
           div(class="btn__content btn--short") {{status[2]}}
-        v-btn(flat @click.native="setDialog()") Close
+        v-btn(flat @click.native="SET_DIALOG()") Close
 </template>
 
 <script>
@@ -27,8 +27,9 @@
   import { toHtml } from '../../services/markdown'
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  const data = () => import('../../assets/http-status.json')
   import limit from '../../services/limit'
+
+  const json = () => import('../../assets/http-status.json')
 
   export default {
     data () {
@@ -40,7 +41,8 @@
     },
     computed: {
       ...mapGetters([
-        types.DIALOG_IS
+        types.DIALOG_IS,
+        types.DIALOG_PARAM
       ]),
       active: {
         get () {
@@ -48,22 +50,24 @@
         },
         set (value) {
           if (!value) {
-            this.setDialog()
+            this.SET_DIALOG()
           }
         }
-      },
-      ...mapGetters(['dialogIsType'])
+      }
     },
     watch: {
       active: function (val) {
         if (val) {
-          this.show(this.$store.state.dialog.param)
+          this.show(this.DIALOG_PARAM)
         }
       }
     },
     methods: {
+      ...mapMutations([
+        types.SET_DIALOG
+      ]),
       show (code) {
-        data().then((res) => {
+        json().then((res) => {
           this.type = code
           this.status = res[code]
 
@@ -87,16 +91,13 @@
         })
       },
       next (prev) {
-        data().then((res) => {
+        json().then((res) => {
           const ms = Object.keys(res)
           let ind = ms.indexOf(this.type) + (prev ? -1 : 1)
           ind = ind < 0 ? ms.length - 1 : ind >= ms.length ? 0 : ind
           this.show(ms[ind])
         })
-      },
-      ...mapMutations([
-        'setDialog'
-      ])
+      }
     }
   }
 </script>
