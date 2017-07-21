@@ -2,7 +2,7 @@
   v-toolbar(fixed)
     v-toolbar-items(v-if="IS_API")
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon='edit', :prepend-icon-cb='edit', v-model='url', name='url', label='Open API Specification URL', single-line)
-    v-toolbar-title(v-if="IS_API && showTitle && $store.state.spec && $store.state.spec.info") {{$store.state.spec.info.title}}
+    v-toolbar-title(v-if="IS_API && showTitle && SPEC && SPEC.info") {{SPEC.info.title}}
     v-toolbar-title(v-if="!IS_API") HTTP {{$store.state.route.meta.name}}
     v-spacer
     v-toolbar-items(v-if="IS_API")
@@ -55,7 +55,8 @@
         types.IS_DARK,
         types.IS_DESCRIPTION,
         types.IS_GROUPED,
-        types.URL
+        types.URL,
+        types.SPEC
       ]),
       url: {
         get () {

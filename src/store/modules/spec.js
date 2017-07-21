@@ -59,7 +59,8 @@ export const getters = {
   [types.OPERATION]: (state) => state.operation,
   [types.METAS]: (state) => state.metas,
   [types.OPERATIONS]: (state) => state.operations,
-  [types.RESOURCES]: (state) => state.resources
+  [types.RESOURCES]: (state) => state.resources,
+  [types.SPEC]: (state) => state.spec
 }
 
 export default {

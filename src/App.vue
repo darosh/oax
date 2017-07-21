@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(:dark='$store.state.view.dark')
+  v-app(:dark='IS_DARK')
     app-drawer
     app-toolbar
     main
@@ -7,10 +7,18 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import * as types from './store/types'
+
   export default {
     components: {
       appDrawer: () => import('./components/Drawer'),
       appToolbar: () => import('./components/Toolbar')
+    },
+    computed: {
+      ...mapGetters([
+        types.IS_DARK
+      ])
     }
   }
 </script>

@@ -27,6 +27,7 @@ export const OPERATION = 'OPERATION'
 export const METAS = 'METAS'
 export const OPERATIONS = 'OPERATIONS'
 export const RESOURCES = 'RESOURCES'
+export const SPEC = 'SPEC'
 
 // ui
 export const SET_DIALOG = 'SET_DIALOG'
