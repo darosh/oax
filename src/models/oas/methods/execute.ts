@@ -14,7 +14,7 @@ export function configure(operation: IOperationExtended, spec: Spec) {
     // This is my 1st as-any-as ever! :-)))
     const value = (param as any as IParameterExtended)._value;
 
-    if (!value || (param.in !== 'path')) {
+    if (!value || (!value && (param.in !== 'path'))) {
       continue;
     }
 
@@ -39,13 +39,22 @@ export function configure(operation: IOperationExtended, spec: Spec) {
     }
   }
 
-  const config = {
+  const config: any = {
     baseURL: spec.schemes[0] + '://' + spec.host + spec.basePath + path,
-    data: body,
-    headers,
     method: operation._method,
-    params: query
   };
+
+  if (Object.keys(headers).length) {
+    config.headers = headers;
+  }
+
+  if (Object.keys(query).length) {
+    config.params = query;
+  }
+
+  if (body) {
+    config.data = body;
+  }
 
   return config;
 }

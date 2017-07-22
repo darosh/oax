@@ -4,6 +4,7 @@ import {IExtra} from '../interfaces/IExtra';
 import {IMap} from '../interfaces/IMap';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 import {IResource} from '../interfaces/IResource';
+import {IParameterExtended} from "../interfaces/IParameterExtended";
 
 export function operations(spec: Spec, resources: IResource[], map: IMap/*, form, map, defaultContentType, openPath*/) {
   let operationId: number = 0;
@@ -64,6 +65,10 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
       // }
 
       operationsArray.push(operation);
+
+      for (const param of (operation.parameters as any as IParameterExtended[])) {
+        param._value = null
+      }
 
       operationId++;
     }

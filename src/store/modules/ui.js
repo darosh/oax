@@ -11,7 +11,7 @@ export const state = {
   error: null,
   loading: false,
   fabMethod: null,
-  tab: null
+  tab: 'tab-info'
 }
 
 export const mutations = {

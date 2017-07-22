@@ -24,6 +24,7 @@ export const TOGGLE_RESOURCES = 'TOGGLE_RESOURCES'
 export const LOAD_URL = 'LOAD_URL'
 export const FILTER_RESOURCES = 'FILTER_RESOURCES'
 export const SET_RESULT = 'SET_RESULT'
+export const SET_VALUE = 'SET_VALUE'
 
 export const OPERATION = 'OPERATION'
 export const METAS = 'METAS'
