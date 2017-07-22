@@ -37,7 +37,7 @@ export const actions = {
     commit(types.SET_URL, url)
     Loader.load(url).then((res) => {
       commit(types.SET_LOADING, false)
-      const oas = new OAS(res.bundled, url)
+      const oas = OAS(res.bundled, url)
       commit(types.SET_SPEC, {
         resources: oas.resources,
         operations: oas.operations,

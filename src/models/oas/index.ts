@@ -8,20 +8,29 @@ import {info} from './methods/info';
 import {operations} from './methods/operations';
 import {resources} from './methods/resources';
 
-export class OAS {
+export interface IOAS {
   metas: IMeta[];
   resources: IResource[];
   operations: IOperationExtended[];
   map: IMap;
+}
 
-  constructor(spec: Spec,
-              url: string,
-              defaultContentType: string = 'application/json',
-              validatorUrl: string = 'http://online.swagger.io/validator') {
-    info(spec, url, defaultContentType);
-    this.map = {};
-    this.metas = metas(spec, url, validatorUrl);
-    this.resources = resources(spec, this.map);
-    this.operations = operations(spec, this.resources, this.map);
-  }
+export function OAS(spec: Spec,
+                    url: string,
+                    defaultContentType: string = 'application/json',
+                    validatorUrl: string = 'http://online.swagger.io/validator'): IOAS {
+
+  info(spec, url, defaultContentType);
+
+  const MAP = {};
+  const METAS = metas(spec, url, validatorUrl);
+  const RESOURCES = resources(spec, MAP);
+  const OPERATIONS = operations(spec, RESOURCES, MAP);
+
+  return {
+    map: MAP,
+    metas: METAS,
+    operations: OPERATIONS,
+    resources: RESOURCES
+  };
 }

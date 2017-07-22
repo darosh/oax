@@ -3,22 +3,24 @@ import {IOperationExtended} from '../interfaces/IOperationExtended';
 
 export function schema(operation: IOperationExtended) {
   for (const code in operation.responses) {
-    const response = operation.responses[code];
+    if (operation.responses.hasOwnProperty(code)) {
+      const response = operation.responses[code];
 
-    if (response.schema) {
-      return response.schema;
+      if (response.schema) {
+        return response.schema;
+      }
     }
   }
 }
 
-export function value(schema: Schema): any {
-  if (schema.example) {
-    return schema.example;
+export function value(schemaObject: Schema): any {
+  if (schemaObject.example) {
+    return schemaObject.example;
   }
 
-  const type = schema.format || schema.type;
+  const typeValue = schemaObject.format || schemaObject.type;
 
-  switch (type) {
+  switch (typeValue) {
     case 'int32':
     case 'int64':
     case 'integer':
@@ -44,10 +46,10 @@ export function value(schema: Schema): any {
   }
 }
 
-export function type(schema: Schema): any {
-  const type = schema.format || schema.type;
+export function type(schemaObject: Schema): any {
+  const typeValue = schemaObject.format || schemaObject.type;
 
-  switch (type) {
+  switch (typeValue) {
     case 'int32':
     case 'int64':
     case 'integer':
@@ -71,5 +73,5 @@ export function type(schema: Schema): any {
       return 'file';
   }
 
-  return type;
+  return typeValue;
 }

@@ -1,7 +1,8 @@
 import axios, {AxiosPromise} from 'axios';
-import {Spec} from 'swagger-schema-official';
+import {Parameter, Spec} from 'swagger-schema-official';
 import {IExtra} from '../interfaces/IExtra';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
+import {IParameterExtended} from '../interfaces/IParameterExtended';
 
 export function configure(operation: IOperationExtended, spec: Spec) {
   let path: string = operation._pathName;
@@ -9,9 +10,9 @@ export function configure(operation: IOperationExtended, spec: Spec) {
   const headers: IExtra = {};
   let body: any = null;
 
-  for (const paramIndex in operation.parameters) {
-    const param = operation.parameters[paramIndex];
-    const value = param._value;
+  for (const param of (operation.parameters as Parameter[])) {
+    // This is my 1st as-any-as ever! :-)))
+    const value = (param as any as IParameterExtended)._value;
 
     if (!value || (param.in !== 'path')) {
       continue;
@@ -39,11 +40,11 @@ export function configure(operation: IOperationExtended, spec: Spec) {
   }
 
   const config = {
-    method: operation._method,
     baseURL: spec.schemes[0] + '://' + spec.host + spec.basePath + path,
+    data: body,
     headers,
-    params: query,
-    data: body
+    method: operation._method,
+    params: query
   };
 
   return config;

@@ -1,9 +1,9 @@
 export const HttpMethods: { [httpMethod: string]: boolean } = {
-  get: true,
-  put: true,
-  post: true,
   delete: true,
-  options: true,
+  get: true,
   head: true,
-  patch: true
+  options: true,
+  patch: true,
+  post: true,
+  put: true
 };

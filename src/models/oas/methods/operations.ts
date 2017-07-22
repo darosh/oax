@@ -7,9 +7,13 @@ import {IResource} from '../interfaces/IResource';
 
 export function operations(spec: Spec, resources: IResource[], map: IMap/*, form, map, defaultContentType, openPath*/) {
   let operationId: number = 0;
-  const operations: IOperationExtended[] = [];
+  const operationsArray: IOperationExtended[] = [];
 
   for (const pathName in spec.paths) {
+    if (!spec.paths.hasOwnProperty(pathName)) {
+      continue;
+    }
+
     const path: Path = spec.paths[pathName];
     // const pathParameters: Parameter[] = path.parameters || [];
 
@@ -57,11 +61,11 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
       //   resource.open = true;
       // }
 
-      operations.push(operation);
+      operationsArray.push(operation);
 
       operationId++;
     }
   }
 
-  return operations;
+  return operationsArray;
 }

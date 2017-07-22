@@ -19,18 +19,15 @@ export function getSearch(text: string) {
   }
 }
 
-export function filterSearch(resources: IResource[], search: any) {
-  for (let i = 0; i < resources.length; i++) {
-    const r = resources[i];
-
+export function filterSearch(resources: IResource[], searchObject: any) {
+  for (const r of resources) {
     r._display = false;
     r._opened = false;
 
-    for (let j = 0; j < r._operations.length; j++) {
-      const o = r._operations[j];
+    for (const o of r._operations) {
 
-      if ((search.method ? search.method === o._method : true) &&
-        (search.path ? o._pathName.toLowerCase().indexOf(search.path) > -1 : true)) {
+      if ((searchObject.method ? searchObject.method === o._method : true) &&
+        (searchObject.path ? o._pathName.toLowerCase().indexOf(searchObject.path) > -1 : true)) {
         o._display = true;
         r._display = true;
         r._opened = true;
