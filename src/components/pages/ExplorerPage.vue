@@ -9,8 +9,9 @@
     app-header-dialog
     app-proxy-dialog
     app-security-dialog
-    v-btn(v-if="FAB", @click.native.stop="FAB_METHOD && FAB_METHOD()" fab fixed bottom right class="fab--on-top")
-      v-icon play_arrow
+    v-btn(v-if="FAB", @click.native.stop="FAB_METHOD && FAB_METHOD()" fab fixed bottom right secondary class="white--text fab--on-top")
+      v-progress-circular(v-if="FAB_PENDING" indeterminate :width="3")
+      v-icon(v-if="!FAB_PENDING" ) play_arrow
 </template>
 
 <script>
@@ -36,7 +37,8 @@
         types.OPERATIONS,
         types.RESOURCES,
         types.FAB,
-        types.FAB_METHOD
+        types.FAB_METHOD,
+        types.FAB_PENDING
       ])
     }
   }

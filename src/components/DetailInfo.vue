@@ -59,14 +59,18 @@
         types.SET_DIALOG,
         types.SET_FAB_METHOD,
         types.SET_TAB,
-        types.SET_RESULT
+        types.SET_RESULT,
+        types.SET_FAB_PENDING
       ]),
       execute () {
+        this.SET_FAB_PENDING(true)
         this.SET_RESULT({operation: this.item, error: null, result: null})
         execute(this.item, this.SPEC).then(res => {
+          this.SET_FAB_PENDING(false)
           this.SET_RESULT({operation: this.item, error: null, result: res})
           this.SET_TAB('tab-result')
         }).catch(err => {
+          this.SET_FAB_PENDING(false)
           this.SET_RESULT({operation: this.item, error: err, result: null})
         })
       }

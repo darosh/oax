@@ -11,6 +11,7 @@ export const state = {
   error: null,
   loading: false,
   fabMethod: null,
+  fabPending: false,
   tab: 'tab-info'
 }
 
@@ -28,6 +29,9 @@ export const mutations = {
   [types.SET_FAB_METHOD] (state, payload) {
     state.fabMethod = payload
   },
+  [types.SET_FAB_PENDING] (state, payload) {
+    state.fabPending = payload
+  },
   [types.SET_TAB] (state, payload) {
     state.tab = payload
   }
@@ -38,6 +42,7 @@ export const getters = {
   [types.DIALOG_PARAM]: state => state.dialog.param,
   [types.ERROR]: state => state.error,
   [types.FAB_METHOD]: state => state.fabMethod,
+  [types.FAB_PENDING]: state => state.fabPending,
   [types.TAB]: state => state.tab
 }
 
