@@ -9,7 +9,8 @@ export const state = {
   },
   title: null,
   error: null,
-  loading: false
+  loading: false,
+  fabMethod: null
 }
 
 export const mutations = {
@@ -22,13 +23,17 @@ export const mutations = {
   },
   [types.SET_ERROR] (state, payload) {
     state.error = payload
+  },
+  [types.SET_FAB_METHOD] (state, payload) {
+    state.fabMethod = payload
   }
 }
 
 export const getters = {
   [types.DIALOG_IS]: state => type => state.dialog.type === type,
   [types.DIALOG_PARAM]: state => state.dialog.param,
-  [types.ERROR]: state => state.error
+  [types.ERROR]: state => state.error,
+  [types.FAB_METHOD]: state => state.fabMethod
 }
 
 export default {

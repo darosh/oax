@@ -9,7 +9,7 @@
     app-header-dialog
     app-proxy-dialog
     app-security-dialog
-    v-btn(v-if="FAB" fab fixed bottom right class="fab--on-top")
+    v-btn(v-if="FAB", @click.native.stop="FAB_METHOD && FAB_METHOD()" fab fixed bottom right class="fab--on-top")
       v-icon play_arrow
 </template>
 
@@ -35,7 +35,8 @@
         types.IS_GROUPED,
         types.OPERATIONS,
         types.RESOURCES,
-        types.FAB
+        types.FAB,
+        types.FAB_METHOD
       ])
     }
   }
@@ -44,4 +45,5 @@
 <style lang="stylus">
   .fab--on-top
     z-index 4
+    position fixed !important
 </style>

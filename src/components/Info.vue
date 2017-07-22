@@ -24,6 +24,7 @@
   import { mapMutations } from 'vuex'
   import * as types from '../store/types'
   import { schema } from '../models/oas/methods/schema'
+  import { execute } from '../models/oas/methods/execute'
 
   export default {
     props: ['item'],
@@ -31,6 +32,9 @@
       appModel: () => import('./Model'),
       appExample: () => import('./Example'),
       appParameter: () => import('./Parameter')
+    },
+    created () {
+      this.SET_FAB_METHOD(this.execute)
     },
     data () {
       return {
@@ -49,8 +53,12 @@
     },
     methods: {
       ...mapMutations([
-        types.SET_DIALOG
-      ])
+        types.SET_DIALOG,
+        types.SET_FAB_METHOD
+      ]),
+      execute () {
+        execute(this.item)
+      }
     }
   }
 </script>
