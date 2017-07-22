@@ -39,3 +39,8 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .navigation-drawer
+    padding 0
+</style>
