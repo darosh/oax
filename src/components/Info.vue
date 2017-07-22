@@ -2,12 +2,16 @@
   div
     .subheader(v-if="item.description") Description
     .body-1.pl-3.pr-3(v-if="item.description") {{item.description}}
-    v-layout.ml-0(row)
+    v-layout.ml-0(row v-if="schema")
       .subheader.no-wrap Response class
-      v-btn-toggle.pt-2(v-bind:items="schemaSwitch" v-model="item._schema")
+      v-btn-toggle.pt-2(v-bind:items="schemaViews" v-model="schemaView")
+    pre.pl-3.pr-3(v-if="schema")
+      app-model(:item="schema" v-if="schemaView === 'model'")
+      app-example(:item="schema" v-else-if="schemaView === 'example'")
     .subheader Response type
     v-select.pl-3.pr-3.no-hint(v-bind:items="item.produces" v-model="item._produces" single-line)
     .subheader Parameters
+    | {{item.parameters}}
     .subheader(v-if="item.responses && Object.keys(item.responses).length") Response messages
     .pt-2.pb-2
       .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="" v-for="(response, code) in item.responses", :key="code")
@@ -19,16 +23,27 @@
   import { ResponseStyle } from '../services/response-style'
   import { mapMutations } from 'vuex'
   import * as types from '../store/types'
+  import { schema } from '../models/oas/example'
 
   export default {
     props: ['item'],
+    components: {
+      appModel: () => import('./Model'),
+      appExample: () => import('./Example')
+    },
     data () {
       return {
         responseStyle: ResponseStyle,
-        schemaSwitch: [
+        schemaViews: [
           {text: 'Example', value: 'example'},
           {text: 'Model', value: 'model'}
-        ]
+        ],
+        schemaView: 'model'
+      }
+    },
+    computed: {
+      schema () {
+        return schema(this.item)
       }
     },
     methods: {

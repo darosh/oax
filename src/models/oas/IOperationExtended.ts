@@ -6,5 +6,4 @@ export interface IOperationExtended extends Operation {
   _pathName: string;
   _display?: boolean;
   _produces: string;
-  _schema: string;
 }

@@ -31,7 +31,6 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
       operation._method = httpMethod;
       operation._pathName = pathName;
       operation._display = true;
-      operation._schema = 'example';
 
       // parseParameters(spec, operation, pathParameters, form, defaultContentType);
       // OAS.parseResponses(spec, operation);
