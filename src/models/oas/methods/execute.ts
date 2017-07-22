@@ -1,9 +1,9 @@
-import {IOperationExtended} from "../interfaces/IOperationExtended";
-import {Spec} from "swagger-schema-official";
-import axios, {AxiosPromise} from "axios";
-import {IExtra} from "../interfaces/IExtra";
+import axios, {AxiosPromise} from 'axios';
+import {Spec} from 'swagger-schema-official';
+import {IExtra} from '../interfaces/IExtra';
+import {IOperationExtended} from '../interfaces/IOperationExtended';
 
-export function execute(operation: IOperationExtended, spec: Spec): AxiosPromise {
+export function configure(operation: IOperationExtended, spec: Spec) {
   let path: string = operation._pathName;
   const query: IExtra = {};
   const headers: IExtra = {};
@@ -41,10 +41,15 @@ export function execute(operation: IOperationExtended, spec: Spec): AxiosPromise
   const config = {
     method: operation._method,
     baseURL: spec.schemes[0] + '://' + spec.host + spec.basePath + path,
-    headers: headers,
+    headers,
     params: query,
-    data: body,
+    data: body
   };
 
-  return axios.request(config)
+  return config;
+}
+
+export function execute(operation: IOperationExtended, spec: Spec): AxiosPromise {
+  const config = configure(operation, spec);
+  return axios.request(config);
 }

@@ -1,5 +1,5 @@
 import {Operation, Parameter} from 'swagger-schema-official';
-import {IParameterExtended} from "./IParameterExtended";
+import {IParameterExtended} from './IParameterExtended';
 
 export interface IOperationExtended extends Operation {
   _id: number;

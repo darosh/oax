@@ -6,7 +6,7 @@ export function schema(operation: IOperationExtended) {
     const response = operation.responses[code];
 
     if (response.schema) {
-      return response.schema
+      return response.schema;
     }
   }
 }
@@ -16,7 +16,7 @@ export function value(schema: Schema): any {
     return schema.example;
   }
 
-  const type = schema.format || schema.type
+  const type = schema.format || schema.type;
 
   switch (type) {
     case 'int32':
@@ -45,7 +45,7 @@ export function value(schema: Schema): any {
 }
 
 export function type(schema: Schema): any {
-  const type = schema.format || schema.type
+  const type = schema.format || schema.type;
 
   switch (type) {
     case 'int32':
@@ -71,5 +71,5 @@ export function type(schema: Schema): any {
       return 'file';
   }
 
-  return type
+  return type;
 }
