@@ -21,7 +21,7 @@
 
 <script>
   import { ResponseStyle } from '../services/response-style'
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../store/types'
   import { schema } from '../models/oas/methods/schema'
   import { execute } from '../models/oas/methods/execute'
@@ -47,6 +47,9 @@
       }
     },
     computed: {
+      ...mapGetters([
+        types.SPEC
+      ]),
       schema () {
         return schema(this.item)
       }
@@ -57,7 +60,7 @@
         types.SET_FAB_METHOD
       ]),
       execute () {
-        execute(this.item)
+        execute(this.item, this.SPEC).then(res => console.log(res)).catch(err => console.error(err))
       }
     }
   }
