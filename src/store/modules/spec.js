@@ -1,4 +1,4 @@
-import Loader from '../../services/loader'
+import load from '../../services/load'
 import { OAS } from '../../models/oas/index'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
@@ -39,7 +39,7 @@ export const actions = {
     commit(types.SET_ERROR, null)
     commit(types.SET_LOADING, true)
     commit(types.SET_URL, url)
-    Loader.load(url).then((res) => {
+    load(url).then((res) => {
       commit(types.SET_LOADING, false)
       const oas = OAS(res.bundled, url)
       commit(types.SET_SPEC, {
