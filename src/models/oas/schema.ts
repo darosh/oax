@@ -70,4 +70,6 @@ export function type(schema: Schema): any {
     case 'file':
       return 'file';
   }
+
+  return type
 }
