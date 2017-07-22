@@ -1,9 +1,9 @@
 export const MethodStyle  = {
-  get: 'success',
-  put: 'warning',
-  post: 'warning',
   delete: 'error',
-  options: 'info',
+  get: 'success',
   head: 'info',
-  patch: 'warning'
+  options: 'info',
+  patch: 'warning',
+  post: 'warning',
+  put: 'warning'
 };

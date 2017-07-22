@@ -12,84 +12,84 @@ export function metas(spec: Spec, url: string, validatorUrl: string): IMeta[] {
 
   return [
     {
-      title: 'Contact',
       icon: 'person',
+      title: 'Contact',
       value: (contact.name && !contact.email)
         ? contact.name
         : null
     },
     {
-      title: 'Email',
       icon: 'email',
+      link: 'mailto:' + contact.email + '?subject=' + info.title,
+      title: 'Email',
       value: contact.email
         ? (contact.name || contact.email)
-        : null,
-      link: 'mailto:' + contact.email + '?subject=' + info.title
+        : null
     },
     {
-      title: 'License',
       icon: 'vpn_key',
-      value: license.name || license.url,
-      link: license.url
+      link: license.url,
+      title: 'License',
+      value: license.name || license.url
     },
     {
-      title: 'Terms of service',
       icon: 'assignment',
-      value: info.termsOfService,
-      link: info.termsOfService
+      link: info.termsOfService,
+      title: 'Terms of service',
+      value: info.termsOfService
     },
     {
-      title: 'Client registration',
       icon: 'assignment_ind',
-      value: (info as IExtra)['x-apiClientRegistration'] && (info as IExtra)['x-apiClientRegistration'].url,
-      link: (info as IExtra)['x-apiClientRegistration'] && (info as IExtra)['x-apiClientRegistration'].url
+      link: (info as IExtra)['x-apiClientRegistration'] && (info as IExtra)['x-apiClientRegistration'].url,
+      title: 'Client registration',
+      value: (info as IExtra)['x-apiClientRegistration'] && (info as IExtra)['x-apiClientRegistration'].url
     },
     {
-      title: 'Documentation',
       icon: 'help_outline',
+      link: spec.externalDocs && spec.externalDocs.url,
+      title: 'Documentation',
       value: spec.externalDocs &&
-      (spec.externalDocs.description || spec.externalDocs.url),
-      link: spec.externalDocs && spec.externalDocs.url
+      (spec.externalDocs.description || spec.externalDocs.url)
     },
     {
-      title: 'Host',
       icon: 'home',
-      value: spec.schemes[0] + '://' + spec.host,
-      link: spec.schemes[0] + '://' + spec.host
+      link: spec.schemes[0] + '://' + spec.host,
+      title: 'Host',
+      value: spec.schemes[0] + '://' + spec.host
     },
     {
-      title: 'Base URL',
       icon: 'link',
-      value: spec.basePath,
-      link: (spec.schemes[0] ? (spec.schemes[0] + '://') : '') + spec.host + spec.basePath
+      link: (spec.schemes[0] ? (spec.schemes[0] + '://') : '') + spec.host + spec.basePath,
+      title: 'Base URL',
+      value: spec.basePath
     },
     {
-      title: 'API version',
       icon: 'developer_board',
+      title: 'API version',
       value: info.version
     },
     {
-      title: 'JSON',
+      download: 'swagger.json',
       icon: 'file_download',
       link: '#',
-      download: 'swagger.json'
+      title: 'JSON'
     },
     {
-      title: 'YAML',
+      download: 'swagger.yaml',
       icon: 'file_download',
       link: '#',
-      download: 'swagger.yaml'
+      title: 'YAML'
     },
     {
-      title: 'Origin',
       icon: 'cloud_download',
-      value: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url,
-      link: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url
+      link: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url,
+      title: 'Origin',
+      value: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url
     },
     {
       icon: 'code',
-      link: validatorDebug,
-      image: validatorBadge
+      image: validatorBadge,
+      link: validatorDebug
     }
   ];
 }
