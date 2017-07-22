@@ -1,28 +1,33 @@
 <template lang="pug">
-  div
-    div(v-for="script in scripts")
-      pre.pl-3.pr-3.pt-3 {{script}}
+  v-expansion-panel(expand :class="IS_DARK ? 'application--dark' : 'application--light'")
+    v-expansion-panel-content(v-for="(script, scriptIndex) in scripts", :key="scriptIndex" v-model="script.exp", ripple)
+      div.subheading(slot="header") {{script.title}}
+      v-divider
+      v-card
+        pre.pa-3 {{script.script}}
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
   import * as types from '../store/types'
   import axiosScript from '../models/scripts/axios-script'
+  import angularScript from '../models/scripts/angular-script'
+  import jqueryScript from '../models/scripts/jquery-script'
 
   export default {
     props: ['item'],
     computed: {
       ...mapGetters([
-        types.SPEC
+        types.SPEC,
+        types.IS_DARK
       ]),
       scripts () {
         return [
-          axiosScript(this.item, this.SPEC)
+          {exp: true, title: 'Axios', script: axiosScript(this.item, this.SPEC)},
+          {exp: true, title: 'Angular', script: angularScript(this.item, this.SPEC)},
+          {exp: true, title: 'jQuery', script: jqueryScript(this.item, this.SPEC)}
         ]
       }
     }
   }
 </script>
-
-<style scoped lang="stylus">
-</style>

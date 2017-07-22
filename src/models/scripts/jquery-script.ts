@@ -1,3 +1,3 @@
-export function jqueryScript(): string {
-  return '';
+export default function jqueryScript(): string {
+  return '...';
 }

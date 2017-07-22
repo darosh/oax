@@ -1,53 +1,30 @@
 <template lang="pug">
-  div
-    v-expansion-panel.application--light(expand)
-      v-expansion-panel-content(v-if="item.description" v-model="exp2", ripple)
-        div.subheading(slot="header") Description
-        v-divider
-        v-card.pl-3.pa-3 {{item.description}}
-      v-expansion-panel-content(v-model="exp1")
-        div.subheading(slot="header") Response class
-        v-divider
-        v-card
-          v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
-          .pl-3.pa-3
-            app-model(:item="schema" v-if="schemaView === 'model'")
-            app-example(:item="schema" v-else-if="schemaView === 'example'")
-      v-expansion-panel-content(v-model="exp3")
-        div.subheading(slot="header") Response type
-        v-divider
-        v-card
-          v-select.pt-3.pl-3.pr-3.no-hint(:items="item.produces" v-model="item._produces" single-line)
-      v-expansion-panel-content(v-model="exp4")
-        div.subheading(slot="header") Parameters
-        v-divider
-        v-card.pt-2.pb-2
-          app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
-      v-expansion-panel-content(v-model="exp5")
-        div.subheading(slot="header") Response messages
-        v-divider
-        v-card.pt-2.pb-2
-          .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="" v-for="(response, code) in item.responses", :key="code")
+  v-expansion-panel(expand :class="IS_DARK ? 'application--dark' : 'application--light'")
+    v-expansion-panel-content(v-if="item.description" v-model="exp1", ripple)
+      div.subheading(slot="header") Description
+      v-divider
+      v-card.pa-3 {{item.description}}
+    v-expansion-panel-content(v-model="exp2", ripple)
+      div.subheading(slot="header") Responses
+      v-divider
+      v-card.pt-3.pb-3
+        div(v-for="(response, code) in item.responses", :key="code")
+          .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
             v-btn(small :class="responseStyle[code[0]] + ' btn--response'") {{code}}
             span.response--message.pl-2 {{response.description}}
-
-    <!--.subheader(v-if="item.description") Description-->
-    <!--.body-1.pl-3.pr-3(v-if="item.description") {{item.description}}-->
-    <!--v-layout.ml-0(row v-if="schema")-->
-      <!--.subheader.no-wrap Response class-->
-      <!--v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")-->
-    <!--pre.pl-3.pr-3(v-if="schema")-->
-      <!--app-model(:item="schema" v-if="schemaView === 'model'")-->
-      <!--app-example(:item="schema" v-else-if="schemaView === 'example'")-->
-    <!--.subheader Response type-->
-    <!--v-select.pl-3.pr-3.no-hint(:items="item.produces" v-model="item._produces" single-line)-->
-    <!--.subheader Parameters-->
-    <!--app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")-->
-    <!--.subheader(v-if="item.responses && Object.keys(item.responses).length") Response messages-->
-    <!--.pt-2.pb-2-->
-      <!--.relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="" v-for="(response, code) in item.responses", :key="code")-->
-        <!--v-btn(small :class="responseStyle[code[0]] + ' btn&#45;&#45;response'") {{code}}-->
-        <!--span.response&#45;&#45;message.pl-2 {{response.description}}-->
+          div(v-if="response.schema")
+            v-layout
+              v-spacer
+              v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
+            pre.pl-3.pr-3.pb-3
+              app-model(:item="response.schema" v-if="schemaView === 'model'")
+              app-example(:item="response.schema" v-else-if="schemaView === 'example'")
+    v-expansion-panel-content(v-model="exp3", ripple)
+      div.subheading(slot="header") Parameters
+      v-divider
+      v-card.pt-2.pb-2
+        v-select.pt-3.pl-3.pr-3.no-hint(:items="item.produces" v-model="item._produces" label="Response type" single-line)
+        app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
 </template>
 
 <script>
@@ -77,14 +54,13 @@
         schemaView: 'model',
         exp1: true,
         exp2: true,
-        exp3: true,
-        exp4: true,
-        exp5: true
+        exp3: true
       }
     },
     computed: {
       ...mapGetters([
-        types.SPEC
+        types.SPEC,
+        types.IS_DARK
       ]),
       schema () {
         return schema(this.item)
@@ -108,6 +84,7 @@
         }).catch(err => {
           this.SET_FAB_PENDING(false)
           this.SET_RESULT({operation: this.item, error: err, result: null})
+          this.SET_TAB('tab-result')
         })
       }
     }
@@ -148,6 +125,21 @@
   .no-wrap
     white-space nowrap
 
-  .expansion-panel
+  .navigation-drawer .expansion-panel
     box-shadow none
+
+  .navigation-drawer .expansion-panel > li
+    border-left-width 0
+    border-top-width 0
+    border-bottom-width 1px
+    border-right-width 0
+
+  .navigation-drawer .expansion-panel > li:last-child
+    border-left-width 0
+    border-top-width 0
+    border-bottom-width 0
+    border-right-width 0
+
+  .navigation-drawer .expansion-panel > li:last-child > .expansion-panel__header:not(.expansion-panel__header--active)
+    border-bottom 1px solid rgba(0, 0, 0, 0.12)
 </style>

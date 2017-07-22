@@ -1,3 +1,3 @@
-export function angularScript(): string {
-  return '';
+export default function angularScript(): string {
+  return '...';
 }
