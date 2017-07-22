@@ -23,7 +23,7 @@
   import { ResponseStyle } from '../services/response-style'
   import { mapMutations } from 'vuex'
   import * as types from '../store/types'
-  import { schema } from '../models/oas/example'
+  import { schema } from '../models/oas/schema'
 
   export default {
     props: ['item'],
