@@ -11,7 +11,7 @@
     .subheader Response type
     v-select.pl-3.pr-3.no-hint(v-bind:items="item.produces" v-model="item._produces" single-line)
     .subheader Parameters
-    | {{item.parameters}}
+    app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
     .subheader(v-if="item.responses && Object.keys(item.responses).length") Response messages
     .pt-2.pb-2
       .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="" v-for="(response, code) in item.responses", :key="code")
@@ -29,7 +29,8 @@
     props: ['item'],
     components: {
       appModel: () => import('./Model'),
-      appExample: () => import('./Example')
+      appExample: () => import('./Example'),
+      appParameter: () => import('./Parameter')
     },
     data () {
       return {
