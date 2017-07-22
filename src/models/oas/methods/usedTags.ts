@@ -1,6 +1,6 @@
 import {Operation, Path, Spec} from 'swagger-schema-official';
-import {HttpMethods} from './HttpMethods';
-import {IExtra} from './IExtra';
+import {HttpMethods} from '../constants/HttpMethods';
+import {IExtra} from '../interfaces/IExtra';
 
 export function usedTags(spec: Spec) {
   const dic: IExtra = {};

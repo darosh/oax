@@ -1,5 +1,5 @@
 import {Schema} from 'swagger-schema-official';
-import {IOperationExtended} from './IOperationExtended';
+import {IOperationExtended} from '../interfaces/IOperationExtended';
 
 export function schema(operation: IOperationExtended) {
   for (const code in operation.responses) {

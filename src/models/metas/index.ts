@@ -1,6 +1,6 @@
 import {Contact, Info, License, Spec} from 'swagger-schema-official';
-import {IExtra} from '../oas/IExtra';
-import {IMeta} from './IMeta';
+import {IExtra} from '../oas/interfaces/IExtra';
+import {IMeta} from './interfaces/IMeta';
 
 export function metas(spec: Spec, url: string, validatorUrl: string): IMeta[] {
   const info: Info = spec.info;

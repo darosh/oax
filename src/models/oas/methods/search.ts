@@ -1,5 +1,5 @@
-import {HttpMethods} from './HttpMethods';
-import {IResource} from './IResource';
+import {HttpMethods} from '../constants/HttpMethods';
+import {IResource} from '../interfaces/IResource';
 
 export default function search(resources: IResource[], text: string) {
   filterSearch(resources, getSearch(text));

@@ -1,9 +1,9 @@
 import {Path, Spec} from 'swagger-schema-official';
-import {HttpMethods} from './HttpMethods';
-import {IExtra} from './IExtra';
-import {IMap} from './IMap';
-import {IOperationExtended} from './IOperationExtended';
-import {IResource} from './IResource';
+import {HttpMethods} from '../constants/HttpMethods';
+import {IExtra} from '../interfaces/IExtra';
+import {IMap} from '../interfaces/IMap';
+import {IOperationExtended} from '../interfaces/IOperationExtended';
+import {IResource} from '../interfaces/IResource';
 
 export function operations(spec: Spec, resources: IResource[], map: IMap/*, form, map, defaultContentType, openPath*/) {
   let operationId: number = 0;

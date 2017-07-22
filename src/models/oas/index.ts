@@ -1,12 +1,12 @@
 import {Spec} from 'swagger-schema-official';
-import {IMeta} from '../metas/IMeta';
+import {IMeta} from '../metas/interfaces/IMeta';
 import {metas} from '../metas/index';
-import {IMap} from './IMap';
-import {info} from './info';
-import {IOperationExtended} from './IOperationExtended';
-import {IResource} from './IResource';
-import {operations} from './operations';
-import {resources} from './resources';
+import {IMap} from './interfaces/IMap';
+import {info} from './methods/info';
+import {IOperationExtended} from './interfaces/IOperationExtended';
+import {IResource} from './interfaces/IResource';
+import {operations} from './methods/operations';
+import {resources} from './methods/resources';
 
 export class OAS {
   metas: IMeta[];

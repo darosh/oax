@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import { value } from '../models/oas/schema'
+  import { value } from '../models/oas/methods/schema'
 
   export default {
     name: 'app-example',

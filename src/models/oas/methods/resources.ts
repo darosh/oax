@@ -1,6 +1,6 @@
 import {Spec} from 'swagger-schema-official';
-import {IMap} from './IMap';
-import {IResource} from './IResource';
+import {IMap} from '../interfaces/IMap';
+import {IResource} from '../interfaces/IResource';
 
 export function resources(spec: Spec, map: IMap): IResource[] {
   const resources: IResource[] = [];

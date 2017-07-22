@@ -1,8 +1,8 @@
 import Loader from '../../services/loader'
 import { OAS } from '../../models/oas/index'
 import * as types from '../types'
-import search from '../../models/oas/search'
-import {openAll} from '../../models/oas/resources'
+import search from '../../models/oas/methods/search'
+import {openAll} from '../../models/oas/methods/resources'
 
 export const state = {
   spec: null,
