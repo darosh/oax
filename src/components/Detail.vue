@@ -6,21 +6,24 @@
       v-flex(pt-4 pl-4 pr-4 pb-2)
         app-operation(:item="operation", :clickable="true")
         .subheading.pt-3.pb-2 {{operation.summary}}
-    v-tabs.app--tabs(:scrollable="false")
+    v-tabs.app--tabs(v-model="tab" :scrollable="false")
       v-tabs-bar.tabs--transparent(slot="activators")
-        v-tabs-item(ripple href="tab-1") Info
-        v-tabs-item.relative(ripple href="tab-2") Script
-        v-tabs-item.relative(ripple href="tab-3") Result
+        v-tabs-item(ripple href="tab-info") Info
+        v-tabs-item.relative(ripple href="tab-script") Script
+        v-tabs-item.relative(ripple href="tab-result") Result
         v-tabs-slider
-      v-tabs-content#tab-1
+      v-tabs-content#tab-info
         app-info(:item="operation")
-      v-tabs-content#tab-2
+      v-tabs-content#tab-script
         app-scripts
-      v-tabs-content#tab-3
+      v-tabs-content#tab-result
         app-result
 </template>
 
 <script>
+  import { mapGetters, mapMutations } from 'vuex'
+  import * as types from '../store/types'
+
   export default {
     props: ['operation'],
     components: {
@@ -28,6 +31,20 @@
       appInfo: () => import('./Info'),
       appScripts: () => import('./Scripts'),
       appResult: () => import('./Result')
+    },
+    computed: {
+      ...mapGetters([
+        types.TAB
+      ]),
+      tab: {
+        get () { return this.TAB },
+        set (value) { this.SET_TAB(value) }
+      }
+    },
+    methods: {
+      ...mapMutations([
+        types.SET_TAB
+      ])
     }
   }
 </script>
