@@ -15,9 +15,9 @@
       v-tabs-content#tab-info
         app-info(:item="operation")
       v-tabs-content#tab-script
-        app-scripts
+        app-scripts(:item="operation")
       v-tabs-content#tab-result
-        app-result
+        app-result(:item="operation")
 </template>
 
 <script>
@@ -28,9 +28,9 @@
     props: ['operation'],
     components: {
       appOperation: () => import('./Operation'),
-      appInfo: () => import('./Info'),
-      appScripts: () => import('./Scripts'),
-      appResult: () => import('./Result')
+      appInfo: () => import('./DetailInfo'),
+      appScripts: () => import('./DetailScripts'),
+      appResult: () => import('./DetailResult')
     },
     computed: {
       ...mapGetters([

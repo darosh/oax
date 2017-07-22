@@ -57,10 +57,19 @@
     methods: {
       ...mapMutations([
         types.SET_DIALOG,
-        types.SET_FAB_METHOD
+        types.SET_FAB_METHOD,
+        types.SET_TAB
       ]),
       execute () {
-        execute(this.item, this.SPEC).then(res => console.log(res)).catch(err => console.error(err))
+        this.item._result = null
+        this.item._error = null
+
+        execute(this.item, this.SPEC).then(res => {
+          this.item._result = res
+          this.SET_TAB('tab-result')
+        }).catch(err => {
+          this.item._error = err
+        })
       }
     }
   }
