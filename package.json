@@ -12,6 +12,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "tslint": "tslint --fix -c tslint.json src/**/*.ts",
     "http-method": "node tools/http-data.js method > src/assets/http-method.json",
     "http-status": "node tools/http-data.js status > src/assets/http-status.json",
     "http-header": "node tools/http-data.js header > src/assets/http-header.json"

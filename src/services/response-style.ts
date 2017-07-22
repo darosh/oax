@@ -5,4 +5,4 @@ export const ResponseStyle  = {
   4: 'error',
   5: 'error',
   7: 'error'
-}
+};

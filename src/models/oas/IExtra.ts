@@ -1,3 +1,3 @@
 export interface IExtra {
-  [key: string]: any
+  [key: string]: any;
 }

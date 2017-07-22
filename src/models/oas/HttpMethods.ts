@@ -6,4 +6,4 @@ export const HttpMethods: { [httpMethod: string]: boolean } = {
   options: true,
   head: true,
   patch: true
-}
+};

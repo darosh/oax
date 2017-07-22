@@ -14,6 +14,6 @@ export class Configuration {
   public limitSpecButtonText: number = 8;
 }
 
-const configuration = new Configuration()
+const configuration = new Configuration();
 
 export default configuration;

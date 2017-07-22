@@ -1,3 +1,3 @@
 export interface IMap {
-  [tag: string]: number
+  [tag: string]: number;
 }

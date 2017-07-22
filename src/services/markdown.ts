@@ -1,7 +1,7 @@
-import {Converter} from 'showdown'
+import {Converter} from 'showdown';
 
-const converter = new Converter()
+const converter = new Converter();
 
 export function toHtml(md: string) {
-  return converter.makeHtml(md)
+  return converter.makeHtml(md);
 }

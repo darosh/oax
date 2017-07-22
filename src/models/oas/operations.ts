@@ -1,16 +1,16 @@
-import {Path, Spec} from "swagger-schema-official";
-import {IResource} from "./IResource";
-import {IOperationExtended} from "./IOperationExtended";
-import {HttpMethods} from "./HttpMethods";
-import {IMap} from "./IMap";
-import {IExtra} from "./IExtra";
+import {Path, Spec} from 'swagger-schema-official';
+import {HttpMethods} from './HttpMethods';
+import {IExtra} from './IExtra';
+import {IMap} from './IMap';
+import {IOperationExtended} from './IOperationExtended';
+import {IResource} from './IResource';
 
 export function operations(spec: Spec, resources: IResource[], map: IMap/*, form, map, defaultContentType, openPath*/) {
   let operationId: number = 0;
   const operations: IOperationExtended[] = [];
 
   for (const pathName in spec.paths) {
-    const path: Path = spec.paths[pathName]
+    const path: Path = spec.paths[pathName];
     // const pathParameters: Parameter[] = path.parameters || [];
 
     for (const httpMethod in path) {
@@ -18,7 +18,7 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
         continue;
       }
 
-      const operation: IOperationExtended = (path as IExtra)[httpMethod]
+      const operation: IOperationExtended = (path as IExtra)[httpMethod];
 
       operation._id = operationId;
       operation.produces = operation.produces || spec.produces;
@@ -26,7 +26,7 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
       //   responseType: defaultContentType
       // };
 
-      operation._produces = operation.produces[0]
+      operation._produces = operation.produces[0];
 
       operation._method = httpMethod;
       operation._pathName = pathName;
@@ -58,7 +58,7 @@ export function operations(spec: Spec, resources: IResource[], map: IMap/*, form
       //   resource.open = true;
       // }
 
-      operations.push(operation)
+      operations.push(operation);
 
       operationId++;
     }
