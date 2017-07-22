@@ -4,12 +4,12 @@
     .body-1.pl-3.pr-3(v-if="item.description") {{item.description}}
     v-layout.ml-0(row v-if="schema")
       .subheader.no-wrap Response class
-      v-btn-toggle.pt-2(v-bind:items="schemaViews" v-model="schemaView")
+      v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
     pre.pl-3.pr-3(v-if="schema")
       app-model(:item="schema" v-if="schemaView === 'model'")
       app-example(:item="schema" v-else-if="schemaView === 'example'")
     .subheader Response type
-    v-select.pl-3.pr-3.no-hint(v-bind:items="item.produces" v-model="item._produces" single-line)
+    v-select.pl-3.pr-3.no-hint(:items="item.produces" v-model="item._produces" single-line)
     .subheader Parameters
     app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
     .subheader(v-if="item.responses && Object.keys(item.responses).length") Response messages

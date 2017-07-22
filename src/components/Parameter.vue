@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-text-field(v-if="!item.enum && (type === 'string')", :label="item.name" :hint="item.description" :required="item.required" persistent-hint)
+    v-text-field(v-if="!item.enum && (type === 'string')" :label="item.name" :hint="item.description" :required="item.required" persistent-hint)
     v-text-field(v-else-if="!item.enum && (type === 'number')" type="number" :label="item.name" :hint="item.description" :required="item.required" persistent-hint)
     v-text-field(v-else-if="!type && item.schema" multi-line :label="item.name" :hint="item.description" :required="item.required" persistent-hint)
     v-text-field(v-else-if="type === 'file'" type="file" :label="item.name" :hint="item.description" :required="item.required" persistent-hint)
