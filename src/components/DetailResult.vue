@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    | RESULT
     | {{item._result}}
     | {{item._error}}
 </template>
