@@ -3,7 +3,7 @@
     v-card
       v-toolbar(:class="color")
         v-toolbar-title
-          span(class="headline upper") {{type}}
+          span(class="main-title upper") {{type}}
         v-spacer
         v-toolbar-title
           span(class="subheader") HTTP Method
