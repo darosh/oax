@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(right overflow persistent :disable-route-watcher="true" v-model="drawer")
+  v-navigation-drawer.pb-0(right overflow persistent :disable-route-watcher="true" v-model="drawer")
     app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>
 
@@ -39,8 +39,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .navigation-drawer
-    padding 0
-</style>

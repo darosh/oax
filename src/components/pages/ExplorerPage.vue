@@ -9,9 +9,7 @@
     app-header-dialog
     app-proxy-dialog
     app-security-dialog
-    v-btn(v-if="FAB", @click.native.stop="FAB_METHOD && FAB_METHOD()" fab fixed bottom right secondary :class="'white--text fab--on-top' + (FAB_PENDING ? ' fab--on-top--disabled' : '')")
-      v-progress-circular(v-if="FAB_PENDING" indeterminate :width="3")
-      v-icon(v-if="!FAB_PENDING" ) play_arrow
+    app-fab
 </template>
 
 <script>
@@ -27,7 +25,8 @@
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
       appProxyDialog: () => import('../dialogs/ProxyDialog'),
-      appSecurityDialog: () => import('../dialogs/SecurityDialog')
+      appSecurityDialog: () => import('../dialogs/SecurityDialog'),
+      appFab: () => import('../FAB')
     },
     computed: {
       ...mapGetters([
@@ -35,22 +34,8 @@
         types.ERROR,
         types.IS_GROUPED,
         types.OPERATIONS,
-        types.RESOURCES,
-        types.FAB,
-        types.FAB_METHOD,
-        types.FAB_PENDING
+        types.RESOURCES
       ])
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .fab--on-top
-    z-index 4
-    position fixed !important
-
-  .fab--on-top.fab--on-top--disabled
-    opacity 0.75
-    pointer-events none
-    box-shadow none
-</style>
