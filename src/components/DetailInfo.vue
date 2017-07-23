@@ -83,7 +83,7 @@
           this.SET_TAB('tab-result')
         }).catch(err => {
           this.SET_FAB_PENDING(false)
-          this.SET_RESULT({operation: this.item, error: err, result: null})
+          this.SET_RESULT({operation: this.item, error: true, result: err.response})
           this.SET_TAB('tab-result')
         })
       }
