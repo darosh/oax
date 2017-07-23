@@ -20,5 +20,4 @@
 
   .operation--message
     padding-top 4px
-    word-break break-all
 </style>
