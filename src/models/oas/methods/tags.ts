@@ -16,10 +16,33 @@ export function tags(spec: ISpecExtended) {
   removeUnusedTags(spec);
   const untagged = getUntagged(spec);
 
-  if (untagged.length) {
+  if (untagged.length === spec._operations.length && untagged.length > 16) {
+    tagByPath(spec);
+    addOpsTags(spec);
+    extendTags(spec);
+  } else if (untagged.length) {
     const dt = getDefaultTag(spec);
     addDefaultTag(untagged, dt);
-    addTagOperations(spec);
+  }
+
+  addTagOperations(spec);
+}
+
+export function tagByPath(spec: ISpecExtended) {
+  const rx = /^\/?([^\/]+).*$/;
+
+  for (const pathName in spec.paths) {
+    if (spec.paths.hasOwnProperty(pathName)) {
+      const path: Path = spec.paths[pathName];
+      const tag = pathName.replace(rx, '$1');
+
+      for (const httpMethod in path) {
+        if (HttpMethods[httpMethod]) {
+          const operation: IOperationExtended = (path as IExtra)[httpMethod];
+          operation.tags.push(tag);
+        }
+      }
+    }
   }
 }
 
