@@ -40,7 +40,7 @@ export function configure(operation: IOperationExtended, spec: Spec) {
   }
 
   const config: any = {
-    url: spec.schemes[0] + '://' + spec.host + spec.basePath + path,
+    url: spec.schemes[0] + '://' + merge(merge(spec.host, spec.basePath), path),
     method: operation._method
   };
 
@@ -57,6 +57,18 @@ export function configure(operation: IOperationExtended, spec: Spec) {
   }
 
   return config;
+}
+
+function merge(a = '', b = '') {
+  if (!a || !b) {
+    return a + b
+  } else if (a[a.length - 1] === '/' && b[0] === '/') {
+    return a + b.substr(1);
+  } else if (a[a.length - 1] !== '/' && b[0] !== '/') {
+    return a + '/' + b;
+  } else {
+    return a + b
+  }
 }
 
 export function execute(operation: IOperationExtended, spec: Spec): AxiosPromise {
