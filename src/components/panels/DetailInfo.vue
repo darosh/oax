@@ -88,12 +88,18 @@
         execute(this.item, this.SPEC).then(res => {
           this.SET_FAB_PENDING(false)
           this.SET_RESULT({operation: this.item, error: null, result: res})
+          this.open()
           this.SET_TAB('tab-result')
         }).catch(err => {
           this.SET_FAB_PENDING(false)
           this.SET_RESULT({operation: this.item, error: true, result: err.response})
+          this.open()
           this.SET_TAB('tab-result')
         })
+      },
+      open () {
+        // TODO: remove $parent
+        this.$parent.$parent.$parent.$parent.$parent.$parent.drawer = true
       }
     }
   }

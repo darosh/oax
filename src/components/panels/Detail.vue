@@ -50,6 +50,7 @@
         types.SET_DIALOG
       ]),
       close () {
+        // TODO: remove $parent
         this.$parent.$parent.drawer = false
       }
     }
