@@ -12,7 +12,7 @@
   import * as types from '../../store/types'
   import axiosScript from '../../models/scripts/axios-script'
   import angularScript from '../../models/scripts/angular-script'
-  import jqueryScript from '../../models/scripts/jquery-script'
+  // import jqueryScript from '../../models/scripts/jquery-script'
 
   export default {
     props: ['item'],
@@ -24,8 +24,8 @@
       scripts () {
         return [
           {exp: true, title: 'Axios', script: axiosScript(this.item, this.SPEC)},
-          {exp: true, title: 'Angular', script: angularScript(this.item, this.SPEC)},
-          {exp: true, title: 'jQuery', script: jqueryScript(this.item, this.SPEC)}
+          {exp: true, title: 'AngularJS', script: angularScript(this.item, this.SPEC)}
+          // {exp: true, title: 'jQuery', script: jqueryScript(this.item, this.SPEC)}
         ]
       }
     }
