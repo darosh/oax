@@ -28,13 +28,14 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a(class="btn btn--flat primary--text" target="_blank" :href="method[2]")
-          div(class="btn__content") {{method[1]}}
+        a(class="btn btn--flat primary--text" target="_blank", :href="method[2]")
+          div(class="btn__content") {{ref}}
         v-btn(flat @click.native="SET_DIALOG()") Close
 </template>
 
 <script>
   import { MethodStyle } from '../../services/method-style'
+
   const methods = () => import('../../assets/http-method.json')
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
@@ -45,7 +46,8 @@
       return {
         method: [],
         type: '',
-        color: ''
+        color: '',
+        ref: ''
       }
     },
     created () {
@@ -84,7 +86,7 @@
         methods().then((res) => {
           this.type = method
           this.method = res[method]
-          this.method[1] = limit(this.method[1])
+          this.ref = limit(this.method[1])
           this.color = MethodStyle[method]
         })
       },

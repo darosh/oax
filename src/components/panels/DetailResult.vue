@@ -15,7 +15,10 @@
       div.subheading(slot="header") Response headers
       v-divider
       v-card.pt-3.pb-3
-        div.pl-3.pl-3(v-for="(header, headerName) in item._result.headers", :key="headerName") {{headerName}} {{header}}
+        div.hover--block.pl-3.pl-3(v-for="(header, headerName) in item._result.headers", :key="headerName" v-ripple="",
+          @click.stop="SET_DIALOG({type: 'header', param: headerName})")
+          app-header(:item="headerName")
+          |  {{header}}
     v-expansion-panel-content(v-model="exp4", ripple)
       div.subheading(slot="header") Response body
       v-divider
@@ -24,13 +27,14 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
 
   export default {
     props: ['item'],
     components: {
-      appResponse: () => import('../elements/Response')
+      appResponse: () => import('../elements/Response'),
+      appHeader: () => import('../elements/Header')
     },
     data () {
       return {
@@ -43,6 +47,11 @@
     computed: {
       ...mapGetters([
         types.IS_DARK
+      ])
+    },
+    methods: {
+      ...mapMutations([
+        types.SET_DIALOG
       ])
     }
   }

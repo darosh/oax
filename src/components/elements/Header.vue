@@ -1,5 +1,5 @@
 <template lang="pug">
-  span.btn.btn--header.secondary {{item}}
+  span.header--badge.secondary.white--text {{item}}
 </template>
 
 <script>
@@ -9,11 +9,21 @@
 </script>
 
 <style lang="stylus">
-  .btn--header
-    height 24px;
-    min-width 64px
-    padding 0 12px
-    margin 4px 0
-    border-radius 12px
+  .header--badge
+    align-items center
+    display inline-flex
+    flex 0 1 auto
+    font-weight 400
+    justify-content flex-start
     text-transform none
+    text-decoration none
+    position relative
+    vertical-align middle
+    height 18px
+    min-width 32px
+    padding 0 9px
+    margin 4px 0
+    font-size: 13px
+    line-height: 12px
+    border-radius: 9px
 </style>

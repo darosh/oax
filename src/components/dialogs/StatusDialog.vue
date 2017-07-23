@@ -18,7 +18,7 @@
           v-icon keyboard_arrow_right
         v-spacer
         a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" :href="status[3]")
-          div(class="btn__content btn--short") {{status[2]}}
+          div(class="btn__content btn--short") {{ref}}
         v-btn(flat @click.native="SET_DIALOG()") Close
 </template>
 
@@ -36,7 +36,8 @@
       return {
         status: {},
         type: '',
-        color: ''
+        color: '',
+        ref: ''
       }
     },
     created () {
@@ -90,7 +91,7 @@
           }
 
           this.status[1] = toHtml(this.status[1])
-          this.status[2] = limit(this.status[2])
+          this.ref = limit(this.status[2])
           this.color = ResponseStyle[this.type[0]]
           this.active = true
         })
