@@ -34,6 +34,9 @@ export const mutations = {
   },
   [types.SET_VALUE] (state, payload) {
     payload.item._value = payload.value
+  },
+  [types.SET_RESOURCE] (state, payload) {
+    payload.resource._opened = payload.opened
   }
 }
 

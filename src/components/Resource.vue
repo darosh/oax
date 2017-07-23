@@ -1,6 +1,6 @@
 <template lang="pug">
   v-expansion-panel(expand)
-    v-expansion-panel-content.relative(v-model="item._opened", ripple)
+    v-expansion-panel-content.relative(v-model="opened", ripple)
       .title(slot="header") {{item.name}}
       v-divider
       v-card
@@ -9,7 +9,7 @@
         v-card-text(v-if="item.externalDocs && item.externalDocs.url")
           a(:href="item.externalDocs.url") {{item.externalDocs.description}}
         v-divider(v-if="item.externalDocs && item.externalDocs.url")
-        .pt-2.pb-2
+        .pt-3.pb-3
           div(v-if="o._display", v-for="(o, i) in item._operations", :key="o._id")
             .operation--block.relative(v-ripple="", @click="SET_OPERATION(o)")
               app-operation.pl-3.pr-3(:item="o")
@@ -31,11 +31,16 @@
     computed: {
       ...mapGetters([
         types.IS_DESCRIPTION
-      ])
+      ]),
+      opened: {
+        get () { return this.item._opened },
+        set (value) { this.SET_RESOURCE({resource: this.item, opened: value}) }
+      }
     },
     methods: {
       ...mapMutations([
-        types.SET_OPERATION
+        types.SET_OPERATION,
+        types.SET_RESOURCE
       ])
     }
   }
