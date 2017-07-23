@@ -1,14 +1,11 @@
 export class Configuration {
-  public url: string = 'http://petstore.swagger.io/v2/swagger.json';
+  public url: string = 'https://api.apis.guru/v2/specs/github.com/v3/swagger.yaml';
   public defaultTitle: string = 'API';
-  public validatorImageUrl = '';
-  public validatorDebugUrl = '';
   public defaultDarkTheme: boolean = false;
 
   public allowUrlEdit: boolean = true;
   public allowSwithTheme: boolean = true;
   public allowEditProxy: boolean = true;
-  public allowValidator: boolean = false;
   public allowDownload: boolean = false;
 
   public limitSpecButtonText: number = 8;

@@ -19,6 +19,7 @@ export function tags(spec: ISpecExtended) {
   if (untagged.length) {
     const dt = getDefaultTag(spec);
     addDefaultTag(untagged, dt);
+    addTagOperations(spec);
   }
 }
 
@@ -29,12 +30,21 @@ export function addDefaultTag(ops: IOperationExtended[], dt: ITagExtended) {
 }
 
 export function getDefaultTag(spec: ISpecExtended) {
-  return spec.tags.find((o) => (o.name.toLowerCase() === 'default')) || {
-    _display: true,
-    _opened: true,
-    _operations: [],
-    name: 'default'
-  };
+  let dt = spec.tags.find((o) => (o.name.toLowerCase() === 'default'));
+
+  if (!dt) {
+    dt = {
+      _display: true,
+      _opened: true,
+      _operations: [],
+      name: 'default'
+    };
+
+    spec._map[dt.name] = spec.tags.length;
+    spec.tags.push(dt);
+  }
+
+  return dt;
 }
 
 export function getUntagged(spec: ISpecExtended) {

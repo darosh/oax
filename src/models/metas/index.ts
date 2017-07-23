@@ -2,13 +2,10 @@ import {Contact, Info, License, Spec} from 'swagger-schema-official';
 import {IExtra} from '../oas/interfaces/IExtra';
 import {IMeta} from './interfaces/IMeta';
 
-export function metas(spec: Spec, url: string, validatorUrl: string): IMeta[] {
+export function metas(spec: Spec): IMeta[] {
   const info: Info = spec.info;
   const contact: Contact = info.contact || {};
   const license: License = info.license || {} as any;
-  const validatorBadge = validatorUrl + '?url=' + url;
-  const validatorDebug = (validatorUrl && url) ? (validatorUrl + '/debug?url=' +
-  url) : null;
 
   return [
     {
@@ -85,11 +82,6 @@ export function metas(spec: Spec, url: string, validatorUrl: string): IMeta[] {
       link: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url,
       title: 'Origin',
       value: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url
-    },
-    {
-      icon: 'code',
-      image: validatorBadge,
-      link: validatorDebug
     }
   ];
 }

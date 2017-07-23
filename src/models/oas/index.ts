@@ -6,11 +6,10 @@ import {tags} from './methods/tags';
 
 export function OAS(spec: ISpecExtended,
                     url: string,
-                    defaultContentType: string = 'application/json',
-                    validatorUrl: string = 'http://online.swagger.io/validator') {
+                    defaultContentType: string = 'application/json') {
 
   info(spec, url, defaultContentType);
-  spec._metas = metas(spec, url, validatorUrl);
+  spec._metas = metas(spec);
   tags(spec);
   operations(spec);
 }
