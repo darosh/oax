@@ -19,6 +19,6 @@
     flex 1
 
   .operation--message
-    padding-top 6px
+    padding-top 5px
     word-break break-all
 </style>

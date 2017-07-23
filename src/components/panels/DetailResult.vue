@@ -9,7 +9,7 @@
       div.subheading(slot="header") Response status
       v-divider
       v-card.pt-3.pb-3
-        .pl-3.pr-3.hover--block(@click.stop="SET_DIALOG({type: 'status', param: item._result.status})")
+        .pl-3.pr-3.hover--block(v-ripple="", @click.stop="SET_DIALOG({type: 'status', param: item._result.status})")
           app-response-block(:code="item._result.status", :text="item._result.statusText")
     v-expansion-panel-content(v-model="exp3", ripple)
       div.subheading(slot="header") Response headers

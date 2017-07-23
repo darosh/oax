@@ -9,7 +9,7 @@
       v-divider
       v-card.pt-3.pb-3
         div(v-for="(response, code) in item.responses", :key="code")
-          .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
+          .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
             app-response-block(:code="code", :text="response.description")
           div(v-if="response.schema")
             v-layout
@@ -104,12 +104,6 @@
 
   .relative
     position relative
-
-  @import "../../../node_modules/vuetify/src/stylus/settings/_theme.styl"
-
-  .response:hover
-    background: $material-twelve-percent-dark
-    cursor pointer
 
   .response
     display flex

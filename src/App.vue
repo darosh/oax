@@ -25,4 +25,8 @@
 
 <style lang="stylus">
   @import './stylus/main'
+
+  .hover--block:hover
+    background: $material-twelve-percent-dark
+    cursor pointer
 </style>

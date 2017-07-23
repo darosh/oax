@@ -4,5 +4,6 @@ export const ResponseStyle  = {
   3: 'warning',
   4: 'error',
   5: 'error',
-  7: 'error'
+  7: 'error',
+  d: 'secondary'
 };

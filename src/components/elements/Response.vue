@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-btn(small :class="responseStyle[code[0]] + ' btn--response'") {{code}}
+  span(:class="'response--badge white--text ' + responseStyle[code[0]]") {{code}}
 </template>
 
 <script>
@@ -16,13 +16,20 @@
 </script>
 
 <style scoped lang="stylus">
-  .btn--response
+  .response--badge
+    align-items center
+    display inline-flex
+    flex 0 1 auto
+    font-weight 500
     font-family "Roboto Mono", monospace
-    height 24px;
-    min-width 48px
-    padding 0
+    justify-content center
+    text-decoration none
+    position relative
+    vertical-align middle
+    height 20px
+    min-width 42px
+    padding 0 6px
     margin 4px 0
-
-  .btn.btn--response .btn__content
-    padding 0 4px !important
+    font-size: 13px
+    border-radius: 10px
 </style>
