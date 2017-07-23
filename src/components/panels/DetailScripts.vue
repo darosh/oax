@@ -4,7 +4,7 @@
       div.subheading(slot="header") Request URL
       v-divider
       v-card.pa-3
-        a(:href="config.baseURL" target="_blank" class="primary--text wrap") {{config.baseURL}}
+        a(:href="url" target="_blank" class="primary--text wrap") {{url}}
     v-expansion-panel-content(v-for="(script, scriptIndex) in scripts", :key="scriptIndex" v-model="script.exp", ripple)
       div.subheading(slot="header") {{script.title}}
       v-divider
@@ -19,6 +19,7 @@
   import axiosScript from '../../models/scripts/axios-script'
   import angularScript from '../../models/scripts/angular-script'
   // import jqueryScript from '../../models/scripts/jquery-script'
+  import url from '../../services/url'
 
   export default {
     props: ['item'],
@@ -41,6 +42,9 @@
       },
       config () {
         return configure(this.item, this.SPEC)
+      },
+      url () {
+        return url(this.config)
       }
     }
   }
