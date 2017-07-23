@@ -30,7 +30,7 @@ export const mutations = {
   },
   [types.SET_RESULT] (state, payload) {
     payload.operation._result = payload.result
-    payload.operation._error = payload.error
+    // payload.operation._error = payload.error
   },
   [types.SET_VALUE] (state, payload) {
     payload.item._value = payload.value

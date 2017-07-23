@@ -1,10 +1,5 @@
 <template lang="pug">
   v-expansion-panel(v-if="item._result" expand :class="IS_DARK ? 'application--dark' : 'application--light'")
-    v-expansion-panel-content(v-if="item._result" v-model="exp1", ripple)
-      div.subheading(slot="header") Request URL
-      v-divider
-      v-card.pa-3
-        a(:href="item._result.config.url" target="_blank" class="primary--text wrap") {{item._result.config.url}}
     v-expansion-panel-content(v-model="exp2", ripple)
       div.subheading(slot="header") Response status
       v-divider
@@ -19,7 +14,7 @@
           @click.stop="SET_DIALOG({type: 'header', param: headerName})")
           app-header(:item="headerName")
           |  {{header}}
-    v-expansion-panel-content(v-model="exp4", ripple)
+    v-expansion-panel-content(v-if="item._result.data", v-model="exp4", ripple)
       div.subheading(slot="header") Response body
       v-divider
       v-card.pa-3
@@ -56,8 +51,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .wrap
-    word-break break-all
-</style>

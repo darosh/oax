@@ -10,7 +10,7 @@
       v-tabs-bar.tabs--transparent(slot="activators")
         v-tabs-item(ripple href="tab-info") Info
         v-tabs-item.relative(ripple href="tab-script") Script
-        v-tabs-item.relative(ripple href="tab-result") Result
+        v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._result") Result
         v-tabs-slider
       v-tabs-content#tab-info
         app-info(:item="operation")
@@ -37,7 +37,7 @@
         types.TAB
       ]),
       tab: {
-        get () { return this.TAB },
+        get () { return this.operation._result ? this.TAB : 'tab-info' },
         set (value) { this.SET_TAB(value) }
       }
     },
@@ -54,6 +54,8 @@
   .tabs--transparent
     background-color transparent
 
-  .app--tabs >>> .tabs__items
+  .
+  app--tabs > > >
+  .tabs__items
     border-width 1px 0 0 0 !important
 </style>
