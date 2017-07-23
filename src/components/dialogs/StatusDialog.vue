@@ -108,7 +108,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .main-title.toolbar__title
     max-width: 220px
 </style>

@@ -46,7 +46,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .app-table
     max-width 80em
 

@@ -31,7 +31,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .stretch
     align-content stretch
 

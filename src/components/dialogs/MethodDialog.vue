@@ -102,7 +102,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .group
     display: flex
     flex: 1

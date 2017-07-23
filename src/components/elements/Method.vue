@@ -15,7 +15,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .method--badge
     align-items center
     display inline-flex

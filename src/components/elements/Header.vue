@@ -8,7 +8,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .header--badge
     align-items center
     display inline-flex

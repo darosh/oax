@@ -38,7 +38,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   input[type="file"]
     opacity 0
 </style>

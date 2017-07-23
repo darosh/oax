@@ -91,7 +91,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .btn--response
     font-family "Roboto Mono", monospace
     height 24px;

@@ -40,7 +40,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .navigation-drawer
     padding 0
 </style>

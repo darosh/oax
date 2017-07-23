@@ -44,7 +44,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .fab--on-top
     z-index 4
     position fixed !important
