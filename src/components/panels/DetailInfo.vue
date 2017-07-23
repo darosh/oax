@@ -7,15 +7,15 @@
     v-expansion-panel-content(v-model="exp2", ripple)
       div.subheading(slot="header") Responses
       v-divider
-      v-card.pt-3.pb-3
-        div(v-for="(response, code) in item.responses", :key="code")
+      v-card.pb-3
+        div.pt-3(v-for="(response, code) in item.responses", :key="code")
           .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
             app-response-block(:code="code", :text="response.description")
           div(v-if="response.schema")
             v-layout
               v-spacer
               v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
-            pre.pl-3.pr-3.pb-3
+            pre.ml-3.mr-3.pa-1.mt-1
               app-model(:item="response.schema" v-if="schemaView === 'model'")
               app-example(:item="response.schema" v-else-if="schemaView === 'example'")
     v-expansion-panel-content(v-model="exp3", ripple)

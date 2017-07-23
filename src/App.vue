@@ -27,6 +27,14 @@
   @import './stylus/main'
 
   .hover--block:hover
-    background: $material-twelve-percent-dark
+    background $material-twelve-percent-dark
     cursor pointer
+
+  pre
+    background lighten($material-twelve-percent-dark, 50%)
+    border 1px solid $material-twelve-percent-dark
+    border-radius 6px !important
+    max-height 360px
+    overflow auto
+    scroll auto
 </style>

@@ -3,8 +3,8 @@
     v-expansion-panel-content(v-for="(script, scriptIndex) in scripts", :key="scriptIndex" v-model="script.exp", ripple)
       div.subheading(slot="header") {{script.title}}
       v-divider
-      v-card
-        pre.pa-3 {{script.script}}
+      v-card.pa-3
+        pre.pa-1 {{script.script}}
 </template>
 
 <script>

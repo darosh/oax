@@ -10,7 +10,7 @@
       v-divider
       v-card.pt-3.pb-3
         .pl-3.pr-3.hover--block(v-ripple="", @click.stop="SET_DIALOG({type: 'status', param: item._result.status})")
-          app-response-block(:code="item._result.status", :text="item._result.statusText")
+          app-response-block(:code="item._result.status.toString()", :text="item._result.statusText")
     v-expansion-panel-content(v-model="exp3", ripple)
       div.subheading(slot="header") Response headers
       v-divider
@@ -23,7 +23,7 @@
       div.subheading(slot="header") Response body
       v-divider
       v-card.pa-3
-        pre {{item._result.data}}
+        pre.pa-1 {{item._result.data}}
 </template>
 
 <script>
