@@ -9,7 +9,7 @@
 
   export default {
     components: {
-      appDetail: () => import('./Detail')
+      appDetail: () => import('./panels/Detail')
     },
     data () {
       return {

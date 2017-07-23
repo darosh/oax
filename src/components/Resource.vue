@@ -25,7 +25,7 @@
 
   export default {
     components: {
-      appOperation: () => import('./Operation')
+      appOperation: () => import('./elements/MethodBlock')
     },
     props: ['item'],
     computed: {

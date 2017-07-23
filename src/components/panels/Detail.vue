@@ -6,7 +6,7 @@
       v-flex(pt-4 pl-4 pr-4 pb-2)
         app-operation(:item="operation", :clickable="true")
         .subheading.pt-3.pb-2 {{operation.summary}}
-    v-tabs.app--tabs(v-model="tab" :scrollable="false")
+    v-tabs.app--tabs(v-model="tab", :scrollable="false")
       v-tabs-bar.tabs--transparent(slot="activators")
         v-tabs-item(ripple href="tab-info") Info
         v-tabs-item.relative(ripple href="tab-script") Script
@@ -22,12 +22,12 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
   export default {
     props: ['operation'],
     components: {
-      appOperation: () => import('./Operation'),
+      appOperation: () => import('../elements/MethodBlock'),
       appInfo: () => import('./DetailInfo'),
       appScripts: () => import('./DetailScripts'),
       appResult: () => import('./DetailResult')

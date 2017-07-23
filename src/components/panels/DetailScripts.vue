@@ -9,10 +9,10 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import * as types from '../store/types'
-  import axiosScript from '../models/scripts/axios-script'
-  import angularScript from '../models/scripts/angular-script'
-  import jqueryScript from '../models/scripts/jquery-script'
+  import * as types from '../../store/types'
+  import axiosScript from '../../models/scripts/axios-script'
+  import angularScript from '../../models/scripts/angular-script'
+  import jqueryScript from '../../models/scripts/jquery-script'
 
   export default {
     props: ['item'],

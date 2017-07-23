@@ -14,7 +14,7 @@
 
   export default {
     components: {
-      appHeader: () => import('../Header')
+      appHeader: () => import('../elements/Header')
     },
     data () {
       return {

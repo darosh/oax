@@ -25,12 +25,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
   export default {
     props: ['item'],
     components: {
-      appResponse: () => import('./Response')
+      appResponse: () => import('../elements/Response')
     },
     data () {
       return {

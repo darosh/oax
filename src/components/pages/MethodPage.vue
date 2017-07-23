@@ -20,7 +20,7 @@
 
   export default {
     components: {
-      appMethod: () => import('../Method')
+      appMethod: () => import('../elements/Method')
     },
     data () {
       return {

@@ -28,18 +28,18 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../services/response-style'
+  import { ResponseStyle } from '../../services/response-style'
   import { mapMutations, mapGetters } from 'vuex'
-  import * as types from '../store/types'
-  import { schema } from '../models/oas/methods/schema'
-  import { execute } from '../models/oas/methods/execute'
+  import * as types from '../../store/types'
+  import { schema } from '../../models/oas/methods/schema'
+  import { execute } from '../../models/oas/methods/execute'
 
   export default {
     props: ['item'],
     components: {
-      appModel: () => import('./Model'),
-      appExample: () => import('./Example'),
-      appParameter: () => import('./Parameter')
+      appModel: () => import('../Model'),
+      appExample: () => import('../Example'),
+      appParameter: () => import('../Parameter')
     },
     created () {
       this.SET_FAB_METHOD(this.execute)
@@ -105,7 +105,7 @@
   .relative
     position relative
 
-  @import "../../node_modules/vuetify/src/stylus/settings/_theme.styl"
+  @import "../../../node_modules/vuetify/src/stylus/settings/_theme.styl"
 
   .response:hover
     background: $material-twelve-percent-dark

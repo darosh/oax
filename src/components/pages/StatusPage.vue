@@ -15,7 +15,7 @@
 
   export default {
     components: {
-      appResponse: () => import('../Response')
+      appResponse: () => import('../elements/Response')
     },
     data () {
       return {
