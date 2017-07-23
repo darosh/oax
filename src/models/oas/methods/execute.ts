@@ -40,8 +40,8 @@ export function configure(operation: IOperationExtended, spec: Spec) {
   }
 
   const config: any = {
-    url: spec.schemes[0] + '://' + merge(merge(spec.host, spec.basePath), path),
-    method: operation._method
+    method: operation._method,
+    url: spec.schemes[0] + '://' + merge(merge(spec.host, spec.basePath), path)
   };
 
   if (Object.keys(headers).length) {
@@ -61,13 +61,13 @@ export function configure(operation: IOperationExtended, spec: Spec) {
 
 function merge(a = '', b = '') {
   if (!a || !b) {
-    return a + b
+    return a + b;
   } else if (a[a.length - 1] === '/' && b[0] === '/') {
     return a + b.substr(1);
   } else if (a[a.length - 1] !== '/' && b[0] !== '/') {
     return a + '/' + b;
   } else {
-    return a + b
+    return a + b;
   }
 }
 
