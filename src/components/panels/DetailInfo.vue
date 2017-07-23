@@ -33,11 +33,14 @@
   import { schema } from '../../models/oas/methods/schema'
   import { execute } from '../../models/oas/methods/execute'
 
+  import appModel from '../Model'
+  import appExample from '../Example'
+
   export default {
     props: ['item'],
     components: {
-      appModel: () => import('../Model'),
-      appExample: () => import('../Example'),
+      appModel,
+      appExample,
       appParameter: () => import('../Parameter'),
       appResponseBlock: () => import('../elements/ResponseBlock')
     },
