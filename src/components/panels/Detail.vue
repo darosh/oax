@@ -54,8 +54,6 @@
   .tabs--transparent
     background-color transparent
 
-  .
-  app--tabs > > >
-  .tabs__items
+  .app--tabs >>> .tabs__items
     border-width 1px 0 0 0 !important
 </style>
