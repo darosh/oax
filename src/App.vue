@@ -37,4 +37,7 @@
     max-height 360px
     overflow auto
     scroll auto
+
+  .input-group__hint
+    transition none !important
 </style>
