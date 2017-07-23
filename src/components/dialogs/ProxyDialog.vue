@@ -7,7 +7,7 @@
         v-text-field(label="URL" v-model="proxy")
       v-card-actions
         v-spacer
-        v-btn(flat @click.native="SET_DIALOG") Close
+        v-btn(flat @click.native.stop="SET_DIALOG") Close
 </template>
 
 <script>

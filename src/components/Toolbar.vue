@@ -11,9 +11,9 @@
       v-icon keyboard_arrow_down
     v-btn(v-if="IS_API && IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
       v-icon keyboard_arrow_up
-    v-btn(v-if="IS_API" icon @click.native="TOGGLE_GROUPED()" v-tooltip:bottom="{html: IS_GROUPED ? 'View list' : 'View groups'}")
+    v-btn(v-if="IS_API" icon @click.native.stop="TOGGLE_GROUPED()" v-tooltip:bottom="{html: IS_GROUPED ? 'View list' : 'View groups'}")
       v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
-    v-btn(v-if="IS_API" icon @click.native="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
+    v-btn(v-if="IS_API" icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
       v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
     v-btn(v-if="IS_API" icon @click.native.stop="SET_DIALOG('proxy')")
       v-icon security
