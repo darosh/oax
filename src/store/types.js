@@ -41,6 +41,7 @@ export const SET_TITLE = 'SET_TITLE'
 export const SET_FAB_METHOD = 'SET_FAB_METHOD'
 export const SET_FAB_PENDING = 'SET_FAB_PENDING'
 export const SET_TAB = 'SET_TAB'
+export const SET_WIDTH = 'SET_WIDTH'
 
 export const FAB = 'FAB'
 export const FAB_METHOD = 'FAB_METHOD'
@@ -49,6 +50,7 @@ export const ERROR = 'ERROR'
 export const DIALOG_IS = 'DIALOG_IS'
 export const DIALOG_PARAM = 'DIALOG_PARAM'
 export const TAB = 'TAB'
+export const WIDTH = 'WIDTH'
 
 // root
 

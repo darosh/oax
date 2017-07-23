@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(right overflow persistent :disable-route-watcher="true" v-model="drawer")
+  v-navigation-drawer.pb-0(right overflow :hide-overlay="small", :temporary="small", :persistent="!small", :disable-route-watcher="true" v-model="drawer")
     app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>
 
@@ -13,27 +13,23 @@
     },
     data () {
       return {
-        _drawer: false
+        drawer: false
       }
     },
     computed: {
       ...mapGetters([
         types.OPERATION,
-        types.IS_API
+        types.IS_API,
+        types.WIDTH
       ]),
-      drawer: {
-        get () {
-          return this.IS_API && (this.OPERATION || this._drawer)
-        },
-        set (value) {
-          this._drawer = value
-        }
+      small: {
+        get () { return this.WIDTH < 1024 }
       }
     },
     watch: {
       OPERATION: function (val) {
         if (val) {
-          this._drawer = true
+          this.drawer = true
         }
       }
     }

@@ -2,6 +2,9 @@
   div
     v-toolbar
       v-toolbar-title {{operation.tags[0]}}
+      v-spacer
+      v-btn(icon @click.stop="close")
+        v-icon close
     v-layout
       v-flex(pt-3 pl-0 pr-0 pb-3)
         app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
@@ -45,7 +48,10 @@
       ...mapMutations([
         types.SET_TAB,
         types.SET_DIALOG
-      ])
+      ]),
+      close () {
+        this.$parent.$parent.drawer = false
+      }
     }
   }
 </script>

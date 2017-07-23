@@ -12,7 +12,8 @@ export const state = {
   loading: false,
   fabMethod: null,
   fabPending: false,
-  tab: 'tab-info'
+  tab: 'tab-info',
+  width: null
 }
 
 export const mutations = {
@@ -34,6 +35,9 @@ export const mutations = {
   },
   [types.SET_TAB] (state, payload) {
     state.tab = payload
+  },
+  [types.SET_WIDTH] (state, payload) {
+    state.width = payload
   }
 }
 
@@ -43,7 +47,8 @@ export const getters = {
   [types.ERROR]: state => state.error,
   [types.FAB_METHOD]: state => state.fabMethod,
   [types.FAB_PENDING]: state => state.fabPending,
-  [types.TAB]: state => state.tab
+  [types.TAB]: state => state.tab,
+  [types.WIDTH]: state => state.width
 }
 
 export default {

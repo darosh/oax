@@ -21,7 +21,7 @@
 
 <style scoped lang="stylus">
   .fab--on-top
-    z-index 4
+    z-index 1000
     position fixed !important
 
   .fab--on-top.fab--on-top--disabled

@@ -7,18 +7,35 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import * as types from './store/types'
+  import { throttle } from './services/events'
 
   export default {
     components: {
       appDrawer: () => import('./components/Drawer'),
       appToolbar: () => import('./components/Toolbar')
     },
+    created () {
+      throttle('resize', 'resize.lazy', 200)
+      window.addEventListener('resize.lazy', this.resized)
+      this.resized()
+    },
+    destroyed () {
+      removeEventListener('resize.lazy', this.resized)
+    },
     computed: {
       ...mapGetters([
         types.IS_DARK
       ])
+    },
+    methods: {
+      ...mapMutations([
+        types.SET_WIDTH
+      ]),
+      resized () {
+        this.SET_WIDTH(window.innerWidth)
+      }
     }
   }
 </script>
