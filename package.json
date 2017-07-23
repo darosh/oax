@@ -90,6 +90,7 @@
     "sinon-chai": "^2.8.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "sw-precache-webpack-plugin": "^0.11.4",
     "ts-loader": "^2.2.2",
     "typescript": "^2.4.1",
     "url-loader": "^0.5.8",
