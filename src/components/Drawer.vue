@@ -22,7 +22,7 @@
         get () { return this.WIDTH < 1024 }
       },
       drawer: {
-        get () { return this.DRAWER },
+        get () { return this.IS_API && this.DRAWER },
         set (value) { this.SET_DRAWER(value) }
       }
     },

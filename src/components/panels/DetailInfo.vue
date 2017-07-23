@@ -133,8 +133,6 @@
   .no-wrap
     white-space nowrap
 
-  .
-  no-details > > >
-  .input-group__details
+  .no-details >>> .input-group__details
     display none
 </style>

@@ -10,7 +10,7 @@
       div.subheading(slot="header") Response headers
       v-divider
       v-card.pt-3.pb-3
-        div.hover--block.pl-3.pl-3(v-for="(header, headerName) in item._result.headers", :key="headerName" v-ripple="",
+        div.hover--block.pl-3.pr-3(v-for="(header, headerName) in item._result.headers", :key="headerName" v-ripple="",
           @click.stop="SET_DIALOG({type: 'header', param: headerName})")
           app-header(:item="headerName")
           span.break {{' ' + header}}
