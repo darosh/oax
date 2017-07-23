@@ -10,8 +10,7 @@
       v-card.pt-3.pb-3
         div(v-for="(response, code) in item.responses", :key="code")
           .relative.response.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
-            v-btn(small :class="responseStyle[code[0]] + ' btn--response'") {{code}}
-            span.response--message.pl-2 {{response.description}}
+            app-response-block(:code="code", :text="response.description")
           div(v-if="response.schema")
             v-layout
               v-spacer
@@ -39,7 +38,8 @@
     components: {
       appModel: () => import('../Model'),
       appExample: () => import('../Example'),
-      appParameter: () => import('../Parameter')
+      appParameter: () => import('../Parameter'),
+      appResponseBlock: () => import('../elements/ResponseBlock')
     },
     created () {
       this.SET_FAB_METHOD(this.execute)

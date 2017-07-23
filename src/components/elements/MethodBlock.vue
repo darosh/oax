@@ -5,19 +5,11 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
-  import * as types from '../../store/types'
-
   export default {
     components: {
       appMethod: () => import('./Method')
     },
-    props: ['item'],
-    methods: {
-      ...mapMutations([
-        types.SET_DIALOG
-      ])
-    }
+    props: ['item']
   }
 </script>
 
