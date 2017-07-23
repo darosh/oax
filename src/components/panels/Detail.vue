@@ -3,9 +3,9 @@
     v-toolbar
       v-toolbar-title {{operation.tags[0]}}
     v-layout
-      v-flex(pt-4 pl-4 pr-4 pb-2)
-        app-operation(:item="operation", :clickable="true")
-        .subheading.pt-3.pb-2 {{operation.summary}}
+      v-flex(pt-3 pl-0 pr-0 pb-3)
+        app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
+        .subheading.pl-3.pr-3.pt-3 {{operation.summary}}
     v-tabs.app--tabs(v-model="tab", :scrollable="false")
       v-tabs-bar.tabs--transparent(slot="activators")
         v-tabs-item(ripple href="tab-info") Info
@@ -43,7 +43,8 @@
     },
     methods: {
       ...mapMutations([
-        types.SET_TAB
+        types.SET_TAB,
+        types.SET_DIALOG
       ])
     }
   }
@@ -52,7 +53,4 @@
 <style scoped lang="stylus">
   .tabs--transparent
     background-color transparent
-
-  .relative
-    position relative
 </style>

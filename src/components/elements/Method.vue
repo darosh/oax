@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-btn(small round :class="methods[item] + ' btn--operation elevation-1'") {{item}}
+  span(:class="methods[item] + ' method--badge white--text'") {{item}}
 </template>
 
 <script>
@@ -16,12 +16,20 @@
 </script>
 
 <style lang="stylus">
-  .btn.btn--operation
-    height 24px;
+  .method--badge
+    align-items center
+    display inline-flex
+    flex 0 1 auto
+    font-weight 500
+    justify-content center
+    text-transform uppercase
+    text-decoration none
+    position relative
+    vertical-align middle
+    height 24px
     min-width 64px
     padding 0
     margin 4px 0
-
-  .btn.btn--operation .btn__content
-    padding 0 4px !important
+    font-size: 13px
+    border-radius: 4px
 </style>
