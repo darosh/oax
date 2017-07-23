@@ -26,6 +26,13 @@ export function tags(spec: ISpecExtended) {
   }
 
   addTagOperations(spec);
+  closeMoreTags(spec);
+}
+
+export function closeMoreTags(spec: ISpecExtended) {
+  for (let i = 8; i < spec.tags.length; i++) {
+    spec.tags[i]._opened = false;
+  }
 }
 
 export function tagByPath(spec: ISpecExtended) {
