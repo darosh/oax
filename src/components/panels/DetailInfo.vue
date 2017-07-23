@@ -12,7 +12,7 @@
           .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
             app-response-block(:code="code", :text="response.description")
           div(v-if="response.schema")
-            v-layout
+            v-layout.ma-0
               v-spacer
               v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
             pre.ml-3.mr-3.pa-1.mt-1
@@ -22,7 +22,8 @@
       div.subheading(slot="header") Parameters
       v-divider
       v-card.pt-2.pb-2
-        v-select.pt-3.pl-3.pr-3.no-hint(:items="item.produces" v-model="item._produces" label="Response type" single-line)
+        .pl-3.pr-3
+          v-select.no-details(:items="item.produces" v-model="item._produces" label="Response type")
         app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
 </template>
 
@@ -125,4 +126,7 @@
 
   .no-wrap
     white-space nowrap
+
+  .no-details >>> .input-group__details
+    display none
 </style>
