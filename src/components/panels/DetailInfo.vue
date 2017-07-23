@@ -16,8 +16,8 @@
               v-spacer
               v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
             pre.ml-3.mr-3.pa-1.mt-1
-              app-model(:item="response.schema" v-if="schemaView === 'model'")
-              app-example(:item="response.schema" v-else-if="schemaView === 'example'")
+              app-model(:item="response.schema" v-if="schemaView === 2")
+              app-example(:item="response.schema" v-else)
     v-expansion-panel-content(v-model="exp3", ripple)
       div.subheading(slot="header") Parameters
       v-divider
@@ -48,10 +48,10 @@
       return {
         responseStyle: ResponseStyle,
         schemaViews: [
-          {text: 'Example', value: 'example'},
-          {text: 'Model', value: 'model'}
+          {text: 'Example', value: 1},
+          {text: 'Model', value: 2}
         ],
-        schemaView: 'model',
+        schemaViewInternal: 1,
         exp1: true,
         exp2: true,
         exp3: true
@@ -64,6 +64,10 @@
       ]),
       schema () {
         return schema(this.item)
+      },
+      schemaView: {
+        get () { return this.schemaViewInternal },
+        set (value) { this.schemaViewInternal = value || this.schemaViewInternal }
       }
     },
     methods: {

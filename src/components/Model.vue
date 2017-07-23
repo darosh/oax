@@ -5,7 +5,7 @@
       app-model(:item="item.items", :level="level + 1")
       | ]
     span(v-else-if="item.type === 'object'")
-      i(v-if="item.xml && item.xml.name") {{item.xml.name}}
+      i(v-if="item.xml && item.xml.name") {{item.xml.name ? item.xml.name + ' ' : ''}}
       | {
       br
       div(v-for="(prop, propName) in item.properties") {{space(level+1)}}
