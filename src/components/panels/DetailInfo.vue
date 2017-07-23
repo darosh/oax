@@ -80,7 +80,8 @@
         types.SET_FAB_METHOD,
         types.SET_TAB,
         types.SET_RESULT,
-        types.SET_FAB_PENDING
+        types.SET_FAB_PENDING,
+        types.SET_DRAWER
       ]),
       execute () {
         this.SET_FAB_PENDING(true)
@@ -98,8 +99,7 @@
         })
       },
       open () {
-        // TODO: remove $parent
-        this.$parent.$parent.$parent.$parent.$parent.$parent.drawer = true
+        this.SET_DRAWER(true)
       }
     }
   }
@@ -133,6 +133,8 @@
   .no-wrap
     white-space nowrap
 
-  .no-details >>> .input-group__details
+  .
+  no-details > > >
+  .input-group__details
     display none
 </style>

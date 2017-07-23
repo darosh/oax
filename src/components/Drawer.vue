@@ -4,27 +4,32 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../store/types'
 
   export default {
     components: {
       appDetail: () => import('./panels/Detail')
     },
-    data () {
-      return {
-        drawer: false
-      }
-    },
     computed: {
       ...mapGetters([
         types.OPERATION,
         types.IS_API,
-        types.WIDTH
+        types.WIDTH,
+        types.DRAWER
       ]),
       small: {
         get () { return this.WIDTH < 1024 }
+      },
+      drawer: {
+        get () { return this.DRAWER },
+        set (value) { this.SET_DRAWER(value) }
       }
+    },
+    methods: {
+      ...mapMutations([
+        types.SET_DRAWER
+      ])
     },
     watch: {
       OPERATION: function (val) {

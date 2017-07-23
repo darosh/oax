@@ -47,11 +47,11 @@
     methods: {
       ...mapMutations([
         types.SET_TAB,
-        types.SET_DIALOG
+        types.SET_DIALOG,
+        types.SET_DRAWER
       ]),
       close () {
-        // TODO: remove $parent
-        this.$parent.$parent.drawer = false
+        this.SET_DRAWER(false)
       }
     }
   }
