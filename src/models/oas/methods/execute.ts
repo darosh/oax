@@ -41,7 +41,7 @@ export function configure(operation: IOperationExtended, spec: Spec) {
 
   const config: any = {
     baseURL: spec.schemes[0] + '://' + spec.host + spec.basePath + path,
-    method: operation._method,
+    method: operation._method
   };
 
   if (Object.keys(headers).length) {

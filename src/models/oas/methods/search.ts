@@ -1,7 +1,7 @@
 import {HttpMethods} from '../constants/HttpMethods';
-import {IResource} from '../interfaces/IResource';
+import {ITagExtended} from '../interfaces/ITagExtended';
 
-export default function search(resources: IResource[], text: string) {
+export default function search(resources: ITagExtended[], text: string) {
   filterSearch(resources, getSearch(text));
 }
 
@@ -19,7 +19,7 @@ export function getSearch(text: string) {
   }
 }
 
-export function filterSearch(resources: IResource[], searchObject: any) {
+export function filterSearch(resources: ITagExtended[], searchObject: any) {
   for (const r of resources) {
     r._display = false;
     r._opened = false;

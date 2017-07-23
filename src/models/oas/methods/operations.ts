@@ -1,78 +1,15 @@
-import {Path, Spec} from 'swagger-schema-official';
-import {HttpMethods} from '../constants/HttpMethods';
-import {IExtra} from '../interfaces/IExtra';
-import {IMap} from '../interfaces/IMap';
-import {IOperationExtended} from '../interfaces/IOperationExtended';
-import {IResource} from '../interfaces/IResource';
-import {IParameterExtended} from "../interfaces/IParameterExtended";
+import {IParameterExtended} from '../interfaces/IParameterExtended';
+import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-export function operations(spec: Spec, resources: IResource[], map: IMap/*, form, map, defaultContentType, openPath*/) {
-  let operationId: number = 0;
-  const operationsArray: IOperationExtended[] = [];
+export function operations(spec: ISpecExtended) {
+  for (const op of spec._operations) {
+    op._display = true;
+    op._result = null;
+    op.produces = op.produces || spec.produces;
+    op._produces = op.produces[0];
 
-  for (const pathName in spec.paths) {
-    if (!spec.paths.hasOwnProperty(pathName)) {
-      continue;
-    }
-
-    const path: Path = spec.paths[pathName];
-    // const pathParameters: Parameter[] = path.parameters || [];
-
-    for (const httpMethod in path) {
-      if (!HttpMethods[httpMethod]) {
-        continue;
-      }
-
-      const operation: IOperationExtended = (path as IExtra)[httpMethod];
-
-      operation._id = operationId;
-      operation.produces = operation.produces || spec.produces;
-      // form[operationId] = {
-      //   responseType: defaultContentType
-      // };
-
-      operation._produces = operation.produces[0];
-
-      operation._method = httpMethod;
-      operation._pathName = pathName;
-      operation._display = true;
-      operation._result = null;
-      operation._error = null;
-
-      // parseParameters(spec, operation, pathParameters, form, defaultContentType);
-      // OAS.parseResponses(spec, operation);
-
-      operation.tags = (!operation.tags || !operation.tags.length) ? ['default'] : operation.tags;
-
-      const tag = operation.tags[0];
-
-      if (typeof map[tag] === 'undefined') {
-        map[tag] = resources.length;
-        resources.push({
-          name: tag
-        });
-      }
-
-      const resource: IResource = resources[map[operation.tags[0]]];
-
-      // operation.open = openPath && openPath === operation.operationId || openPath === resource.name + '*';
-
-      resource._operations = resource._operations || [];
-      resource._operations.push(operation);
-
-      // if (operation.open) {
-      //   resource.open = true;
-      // }
-
-      operationsArray.push(operation);
-
-      for (const param of (operation.parameters as any as IParameterExtended[])) {
-        param._value = null
-      }
-
-      operationId++;
+    for (const param of (op.parameters as any as IParameterExtended[])) {
+      param._value = null;
     }
   }
-
-  return operationsArray;
 }

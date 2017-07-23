@@ -2,7 +2,7 @@ import load from '../../services/load'
 import { OAS } from '../../models/oas/index'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
-import { openAll } from '../../models/oas/methods/resources'
+import { openAll } from '../../models/oas/methods/tags'
 
 export const state = {
   spec: null,
@@ -47,12 +47,12 @@ export const actions = {
     commit(types.SET_URL, url)
     load(url).then((res) => {
       commit(types.SET_LOADING, false)
-      const oas = OAS(res.bundled, url)
+      OAS(res.bundled, url)
       commit(types.SET_SPEC, {
-        resources: oas.resources,
-        operations: oas.operations,
+        resources: res.bundled.tags,
+        operations: res.bundled._operations,
         spec: res.bundled,
-        metas: oas.metas
+        metas: res.bundled._metas
       })
     }).catch((err) => {
       commit(types.SET_LOADING, false)
