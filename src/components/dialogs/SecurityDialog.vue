@@ -3,7 +3,7 @@
     v-card
       v-card-title
         span.headline Security
-      v-card-text
+      v-card-text {{SPEC.securityDefinitions}}
       v-card-actions
         v-spacer
         v-btn(flat @click.native.stop="SET_DIALOG()") Close
@@ -16,7 +16,8 @@
   export default {
     computed: {
       ...mapGetters([
-        types.DIALOG_IS
+        types.DIALOG_IS,
+        types.SPEC
       ]),
       active: {
         get () {

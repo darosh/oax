@@ -13,7 +13,7 @@
         div.hover--block.pl-3.pl-3(v-for="(header, headerName) in item._result.headers", :key="headerName" v-ripple="",
           @click.stop="SET_DIALOG({type: 'header', param: headerName})")
           app-header(:item="headerName")
-          |  {{header}}
+          span.break {{' ' + header}}
     v-expansion-panel-content(v-if="item._result.data", v-model="exp4", ripple)
       div.subheading(slot="header") Response body
       v-divider
@@ -51,3 +51,8 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  .break
+    overflow-wrap break-word
+</style>

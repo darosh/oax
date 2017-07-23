@@ -16,7 +16,7 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a.btn.btn--flat.primary--text(target="_blank", @click.native.stop="active = false", :href="header[3]")
+        a.btn.btn--flat.primary--text(v-if="header[3]" target="_blank", @click.native.stop="active = false", :href="header[3]")
           .btn__content {{ref}}
         v-btn(flat @click.native.stop="active = false") Close
 </template>
@@ -71,7 +71,7 @@
       show (param) {
         this.type = param.toLowerCase()
         headers().then((res) => {
-          this.header = res[this.type]
+          this.header = res[this.type] || [param, 'Unknown header', '', '']
           this.ref = limit(this.header[2])
         })
       },
