@@ -1,5 +1,5 @@
 import { STORAGE_KEY } from './modules/ui'
-import createLogger from 'vuex/dist/logger'
+// import createLogger from 'vuex/dist/logger'
 
 const localStoragePlugin = store => {
   store.subscribe((mutation, { view }) => {
@@ -8,5 +8,6 @@ const localStoragePlugin = store => {
 }
 
 export default process.env.NODE_ENV !== 'production'
-  ? [createLogger(), localStoragePlugin]
+  // ? [createLogger(), localStoragePlugin]
+  ? [localStoragePlugin]
   : [localStoragePlugin]

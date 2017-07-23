@@ -24,6 +24,6 @@ export default new Vuex.Store({
     spec,
     ui,
     settings
-  },
-  strict: process.env.NODE_ENV !== 'production'
+  }
+  // strict: process.env.NODE_ENV !== 'production'
 })
