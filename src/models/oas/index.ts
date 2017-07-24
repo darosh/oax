@@ -2,6 +2,7 @@ import {metas} from '../metas/index';
 import {ISpecExtended} from './interfaces/ISpecExtended';
 import {info} from './methods/info';
 import {operations} from './methods/operations';
+import {security} from './methods/security';
 import {tags} from './methods/tags';
 
 export function OAS(spec: ISpecExtended,
@@ -12,4 +13,5 @@ export function OAS(spec: ISpecExtended,
   spec._metas = metas(spec);
   tags(spec);
   operations(spec);
+  security(spec);
 }
