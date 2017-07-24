@@ -52,7 +52,7 @@ export const actions = {
         OAS(res.bundled, url)
       } catch (err) {
         console.error(err)
-        commit(types.SET_ERROR, err.message)
+        commit(types.SET_ERROR, 'PARSER ERROR: ' + err.message)
       }
 
       commit(types.SET_SPEC, {
