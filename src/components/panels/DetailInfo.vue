@@ -14,7 +14,7 @@
           div(v-if="response.schema")
             v-layout.ma-0
               v-spacer
-              v-btn-toggle.pt-2(:items="schemaViews" v-model="schemaView")
+              v-btn-toggle.pt-1(:items="schemaViews" v-model="schemaView")
             pre.ml-3.mr-3.pa-1.mt-1
               app-model(:item="response.schema" v-if="schemaView === 2")
               app-example(:item="response.schema" v-else)
