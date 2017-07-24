@@ -23,5 +23,17 @@ new Vue({
   components: {App},
   created () {
     store.dispatch(types.LOAD_URL, configuration.url)
+    this.online()
+    window.addEventListener('online', this.online)
+    window.addEventListener('offline', this.online)
+  },
+  methods: {
+    online () {
+      if (typeof window.navigator.onLine === 'undefined') {
+        store.commit(types.SET_ONLINE, true)
+      } else {
+        store.commit(types.SET_ONLINE, navigator.onLine)
+      }
+    }
   }
 })

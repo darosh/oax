@@ -15,7 +15,8 @@ export const state = {
   tab: 'tab-info',
   width: null,
   drawer: false,
-  menu: false
+  menu: false,
+  online: false
 }
 
 export const mutations = {
@@ -46,6 +47,9 @@ export const mutations = {
   },
   [types.SET_MENU] (state, payload) {
     state.menu = typeof payload === 'undefined' ? !state.menu : payload
+  },
+  [types.SET_ONLINE] (state, payload) {
+    state.online = payload
   }
 }
 
@@ -58,7 +62,8 @@ export const getters = {
   [types.TAB]: state => state.tab,
   [types.WIDTH]: state => state.width,
   [types.DRAWER]: state => state.drawer,
-  [types.MENU]: state => state.menu
+  [types.MENU]: state => state.menu,
+  [types.ONLINE]: state => state.online
 }
 
 export default {
