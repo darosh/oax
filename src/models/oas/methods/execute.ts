@@ -10,7 +10,7 @@ export function configure(operation: IOperationExtended, spec: Spec) {
   const headers: IExtra = {};
   let body: any = null;
 
-  for (const param of (operation.parameters as Parameter[])) {
+  for (const param of (operation.parameters as Parameter[]) || []) {
     // This is my 1st as-any-as ever! :-)))
     const value = (param as any as IParameterExtended)._value;
 

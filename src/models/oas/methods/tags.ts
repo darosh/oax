@@ -25,8 +25,15 @@ export function tags(spec: ISpecExtended) {
     addDefaultTag(untagged, dt);
   }
 
+  clearTagOps(spec);
   addTagOperations(spec);
   closeMoreTags(spec);
+}
+
+export function clearTagOps(spec: ISpecExtended) {
+  for (const tag of spec.tags) {
+    tag._operations = [];
+  }
 }
 
 export function closeMoreTags(spec: ISpecExtended) {

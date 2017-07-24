@@ -1,6 +1,7 @@
 <template lang="pug">
   v-container(fluid)
-    v-alert(error v-model="ERROR") {{ERROR}}
+    v-alert(error v-model="ERROR")
+      .pre {{JSON.stringify(ERROR, null, 2)}}
     app-meta-list(:metas="METAS")
     app-resource-list(v-if="IS_GROUPED")
     app-operation-list(v-if="!IS_GROUPED")
@@ -39,3 +40,8 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  .pre
+    white-space pre
+</style>

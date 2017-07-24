@@ -61,7 +61,7 @@
       }
     },
     watch: {
-      SPEC: this.setTab,
+      SPEC: function (val) { this.setTab(val) },
       active: function (val) {
         if (val) {
           this.setTab(this.SPEC)

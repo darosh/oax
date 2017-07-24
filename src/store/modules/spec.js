@@ -47,7 +47,14 @@ export const actions = {
     commit(types.SET_URL, url)
     load(url).then((res) => {
       commit(types.SET_LOADING, false)
-      OAS(res.bundled, url)
+
+      try {
+        OAS(res.bundled, url)
+      } catch (err) {
+        console.error(err)
+        commit(types.SET_ERROR, err.message)
+      }
+
       commit(types.SET_SPEC, {
         resources: res.bundled.tags,
         operations: res.bundled._operations,

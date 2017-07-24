@@ -8,8 +8,10 @@ export function operations(spec: ISpecExtended) {
     op.produces = op.produces || spec.produces;
     op._produces = op.produces[0];
 
-    for (const param of (op.parameters as any as IParameterExtended[])) {
-      param._value = null;
+    if (op.parameters) {
+      for (const param of (op.parameters as any as IParameterExtended[])) {
+        param._value = null;
+      }
     }
   }
 }
