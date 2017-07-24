@@ -81,19 +81,23 @@
         types.SET_TAB,
         types.SET_RESULT,
         types.SET_FAB_PENDING,
-        types.SET_DRAWER
+        types.SET_DRAWER,
+        types.SET_OPERATION
       ]),
       execute () {
+        const item = this.item
         this.SET_FAB_PENDING(true)
-        this.SET_RESULT({operation: this.item, error: null, result: null})
+        this.SET_RESULT({operation: item, error: null, result: null})
         execute(this.item, this.SPEC).then(res => {
           this.SET_FAB_PENDING(false)
-          this.SET_RESULT({operation: this.item, error: null, result: res})
+          this.SET_RESULT({operation: item, error: null, result: res})
+          this.SET_OPERATION(item)
           this.open()
           this.SET_TAB('tab-result')
         }).catch(err => {
           this.SET_FAB_PENDING(false)
-          this.SET_RESULT({operation: this.item, error: true, result: err.response})
+          this.SET_RESULT({operation: item, error: true, result: err.response})
+          this.SET_OPERATION(item)
           this.open()
           this.SET_TAB('tab-result')
         })
