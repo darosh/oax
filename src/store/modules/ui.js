@@ -14,7 +14,8 @@ export const state = {
   fabPending: false,
   tab: 'tab-info',
   width: null,
-  drawer: false
+  drawer: false,
+  menu: false
 }
 
 export const mutations = {
@@ -42,6 +43,9 @@ export const mutations = {
   },
   [types.SET_DRAWER] (state, payload) {
     state.drawer = payload
+  },
+  [types.SET_MENU] (state, payload) {
+    state.menu = typeof payload === 'undefined' ? !state.menu : payload
   }
 }
 
@@ -53,7 +57,8 @@ export const getters = {
   [types.FAB_PENDING]: state => state.fabPending,
   [types.TAB]: state => state.tab,
   [types.WIDTH]: state => state.width,
-  [types.DRAWER]: state => state.drawer
+  [types.DRAWER]: state => state.drawer,
+  [types.MENU]: state => state.menu
 }
 
 export default {

@@ -43,6 +43,7 @@ export const SET_FAB_PENDING = 'SET_FAB_PENDING'
 export const SET_TAB = 'SET_TAB'
 export const SET_WIDTH = 'SET_WIDTH'
 export const SET_DRAWER = 'SET_DRAWER'
+export const SET_MENU = 'SET_MENU'
 
 export const FAB = 'FAB'
 export const FAB_METHOD = 'FAB_METHOD'
@@ -53,6 +54,7 @@ export const DIALOG_PARAM = 'DIALOG_PARAM'
 export const TAB = 'TAB'
 export const WIDTH = 'WIDTH'
 export const DRAWER = 'DRAWER'
+export const MENU = 'MENU'
 
 // root
 

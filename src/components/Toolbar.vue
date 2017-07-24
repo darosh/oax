@@ -1,5 +1,8 @@
 <template lang="pug">
   v-toolbar(fixed)
+    // TODO: use v-if template for IS_API
+    v-btn(icon v-if="IS_API" @click.stop="SET_MENU()")
+      v-icon menu
     v-toolbar-items(v-if="IS_API")
       v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon="edit", :prepend-icon-cb="edit", v-model="url", name="url", label="Open API Specification URL", single-line)
     v-toolbar-title(v-if="IS_API && showTitle && SPEC && SPEC.info") {{SPEC.info.title}}
@@ -86,7 +89,8 @@
         types.SET_DIALOG,
         types.SET_SEARCH,
         types.FILTER_RESOURCES,
-        types.TOGGLE_RESOURCES
+        types.TOGGLE_RESOURCES,
+        types.SET_MENU
       ]),
       ...mapActions([
         types.LOAD_URL
