@@ -16,7 +16,7 @@
     "http-method": "node tools/http-data.js method > src/assets/http-method.json",
     "http-status": "node tools/http-data.js status > src/assets/http-status.json",
     "http-header": "node tools/http-data.js header > src/assets/http-header.json",
-    "deploy": "gulp geploy"
+    "deploy": "gulp deploy"
   },
   "dependencies": {
     "@types/showdown": "^1.4.32",
