@@ -45,6 +45,13 @@ export const actions = {
     commit(types.SET_ERROR, null)
     commit(types.SET_LOADING, true)
     commit(types.SET_URL, url)
+    commit(types.SET_OPERATION, null)
+    commit(types.SET_SPEC, {
+      resources: null,
+      operations: null,
+      spec: null,
+      metas: null
+    })
     load(url).then((res) => {
       commit(types.SET_LOADING, false)
 
@@ -64,12 +71,6 @@ export const actions = {
     }).catch((err) => {
       commit(types.SET_LOADING, false)
       commit(types.SET_ERROR, err)
-      commit(types.SET_SPEC, {
-        resources: null,
-        operations: null,
-        spec: null,
-        metas: null
-      })
     })
   }
 }

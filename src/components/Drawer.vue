@@ -33,30 +33,36 @@
     },
     watch: {
       OPERATION: function (val) {
-        if (val) {
-          this.drawer = true
-        }
+        this.drawer = !!val
       }
     }
   }
 </script>
 
 <style scoped lang="stylus">
-  .navigation-drawer >>> .expansion-panel
+  .
+  navigation-drawer > > >
+  .expansion-panel
     box-shadow none
 
-  .navigation-drawer >>> .expansion-panel > li
+  .
+  navigation-drawer > > >
+  .expansion-panel > li
     border-left-width 0
     border-top-width 0
     border-bottom-width 1px
     border-right-width 0
 
-  .navigation-drawer >>> .expansion-panel > li:last-child
+  .
+  navigation-drawer > > >
+  .expansion-panel > li:last-child
     border-left-width 0
     border-top-width 0
     border-bottom-width 0
     border-right-width 0
 
-  .navigation-drawer >>> .expansion-panel > li:last-child > .expansion-panel__header:not(.expansion-panel__header--active)
+  .
+  navigation-drawer > > >
+  .expansion-panel > li:last-child > .expansion-panel__header:not(.expansion-panel__header--active)
     border-bottom 1px solid rgba(0, 0, 0, 0.12)
 </style>
