@@ -53,7 +53,7 @@
 - [ ] Rewiew code splitting for best UX
 - [ ] Reopen same operation on selection
 - [ ] Dialog toolbar right subtitles have bigger margin on right?
-- [ ] Replace dialog rfc link titles with specs
+- [x] Replace dialog rfc link titles with specs
 - [ ] Insert direct api spec by text
 - [ ] Use spec loader worker
 - [ ] Show search when searching
