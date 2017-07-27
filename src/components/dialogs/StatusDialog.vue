@@ -18,7 +18,7 @@
           v-icon keyboard_arrow_right
         v-spacer
         a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" :href="status[3]")
-          div(class="btn__content btn--short") {{ref}}
+          div(class="btn__content btn--short") Spec
         v-btn(flat @click.native.stop="SET_DIALOG()") Close
 </template>
 

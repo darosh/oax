@@ -31,11 +31,11 @@
 
 ## Dev notes
 
-- [ ] Swipe down to refresh 
+- [x] Swipe down to refresh, this is probably not an issue?
 - [ ] Pre scroll in drawer
-- [ ] Drawer over dialog
+- [x] Drawer over dialog
 - [ ] Mobile icons
-- [ ] Mobile paddings
+- [x] Mobile paddings
 - [ ] Tab bar is scrolling on swipe
 - [ ] Tab bar double line
 - [ ] Expand panels border on mobile
@@ -44,12 +44,12 @@
 - [ ] Alert layout, padding?
 - [ ] Drawer border left missing when scrolled
 - [ ] Fixed sidebar toolbars
-- [ ] Dialog toolbar shadow is ugly
+- [x] Dialog toolbar shadow is ugly
 - [ ] Dialog icon buttons deforned on mobile
 - [ ] Data table borders weird
 - [ ] Highlight selected http reference toolbar button
 - [ ] Switching http reference is slow on mobile
-- [ ] Add mono font to HTML index
+- [x] Add mono font to HTML index
 - [ ] Rewiew code splitting for best UX
 - [ ] Reopen same operation on selection
 - [ ] Dialog toolbar right subtitles have bigger margin on right?

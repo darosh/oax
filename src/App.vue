@@ -84,4 +84,17 @@
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute), .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
     padding-right 0
     margin-right 300px
+
+  .dialog__content
+    z-index 11
+
+  @media only screen and (max-width: 600px) {
+    .container {
+      padding 0
+    }
+
+    .container.grid-list-xl {
+      padding 16px
+    }
+  }
 </style>

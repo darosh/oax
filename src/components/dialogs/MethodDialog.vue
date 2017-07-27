@@ -29,7 +29,7 @@
           v-icon keyboard_arrow_right
         v-spacer
         a(class="btn btn--flat primary--text" target="_blank", :href="method[2]")
-          div(class="btn__content") {{ref}}
+          div(class="btn__content") Spec
         v-btn(flat @click.native.stop="SET_DIALOG()") Close
 </template>
 
