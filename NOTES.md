@@ -29,3 +29,33 @@
 * https://api.apis.guru/v2/specs/googleapis.com/books/v1/swagger.yaml
 * https://api.apis.guru/v2/specs/github.com/v3/swagger.json
 
+## Dev notes
+
+- [ ] Swipe down to refresh 
+- [ ] Pre scroll in drawer
+- [ ] Drawer over dialog
+- [ ] Mobile icons
+- [ ] Mobile paddings
+- [ ] Tab bar is scrolling on swipe
+- [ ] Tab bar double line
+- [ ] Expand panels border on mobile
+- [ ] Explore cache strategies
+- [ ] Add support for apis.guru, future proof one
+- [ ] Alert layout, padding?
+- [ ] Drawer border left missing when scrolled
+- [ ] Fixed sidebar toolbars
+- [ ] Dialog toolbar shadow is ugly
+- [ ] Dialog icon buttons deforned on mobile
+- [ ] Data table borders weird
+- [ ] Highlight selected http reference toolbar button
+- [ ] Switching http reference is slow on mobile
+- [ ] Add mono font to HTML index
+- [ ] Rewiew code splitting for best UX
+- [ ] Reopen same operation on selection
+- [ ] Dialog toolbar right subtitles have bigger margin on right?
+- [ ] Replace dialog rfc link titles with specs
+- [ ] Insert direct api spec by text
+- [ ] Use spec loader worker
+- [ ] Show search when searching
+- [ ] Close and clear search on mobile at least
+- [x] Expansion panel border color makes shadow look blurry?
