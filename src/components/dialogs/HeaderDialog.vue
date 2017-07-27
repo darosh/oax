@@ -1,7 +1,7 @@
 <template lang="pug">
   v-dialog(v-model="active" width="360")
     v-card
-      v-toolbar
+      v-toolbar.elevation-0
         v-spacer
         v-toolbar-title
           span.subheader HTTP Header

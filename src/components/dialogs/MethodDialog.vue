@@ -1,7 +1,7 @@
 <template lang="pug">
   v-dialog(v-model="active" width="360")
-    v-card
-      v-toolbar(:class="color")
+    v-card.elevation-0
+      v-toolbar.elevation-0(:class="color")
         v-toolbar-title
           span(class="main-title upper") {{type}}
         v-spacer
