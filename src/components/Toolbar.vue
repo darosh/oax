@@ -1,11 +1,9 @@
 <template lang="pug">
   v-toolbar(fixed)
     // TODO: use v-if template for IS_API
-    v-btn(icon v-if="IS_API" @click.stop="SET_MENU()")
+    v-btn(icon v-if="IS_API", @click.stop="SET_MENU()")
       v-icon menu
-    v-toolbar-items(v-if="IS_API")
-      v-text-field.transition--width(v-bind:style="{width: editing ? '240px' : '24px'}", prepend-icon="edit", :prepend-icon-cb="edit", v-model="url", name="url", label="Open API Specification URL", single-line)
-    v-toolbar-title(v-if="IS_API && showTitle && SPEC && SPEC.info") {{SPEC.info.title}}
+    v-toolbar-title(v-if="IS_API && SPEC && SPEC.info") {{SPEC.info.title}}
     v-toolbar-title(v-if="!IS_API") HTTP {{PAGE_NAME}}
     v-spacer
     v-toolbar-items(v-if="IS_API")
@@ -46,12 +44,6 @@
   import * as types from '../store/types'
 
   export default {
-    data () {
-      return {
-        editing: false,
-        showTitle: true
-      }
-    },
     computed: {
       ...mapGetters([
         types.IS_API,
@@ -63,14 +55,6 @@
         types.PAGE_NAME,
         types.SEARCH
       ]),
-      url: {
-        get () {
-          return this.URL
-        },
-        set (value) {
-          this.LOAD_URL(value)
-        }
-      },
       search: {
         get () {
           return this.SEARCH
@@ -94,20 +78,12 @@
       ]),
       ...mapActions([
         types.LOAD_URL
-      ]),
-      edit () {
-        this.editing = !this.editing
-        document.getElementsByName('url')[0][this.editing ? 'focus' : 'blur']()
-        this.showTitle = !this.editing
-      }
+      ])
     }
   }
 </script>
 
 <style scoped lang="stylus">
-  .transition--width
-    transition width 0.3s cubic-bezier(.25, .8, .25, 1)
-
   .upper
     text-transform uppercase
 </style>
