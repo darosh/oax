@@ -59,3 +59,4 @@
 - [ ] Show search when searching
 - [ ] Close and clear search on mobile at least
 - [x] Expansion panel border color makes shadow look blurry?
+- [ ] Extract common base path from "paths"

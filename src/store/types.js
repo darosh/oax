@@ -58,6 +58,14 @@ export const DRAWER = 'DRAWER'
 export const MENU = 'MENU'
 export const ONLINE = 'ONLINE'
 
+// apis
+
+export const APIS = 'APIS'
+
+export const SET_APIS = 'SET_APIS'
+
+export const LOAD_APIS = 'LOAD_APIS'
+
 // root
 
 export const IS_API = 'IS_API'

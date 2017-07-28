@@ -1,11 +1,6 @@
 <template lang="pug">
   v-app(:dark="IS_DARK")
-    v-navigation-drawer.pb-0(temporary v-model="menu")
-      v-toolbar
-        v-btn(icon @click.stop="SET_MENU()")
-          v-icon close
-        v-toolbar-title Settings
-      div.pa-3 {{'Lorem ipsum... '.repeat(120)}}
+    app-menu
     app-drawer
     app-toolbar
     main
@@ -20,6 +15,7 @@
   export default {
     components: {
       appDrawer: () => import('./components/Drawer'),
+      appMenu: () => import('./components/Menu'),
       appToolbar: () => import('./components/Toolbar')
     },
     created () {
