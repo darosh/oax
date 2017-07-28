@@ -84,13 +84,13 @@
   .dialog__content
     z-index 11
 
-  @media only screen and (max-width: 600px) {
-    .container {
+  @media only screen and (max-width: 600px)
+    .container
       padding 0
-    }
 
-    .container.grid-list-xl {
+    .container.grid-list-xl
       padding 16px
-    }
-  }
+
+    .pt-3-sm
+      padding-top 16px
 </style>

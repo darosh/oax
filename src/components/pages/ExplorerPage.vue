@@ -2,7 +2,7 @@
   v-container(fluid)
     v-alert(error v-model="ERROR")
       .pre {{JSON.stringify(ERROR, null, 2)}}
-    app-meta-list(:metas="METAS")
+    app-meta-list.pt-3-sm(:metas="METAS")
     app-resource-list(v-if="IS_GROUPED")
     app-operation-list(v-if="!IS_GROUPED")
     app-method-dialog
