@@ -60,3 +60,7 @@
 - [ ] Close and clear search on mobile at least
 - [x] Expansion panel border color makes shadow look blurry?
 - [ ] Extract common base path from "paths"
+- [ ] yql for apisguru only on localhost?
+- [ ] highlight path params
+- [ ] fix drawer and dialog overlays conflicts
+- [ ] update dialog param
