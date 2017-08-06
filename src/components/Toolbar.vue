@@ -98,11 +98,17 @@
       ]),
       searchBegin () {
         this.searching = true
-        this.FILTER_RESOURCES(this.SEARCH)
+
+        if (this.SEARCH) {
+          this.FILTER_RESOURCES(this.SEARCH)
+        }
       },
       searchEnd () {
         this.searching = false
-        this.FILTER_RESOURCES(null)
+
+        if (this.SEARCH) {
+          this.FILTER_RESOURCES(null)
+        }
       }
     }
   }
