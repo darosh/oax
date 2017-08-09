@@ -6,9 +6,11 @@
 </template>
 
 <script>
+  import appMeta from './Meta'
+
   export default {
     components: {
-      appMeta: () => import('./Meta')
+      appMeta
     },
     props: ['metas']
   }
