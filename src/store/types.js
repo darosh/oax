@@ -68,6 +68,7 @@ export const LOAD_APIS = 'LOAD_APIS'
 
 // root
 
+export const VERSION = 'VERSION'
 export const IS_API = 'IS_API'
 export const PATH = 'PATH'
 export const PAGE_NAME = 'PAGE_NAME'
