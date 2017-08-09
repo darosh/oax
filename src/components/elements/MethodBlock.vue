@@ -34,6 +34,7 @@
 
   .operation--message
     padding-top 6px
+    padding-bottom 4px
     width calc(100% - 64px)
 
   >>> .param

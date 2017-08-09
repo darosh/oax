@@ -4,23 +4,17 @@
       v-btn(icon @click.stop="SET_MENU()")
         v-icon close
       v-toolbar-title Settings
-    div.pa-3
+    .pl-3.pr-3.pt-3
       v-text-field(label="Spec URL" v-model="url" prepend-icon="link")
       v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")
       v-text-field(label="Spec" multi-line :rows="1" prepend-icon="code")
       v-text-field(label="Proxy" v-model="proxy" prepend-icon="security")
     v-list
-      <!--v-list-tile(@click.stop="TOGGLE_DARK")-->
-        //v-list-tile-action
-          v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
-        //v-list-tile-content
-        //  v-list-tile-title Dark theme
-        //v-list-tile-action
-        //  v-switch(v-model="dark" color="primary" @click.stop="TOGGLE_DARK")
       v-divider
       v-list-tile(@click="reload()")
         v-list-tile-title Version
-        v-list-tile-action {{VERSION}}
+        span.body-1 {{VERSION}}
+      v-divider
 </template>
 
 <script>
@@ -98,8 +92,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  >>> .list__tile__action
-    min-width 40px
-</style>
