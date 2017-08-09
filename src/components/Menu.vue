@@ -1,8 +1,9 @@
 <template lang="pug">
   v-navigation-drawer.pb-0(temporary v-model="menu")
-    v-toolbar
+    v-toolbar.elevation-0(style="background-color: transparent")
       v-btn(icon @click.stop="SET_MENU()")
         v-icon close
+    v-divider
     .pl-3.pr-3.pt-3
       v-text-field(label="Spec URL" v-model="url" prepend-icon="link")
       v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")

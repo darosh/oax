@@ -1,10 +1,11 @@
 <template lang="pug">
   div
-    v-toolbar
+    v-toolbar.elevation-0(style="background-color: transparent")
       v-toolbar-title {{operation.tags[0]}}
       v-spacer
       v-btn(icon @click.stop="close")
         v-icon close
+    v-divider
     div.pt-3.pl-0.pr-0.pb-3
         app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
         .body-1.pl-3.pr-3.pt-3(v-if="operation.summary") {{operation.summary}}
