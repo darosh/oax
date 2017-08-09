@@ -77,6 +77,9 @@
     margin-top 64px
     height calc(100vh - 64px)
 
+  .application > main > .container
+    min-height: calc(100vh - 64px)
+
   @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
     .toolbar--fixed + main
       margin-top: $toolbar-mobile-landscape-height
