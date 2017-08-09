@@ -9,9 +9,11 @@
   import { mapGetters } from 'vuex'
   import * as types from '../store/types'
 
+  import appResource from './Resource'
+
   export default {
     components: {
-      appResource: () => import('./Resource')
+      appResource
     },
     computed: {
       ...mapGetters([

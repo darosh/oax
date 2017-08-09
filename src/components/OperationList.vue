@@ -13,9 +13,11 @@
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../store/types'
 
+  import appOperation from './elements/MethodBlock'
+
   export default {
     components: {
-      appOperation: () => import('./elements/MethodBlock')
+      appOperation
     },
     computed: {
       ...mapGetters([

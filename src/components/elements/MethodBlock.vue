@@ -5,9 +5,11 @@
 </template>
 
 <script>
+  import appMethod from './Method'
+
   export default {
     components: {
-      appMethod: () => import('./Method')
+      appMethod
     },
     props: ['item'],
     methods: {
