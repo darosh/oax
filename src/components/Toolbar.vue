@@ -4,6 +4,7 @@
       v-btn(icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon menu
       v-toolbar-title.hidden-xs-only(v-if="SPEC && SPEC.info", :class="searching ? 'hidden-sm-and-down' : ''") {{SPEC.info.title}}
+      v-toolbar-title.hidden-sm-and-up(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer
       v-toolbar-items
         v-text-field(prepend-icon="search", append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
@@ -15,23 +16,33 @@
         v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
       v-btn.hidden-xs-only(icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
         v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
-      v-btn.hidden-xs-only(icon @click.native.stop="SET_DIALOG('security')")
+      v-btn.hidden-xs-only(icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Security'}")
         v-icon vpn_key
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
-        v-list(dark)
+        v-list
           v-list-tile.hidden-sm-and-up(@click.native.stop="TOGGLE_GROUPED()")
             v-list-tile-action
                 v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
             v-list-tile-content
-              v-list-tile-title {{IS_GROUPED ? 'View list' : 'View groups'}}
+              v-list-tile-title(style="min-width: 135px") {{IS_GROUPED ? 'View list' : 'View groups'}}
+          v-list-tile.hidden-sm-and-up(@click.native.stop="TOGGLE_DESCRIPTION()")
+            v-list-tile-action
+                v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
+            v-list-tile-content
+              v-list-tile-title(style="min-width: 100px") {{IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}}
+          v-list-tile.hidden-sm-and-up(@click.native.stop="SET_DIALOG('security')")
+            v-list-tile-action
+                v-icon vpn_key
+            v-list-tile-content
+              v-list-tile-title(style="min-width: 100px") Security
           v-list-tile(to="/http-methods" tag="a")
-            v-list-tile-title.upper Methods
+            v-list-tile-title Methods
           v-list-tile(to="/http-statuses" tag="a")
-            v-list-tile-title.upper Statuses
+            v-list-tile-title Statuses
           v-list-tile(to="/http-headers" tag="a")
-            v-list-tile-title.upper Headers
+            v-list-tile-title Headers
     template(v-else)
       v-toolbar-title HTTP {{PAGE_NAME}}
       v-spacer

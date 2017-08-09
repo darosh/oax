@@ -100,9 +100,6 @@
     .container.grid-list-xl
       padding 16px
 
-    /*.pt-3-sm*/
-      /*padding-top 16px*/
-
   .application--dark .menu__content
     background-color #212121
 

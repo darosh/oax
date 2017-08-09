@@ -10,13 +10,17 @@
       v-text-field(label="Spec" multi-line :rows="1" prepend-icon="code")
       v-text-field(label="Proxy" v-model="proxy" prepend-icon="security")
     v-list
-      v-list-tile(@click.stop="TOGGLE_DARK")
-        v-list-tile-action
+      <!--v-list-tile(@click.stop="TOGGLE_DARK")-->
+        //v-list-tile-action
           v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
-        v-list-tile-content
-          v-list-tile-title Dark theme
-        v-list-tile-action
-          v-switch(v-model="dark" color="primary" @click.stop="TOGGLE_DARK")
+        //v-list-tile-content
+        //  v-list-tile-title Dark theme
+        //v-list-tile-action
+        //  v-switch(v-model="dark" color="primary" @click.stop="TOGGLE_DARK")
+      v-divider
+      v-list-tile
+        v-list-tile-title Version
+        v-list-tile-action {{VERSION}}
 </template>
 
 <script>
@@ -39,7 +43,8 @@
         types.URL,
         types.APIS,
         types.PROXY,
-        types.IS_DARK
+        types.IS_DARK,
+        types.VERSION
       ]),
       menu: {
         get () { return this.MENU },
