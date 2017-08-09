@@ -9,10 +9,12 @@
       v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")
       v-text-field(label="Spec" multi-line :rows="1" prepend-icon="code")
       v-text-field(label="Proxy" v-model="proxy" prepend-icon="security")
-    v-list
+    v-list.two-line
       v-divider
       v-list-tile(@click="reload()")
-        v-list-tile-title Version
+        v-list-tile-content
+          v-list-tile-title API explorer version
+          v-list-tile-sub-title Click to reload
         span.body-1 {{VERSION}}
       v-divider
 </template>
@@ -22,7 +24,6 @@
   import * as types from '../store/types'
 
   export default {
-    components: {},
     data () {
       return {
         search: null

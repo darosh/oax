@@ -2,10 +2,10 @@
   v-dialog(v-model="active" width="360")
     v-card
       v-toolbar.elevation-0(:class="color" dark)
-        v-toolbar-title(class="main-title") {{type}}
+        v-toolbar-title.main-title {{type}}
         v-spacer
         v-toolbar-title
-          span(class="subheader") HTTP Status
+          span.white--text.subheader HTTP Status
       v-card-text
         div(v-if="status[0]" class="title mb-3 mt-2") {{status[0]}}
         div(class="capitalize" v-html="status[1]")
