@@ -5,9 +5,11 @@
 </template>
 
 <script>
+  import appResponse from './Response'
+
   export default {
     components: {
-      appResponse: () => import('./Response')
+      appResponse
     },
     props: ['code', 'text']
   }

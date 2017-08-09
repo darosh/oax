@@ -36,14 +36,16 @@
 
   import appModel from '../Model'
   import appExample from '../Example'
+  import appParameter from '../Parameter'
+  import appResponseBlock from '../elements/ResponseBlock'
 
   export default {
     props: ['item'],
     components: {
       appModel,
       appExample,
-      appParameter: () => import('../Parameter'),
-      appResponseBlock: () => import('../elements/ResponseBlock')
+      appParameter,
+      appResponseBlock
     },
     created () {
       this.SET_FAB_METHOD(this.execute)
