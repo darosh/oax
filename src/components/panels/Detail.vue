@@ -61,9 +61,13 @@
     background-color transparent
 
   .app--tabs >>> .tabs__items
-    border-width 1px 0 0 0 !important
+    border-width 0 !important
 
   * >>> pre
     font-family "Roboto Mono", monospace
     font-size 12px
+
+  * >>> .expansion-panel > li
+    border-left none
+    border-right none
 </style>
