@@ -18,7 +18,7 @@
         //v-list-tile-action
         //  v-switch(v-model="dark" color="primary" @click.stop="TOGGLE_DARK")
       v-divider
-      v-list-tile
+      v-list-tile(@click="reload()")
         v-list-tile-title Version
         v-list-tile-action {{VERSION}}
 </template>
@@ -86,7 +86,10 @@
       ...mapActions([
         types.LOAD_URL,
         types.LOAD_APIS
-      ])
+      ]),
+      reload () {
+        location.reload()
+      }
     },
     watch: {
       search: function (value) {
