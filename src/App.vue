@@ -97,6 +97,9 @@
     .container
       padding 0
 
+    .pa-3-sm
+      padding 16px !important
+
     .container.grid-list-xl
       padding 16px
 
