@@ -106,8 +106,18 @@
   .application--dark .menu__content
     background-color #212121
 
+  .application--dark .datatable thead th.column.sortable
+  .application--dark .datatable thead th.column.sortable.active
+  .application--dark .datatable thead th.column.sortable.active i
+    color #fff
+
   .toolbar--fixed
   .list__tile__title
   .icon
     transition none
+
+  .application--dark tbody
+    tr
+      &:hover
+        background: $grey.darken-3 !important
 </style>

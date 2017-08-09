@@ -37,6 +37,11 @@
                 v-icon vpn_key
             v-list-tile-content
               v-list-tile-title(style="min-width: 100px") Security
+          v-list-tile(@click.native.stop="TOGGLE_DARK()")
+            v-list-tile-action
+              v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
+            v-list-tile-content
+              v-list-tile-title(style="min-width: 135px") {{IS_DARK ? 'Light theme' : 'Dark theme'}}
           v-list-tile(to="/http-methods" tag="a")
             v-list-tile-title Methods
           v-list-tile(to="/http-statuses" tag="a")
@@ -56,11 +61,11 @@
           v-icon more_vert
         v-list
           v-list-tile(to="/http-methods" tag="a")
-            v-list-tile-title.upper Methods
+            v-list-tile-title Methods
           v-list-tile(to="/http-statuses" tag="a")
-            v-list-tile-title.upper Statuses
+            v-list-tile-title Statuses
           v-list-tile(to="/http-headers" tag="a")
-            v-list-tile-title.upper Headers
+            v-list-tile-title Headers
 </template>
 
 <script>
