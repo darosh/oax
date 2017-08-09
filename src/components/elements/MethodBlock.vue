@@ -18,11 +18,6 @@
   }
 </script>
 
-<style lang="stylus">
-  .secondary .param
-    border-color rgba(255, 255, 255, 0.5) !important
-</style>
-
 <style scoped lang="stylus">
   .deprecated
     opacity 0.5
@@ -33,6 +28,7 @@
   .operation
     display flex
     flex 1
+    width 100%
 
   .operation--message
     padding-top 6px
@@ -40,9 +36,10 @@
 
   >>> .param
     opacity 0.87
-    background-color rgba(128, 128, 128, 0.5)
+    background-color rgba(224, 224, 224, 0.75)
     border-radius 4px
-    padding 0 2px
-    margin 0 1px
-    border 1px solid rgba(160, 160, 160, 0.5)
+    padding 2px 4px
+    margin 0 1px 1px 1px
+    line-height 22px
+    color #000 !important
 </style>

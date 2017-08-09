@@ -1,30 +1,31 @@
 <template lang="pug">
   v-toolbar(fixed)
     template(v-if="IS_API")
-      v-btn(icon, @click.stop="SET_MENU()")
+      v-btn(icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon menu
-      v-toolbar-title(v-if="SPEC && SPEC.info") {{SPEC.info.title}}
+      v-toolbar-title.hidden-xs-only(v-if="SPEC && SPEC.info", :class="searching ? 'hidden-sm-and-down' : ''") {{SPEC.info.title}}
       v-spacer
       v-toolbar-items
         v-text-field(prepend-icon="search", append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
-      v-btn(v-if="IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
+      v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
         v-icon keyboard_arrow_down
-      v-btn(v-if="IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
+      v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
         v-icon keyboard_arrow_up
-      v-btn(icon @click.native.stop="TOGGLE_GROUPED()" v-tooltip:bottom="{html: IS_GROUPED ? 'View list' : 'View groups'}")
+      v-btn.hidden-xs-only(icon @click.native.stop="TOGGLE_GROUPED()" v-tooltip:bottom="{html: IS_GROUPED ? 'View list' : 'View groups'}")
         v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
-      v-btn(icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
+      v-btn.hidden-xs-only(icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
         v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
-      v-btn(icon @click.native.stop="SET_DIALOG('proxy')")
-        v-icon security
-      v-btn(icon @click.native.stop="SET_DIALOG('security')")
+      v-btn.hidden-xs-only(icon @click.native.stop="SET_DIALOG('security')")
         v-icon vpn_key
-      v-btn(icon @click.native.stop="TOGGLE_DARK()" v-tooltip:bottom="{html: IS_DARK ? 'Light theme' : 'Dark theme'}")
-        v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
-      v-menu(bottom left)
+      v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
-        v-list
+        v-list(dark)
+          v-list-tile.hidden-sm-and-up(@click.native.stop="TOGGLE_GROUPED()")
+            v-list-tile-action
+                v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
+            v-list-tile-content
+              v-list-tile-title {{IS_GROUPED ? 'View list' : 'View groups'}}
           v-list-tile(to="/http-methods" tag="a")
             v-list-tile-title.upper Methods
           v-list-tile(to="/http-statuses" tag="a")
@@ -120,6 +121,7 @@
 
   .searching
     width 200px
+    margin-right 24px
 
   @import '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
@@ -129,6 +131,7 @@
 
   .searching--closed
     width 36px
+    margin-right 0
 
   .searching--closed >>> .input-group__append-icon
     display none
@@ -136,4 +139,8 @@
   .searching--closed >>> input
   .searching--closed >>> label
     width 0
+
+  .hidden-searching
+    @media $display-breakpoints.sm-and-down
+      display: none !important
 </style>

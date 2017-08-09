@@ -2,13 +2,14 @@
   v-container(fluid)
     v-alert(error v-model="ERROR")
       .pre {{JSON.stringify(ERROR, null, 2)}}
-    app-meta-list.pt-3-sm(:metas="METAS")
+    .pt-3-sm
+      h2.pa-3.mb-0.headline.hidden-sm-and-up(v-if="SPEC && SPEC.info") {{SPEC.info.title}}
+      app-meta-list(:metas="METAS")
     app-resource-list(v-if="IS_GROUPED")
     app-operation-list(v-if="!IS_GROUPED")
     app-method-dialog
     app-status-dialog
     app-header-dialog
-    app-proxy-dialog
     app-security-dialog
     app-fab
 </template>
@@ -25,7 +26,6 @@
       appMethodDialog: () => import('../dialogs/MethodDialog'),
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
-      appProxyDialog: () => import('../dialogs/ProxyDialog'),
       appSecurityDialog: () => import('../dialogs/SecurityDialog'),
       appFab: () => import('../FAB')
     },
@@ -35,7 +35,8 @@
         types.ERROR,
         types.IS_GROUPED,
         types.OPERATIONS,
-        types.RESOURCES
+        types.RESOURCES,
+        types.SPEC
       ])
     }
   }

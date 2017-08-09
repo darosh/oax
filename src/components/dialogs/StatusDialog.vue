@@ -111,4 +111,5 @@
 <style scoped lang="stylus">
   .main-title.toolbar__title
     max-width: 220px
+    font-family "Roboto Mono", monospace
 </style>

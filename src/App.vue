@@ -77,6 +77,15 @@
     margin-top 64px
     height calc(100vh - 64px)
 
+  @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+    .toolbar--fixed + main
+      margin-top: $toolbar-mobile-landscape-height
+
+    .toolbar__items .input-group
+      padding-bottom 0
+      position relative
+      top -10px
+
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute), .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
     padding-right 0
     margin-right 300px
@@ -91,6 +100,14 @@
     .container.grid-list-xl
       padding 16px
 
-    .pt-3-sm
-      padding-top 16px
+    /*.pt-3-sm*/
+      /*padding-top 16px*/
+
+  .application--dark .menu__content
+    background-color #212121
+
+  .toolbar--fixed
+  .list__tile__title
+  .icon
+    transition none
 </style>
