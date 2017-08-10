@@ -2,7 +2,7 @@
 
 <template lang="pug">
   v-list.list--single(dense two-line subheader)
-    v-list-tile(avatar :href="item.link || null" :target="item.link ? '_blank' : null")
+    v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :ripple="false")
       v-list-tile-avatar
         v-icon.secondary.white--text {{item.icon}}
       v-list-tile-content

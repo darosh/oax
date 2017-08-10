@@ -1,10 +1,11 @@
 import axios, {AxiosPromise} from 'axios';
-import {Parameter, Spec} from 'swagger-schema-official';
+import {Parameter} from 'swagger-schema-official';
 import {IExtra} from '../interfaces/IExtra';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 import {IParameterExtended} from '../interfaces/IParameterExtended';
+import {ISpecExtended} from "../interfaces/ISpecExtended";
 
-export function configure(operation: IOperationExtended, spec: Spec) {
+export function configure(operation: IOperationExtended, spec: ISpecExtended) {
   let path: string = operation._pathName;
   const query: IExtra = {};
   const headers: IExtra = {};
@@ -41,7 +42,7 @@ export function configure(operation: IOperationExtended, spec: Spec) {
 
   const config: any = {
     method: operation._method,
-    url: spec.schemes[0] + '://' + merge(merge(spec.host, spec.basePath), path)
+    url: spec._scheme + '://' + merge(merge(spec.host, spec.basePath), path)
   };
 
   if (Object.keys(headers).length) {
@@ -71,7 +72,7 @@ function merge(a = '', b = '') {
   }
 }
 
-export function execute(operation: IOperationExtended, spec: Spec): AxiosPromise {
+export function execute(operation: IOperationExtended, spec: ISpecExtended): AxiosPromise {
   const config = configure(operation, spec);
   return axios.request(config);
 }

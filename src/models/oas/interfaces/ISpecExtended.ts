@@ -9,4 +9,5 @@ export interface ISpecExtended extends Spec {
   _metas: IMeta[];
   _operations: IOperationExtended[];
   tags: ITagExtended[];
+  _scheme: string;
 }
