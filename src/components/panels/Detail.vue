@@ -7,8 +7,8 @@
         v-icon close
     v-divider
     div.pt-3.pl-0.pr-0.pb-3
-        app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
-        .body-1.pl-3.pr-3.pt-3(v-if="operation.summary") {{operation.summary}}
+      app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
+      .body-1.md.pl-3.pr-3.pt-3(v-if="operation.summary" v-html="md(operation, 'summary')")
     v-tabs.app--tabs(v-model="tab", :scrollable="false")
       v-tabs-bar.tabs--transparent(slot="activators")
         v-tabs-item(ripple href="tab-info") Info
@@ -26,6 +26,8 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
+
+  import { md } from '../../services/md'
 
   export default {
     props: ['operation'],
@@ -50,6 +52,7 @@
         types.SET_DIALOG,
         types.SET_DRAWER
       ]),
+      md,
       close () {
         this.SET_DRAWER(false)
       }

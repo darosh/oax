@@ -6,7 +6,7 @@
         .pt-1.pb-1
           app-operation(:item="OPERATIONS[key]")
           div(v-if="IS_DESCRIPTION")
-            .pt-1.pr-1.body-2(style="padding-left: 68px") {{item.description}}
+            .pt-1.pr-1.body-1.md(style="padding-left: 68px" v-html="md(item, 'summary')")
 </template>
 
 <script>
@@ -14,6 +14,8 @@
   import * as types from '../store/types'
 
   import appOperation from './elements/MethodBlock'
+
+  import { md } from '../services/md'
 
   export default {
     components: {
@@ -29,7 +31,8 @@
     methods: {
       ...mapMutations([
         types.SET_OPERATION
-      ])
+      ]),
+      md
     }
   }
 </script>

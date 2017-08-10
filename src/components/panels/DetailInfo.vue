@@ -3,7 +3,7 @@
     v-expansion-panel-content(v-if="item.description" v-model="exp1", ripple)
       div.subheading(slot="header") Description
       v-divider
-      v-card.pa-3 {{item.description}}
+      v-card.pa-3.md(v-html="md(item)")
     v-expansion-panel-content(v-model="exp2", ripple)
       div.subheading(slot="header") Responses
       v-divider
@@ -38,6 +38,8 @@
   import appExample from '../Example'
   import appParameter from '../Parameter'
   import appResponseBlock from '../elements/ResponseBlock'
+
+  import { md } from '../../services/md'
 
   export default {
     props: ['item'],
@@ -86,6 +88,7 @@
         types.SET_DRAWER,
         types.SET_OPERATION
       ]),
+      md,
       execute () {
         const item = this.item
         this.SET_FAB_PENDING(true)

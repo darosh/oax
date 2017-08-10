@@ -123,4 +123,7 @@
     tr
       &:hover
         background: $grey.darken-3 !important
+
+  .md > p
+    margin-bottom 0
 </style>

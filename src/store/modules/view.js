@@ -6,7 +6,8 @@ const storedState = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '""')
 const defaultState = {
   dark: false,
   grouped: true,
-  description: false
+  description: false,
+  endpoint: true
 }
 
 export const state = storedState || defaultState
@@ -26,7 +27,8 @@ export const mutations = {
 export const getters = {
   [types.IS_DARK]: state => state.dark,
   [types.IS_GROUPED]: state => state.grouped,
-  [types.IS_DESCRIPTION]: state => state.description
+  [types.IS_DESCRIPTION]: state => state.description,
+  [types.IS_ENDPOINT]: state => state.endpoint
 }
 
 export default {

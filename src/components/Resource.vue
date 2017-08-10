@@ -12,10 +12,10 @@
         .pt-3.pb-3
           div(v-if="o._display", v-for="(o, i) in item._operations", :key="o._id")
             .hover--block.relative(v-ripple="", @click.stop="SET_OPERATION(o)", :class="{'secondary white--text': OPERATION === o}")
-              app-operation.pl-3.pr-3(:item="o")
+              app-operation.pl-3.pr-3(:item="o" v-if="IS_ENDPOINT")
               div(v-if="IS_DESCRIPTION")
-                .pt-1.pr-3.body-2(style="padding-left: 84px") {{o.description}}
-                .pl-3.pr-3.pt-1
+                .pt-1.pr-3.body-1.md.pb-1(v-if="o.summary" style="padding-left: 84px" v-html="md(o, 'summary')")
+                .pl-3.pr-3
                   v-divider(v-if="i < (item._operations.length - 1)")
 </template>
 
@@ -25,6 +25,8 @@
 
   import appOperation from './elements/MethodBlock'
 
+  import { md } from '../services/md'
+
   export default {
     components: {
       appOperation
@@ -33,6 +35,7 @@
     computed: {
       ...mapGetters([
         types.IS_DESCRIPTION,
+        types.IS_ENDPOINT,
         types.OPERATION
       ]),
       opened: {
@@ -44,7 +47,8 @@
       ...mapMutations([
         types.SET_OPERATION,
         types.SET_RESOURCE
-      ])
+      ]),
+      md
     }
   }
 </script>
@@ -59,6 +63,6 @@
     border-radius 2px
 
   .expansion-panel__body > *
-    border-bottom-left-radius  2px
-    border-bottom-right-radius  2px
+    border-bottom-left-radius 2px
+    border-bottom-right-radius 2px
 </style>

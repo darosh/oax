@@ -6,6 +6,7 @@ export const TOGGLE_DESCRIPTION = 'TOGGLE_DESCRIPTION'
 export const IS_DARK = 'IS_DARK'
 export const IS_GROUPED = 'IS_GROUPED'
 export const IS_DESCRIPTION = 'IS_DESCRIPTION'
+export const IS_ENDPOINT = 'IS_ENDPOINT'
 
 // settings
 export const SET_URL = 'SET_URL'
