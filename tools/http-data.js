@@ -1,6 +1,8 @@
 var GENERATE_ARRAY = true
 
 var know = require('know-your-http-well')
+var showdown = require('showdown')
+var converter = new showdown.Converter()
 
 var header = {}
 
@@ -27,8 +29,8 @@ var status = {}
 know.statusCodes.forEach(function (i) {
   if (GENERATE_ARRAY) {
     status[i.code] = [
-      i.phrase,
-      i.description.replace(/^"(.*)"/, '$1'),
+      converter.makeHtml(i.phrase),
+      converter.makeHtml(i.description.replace(/^"(.*)"/, '$1')),
       i.spec_title,
       i.spec_href
     ]

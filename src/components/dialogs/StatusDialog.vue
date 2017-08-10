@@ -7,7 +7,7 @@
         v-toolbar-title
           span.white--text.subheader HTTP Status
       v-card-text
-        div(v-if="status[0]" class="title mb-3 mt-2") {{status[0]}}
+        div(v-if="status[0]" class="title mb-3 mt-2" v-html="status[0]")
         div(class="capitalize" v-html="status[1]")
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
@@ -17,14 +17,13 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank" :href="status[3]")
+        a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank", :href="status[3]")
           div(class="btn__content btn--short") Spec
         v-btn(flat @click.native.stop="SET_DIALOG()") Close
 </template>
 
 <script>
   import { ResponseStyle } from '../../services/response-style'
-  import { toHtml } from '../../services/markdown'
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import limit from '../../services/limit'
@@ -90,7 +89,7 @@
             this.status = res[this.type]
           }
 
-          this.status[1] = toHtml(this.status[1])
+          this.status[1] = this.status[1]
           this.ref = limit(this.status[2])
           this.color = ResponseStyle[this.type[0]]
           this.active = true
@@ -112,4 +111,10 @@
   .main-title.toolbar__title
     max-width: 220px
     font-family "Roboto Mono", monospace
+
+  .capitalize::first-letter
+    text-transform uppercase
+
+  >>> p
+    margin 0
 </style>

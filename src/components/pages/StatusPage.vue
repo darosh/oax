@@ -4,8 +4,8 @@
       template(slot="items" scope="props")
         td
           app-response(:code="props.item[4]")
-        td.capitalize.nowrap {{ props.item[0] }}
-        td.capitalize {{ props.item[1] }}
+        td.capitalize.nowrap(v-html="props.item[0]")
+        td.capitalize(v-html="props.item[1]")
         td
           a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
 </template>
@@ -52,4 +52,7 @@
 
   .capitalize::first-letter
     text-transform uppercase
+
+  >>> p
+    margin 0
 </style>

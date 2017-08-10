@@ -101,10 +101,20 @@
       padding 0
 
     .pa-3-sm
-      padding 16px !important
+      padding 0 !important
+
+    .pa-3-sm
+      padding 0 !important
+
+    .plr-3-sm
+      padding-left  16px !important
+      padding-right 16px !important
 
     .container.grid-list-xl
       padding 16px
+
+    .container.grid-list-xl > .layout > .flex
+      padding 8px
 
   .application--dark .menu__content
     background-color #212121
