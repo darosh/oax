@@ -4,7 +4,7 @@
       template(slot="items" scope="props")
         td
           app-response(:code="props.item[4]")
-        td.capitalize.nowrap  {{ props.item[0] }}
+        td.capitalize.nowrap {{ props.item[0] }}
         td.capitalize {{ props.item[1] }}
         td
           a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
