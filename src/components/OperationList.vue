@@ -5,7 +5,7 @@
         v-divider
         .pt-1.pb-1
           app-operation(:item="OPERATIONS[key]")
-          div(v-if="IS_DESCRIPTION")
+          div(v-if="IS_DESCRIPTION && item.summary")
             .pt-1.pr-1.body-1.md(style="padding-left: 68px" v-html="md(item, 'summary')")
 </template>
 
