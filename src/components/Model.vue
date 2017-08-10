@@ -4,14 +4,14 @@
       | [
       app-model(:item="item.items", :level="level + 1")
       | ]
-    span(v-else-if="item.type === 'object'")
+    span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
       i(v-if="item.xml && item.xml.name") {{item.xml.name ? item.xml.name + ' ' : ''}}
       | {
       br(v-if="item.properties && Object.keys(item.properties).length")
       div(v-for="(prop, propName) in item.properties") {{space(level+1)}}
         b {{propName}}:&#32;
         app-model(:item="prop", :level="level + 1")
-      | {{space(level)}}}
+      | {{!item.properties || !Object.keys(item.properties).length ? '' : space(level)}}}
     span(v-else) {{item.format || item.type}}
 </template>
 
