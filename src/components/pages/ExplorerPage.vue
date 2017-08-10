@@ -2,7 +2,7 @@
   v-container(fluid)
     v-alert(error v-model="ERROR")
       .pre {{JSON.stringify(ERROR, null, 2)}}
-    div
+    div(v-if="!SEARCH")
       h2.pa-3.mb-0.headline.hidden-sm-and-up(v-if="SPEC && SPEC.info") {{SPEC.info.title}}
       app-meta-list(:metas="METAS")
     app-resource-list(v-if="IS_GROUPED")
@@ -36,7 +36,8 @@
         types.IS_GROUPED,
         types.OPERATIONS,
         types.RESOURCES,
-        types.SPEC
+        types.SPEC,
+        types.SEARCH
       ])
     }
   }

@@ -6,8 +6,10 @@
       v-toolbar-title.hidden-xs-only(v-if="SPEC && SPEC.info", :class="searching ? 'hidden-sm-and-down' : ''") {{SPEC.info.title}}
       v-toolbar-title.hidden-sm-and-up(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer
-      v-toolbar-items
-        v-text-field(prepend-icon="search", append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
+      v-btn(v-if="!searching" icon @click.native.stop="searchBegin" v-tooltip:bottom="{html: 'Filter'}")
+        v-icon search
+      v-toolbar-items(:style="!searching ? 'width: 0' : 'width: 208px'")
+        v-text-field(id="search" append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
       v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
         v-icon keyboard_arrow_down
       v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
@@ -116,12 +118,16 @@
       searchBegin () {
         this.searching = true
 
+        document.getElementById('search').focus()
+
         if (this.SEARCH) {
           this.FILTER_RESOURCES(this.SEARCH)
         }
       },
       searchEnd () {
         this.searching = false
+
+        document.getElementById('search').blur()
 
         if (this.SEARCH) {
           this.FILTER_RESOURCES(null)
@@ -137,19 +143,24 @@
 
   .searching
     width 200px
-    margin-right 24px
+    margin-right 8px
 
   @import '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
   .searching
   .searching >>> *
+  .toolbar__items
     transition $primary-transition
 
+  .searching--closed >>> .input-group__details
+    display none
+
   .searching--closed
-    width 36px
+    width 0
     margin-right 0
 
   .searching--closed >>> .input-group__append-icon
+  .searching--closed >>> .input-group__prepend-icon
     display none
 
   .searching--closed >>> input
