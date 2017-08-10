@@ -1,4 +1,3 @@
-
 import load from '../../services/load'
 import { OAS } from '../../models/oas/index'
 import * as types from '../types'
@@ -24,6 +23,10 @@ export const mutations = {
     openAll(state.resources, payload)
   },
   [types.SET_OPERATION] (state, payload) {
+    if (state.operation === payload) {
+      state.operation = null
+    }
+
     state.operation = payload
   },
   [types.FILTER_RESOURCES] (state, payload) {
