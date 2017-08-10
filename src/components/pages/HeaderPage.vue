@@ -4,7 +4,7 @@
       template(slot="items" scope="props")
         td.nowrap
           app-header(:item="props.item[0]")
-        td.capitalize {{ props.item[1] }}
+        td.capitalize(style="min-width: 260px") {{ props.item[1] }}
         td
           a(:href="props.item[3]" target="_blank") {{ props.item[2] }}
 </template>

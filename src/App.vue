@@ -126,4 +126,7 @@
 
   .md > p
     margin-bottom 0
+
+  .nowrap
+    white-space nowrap
 </style>
