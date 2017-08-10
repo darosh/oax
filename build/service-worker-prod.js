@@ -36,7 +36,7 @@
                     // It's the perfect time to display a "New content is
                     // available; please refresh." message in the page's interface.
                     if (confirm(
-                        'New version is available.\nReady to refresh?')) {
+                        'New version is available.\nDo you want reload now?')) {
                       location.reload(true)
                     }
                     break
