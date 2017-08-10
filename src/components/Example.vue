@@ -6,7 +6,7 @@
       | ]
     span(v-else-if="item.type === 'object'")
       | {
-      br
+      br(v-if="Object.keys(item.properties).length")
       div(v-for="(prop, propName) in item.properties") {{space(level+1)}}
         b "{{propName}}":&#32;
         app-example(:item="prop", :level="level + 1")
