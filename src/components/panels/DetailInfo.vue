@@ -23,9 +23,9 @@
       v-divider
       v-card.pt-2.pb-2
         .pl-3.pr-3
-          v-select.no-details(:items="SPEC.schemes" v-model="SPEC._scheme" label="Scheme")
+          v-select.no-details(:items="SPEC.schemes" v-model="SPEC._scheme", :disabled="SPEC.schemes.length === 1" label="Scheme")
         .pl-3.pr-3
-          v-select.no-details(:items="item.produces" v-model="item._produces" label="Response type")
+          v-select.no-details(:items="item.produces" v-model="item._produces", :disabled="item.produces.length === 1"  label="Response type")
         app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
 </template>
 
