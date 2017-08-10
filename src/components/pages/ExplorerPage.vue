@@ -1,7 +1,8 @@
 <template lang="pug">
-  v-container(fluid)
-    v-alert(error v-model="ERROR")
-      .pre {{JSON.stringify(ERROR, null, 2)}}
+  v-container(fluid :class="ERROR ? 'pa-0' : ''")
+    v-alert.ma-0(error v-if="ERROR" value="true")
+      .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
+      span(v-if="ERROR.message") {{ERROR.message}}
     div(v-if="!SEARCH")
       h2.pa-3.mb-0.headline.hidden-sm-and-up(v-if="SPEC && SPEC.info") {{SPEC.info.title}}
       app-meta-list(:metas="METAS")
