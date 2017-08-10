@@ -5,6 +5,7 @@ export function operations(spec: ISpecExtended) {
   for (const op of spec._operations) {
     op._display = true;
     op._result = null;
+    op._error = null;
     op.produces = op.produces || spec.produces;
     op._produces = op.produces[0];
 

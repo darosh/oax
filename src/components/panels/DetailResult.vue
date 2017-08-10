@@ -1,12 +1,16 @@
 <template lang="pug">
   v-expansion-panel(v-if="item._result" expand :class="IS_DARK ? 'application--dark' : 'application--light'")
-    v-expansion-panel-content(v-model="exp2", ripple)
+    v-expansion-panel-content(v-model="exp1", ripple, v-if="item._error")
+      div.subheading(slot="header") {{item._error.name || 'Error'}}
+      v-divider
+      v-alert.ma-0(error value="true") {{item._error.message || item._error}}
+    v-expansion-panel-content(v-model="exp2", ripple, v-if="item._result.status")
       div.subheading(slot="header") Response status
       v-divider
       v-card.pt-3.pb-3
         .pl-3.pr-3.hover--block(v-ripple="", @click.stop="SET_DIALOG({type: 'status', param: item._result.status.toString()})")
           app-response-block(:code="item._result.status.toString()", :text="item._result.statusText")
-    v-expansion-panel-content(v-model="exp3", ripple)
+    v-expansion-panel-content(v-model="exp3", ripple, v-if="item._result.headers")
       div.subheading(slot="header") Response headers
       v-divider
       v-card.pt-3.pb-3
