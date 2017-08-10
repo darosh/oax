@@ -125,7 +125,7 @@ export function extendTags(spec: ISpecExtended) {
 export function addOpsTags(spec: ISpecExtended) {
   for (const op of spec._operations) {
     for (const tagName of op.tags) {
-      if (!spec._map[tagName]) {
+      if (!(spec._map[tagName] >= 0)) {
         spec._map[tagName] = spec.tags.length;
         spec.tags.push({
           name: tagName
