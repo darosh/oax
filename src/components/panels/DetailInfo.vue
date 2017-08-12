@@ -14,7 +14,7 @@
           div(v-if="response.schema")
             v-layout.ma-0
               v-spacer
-              v-btn-toggle.pt-1.elevation-0.pr-3(:items="schemaViews" v-model="schemaView")
+              v-btn-toggle.pt-1.elevation-0.pr-3.toggle-round(:items="schemaViews" v-model="schemaView")
             pre.ml-3.mr-3.pa-1.mt-1
               app-model(:item="response.schema" v-if="schemaView === 2")
               app-example(:item="response.schema" v-else)
@@ -146,4 +146,17 @@
 
   .no-details >>> .input-group__details
     display none
+
+  .toggle-round >>> button
+    font-size 13px !important
+    height 28px !important
+    padding 0 9px
+
+  .toggle-round >>> button:first-child
+      border-bottom-left-radius: 14px
+      border-top-left-radius: 14px
+
+  .toggle-round >>> button:last-child
+      border-bottom-right-radius: 14px
+      border-top-right-radius: 14px
 </style>
