@@ -27,7 +27,7 @@
     "vue": "^2.4.1",
     "vue-router": "^2.7.0",
     "vue-worker": "^1.2.1",
-    "vuetify": "^0.14.8",
+    "vuetify": "^0.14.11",
     "vuex": "^2.3.1",
     "vuex-router-sync": "^4.2.0",
     "yamljs": "^0.3.0"
