@@ -12,10 +12,11 @@
           .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
             app-response-block(:code="code", :text="response.description")
           div(v-if="response.schema")
-            v-layout.ma-0
-              v-spacer
-              v-btn-toggle.pt-1.elevation-0.pr-3.toggle-round(:items="schemaViews" v-model="schemaView")
+
             pre.ml-3.mr-3.pa-1.mt-1
+              v-layout.ma-0
+                v-spacer
+                v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(:items="schemaViews" v-model="schemaView")
               app-model(:item="response.schema" v-if="schemaView === 2")
               app-example(:item="response.schema" v-else)
     v-expansion-panel-content(v-model="exp3", ripple)
@@ -149,9 +150,10 @@
 
   .toggle-round >>> button
     font-size 13px !important
-    height 28px !important
-    padding 0 9px
+    height 19px !important
+    padding 0 4px
 
+  /*
   .toggle-round >>> button:first-child
       border-bottom-left-radius: 14px
       border-top-left-radius: 14px
@@ -159,4 +161,5 @@
   .toggle-round >>> button:last-child
       border-bottom-right-radius: 14px
       border-top-right-radius: 14px
+  */
 </style>
