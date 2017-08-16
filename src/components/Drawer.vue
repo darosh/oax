@@ -1,6 +1,7 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(right overflow :hide-overlay="small", :temporary="small", :persistent="!small", :disable-route-watcher="true" v-model="drawer")
-    app-detail(v-if="OPERATION", :operation="OPERATION")
+  v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :hide-overlay="small", :temporary="small", :persistent="!small", :disable-route-watcher="true" v-model="drawer")
+    div(style="height: 100%; overflow: auto")
+      app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>
 
 <script>
@@ -40,29 +41,24 @@
 </script>
 
 <style scoped lang="stylus">
-  .
-  navigation-drawer > > >
-  .expansion-panel
+  .navigation-drawer >>> .expansion-panel
     box-shadow none
 
-  .
-  navigation-drawer > > >
-  .expansion-panel > li
+  .navigation-drawer
+    border-left 1px solid rgba(0,0,0,0.12) !important
+
+  .navigation-drawer >>> .expansion-panel > li
     border-left-width 0
-    border-top-width 0
+    border-top-width 1px
     border-bottom-width 1px
     border-right-width 0
 
-  .
-  navigation-drawer > > >
-  .expansion-panel > li:last-child
+  .navigation-drawer >>> .expansion-panel > li:last-child
     border-left-width 0
     border-top-width 0
     border-bottom-width 0
     border-right-width 0
 
-  .
-  navigation-drawer > > >
-  .expansion-panel > li:last-child > .expansion-panel__header:not(.expansion-panel__header--active)
+  .navigation-drawer >>> .expansion-panel > li:last-child > .expansion-panel__header:not(.expansion-panel__header--active)
     border-bottom 1px solid rgba(0, 0, 0, 0.12)
 </style>
