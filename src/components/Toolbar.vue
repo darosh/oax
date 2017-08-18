@@ -24,22 +24,22 @@
         v-btn(icon slot="activator")
           v-icon more_vert
         v-list
-          v-list-tile.hidden-sm-and-up(@click.native.stop="TOGGLE_GROUPED()")
+          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED()")
             v-list-tile-action
                 v-icon {{IS_GROUPED ? 'view_column' : 'view_comfy'}}
             v-list-tile-content
               v-list-tile-title(style="min-width: 135px") {{IS_GROUPED ? 'View list' : 'View groups'}}
-          v-list-tile.hidden-sm-and-up(@click.native.stop="TOGGLE_DESCRIPTION()")
+          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_DESCRIPTION()")
             v-list-tile-action
                 v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
             v-list-tile-content
               v-list-tile-title(style="min-width: 100px") {{IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}}
-          v-list-tile.hidden-sm-and-up(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click.native.stop="SET_DIALOG('security')")
+          v-list-tile.hidden-sm-and-up(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click.native="SET_DIALOG('security')")
             v-list-tile-action
                 v-icon vpn_key
             v-list-tile-content
               v-list-tile-title(style="min-width: 100px") Security
-          v-list-tile(@click.native.stop="TOGGLE_DARK()")
+          v-list-tile(@click.native="TOGGLE_DARK()")
             v-list-tile-action
               v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
             v-list-tile-content
