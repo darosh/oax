@@ -8,4 +8,7 @@ export interface IBaseSecurityExtended extends BaseSecurity {
   _accessToken: string;
   _expiresIn: number;
   _validFrom: Date;
+  _apiKey: string;
+  _user: string;
+  _password: string;
 }

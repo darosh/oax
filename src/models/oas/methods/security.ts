@@ -13,6 +13,9 @@ export function security(spec: Spec) {
           sec._accessToken = null;
           sec._expiresIn = null;
           sec._validFrom = null;
+          sec._apiKey = null;
+          sec._user = null;
+          sec._password = null;
           for (const scope in (spec.securityDefinitions[sd] as any).scopes) {
             if ((spec.securityDefinitions[sd] as any).scopes.hasOwnProperty(scope)) {
               sec._scopes = sec._scopes || {};
