@@ -1,5 +1,15 @@
 import axios from 'axios'
 
+export function name (sec) {
+  let type = sec.flow || sec.type
+  type = type.replace(/([a-z])([A-Z])/g, '$1 $2')
+  type = type.split(' ')
+  type = type[type.length - 1]
+  type = type[0].toUpperCase() + type.substr(1)
+
+  return type
+}
+
 export function oauth2 (sec) {
   sec._accessToken = null
   sec._tokenType = null
@@ -52,7 +62,7 @@ export function oauth2 (sec) {
 }
 
 function getSelectedScopes (_scopes) {
-  var s = []
+  const s = []
 
   for (const k in _scopes) {
     if (_scopes[k]) {
