@@ -9,7 +9,7 @@
       v-divider
       v-tabs.dlg-tabs(v-if="tab && active || activated" v-model="tab", :scrollable="false" style="max-height: calc(90vh - 64px - 1px); overflow: auto")
         v-tabs-bar.tabs--transparent(slot="activators")
-          v-tabs-item(ripple :href="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey") {{sec.type}}
+          v-tabs-item(ripple :href="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey") {{name(sec)}}
           v-tabs-slider
         v-tabs-content(:id="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey")
           h3.pl-3.pr-3.pt-3.title OAuth 2.0 Authentication
@@ -32,7 +32,7 @@
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import { first } from '../../services/utils'
-  import { oauth2 } from '../../services/security'
+  import { oauth2, name } from '../../services/security'
 
   export default {
     data () {
@@ -74,6 +74,9 @@
       },
       authorize (sec) {
         oauth2(sec)
+      },
+      name (sec) {
+        return name(sec)
       }
     },
     watch: {
@@ -93,10 +96,6 @@
 
   .dlg-tabs >>> .tabs__items
     border-width 1px 0 1px 0 !important
-
-  /*.dlg-tabs*/
-    /*width 480px*/
-    /*max-width 480px*/
 
   .uppercase
     text-transform uppercase
