@@ -148,10 +148,14 @@
   .no-details >>> .input-group__details
     display none
 
+  .toggle-round
+    margin-bottom -19px
+
   .toggle-round >>> button
     font-size 13px !important
     height 19px !important
     padding 0 4px
+    font-family Roboto, sans-serif
 
   /*
   .toggle-round >>> button:first-child

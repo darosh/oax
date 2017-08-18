@@ -6,11 +6,17 @@ export function security(spec: Spec) {
     for (const sd in spec.securityDefinitions) {
       if (spec.securityDefinitions.hasOwnProperty(sd)) {
         if ((spec.securityDefinitions[sd] as OAuth2AccessCodeSecurity).scopes) {
+          const sec = spec.securityDefinitions[sd] as IBaseSecurityExtended;
+          sec._callbackUrl = null;
+          sec._clientId = null;
+          sec._clientSecret = null;
+          sec._accessToken = null;
+          sec._expiresIn = null;
+          sec._validFrom = null;
           for (const scope in (spec.securityDefinitions[sd] as any).scopes) {
             if ((spec.securityDefinitions[sd] as any).scopes.hasOwnProperty(scope)) {
-              (spec.securityDefinitions[sd] as IBaseSecurityExtended)._scopes =
-                (spec.securityDefinitions[sd] as IBaseSecurityExtended)._scopes || {};
-              (spec.securityDefinitions[sd] as IBaseSecurityExtended)._scopes[scope] = true;
+              sec._scopes = sec._scopes || {};
+              sec._scopes[scope] = true;
             }
           }
         }
