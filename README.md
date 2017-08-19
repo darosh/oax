@@ -1,12 +1,12 @@
-# oax
+# OAX
 
 > OpenAPI Specification Explorer
+
+![Logo](./static/img/icons/android-chrome-192x192.png)
 
 ## Demo
 
 [darosh.github.io/oax](https://darosh.github.io/oax/)
-
-![Logo](./build/oax-plain.svg)
 
 ## Build Setup
 
