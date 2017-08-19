@@ -14,6 +14,8 @@
         v-icon keyboard_arrow_down
       v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
         v-icon keyboard_arrow_up
+      v-btn.hidden-xs-only(v-if="IS_GROUPED < 2" icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide summary' : 'Show summary'}")
+        v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
       v-menu.hidden-xs-only(bottom left)
         v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
           v-icon {{['view_column', 'view_module', 'view_stream'][IS_GROUPED]}}
@@ -34,8 +36,6 @@
               v-icon view_stream
             v-list-tile-content
               v-list-tile-title Table
-      v-btn.hidden-xs-only(icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
-        v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
       v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Security'}")
         v-icon lock
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
