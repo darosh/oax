@@ -71,3 +71,4 @@
 - [ ] summaries from descriptions
 - [ ] summaries and descriptions MarkDown
 - [ ] check showdown supports new OAS 3.0 Markdown flavor
+- [ ] known implementations https://api.coinsecure.in/v1
