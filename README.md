@@ -8,7 +8,7 @@
 * Made with Vue, Vuex and Vuetify
 * Rewritten from scratch eg. spec parser is standalone lib: https://github.com/darosh/json-schema-bundler
 * Should work as progressive web app, especially offline
-* Should be faster and smoother UI, thanks to code splitting, web workers for markdowningication
+* Should be faster and smoother UI, thanks to Vue, Vuetify, Webpack code splitting, web workers for "markdowningication" and similar stuff
 * Made for Swagger 2.0, planning OAS 3.0
 * Dereferenced spec is the view model with few underscored additional props strictly described in Typescript
 * HTTP reference powered by know-your-http-well will be optional on runtime and compiletime as well
