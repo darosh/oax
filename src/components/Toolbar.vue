@@ -26,16 +26,22 @@
               v-icon view_column
             v-list-tile-content
               v-list-tile-title Groups
+            v-list-tile-action(v-if="IS_GROUPED === 0")
+              v-icon check
           v-list-tile(@click.native="TOGGLE_GROUPED(1)")
             v-list-tile-action
               v-icon view_module
             v-list-tile-content
               v-list-tile-title List
+            v-list-tile-action(v-if="IS_GROUPED === 1")
+              v-icon check
           v-list-tile(@click.native="TOGGLE_GROUPED(2)")
             v-list-tile-action
               v-icon view_stream
             v-list-tile-content
               v-list-tile-title Table
+            v-list-tile-action(v-if="IS_GROUPED === 2")
+              v-icon check
       v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Security'}")
         v-icon lock
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
@@ -48,16 +54,22 @@
               v-icon view_column
             v-list-tile-content
               v-list-tile-title Groups
+            v-list-tile-action(v-if="IS_GROUPED === 0")
+              v-icon check
           v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(1)")
             v-list-tile-action
               v-icon view_module
             v-list-tile-content
               v-list-tile-title List
+            v-list-tile-action(v-if="IS_GROUPED === 1")
+              v-icon check
           v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(2)")
             v-list-tile-action
               v-icon view_stream
             v-list-tile-content
               v-list-tile-title Table
+            v-list-tile-action(v-if="IS_GROUPED === 2")
+              v-icon check
           v-divider.hidden-sm-and-up
           v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_DESCRIPTION()")
             v-list-tile-action
