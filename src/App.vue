@@ -89,9 +89,22 @@
       position relative
       top -10px
 
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute), .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
+  main
+    margin-right 0
+    transition: 0s 0.066s margin linear;
+    will-change: margin-right;
+
+  .toolbar
+    transition: 0s 0.066s padding linear;
+    will-change: padding-right;
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
     padding-right 0
     margin-right 300px
+    transition: 0s 0.133s margin linear;
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+    transition: 0s 0.133s padding linear;
 
   .dialog__content
     z-index 11
