@@ -1,6 +1,10 @@
-# oas-ui
+# oax
 
 > OpenAPI Specification Explorer
+
+## Demo
+
+[darosh.github.io/oax](https://darosh.github.io/oax/)
 
 ## Build Setup
 
