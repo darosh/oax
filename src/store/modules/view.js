@@ -5,7 +5,7 @@ const storedState = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '""')
 
 const defaultState = {
   dark: false,
-  grouped: true,
+  grouped: 0,
   description: false,
   endpoint: true
 }
@@ -16,8 +16,8 @@ export const mutations = {
   [types.TOGGLE_DARK] (state) {
     state.dark = !state.dark
   },
-  [types.TOGGLE_GROUPED] (state) {
-    state.grouped = !state.grouped
+  [types.TOGGLE_GROUPED] (state, payload) {
+    state.grouped = payload
   },
   [types.TOGGLE_DESCRIPTION] (state) {
     state.description = !state.description

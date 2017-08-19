@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.app-table
-    v-data-table(:headers="headers" :items="items" hide-actions class="elevation-1 app-table")
+    v-data-table(:headers="headers", :items="items" hide-actions class="elevation-1 app-table")
       template(slot="items" scope="props")
         td.nowrap
           app-header(:item="props.item[0]")

@@ -161,6 +161,7 @@ export function operations(spec: Spec) {
           operation._method = httpMethod;
           operation._pathName = pathName;
           ops.push(operation);
+          operation._id = ops.length;
         }
       }
     }

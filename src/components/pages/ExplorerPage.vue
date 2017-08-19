@@ -6,8 +6,9 @@
     div(v-if="!SEARCH")
       h2.pa-3.mb-0.headline.hidden-sm-and-up(v-if="SPEC && SPEC.info") {{SPEC.info.title}}
       app-meta-list(:metas="METAS")
-    app-resource-list(v-if="IS_GROUPED")
-    app-operation-list(v-if="!IS_GROUPED")
+    app-resource-list(v-if="IS_GROUPED === 0")
+    app-operation-list(v-else-if="IS_GROUPED === 1")
+    app-operation-table(v-else)
     app-method-dialog
     app-status-dialog
     app-header-dialog
@@ -24,6 +25,7 @@
       appMetaList: () => import('../MetaList'),
       appResourceList: () => import('../ResourceList'),
       appOperationList: () => import('../OperationList'),
+      appOperationTable: () => import('../OperationTable'),
       appMethodDialog: () => import('../dialogs/MethodDialog'),
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
