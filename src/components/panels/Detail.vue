@@ -1,26 +1,29 @@
 <template lang="pug">
-  div
+  div(style="height: 100%; overflow: hidden")
     v-toolbar.elevation-0(style="background-color: transparent")
       v-toolbar-title {{operation.tags[0]}}
       v-spacer
       v-btn(icon @click.stop="close")
+        v-icon lock_open
+      v-btn(icon @click.stop="close")
         v-icon close
     v-divider
-    div.pt-3.pl-0.pr-0.pb-3
-      app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
-      .body-1.md.pl-3.pr-3.pt-3(v-if="operation.summary" v-html="md(operation, 'summary')")
-    v-tabs.app--tabs(v-model="tab", :scrollable="false")
-      v-tabs-bar.tabs--transparent(slot="activators")
-        v-tabs-item(ripple href="tab-info") Info
-        v-tabs-item.relative(ripple href="tab-script") Script
-        v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._result") Result
-        v-tabs-slider
-      v-tabs-content#tab-info
-        app-info(:item="operation")
-      v-tabs-content#tab-script
-        app-scripts(:item="operation")
-      v-tabs-content#tab-result
-        app-result(:item="operation")
+    div(style="height: calc(100% - 64px); overflow: auto")
+      div.pt-3.pl-0.pr-0.pb-3
+        app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
+        .body-1.md.pl-3.pr-3.pt-3(v-if="operation.summary" v-html="md(operation, 'summary')")
+      v-tabs.app--tabs(v-model="tab", :scrollable="false")
+        v-tabs-bar.tabs--transparent(slot="activators")
+          v-tabs-item(ripple href="tab-info") Info
+          v-tabs-item.relative(ripple href="tab-script") Script
+          v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._result") Result
+          v-tabs-slider
+        v-tabs-content#tab-info
+          app-info(:item="operation")
+        v-tabs-content#tab-script
+          app-scripts(:item="operation")
+        v-tabs-content#tab-result
+          app-result(:item="operation")
 </template>
 
 <script>

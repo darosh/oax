@@ -19,7 +19,7 @@
       v-btn.hidden-xs-only(icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}")
         v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
       v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Security'}")
-        v-icon vpn_key
+        v-icon lock
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
@@ -36,7 +36,7 @@
               v-list-tile-title(style="min-width: 100px") {{IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}}
           v-list-tile.hidden-sm-and-up(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click.native="SET_DIALOG('security')")
             v-list-tile-action
-                v-icon vpn_key
+                v-icon lock
             v-list-tile-content
               v-list-tile-title(style="min-width: 100px") Security
           v-list-tile(@click.native="TOGGLE_DARK()")
