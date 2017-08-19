@@ -16,6 +16,8 @@
 * Should have per operation auth options
 * Probably less theming customization, now it is build around Vuetify light/dark theme and info/success/warn/error colors, primary color is for links, and some buttons and secondary is for floating action buttons and some highlights (latter need to work in light/dark). Hoping late night readers will appreciate it.
 * Hopefully better architecture, with Vuex modules, Vue independent plain Typescript models, pure JavaScript services/utils, and as simple Vue components as possible. No more plugins (btw schema bundler has injectable YAML parser)
+" The icon is just stupid second internal iteration, I hate it already. I am not sure abou trying to incorporate the letters OAX and the status colors. 
+* Smooth ripples everywhere (it is more must, than nice to have). Much more ripplrs than in previous version. :)
 
 ## Demo
 
