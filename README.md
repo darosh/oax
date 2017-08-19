@@ -20,6 +20,7 @@
 * Smooth ripples everywhere (it is more must, than nice to have). Much more ripples than in previous version. :)
 * Left hamburger menu drawer should serve only for spec purposes and should be optional (runtime/compiletime). It should allow copy/paste (dereferenced spec) and together with table view should help to spec authors quickly overview main operation features
 * What I ussualy miss in API docs in general is the "under the REST hood" DB relationship like stuff, https://bl.ocks.org/darosh/81151e4b94d7123eb89c390aa0ec9bf4 and some "flow" hints how to use data from responses in another requests...
+* Progressive web app, must use HTTPS, so the API should use HTTPS too
 
 ## Demo
 
