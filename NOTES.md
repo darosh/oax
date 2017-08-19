@@ -50,7 +50,7 @@
 - [ ] Highlight selected http reference toolbar button
 - [ ] Switching http reference is slow on mobile
 - [x] Add mono font to HTML index
-- [ ] Rewiew code splitting for best UX
+- [ ] Review code splitting for best UX
 - [ ] Reopen same operation on selection
 - [ ] Dialog toolbar right subtitles have bigger margin on right?
 - [x] Replace dialog rfc link titles with specs
@@ -64,3 +64,10 @@
 - [ ] highlight path params
 - [ ] fix drawer and dialog overlays conflicts
 - [ ] update dialog param
+- [ ] icon
+- [ ] doc view
+- [ ] table view
+- [ ] security (authorization)
+- [ ] summaries from descriptions
+- [ ] summaries and descriptions MarkDown
+- [ ] check showdown supports new OAS 3.0 Markdown flavor
