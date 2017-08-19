@@ -18,6 +18,7 @@
 * Hopefully better architecture, with Vuex modules, Vue independent plain Typescript models, pure JavaScript services/utils, and as simple Vue components as possible. No more plugins (btw schema bundler has injectable YAML parser)
 " The icon is just stupid second internal iteration, I hate it already. I am not sure abou trying to incorporate the letters OAX and the status colors. 
 * Smooth ripples everywhere (it is more must, than nice to have). Much more ripplrs than in previous version. :)
+* Left hamburger menu drawer should serve only for spec purposes and should be optional. It should allow copy/paste (dereferenced spec) and together with table view should help to spec authors quickly overview main operation features
 
 ## Demo
 
