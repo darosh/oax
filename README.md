@@ -6,8 +6,7 @@
 
 [darosh.github.io/oax](https://darosh.github.io/oax/)
 
-<img src="./build/oax-plain.svg" width="256"/>
-
+![Logo](./build/oax-plain.svg)
 
 ## Build Setup
 
