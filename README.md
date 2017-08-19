@@ -4,6 +4,19 @@
 
 ![Logo](./static/img/icons/android-chrome-192x192.png)
 
+* This is remake of https://github.com/darosh/angular-swagger-ui-material
+* Made with Vue, Vuex and Vuetify
+* Rewritten from scratch eg. spec parser is standalone lib: https://github.com/darosh/json-schema-bundler
+* Should work as progressive web app, especially offline
+* Should be faster and smoother UI, thanks to code splitting, web workers for markdowningication
+* Made for Swagger 2.0, planning OAS 3.0
+* Dereferenced spec is the view model with few underscored additional props strictly described in Typescript
+* HTTP reference powered by know-your-http-well will be optional on runtime and compiletime as well
+* More views (layouts): table, documentation
+* Should have per operation auth options
+* Probably less theming customization, now it is build around Vuetify light/dark theme and info/success/warn/error colors, primary color is for links, and some buttons and secondary is for floating action buttons and some highlights (latter need to work in light/dark). Hoping late night readers will appreciate it.
+* Hopefully better architecture, with Vuex modules, Vue independent plain Typescript models, pure JavaScript services/utils, and as simple Vue components as possible. No more plugins (btw schema bundler has injectable YAML parser)
+
 ## Demo
 
 [darosh.github.io/oax](https://darosh.github.io/oax/)
