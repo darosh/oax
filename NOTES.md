@@ -31,7 +31,7 @@
 
 ## Dev notes
 
-- [x] Swipe down to refresh, this is probably not an issue?
+- [ ] Swipe down to refresh, this is probably not an issue?
 - [ ] Pre scroll in drawer
 - [x] Drawer over dialog
 - [ ] Mobile icons
@@ -51,7 +51,7 @@
 - [ ] Switching http reference is slow on mobile
 - [x] Add mono font to HTML index
 - [ ] Review code splitting for best UX
-- [ ] Reopen same operation on selection
+- [x] Reopen same operation on selection
 - [ ] Dialog toolbar right subtitles have bigger margin on right?
 - [x] Replace dialog rfc link titles with specs
 - [ ] Insert direct api spec by text
@@ -71,3 +71,4 @@
 - [ ] summaries from descriptions
 - [ ] summaries and descriptions MarkDown
 - [ ] check showdown supports new OAS 3.0 Markdown flavor
+- [ ] drawer needs air?
