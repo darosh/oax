@@ -94,7 +94,7 @@
   .dialog__content
     z-index 11
 
-  @media only screen and (max-width: 600px)
+  @media $display-breakpoints.xs-only
     .container
       padding 0
 

@@ -29,11 +29,14 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
 
+  import appResponseBlock from '../elements/ResponseBlock'
+  import appHeader from '../elements/Header'
+
   export default {
     props: ['item'],
     components: {
-      appResponseBlock: () => import('../elements/ResponseBlock'),
-      appHeader: () => import('../elements/Header')
+      appResponseBlock,
+      appHeader
     },
     data () {
       return {

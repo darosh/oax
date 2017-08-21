@@ -40,6 +40,15 @@ $theme := {
 //$font-size-root := 16px
 //$line-height-root := 26px
 
+$grid-breakpoints := {
+  xs: 0
+  sm: 800px
+  md: 1200px
+  lg: (1600px - 16px) // Desktop gets a 16dp reduction
+  xl: (1920px - 16px) // https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
+}
+
+
 @import '../../node_modules/vuetify/src/stylus/main'
 
 $right-delay := 0.0s

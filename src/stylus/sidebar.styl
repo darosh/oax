@@ -20,6 +20,16 @@ main
 .toolbar
   width 100%
 
+@media $display-breakpoints.sm-only
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    margin-right calc(50% - 20px)
+
+  .navigation-drawer--open.navigation-drawer--right + .toolbar
+    width calc(50% + 20px)
+
+  .navigation-drawer--right
+    width calc(50% - 20px)
+
 @media $display-breakpoints.md-only
   .navigation-drawer--open.navigation-drawer--right ~ main
     margin-right calc(33.33% - 20px)

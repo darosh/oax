@@ -22,7 +22,7 @@
         types.DRAWER
       ]),
       small: {
-        get () { return this.WIDTH < 1024 }
+        get () { return this.WIDTH < 800 }
       },
       drawer: {
         get () { return this.IS_API && this.DRAWER },
