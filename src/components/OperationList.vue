@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid).pl-4.pr-4.pa-3-sm
     v-layout(row wrap).stretch
-      v-flex(xs12 sm6 md4 lg3 v-ripple="" relative v-if="item._display" v-for="(item, key) in OPERATIONS", :key="item._id", @click.stop="SET_OPERATION(item)", :class="{'secondary white--text': OPERATION === OPERATIONS[key]}").hover--block
+      v-flex(xs12 sm6 md4 lg3 xl20p v-ripple="" relative v-if="item._display" v-for="(item, key) in OPERATIONS", :key="item._id", @click.stop="SET_OPERATION(item)", :class="{'secondary white--text': OPERATION === OPERATIONS[key]}").hover--block
         v-divider.hidden-xs-only
         .pt-1.pb-1.plr-3-sm
           app-operation(:item="OPERATIONS[key]")

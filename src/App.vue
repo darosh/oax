@@ -3,7 +3,7 @@
     app-menu
     app-drawer
     app-toolbar
-    main
+    main(role="main")
       router-view
 </template>
 
@@ -91,20 +91,50 @@
 
   main
     margin-right 0
-    transition: 0s 0.066s margin linear;
+    transition: margin 0s linear 0.15s;
     will-change: margin-right;
 
   .toolbar
-    transition: 0s 0.066s padding linear;
+    transition: padding 0s linear 0.15s;
     will-change: padding-right;
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
     padding-right 0
     margin-right 300px
-    transition: 0s 0.133s margin linear;
+    transition: margin 0s linear 0.15s;
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    transition: 0s 0.133s padding linear;
+    transition: padding 0s linear 0.15s;
+
+  @media $display-breakpoints.md-only
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
+      margin-right 33%
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+      padding-right 33%
+
+    .navigation-drawer--open.navigation-drawer--right
+      width 33%
+
+  @media $display-breakpoints.lg-and-up
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
+      margin-right 25%
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+      padding-right 25%
+
+    .navigation-drawer--open.navigation-drawer--right
+      width 25%
+
+  @media $display-breakpoints.xl-only
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--permanent.navigation-drawer--open.navigation-drawer--right ~ main, .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ .footer:not(.footer--fixed):not(.footer--absolute)
+      margin-right 20%
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+      padding-right 20%
+
+    .navigation-drawer--open.navigation-drawer--right
+      width 20%
 
   .dialog__content
     z-index 11
@@ -152,4 +182,31 @@
 
   .nowrap
     white-space nowrap
+
+  .layout
+    for size, width in $grid-breakpoints
+      @media all and (min-width: width)
+        for n in (1..$grid-columns)
+          .flex.{size}{n}
+            transition: all 0s linear 0.15s;
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
+    .layout
+      for size, width in $grid-breakpoints
+        @media all and (min-width: width)
+          for n in (1..$grid-columns)
+            .flex.{size}{n}
+              flex-basis: (1 / ($grid-columns / n - 1) * 100)%
+              max-width: (1 / ($grid-columns / n - 1) * 100)%
+
+  @media $display-breakpoints.xl-only
+    .layout .flex.xl20p
+      flex-basis: 20%
+      max-width: 20%
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
+    @media $display-breakpoints.xl-only
+      .layout .flex.xl20p
+        flex-basis: 25%
+        max-width: 25%
 </style>
