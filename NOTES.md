@@ -31,7 +31,7 @@
 
 ## Dev notes
 
-- [ ] Swipe down to refresh, this is probably not an issue?
+- [x] Swipe down to refresh, this is probably not an issue?
 - [ ] Pre scroll in drawer
 - [x] Drawer over dialog
 - [ ] Mobile icons
@@ -72,3 +72,4 @@
 - [ ] summaries and descriptions MarkDown
 - [ ] check showdown supports new OAS 3.0 Markdown flavor
 - [ ] drawer needs air?
+- [ ] known implementations https://api.coinsecure.in/v1
