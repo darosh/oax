@@ -1,0 +1,55 @@
+main
+  margin-right 0
+  transition margin 0s linear $right-delay
+  will-change margin-right
+
+.toolbar
+  transition WIDTH 0s linear $right-delay
+
+.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
+  padding-right 0
+  transition margin 0s linear $right-delay-out
+
+.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+  padding-right 0
+  transition WIDTH 0s linear $right-delay-out
+
+.navigation-drawer--close:not(.navigation--permanent).navigation-drawer--right
+  transform translate3d(100%, 0, 0)
+
+.toolbar
+  width 100%
+
+@media $display-breakpoints.md-only
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    margin-right 33%
+
+  .navigation-drawer--open.navigation-drawer--right + .toolbar
+    width 67%
+
+  .navigation-drawer--right
+    width 33%
+
+@media $display-breakpoints.lg-and-up
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    margin-right 25%
+
+  .navigation-drawer--open.navigation-drawer--right + .toolbar
+    width 75%
+
+  .navigation-drawer--right
+    width 25%
+
+@media $display-breakpoints.xl-only
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    margin-right 20%
+
+  .navigation-drawer--open.navigation-drawer--right + .toolbar
+    width 80%
+
+  .navigation-drawer--right
+    width 20%
+
+.navigation-drawer--right.navigation-drawer--temporary
+  width 480px
+  max-width 100%
