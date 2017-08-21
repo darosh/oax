@@ -22,33 +22,33 @@ main
 
 @media $display-breakpoints.md-only
   .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right 33%
+    margin-right calc(33.33% - 20px)
 
   .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width 67%
+    width calc(66.67% + 20px)
 
   .navigation-drawer--right
-    width 33%
+    width calc(33.33% - 20px)
 
 @media $display-breakpoints.lg-and-up
   .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right 25%
+    margin-right calc(25% - 20px)
 
   .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width 75%
+    width calc(75% + 20px)
 
   .navigation-drawer--right
-    width 25%
+    width calc(25% - 20px)
 
 @media $display-breakpoints.xl-only
   .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right 20%
+    margin-right calc(20% - 20px)
 
   .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width 80%
+    width calc(80% + 20px)
 
   .navigation-drawer--right
-    width 20%
+    width calc(20% - 20px)
 
 .navigation-drawer--right.navigation-drawer--temporary
   width 480px

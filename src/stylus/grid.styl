@@ -28,7 +28,7 @@
     flex-basis 20%
     max-width 20%
 
-.navigation-drawer--open.navigation-drawer--right ~ main
+.navigation-drawer--open:not(.navigation-drawer--temporary).navigation-drawer--right ~ main
   @media $display-breakpoints.xl-only
     .layout .flex.xl20p
       flex-basis 25%
