@@ -1,7 +1,7 @@
 <template lang="pug">
   div(class="operation")
     app-response(:code="code")
-    span.operation--message.pl-1 {{text}}
+    span.operation--message.pl-1(v-html="text")
 </template>
 
 <script>

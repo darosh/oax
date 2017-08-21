@@ -26,10 +26,10 @@
     "showdown": "^1.7.2",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
-    "vue-worker": "^1.2.1",
     "vuetify": "^0.14.11",
     "vuex": "^2.3.1",
     "vuex-router-sync": "^4.2.0",
+    "webworkify-webpack": "^2.0.5",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
@@ -108,7 +108,8 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "worker-loader": "^0.8.1"
   },
   "engines": {
     "node": ">= 4.0.0",

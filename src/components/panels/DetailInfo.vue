@@ -10,7 +10,7 @@
       v-card.pb-3
         div.pt-3(v-for="(response, code) in item.responses", :key="code")
           .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
-            app-response-block(:code="code", :text="response.description")
+            app-response-block(:code="code", :text="md(response)")
           div(v-if="response.schema")
 
             pre.ml-3.mr-3.pa-1.mt-1

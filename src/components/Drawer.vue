@@ -8,9 +8,11 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../store/types'
 
+  import appDetail from './panels/Detail'
+
   export default {
     components: {
-      appDetail: () => import('./panels/Detail')
+      appDetail
     },
     computed: {
       ...mapGetters([

@@ -32,11 +32,14 @@
 
   import { md } from '../../services/md'
 
+  import appOperation from '../elements/MethodBlock'
+  import appInfo from './DetailInfo'
+
   export default {
     props: ['operation'],
     components: {
-      appOperation: () => import('../elements/MethodBlock'),
-      appInfo: () => import('./DetailInfo'),
+      appOperation,
+      appInfo,
       appScripts: () => import('./DetailScripts'),
       appResult: () => import('./DetailResult')
     },
