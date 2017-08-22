@@ -5,6 +5,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../store/types'
 
@@ -21,12 +22,9 @@
         types.WIDTH,
         types.DRAWER
       ]),
-      small: {
-        get () { return this.WIDTH < 800 }
-      },
       drawer: {
         get () { return this.IS_API && this.DRAWER },
-        set (value) { this.SET_DRAWER(value && !!this.OPERATION) }
+        set (value) { this.SET_DRAWER(value) }
       }
     },
     methods: {
@@ -37,6 +35,13 @@
     watch: {
       OPERATION: function (val) {
         this.drawer = !!val
+      },
+      drawer: function (val) {
+        if (val && !this.OPERATION) {
+          Vue.nextTick(() => {
+            this.SET_DRAWER(false)
+          })
+        }
       }
     }
   }
@@ -47,7 +52,7 @@
     box-shadow none
 
   .navigation-drawer
-    border-left 1px solid rgba(0,0,0,0.12) !important
+    border-left 1px solid rgba(0, 0, 0, 0.12) !important
 
   .navigation-drawer >>> .expansion-panel > li
     border-left-width 0

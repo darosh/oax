@@ -5,6 +5,10 @@
       span(v-if="ERROR.message") {{ERROR.message}}
     div(v-if="!SEARCH")
       h2.pa-3.mb-0.headline.hidden-sm-and-up(v-if="SPEC && SPEC.info") {{SPEC.info.title}}
+      .hidden-xs-only.pl-4.pr-4.pt-3.pb-4.md(v-if="SPEC && SPEC.info" v-html="md(SPEC.info)")
+      .hidden-sm-and-up.pl-3.pr-4.pt-2.pb-3.md(v-if="SPEC && SPEC.info" v-html="md(SPEC.info)")
+      .pl-4.pr-4.hidden-xs-only
+        v-divider
       app-meta-list(:metas="METAS")
     app-resource-list(v-if="IS_GROUPED === 0")
     app-operation-list(v-else-if="IS_GROUPED === 1")
@@ -19,6 +23,8 @@
 <script>
   import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
+
+  import {md} from '../../services/md'
 
   export default {
     components: {
@@ -42,6 +48,9 @@
         types.SPEC,
         types.SEARCH
       ])
+    },
+    methods: {
+      md
     }
   }
 </script>
