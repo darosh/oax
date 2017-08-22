@@ -27,14 +27,14 @@ main
   will-change translate3d
 
 @media $display-breakpoints.sm-only
-  .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right calc(50% - 20px)
+  //.navigation-drawer--open.navigation-drawer--right ~ main
+  //  margin-right calc(50% - 20px)
 
-  .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width calc(50% + 20px)
+  //.navigation-drawer--open.navigation-drawer--right + .toolbar
+  //  width calc(50% + 20px)
 
   .navigation-drawer--right
-    width calc(50% - 20px)
+    width calc(50%)
 
 @media $display-breakpoints.md-only
   .navigation-drawer--open.navigation-drawer--right ~ main
@@ -66,6 +66,6 @@ main
   .navigation-drawer--right
     width calc(20% - 20px)
 
-.navigation-drawer--right.navigation-drawer--temporary
+.navigation-drawer--right.navigation-drawer--is-mobile
   width 480px
   max-width 100%

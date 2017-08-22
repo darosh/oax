@@ -100,13 +100,14 @@
               v-icon help
             v-list-tile-title About
     template(v-else)
-      v-toolbar-title HTTP {{PAGE_NAME}}
+      v-toolbar-title {{PAGE_NAME}}
       v-spacer
       v-toolbar-items
         v-btn(flat href="#/" tag="a") API
         v-btn.hidden-xs-only(flat href="#/http-methods" tag="a") Methods
         v-btn.hidden-xs-only(flat href="#/http-statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat href="#/http-headers" tag="a") Headers
+        v-btn.hidden-xs-only(flat href="#/about" tag="a") About
       v-menu.hidden-sm-and-up(bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
@@ -118,6 +119,11 @@
             v-list-tile-title Statuses
           v-list-tile(to="/http-headers" tag="a")
             v-list-tile-title Headers
+          v-divider
+          v-list-tile(to="/about" tag="a")
+            v-list-tile-action
+              v-icon help
+            v-list-tile-title About
 </template>
 
 <script>

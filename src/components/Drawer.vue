@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :hide-overlay="small", :temporary="small", :persistent="!small", :disable-route-watcher="true" v-model="drawer")
+  v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
     div(style="height: 100%; overflow: auto")
       app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>

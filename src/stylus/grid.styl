@@ -8,7 +8,7 @@
           transition none
           will-change flex-basis, max-width
 
-.navigation-drawer--open:not(.navigation-drawer--temporary).navigation-drawer--right ~ main .layout
+.navigation-drawer--open:not(.navigation-drawer--is-mobile).navigation-drawer--right ~ main .layout
   for size, width in $grid-breakpoints
     @media all and (min-width: width)
       for n in (1..$grid-columns)
@@ -16,7 +16,7 @@
           transition all 0s linear $right-delay-out
           transition-property flex-basis, max-width
 
-.navigation-drawer--open:not(.navigation-drawer--temporary).navigation-drawer--right ~ main
+.navigation-drawer--open:not(.navigation-drawer--is-mobile).navigation-drawer--right ~ main
   .layout
     for size, width in $grid-breakpoints
       @media all and (min-width: width)
@@ -30,7 +30,7 @@
     flex-basis 20%
     max-width 20%
 
-.navigation-drawer--open:not(.navigation-drawer--temporary).navigation-drawer--right ~ main
+.navigation-drawer--open:not(.navigation-drawer--is-mobile).navigation-drawer--right ~ main
   @media $display-breakpoints.xl-only
     .layout .flex.xl20p
       flex-basis 25%

@@ -11,6 +11,11 @@ export default new Router({
       meta: {name: 'API'}
     },
     {
+      path: '/about',
+      component: () => import('../components/pages/AboutPage'),
+      meta: {name: 'About'}
+    },
+    {
       path: '/http-methods',
       component: () => import('../components/pages/MethodPage'),
       meta: {name: 'Methods'}
