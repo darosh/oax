@@ -29,6 +29,28 @@ export const mutations = {
 
     state.operation = payload
   },
+  [types.PREV_OPERATION] (state) {
+    let index = state.operations.indexOf(state.operation)
+
+    if (index === 0) {
+      index = state.operations.length
+    }
+
+    index--
+
+    state.operation = state.operations[index]
+  },
+  [types.NEXT_OPERATION] (state) {
+    let index = state.operations.indexOf(state.operation)
+
+    if (index === (state.operations.length - 1)) {
+      index = -1
+    }
+
+    index++
+
+    state.operation = state.operations[index]
+  },
   [types.FILTER_RESOURCES] (state, payload) {
     search(state.resources, payload)
   },

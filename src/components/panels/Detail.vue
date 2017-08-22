@@ -1,10 +1,13 @@
 <template lang="pug">
   div(style="height: 100%; overflow: hidden")
     v-toolbar.elevation-0(style="background-color: transparent")
-      v-toolbar-title {{operation.tags[0]}}
-      v-spacer
-      v-btn(icon @click.stop="close")
+      v-btn(icon @click.stop="PREV_OPERATION" v-tooltip:right="{html: 'Previous operation'}")
+        v-icon skip_previous
+      v-btn(icon @click.stop="NEXT_OPERATION" v-tooltip:right="{html: 'Next operation'}")
+        v-icon skip_next
+      v-btn(icon v-tooltip:right="{html: 'Operation authorization'}")
         v-icon lock_open
+      v-spacer
       v-btn(icon @click.stop="close")
         v-icon close
     v-divider
@@ -12,6 +15,7 @@
       div.pt-3.pl-0.pr-0.pb-3
         app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
         .body-1.md.pl-3.pr-3.pt-3(v-if="operation.summary" v-html="md(operation, 'summary')")
+      v-divider
       v-tabs.app--tabs(v-model="tab", :scrollable="false")
         v-tabs-bar.tabs--transparent(slot="activators")
           v-tabs-item(ripple href="tab-info") Info
@@ -58,7 +62,9 @@
       ...mapMutations([
         types.SET_TAB,
         types.SET_DIALOG,
-        types.SET_DRAWER
+        types.SET_DRAWER,
+        types.PREV_OPERATION,
+        types.NEXT_OPERATION
       ]),
       md,
       close () {

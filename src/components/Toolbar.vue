@@ -42,7 +42,7 @@
               v-list-tile-title Table
             v-list-tile-action(v-if="IS_GROUPED === 2")
               v-icon check
-      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Security'}")
+      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
         v-icon lock
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
@@ -80,7 +80,7 @@
             v-list-tile-action
                 v-icon lock
             v-list-tile-content
-              v-list-tile-title(style="min-width: 100px") Security
+              v-list-tile-title(style="min-width: 100px") Authorization
           v-list-tile(@click.native="TOGGLE_DARK()")
             v-list-tile-action
               v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
