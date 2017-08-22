@@ -130,7 +130,10 @@
   .application--dark tbody tr:hover
     background-color: $grey.darken-3 !important
 
-  .md > p
+  .md > *:last-child
+  .md > *:last-child > *:last-child
+  .md > *:last-child > *:last-child > *:last-child
+  .md > *:last-child > *:last-child > *:last-child > *:last-child
     margin-bottom 0
 
   .nowrap

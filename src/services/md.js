@@ -1,11 +1,8 @@
-import { Converter } from 'showdown'
-
-const converter = new Converter()
-converter.setFlavor('github')
+import { trim } from './md-converter'
 
 export function md (obj, key = 'description') {
   if (!obj['_md_' + key]) {
-    obj['_md_' + key] = converter.makeHtml(obj[key])
+    obj['_md_' + key] = trim(obj[key].trim())
   }
 
   return obj['_md_' + key]

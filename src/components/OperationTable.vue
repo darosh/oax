@@ -7,8 +7,8 @@
           app-method(:item="props.item._method")
         td(@click.stop="SET_OPERATION(props.item)") {{props.item._pathName}}
         td(@click.stop="SET_OPERATION(props.item)") {{props.item.tags.join(', ')}}
-        td(@click.stop="SET_OPERATION(props.item)") {{props.item.summary}}
-        td(@click.stop="SET_OPERATION(props.item)") {{props.item.description}}
+        td.md(@click.stop="SET_OPERATION(props.item)" v-html="md(props.item, 'summary')")
+        td.md(@click.stop="SET_OPERATION(props.item)" v-html="md(props.item)")
         td(@click.stop="SET_OPERATION(props.item)") {{props.item.parameters && props.item.parameters.length}}
         td(@click.stop="SET_OPERATION(props.item)") {{Object.keys(props.item.responses).join(', ')}}
         td(@click.stop="SET_OPERATION(props.item)") {{props.item.security}}

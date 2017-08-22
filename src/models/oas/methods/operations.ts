@@ -1,6 +1,8 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
+import {el, trim} from '../../../services/md-converter';
+
 export function operations(spec: ISpecExtended) {
   for (const op of spec._operations) {
     op._display = true;
@@ -13,6 +15,28 @@ export function operations(spec: ISpecExtended) {
       for (const param of (op.parameters as any as IParameterExtended[])) {
         param._value = null;
       }
+    }
+
+    if (op.description) {
+      op._md_description = trim(op.description);
+    }
+
+    if (!op.summary && op.description) {
+      el.innerHTML = op._md_description;
+      const text = el.textContent.replace(/\n/g, ' ').replace(/  +/g, ' ').trim();
+
+      const dot = text.indexOf('.') + 1;
+      op.summary = text.substr(0, (dot > 3 && dot < 120) ? dot : 120);
+    }
+
+
+    if (op.summary) {
+      op._md_summary = trim(op.summary);
+    }
+
+    if (op._md_summary === op._md_description) {
+      delete op._md_description;
+      delete op.description;
     }
   }
 }

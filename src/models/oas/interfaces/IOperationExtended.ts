@@ -10,4 +10,6 @@ export interface IOperationExtended extends Operation {
   _error: any;
   _result: any;
   parameters?: Parameter[] & IParameterExtended[];
+  _md_description: string;
+  _md_summary: string;
 }
