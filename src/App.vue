@@ -135,6 +135,6 @@
   .nowrap
     white-space nowrap
 
-  .overlay
-    z-index 5
+  /*.overlay*/
+    /*z-index 5*/
 </style>
