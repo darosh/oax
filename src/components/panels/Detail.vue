@@ -15,7 +15,7 @@
       div.pt-3.pl-0.pr-0.pb-3
         app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
         .body-1.md.pl-3.pr-3.pt-3(v-if="operation.summary" v-html="md(operation, 'summary')")
-      v-divider
+      //v-divider
       v-tabs.app--tabs(v-model="tab", :scrollable="false")
         v-tabs-bar.tabs--transparent(slot="activators")
           v-tabs-item(ripple href="tab-info") Info

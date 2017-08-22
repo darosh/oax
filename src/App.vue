@@ -136,6 +136,6 @@
   .nowrap
     white-space nowrap
 
-  /*.overlay*/
-    /*z-index 5*/
+  .overlay--active + .overlay--active:last-child
+    z-index 5
 </style>
