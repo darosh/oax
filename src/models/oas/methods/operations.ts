@@ -14,6 +14,18 @@ export function operations(spec: ISpecExtended) {
     if (op.parameters) {
       for (const param of (op.parameters as any as IParameterExtended[])) {
         param._value = null;
+
+        if ((param as any).description) {
+          (param as any)._md_description = trim((param as any).description);
+        }
+      }
+    }
+
+    if (op.responses) {
+      for (const respName in op.responses) {
+        if (op.responses[respName].description) {
+          (op.responses[respName] as any)._md_description = trim(op.responses[respName].description);
+        }
       }
     }
 

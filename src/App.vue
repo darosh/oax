@@ -130,6 +130,9 @@
   .application--dark tbody tr:hover
     background-color: $grey.darken-3 !important
 
+  .input-group__hint > *:last-child
+  .input-group__hint > *:last-child > *:last-child
+  .input-group__hint > *:last-child > *:last-child > *:last-child
   .md > *:last-child
   .md > *:last-child > *:last-child
   .md > *:last-child > *:last-child > *:last-child
