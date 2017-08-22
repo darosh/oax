@@ -1,6 +1,7 @@
 <template lang="pug">
   span
-    span(v-if="item.type === 'array'")
+    span(v-if="level > 3") &hellip;
+    span(v-else-if="item.type === 'array'")
       | [
       app-model(:item="item.items", :level="level + 1")
       | ]

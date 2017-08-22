@@ -5,8 +5,6 @@ export function md (obj, key = 'description') {
     obj['_md_' + key] = trim(obj[key])
   }
 
-  console.log(obj['_md_' + key], obj[key])
-
   return obj['_md_' + key]
 }
 
