@@ -33,7 +33,7 @@
 
   .show
     right 24px
-    transition right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0.3s
+    transition right 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) 0.320s
 
   .fab--on-top.fab--on-top--disabled
     opacity 0.75

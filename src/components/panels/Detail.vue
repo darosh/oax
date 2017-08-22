@@ -34,14 +34,16 @@
 
   import appOperation from '../elements/MethodBlock'
   import appInfo from './DetailInfo'
+  import appScripts from './DetailScripts'
+  import appResult from './DetailResult'
 
   export default {
     props: ['operation'],
     components: {
       appOperation,
       appInfo,
-      appScripts: () => import('./DetailScripts'),
-      appResult: () => import('./DetailResult')
+      appScripts,
+      appResult
     },
     computed: {
       ...mapGetters([

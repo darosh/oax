@@ -1,10 +1,14 @@
 main
   margin-right 0
-  transition margin 0s linear $right-delay
+  //transition margin-right 0s linear $right-delay
+  transition none
   will-change margin-right
 
 .toolbar
-  transition WIDTH 0s linear $right-delay
+  width 100%
+  //transition WIDTH 0s linear $right-delay
+  transition none
+  will-change WIDTH
 
 .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
   padding-right 0
@@ -16,9 +20,11 @@ main
 
 .navigation-drawer--close:not(.navigation--permanent).navigation-drawer--right
   transform translate3d(100%, 0, 0)
+  will-change translate3d
 
-.toolbar
-  width 100%
+.navigation-drawer--open:not(.navigation--permanent).navigation-drawer--right
+  transform translate3d(0, 0, 0)
+  will-change translate3d
 
 @media $display-breakpoints.sm-only
   .navigation-drawer--open.navigation-drawer--right ~ main

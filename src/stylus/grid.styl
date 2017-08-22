@@ -3,8 +3,10 @@
     @media all and (min-width: width)
       for n in (1..$grid-columns)
         .flex.{size}{n}
-          transition all 0s linear $right-delay
-          transition-property flex-basis, max-width
+          //transition all 0s linear $right-delay
+          //transition-property flex-basis, max-width
+          transition none
+          will-change flex-basis, max-width
 
 .navigation-drawer--open:not(.navigation-drawer--temporary).navigation-drawer--right ~ main .layout
   for size, width in $grid-breakpoints

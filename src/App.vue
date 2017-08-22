@@ -134,4 +134,7 @@
 
   .nowrap
     white-space nowrap
+
+  .overlay
+    z-index 5
 </style>
