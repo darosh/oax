@@ -1,15 +1,15 @@
 <template lang="pug">
   div(style="height: 100%; overflow: hidden")
     v-toolbar.elevation-0(style="background-color: transparent")
-      v-btn(icon @click.stop="PREV_OPERATION" v-tooltip:right="{html: 'Previous operation'}")
-        v-icon skip_previous
-      v-btn(icon @click.stop="NEXT_OPERATION" v-tooltip:right="{html: 'Next operation'}")
-        v-icon skip_next
-      v-btn(icon v-tooltip:right="{html: 'Operation authorization'}")
-        v-icon lock_open
-      v-spacer
       v-btn(icon @click.stop="close")
         v-icon close
+      v-spacer
+      v-btn(icon @click.stop="PREV_OPERATION" v-tooltip:left="{html: 'Previous operation'}")
+        v-icon skip_previous
+      v-btn(icon @click.stop="NEXT_OPERATION" v-tooltip:left="{html: 'Next operation'}")
+        v-icon skip_next
+      v-btn(icon v-tooltip:left="{html: 'Operation authorization'}")
+        v-icon lock_open
     v-divider
     div(style="height: calc(100% - 64px); overflow: auto")
       div.pt-3.pl-0.pr-0.pb-3
