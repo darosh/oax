@@ -26,7 +26,7 @@
       },
       drawer: {
         get () { return this.IS_API && this.DRAWER },
-        set (value) { this.SET_DRAWER(value) }
+        set (value) { this.SET_DRAWER(value && !!this.OPERATION) }
       }
     },
     methods: {
