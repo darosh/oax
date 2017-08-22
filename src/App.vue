@@ -1,5 +1,6 @@
 <template lang="pug">
   v-app(:dark="IS_DARK")
+    div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-menu
     app-drawer
     app-toolbar
