@@ -87,12 +87,18 @@
             v-list-tile-content
               v-list-tile-title(style="min-width: 135px") {{IS_DARK ? 'Light theme' : 'Dark theme'}}
           v-divider
+          v-subheader HTTP Reference
           v-list-tile(to="/http-methods" tag="a")
             v-list-tile-title Methods
           v-list-tile(to="/http-statuses" tag="a")
             v-list-tile-title Statuses
           v-list-tile(to="/http-headers" tag="a")
             v-list-tile-title Headers
+          v-divider
+          v-list-tile(to="/about" tag="a")
+            v-list-tile-action
+              v-icon help
+            v-list-tile-title About
     template(v-else)
       v-toolbar-title HTTP {{PAGE_NAME}}
       v-spacer
@@ -105,6 +111,7 @@
         v-btn(icon slot="activator")
           v-icon more_vert
         v-list
+          v-subheader HTTP Reference
           v-list-tile(to="/http-methods" tag="a")
             v-list-tile-title Methods
           v-list-tile(to="/http-statuses" tag="a")
