@@ -18,7 +18,7 @@
         v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
       v-menu.hidden-xs-only(bottom left)
         v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
-          v-icon {{['view_column', 'view_module', 'view_stream'][IS_GROUPED]}}
+          v-icon {{['view_column', 'view_module', 'view_stream', 'view_quilt'][IS_GROUPED]}}
         v-list(subheader)
           v-subheader View
           v-list-tile(@click.native="TOGGLE_GROUPED(0)")
@@ -41,6 +41,13 @@
             v-list-tile-content
               v-list-tile-title Table
             v-list-tile-action(v-if="IS_GROUPED === 2")
+              v-icon check
+          v-list-tile(@click.native="TOGGLE_GROUPED(3)")
+            v-list-tile-action
+              v-icon view_quilt
+            v-list-tile-content
+              v-list-tile-title Documentation
+            v-list-tile-action(v-if="IS_GROUPED === 3")
               v-icon check
       v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
         v-icon lock
@@ -69,6 +76,13 @@
             v-list-tile-content
               v-list-tile-title Table
             v-list-tile-action(v-if="IS_GROUPED === 2")
+              v-icon check
+          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(3)")
+            v-list-tile-action
+              v-icon view_quilt
+            v-list-tile-content
+              v-list-tile-title Documentation
+            v-list-tile-action(v-if="IS_GROUPED === 3")
               v-icon check
           v-divider.hidden-sm-and-up
           v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_DESCRIPTION()")

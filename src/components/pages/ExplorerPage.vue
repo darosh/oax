@@ -12,7 +12,8 @@
       app-meta-list(:metas="METAS")
     app-resource-list(v-if="IS_GROUPED === 0")
     app-operation-list(v-else-if="IS_GROUPED === 1")
-    app-operation-table(v-else)
+    app-operation-table(v-else-if="IS_GROUPED === 2")
+    app-documentation(v-else)
     app-method-dialog
     app-status-dialog
     app-header-dialog
@@ -32,6 +33,7 @@
       appResourceList: () => import('../ResourceList'),
       appOperationList: () => import('../OperationList'),
       appOperationTable: () => import('../OperationTable'),
+      appDocumentation: () => import('../Documentation'),
       appMethodDialog: () => import('../dialogs/MethodDialog'),
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),

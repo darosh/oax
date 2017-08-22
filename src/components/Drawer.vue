@@ -34,7 +34,9 @@
     },
     watch: {
       OPERATION: function (val) {
-        this.drawer = !!val
+        setTimeout(() => {
+          this.drawer = !!val
+        }, 100)
       },
       drawer: function (val) {
         if (val && !this.OPERATION) {
