@@ -7,6 +7,7 @@ converter.setFlavor('github');
 converter.setOption('noHeaderId', true as any as string);
 converter.setOption('openLinksInNewWindow', true as any as string);
 converter.setOption('smoothLivePreview', true as any as string);
+converter.setOption('headerLevelStart', 4 as any as string);
 
 export const el = document.createElement('div');
 

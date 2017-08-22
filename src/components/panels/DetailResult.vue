@@ -22,7 +22,7 @@
       div.subheading(slot="header") Response body
       v-divider
       v-card.pa-3
-        pre.pa-1 {{item._result.data}}
+        pre.app-pre.pa-1 {{item._result.data}}
 </template>
 
 <script>

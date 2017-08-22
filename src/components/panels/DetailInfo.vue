@@ -13,7 +13,7 @@
             app-response-block(:code="code", :text="md(response)")
           div(v-if="response.schema")
 
-            pre.ml-3.mr-3.pa-1.mt-1
+            pre.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
                 v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(:items="schemaViews" v-model="schemaView")

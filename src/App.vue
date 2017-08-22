@@ -58,7 +58,7 @@
     background $material-twelve-percent-dark
     cursor pointer
 
-  pre
+  pre.app-pre
     background lighten($material-twelve-percent-dark, 50%)
     border 1px solid $material-twelve-percent-dark
     border-radius 6px !important

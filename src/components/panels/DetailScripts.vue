@@ -9,7 +9,7 @@
       div.subheading(slot="header") {{script.title}}
       v-divider
       v-card.pa-3
-        pre.pa-1 {{script.script}}
+        pre.app-pre.pa-1 {{script.script}}
 </template>
 
 <script>
