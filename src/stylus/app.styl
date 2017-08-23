@@ -21,23 +21,33 @@ html, body, .application, main
 .toolbar--fixed + main
   overflow-y auto !important
   padding 0
-  margin-top 64px
-  height calc(100vh - 64px)
+  margin-top $toolbar-height
+  height "calc(100vh - %s)" % $toolbar-height
 
-.application > main > .container
-  min-height calc(100vh - 64px)
+//.application > main > .container
+//  min-height calc(100vh - $toolbar-height)
 
 @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
   .toolbar--fixed + main
     margin-top $toolbar-mobile-landscape-height
+    height "calc(100vh - %s)" % $toolbar-mobile-landscape-height
 
-  .toolbar__items .input-group
-    padding-bottom 0
-    position relative
-    top -10px
+  //.toolbar__items .input-group
+  //  padding-bottom 0
+  //  position relative
+  //  top -10px
+
+@media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+  .toolbar--fixed + main
+    margin-top $toolbar-mobile-portrait-height
+    height "calc(100vh - %s)" % $toolbar-mobile-portrait-height
 
 .dialog__content
   z-index 11
+
+@media $display-breakpoints.sm-only
+  main > .container
+    padding 0
 
 @media $display-breakpoints.xs-only
   .container
@@ -99,3 +109,6 @@ pre
   font-family "Roboto Mono", monospace
   font-size 12px
 
+@media all and (max-width: $grid-breakpoints.sm)
+  .layout
+    margin 0

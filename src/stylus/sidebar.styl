@@ -39,24 +39,36 @@ main
     width calc(50%)
 
 @media $display-breakpoints.md-only
-  //.navigation-drawer--open.navigation-drawer--right ~ main
-  //  margin-right calc(33.33% - 16px)
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    margin-right calc(33.33% - 16px)
 
-  //.navigation-drawer--open.navigation-drawer--right + .toolbar
-  //  width calc(66.67% + 16px)
+  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+    margin-left calc(33.33% - 16px)
 
-  //.navigation-drawer--right
-  //  width calc(33.33% - 16px)
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+    padding-right calc(33.33% - 16px)
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
+    padding-left calc(33.33% - 16px)
+
+  .navigation-drawer--persistent
+    width calc(33.33% - 16px)
 
 @media $display-breakpoints.lg-and-up
-  //.navigation-drawer--open.navigation-drawer--right ~ main
-  //  margin-right calc(25% - 16px)
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    margin-right calc(25% - 16px)
 
-  //.navigation-drawer--open.navigation-drawer--right + .toolbar
-  //  width calc(75% + 16px)
+  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+    margin-left calc(25% - 16px)
 
-  //.navigation-drawer--right
-  //  width calc(25% - 16px)
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+    padding-right calc(25% - 16px)
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
+    padding-left calc(25% - 16px)
+
+  .navigation-drawer--persistent
+    width calc(25% - 16px)
 
 @media $display-breakpoints.xl-only
   .navigation-drawer--open.navigation-drawer--right ~ main

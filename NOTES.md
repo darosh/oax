@@ -29,6 +29,12 @@
 * https://api.apis.guru/v2/specs/googleapis.com/books/v1/swagger.yaml
 * https://api.apis.guru/v2/specs/github.com/v3/swagger.json
 
+## Tools
+
+* https://material.io/resizer/
+* npm install -g ngrok
+* ngrok http 8080
+
 ## Dev notes
 
 - [x] Swipe down to refresh, this is probably not an issue?
