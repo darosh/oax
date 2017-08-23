@@ -9,7 +9,7 @@
       v-btn(v-if="!searching" icon @click.native.stop="searchBegin" v-tooltip:bottom="{html: 'Filter'}")
         v-icon search
       v-toolbar-items(:style="!searching ? 'width: 0' : 'width: 208px'")
-        v-text-field(id="search" append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
+        v-text-field(id="search" hide-details append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
       v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
         v-icon keyboard_arrow_down
       v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")

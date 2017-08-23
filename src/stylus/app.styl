@@ -32,15 +32,20 @@ html, body, .application, main
     margin-top $toolbar-mobile-landscape-height
     height "calc(100vh - %s)" % $toolbar-mobile-landscape-height
 
-  //.toolbar__items .input-group
-  //  padding-bottom 0
-  //  position relative
-  //  top -10px
+  .toolbar__items .input-group
+    position relative
+    top -8px
+    //top ($toolbar-mobile-landscape-height/2 - $toolbar-height/2)
 
 @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
   .toolbar--fixed + main
     margin-top $toolbar-mobile-portrait-height
     height "calc(100vh - %s)" % $toolbar-mobile-portrait-height
+
+  .toolbar__items .input-group
+    position relative
+    top -4px
+    //top ($toolbar-mobile-portrait-height/2 - $toolbar-height/2)
 
 .dialog__content
   z-index 11
