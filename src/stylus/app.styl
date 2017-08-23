@@ -24,8 +24,8 @@ html, body, .application, main
   margin-top $toolbar-height
   height "calc(100vh - %s)" % $toolbar-height
 
-//.application > main > .container
-//  min-height calc(100vh - $toolbar-height)
+.application > main > .container
+  min-height 0
 
 @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
   .toolbar--fixed + main
