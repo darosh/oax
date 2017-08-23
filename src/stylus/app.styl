@@ -117,3 +117,7 @@ pre
 @media all and (max-width: $grid-breakpoints.sm)
   .layout
     margin 0
+
+@media $display-breakpoints.xs-only
+  .toolbar__content>:not(.btn):last-child
+    margin-right 7px
