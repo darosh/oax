@@ -103,7 +103,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'api',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css,png,ico,svg}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
       stripPrefix: 'dist/',
       runtimeCaching: [
