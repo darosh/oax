@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
+  app-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :disable-route-watcher="true" :touchless="true")
     v-toolbar.elevation-0(style="background-color: transparent")
-      v-btn(icon @click.stop="SET_MENU()")
+      v-btn(icon @click.stop="SET_MENU(false)")
         v-icon close
       v-toolbar-title Specification
     v-divider
@@ -37,8 +37,12 @@
 <script>
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../store/types'
+  import appNavigationDrawer from './AppNavigationDrawer'
 
   export default {
+    components: {
+      appNavigationDrawer
+    },
     data () {
       return {
         search: null,
@@ -51,6 +55,7 @@
     computed: {
       ...mapGetters([
         types.MENU,
+        types.IS_API,
         types.URL,
         types.APIS,
         types.PROXY,
@@ -58,8 +63,10 @@
         types.VERSION
       ]),
       menu: {
-        get () { return this.MENU },
-        set (value) { this.SET_MENU(value) }
+        get () { return this.MENU && this.IS_API },
+        set (value) {
+          this.SET_MENU(!!value)
+        }
       },
       url: {
         get () {

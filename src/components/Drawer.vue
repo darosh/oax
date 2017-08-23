@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
+  app-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
     div(style="height: 100%; overflow: auto")
       app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>
@@ -10,10 +10,12 @@
   import * as types from '../store/types'
 
   import appDetail from './panels/Detail'
+  import appNavigationDrawer from './AppNavigationDrawer'
 
   export default {
     components: {
-      appDetail
+      appDetail,
+      appNavigationDrawer
     },
     computed: {
       ...mapGetters([
