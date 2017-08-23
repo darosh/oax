@@ -1,14 +1,37 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(temporary v-model="menu")
+  v-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
     v-toolbar.elevation-0(style="background-color: transparent")
       v-btn(icon @click.stop="SET_MENU()")
         v-icon close
+      v-toolbar-title Specification
     v-divider
-    .pl-3.pr-3.pt-3
-      v-text-field(label="Spec URL" v-model="url" prepend-icon="link")
-      v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")
-      v-text-field(label="Spec" multi-line :rows="1" prepend-icon="code")
-      v-text-field(label="Proxy" v-model="proxy" prepend-icon="security")
+    v-tabs.app--tabs(:scrollable="false")
+      v-tabs-bar.tabs--transparent(slot="activators")
+        v-tabs-item(ripple href="tab-url") URL
+        v-tabs-item.relative(ripple href="tab-json") Edit
+        v-tabs-item.relative(ripple href="tab-dir") Directory
+        v-tabs-slider
+      v-tabs-content#tab-url
+        v-divider
+        .pl-3.pr-3.pt-3
+          v-text-field(label="URL" v-model="url" multi-line auto-grow rows="3")
+      v-tabs-content#tab-json
+        v-divider
+        .pl-3.pr-3.pt-3
+          v-text-field(label="JSON" multi-line :rows="7")
+      v-tabs-content#tab-dir
+        v-divider
+        .pl-3.pr-3.pt-3
+          v-text-field(label="Search" v-model="filter" hide-details prepend-icon="search")
+          <!--v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")-->
+        v-divider
+        v-list.pa-0(two-line style="overflow-y: auto; height: calc(100vh - 199px)")
+          div(v-for="item in APIS", :key="item.key" v-if="!filter ? true : (item.key.indexOf(filter) > -1 || item.title.indexOf(filter) > -1)")
+            v-list-tile(@click="url = item.url" tag="div")
+              v-list-tile-content
+                v-list-tile-title {{item.title}}
+                v-list-tile-sub-title {{item.key}}
+            v-divider
 </template>
 
 <script>
@@ -18,7 +41,8 @@
   export default {
     data () {
       return {
-        search: null
+        search: null,
+        filter: null
       }
     },
     created () {

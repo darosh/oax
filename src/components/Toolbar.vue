@@ -2,7 +2,7 @@
   v-toolbar(fixed)
     template(v-if="IS_API")
       v-btn(icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
-        v-icon menu
+        v-icon edit
       v-toolbar-title.hidden-xs-only(v-if="SPEC && SPEC.info", :class="searching ? 'hidden-sm-and-down' : ''") {{SPEC.info.title}}
       v-toolbar-title.hidden-sm-and-up(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer

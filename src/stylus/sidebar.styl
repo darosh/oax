@@ -1,69 +1,79 @@
 main
   margin-right 0
-  //transition margin-right 0s linear $right-delay
-  transition none
-  will-change margin-right
+  margin-left 0
+  transition margin 0s linear $right-delay
+  will-change margin
 
 .toolbar
-  width 100%
+  //width 100%
   //transition WIDTH 0s linear $right-delay
-  transition none
-  will-change WIDTH
+  //transition none
+  //will-change WIDTH
 
 .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
   padding-right 0
   transition margin 0s linear $right-delay-out
 
-.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-  padding-right 0
-  transition WIDTH 0s linear $right-delay-out
+.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right) ~ main
+  padding-left 0
+  //transition margin 0s linear $right-delay-out
+
+//.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+//.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+  //padding-right 0
+  //padding-left 0
+  //transition WIDTH 0s linear $right-delay-out
 
 .navigation-drawer--close:not(.navigation--permanent).navigation-drawer--right
   transform translate3d(100%, 0, 0)
 
+.navigation-drawer--close:not(.navigation--permanent).navigation-drawer:not(.navigation-drawer--right)
+  transform translate3d(-100%, 0, 0)
+
 .navigation-drawer--open:not(.navigation--permanent).navigation-drawer--right
+.navigation-drawer--open:not(.navigation--permanent):not(.navigation-drawer--right)
   transform translate3d(0, 0, 0)
 
 @media $display-breakpoints.sm-only
-  //.navigation-drawer--open.navigation-drawer--right ~ main
-  //  margin-right calc(50% - 20px)
-
-  //.navigation-drawer--open.navigation-drawer--right + .toolbar
-  //  width calc(50% + 20px)
-
   .navigation-drawer--right
     width calc(50%)
 
 @media $display-breakpoints.md-only
-  .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right calc(33.33% - 16px)
+  //.navigation-drawer--open.navigation-drawer--right ~ main
+  //  margin-right calc(33.33% - 16px)
 
-  .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width calc(66.67% + 16px)
+  //.navigation-drawer--open.navigation-drawer--right + .toolbar
+  //  width calc(66.67% + 16px)
 
-  .navigation-drawer--right
-    width calc(33.33% - 16px)
+  //.navigation-drawer--right
+  //  width calc(33.33% - 16px)
 
 @media $display-breakpoints.lg-and-up
-  .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right calc(25% - 16px)
+  //.navigation-drawer--open.navigation-drawer--right ~ main
+  //  margin-right calc(25% - 16px)
 
-  .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width calc(75% + 16px)
+  //.navigation-drawer--open.navigation-drawer--right + .toolbar
+  //  width calc(75% + 16px)
 
-  .navigation-drawer--right
-    width calc(25% - 16px)
+  //.navigation-drawer--right
+  //  width calc(25% - 16px)
 
 @media $display-breakpoints.xl-only
   .navigation-drawer--open.navigation-drawer--right ~ main
     margin-right calc(20% - 16px)
 
-  .navigation-drawer--open.navigation-drawer--right + .toolbar
-    width calc(80% + 16px)
+  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+    margin-left calc(20% - 16px)
 
-  .navigation-drawer--right
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+    padding-right calc(20% - 16px)
+
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
+    padding-left calc(20% - 16px)
+
+  .navigation-drawer--persistent
     width calc(20% - 16px)
 
-.navigation-drawer--right.navigation-drawer--is-mobile
+.navigation-drawer--is-mobile
   width 480px
   max-width 100%

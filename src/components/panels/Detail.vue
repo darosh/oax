@@ -75,16 +75,6 @@
 </script>
 
 <style scoped lang="stylus">
-  .tabs--transparent
-    background-color transparent
-
-  .app--tabs >>> .tabs__items
-    border-width 0 !important
-
-  * >>> pre
-    font-family "Roboto Mono", monospace
-    font-size 12px
-
   * >>> .expansion-panel > li
     border-left none
     border-right none

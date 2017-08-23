@@ -19,18 +19,19 @@ export const actions = {
 
     yqlProxy(LIST).then(res => {
       const data = res.data.query.results.json
-      for (let a in data) {
-        const versions = Object.keys(data[a].versions)
-        versions.sort()
-        let v = data[a].versions[versions[0]]
 
-        let title = (v.info && v.info.title) || a
+      for (let key in data) {
+        const versions = Object.keys(data[key].versions)
+        versions.sort()
+        let v = data[key].versions[versions[0]]
+
+        let title = (v.info && v.info.title) || key
         let url = v.swaggerUrl
 
-        apis.push({title, url})
+        apis.push({title, key, url})
       }
 
-      apis.sort((a, b) => a.title.localeCompare(b.title))
+      apis.sort((a, b) => a.key.localeCompare(b.key))
 
       commit(types.SET_APIS, apis)
     })
