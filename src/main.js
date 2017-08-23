@@ -9,9 +9,12 @@ import * as types from './store/types'
 import { sync } from 'vuex-router-sync'
 import configuration from './services/configuration'
 
+import VueVirtualScroller from 'vue-virtual-scroller'
+
 sync(store, router)
 
 Vue.use(Vuetify)
+Vue.use(VueVirtualScroller)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

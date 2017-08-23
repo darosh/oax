@@ -27,8 +27,9 @@ export const actions = {
 
         let title = (v.info && v.info.title) || key
         let url = v.swaggerUrl
+        let bookmark = false
 
-        apis.push({title, key, url})
+        apis.push({title, key, url, bookmark})
       }
 
       apis.sort((a, b) => a.key.localeCompare(b.key))

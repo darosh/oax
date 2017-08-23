@@ -25,22 +25,28 @@
           v-text-field(label="Search" v-model="filter" hide-details prepend-icon="search")
           <!--v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")-->
         v-divider
-        v-list.pa-0(two-line style="overflow-y: auto; height: calc(100vh - 199px)")
-          div(v-for="item in APIS", :key="item.key" v-if="!filter ? true : (item.key.indexOf(filter) > -1 || item.title.indexOf(filter) > -1)")
-            v-list-tile(@click="url = item.url" tag="div")
-              v-list-tile-content
-                v-list-tile-title {{item.title}}
-                v-list-tile-sub-title {{item.key}}
-            v-divider
+        v-list.pa-0(two-line)
+          virtual-scroller.scroller(:items="APIS", item-height="73" prerender="20")
+            template(scope="props")
+              v-list-tile(:key="props.itemKey", @click="url = props.item.url", tag="div")
+                v-list-tile-content
+                  v-list-tile-title {{props.item.title}}
+                  v-list-tile-sub-title {{props.item.key}}
+                v-list-tile-action
+                  v-btn(icon @click="props.item.bookmark = !props.item.bookmark")
+                    v-icon {{props.item.bookmark ? 'star' : 'star_outline'}}
+              v-divider
 </template>
 
 <script>
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../store/types'
   import appNavigationDrawer from './AppNavigationDrawer'
+  import ListTileAction from 'vuetify/src/components/lists/VListTileAction'
 
   export default {
     components: {
+      ListTileAction,
       appNavigationDrawer
     },
     data () {
@@ -113,3 +119,8 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .scroller
+    height calc(100vh - 199px)
+</style>
