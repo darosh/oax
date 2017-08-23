@@ -43,7 +43,7 @@ export function closeMoreTags(spec: ISpecExtended) {
 }
 
 export function tagByPath(spec: ISpecExtended) {
-  const rx = /^\/?([^\/]+).*$/;
+  const rx = /^\/?([^\/?]+).*$/;
 
   for (const pathName in spec.paths) {
     if (spec.paths.hasOwnProperty(pathName)) {
