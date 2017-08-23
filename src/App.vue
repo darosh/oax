@@ -4,7 +4,7 @@
     app-menu
     app-drawer
     app-toolbar
-    main(role="main")
+    main
       router-view
 </template>
 
@@ -62,7 +62,7 @@
     background lighten($material-twelve-percent-dark, 50%)
     border 1px solid $material-twelve-percent-dark
     border-radius 6px !important
-    max-height 360px
+    max-height calc((100vh - 64px) / 4)
     overflow auto
     scroll auto
 
