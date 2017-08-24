@@ -130,3 +130,14 @@ pre
 
 .relative
   position relative
+
+
+.toolbar--scroll
+  overflow auto
+  height 'calc(100vh - %s)' % $toolbar-height
+
+  @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+    height 'calc(100vh - %s)' % $toolbar-mobile-portrait-height
+
+  @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+    height 'calc(100vh - %s)' % $toolbar-mobile-landscape-height
