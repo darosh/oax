@@ -98,6 +98,8 @@ export const actions = {
         spec: res.bundled,
         metas: res.bundled._metas
       })
+
+      commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
     }).catch((err) => {
       commit(types.SET_LOADING, false)
       commit(types.SET_ERROR, err)

@@ -34,7 +34,16 @@
               v-divider
       v-tabs-content#tab-recent
         v-divider
-        | Not implemented yet!
+        v-list.pa-0(two-line)
+          virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20")
+            template(scope="props")
+              v-list-tile(:key="props.itemKey", @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                v-list-tile-avatar
+                  .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                v-list-tile-content
+                  v-list-tile-title {{props.item.title}}
+                  v-list-tile-sub-title {{key(props.item)}}
+              v-divider
 </template>
 
 <script>
@@ -68,7 +77,7 @@
         types.APIS,
         types.PROXY,
         types.IS_DARK,
-        types.VERSION
+        types.RECENT
       ]),
       menu: {
         get () { return this.MENU && this.IS_API },
@@ -123,6 +132,9 @@
             return item.key.indexOf(this.filter) > -1 || item.title.indexOf(this.filter) > -1
           })
         }
+      },
+      key (item) {
+        return !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '?')
       }
     },
     watch: {
@@ -141,6 +153,7 @@
 
   $margin-scroll := 127px
   $margin-edit := 200px
+  $margin-recent := 49px
 
   .scroller
     height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height)
@@ -165,4 +178,13 @@
 
     @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
       height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
+
+  >>> .scroller-recent
+    height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-portrait-height)
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-landscape-height)
 </style>
