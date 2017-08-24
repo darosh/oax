@@ -4,29 +4,26 @@
       v-btn(icon @click.stop="SET_MENU(false)")
         v-icon close
       v-toolbar-title Specification
-    v-divider
+    //v-divider
     v-tabs.app--tabs(:scrollable="false")
       v-tabs-bar.tabs--transparent(slot="activators")
-        v-tabs-item(ripple href="tab-url") URL
         v-tabs-item.relative(ripple href="tab-json") Edit
         v-tabs-item.relative(ripple href="tab-dir") Directory
+        v-tabs-item.relative(ripple href="tab-recent") Recent
         v-tabs-slider
-      v-tabs-content#tab-url
-        v-divider
-        .pl-3.pr-3.pt-3
-          v-text-field(label="URL" v-model="url" multi-line auto-grow rows="3")
       v-tabs-content#tab-json
         v-divider
         .pl-3.pr-3.pt-3
-          v-text-field(label="JSON" multi-line :rows="7")
+          v-text-field(label="URL" v-model="url" solo single-line hide-details prepend-icon="link")
+          v-layout.ma-0
+            v-radio.pt-4.pb-0.ml-1(v-for="i in formats", :key="i.text" v-model="format", :label="i.text", :value="i.value", color="primary" hide-details)
+          v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)
       v-tabs-content#tab-dir
         v-divider
         v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
           v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search")
-          v-btn.ml-4(icon)
-            v-icon.primary--text star_outline
         v-list.pa-0(two-line)
-          virtual-scroller.scroller(:items="APIS", item-height="73" prerender="20")
+          virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20")
             template(scope="props")
               v-list-tile(:key="props.itemKey", @click="url = props.item.url", tag="div")
                 v-list-tile-avatar
@@ -34,10 +31,10 @@
                 v-list-tile-content
                   v-list-tile-title {{props.item.title}}
                   v-list-tile-sub-title {{props.item.key}}
-                v-list-tile-action
-                  v-btn(icon @click="props.item.bookmark = !props.item.bookmark")
-                    v-icon {{props.item.bookmark ? 'star' : 'star_outline'}}
               v-divider
+      v-tabs-content#tab-recent
+        v-divider
+        | Not implemented yet!
 </template>
 
 <script>
@@ -52,16 +49,20 @@
     },
     data () {
       return {
-        search: null,
-        filter: null
+        filter: null,
+        formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
+        format: 1,
+        spec: ''
       }
     },
     created () {
       this.LOAD_APIS()
+      this.spec = JSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
     },
     computed: {
       ...mapGetters([
         types.MENU,
+        types.SPEC,
         types.IS_API,
         types.URL,
         types.APIS,
@@ -112,9 +113,21 @@
         types.LOAD_URL,
         types.LOAD_APIS
       ]),
-      getColor
+      getColor,
+      filtered () {
+        if (!this.filter) {
+          return this.APIS
+        } else {
+          return this.APIS.filter(item => {
+            return item.key.indexOf(this.filter) > -1 || item.title.indexOf(this.filter) > -1
+          })
+        }
+      }
     },
     watch: {
+      SPEC: function (value) {
+        this.spec = JSON.stringify(value || '', null, 2).substr(0, 3000)
+      },
       search: function (value) {
         this.url = value
       }
@@ -125,18 +138,30 @@
 <style scoped lang="stylus">
   @import '../stylus/variables'
 
+  $margin-scroll := 129px
+  $margin-edit := 199px
+
   .scroller
-    height 'calc(100vh - 130px - %s)' % $toolbar-height
+    height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height)
 
     @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - 130px - %s)' % $toolbar-mobile-portrait-height
+      height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-portrait-height)
 
     @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - 130px - %s)' % $toolbar-mobile-landscape-height
+      height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-landscape-height)
 
   >>> .input-group--solo .input-group__details
     display none
 
   >>> .input-group--prepend-icon.input-group--solo label
     margin-left 42px
+
+  >>> textarea
+    height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-portrait-height)
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
 </style>
