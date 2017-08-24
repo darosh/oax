@@ -23,27 +23,29 @@
         v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
           v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search")
         v-list.pa-0(two-line)
-          virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20")
+          virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
             template(scope="props")
-              v-list-tile(:key="props.itemKey", @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
-                v-list-tile-avatar
-                  .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
-                v-list-tile-content
-                  v-list-tile-title {{props.item.title}}
-                  v-list-tile-sub-title {{props.item.key}}
-              v-divider
+              div(:key="props.itemKey")
+                v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                  v-list-tile-avatar
+                    .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
+                  v-list-tile-content
+                    v-list-tile-title {{props.item.title}}
+                    v-list-tile-sub-title {{props.item.key}}
+                v-divider
       v-tabs-content#tab-recent
         v-divider
         v-list.pa-0(two-line)
-          virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20")
+          virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20" key-field="url")
             template(scope="props")
-              v-list-tile(:key="props.itemKey", @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
-                v-list-tile-avatar
-                  .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
-                v-list-tile-content
-                  v-list-tile-title {{props.item.title}}
-                  v-list-tile-sub-title {{key(props.item)}}
-              v-divider
+              div(:key="props.itemKey")
+                v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                  v-list-tile-avatar
+                    .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                  v-list-tile-content
+                    v-list-tile-title {{props.item.title}}
+                    v-list-tile-sub-title {{key(props.item)}}
+                v-divider
 </template>
 
 <script>
@@ -135,14 +137,14 @@
       },
       key (item) {
         return !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '?')
+      },
+      recent () {
+        return this.RECENT.slice()
       }
     },
     watch: {
       SPEC: function (value) {
         this.spec = JSON.stringify(value || '', null, 2).substr(0, 3000)
-      },
-      search: function (value) {
-        this.url = value
       }
     }
   }
