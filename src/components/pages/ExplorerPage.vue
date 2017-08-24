@@ -13,11 +13,11 @@
           v-flex
             h2.pa-0.mb-0.headline(v-if="SPEC && SPEC.info && SPEC.info.title") {{SPEC.info.title}}
           v-flex.md(v-if="SPEC && SPEC.info && SPEC.info.description" v-html="md(SPEC.info)")
-        .hidden-xs-only.mt-3(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
+        .hidden-xs-only.mt-5(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
           v-divider(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
       app-meta-list(:metas="METAS")
-    app-resource-list(v-if="IS_GROUPED === 0")
-    app-operation-list(v-else-if="IS_GROUPED === 1")
+    app-resource-list(:class="{wide: IS_WIDE}" v-if="IS_GROUPED === 0")
+    app-operation-list(:class="{wide: IS_WIDE}" v-else-if="IS_GROUPED === 1")
     app-operation-table(v-else-if="IS_GROUPED === 2")
     app-documentation(v-else)
     app-method-dialog
@@ -52,6 +52,7 @@
         types.ERROR,
         types.LOADING,
         types.IS_GROUPED,
+        types.IS_WIDE,
         types.OPERATIONS,
         types.RESOURCES,
         types.SPEC,

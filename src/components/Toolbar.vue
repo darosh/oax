@@ -19,6 +19,7 @@
         v-menu.hidden-xs-only(bottom left)
           v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
             v-icon {{['view_column', 'view_module', 'view_stream', 'view_quilt'][IS_GROUPED]}}
+            //v-icon view_quilt
           v-list(subheader)
             v-subheader View
             v-list-tile(@click.native="TOGGLE_GROUPED(0)")
@@ -49,8 +50,25 @@
                 v-list-tile-title Documentation
               v-list-tile-action(v-if="IS_GROUPED === 3")
                 v-icon check
-        v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
-          v-icon lock
+            v-divider
+            v-subheader Layout
+            v-list-tile(@click.native="TOGGLE_WIDE()")
+              v-list-tile-action
+                v-icon short_text
+              v-list-tile-content
+                v-list-tile-title Wide
+              v-list-tile-action(v-if="IS_WIDE")
+                v-icon check
+            v-list-tile(@click.native="TOGGLE_WIDE()")
+              v-list-tile-action
+                v-icon wrap_text
+              v-list-tile-content
+                v-list-tile-title Condensed
+              v-list-tile-action(v-if="!IS_WIDE")
+                v-icon check
+
+      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
+        v-icon lock
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
@@ -160,7 +178,8 @@
         types.URL,
         types.SPEC,
         types.PAGE_NAME,
-        types.SEARCH
+        types.SEARCH,
+        types.IS_WIDE
       ]),
       search: {
         get () {
@@ -176,6 +195,7 @@
       ...mapMutations([
         types.TOGGLE_DARK,
         types.TOGGLE_GROUPED,
+        types.TOGGLE_WIDE,
         types.TOGGLE_DESCRIPTION,
         types.SET_DIALOG,
         types.SET_SEARCH,
