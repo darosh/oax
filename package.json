@@ -1,6 +1,6 @@
 {
   "name": "oas-ui",
-  "version": "1.0.57",
+  "version": "1.0.59",
   "description": "OpenAPI Specification Explorer",
   "author": "Jan Forst <ensonador@gmail.com>",
   "private": true,
