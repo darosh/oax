@@ -1,5 +1,5 @@
 export class Configuration {
-  public url: string = 'https://api.apis.guru/v2/specs/github.com/v3/swagger.yaml';
+  public url: string = 'https://api.apis.guru/v2/specs/github.com/v3/swagger.json';
   public defaultTitle: string = 'API';
   public defaultDarkTheme: boolean = false;
 

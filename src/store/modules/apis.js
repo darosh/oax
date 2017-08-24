@@ -5,7 +5,7 @@ import axios from 'axios'
 const LIST = 'https://api.apis.guru/v2/list.json'
 
 export const state = {
-  apis: []
+  apis: null
 }
 
 export const mutations = {
@@ -42,9 +42,8 @@ export const actions = {
 
         let title = (v.info && v.info.title) || key
         let url = v.swaggerUrl
-        let bookmark = false
 
-        apis.push({title, key, url, bookmark})
+        apis.push({title, key, url})
       }
 
       apis.sort((a, b) => a.key.localeCompare(b.key))

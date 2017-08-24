@@ -22,7 +22,7 @@
         v-divider
         v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
           v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search")
-        v-list.pa-0(two-line)
+        v-list.pa-0(two-line v-if="APIS")
           virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
             template(scope="props")
               div(:key="props.itemKey")
@@ -41,7 +41,8 @@
               div(:key="props.itemKey")
                 v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
                   v-list-tile-avatar
-                    .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                    .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                    v-icon(v-else class="secondary white--text") link
                   v-list-tile-content
                     v-list-tile-title {{props.item.title}}
                     v-list-tile-sub-title {{key(props.item)}}
@@ -53,6 +54,7 @@
   import * as types from '../../store/types'
   import appNavigationDrawer from './NavigationDrawer'
   import {getColor} from 'random-material-color'
+  import Vue from 'vue'
 
   export default {
     components: {
@@ -63,7 +65,9 @@
         filter: null,
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
-        spec: ''
+        spec: '',
+        keys: {},
+        apis: false
       }
     },
     created () {
@@ -136,15 +140,33 @@
         }
       },
       key (item) {
-        return !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '?')
-      },
-      recent () {
-        return this.RECENT.slice()
+        if (this.keys[item.url]) {
+          return this.keys[item.url]
+        } else {
+          const val = !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '')
+          Vue.set(this.keys, item.url, val)
+
+          return this.keys[item.url]
+        }
       }
     },
     watch: {
       SPEC: function (value) {
         this.spec = JSON.stringify(value || '', null, 2).substr(0, 3000)
+      },
+      APIS: function () {
+        if (this.apis) {
+          return
+        }
+
+        this.apis = true
+//        const link = document.createElement('a')
+
+        for (const k in this.keys) {
+          if (this.keys[k] === '?') {
+            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key /* || (link.setAttribute('href', k), link.hostname) */
+          }
+        }
       }
     }
   }
