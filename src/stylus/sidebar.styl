@@ -40,53 +40,55 @@ main
   .navigation-drawer--right
     width calc(50%)
 
+$delta := 13px
+
 @media $display-breakpoints.md-only
   .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right calc(33.33% - 16px)
+    margin-right 'calc(33.33% - %s)' % $delta
 
   .navigation-drawer--open:not(.navigation-drawer--right) ~ main
-    margin-left calc(33.33% - 16px)
+    margin-left 'calc(33.33% - %s)' % $delta
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    padding-right calc(33.33% - 16px)
+    padding-right 'calc(33.33% - %s)' % $delta
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
-    padding-left calc(33.33% - 16px)
+    padding-left 'calc(33.33% - %s)' % $delta
 
   .navigation-drawer--persistent
-    width calc(33.33% - 16px)
+    width 'calc(33.33% - %s)' % $delta
 
 @media $display-breakpoints.lg-and-up
   .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right calc(25% - 16px)
+    margin-right 'calc(25% - %s)' % $delta
 
   .navigation-drawer--open:not(.navigation-drawer--right) ~ main
-    margin-left calc(25% - 16px)
+    margin-left 'calc(25% - %s)' % $delta
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    padding-right calc(25% - 16px)
+    padding-right 'calc(25% - %s)' % $delta
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
-    padding-left calc(25% - 16px)
+    padding-left 'calc(25% - %s)' % $delta
 
   .navigation-drawer--persistent
-    width calc(25% - 16px)
+    width 'calc(25% - %s)' % $delta
 
 @media $display-breakpoints.xl-only
   .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right calc(20% - 16px)
+    margin-right 'calc(20% - %s)' % $delta
 
   .navigation-drawer--open:not(.navigation-drawer--right) ~ main
-    margin-left calc(20% - 16px)
+    margin-left 'calc(20% - %s)' % $delta
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    padding-right calc(20% - 16px)
+    padding-right 'calc(20% - %s)' % $delta
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
-    padding-left calc(20% - 16px)
+    padding-left 'calc(20% - %s)' % $delta
 
   .navigation-drawer--persistent
-    width calc(20% - 16px)
+    width 'calc(20% - %s)' % $delta
 
 .navigation-drawer--is-mobile
   width 480px
