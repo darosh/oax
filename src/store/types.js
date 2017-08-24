@@ -74,6 +74,13 @@ export const SET_APIS = 'SET_APIS'
 
 export const LOAD_APIS = 'LOAD_APIS'
 
+// recent
+
+export const RECENT = 'RECENT'
+
+export const RECENT_UNSHIFT = 'RECENT_UNSHIFT'
+export const RECENT_REMOVE = 'RECENT_REMOVE'
+
 // root
 
 export const VERSION = 'VERSION'

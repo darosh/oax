@@ -5,6 +5,7 @@ import plugins from './plugins'
 import getters from './getters'
 
 import * as apis from './modules/apis'
+import * as recent from './modules/recent'
 import * as view from './modules/view'
 import * as spec from './modules/spec'
 import * as ui from './modules/ui'
@@ -22,6 +23,7 @@ export default new Vuex.Store({
   plugins,
   modules: {
     apis,
+    recent,
     view,
     spec,
     ui,
