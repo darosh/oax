@@ -123,7 +123,15 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
+  @import '../stylus/variables'
+
   .scroller
-    height calc(100vh - 163px)
+    height 'calc(100vh - 99px - %s)' % $toolbar-height
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+      height 'calc(100vh - 99px - %s)' % $toolbar-mobile-portrait-height
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+      height 'calc(100vh - 99px - %s)' % $toolbar-mobile-landscape-height
 </style>
