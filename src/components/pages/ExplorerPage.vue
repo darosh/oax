@@ -1,9 +1,9 @@
 <template lang="pug">
   v-container(fluid :class="ERROR ? 'pa-0' : ''")
-    v-layout(v-if="LOADING")
+    v-layout.ma-0(v-if="LOADING" style="padding-top: calc(50vh - 64px)")
       v-spacer
-      v-progress-circular.mt-1(indeterminate size="48" class="primary--text")
-      .title.primary--text.ml-2.mt-3(v-if="LOADING && typeof (LOADING === 'string')") {{LOADING}}&hellip;
+      v-progress-circular(indeterminate :width="4", :size="28" class="primary--text")
+      .subheading.secondary--text.ml-2(style="margin-top: 2px" v-if="LOADING && typeof (LOADING === 'string')") {{LOADING}}&hellip;
       v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
@@ -16,7 +16,7 @@
           v-flex.md(v-if="SPEC && SPEC.info && SPEC.info.description" v-html="md(SPEC.info)")
         .hidden-xs-only.mt-5(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
           v-divider(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
-      app-meta-list(:metas="METAS")
+      app-meta-list(v-if="METAS", :metas="METAS")
     app-resource-list(:class="{wide: IS_WIDE}" v-if="IS_GROUPED === 0")
     app-operation-list(:class="{wide: IS_WIDE}" v-else-if="IS_GROUPED === 1")
     app-operation-table(v-else-if="IS_GROUPED === 2")
