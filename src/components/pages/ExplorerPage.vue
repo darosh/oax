@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
 
   import {md} from '../../services/md'
@@ -53,7 +53,17 @@
       ])
     },
     methods: {
+      ...mapActions([
+        types.LOAD_URL
+      ]),
       md
+    },
+    watch: {
+      $route: function (value) {
+        if (value.query.url) {
+          this.LOAD_URL(value.query.url)
+        }
+      }
     }
   }
 </script>

@@ -67,7 +67,11 @@ export const mutations = {
 }
 
 export const actions = {
-  [types.LOAD_URL] ({commit}, url) {
+  [types.LOAD_URL] ({commit, getters}, url) {
+    if (url === getters[types.URL]) {
+      return
+    }
+
     commit(types.SET_ERROR, null)
     commit(types.SET_LOADING, true)
     commit(types.SET_URL, url)
