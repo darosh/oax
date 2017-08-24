@@ -1,33 +1,18 @@
 <template lang="pug">
   v-expansion-panel(expand :class="IS_DARK ? 'application--dark' : 'application--light'")
-    v-expansion-panel-content(v-if="item.description" v-model="exp1", ripple)
-      div.subheading(slot="header") Description
+    v-expansion-panel-content(v-model="exp1", ripple)
+      div.subheading(slot="header") Settings
       v-divider
-      v-card.pa-3.md(v-html="md(item)")
+      v-card.pt-2.pb-0
+        .pl-3.pr-3
+          v-select.no-details(:items="SPEC.schemes" v-model="SPEC._scheme", :disabled="SPEC.schemes.length === 1" label="Scheme")
+        .pl-3.pr-3
+          v-select.no-details(:items="item.produces" v-model="item._produces", :disabled="item.produces.length === 1"  label="Response type")
     v-expansion-panel-content(v-model="exp2", ripple)
-      div.subheading(slot="header") Responses
+      div.subheading(slot="header") Parameters
       v-divider
-      v-card.pb-3
-        div.pt-3(v-for="(response, code) in item.responses", :key="code")
-          .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
-            app-response-block(:code="code", :text="md(response)")
-          div(v-if="response.schema")
-
-            pre.app-pre.ml-3.mr-3.pa-1.mt-1
-              v-layout.ma-0
-                v-spacer
-                v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(:items="schemaViews" v-model="schemaView")
-              app-model(:item="response.schema" v-if="schemaView === 2")
-              app-example(:item="response.schema" v-else)
-    <!--v-expansion-panel-content(v-model="exp3", ripple)-->
-      <!--div.subheading(slot="header") Parameters-->
-      //v-divider
-      //v-card.pt-2.pb-2
-      //  .pl-3.pr-3
-      //    v-select.no-details(:items="SPEC.schemes" v-model="SPEC._scheme", :disabled="SPEC.schemes.length === 1" label="Scheme")
-      //  .pl-3.pr-3
-      //    v-select.no-details(:items="item.produces" v-model="item._produces", :disabled="item.produces.length === 1"  label="Response type")
-      //  app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
+      v-card.pt-2.pb-2
+        app-parameter.pl-3.pr-3(:item="parameter" v-for="(parameter, parameterIndex) in item.parameters", :key="parameterIndex")
 </template>
 
 <script>
@@ -39,7 +24,7 @@
 
   import appModel from '../Model'
   import appExample from '../Example'
-//  import appParameter from '../Parameter'
+  import appParameter from '../Parameter'
   import appResponseBlock from '../elements/ResponseBlock'
 
   import { md } from '../../services/md'
@@ -49,7 +34,7 @@
     components: {
       appModel,
       appExample,
-//      appParameter,
+      appParameter,
       appResponseBlock
     },
     created () {
@@ -65,7 +50,6 @@
         schemaViewInternal: 1,
         exp1: true,
         exp2: true
-//        exp3: true
       }
     },
     computed: {
