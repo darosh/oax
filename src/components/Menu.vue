@@ -21,14 +21,17 @@
           v-text-field(label="JSON" multi-line :rows="7")
       v-tabs-content#tab-dir
         v-divider
-        .pl-3.pr-3.pt-3
-          v-text-field(label="Search" v-model="filter" hide-details prepend-icon="search")
-          <!--v-select(:items="APIS" item-text="title" item-value="url" v-model="search" label="Search APIs.guru" autocomplete prepend-icon="search")-->
+        v-toolbar.elevation-0(dense style="background-color: transparent")
+          v-btn(icon)
+            v-icon star_outline
+          v-text-field.pb-3(label="Search" v-model="filter" hide-details single-line prepend-icon="search")
         v-divider
         v-list.pa-0(two-line)
           virtual-scroller.scroller(:items="APIS", item-height="73" prerender="20")
             template(scope="props")
               v-list-tile(:key="props.itemKey", @click="url = props.item.url", tag="div")
+                v-list-tile-avatar
+                  .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
                 v-list-tile-content
                   v-list-tile-title {{props.item.title}}
                   v-list-tile-sub-title {{props.item.key}}
@@ -42,11 +45,10 @@
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../store/types'
   import appNavigationDrawer from './AppNavigationDrawer'
-  import ListTileAction from 'vuetify/src/components/lists/VListTileAction'
+  import {getColor} from 'random-material-color'
 
   export default {
     components: {
-      ListTileAction,
       appNavigationDrawer
     },
     data () {
@@ -110,7 +112,8 @@
       ...mapActions([
         types.LOAD_URL,
         types.LOAD_APIS
-      ])
+      ]),
+      getColor
     },
     watch: {
       search: function (value) {
@@ -122,5 +125,5 @@
 
 <style lang="stylus">
   .scroller
-    height calc(100vh - 199px)
+    height calc(100vh - 163px)
 </style>

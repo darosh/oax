@@ -1,6 +1,6 @@
 {
   "name": "oas-ui",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "description": "OpenAPI Specification Explorer",
   "author": "Jan Forst <ensonador@gmail.com>",
   "private": true,
@@ -24,6 +24,7 @@
     "axios": "^0.16.2",
     "intersection-observer": "^0.4.0",
     "json-schema-bundler": "0.0.2",
+    "random-material-color": "^1.0.3",
     "showdown": "^1.7.2",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
