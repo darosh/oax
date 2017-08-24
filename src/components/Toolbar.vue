@@ -3,98 +3,99 @@
     template(v-if="IS_API")
       v-btn(icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
-      v-toolbar-title.hidden-xs-only(v-if="SPEC && SPEC.info", :class="searching ? 'hidden-sm-and-down' : ''") {{SPEC.info.title}}
-      v-toolbar-title.hidden-sm-and-up(:class="searching ? 'hidden-sm-and-down' : ''") API
+      v-toolbar-title(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer
-      v-btn(v-if="!searching" icon @click.native.stop="searchBegin" v-tooltip:bottom="{html: 'Filter'}")
-        v-icon search
-      v-toolbar-items(:style="!searching ? 'width: 0' : 'width: 208px'")
-        v-text-field(id="search" hide-details append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
-      v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
-        v-icon keyboard_arrow_down
-      v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
-        v-icon keyboard_arrow_up
-      v-btn.hidden-xs-only(v-if="IS_GROUPED < 2" icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide summary' : 'Show summary'}")
-        v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
-      v-menu.hidden-xs-only(bottom left)
-        v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
-          v-icon {{['view_column', 'view_module', 'view_stream', 'view_quilt'][IS_GROUPED]}}
-        v-list(subheader)
-          v-subheader View
-          v-list-tile(@click.native="TOGGLE_GROUPED(0)")
-            v-list-tile-action
-              v-icon view_column
-            v-list-tile-content
-              v-list-tile-title Groups
-            v-list-tile-action(v-if="IS_GROUPED === 0")
-              v-icon check
-          v-list-tile(@click.native="TOGGLE_GROUPED(1)")
-            v-list-tile-action
-              v-icon view_module
-            v-list-tile-content
-              v-list-tile-title List
-            v-list-tile-action(v-if="IS_GROUPED === 1")
-              v-icon check
-          v-list-tile(@click.native="TOGGLE_GROUPED(2)")
-            v-list-tile-action
-              v-icon view_stream
-            v-list-tile-content
-              v-list-tile-title Table
-            v-list-tile-action(v-if="IS_GROUPED === 2")
-              v-icon check
-          v-list-tile(@click.native="TOGGLE_GROUPED(3)")
-            v-list-tile-action
-              v-icon view_quilt
-            v-list-tile-content
-              v-list-tile-title Documentation
-            v-list-tile-action(v-if="IS_GROUPED === 3")
-              v-icon check
-      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
-        v-icon lock
+      template(v-if="SPEC")
+        v-btn(v-if="!searching" icon @click.native.stop="searchBegin" v-tooltip:bottom="{html: 'Filter'}")
+          v-icon search
+        v-toolbar-items(:style="!searching ? 'width: 0' : 'width: 208px'")
+          v-text-field(id="search" hide-details append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
+        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
+          v-icon keyboard_arrow_down
+        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
+          v-icon keyboard_arrow_up
+        v-btn.hidden-xs-only(v-if="IS_GROUPED < 2" icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide summary' : 'Show summary'}")
+          v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
+        v-menu.hidden-xs-only(bottom left)
+          v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
+            v-icon {{['view_column', 'view_module', 'view_stream', 'view_quilt'][IS_GROUPED]}}
+          v-list(subheader)
+            v-subheader View
+            v-list-tile(@click.native="TOGGLE_GROUPED(0)")
+              v-list-tile-action
+                v-icon view_column
+              v-list-tile-content
+                v-list-tile-title Groups
+              v-list-tile-action(v-if="IS_GROUPED === 0")
+                v-icon check
+            v-list-tile(@click.native="TOGGLE_GROUPED(1)")
+              v-list-tile-action
+                v-icon view_module
+              v-list-tile-content
+                v-list-tile-title List
+              v-list-tile-action(v-if="IS_GROUPED === 1")
+                v-icon check
+            v-list-tile(@click.native="TOGGLE_GROUPED(2)")
+              v-list-tile-action
+                v-icon view_stream
+              v-list-tile-content
+                v-list-tile-title Table
+              v-list-tile-action(v-if="IS_GROUPED === 2")
+                v-icon check
+            v-list-tile(@click.native="TOGGLE_GROUPED(3)")
+              v-list-tile-action
+                v-icon view_quilt
+              v-list-tile-content
+                v-list-tile-title Documentation
+              v-list-tile-action(v-if="IS_GROUPED === 3")
+                v-icon check
+        v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
+          v-icon lock
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
         v-list(subheader)
-          v-subheader.hidden-sm-and-up View
-          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(0)")
-            v-list-tile-action
-              v-icon view_column
-            v-list-tile-content
-              v-list-tile-title Groups
-            v-list-tile-action(v-if="IS_GROUPED === 0")
-              v-icon check
-          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(1)")
-            v-list-tile-action
-              v-icon view_module
-            v-list-tile-content
-              v-list-tile-title List
-            v-list-tile-action(v-if="IS_GROUPED === 1")
-              v-icon check
-          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(2)")
-            v-list-tile-action
-              v-icon view_stream
-            v-list-tile-content
-              v-list-tile-title Table
-            v-list-tile-action(v-if="IS_GROUPED === 2")
-              v-icon check
-          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(3)")
-            v-list-tile-action
-              v-icon view_quilt
-            v-list-tile-content
-              v-list-tile-title Documentation
-            v-list-tile-action(v-if="IS_GROUPED === 3")
-              v-icon check
-          v-divider.hidden-sm-and-up
-          v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_DESCRIPTION()")
-            v-list-tile-action
-                v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
-            v-list-tile-content
-              v-list-tile-title(style="min-width: 100px") {{IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}}
-          v-list-tile.hidden-sm-and-up(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click.native="SET_DIALOG('security')")
-            v-list-tile-action
-                v-icon lock
-            v-list-tile-content
-              v-list-tile-title(style="min-width: 100px") Authorization
+          template(v-if="SPEC")
+            v-subheader.hidden-sm-and-up View
+            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(0)")
+              v-list-tile-action
+                v-icon view_column
+              v-list-tile-content
+                v-list-tile-title Groups
+              v-list-tile-action(v-if="IS_GROUPED === 0")
+                v-icon check
+            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(1)")
+              v-list-tile-action
+                v-icon view_module
+              v-list-tile-content
+                v-list-tile-title List
+              v-list-tile-action(v-if="IS_GROUPED === 1")
+                v-icon check
+            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(2)")
+              v-list-tile-action
+                v-icon view_stream
+              v-list-tile-content
+                v-list-tile-title Table
+              v-list-tile-action(v-if="IS_GROUPED === 2")
+                v-icon check
+            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(3)")
+              v-list-tile-action
+                v-icon view_quilt
+              v-list-tile-content
+                v-list-tile-title Documentation
+              v-list-tile-action(v-if="IS_GROUPED === 3")
+                v-icon check
+            v-divider.hidden-sm-and-up
+            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_DESCRIPTION()")
+              v-list-tile-action
+                  v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
+              v-list-tile-content
+                v-list-tile-title(style="min-width: 100px") {{IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}}
+            v-list-tile.hidden-sm-and-up(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click.native="SET_DIALOG('security')")
+              v-list-tile-action
+                  v-icon lock
+              v-list-tile-content
+                v-list-tile-title(style="min-width: 100px") Authorization
           v-list-tile(@click.native="TOGGLE_DARK()")
             v-list-tile-action
               v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}

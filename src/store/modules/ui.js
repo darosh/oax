@@ -57,6 +57,7 @@ export const getters = {
   [types.DIALOG_IS]: state => type => state.dialog.type === type,
   [types.DIALOG_PARAM]: state => state.dialog.param,
   [types.ERROR]: state => state.error,
+  [types.LOADING]: state => state.loading,
   [types.FAB_METHOD]: state => state.fabMethod,
   [types.FAB_PENDING]: state => state.fabPending,
   [types.TAB]: state => state.tab,

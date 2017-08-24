@@ -1,12 +1,17 @@
 <template lang="pug">
   v-container(fluid :class="ERROR ? 'pa-0' : ''")
+    v-layout(v-if="LOADING")
+      v-spacer
+      v-progress-circular(indeterminate class="primary--text")
+      v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="ERROR.message") {{ERROR.message}}
     div(v-if="!SEARCH")
       v-container.pa-0-sm(fluid grid-list-xl)
         v-layout(column)
-          h2.pa-2.mb-0.headline.hidden-sm-and-up(v-if="SPEC && SPEC.info && SPEC.info.title") {{SPEC.info.title}}
+          v-flex
+            h2.pa-0.mb-0.headline(v-if="SPEC && SPEC.info && SPEC.info.title") {{SPEC.info.title}}
           v-flex.md(v-if="SPEC && SPEC.info && SPEC.info.description" v-html="md(SPEC.info)")
         .hidden-xs-only.mt-3(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
           v-divider(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
@@ -45,6 +50,7 @@
       ...mapGetters([
         types.METAS,
         types.ERROR,
+        types.LOADING,
         types.IS_GROUPED,
         types.OPERATIONS,
         types.RESOURCES,
