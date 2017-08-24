@@ -39,8 +39,8 @@
 
 <script>
   import { mapGetters, mapMutations, mapActions } from 'vuex'
-  import * as types from '../store/types'
-  import appNavigationDrawer from './AppNavigationDrawer'
+  import * as types from '../../store/types'
+  import appNavigationDrawer from './NavigationDrawer'
   import {getColor} from 'random-material-color'
 
   export default {
@@ -137,7 +137,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../stylus/variables'
+  @import '../../stylus/variables'
 
   $margin-scroll := 129px
   $margin-edit := 199px

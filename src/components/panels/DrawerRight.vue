@@ -7,11 +7,11 @@
 <script>
   import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
-  import appDetail from './panels/Detail'
-  import appNavigationDrawer from './AppNavigationDrawer'
-
+  import appDetail from './Detail'
+  import appNavigationDrawer from './NavigationDrawer'
+  
   export default {
     components: {
       appDetail,

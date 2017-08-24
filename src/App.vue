@@ -15,8 +15,8 @@
 
   export default {
     components: {
-      appDrawer: () => import('./components/Drawer'),
-      appMenu: () => import('./components/Menu'),
+      appDrawer: () => import('./components/panels/DrawerRight'),
+      appMenu: () => import('./components/panels/DrawerLeft'),
       appToolbar: () => import('./components/Toolbar')
     },
     created () {
