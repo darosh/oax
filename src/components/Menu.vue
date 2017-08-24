@@ -1,5 +1,5 @@
 <template lang="pug">
-  app-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :disable-route-watcher="true" :touchless="true")
+  app-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :disable-route-watcher="true", :touchless="true")
     v-toolbar.elevation-0(style="background-color: transparent")
       v-btn(icon @click.stop="SET_MENU(false)")
         v-icon close
@@ -25,7 +25,7 @@
         v-list.pa-0(two-line)
           virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20")
             template(scope="props")
-              v-list-tile(:key="props.itemKey", @click="url = props.item.url", tag="div")
+              v-list-tile(:key="props.itemKey", @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
                 v-list-tile-avatar
                   .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
                 v-list-tile-content
@@ -113,6 +113,7 @@
         types.LOAD_URL,
         types.LOAD_APIS
       ]),
+      encodeURIComponent,
       getColor,
       filtered () {
         if (!this.filter) {
