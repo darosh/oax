@@ -21,11 +21,10 @@
           v-text-field(label="JSON" multi-line :rows="7")
       v-tabs-content#tab-dir
         v-divider
-        v-toolbar.elevation-0(dense style="background-color: transparent")
-          v-btn(icon)
-            v-icon star_outline
-          v-text-field.pb-3(label="Search" v-model="filter" hide-details single-line prepend-icon="search")
-        v-divider
+        v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
+          v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search")
+          v-btn.ml-4(icon)
+            v-icon.primary--text star_outline
         v-list.pa-0(two-line)
           virtual-scroller.scroller(:items="APIS", item-height="73" prerender="20")
             template(scope="props")
@@ -127,11 +126,17 @@
   @import '../stylus/variables'
 
   .scroller
-    height 'calc(100vh - 99px - %s)' % $toolbar-height
+    height 'calc(100vh - 130px - %s)' % $toolbar-height
 
     @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - 99px - %s)' % $toolbar-mobile-portrait-height
+      height 'calc(100vh - 130px - %s)' % $toolbar-mobile-portrait-height
 
     @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - 99px - %s)' % $toolbar-mobile-landscape-height
+      height 'calc(100vh - 130px - %s)' % $toolbar-mobile-landscape-height
+
+  >>> .input-group--solo .input-group__details
+    display none
+
+  >>> .input-group--prepend-icon.input-group--solo label
+    margin-left 42px
 </style>

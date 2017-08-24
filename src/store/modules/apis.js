@@ -1,5 +1,6 @@
 import * as types from '../types'
 import yqlProxy from '../../services/yql-proxy'
+import axios from 'axios'
 
 const LIST = 'https://api.apis.guru/v2/list.json'
 
@@ -15,10 +16,24 @@ export const mutations = {
 
 export const actions = {
   [types.LOAD_APIS] ({commit}, url) {
-    const apis = []
+    let proxy = false
 
-    yqlProxy(LIST).then(res => {
-      const data = res.data.query.results.json
+    if (proxy) {
+      yqlProxy(LIST).then(res => {
+        const data = res.data.query.results.json
+        const apis = getApis(data)
+        commit(types.SET_APIS, apis)
+      })
+    } else {
+      axios.get(LIST).then(res => {
+        const data = res.data
+        const apis = getApis(data)
+        commit(types.SET_APIS, apis)
+      })
+    }
+
+    function getApis (data) {
+      const apis = []
 
       for (let key in data) {
         const versions = Object.keys(data[key].versions)
@@ -34,8 +49,8 @@ export const actions = {
 
       apis.sort((a, b) => a.key.localeCompare(b.key))
 
-      commit(types.SET_APIS, apis)
-    })
+      return apis
+    }
   }
 }
 
