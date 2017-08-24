@@ -5,6 +5,7 @@ import OAS from '../../workers/oas-service'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
+// import Vue from 'vue'
 
 export const state = {
   spec: null,
@@ -75,7 +76,7 @@ export const actions = {
     }
 
     commit(types.SET_ERROR, null)
-    commit(types.SET_LOADING, true)
+    commit(types.SET_LOADING, 'Loading')
     commit(types.SET_URL, url)
     commit(types.SET_OPERATION, null)
     commit(types.SET_SPEC, {
@@ -85,16 +86,21 @@ export const actions = {
       metas: null
     })
     load(url).then((res) => {
+      commit(types.SET_LOADING, 'Parsing')
       OAS(res.bundled, url).then(res => {
         if (res.err) {
           commit(types.SET_ERROR, 'PARSER ERROR: ' + res.err.message)
         } else {
+          commit(types.SET_LOADING, 'Rendering')
+
+          // Vue.nextTick(() => {
           commit(types.SET_SPEC, {
             resources: res.bundled.tags,
             operations: res.bundled._operations,
             spec: res.bundled,
             metas: res.bundled._metas
           })
+          // })
 
           commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
         }

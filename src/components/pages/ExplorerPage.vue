@@ -2,7 +2,8 @@
   v-container(fluid :class="ERROR ? 'pa-0' : ''")
     v-layout(v-if="LOADING")
       v-spacer
-      v-progress-circular(indeterminate class="primary--text")
+      v-progress-circular.mt-1(indeterminate size="48" class="primary--text")
+      .title.primary--text.ml-2.mt-3(v-if="LOADING && typeof (LOADING === 'string')") {{LOADING}}&hellip;
       v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
