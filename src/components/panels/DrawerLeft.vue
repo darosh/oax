@@ -139,8 +139,8 @@
 <style scoped lang="stylus">
   @import '../../stylus/variables'
 
-  $margin-scroll := 129px
-  $margin-edit := 199px
+  $margin-scroll := 127px
+  $margin-edit := 200px
 
   .scroller
     height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height)
