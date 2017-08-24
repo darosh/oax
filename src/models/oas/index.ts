@@ -6,10 +6,10 @@ import {security} from './methods/security';
 import {tags} from './methods/tags';
 
 export function OAS(spec: ISpecExtended,
-                    url: string,
+                    // url: string,
                     defaultContentType: string = 'application/json') {
 
-  info(spec, url, defaultContentType);
+  info(spec, /*url, */ defaultContentType);
   spec._metas = metas(spec);
   tags(spec);
   operations(spec);

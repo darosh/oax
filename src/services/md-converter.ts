@@ -9,12 +9,13 @@ converter.setOption('openLinksInNewWindow', true as any as string);
 converter.setOption('smoothLivePreview', true as any as string);
 converter.setOption('headerLevelStart', 4 as any as string);
 
-export const el = document.createElement('div');
+// export const el = document.createElement('div');
 
 export function trim(v: string) {
   if(v) {
-    el.innerHTML = converter.makeHtml(v.trim());
-    return el.innerHTML.replace(/<p><\/p>$/g, '');
+    return converter.makeHtml(v.trim());
+    // el.innerHTML = converter.makeHtml(v.trim());
+    // return el.innerHTML.replace(/<p><\/p>$/g, '');
   } else {
     return '';
   }

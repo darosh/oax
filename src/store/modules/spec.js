@@ -1,5 +1,7 @@
-import load from '../../services/load'
-import { OAS } from '../../models/oas/index'
+// import load from '../../services/load'
+import load from '../../workers/load-service'
+// import { OAS } from '../../models/oas/index'
+import OAS from '../../workers/oas-service'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
@@ -83,23 +85,21 @@ export const actions = {
       metas: null
     })
     load(url).then((res) => {
-      commit(types.SET_LOADING, false)
+      OAS(res.bundled, url).then(res => {
+        if (res.err) {
+          commit(types.SET_ERROR, 'PARSER ERROR: ' + res.err.message)
+        } else {
+          commit(types.SET_SPEC, {
+            resources: res.bundled.tags,
+            operations: res.bundled._operations,
+            spec: res.bundled,
+            metas: res.bundled._metas
+          })
 
-      try {
-        OAS(res.bundled, url)
-      } catch (err) {
-        console.error(err)
-        commit(types.SET_ERROR, 'PARSER ERROR: ' + err.message)
-      }
-
-      commit(types.SET_SPEC, {
-        resources: res.bundled.tags,
-        operations: res.bundled._operations,
-        spec: res.bundled,
-        metas: res.bundled._metas
+          commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
+        }
+        commit(types.SET_LOADING, false)
       })
-
-      commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
     }).catch((err) => {
       commit(types.SET_LOADING, false)
       commit(types.SET_ERROR, err)
