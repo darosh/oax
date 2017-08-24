@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid).pl-4.pr-4.pa-3-sm
+  v-container(fluid v-if="OPERATIONS").pl-4.pr-4.pa-3-sm
     v-data-table(:headers="headers", :items="OPERATIONS" hide-actions class="elevation-1 app-table")
       template(slot="items" scope="props")
         td(@click.stop="SET_OPERATION(props.item)") {{props.item._id}}
