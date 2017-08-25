@@ -1,5 +1,6 @@
 import load from '../services/load'
 import CircularJSON from 'circular-json'
+import serializeError from 'serialize-error'
 
 export default function () {
   self.onmessage = function (event) {
@@ -7,6 +8,11 @@ export default function () {
       self.postMessage(CircularJSON.stringify({
         url: event.data.url,
         bundled: res.bundled
+      }))
+    }).catch(res => {
+      self.postMessage(CircularJSON.stringify({
+        url: event.data.url,
+        err: serializeError(res)
       }))
     })
   }

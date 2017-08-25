@@ -108,6 +108,7 @@ export const actions = {
       })
     }).catch((err) => {
       commit(types.SET_LOADING, false)
+      console.warn(err)
       commit(types.SET_ERROR, err)
     })
   }
