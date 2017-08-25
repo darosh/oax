@@ -2,8 +2,9 @@
   v-container(fluid :class="ERROR ? 'pa-0' : ''")
     v-layout.ma-0(v-if="LOADING" style="padding-top: calc(50vh - 64px)")
       v-spacer
-      v-progress-circular(indeterminate :width="4", :size="28" class="primary--text")
-      .subheading.secondary--text.ml-2(style="margin-top: 2px; min-width: 160px" v-if="LOADING && typeof (LOADING === 'string')") {{LOADING}}&hellip;
+      div
+        .subheading.secondary--text.ma-0(style="margin-top: 2px; min-width: 160px" v-if="LOADING && typeof (LOADING === 'string')") {{LOADING.text}}&hellip;
+        v-progress-linear(:value="Math.round(LOADING.done * 100)", :height="4", class="primary--text")
       v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
@@ -79,4 +80,7 @@
 <style scoped lang="stylus">
   .pre
     white-space pre
+
+  >>> .progress-linear__bar__determinate
+    transition none
 </style>

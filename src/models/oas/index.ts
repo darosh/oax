@@ -9,37 +9,46 @@ export function OAS(spec: ISpecExtended,
                     // url: string,
                     progress: any = null,
                     defaultContentType: string = 'application/json') {
+  const total = 6
+  let loaded = 0
+
   if(progress) {
-    progress('info')
+    loaded++
+    progress({text: 'info', loaded, total})
   }
 
   info(spec, /*url, */ defaultContentType);
 
   if(progress) {
-    progress('meta')
+    loaded++
+    progress({text: 'meta', loaded, total})
   }
 
   spec._metas = metas(spec);
 
   if(progress) {
-    progress('tags')
+    loaded++
+    progress({text: 'tags', loaded, total})
   }
 
   tags(spec);
 
   if(progress) {
-    progress('operations')
+    loaded++
+    progress({text: 'operations', loaded, total})
   }
 
   operations(spec);
 
   if(progress) {
-    progress('security')
+    loaded++
+    progress({text: 'security', loaded, total})
   }
 
   security(spec);
 
   if(progress) {
-    progress('done')
+    loaded++
+    progress({text: 'done', loaded, total})
   }
 }
