@@ -18,6 +18,7 @@ export default {
       isActive: this.value,
       isBooted: false,
       isMobile: false,
+      closing: false,
       touchArea: {
         left: 0,
         right: 0
@@ -55,6 +56,7 @@ export default {
         'navigation-drawer--absolute': this.absolute,
         'navigation-drawer--clipped': this.clipped,
         'navigation-drawer--close': !this.isActive,
+        'navigation-drawer--closing': this.closing,
         'navigation-drawer--floating': this.floating,
         'navigation-drawer--is-booted': this.isBooted,
         'navigation-drawer--is-mobile': this.isMobile,
@@ -88,6 +90,11 @@ export default {
         this.genOverlay()
       } else {
         this.removeOverlay()
+      }
+
+      if (!val) {
+        this.closing = true
+        setTimeout(() => { this.closing = false }, 300)
       }
 
       // this.$el.scrollTop = 0

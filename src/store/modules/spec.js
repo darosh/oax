@@ -76,56 +76,60 @@ export const actions = {
     }
 
     commit(types.SET_ERROR, null)
-    commit(types.SET_LOADING, {text: 'Loading', done: 0})
     commit(types.SET_URL, url)
     commit(types.SET_OPERATION, null)
+    commit(types.SET_DRAWER, false)
     commit(types.SET_SPEC, {
       resources: null,
       operations: null,
       spec: null,
       metas: null
     })
-    load(url, (progress) => {
-      commit(types.SET_LOADING,
-        {
-          text: `Loaded ${progress.loaded} of ${progress.total} files`,
-          done: 0.5 * (progress.loaded / progress.total)
-        })
-    }).then((res) => {
-      commit(types.SET_LOADING, {text: 'Parsing', done: 0.5})
-      OAS(res.bundled, url, (progress) => {
+
+    setTimeout(() => {
+      commit(types.SET_LOADING, {text: 'Loading', done: 0})
+      load(url, (progress) => {
         commit(types.SET_LOADING,
           {
-            text: progress.loaded !== progress.total
-              ? `Parsing ${progress.text}`
-              : 'Almost ready',
-            done: 0.5 + 0.5 * (progress.loaded / progress.total)
+            text: `Loaded ${progress.loaded} of ${progress.total} files`,
+            done: 0.5 * (progress.loaded / progress.total)
           })
-      }).then(res => {
-        if (res.err) {
-          commit(types.SET_ERROR, 'PARSER ERROR: ' + res.err.message)
-          commit(types.SET_LOADING, false)
-        } else {
-          commit(types.SET_LOADING, {text: 'Rendering', done: 1})
-
-          setTimeout(() => {
-            commit(types.SET_SPEC, {
-              resources: res.bundled.tags,
-              operations: res.bundled._operations,
-              spec: res.bundled,
-              metas: res.bundled._metas
-            }, 0)
-
-            commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
+      }).then((res) => {
+        commit(types.SET_LOADING, {text: 'Parsing', done: 0.5})
+        OAS(res.bundled, url, (progress) => {
+          commit(types.SET_LOADING,
+            {
+              text: progress.loaded !== progress.total
+                ? `Parsing ${progress.text}`
+                : 'Almost ready',
+              done: 0.5 + 0.5 * (progress.loaded / progress.total)
+            })
+        }).then(res => {
+          if (res.err) {
+            commit(types.SET_ERROR, 'PARSER ERROR: ' + res.err.message)
             commit(types.SET_LOADING, false)
-          })
-        }
+          } else {
+            commit(types.SET_LOADING, {text: 'Rendering', done: 1})
+
+            setTimeout(() => {
+              commit(types.SET_SPEC, {
+                resources: res.bundled.tags,
+                operations: res.bundled._operations,
+                spec: res.bundled,
+                metas: res.bundled._metas
+              }, 0)
+
+              commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
+              commit(types.SET_LOADING, false)
+            })
+          }
+        })
+      }).catch((err) => {
+        commit(types.SET_LOADING, false)
+        console.warn(err)
+        commit(types.SET_ERROR, err)
       })
-    }).catch((err) => {
-      commit(types.SET_LOADING, false)
-      console.warn(err)
-      commit(types.SET_ERROR, err)
-    })
+    }, 0)
   }
 }
 

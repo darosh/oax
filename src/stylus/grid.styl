@@ -1,21 +1,3 @@
-.layout
-  for size, width in $grid-breakpoints
-    @media all and (min-width: width)
-      for n in (1..$grid-columns)
-        .flex.{size}{n}
-          //transition all 0s linear $right-delay
-          //transition-property flex-basis, max-width
-          transition none
-          will-change flex-basis, max-width
-
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
-  for size, width in $grid-breakpoints
-    @media all and (min-width: width)
-      for n in (1..$grid-columns)
-        .flex.{size}{n}
-          transition all 0s linear $right-delay-out
-          transition-property flex-basis, max-width
-
 .wide .layout
   for size, width in $grid-breakpoints
     @media all and (min-width: width)
@@ -87,3 +69,20 @@
       flex-basis 100%
       max-width 100%
 
+for size, width in $grid-breakpoints
+  @media all and (min-width: width)
+    for n in (1..$grid-columns)
+      main .layout
+        .flex.{size}{n}
+          transition none
+      .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
+        .flex.{size}{n}
+          transition all 0s linear $right-delay-out
+          transition-property flex-basis, max-width
+      .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .layout
+        .flex.{size}{n}
+          transition none
+      .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
+        .flex.{size}{n}
+          transition all 0s linear $right-delay-out
+          transition-property flex-basis, max-width
