@@ -1,16 +1,14 @@
-// import axios from 'axios'
-// import yaml from 'yamljs/dist/yaml'
-// let yaml = null
-
 import yaml from 'yaml-js'
 
-export default function load (url) {
-  const axios = require('axios')
-  const schemaBundler = require('json-schema-bundler')
+const axios = require('axios')
+const schemaBundler = require('json-schema-bundler')
 
+const cache = {}
+
+export default function load (url) {
   return new Promise((resolve, reject) => {
-    // schemaBundler.then(res => {
     const schema = new schemaBundler.Schema(url, null, yaml.load, axios.get)
+    schema.cache = cache
     schema.load().then(() => {
       schema.bundle()
       schema.deref()
@@ -18,6 +16,5 @@ export default function load (url) {
     }).catch((err) => {
       reject(err)
     })
-    // })
   })
 }

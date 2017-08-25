@@ -1,4 +1,4 @@
-import load from '../services/load'
+import load from '../../services/load'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 

@@ -1,5 +1,5 @@
 // import load from '../../services/load'
-import load from '../../workers/load-service'
+import load from '../../workers/load'
 // import { OAS } from '../../models/oas/index'
 import OAS from '../../workers/oas-service'
 import * as types from '../types'
