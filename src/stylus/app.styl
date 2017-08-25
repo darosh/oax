@@ -13,35 +13,13 @@ pre.app-pre
 .input-group__hint
   transition none !important
 
-html, body, .application, main
-  overflow-y hidden
-  height 100vh
-  display block
-
-.toolbar--fixed + main
-  //overflow-y overlay !important
-  padding 0
-  margin-top $toolbar-height
-  height "calc(100vh - %s)" % $toolbar-height
-
-.application > main > .container
-  min-height 0
-
 @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-  .toolbar--fixed + main
-    margin-top $toolbar-mobile-landscape-height
-    height "calc(100vh - %s)" % $toolbar-mobile-landscape-height
-
   .toolbar__items .input-group
     position relative
     top -8px
     //top ($toolbar-mobile-landscape-height/2 - $toolbar-height/2)
 
 @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-  .toolbar--fixed + main
-    margin-top $toolbar-mobile-portrait-height
-    height "calc(100vh - %s)" % $toolbar-mobile-portrait-height
-
   .toolbar__items .input-group
     position relative
     top -4px

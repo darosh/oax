@@ -1,0 +1,23 @@
+@media $display-breakpoints.md-and-up
+  html, body, .application, main
+    overflow-y hidden
+    height 100vh
+    display block
+
+  .toolbar--fixed + main
+    padding 0
+    margin-top $toolbar-height
+    height "calc(100vh - %s)" % $toolbar-height
+
+  .application > main > .container
+    min-height 0
+
+//@media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+//  .toolbar--fixed + main
+//    margin-top $toolbar-mobile-landscape-height
+//    height "calc(100vh - %s)" % $toolbar-mobile-landscape-height
+//
+//@media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+//  .toolbar--fixed + main
+//    margin-top $toolbar-mobile-portrait-height
+//    height "calc(100vh - %s)" % $toolbar-mobile-portrait-height
