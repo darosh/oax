@@ -1,4 +1,15 @@
+@media $display-breakpoints.xs-and-up
+  main
+    overflow-y auto !important
+
 @media $display-breakpoints.md-and-up
+  main
+    overflow-y overlay !important
+  main:hover::-webkit-scrollbar
+    display initial
+  main::-webkit-scrollbar
+    display none
+
   ::-webkit-scrollbar
     width: 12px
     height: 12px

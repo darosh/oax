@@ -14,12 +14,12 @@ pre.app-pre
   transition none !important
 
 html, body, .application, main
-  overflow-y hidden !important
+  overflow-y hidden
   height 100vh
   display block
 
 .toolbar--fixed + main
-  overflow-y auto !important
+  //overflow-y overlay !important
   padding 0
   margin-top $toolbar-height
   height "calc(100vh - %s)" % $toolbar-height
