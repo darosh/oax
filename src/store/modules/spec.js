@@ -86,10 +86,13 @@ export const actions = {
       metas: null
     })
     load(url, (progress) => {
-      commit(types.SET_LOADING, `Loading (${progress.loaded}/${progress.total})`)
+      commit(types.SET_LOADING,
+        `Loading (${progress.loaded}/${progress.total})`)
     }).then((res) => {
       commit(types.SET_LOADING, 'Parsing')
-      OAS(res.bundled, url).then(res => {
+      OAS(res.bundled, url, (progress) => {
+        commit(types.SET_LOADING, progress !== 'done' ? `Parsing (${progress})` : 'Rendering')
+      }).then(res => {
         if (res.err) {
           commit(types.SET_ERROR, 'PARSER ERROR: ' + res.err.message)
         } else {

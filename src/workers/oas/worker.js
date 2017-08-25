@@ -9,7 +9,11 @@ export default function () {
     }
 
     try {
-      OAS(event.data.bundled/* , event.data.url */)
+      OAS(event.data.bundled/* , event.data.url */,
+        event.data.progress ? (progress) => {
+          self.postMessage(
+            CircularJSON.stringify({url: event.data.url, progress}))
+        } : null)
     } catch (err) {
       res.err = serializeError(err)
     }
