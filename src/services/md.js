@@ -21,10 +21,10 @@ export function md (obj, key = 'description') {
 //
 //     q.then(r => {
 //       obj[mk] = r
-    // })
-    //
-    // Vue.set(obj, mk, '')
-    //
-    // return obj[mk]
-  // }
+// })
+//
+// Vue.set(obj, mk, '')
+//
+// return obj[mk]
+// }
 // }

@@ -137,7 +137,7 @@
         } else {
           const f = this.filter.toLowerCase()
           return this.APIS.filter(item => {
-            return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
+            return item.key.toLowerCase().indexOf(f) > -1 || item.title.filter.toLowerCase().indexOf(f) > -1
           })
         }
       },
@@ -162,7 +162,7 @@
         }
 
         this.apis = true
-//        const link = document.createElement('a')
+        //        const link = document.createElement('a')
 
         for (const k in this.keys) {
           if (this.keys[k] === '?') {

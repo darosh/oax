@@ -1,5 +1,6 @@
-export const STORAGE_KEY = 'oasui'
 import * as types from '../types'
+
+export const STORAGE_KEY = 'oasui'
 
 const storedState = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '""')
 

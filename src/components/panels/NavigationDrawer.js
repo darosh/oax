@@ -42,7 +42,7 @@ export default {
     right: Boolean,
     temporary: Boolean,
     touchless: Boolean,
-    value: { required: false }
+    value: {required: false}
   },
 
   computed: {
@@ -83,7 +83,7 @@ export default {
     },
     isActive (val) {
       this.$emit('input', val)
-      this.showOverlay && val && this.genOverlay() || this.removeOverlay()
+      this.showOverlay && val && (this.genOverlay() || this.removeOverlay())
       this.$el.scrollTop = 0
     },
     isMobile (val) {
@@ -173,15 +173,15 @@ export default {
         }
       ]
 
-    //   !this.touchless && directives.push({
-    //     name: 'touch',
-    //     value: {
-    //       parent: true,
-    //       left: this.swipeLeft,
-    //       right: this.swipeRight
-    //     }
-    //   })
-    //
+      //   !this.touchless && directives.push({
+      //     name: 'touch',
+      //     value: {
+      //       parent: true,
+      //       left: this.swipeLeft,
+      //       right: this.swipeRight
+      //     }
+      //   })
+      //
       return directives
     }
   },
@@ -189,7 +189,7 @@ export default {
   render (h) {
     const data = {
       'class': this.classes,
-      style: { height: this.calculatedHeight },
+      style: {height: this.calculatedHeight},
       directives: this.genDirectives(),
       on: Object.assign({}, {
         click: () => this.$emit('update:miniVariant', false)
@@ -198,7 +198,7 @@ export default {
 
     return h('aside', data, [
       this.$slots.default,
-      h('div', { 'class': 'navigation-drawer__border' })
+      h('div', {'class': 'navigation-drawer__border'})
     ])
   }
 }

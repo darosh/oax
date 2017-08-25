@@ -36,10 +36,11 @@
 <script>
   import { MethodStyle } from '../../services/method-style'
 
-  const methods = () => import('../../assets/http-method.json')
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import limit from '../../services/limit'
+
+  const methods = () => import('../../assets/http-method.json')
 
   export default {
     data () {

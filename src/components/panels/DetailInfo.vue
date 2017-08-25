@@ -49,7 +49,7 @@
     components: {
       appModel,
       appExample,
-//      appParameter,
+      //      appParameter,
       appResponseBlock
     },
     created () {
@@ -65,7 +65,7 @@
         schemaViewInternal: 1,
         exp1: true,
         exp2: true
-//        exp3: true
+        //        exp3: true
       }
     },
     computed: {

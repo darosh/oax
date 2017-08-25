@@ -1,6 +1,6 @@
-export const STORAGE_KEY = 'oas-ui'
-
 import * as types from '../types'
+
+export const STORAGE_KEY = 'oas-ui'
 
 export const state = {
   dialog: {
