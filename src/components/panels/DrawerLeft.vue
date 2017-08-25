@@ -55,6 +55,7 @@
   import appNavigationDrawer from './NavigationDrawer'
   import {getColor} from 'random-material-color'
   import Vue from 'vue'
+  import CircularJSON from 'circular-json'
 
   export default {
     components: {
@@ -72,7 +73,7 @@
     },
     created () {
       this.LOAD_APIS()
-      this.spec = JSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
+      this.spec = CircularJSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
     },
     computed: {
       ...mapGetters([
@@ -134,8 +135,9 @@
         if (!this.filter) {
           return this.APIS
         } else {
+          const f = this.filter.toLowerCase()
           return this.APIS.filter(item => {
-            return item.key.indexOf(this.filter) > -1 || item.title.indexOf(this.filter) > -1
+            return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
           })
         }
       },
@@ -152,7 +154,7 @@
     },
     watch: {
       SPEC: function (value) {
-        this.spec = JSON.stringify(value || '', null, 2).substr(0, 3000)
+        this.spec = CircularJSON.stringify(value || '', null, 2).substr(0, 3000)
       },
       APIS: function () {
         if (this.apis) {

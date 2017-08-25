@@ -1,4 +1,5 @@
 import { OAS } from '../models/oas/index'
+import CircularJSON from 'circular-json'
 
 export default function () {
   self.onmessage = function (event) {
@@ -15,6 +16,6 @@ export default function () {
 
     res.bundled = event.data.bundled
 
-    self.postMessage(JSON.stringify(res))
+    self.postMessage(CircularJSON.stringify(res))
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "oas-ui",
-  "version": "1.0.59",
+  "version": "1.0.60",
   "description": "OpenAPI Specification Explorer",
   "author": "Jan Forst <ensonador@gmail.com>",
   "private": true,
@@ -22,6 +22,7 @@
     "@types/showdown": "^1.7.0",
     "@types/swagger-schema-official": "^2.0.5",
     "axios": "^0.16.2",
+    "circular-json": "^0.3.3",
     "intersection-observer": "^0.4.0",
     "json-schema-bundler": "0.0.2",
     "random-material-color": "^1.0.3",
