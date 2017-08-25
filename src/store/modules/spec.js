@@ -85,7 +85,9 @@ export const actions = {
       spec: null,
       metas: null
     })
-    load(url).then((res) => {
+    load(url, (progress) => {
+      commit(types.SET_LOADING, `Loading (${progress.loaded}/${progress.total})`)
+    }).then((res) => {
       commit(types.SET_LOADING, 'Parsing')
       OAS(res.bundled, url).then(res => {
         if (res.err) {

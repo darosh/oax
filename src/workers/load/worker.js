@@ -4,7 +4,12 @@ import serializeError from 'serialize-error'
 
 export default function () {
   self.onmessage = function (event) {
-    load(event.data.url).then(res => {
+    load(event.data.url, event.data.progress ? (progress) => {
+      self.postMessage(CircularJSON.stringify({
+        url: event.data.url,
+        progress
+      }))
+    } : null).then(res => {
       self.postMessage(CircularJSON.stringify({
         url: event.data.url,
         bundled: res.bundled

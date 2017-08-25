@@ -5,9 +5,9 @@ const schemaBundler = require('json-schema-bundler')
 
 const cache = {}
 
-export default function load (url) {
+export default function load (url, progress = null) {
   return new Promise((resolve, reject) => {
-    const schema = new schemaBundler.Schema(url, null, yaml.load, axios.get)
+    const schema = new schemaBundler.Schema(url, progress, yaml.load, axios.get)
     schema.cache = cache
     schema.load().then(() => {
       schema.bundle()

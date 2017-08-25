@@ -8,21 +8,23 @@ const jobs = {}
 worker.onmessage = function (event) {
   const data = CircularJSON.parse(event.data)
 
-  if (data.err) {
+  if (data.progress) {
+    jobs[data.url].progress(data.progress)
+  } else if (data.err) {
     jobs[data.url].reject(data.err)
+    delete jobs[data.url]
   } else {
     jobs[data.url].resolve(data)
+    delete jobs[data.url]
   }
-
-  delete jobs[data.url]
 }
 
-export default function load (url) {
+export default function load (url, progress = null) {
   const promise = new Promise((resolve, reject) => {
-    jobs[url] = {resolve, reject}
+    jobs[url] = {resolve, reject, progress}
   })
 
-  worker.postMessage({url})
+  worker.postMessage({url, progress: !!progress})
 
   return promise
 }
