@@ -83,11 +83,21 @@ export default {
     },
     isActive (val) {
       this.$emit('input', val)
-      this.showOverlay && val && (this.genOverlay() || this.removeOverlay())
-      this.$el.scrollTop = 0
+
+      if (this.showOverlay) {
+        this.genOverlay()
+      } else {
+        this.removeOverlay()
+      }
+
+      // this.$el.scrollTop = 0
     },
-    isMobile (val) {
-      !val && this.removeOverlay()
+    isMobile () {
+      if (this.showOverlay) {
+        this.genOverlay()
+      } else {
+        this.removeOverlay()
+      }
     },
     permanent (val) {
       this.$emit('input', val)
