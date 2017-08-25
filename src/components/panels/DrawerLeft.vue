@@ -46,6 +46,9 @@
                   v-list-tile-content
                     v-list-tile-title {{props.item.title}}
                     v-list-tile-sub-title {{key(props.item)}}
+                  v-list-tile-action
+                    v-btn(icon ripple @click.capture.stop.prevent="RECENT_REMOVE(props.item)")
+                      v-icon close
                 v-divider
 </template>
 
@@ -123,7 +126,8 @@
       ...mapMutations([
         types.SET_MENU,
         types.SET_PROXY,
-        types.TOGGLE_DARK
+        types.TOGGLE_DARK,
+        types.RECENT_REMOVE
       ]),
       ...mapActions([
         types.LOAD_URL,

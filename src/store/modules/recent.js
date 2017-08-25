@@ -15,7 +15,7 @@ export const mutations = {
     state.recent.unshift(payload)
   },
   [types.RECENT_REMOVE] (state, payload) {
-    state.recent.splice(payload, 1)
+    state.recent.splice(typeof payload === 'number' ? payload : state.recent.indexOf(payload), 1)
   }
 }
 
