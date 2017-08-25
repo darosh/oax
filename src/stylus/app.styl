@@ -122,3 +122,15 @@ pre
 
   @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
     height 'calc(100vh - %s)' % $toolbar-mobile-landscape-height
+
+@media all and (max-width: 600px)
+  .overlay
+    display none
+
+.application--light .bg
+.application--light .bg .expansion-panel__header
+  background-color: #fff
+
+.application--dark .bg
+.application--dark .bg .expansion-panel__header
+  background-color: $material-dark.app-bar

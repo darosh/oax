@@ -9,14 +9,21 @@
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="ERROR.message") {{ERROR.message}}
-    div(v-if="!SEARCH")
+    div(v-if="!SEARCH && SPEC && SPEC.info")
       v-container.pa-0-sm(fluid grid-list-xl)
         v-layout(column)
           v-flex
-            h2.pa-0.mb-0.headline(v-if="SPEC && SPEC.info && SPEC.info.title") {{SPEC.info.title}}
-          v-flex.md(v-if="SPEC && SPEC.info && SPEC.info.description" v-html="md(SPEC.info)")
-        .hidden-xs-only.mt-5(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
-          v-divider(v-if="SPEC && SPEC.info && SPEC && SPEC.info.description")
+            v-expansion-panel(expand)
+              v-expansion-panel-content.bg.relative(v-model="exp1", ripple)
+                .title(slot="header") {{SPEC.info.title}}
+                v-divider(v-if="SPEC.info.description")
+                v-card.bg(v-if="SPEC.info.description")
+                  v-card-text
+                    v-layout
+                      v-spacer
+                      .md(style="max-width: 60em" v-html="md(SPEC.info)")
+                      v-spacer
+
       app-meta-list(v-if="METAS", :metas="METAS")
     app-resource-list(:class="{wide: IS_WIDE}" v-if="IS_GROUPED === 0")
     app-operation-list(:class="{wide: IS_WIDE}" v-else-if="IS_GROUPED === 1")
@@ -47,6 +54,11 @@
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
       appSecurityDialog: () => import('../dialogs/SecurityDialog'),
       appFab: () => import('../FAB')
+    },
+    data () {
+      return {
+        exp1: true
+      }
     },
     computed: {
       ...mapGetters([
@@ -83,4 +95,16 @@
 
   >>> .progress-linear__bar__determinate
     transition none
+
+  .relative
+    position relative
+
+  .expansion-panel
+  .expansion-panel > li:first-child
+    border none
+    border-radius 2px
+
+  .expansion-panel__body > *
+    border-bottom-left-radius 2px
+    border-bottom-right-radius 2px
 </style>
