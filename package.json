@@ -1,6 +1,6 @@
 {
   "name": "oas-ui",
-  "version": "1.0.61",
+  "version": "1.0.65",
   "description": "OpenAPI Specification Explorer",
   "author": "Jan Forst <ensonador@gmail.com>",
   "private": true,
@@ -107,6 +107,8 @@
     "sw-precache-webpack-plugin": "^0.11.4",
     "ts-loader": "^2.2.2",
     "typescript": "^2.5.1",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.0.4",
     "vue-style-loader": "^3.0.1",
