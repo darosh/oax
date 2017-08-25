@@ -10,9 +10,13 @@ export default function load (url, progress = null) {
     const schema = new schemaBundler.Schema(url, progress, yaml.load, axios.get)
     schema.cache = cache
     schema.load().then(() => {
-      schema.bundle()
-      schema.deref()
-      resolve(schema)
+      try {
+        schema.bundle()
+        schema.deref()
+        resolve(schema)
+      } catch (err) {
+        reject(err)
+      }
     }).catch((err) => {
       reject(err)
     })
