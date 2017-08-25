@@ -1,5 +1,6 @@
-import { OAS } from '../models/oas/index'
+import { OAS } from '../../models/oas/index'
 import CircularJSON from 'circular-json'
+import serializeError from 'serialize-error'
 
 export default function () {
   self.onmessage = function (event) {
@@ -10,8 +11,7 @@ export default function () {
     try {
       OAS(event.data.bundled/* , event.data.url */)
     } catch (err) {
-      console.error(err)
-      res.err = err
+      res.err = serializeError(err)
     }
 
     res.bundled = event.data.bundled

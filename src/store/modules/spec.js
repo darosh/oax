@@ -1,7 +1,7 @@
 // import load from '../../services/load'
 import load from '../../workers/load'
 // import { OAS } from '../../models/oas/index'
-import OAS from '../../workers/oas-service'
+import OAS from '../../workers/oas'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'

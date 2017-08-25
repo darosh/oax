@@ -1,7 +1,7 @@
 import CircularJSON from 'circular-json'
 import work from 'webworkify-webpack'
 
-const worker = work(require.resolve('./oas-worker.js'))
+const worker = work(require.resolve('./worker.js'))
 
 const jobs = {}
 
