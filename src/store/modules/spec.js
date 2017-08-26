@@ -1,7 +1,8 @@
 // import load from '../../services/load'
-import load from '../../workers/load'
+// import load from '../../workers/load'
+import main from '../../workers/main'
 // import { OAS } from '../../models/oas/index'
-import OAS from '../../workers/oas'
+// import OAS from '../../workers/oas'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
@@ -87,43 +88,38 @@ export const actions = {
     })
 
     setTimeout(() => {
-      commit(types.SET_LOADING, {text: 'Loading', done: 0})
-      load(url, (progress) => {
-        commit(types.SET_LOADING,
-          {
-            text: `Loaded ${progress.loaded} of ${progress.total} files`,
-            done: 0.5 * (progress.loaded / progress.total)
-          })
+      commit(types.SET_LOADING, {text: 'Worker beginning', done: 0})
+      main(url, (progress) => {
+        commit(types.SET_LOADING, report(progress))
       }).then((res) => {
-        commit(types.SET_LOADING, {text: 'Parsing', done: 0.5})
-        OAS(res.bundled, url, (progress) => {
-          commit(types.SET_LOADING,
-            {
-              text: progress.loaded !== progress.total
-                ? `${progress.section || 'Parsing'} ${progress.text}`
-                : 'Almost ready',
-              done: 0.5 + 0.5 * (progress.loaded / progress.total)
-            })
-        }).then(res => {
-          if (res.err) {
-            commit(types.SET_ERROR, 'PARSER ERROR: ' + res.err.message)
+        // commit(types.SET_LOADING, {text: 'Parsing', done: 0.5})
+        // OAS(res.bundled, url, (progress) => {
+        //   commit(types.SET_LOADING,
+        //     {
+        //       text: progress.loaded !== progress.total
+        //         ? `${progress.section || 'Parsing'} ${progress.text}`
+        //         : 'Almost ready',
+        //       done: 0.5 + 0.5 * (progress.loaded / progress.total)
+        //     })
+        // }).then(res => {
+        if (res.err) {
+          commit(types.SET_ERROR, 'ERROR: ' + res.err.message)
+          commit(types.SET_LOADING, false)
+        } else {
+          commit(types.SET_LOADING, {text: 'Rendering', done: 1})
+
+          setTimeout(() => {
+            commit(types.SET_SPEC, {
+              resources: res.bundled.tags,
+              operations: res.bundled._operations,
+              spec: res.bundled,
+              metas: res.bundled._metas
+            }, 0)
+
+            commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
             commit(types.SET_LOADING, false)
-          } else {
-            commit(types.SET_LOADING, {text: 'Rendering', done: 1})
-
-            setTimeout(() => {
-              commit(types.SET_SPEC, {
-                resources: res.bundled.tags,
-                operations: res.bundled._operations,
-                spec: res.bundled,
-                metas: res.bundled._metas
-              }, 0)
-
-              commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
-              commit(types.SET_LOADING, false)
-            })
-          }
-        })
+          })
+        }
       }).catch((err) => {
         commit(types.SET_LOADING, false)
         console.warn(err)
@@ -145,4 +141,25 @@ export default {
   state,
   mutations,
   getters
+}
+
+const sections = {
+  'Worker begining': [0, 0],
+  'Loading': [0, 0.4, true],
+  'Schema': [0.45, 0.6],
+  'Parsing': [0.65, 1],
+  'Markdown': [0.65, 1],
+  'Worker finishing': [1, 1]
+}
+
+function report (p) {
+  const s = p.section || 'Loading'
+
+  return {
+    text: sections[s][2]
+      ? `Loaded ${p.loaded} of ${p.total} files`
+      : `${p.section} ${p.text || ''}`,
+    done: sections[s][0] +
+    (sections[s][1] - sections[s][0]) * (p.total ? (p.loaded / p.total) : 1)
+  }
 }

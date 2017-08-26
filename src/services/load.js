@@ -11,7 +11,9 @@ export default function load (url, progress = null) {
     schema.cache = cache
     schema.load().then(() => {
       try {
+        progress({text: 'bundle', section: 'Schema', loaded: 0, total: 1})
         schema.bundle()
+        progress({text: 'dereference', section: 'Schema', loaded: 1, total: 1})
         schema.deref()
         resolve(schema)
       } catch (err) {

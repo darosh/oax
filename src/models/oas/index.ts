@@ -7,24 +7,23 @@ import {tags} from './methods/tags';
 import {mdOperations, mdResponses, mdParameters, mdTags, mdInfo} from './methods/markdown';
 
 const phase = {
-  info: [1, 'info'],
-  meta: [2, 'meta'],
-  tags: [3, 'tags'],
-  operations: [4, 'operations'],
-  security: [5, 'security'],
-  mdInfo: [6, 'tags', 'Info'],
-  mdTags: [7, 'tags', 'Markdown'],
-  mdOperations: [8, 'operations', 'Markdown'],
-  mdParameters: [9, 'parameters', 'Markdown'],
-  mdResponses: [10, 'responses', 'Markdown'],
-  done: [11, '', 'Finishing']
+  info: [0, 'info', 'Parsing'],
+  meta: [1, 'meta', 'Parsing'],
+  tags: [2, 'tags', 'Parsing'],
+  operations: [3, 'operations', 'Parsing'],
+  security: [4, 'security', 'Parsing'],
+  mdInfo: [5, 'info', 'Markdown'],
+  mdTags: [6, 'tags', 'Markdown'],
+  mdOperations: [7, 'operations', 'Markdown'],
+  mdParameters: [8, 'parameters', 'Markdown'],
+  mdResponses: [9, 'responses', 'Markdown'],
 }
 
-const phases = Object.keys(phase).length
+const phases = Object.keys(phase).length - 1
 
 function log(ph: any, progress: any) {
   if (progress) {
-    progress({text: ph[1], loaded: ph[0], phases, section: ph[2]})
+    progress({text: ph[1], loaded: ph[0], total: phases, section: ph[2]})
   }
 }
 
@@ -57,11 +56,9 @@ export function OAS(spec: ISpecExtended,
   log(phase.mdOperations, progress);
   mdOperations(spec);
 
-  log(phase.mdResponses, progress);
-  mdResponses(spec);
-
   log(phase.mdParameters, progress);
   mdParameters(spec);
 
-  log(phase.done, progress);
+  log(phase.mdResponses, progress);
+  mdResponses(spec);
 }
