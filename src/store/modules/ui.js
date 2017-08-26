@@ -10,6 +10,7 @@ export const state = {
   title: null,
   error: null,
   loading: false,
+  log: false,
   fabMethod: null,
   fabPending: false,
   tab: 'tab-info',
@@ -26,6 +27,10 @@ export const mutations = {
   },
   [types.SET_LOADING] (state, payload) {
     if (payload === false) {
+      state.loading[0].elapsed = Date.now() - state.loading[0].time
+      state.loading.elapsed += state.loading[0].elapsed
+      state.log = state.loading.slice()
+      state.log.elapsed = state.loading.elapsed
       state.loading = payload
     } else {
       state.loading = state.loading || []
@@ -73,6 +78,7 @@ export const getters = {
   [types.DIALOG_PARAM]: state => state.dialog.param,
   [types.ERROR]: state => state.error,
   [types.LOADING]: state => state.loading,
+  [types.LOG]: state => state.log,
   [types.FAB_METHOD]: state => state.fabMethod,
   [types.FAB_PENDING]: state => state.fabPending,
   [types.TAB]: state => state.tab,

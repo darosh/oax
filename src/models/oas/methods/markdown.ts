@@ -3,6 +3,12 @@ import {ISpecExtended} from '../interfaces/ISpecExtended';
 
 import {trim, summary} from '../../../services/md-converter';
 
+export function mdInfo(spec: ISpecExtended) {
+  if(spec.info.description) {
+    (spec.info as any)._md_description = trim(spec.info.description);
+  }
+}
+
 export function mdTags(spec: ISpecExtended) {
   for (const tag of spec.tags) {
     tag._md_description = trim(tag.description);

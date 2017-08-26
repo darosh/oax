@@ -4,12 +4,7 @@
       v-spacer
       div.pt-2
         v-progress-linear(:value="Math.round(LOADING[0].done * 100)", :height="4", class="primary--text")
-        div(v-for="(i, k) in LOADING", :style="{opacity: k ? Math.min(0.8, Math.max(0.33, 1 / (k / 2))) : 1, 'margin-bottom': !k ? '16px' : 0}" style="min-width: 260px; position: relative")
-          span(v-if="k" style="inline-block; position: absolute; right: 0px; font-family: 'Roboto Mono', monospaced") +{{i.elapsed}} ms
-          span(style="inline-block; font-size: 16px") {{i.text}}
-            span(v-if="!k") &hellip;
-        div(style="min-width: 260px; position: relative")
-          b(style="opacity: 0.33; inline-block; position: absolute; right: 0px; font-family: 'Roboto Mono', monospaced") {{LOADING.elapsed}} ms
+        app-log(:items="LOADING")
       v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
@@ -46,11 +41,15 @@
   import * as types from '../../store/types'
 
   import {md} from '../../services/md'
+  import appLog from '../Log'
+  import appMetaList from '../MetaList'
+  import appResourceList from '../ResourceList'
 
   export default {
     components: {
-      appMetaList: () => import('../MetaList'),
-      appResourceList: () => import('../ResourceList'),
+      appLog,
+      appMetaList,
+      appResourceList,
       appOperationList: () => import('../OperationList'),
       appOperationTable: () => import('../OperationTable'),
       appDocumentation: () => import('../Documentation'),
