@@ -54,4 +54,5 @@
   @import './stylus/grid'
   @import './stylus/sidebar'
   @import './stylus/app'
+  @import './stylus/markdown'
 </style>

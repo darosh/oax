@@ -21,7 +21,8 @@
                   v-card-text
                     v-layout
                       v-spacer
-                      .md(style="max-width: 60em" v-html="md(SPEC.info)")
+                      <!--.markdown-body(style="max-width: 60em" v-html="md(SPEC.info)")-->
+                      div(style="max-width: 60em", v-markdown="SPEC.info")
                       v-spacer
 
       app-meta-list(v-if="METAS", :metas="METAS")
@@ -40,12 +41,16 @@
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
 
-  import {md} from '../../services/md'
   import appLog from '../Log'
   import appMetaList from '../MetaList'
   import appResourceList from '../ResourceList'
 
+  import markdown from '../../directives/markdown'
+
   export default {
+    directives: {
+      markdown
+    },
     components: {
       appLog,
       appMetaList,
@@ -80,8 +85,7 @@
     methods: {
       ...mapActions([
         types.LOAD_URL
-      ]),
-      md
+      ])
     },
     created () {
       if (this.$route.query.url) {
