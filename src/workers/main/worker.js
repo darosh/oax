@@ -27,9 +27,9 @@ export default function () {
 
       self.postMessage(JSON.stringify({url: event.data.url, progress: {section: 'Worker finishing'}}))
 
-      ret.bundled = event.data.bundled
+      ret.bundled = res.bundled
 
-      self.postMessage(CircularJSON.stringify(res))
+      self.postMessage(CircularJSON.stringify(ret))
     }).catch(res => {
       self.postMessage(CircularJSON.stringify({
         url: event.data.url,
