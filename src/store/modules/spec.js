@@ -1,12 +1,7 @@
-// import load from '../../services/load'
-// import load from '../../workers/load'
 import main from '../../workers/main'
-// import { OAS } from '../../models/oas/index'
-// import OAS from '../../workers/oas'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
-// import Vue from 'vue'
 
 export const state = {
   spec: null,
@@ -87,45 +82,34 @@ export const actions = {
       metas: null
     })
 
-    setTimeout(() => {
-      commit(types.SET_LOADING, {text: 'Worker beginning', done: 0})
-      main(url, (progress) => {
-        commit(types.SET_LOADING, report(progress))
-      }).then((res) => {
-        // commit(types.SET_LOADING, {text: 'Parsing', done: 0.5})
-        // OAS(res.bundled, url, (progress) => {
-        //   commit(types.SET_LOADING,
-        //     {
-        //       text: progress.loaded !== progress.total
-        //         ? `${progress.section || 'Parsing'} ${progress.text}`
-        //         : 'Almost ready',
-        //       done: 0.5 + 0.5 * (progress.loaded / progress.total)
-        //     })
-        // }).then(res => {
-        if (res.err) {
-          commit(types.SET_ERROR, 'ERROR: ' + res.err.message)
-          commit(types.SET_LOADING, false)
-        } else {
-          commit(types.SET_LOADING, {text: 'Rendering', done: 1})
+    commit(types.SET_LOADING, {text: 'Worker starting', done: 0})
 
-          setTimeout(() => {
-            commit(types.SET_SPEC, {
-              resources: res.bundled.tags,
-              operations: res.bundled._operations,
-              spec: res.bundled,
-              metas: res.bundled._metas
-            }, 0)
-
-            commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
-            commit(types.SET_LOADING, false)
-          })
-        }
-      }).catch((err) => {
+    main(url, (progress) => {
+      commit(types.SET_LOADING, report(progress))
+    }).then((res) => {
+      if (res.err) {
+        commit(types.SET_ERROR, 'ERROR: ' + res.err.message)
         commit(types.SET_LOADING, false)
-        console.warn(err)
-        commit(types.SET_ERROR, err)
-      })
-    }, 0)
+      } else {
+        commit(types.SET_LOADING, {text: 'Rendering', done: 1})
+
+        setTimeout(() => {
+          commit(types.SET_SPEC, {
+            resources: res.bundled.tags,
+            operations: res.bundled._operations,
+            spec: res.bundled,
+            metas: res.bundled._metas
+          })
+
+          commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
+          commit(types.SET_LOADING, false)
+        }, 0)
+      }
+    }).catch((err) => {
+      commit(types.SET_LOADING, false)
+      console.warn(err)
+      commit(types.SET_ERROR, err)
+    })
   }
 }
 
@@ -144,12 +128,12 @@ export default {
 }
 
 const sections = {
-  'Worker begining': [0, 0],
-  'Loading': [0, 0.4, true],
+  'Worker starting': [0, 0],
+  'Loading': [0.06, 0.4, true],
   'Schema': [0.45, 0.6],
-  'Parsing': [0.65, 1],
-  'Markdown': [0.65, 1],
-  'Worker finishing': [1, 1]
+  'Parsing': [0.66, 0.94],
+  'Markdown': [0.66, 0.94],
+  'Worker finishing': [0.94, 0.94]
 }
 
 function report (p) {
