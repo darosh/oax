@@ -141,7 +141,7 @@ function report (p) {
 
   return {
     text: sections[s][2]
-      ? `Loaded ${p.loaded} of ${p.total} files`
+      ? p.cached ? `Cached ${p.loaded} of ${p.total} files` : `Loaded ${p.loaded} of ${p.total} files`
       : `${p.section} ${p.text || ''}`,
     done: sections[s][0] +
     (sections[s][1] - sections[s][0]) * (p.total ? (p.loaded / p.total) : 1)

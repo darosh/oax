@@ -1,6 +1,6 @@
 {
   "name": "oas-ui",
-  "version": "1.0.76",
+  "version": "1.0.77",
   "description": "OpenAPI Specification Explorer",
   "author": "Jan Forst <ensonador@gmail.com>",
   "private": true,
@@ -25,7 +25,7 @@
     "circular-json": "^0.3.3",
     "github-markdown-css": "^2.8.0",
     "intersection-observer": "^0.4.0",
-    "json-schema-bundler": "0.0.3",
+    "json-schema-bundler": "0.0.4",
     "parse5": "^3.0.2",
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
