@@ -51,14 +51,14 @@ export function OAS(spec: ISpecExtended,
   mdInfo(spec);
 
   log(phase.mdTags, progress);
-  mdTags(spec);
+  mdTags(spec, 10);
 
   log(phase.mdOperations, progress);
-  mdOperations(spec);
+  mdOperations(spec, 10);
 
   log(phase.mdParameters, progress);
-  mdParameters(spec);
+  mdParameters(spec, 10);
 
   log(phase.mdResponses, progress);
-  mdResponses(spec);
+  mdResponses(spec, 10);
 }

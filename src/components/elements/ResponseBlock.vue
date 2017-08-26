@@ -1,13 +1,18 @@
 <template lang="pug">
   div(class="operation")
     app-response(:code="code")
-    span.operation--message.pl-1.md(v-html="text")
+    span.operation--message.pl-1(v-markdown="text")
 </template>
 
 <script>
   import appResponse from './Response'
 
+  import markdown from '../../directives/markdown'
+
   export default {
+    directives: {
+      markdown
+    },
     components: {
       appResponse
     },

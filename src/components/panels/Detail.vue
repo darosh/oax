@@ -15,7 +15,7 @@
     div.toolbar--scroll
       div.pt-3.pl-0.pr-0.pb-3
         app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
-        .body-1.md.pl-3.pr-3.pt-3(v-if="operation.summary" v-html="md(operation, 'summary')")
+        .pl-3.pr-3.pt-3(v-if="operation.summary" v-markdown.summary="operation")
       //v-divider
       v-tabs.app--tabs(grow v-model="tab", :scrollable="false")
         v-tabs-bar.tabs--transparent(slot="activators")
@@ -38,16 +38,19 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
 
-  import { md } from '../../services/md'
-
   import appOperation from '../elements/MethodBlock'
   import appInfo from './DetailInfo'
   import appParams from './DetailParams'
   import appScripts from './DetailScripts'
   import appResult from './DetailResult'
 
+  import markdown from '../../directives/markdown'
+
   export default {
     props: ['operation'],
+    directives: {
+      markdown
+    },
     components: {
       appOperation,
       appInfo,
@@ -72,7 +75,6 @@
         types.PREV_OPERATION,
         types.NEXT_OPERATION
       ]),
-      md,
       close () {
         this.SET_DRAWER(false)
       }

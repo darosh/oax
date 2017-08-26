@@ -6,7 +6,7 @@
         .pt-1.pb-1.plr-3-sm
           app-operation(:item="OPERATIONS[key]")
           div(v-if="IS_DESCRIPTION && item.summary")
-            .pt-1.pr-1.body-1.md(style="padding-left: 68px" v-html="md(item, 'summary')")
+            .pt-1.pr-1(style="padding-left: 68px" v-markdown.summary="item")
         v-divider.hidden-sm-and-up
 </template>
 
@@ -16,9 +16,12 @@
 
   import appOperation from './elements/MethodBlock'
 
-  import { md } from '../services/md'
+  import markdown from '../directives/markdown'
 
   export default {
+    directives: {
+      markdown
+    },
     components: {
       appOperation
     },
@@ -32,8 +35,7 @@
     methods: {
       ...mapMutations([
         types.SET_OPERATION
-      ]),
-      md
+      ])
     }
   }
 </script>

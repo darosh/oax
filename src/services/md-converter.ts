@@ -18,11 +18,14 @@ sax.on('text', text => {
   TEXT += text;
 });
 
+// let counter = 0;
+
 export function trim(v: string) {
   if (v) {
     const t = v.trim()
 
     if (t) {
+      // console.log(++counter);
       const h = serialize(parseFragment(converter.makeHtml(t)));
       return h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
     }

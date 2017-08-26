@@ -21,7 +21,6 @@
                   v-card-text
                     v-layout
                       v-spacer
-                      <!--.markdown-body(style="max-width: 60em" v-html="md(SPEC.info)")-->
                       div(style="max-width: 60em", v-markdown="SPEC.info")
                       v-spacer
 
