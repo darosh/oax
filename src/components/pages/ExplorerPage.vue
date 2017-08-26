@@ -79,6 +79,11 @@
       ]),
       md
     },
+    created () {
+      if (this.$route.query.url) {
+        this.LOAD_URL(this.$route.query.url)
+      }
+    },
     watch: {
       $route: function (value) {
         if (value.query.url) {
