@@ -26,6 +26,16 @@ module.exports = {
       '@': resolve('src')
     }
   },
+  // externals:[{
+  //   ajv: '{this:this}',
+  //   'canvas-prebuilt': '{this:this}',
+  //   'canvas': '{this:this}',
+  //   escodegen: '{this:this}',
+  //   fs: '{this:this}',
+  //   net: '{this:this}',
+  //   tls: '{this:this}',
+  //   child_process: '{this:this}'
+  // }],
   module: {
     rules: [
       {

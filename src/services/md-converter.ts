@@ -1,4 +1,5 @@
 import {Converter} from 'showdown';
+import {parseFragment, serialize, SAXParser} from 'parse5';
 
 export const converter = new Converter();
 
@@ -9,14 +10,35 @@ converter.setOption('openLinksInNewWindow', true as any as string);
 converter.setOption('smoothLivePreview', true as any as string);
 converter.setOption('headerLevelStart', 4 as any as string);
 
-// export const el = document.createElement('div');
+let TEXT = '';
+
+const sax = new SAXParser();
+
+sax.on('text', text => {
+  TEXT += text;
+});
 
 export function trim(v: string) {
-  if(v) {
-    return converter.makeHtml(v.trim());
-    // el.innerHTML = converter.makeHtml(v.trim());
-    // return el.innerHTML.replace(/<p><\/p>$/g, '');
-  } else {
-    return '';
+  if (v) {
+    const t = v.trim()
+
+    if (t) {
+      const h = serialize(parseFragment(converter.makeHtml(t)));
+      return h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
+    }
   }
+  return '';
+}
+
+export function summary(html: string, range = [3, 120]) {
+  const t = text(html);
+  const dot = t.indexOf('.') + 1;
+  return t.substr(0, (dot > range[0] && dot < range[1]) ? dot : range[1]);
+}
+
+export function text(html: string) {
+  TEXT = ''
+  sax.write(html)
+
+  return TEXT;
 }
