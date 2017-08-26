@@ -25,7 +25,20 @@ export const mutations = {
     state.dialog.param = typeof payload === 'string' ? null : payload.param
   },
   [types.SET_LOADING] (state, payload) {
-    state.loading = payload
+    if (payload === false) {
+      state.loading = payload
+    } else {
+      state.loading = state.loading || []
+      payload.time = Date.now()
+
+      if (state.loading[0]) {
+        state.loading[0].elapsed = payload.time - state.loading[0].time
+      } else {
+        payload.elapsed = 0
+      }
+
+      state.loading.unshift(payload)
+    }
   },
   [types.SET_ERROR] (state, payload) {
     state.error = payload

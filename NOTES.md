@@ -80,3 +80,4 @@
 - [ ] drawer needs air?
 - [ ] known implementations https://api.coinsecure.in/v1
 - [ ] bug? http://localhost:8080/#/?url=https%3A%2F%2Fapi.apis.guru%2Fv2%2Fspecs%2Fgoogleapis.com%2Fdiscovery%2Fv1%2Fswagger.json
+- [ ] http://localhost:8080/#/?url=https%3A%2F%2Fapi.apis.guru%2Fv2%2Fspecs%2Fgoogleapis.com%2Fdiscovery%2Fv1%2Fswagger.json

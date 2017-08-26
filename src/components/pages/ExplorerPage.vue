@@ -1,10 +1,13 @@
 <template lang="pug">
   v-container(fluid :class="ERROR ? 'pa-0' : ''")
-    v-layout.ma-0(v-if="LOADING" style="padding-top: calc(50vh - 64px)")
+    v-layout.ma-0(v-if="LOADING")
       v-spacer
-      div
-        .subheading.secondary--text.ma-0(style="margin-top: 2px; min-width: 160px" v-if="LOADING && typeof (LOADING === 'string')") {{LOADING.text}}&hellip;
-        v-progress-linear(:value="Math.round(LOADING.done * 100)", :height="4", class="primary--text")
+      div.pt-2
+        v-progress-linear(:value="Math.round(LOADING[0].done * 100)", :height="4", class="primary--text")
+        div(v-for="(i, k) in LOADING", :style="{opacity: k ? Math.min(0.8, Math.max(0.33, 1 / (k / 2))) : 1, 'margin-bottom': !k ? '16px' : 0}" style="min-width: 260px; position: relative")
+          span(v-if="k" style="inline-block; position: absolute; right: 0px; font-family: 'Roboto Mono', monospaced") +{{i.elapsed}} ms
+          span(style="inline-block; font-size: 16px") {{i.text}}
+            span(v-if="!k") &hellip;
       v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
@@ -81,7 +84,7 @@
     },
     created () {
       if (this.$route.query.url) {
-        this.LOAD_URL(this.$route.query.url)
+        //        this.LOAD_URL(this.$route.query.url)
       }
     },
     watch: {
