@@ -4,7 +4,7 @@
       .title(slot="header") {{item.name}}
       v-divider
       v-card
-        v-card-title(v-if="item.description") {{item.description}}
+        v-card-title.md(v-if="item.description" v-html="md(item)") {{item.description}}
         v-divider(v-if="item.description")
         v-card-text(v-if="item.externalDocs && item.externalDocs.url")
           a(:href="item.externalDocs.url") {{item.externalDocs.description}}

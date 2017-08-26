@@ -8,6 +8,8 @@
           span(v-if="k" style="inline-block; position: absolute; right: 0px; font-family: 'Roboto Mono', monospaced") +{{i.elapsed}} ms
           span(style="inline-block; font-size: 16px") {{i.text}}
             span(v-if="!k") &hellip;
+        div(style="min-width: 260px; position: relative")
+          b(style="opacity: 0.33; inline-block; position: absolute; right: 0px; font-family: 'Roboto Mono', monospaced") {{LOADING.elapsed}} ms
       v-spacer
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
@@ -16,7 +18,7 @@
       v-container.pa-0-sm(fluid grid-list-xl)
         v-layout(column)
           v-flex
-            v-expansion-panel(expand)
+            v-expansion-panel(expand :class="{'expansion-panel--disabled': !SPEC.info.description}")
               v-expansion-panel-content.bg.relative(v-model="exp1", ripple)
                 .title(slot="header") {{SPEC.info.title}}
                 v-divider(v-if="SPEC.info.description")
@@ -98,6 +100,9 @@
 </script>
 
 <style scoped lang="stylus">
+  .expansion-panel--disabled >>> .expansion-panel__header:after
+    opacity 0.44
+
   .pre
     white-space pre
 
@@ -113,6 +118,6 @@
     border-radius 2px
 
   .expansion-panel__body > *
-    border-bottom-left-radius 2px
-    border-bottom-right-radius 2px
+    border-bottom-left-radius: 2px
+    border-bottom-right-radius: 2px
 </style>

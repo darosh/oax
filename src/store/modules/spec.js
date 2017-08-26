@@ -100,7 +100,7 @@ export const actions = {
           commit(types.SET_LOADING,
             {
               text: progress.loaded !== progress.total
-                ? `Parsing ${progress.text}`
+                ? `${progress.section || 'Parsing'} ${progress.text}`
                 : 'Almost ready',
               done: 0.5 + 0.5 * (progress.loaded / progress.total)
             })

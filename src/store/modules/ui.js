@@ -29,10 +29,12 @@ export const mutations = {
       state.loading = payload
     } else {
       state.loading = state.loading || []
+      state.loading.elapsed = state.loading.elapsed || 0
       payload.time = Date.now()
 
       if (state.loading[0]) {
         state.loading[0].elapsed = payload.time - state.loading[0].time
+        state.loading.elapsed += state.loading[0].elapsed
       } else {
         payload.elapsed = 0
       }

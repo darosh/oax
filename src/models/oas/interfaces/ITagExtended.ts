@@ -5,4 +5,5 @@ export interface ITagExtended extends Tag {
   _operations?: IOperationExtended[];
   _opened?: boolean;
   _display?: boolean;
+  _md_description?: string;
 }
