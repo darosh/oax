@@ -16,7 +16,6 @@
             pre.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
-                | {{schemaView}}
                 v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView")
                   v-btn(v-for="i in schemaViews", :key="i.text") {{i.text}}
               app-model(:item="response.schema" v-if="schemaView === 1")
