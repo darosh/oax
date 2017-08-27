@@ -9,8 +9,14 @@
     margin-top $toolbar-height
     height "calc(100vh - %s)" % $toolbar-height
 
-  .application > main > .container
-    min-height 0
+.application > main > .container
+  //min-height "calc(100vh - %s)" % $toolbar-height
+  min-height 0
+  overflow-y hidden
+  //@media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+  //  min-height "calc(100vh - %s)" % $toolbar-mobile-landscape-height
+  //@media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+  //  min-height "calc(100vh - %s)" % $toolbar-mobile-portrait-height
 
 //@media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
 //  .toolbar--fixed + main
