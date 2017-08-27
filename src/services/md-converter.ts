@@ -33,8 +33,7 @@ export function trim(v: string) {
   return '';
 }
 
-export function summary(html: string, range = [3, 120]) {
-  const t = text(html);
+export function summary(t: string, range = [3, 120]) {
   const dot = t.indexOf('.') + 1;
   return t.substr(0, (dot > range[0] && dot < range[1]) ? dot : range[1]);
 }

@@ -1,7 +1,7 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-import {trim, summary} from '../../../services/md-converter';
+import {trim, summary, text} from '../../../services/md-converter';
 
 export function mdInfo(spec: ISpecExtended) {
   if (spec.info.description) {
@@ -30,7 +30,7 @@ export function mdOperations(spec: ISpecExtended, max: number) {
     }
 
     if (!op.summary && op.description) {
-      op.summary = op.summary || summary(op._md_description)
+      op.summary = op.summary || summary(text(op._md_description))
     }
 
     if (op.summary) {
