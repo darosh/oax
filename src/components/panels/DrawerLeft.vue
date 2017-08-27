@@ -6,66 +6,67 @@
       v-toolbar-title Specification
     //v-divider
     v-tabs.app--tabs(:scrollable="false" grow v-model="tab")
-      v-tabs-bar.tabs--transparent(slot="activators")
+      v-tabs-bar.tabs--transparent
         v-tabs-item.relative(ripple href="tab-json") Edit
         v-tabs-item.relative(ripple href="tab-dir") Directory
         v-tabs-item.relative(ripple href="tab-recent") Recent
         v-tabs-item.relative(ripple href="tab-test") Test
         v-tabs-slider
-      v-tabs-content#tab-json
-        v-divider
-        .pl-3.pr-3.pt-3
-          v-text-field(label="URL" v-model="url" solo single-line hide-details prepend-icon="link" v-focus.wait="MENU && (tab === 'tab-json')")
-          v-layout.ma-0
-            v-radio-group(v-model="format", :mandatory="true")
-              v-radio.pt-4.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
-          v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)
-      v-tabs-content#tab-dir
-        v-divider
-        v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
-          v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && (tab === 'tab-dir')")
-        v-list.pa-0(two-line v-if="APIS")
-          virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
-            template(scope="props")
-              div(:key="props.itemKey")
-                v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
-                  v-list-tile-avatar
-                    .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
-                  v-list-tile-content
-                    v-list-tile-title {{props.item.title}}
-                    v-list-tile-sub-title {{props.item.key}}
-                v-divider
-      v-tabs-content#tab-recent
-        v-divider
-        v-list.pa-0(two-line)
-          virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20" key-field="url")
-            template(scope="props")
-              div(:key="props.itemKey")
-                v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
-                  v-list-tile-avatar
-                    .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
-                    v-icon(v-else class="secondary white--text") link
-                  v-list-tile-content
-                    v-list-tile-title {{props.item.title}}
-                    v-list-tile-sub-title {{key(props.item)}}
-                  v-list-tile-action
-                    v-btn(icon ripple @click.capture.stop.prevent="RECENT_REMOVE(props.item)")
-                      v-icon close
-                v-divider
-      v-tabs-content#tab-test
-        v-divider
-        v-list.pa-0(two-line)
-          virtual-scroller.scroller-recent(:items="test", item-height="73" prerender="20" key-field="url")
-            template(scope="props")
-              div(:key="props.itemKey")
-                v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
-                  v-list-tile-avatar
-                    .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
-                    v-icon(v-else class="secondary white--text") link
-                  v-list-tile-content
-                    v-list-tile-title {{props.item.note}}
-                    v-list-tile-sub-title {{props.item.title}}
-                v-divider
+      v-tabs-items
+        v-tabs-content#tab-json
+          v-divider
+          .pl-3.pr-3.pt-3
+            v-text-field(label="URL" v-model="url" solo single-line hide-details prepend-icon="link" v-focus.wait="MENU && (tab === 'tab-json')")
+            v-layout.ma-0
+              v-radio-group(v-model="format", :mandatory="true")
+                v-radio.pt-4.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
+            v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)
+        v-tabs-content#tab-dir
+          v-divider
+          v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
+            v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && (tab === 'tab-dir')")
+          v-list.pa-0(two-line v-if="APIS")
+            virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
+              template(scope="props")
+                div(:key="props.itemKey")
+                  v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                    v-list-tile-avatar
+                      .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
+                    v-list-tile-content
+                      v-list-tile-title {{props.item.title}}
+                      v-list-tile-sub-title {{props.item.key}}
+                  v-divider
+        v-tabs-content#tab-recent
+          v-divider
+          v-list.pa-0(two-line)
+            virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20" key-field="url")
+              template(scope="props")
+                div(:key="props.itemKey")
+                  v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                    v-list-tile-avatar
+                      .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                      v-icon(v-else class="secondary white--text") link
+                    v-list-tile-content
+                      v-list-tile-title {{props.item.title}}
+                      v-list-tile-sub-title {{key(props.item)}}
+                    v-list-tile-action
+                      v-btn(icon ripple @click.capture.stop.prevent="RECENT_REMOVE(props.item)")
+                        v-icon close
+                  v-divider
+        v-tabs-content#tab-test
+          v-divider
+          v-list.pa-0(two-line)
+            virtual-scroller.scroller-recent(:items="test", item-height="73" prerender="20" key-field="url")
+              template(scope="props")
+                div(:key="props.itemKey")
+                  v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                    v-list-tile-avatar
+                      .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                      v-icon(v-else class="secondary white--text") link
+                    v-list-tile-content
+                      v-list-tile-title {{props.item.note}}
+                      v-list-tile-sub-title {{props.item.title}}
+                  v-divider
 </template>
 
 <script>
