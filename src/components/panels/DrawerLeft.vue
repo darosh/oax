@@ -53,7 +53,18 @@
                 v-divider
       v-tabs-content#tab-test
         v-divider
-        | NIY
+        v-list.pa-0(two-line)
+          virtual-scroller.scroller-recent(:items="test", item-height="73" prerender="20" key-field="url")
+            template(scope="props")
+              div(:key="props.itemKey")
+                v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                  v-list-tile-avatar
+                    .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                    v-icon(v-else class="secondary white--text") link
+                  v-list-tile-content
+                    v-list-tile-title {{props.item.note}}
+                    v-list-tile-sub-title {{props.item.title}}
+                v-divider
 </template>
 
 <script>
@@ -63,6 +74,7 @@
   import {getColor} from 'random-material-color'
   import Vue from 'vue'
   import CircularJSON from 'circular-json'
+  import test from './../../services/test'
 
   import focus from '../../directives/focus'
 
@@ -81,7 +93,8 @@
         format: 1,
         spec: '',
         keys: {},
-        apis: false
+        apis: false,
+        test
       }
     },
     created () {
