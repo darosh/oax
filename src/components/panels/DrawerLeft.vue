@@ -10,6 +10,7 @@
         v-tabs-item.relative(ripple href="tab-json") Edit
         v-tabs-item.relative(ripple href="tab-dir") Directory
         v-tabs-item.relative(ripple href="tab-recent") Recent
+        v-tabs-item.relative(ripple href="tab-test") Test
         v-tabs-slider
       v-tabs-content#tab-json
         v-divider
@@ -50,6 +51,9 @@
                     v-btn(icon ripple @click.capture.stop.prevent="RECENT_REMOVE(props.item)")
                       v-icon close
                 v-divider
+      v-tabs-content#tab-test
+        v-divider
+        | NIY
 </template>
 
 <script>
