@@ -1,18 +1,18 @@
 export default [
   {
-    url: 'https://petstore.swagger.io/v2/swagger.json',
+    url: 'https://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json',
     title: 'Petstore',
     note: 'Obligatory sample'
+  },
+  {
+    url: 'http://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json',
+    title: 'Petstore',
+    note: 'HTTP'
   },
   {
     url: 'https://cdn.rawgit.com/OAI/OpenAPI-Specification/OpenAPI.next/examples/v3.0/petstore.yaml',
     title: 'Petstore 3.0',
     note: 'OAS 3.0'
-  },
-  {
-    url: 'https://petstore.swagger.io/v2/swagger.json',
-    title: 'Petstore',
-    note: 'HTTP'
   },
   {
     url: 'https://api.apis.guru/v2/specs/docusign.net/v2/swagger.json',
@@ -22,7 +22,7 @@ export default [
   {
     url: 'https://api.apis.guru/v2/specs/googleapis.com/discovery/v1/swagger.json',
     title: 'Google Discovery',
-    note: 'Bug'
+    note: 'Resolved bug'
   },
   {
     url: 'https://darosh.github.io/angular-swagger-ui-material/swagger-drupal.json',

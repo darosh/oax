@@ -65,12 +65,15 @@ export const mutations = {
   }
 }
 
+let lastUrl = null
+
 export const actions = {
   [types.LOAD_URL] ({commit, getters}, url) {
-    if (url === getters[types.URL]) {
+    if (url === lastUrl) {
       return
     }
 
+    lastUrl = url
     commit(types.SET_ERROR, null)
     commit(types.SET_URL, url)
     commit(types.SET_OPERATION, null)
@@ -85,8 +88,16 @@ export const actions = {
     commit(types.SET_LOADING, {text: 'Worker starting', done: 0})
 
     main(url, (progress) => {
+      if (url !== lastUrl) {
+        return
+      }
+
       commit(types.SET_LOADING, report(progress))
     }).then((res) => {
+      if (url !== lastUrl) {
+        return
+      }
+
       if (res.err) {
         commit(types.SET_ERROR, 'ERROR: ' + res.err.message)
         commit(types.SET_LOADING, false)
@@ -94,6 +105,10 @@ export const actions = {
         commit(types.SET_LOADING, {text: 'Rendering', done: 1})
 
         setTimeout(() => {
+          if (url !== lastUrl) {
+            return
+          }
+
           commit(types.SET_SPEC, {
             resources: res.bundled.tags,
             operations: res.bundled._operations,
@@ -106,6 +121,10 @@ export const actions = {
         }, 0)
       }
     }).catch((err) => {
+      if (url !== lastUrl) {
+        return
+      }
+
       commit(types.SET_LOADING, false)
       console.warn(err)
       commit(types.SET_ERROR, err)
@@ -141,7 +160,9 @@ function report (p) {
 
   return {
     text: sections[s][2]
-      ? p.cached ? `Cached ${p.loaded} of ${p.total} files` : `Loaded ${p.loaded} of ${p.total} files`
+      ? p.cached
+        ? `Cached ${p.loaded} of ${p.total} files`
+        : `Loaded ${p.loaded} of ${p.total} files`
       : `${p.section} ${p.text || ''}`,
     done: sections[s][0] +
     (sections[s][1] - sections[s][0]) * (p.total ? (p.loaded / p.total) : 1)
