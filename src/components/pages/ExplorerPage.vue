@@ -109,7 +109,8 @@
     white-space pre
 
   >>> .progress-linear__bar__determinate
-    transition none
+    /*transition none*/
+    transition .06s linear
 
   .relative
     position relative
