@@ -2,7 +2,12 @@ export default [
   {
     url: 'https://petstore.swagger.io/v2/swagger.json',
     title: 'Petstore',
-    note: 'Obligatory'
+    note: 'Obligatory sample'
+  },
+  {
+    url: 'https://cdn.rawgit.com/OAI/OpenAPI-Specification/OpenAPI.next/examples/v3.0/petstore.yaml',
+    title: 'Petstore 3.0',
+    note: 'OAS 3.0'
   },
   {
     url: 'https://petstore.swagger.io/v2/swagger.json',
