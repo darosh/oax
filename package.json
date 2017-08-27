@@ -1,36 +1,26 @@
 {
   "name": "oas-ui",
-  "version": "1.0.89",
   "description": "OpenAPI Specification Explorer",
+  "version": "1.0.89",
   "author": "Jan Forst <ensonador@gmail.com>",
-  "private": true,
-  "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "tslint": "tslint --fix -c tslint.json src/**/*.ts",
-    "http-method": "node tools/http-data.js method > src/assets/http-method.json",
-    "http-status": "node tools/http-data.js status > src/assets/http-status.json",
-    "http-header": "node tools/http-data.js header > src/assets/http-header.json",
-    "deploy": "npm --no-git-tag-version version patch && node build/build.js && gulp deploy"
-  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "dependencies": {
     "@types/showdown": "^1.7.0",
     "@types/swagger-schema-official": "^2.0.5",
     "axios": "^0.16.2",
     "circular-json": "^0.3.3",
     "github-markdown-css": "^2.8.0",
+    "highlight.js": "^9.12.0",
     "intersection-observer": "^0.4.0",
     "json-schema-bundler": "0.0.6",
     "parse5": "^3.0.2",
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
     "showdown": "^1.7.2",
-    "swagger-ui-dist": "^3.1.7",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vue-virtual-scroller": "^0.8.1",
@@ -127,9 +117,19 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "private": true,
+  "scripts": {
+    "build": "node build/build.js",
+    "deploy": "npm --no-git-tag-version version patch && node build/build.js && gulp deploy",
+    "dev": "node build/dev-server.js",
+    "e2e": "node test/e2e/runner.js",
+    "http-header": "node tools/http-data.js header > src/assets/http-header.json",
+    "http-method": "node tools/http-data.js method > src/assets/http-method.json",
+    "http-status": "node tools/http-data.js status > src/assets/http-status.json",
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "start": "node build/dev-server.js",
+    "test": "npm run unit && npm run e2e",
+    "tslint": "tslint --fix -c tslint.json src/**/*.ts",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run"
+  }
 }
