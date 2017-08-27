@@ -7,7 +7,7 @@
         v-btn(icon @click.native.stop="SET_DIALOG()")
           v-icon close
       v-divider
-      v-tabs.dlg-tabs(v-if="tab && active || activated" v-model="tab", :scrollable="false" style="max-height: calc(90vh - 64px - 1px); overflow: auto")
+      v-tabs.dlg-tabs(v-if="SPEC && (tab && active || activated)" v-model="tab", :scrollable="false" style="max-height: calc(90vh - 64px - 1px); overflow: auto")
         v-tabs-bar.tabs--transparent(slot="activators", :class="Object.keys((SPEC && SPEC.securityDefinitions) || {}).length === 1 ? 'tabs--single' : ''")
           v-tabs-item(ripple :href="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey") {{name(sec)}}
           v-tabs-slider
