@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.pb-3
     h2.pa-3.ma-0 OpenAPI Specification Explorer
     v-divider
     v-layout.ma-3
