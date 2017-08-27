@@ -9,6 +9,14 @@ export function mdInfo(spec: ISpecExtended) {
   }
 }
 
+export function mdSecurity(spec: ISpecExtended) {
+  if (spec.securityDefinitions) {
+    for(const key in spec.securityDefinitions) {
+      (spec.securityDefinitions[key] as any)._md_description = trim(spec.securityDefinitions[key].description)
+    }
+  }
+}
+
 export function mdTags(spec: ISpecExtended, max: number) {
   let n = 0;
 

@@ -4,7 +4,7 @@ import {info} from './methods/info';
 import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
-import {mdOperations, mdResponses, mdParameters, mdTags, mdInfo} from './methods/markdown';
+import {mdOperations, mdResponses, mdParameters, mdTags, mdInfo, mdSecurity} from './methods/markdown';
 
 const phase = {
   info: [0, 'info', 'Parsing'],
@@ -13,10 +13,11 @@ const phase = {
   operations: [3, 'operations', 'Parsing'],
   security: [4, 'security', 'Parsing'],
   mdInfo: [5, 'info', 'Markdown'],
-  mdTags: [6, 'tags', 'Markdown'],
-  mdOperations: [7, 'operations', 'Markdown'],
-  mdParameters: [8, 'parameters', 'Markdown'],
-  mdResponses: [9, 'responses', 'Markdown'],
+  mdSecurity: [6, 'security', 'Markdown'],
+  mdTags: [7, 'tags', 'Markdown'],
+  mdOperations: [8, 'operations', 'Markdown'],
+  mdParameters: [9, 'parameters', 'Markdown'],
+  mdResponses: [10, 'responses', 'Markdown'],
 }
 
 const phases = Object.keys(phase).length - 1
@@ -49,6 +50,9 @@ export function OAS(spec: ISpecExtended,
 
   log(phase.mdInfo, progress);
   mdInfo(spec);
+
+  log(phase.mdSecurity, progress);
+  mdSecurity(spec);
 
   log(phase.mdTags, progress);
   mdTags(spec, 10);
