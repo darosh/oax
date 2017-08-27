@@ -17,7 +17,8 @@
         .pl-3.pr-3.pt-3
           v-text-field(label="URL" v-model="url" solo single-line hide-details prepend-icon="link" v-focus.wait="MENU && (tab === 'tab-json')")
           v-layout.ma-0
-            v-radio.pt-4.pb-0.ml-1(v-for="i in formats", :key="i.text" v-model="format", :label="i.text", :value="i.value", color="primary" hide-details)
+            v-radio-group(v-model="format", :mandatory="true")
+              v-radio.pt-4.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
           v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)
       v-tabs-content#tab-dir
         v-divider
