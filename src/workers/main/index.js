@@ -49,3 +49,15 @@ export function markdown (md) {
 
   return promise
 }
+
+export function summary (summary) {
+  id++
+
+  const promise = new Promise((resolve, reject) => {
+    jobs[id] = {resolve, reject}
+  })
+
+  worker.postMessage({summary, id})
+
+  return promise
+}

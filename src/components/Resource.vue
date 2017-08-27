@@ -14,7 +14,7 @@
             .hover--block.relative(v-ripple="", @click.stop="SET_OPERATION(o)", :class="{'secondary white--text': OPERATION === o}")
               app-operation.pl-3.pr-3(:item="o" v-if="IS_ENDPOINT")
               div(v-if="IS_DESCRIPTION")
-                .pt-1.pr-3.pb-1(v-if="o.summary" style="padding-left: 84px" v-markdown.summary="o")
+                .pt-1.pr-3.pb-1(v-if="o.summary || o.description" style="padding-left: 84px" v-markdown.summary="o")
                 .pl-3.pr-3
                   v-divider(v-if="i < (item._operations.length - 1)")
 </template>
