@@ -5,21 +5,23 @@ function update (el, binding) {
     if (binding.modifiers.wait) {
       setTimeout(() => {
         input.focus()
-      }, 300)
+        input.select()
+      }, 320)
     } else {
       input.focus()
+      input.select()
     }
   }
 }
 
 export default {
   update (el, binding) {
-    if (binding.value) {
+    if (binding.value && !binding.oldValue) {
       update(el, binding)
     }
   },
   componentUpdated (el, binding) {
-    if (binding.value) {
+    if (binding.value && !binding.oldValue) {
       update(el, binding)
     }
   },
