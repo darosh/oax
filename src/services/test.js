@@ -1,8 +1,13 @@
 export default [
   {
-    url: 'http://petstore.swagger.io/v2/swagger.json',
+    url: 'https://petstore.swagger.io/v2/swagger.json',
     title: 'Petstore',
     note: 'Obligatory'
+  },
+  {
+    url: 'https://petstore.swagger.io/v2/swagger.json',
+    title: 'Petstore',
+    note: 'HTTP'
   },
   {
     url: 'https://api.apis.guru/v2/specs/docusign.net/v2/swagger.json',
@@ -15,12 +20,12 @@ export default [
     note: 'Bug'
   },
   {
-    url: 'http://darosh.github.io/angular-swagger-ui-material/swagger-drupal.json',
+    url: 'https://darosh.github.io/angular-swagger-ui-material/swagger-drupal.json',
     title: 'Drupal LoopBack API',
     note: 'Large API'
   },
   {
-    url: 'http://darosh.github.io/angular-swagger-ui-material/swagger-gfm.json',
+    url: 'https://darosh.github.io/angular-swagger-ui-material/swagger-gfm.json',
     title: 'Swagger GFM',
     note: 'Github Flavoured Markdown'
   },
