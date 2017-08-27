@@ -42,7 +42,7 @@ export function mdOperations(spec: ISpecExtended, max: number) {
       delete op.description;
     }
 
-    if (n++ === max) {
+    if (max && (n++ === max)) {
       return
     }
   }
