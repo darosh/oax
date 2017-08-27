@@ -5,7 +5,7 @@
         v-icon close
       v-toolbar-title Specification
     //v-divider
-    v-tabs.app--tabs(:scrollable="false")
+    v-tabs.app--tabs(:scrollable="false" grow v-model="tab")
       v-tabs-bar.tabs--transparent(slot="activators")
         v-tabs-item.relative(ripple href="tab-json") Edit
         v-tabs-item.relative(ripple href="tab-dir") Directory
@@ -21,7 +21,7 @@
       v-tabs-content#tab-dir
         v-divider
         v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
-          v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search")
+          v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && (tab === 'tab-dir')")
         v-list.pa-0(two-line v-if="APIS")
           virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
             template(scope="props")
@@ -60,12 +60,18 @@
   import Vue from 'vue'
   import CircularJSON from 'circular-json'
 
+  import focus from '../../directives/focus'
+
   export default {
+    directives: {
+      focus
+    },
     components: {
       appNavigationDrawer
     },
     data () {
       return {
+        tab: 'tab-json',
         filter: null,
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
