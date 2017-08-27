@@ -16,8 +16,10 @@
             pre.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
-                v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(:items="schemaViews" v-model="schemaView")
-              app-model(:item="response.schema" v-if="schemaView === 2")
+                | {{schemaView}}
+                v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView")
+                  v-btn(v-for="i in schemaViews", :key="i.text") {{i.text}}
+              app-model(:item="response.schema" v-if="schemaView === 1")
               app-example(:item="response.schema" v-else)
     <!--v-expansion-panel-content(v-model="exp3", ripple)-->
       <!--div.subheading(slot="header") Parameters-->
@@ -65,7 +67,7 @@
           {text: 'Example', value: 1},
           {text: 'Model', value: 2}
         ],
-        schemaViewInternal: 1,
+        schemaViewInternal: 0,
         exp1: true,
         exp2: true
         //        exp3: true
