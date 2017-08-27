@@ -18,20 +18,21 @@
         .pl-3.pr-3.pt-3(v-if="operation.summary || operation.description" v-markdown.summary="operation")
       //v-divider
       v-tabs.app--tabs(grow v-model="tab", :scrollable="false")
-        v-tabs-bar.tabs--transparent(slot="activators")
+        v-tabs-bar.tabs--transparent
           v-tabs-item(ripple href="tab-info") Info
           v-tabs-item(ripple href="tab-params") Params
           v-tabs-item.relative(ripple href="tab-script") Script
           v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._result") Result
           v-tabs-slider
-        v-tabs-content#tab-info
-          app-info(:item="operation")
-        v-tabs-content#tab-params
-          app-params(:item="operation")
-        v-tabs-content#tab-script
-          app-scripts(:item="operation")
-        v-tabs-content#tab-result
-          app-result(:item="operation")
+        v-tabs-items
+          v-tabs-content#tab-info
+            app-info(:item="operation")
+          v-tabs-content#tab-params
+            app-params(:item="operation")
+          v-tabs-content#tab-script
+            app-scripts(:item="operation")
+          v-tabs-content#tab-result
+            app-result(:item="operation")
 </template>
 
 <script>
