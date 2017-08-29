@@ -1,102 +1,102 @@
-main
-  margin-right 0
-  margin-left 0
-  will-change margin
-
-.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
-  padding-right 0
-
-.navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right) ~ main
-  padding-left 0
-
-.navigation-drawer--close:not(.navigation--permanent).navigation-drawer--right
-  transform translate3d(100%, 0, 0)
-
-.navigation-drawer--close:not(.navigation--permanent).navigation-drawer:not(.navigation-drawer--right)
-  transform translate3d(-100%, 0, 0)
-
-.navigation-drawer--open:not(.navigation--permanent).navigation-drawer--right
-.navigation-drawer--open:not(.navigation--permanent):not(.navigation-drawer--right)
-  transform translate3d(0, 0, 0)
-
-@media $display-breakpoints.sm-only
-  .navigation-drawer--right
-    width calc(50%)
-
 $delta := 11px
-
-@media $display-breakpoints.md-only
-  .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right 'calc(33.33% - %s)' % $delta
-
-  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
-    margin-left 'calc(33.33% - %s)' % $delta
-
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    padding-right 'calc(33.33% - %s)' % $delta
-
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
-    padding-left 'calc(33.33% - %s)' % $delta
-
-  .navigation-drawer--persistent
-    width 'calc(33.33% - %s)' % $delta
-
-@media $display-breakpoints.lg-and-up
-  .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right 'calc(25% - %s)' % $delta
-
-  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
-    margin-left 'calc(25% - %s)' % $delta
-
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    padding-right 'calc(25% - %s)' % $delta
-
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
-    padding-left 'calc(25% - %s)' % $delta
-
-  .navigation-drawer--persistent
-    width 'calc(25% - %s)' % $delta
-
-@media $display-breakpoints.xl-only
-  .navigation-drawer--open.navigation-drawer--right ~ main
-    margin-right 'calc(20% - %s)' % $delta
-
-  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
-    margin-left 'calc(20% - %s)' % $delta
-
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
-    padding-right 'calc(20% - %s)' % $delta
-
-  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
-    padding-left 'calc(20% - %s)' % $delta
-
-  .navigation-drawer--persistent
-    width 'calc(20% - %s)' % $delta
-
-.navigation-drawer--is-mobile
-  width 480px
-  max-width 100%
-
-$delay := 0.320s
+$delay := .320s
 $delay-out := 0s
 
-main
-  transition margin 0s linear $delay-out
+#oax
+  main
+    margin-left: 0
+    margin-right: 0
+    will-change: margin
 
-.navigation-drawer--open.navigation-drawer--right ~ main
-  transition-property margin-left, margin-right
-  transition-duration  0s, 0s,
-  transition-timing-function linear
-  transition-delay $delay-out, $delay
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
+    padding-right: 0
 
-.navigation-drawer--open:not(.navigation-drawer--right) ~ main
-  transition-property margin-left, margin-right
-  transition-duration  0s, 0s,
-  transition-timing-function linear
-  transition-delay $delay, $delay-out
+  .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right) ~ main
+    padding-left: 0
 
-.navigation-drawer--open:not(.navigation-drawer--right) + .navigation-drawer--open.navigation-drawer--right ~ main
-  transition-property margin-left, margin-right
-  transition-duration  0s, 0s,
-  transition-timing-function linear
-  transition-delay $delay, $delay
+  .navigation-drawer--close:not(.navigation--permanent).navigation-drawer--right
+    transform translate3d(100%, 0, 0)
+
+  .navigation-drawer--close:not(.navigation--permanent).navigation-drawer:not(.navigation-drawer--right)
+    transform translate3d(-100%, 0, 0)
+
+  .navigation-drawer--open:not(.navigation--permanent).navigation-drawer--right
+  .navigation-drawer--open:not(.navigation--permanent):not(.navigation-drawer--right)
+    transform translate3d(0, 0, 0)
+
+  @media $display-breakpoints.sm-only
+    .navigation-drawer--right
+      width calc(50%)
+
+  @media $display-breakpoints.md-only
+    .navigation-drawer--open.navigation-drawer--right ~ main
+      margin-right: 'calc(33.33% - %s)' % $delta
+
+    .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+      margin-left: 'calc(33.33% - %s)' % $delta
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+      padding-right: 'calc(33.33% - %s)' % $delta
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
+      padding-left: 'calc(33.33% - %s)' % $delta
+
+    .navigation-drawer--persistent
+      width: 'calc(33.33% - %s)' % $delta
+
+  @media $display-breakpoints.lg-and-up
+    .navigation-drawer--open.navigation-drawer--right ~ main
+      margin-right: 'calc(25% - %s)' % $delta
+
+    .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+      margin-left: 'calc(25% - %s)' % $delta
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+      padding-right: 'calc(25% - %s)' % $delta
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
+      padding-left: 'calc(25% - %s)' % $delta
+
+    .navigation-drawer--persistent
+      width: 'calc(25% - %s)' % $delta
+
+  @media $display-breakpoints.xl-only
+    .navigation-drawer--open.navigation-drawer--right ~ main
+      margin-right: 'calc(20% - %s)' % $delta
+
+    .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+      margin-left: 'calc(20% - %s)' % $delta
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right:not(.navigation-drawer--clipped):not(.navigation-drawer--floating) + .toolbar
+      padding-right: 'calc(20% - %s)' % $delta
+
+    .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open:not(.navigation-drawer--right):not(.navigation-drawer--clipped):not(.navigation-drawer--floating) ~ .toolbar
+      padding-left: 'calc(20% - %s)' % $delta
+
+    .navigation-drawer--persistent
+      width: 'calc(20% - %s)' % $delta
+
+  .navigation-drawer--is-mobile
+    max-width: 100%
+    width: 480px
+
+  main
+    transition: margin 0s linear $delay-out
+
+  .navigation-drawer--open.navigation-drawer--right ~ main
+    transition-delay: $delay-out, $delay
+    transition-duration:  0s, 0s
+    transition-property: margin-left, margin-right
+    transition-timing-function: linear
+
+  .navigation-drawer--open:not(.navigation-drawer--right) ~ main
+    transition-delay: $delay, $delay-out
+    transition-duration:  0s, 0s
+    transition-property: margin-left, margin-right
+    transition-timing-function: linear
+
+  .navigation-drawer--open:not(.navigation-drawer--right) + .navigation-drawer--open.navigation-drawer--right ~ main
+    transition-delay: $delay, $delay
+    transition-duration:  0s, 0s
+    transition-property: margin-left, margin-right
+    transition-timing-function: linear

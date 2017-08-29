@@ -1,18 +1,20 @@
-@media $display-breakpoints.xs-and-up
+//@media $display-breakpoints.xs-and-up
+#oax
   main
-    overflow-y auto !important
+    overflow-y: auto !important
 
 @media $display-breakpoints.md-and-up
-  main
-    overflow-y overlay !important
-  main:hover::-webkit-scrollbar
-    display initial
-  main::-webkit-scrollbar
-    display none
+  #oax
+    main
+      overflow-y: overlay !important
+    main:hover::-webkit-scrollbar
+      display: initial
+    main::-webkit-scrollbar
+      display: none
 
   ::-webkit-scrollbar
-    width: 12px
     height: 12px
+    width: 12px
 
   ::-webkit-scrollbar-track-piece:vertical
     background-color: transparent
@@ -24,16 +26,16 @@
 
   ::-webkit-scrollbar-thumb:vertical
   ::-webkit-scrollbar-thumb:horizontal
-    background-color: rgba(196, 196, 196, 0.5)
+    background-color: rgba(196, 196, 196, .5)
     border: 1px solid $material-light.dividers
 
   ::-webkit-scrollbar-thumb:vertical:hover
   ::-webkit-scrollbar-thumb:horizontal:hover
-    background-color: rgba(196, 196, 196, 0.75)
+    background-color: rgba(196, 196, 196, .75)
 
   ::-webkit-scrollbar-thumb:vertical:active
   ::-webkit-scrollbar-thumb:horizontal:active
-    background-color: rgba(128, 128, 128, 0.5)
+    background-color: rgba(128, 128, 128, .5)
 
   .application--dark
     ::-webkit-scrollbar-track-piece:vertical

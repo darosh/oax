@@ -1,12 +1,12 @@
 <template lang="pug">
-  app-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :disable-route-watcher="true", :touchless="true")
+  v-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :disable-route-watcher="true", :touchless="true")
     v-toolbar.elevation-0(style="background-color: transparent")
       v-btn(icon @click.stop="SET_MENU(false)")
         v-icon close
       v-toolbar-title Specification
     //v-divider
     v-tabs.app--tabs(:scrollable="false" grow v-model="tab")
-      v-tabs-bar.tabs--transparent
+      v-tabs-bar.transparent
         v-tabs-item.relative(ripple href="tab-json") Edit
         v-tabs-item.relative(ripple href="tab-dir") Directory
         v-tabs-item.relative(ripple href="tab-recent") Recent
@@ -17,9 +17,9 @@
           v-divider
           .pl-3.pr-3.pt-3
             v-text-field(label="URL" v-model="url" solo single-line hide-details prepend-icon="link" v-focus.wait="MENU && (tab === 'tab-json')")
-            v-layout.ma-0
-              v-radio-group(v-model="format", :mandatory="true")
-                v-radio.pt-4.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
+            v-radio-group(v-model="format", :mandatory="true" hide-details)
+              v-layout.ma-0
+                v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
             v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)
         v-tabs-content#tab-dir
           v-divider
@@ -29,7 +29,7 @@
             virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
               template(scope="props")
                 div(:key="props.itemKey")
-                  v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                  v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
                     v-list-tile-avatar
                       .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
                     v-list-tile-content
@@ -42,7 +42,7 @@
             virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20" key-field="url")
               template(scope="props")
                 div(:key="props.itemKey")
-                  v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                  v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
                     v-list-tile-avatar
                       .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
                       v-icon(v-else class="secondary white--text") link
@@ -59,10 +59,11 @@
             virtual-scroller.scroller-recent(:items="test", item-height="73" prerender="20" key-field="url")
               template(scope="props")
                 div(:key="props.itemKey")
-                  v-list-tile(@click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
-                    v-list-tile-avatar
-                      .icon.white--text(v-if="key(props.item)", :style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
-                      v-icon(v-else class="secondary white--text") link
+                  v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                    v-list-tile-avatar(v-if="key(props.item)")
+                      .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                    v-list-tile-avatar(v-else)
+                      v-icon(class="secondary white--text") link
                     v-list-tile-content
                       v-list-tile-title {{props.item.note}}
                       v-list-tile-sub-title {{props.item.title}}
@@ -72,7 +73,7 @@
 <script>
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../../store/types'
-  import appNavigationDrawer from './NavigationDrawer'
+  import VNavigationDrawer from './VNavigationDrawer'
   import {getColor} from 'random-material-color'
   import Vue from 'vue'
   import CircularJSON from 'circular-json'
@@ -85,7 +86,7 @@
       focus
     },
     components: {
-      appNavigationDrawer
+      VNavigationDrawer
     },
     data () {
       return {
@@ -204,7 +205,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../stylus/variables'
+  @import '../../stylus/_variables'
 
   $margin-scroll := 127px
   $margin-edit := 200px
@@ -221,9 +222,6 @@
 
   >>> .input-group--solo .input-group__details
     display none
-
-  >>> .input-group--prepend-icon.input-group--solo label
-    margin-left 42px
 
   >>> textarea
     height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)

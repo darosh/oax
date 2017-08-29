@@ -148,6 +148,7 @@ export default {
 
 const sections = {
   'Worker starting': [0, 0],
+  'Worker started': [0.03, 0.03],
   'Loading': [0.06, 0.4, true],
   'Schema': [0.45, 0.6],
   'Parsing': [0.66, 0.94],

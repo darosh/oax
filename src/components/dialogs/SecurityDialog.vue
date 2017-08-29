@@ -8,36 +8,37 @@
           v-icon close
       v-divider
       v-tabs.dlg-tabs(v-if="SPEC && (tab && active || activated)" v-model="tab", :scrollable="false" style="max-height: calc(90vh - 64px - 1px); overflow: auto")
-        v-tabs-bar.tabs--transparent(slot="activators", :class="Object.keys((SPEC && SPEC.securityDefinitions) || {}).length === 1 ? 'tabs--single' : ''")
+        v-tabs-bar.transparent(:class="Object.keys((SPEC && SPEC.securityDefinitions) || {}).length === 1 ? 'tabs--single' : ''")
           v-tabs-item(ripple :href="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey") {{name(sec)}}
           v-tabs-slider
-        v-tabs-content(:id="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey")
-          template(v-if="sec.type === 'oauth2'")
-            h3.pl-3.pr-3.pt-3.title
-              span.uppercase {{sec.flow}}
-              |  OAuth 2.0 Authentication
-            div.pl-3.pr-3.pt-1 {{sec.description}}
-            .pa-3
-              v-checkbox.pa-0(hide-details :label="scopeKey", color="primary" v-model="sec._scopes[scopeKey]" v-for="(scope, scopeKey) in sec.scopes", :key="scopeKey")
-              .pt-3
-                v-text-field(hide-details v-model="sec._clientId" label="Client ID")
-                v-text-field(v-if="sec.flow !== 'implicit'" hide-details v-model="sec._clientSecret" label="Client secret")
-                v-text-field(hide-details v-model="sec._callbackUrl" label="Authorization callback URL")
-                v-text-field(v-if="sec.authorizationUrl" hide-details readonly v-model="sec.authorizationUrl" label="Authorization URL")
-                v-text-field(v-if="sec.tokenUrl" hide-details readonly v-model="sec.tokenUrl" label="Token URL")
-                v-text-field(v-if="sec._accessToken" persistent-hint :hint="(sec._validFrom ? 'Valid from ' + sec._validFrom : '') + (sec._validFrom && sec._expiresIn ? ', ' : '') + (sec._expiresIn ? 'Expires in ' + sec._expiresIn : '')" readonly v-model="sec._accessToken" label="Access token")
-            v-btn.ml-3.mb-3(primary @click="authorize(sec)") Authorize
-          template(v-else-if="sec.type === 'apiKey'")
-            h3.pl-3.pr-3.pt-3.title API Key Authentication
-            div.pl-3.pr-3.pt-1 {{sec.description}}
-            .pa-3
-              v-text-field(hide-details v-model="sec._apiKey" label="API key")
-          template(v-else-if="sec.type === 'basic'")
-            h3.pl-3.pr-3.pt-3.title Basic Authentication
-            div.pl-3.pr-3.pt-1 {{sec.description}}
-            .pa-3
-              v-text-field(hide-details v-model="sec._user" label="User")
-              v-text-field(hide-details type="password" v-model="sec._password" label="Password")
+        v-tabs-items
+          v-tabs-content(:id="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey")
+            template(v-if="sec.type === 'oauth2'")
+              h3.pl-3.pr-3.pt-3.title
+                span.uppercase {{sec.flow}}
+                |  OAuth 2.0 Authentication
+              div.pl-3.pr-3.pt-1 {{sec.description}}
+              .pa-3
+                v-checkbox.pa-0(hide-details :label="scopeKey", color="primary" v-model="sec._scopes[scopeKey]" v-for="(scope, scopeKey) in sec.scopes", :key="scopeKey")
+                .pt-3
+                  v-text-field(hide-details v-model="sec._clientId" label="Client ID")
+                  v-text-field(v-if="sec.flow !== 'implicit'" hide-details v-model="sec._clientSecret" label="Client secret")
+                  v-text-field(hide-details v-model="sec._callbackUrl" label="Authorization callback URL")
+                  v-text-field(v-if="sec.authorizationUrl" hide-details readonly v-model="sec.authorizationUrl" label="Authorization URL")
+                  v-text-field(v-if="sec.tokenUrl" hide-details readonly v-model="sec.tokenUrl" label="Token URL")
+                  v-text-field(v-if="sec._accessToken" persistent-hint :hint="(sec._validFrom ? 'Valid from ' + sec._validFrom : '') + (sec._validFrom && sec._expiresIn ? ', ' : '') + (sec._expiresIn ? 'Expires in ' + sec._expiresIn : '')" readonly v-model="sec._accessToken" label="Access token")
+              v-btn.ml-3.mb-3(primary @click="authorize(sec)") Authorize
+            template(v-else-if="sec.type === 'apiKey'")
+              h3.pl-3.pr-3.pt-3.title API Key Authentication
+              div.pl-3.pr-3.pt-1 {{sec.description}}
+              .pa-3
+                v-text-field(hide-details v-model="sec._apiKey" label="API key")
+            template(v-else-if="sec.type === 'basic'")
+              h3.pl-3.pr-3.pt-3.title Basic Authentication
+              div.pl-3.pr-3.pt-1 {{sec.description}}
+              .pa-3
+                v-text-field(hide-details v-model="sec._user" label="User")
+                v-text-field(hide-details type="password" v-model="sec._password" label="Password")
 </template>
 
 <script>
@@ -103,9 +104,6 @@
 </script>
 
 <style scoped lang="stylus">
-  .tabs--transparent
-    background-color transparent
-
   .tabs--single
     display none
 

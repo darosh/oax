@@ -1,0 +1,30 @@
+.expansion-panel .expansion-panel__container
+  max-width: 100%
+
+.navigation-drawer
+  .expansion-panel
+    box-shadow: none
+
+.navigation-drawer .expansion-panel > li:last-child.expansion-panel__container:not(.expansion-panel__container--active) > .expansion-panel__header
+    border-bottom: 1px solid $material-light.dividers
+
+.application-dark .navigation-drawer .expansion-panel > li:last-child
+  .expansion-panel__container:not(.expansion-panel__container--active) > .expansion-panel__header
+    border-bottom: 1px solid $material-dark.dividers
+
+.expansion-panel.expansion-panel-round
+.expansion-panel.expansion-panel-round > li:first-child
+  border-radius: 2px
+
+#oax .expansion-panel-round .expansion-panel__body > *
+  border-bottom-left-radius: 2px
+  border-bottom-right-radius: 2px
+
+#oax .expansion-panel .expansion-panel__header
+  padding: 0 16px
+
+#oax .expansion-panel.application--light .expansion-panel__header
+  background-color: rgba($material-light.dividers, .05)
+
+#oax .expansion-panel.application--dark .expansion-panel__header
+  background-color: rgba($material-dark.dividers, .05)

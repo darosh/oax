@@ -59,11 +59,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .stretch
-    align-content stretch
-
-  .relative
-    position relative
-</style>

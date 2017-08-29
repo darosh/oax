@@ -10,9 +10,6 @@ pre.app-pre
   overflow auto
   scroll auto
 
-.progress-linear .progress-linear__bar
-  background-color: rgba($theme.secondary, 0.33)
-
 .input-group__hint
   transition none !important
 
@@ -85,9 +82,6 @@ pre.app-pre
 .overlay--active + .overlay--active:last-child
   z-index 5
 
-.tabs--transparent
-  background-color transparent
-
 .app--tabs .tabs__items
   border-width 0 !important
 
@@ -127,20 +121,14 @@ pre
   .overlay
     display none
 
-.application--light .bg
-.application--light .bg .expansion-panel__header
-  background-color: #fff
-
-.application--dark .bg
-.application--dark .bg .expansion-panel__header
-  background-color: $material-dark.app-bar
-
-//code, kbd, pre, samp
-//  font-family: 'Roboto Mono', monospace;
-
-//code
-//  color: $theme.error
-  //background-color: rgba($grey.lighten-2, 0.75)
-
 code
   color: inherit
+
+.stretch
+  align-content stretch
+
+.relative
+  position relative
+
+a
+  text-decoration none

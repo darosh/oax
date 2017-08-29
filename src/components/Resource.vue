@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panel(expand)
+  v-expansion-panel.expansion-panel-round(expand)
     v-expansion-panel-content.relative(v-model="opened", ripple)
       .title(slot="header") {{item.name}}
       v-divider
@@ -54,17 +54,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .relative
-    position relative
-
-  .expansion-panel
-  .expansion-panel > li:first-child
-    border none
-    border-radius 2px
-
-  .expansion-panel__body > *
-    border-bottom-left-radius 2px
-    border-bottom-right-radius 2px
-</style>

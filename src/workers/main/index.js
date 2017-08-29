@@ -9,6 +9,10 @@ let id = 0
 worker.onmessage = function (event) {
   const data = CircularJSON.parse(event.data)
 
+  // if (data.id === -1) {
+  //   return console.log('Worker started')
+  // }
+
   if (data.md) {
     jobs[data.id].resolve(data.md)
     delete jobs[data.id]
@@ -19,10 +23,10 @@ worker.onmessage = function (event) {
     jobs[data.id].progress(data.progress)
   } else if (data.err) {
     jobs[data.id].reject(data.err)
-    delete jobs[data.url]
-  } else {
+    delete jobs[data.id]
+  } else if (jobs[data.id]) {
     jobs[data.id].resolve(data)
-    delete jobs[data.url]
+    delete jobs[data.id]
   }
 }
 

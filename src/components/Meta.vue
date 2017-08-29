@@ -1,10 +1,11 @@
 <!--TODO: How to make non-link list tile?-->
 
 <template lang="pug">
-  v-list.list--single(dense two-line subheader)
+  v-list.list--single(two-line subheader)
     v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :ripple="false")
       v-list-tile-avatar
-        v-icon.secondary.white--text {{item.icon}}
+        <!--v-icon.white&#45;&#45;text(:class="item.link ? 'primary' : 'secondary'") {{item.icon}}-->
+        v-icon.white--text.secondary {{item.icon}}
       v-list-tile-content
         v-list-tile-title {{ item.title }}
         v-list-tile-sub-title

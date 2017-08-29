@@ -1,88 +1,89 @@
-.wide .layout
+#oax
+  .wide .layout
+    for size, width in $grid-breakpoints
+      @media all and (min-width: width)
+        for n in (1..$grid-columns)
+          .flex.{size}{n}
+            flex-basis (1 / max($grid-columns / n - 2, 1) * 100) %
+            max-width (1 / max($grid-columns / n - 2, 1) * 100) %
+
+  .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
+    .layout
+      for size, width in $grid-breakpoints
+        @media all and (min-width: width)
+          for n in (1..$grid-columns)
+            .flex.{size}{n}
+              flex-basis (1 / ($grid-columns / n - 1) * 100) %
+              max-width (1 / ($grid-columns / n - 1) * 100) %
+
+    .wide .layout
+      for size, width in $grid-breakpoints
+        @media all and (min-width: width)
+          for n in (1..$grid-columns)
+            .flex.{size}{n}
+              flex-basis (1 / max($grid-columns / n - 3, 1) * 100) %
+              max-width (1 / max($grid-columns / n - 3, 1) * 100) %
+
+  .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
+    .layout
+      for size, width in $grid-breakpoints
+        @media all and (min-width: width)
+          for n in (1..$grid-columns)
+            .flex.{size}{n}
+              flex-basis (1 / ($grid-columns / n - 2) * 100) %
+              max-width (1 / ($grid-columns / n - 2) * 100) %
+
+    .wide .layout
+      for size, width in $grid-breakpoints
+        @media all and (min-width: width)
+          for n in (1..$grid-columns)
+            .flex.{size}{n}
+              flex-basis (1 / max($grid-columns / n - 4, 1) * 100) %
+              max-width (1 / max($grid-columns / n - 4, 1) * 100) %
+
+  @media $display-breakpoints.xl-only
+    .layout .flex.xl20p
+      flex-basis: 20%
+      max-width: 20%
+
+    .wide .layout .flex.xl20p
+      flex-basis: 33.33%
+      max-width: 33.33%
+
+  .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
+    @media $display-breakpoints.xl-only
+      .layout .flex.xl20p
+        flex-basis: 25%
+        max-width: 25%
+
+      .wide .layout .flex.xl20p
+        flex-basis: 50%
+        max-width: 50%
+
+  .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
+    @media $display-breakpoints.xl-only
+      .layout .flex.xl20p
+        flex-basis: 33.33%
+        max-width: 33.33%
+
+      .wide .layout .flex.xl20p
+        flex-basis: 100%
+        max-width: 100%
+
   for size, width in $grid-breakpoints
     @media all and (min-width: width)
       for n in (1..$grid-columns)
-        .flex.{size}{n}
-          flex-basis (1 / max($grid-columns / n - 2, 1) * 100) %
-          max-width (1 / max($grid-columns / n - 2, 1) * 100) %
-
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
-  .layout
-    for size, width in $grid-breakpoints
-      @media all and (min-width: width)
-        for n in (1..$grid-columns)
+        main .layout
           .flex.{size}{n}
-            flex-basis (1 / ($grid-columns / n - 1) * 100) %
-            max-width (1 / ($grid-columns / n - 1) * 100) %
-
-  .wide .layout
-    for size, width in $grid-breakpoints
-      @media all and (min-width: width)
-        for n in (1..$grid-columns)
+            transition: none
+        .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
           .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 3, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 3, 1) * 100) %
-
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
-  .layout
-    for size, width in $grid-breakpoints
-      @media all and (min-width: width)
-        for n in (1..$grid-columns)
+            transition: all 0s linear $right-delay-out
+            transition-property: flex-basis, max-width
+        .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .layout
           .flex.{size}{n}
-            flex-basis (1 / ($grid-columns / n - 2) * 100) %
-            max-width (1 / ($grid-columns / n - 2) * 100) %
-
-  .wide .layout
-    for size, width in $grid-breakpoints
-      @media all and (min-width: width)
-        for n in (1..$grid-columns)
+            transition: none
+        .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
           .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 4, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 4, 1) * 100) %
-
-@media $display-breakpoints.xl-only
-  .layout .flex.xl20p
-    flex-basis 20%
-    max-width 20%
-
-  .wide .layout .flex.xl20p
-    flex-basis 33.33%
-    max-width 33.33%
-
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
-  @media $display-breakpoints.xl-only
-    .layout .flex.xl20p
-      flex-basis 25%
-      max-width 25%
-
-    .wide .layout .flex.xl20p
-      flex-basis 50%
-      max-width 50%
-
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
-  @media $display-breakpoints.xl-only
-    .layout .flex.xl20p
-      flex-basis 33.33%
-      max-width 33.33%
-
-    .wide .layout .flex.xl20p
-      flex-basis 100%
-      max-width 100%
-
-for size, width in $grid-breakpoints
-  @media all and (min-width: width)
-    for n in (1..$grid-columns)
-      main .layout
-        .flex.{size}{n}
-          transition none
-      .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
-        .flex.{size}{n}
-          transition all 0s linear $right-delay-out
-          transition-property flex-basis, max-width
-      .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .layout
-        .flex.{size}{n}
-          transition none
-      .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
-        .flex.{size}{n}
-          transition all 0s linear $right-delay-out
-          transition-property flex-basis, max-width
+            transition: all 0s linear $right-delay-out
+            transition-property: flex-basis, max-width

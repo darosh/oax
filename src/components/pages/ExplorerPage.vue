@@ -13,7 +13,7 @@
       v-container.pa-0-sm(fluid grid-list-xl)
         v-layout(column)
           v-flex
-            v-expansion-panel(expand :class="{'expansion-panel--disabled': !SPEC.info.description}")
+            v-expansion-panel.expansion-panel-round(expand :class="{'expansion-panel--disabled': !SPEC.info.description}")
               v-expansion-panel-content.bg.relative(v-model="exp1", ripple)
                 .title(slot="header") {{SPEC.info.title}}
                 v-divider(v-if="SPEC.info.description")
@@ -107,20 +107,4 @@
 
   .pre
     white-space pre
-
-  >>> .progress-linear__bar__determinate
-    /*transition none*/
-    transition .06s linear
-
-  .relative
-    position relative
-
-  .expansion-panel
-  .expansion-panel > li:first-child
-    border none
-    border-radius 2px
-
-  .expansion-panel__body > *
-    border-bottom-left-radius: 2px
-    border-bottom-right-radius: 2px
 </style>

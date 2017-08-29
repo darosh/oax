@@ -1,5 +1,5 @@
 <template lang="pug">
-  app-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
+  v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
     div(style="height: 100%; overflow: auto")
       app-detail(v-if="OPERATION", :operation="OPERATION")
 </template>
@@ -10,12 +10,12 @@
   import * as types from '../../store/types'
 
   import appDetail from './Detail'
-  import appNavigationDrawer from './NavigationDrawer'
-  
+  import VNavigationDrawer from './VNavigationDrawer'
+
   export default {
     components: {
       appDetail,
-      appNavigationDrawer
+      VNavigationDrawer
     },
     computed: {
       ...mapGetters([
@@ -50,23 +50,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .navigation-drawer >>> .expansion-panel
-    box-shadow none
-
-  .navigation-drawer
-    border-left 1px solid rgba(0, 0, 0, 0.12) !important
-
-  .navigation-drawer >>> .expansion-panel > li
-    border-left-width 0
-    border-top-width 1px
-    border-bottom-width 1px
-    border-right-width 0
-
-  .navigation-drawer >>> .expansion-panel > li:last-child
-    border-bottom-width 0
-
-  .navigation-drawer >>> .expansion-panel > li:last-child > .expansion-panel__header:not(.expansion-panel__header--active)
-    border-bottom 1px solid rgba(0, 0, 0, 0.12)
-</style>

@@ -5,6 +5,8 @@ import { OAS } from './../../models/oas'
 import { trim, summary, text } from './../../services/md-converter'
 
 export default function () {
+  self.postMessage(JSON.stringify({id: -1}))
+
   self.onmessage = function (event) {
     if (event.data.md) {
       self.postMessage(JSON.stringify({

@@ -50,9 +50,5 @@
 </script>
 
 <style lang="stylus">
-  @import './stylus/main'
-  @import './stylus/grid'
-  @import './stylus/sidebar'
-  @import './stylus/app'
-  @import './stylus/markdown'
+  @import './stylus/index'
 </style>
