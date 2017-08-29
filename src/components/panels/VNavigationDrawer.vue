@@ -155,7 +155,7 @@
 
         this.checkIfMobile()
         //        this.isActive = !this.isMobile
-        this.isActive = this.isMobile ? false : this.isActive
+        // this.isActive = this.isMobile ? false : this.isActive
       },
       //      swipeRight (e) {
       //        if (this.isActive && !this.right) return

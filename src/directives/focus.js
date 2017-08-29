@@ -1,7 +1,7 @@
 function update (el, binding) {
   const input = el.querySelector('input')
 
-  if (input) {
+  if (input && (window.innerWidth > 1200)) {
     if (binding.modifiers.wait) {
       setTimeout(() => {
         input.focus()

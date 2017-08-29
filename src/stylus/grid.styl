@@ -2,16 +2,16 @@
   .wide .layout
     for size, width in $grid-breakpoints
       @media all and (min-width: width)
-        for n in (1..$grid-columns)
+        for n in 3 4 6 12
           .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 2, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 2, 1) * 100) %
+            flex-basis (1 / ($grid-columns / n - 2) * 100) %
+            max-width (1 / ($grid-columns / n - 2) * 100) %
 
   .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
     .layout
       for size, width in $grid-breakpoints
         @media all and (min-width: width)
-          for n in (1..$grid-columns)
+          for n in 3 4 6 12
             .flex.{size}{n}
               flex-basis (1 / ($grid-columns / n - 1) * 100) %
               max-width (1 / ($grid-columns / n - 1) * 100) %
@@ -19,16 +19,16 @@
     .wide .layout
       for size, width in $grid-breakpoints
         @media all and (min-width: width)
-          for n in (1..$grid-columns)
+          for n in 3 4 6 12
             .flex.{size}{n}
-              flex-basis (1 / max($grid-columns / n - 3, 1) * 100) %
-              max-width (1 / max($grid-columns / n - 3, 1) * 100) %
+              flex-basis (1 / ($grid-columns / max(n - 3, 1)) * 100) %
+              max-width (1 / ($grid-columns / max(n - 3, 1)) * 100) %
 
   .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
     .layout
       for size, width in $grid-breakpoints
         @media all and (min-width: width)
-          for n in (1..$grid-columns)
+          for n in 3 4 6 12
             .flex.{size}{n}
               flex-basis (1 / ($grid-columns / n - 2) * 100) %
               max-width (1 / ($grid-columns / n - 2) * 100) %
@@ -36,10 +36,10 @@
     .wide .layout
       for size, width in $grid-breakpoints
         @media all and (min-width: width)
-          for n in (1..$grid-columns)
+          for n in 3 4 6 12
             .flex.{size}{n}
-              flex-basis (1 / max($grid-columns / n - 4, 1) * 100) %
-              max-width (1 / max($grid-columns / n - 4, 1) * 100) %
+              flex-basis (1 / ($grid-columns / max(n - 4, 1)) * 100) %
+              max-width (1 / ($grid-columns / max(n - 4, 1)) * 100) %
 
   @media $display-breakpoints.xl-only
     .layout .flex.xl20p
@@ -72,7 +72,7 @@
 
   for size, width in $grid-breakpoints
     @media all and (min-width: width)
-      for n in (1..$grid-columns)
+      for n in 3 4 6 12
         main .layout
           .flex.{size}{n}
             transition: none
