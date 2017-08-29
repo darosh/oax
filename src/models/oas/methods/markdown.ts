@@ -29,28 +29,40 @@ export function mdTags(spec: ISpecExtended, max: number) {
   }
 }
 
-export function mdOperations(spec: ISpecExtended, max: number) {
+function mdOperation(op: any) {
+  if (op.description) {
+    op._md_description = op._md_description || trim(op.description);
+  }
+
+  if (!op.summary && op.description) {
+    op.summary = op.summary || summary(text(op._md_description));
+  }
+
+  if (op.summary) {
+    op._md_summary = op._md_summary || trim(op.summary);
+  }
+
+  if (op._md_summary === op._md_description) {
+    delete op._md_description;
+    delete op.description;
+  }
+}
+
+export function mdOperations(spec: ISpecExtended, max: [number, number]) {
   let n = 0;
 
-  for (const op of spec._operations) {
-    if (op.description) {
-      op._md_description = op._md_description || trim(op.description);
+  for (const tag of spec.tags) {
+    let m = 0;
+
+    for (const op of tag._operations) {
+      mdOperation(op)
+
+      if (max && (m++ === max[1])) {
+        return;
+      }
     }
 
-    if (!op.summary && op.description) {
-      op.summary = op.summary || summary(text(op._md_description));
-    }
-
-    if (op.summary) {
-      op._md_summary = op._md_summary || trim(op.summary);
-    }
-
-    if (op._md_summary === op._md_description) {
-      delete op._md_description;
-      delete op.description;
-    }
-
-    if (max && (n++ === max)) {
+    if (n++ === max[0]) {
       return;
     }
   }
