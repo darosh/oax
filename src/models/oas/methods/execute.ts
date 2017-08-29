@@ -3,7 +3,7 @@ import {Parameter} from 'swagger-schema-official';
 import {IExtra} from '../interfaces/IExtra';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 import {IParameterExtended} from '../interfaces/IParameterExtended';
-import {ISpecExtended} from "../interfaces/ISpecExtended";
+import {ISpecExtended} from '../interfaces/ISpecExtended';
 
 export function configure(operation: IOperationExtended, spec: ISpecExtended) {
   let path: string = operation._pathName;

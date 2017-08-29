@@ -1,10 +1,10 @@
 import {metas} from '../metas/index';
 import {ISpecExtended} from './interfaces/ISpecExtended';
 import {info} from './methods/info';
+import {mdInfo, mdOperations, mdParameters, mdResponses, mdSecurity, mdTags} from './methods/markdown';
 import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
-import {mdOperations, mdResponses, mdParameters, mdTags, mdInfo, mdSecurity} from './methods/markdown';
 
 const phase = {
   info: [0, 'info', 'Parsing'],
@@ -17,14 +17,14 @@ const phase = {
   mdTags: [7, 'tags', 'Markdown'],
   mdOperations: [8, 'operations', 'Markdown'],
   mdParameters: [9, 'parameters', 'Markdown'],
-  mdResponses: [10, 'responses', 'Markdown'],
-}
+  mdResponses: [10, 'responses', 'Markdown']
+};
 
-const phases = Object.keys(phase).length - 1
+const phases = Object.keys(phase).length - 1;
 
 function log(ph: any, progress: any) {
   if (progress) {
-    progress({text: ph[1], loaded: ph[0], total: phases, section: ph[2]})
+    progress({text: ph[1], loaded: ph[0], total: phases, section: ph[2]});
   }
 }
 

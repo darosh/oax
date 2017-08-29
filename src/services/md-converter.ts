@@ -1,5 +1,5 @@
+import {parseFragment, SAXParser, serialize} from 'parse5';
 import {Converter} from 'showdown';
-import {parseFragment, serialize, SAXParser} from 'parse5';
 
 export const converter = new Converter();
 
@@ -14,7 +14,7 @@ let TEXT = '';
 
 const sax = new SAXParser();
 
-sax.on('text', text => {
+sax.on('text', (text) => {
   TEXT += text;
 });
 
@@ -22,7 +22,7 @@ sax.on('text', text => {
 
 export function trim(v: string) {
   if (v) {
-    const t = v.trim()
+    const t = v.trim();
 
     if (t) {
       // console.log(++counter);
@@ -39,8 +39,8 @@ export function summary(t: string, range = [3, 120]) {
 }
 
 export function text(html: string) {
-  TEXT = ''
-  sax.write(html)
+  TEXT = '';
+  sax.write(html);
 
   return TEXT;
 }

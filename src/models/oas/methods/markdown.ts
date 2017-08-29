@@ -1,7 +1,7 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-import {trim, summary, text} from '../../../services/md-converter';
+import {summary, text, trim} from '../../../services/md-converter';
 
 export function mdInfo(spec: ISpecExtended) {
   if (spec.info.description) {
@@ -11,8 +11,8 @@ export function mdInfo(spec: ISpecExtended) {
 
 export function mdSecurity(spec: ISpecExtended) {
   if (spec.securityDefinitions) {
-    for(const key in spec.securityDefinitions) {
-      (spec.securityDefinitions[key] as any)._md_description = trim(spec.securityDefinitions[key].description)
+    for (const key in spec.securityDefinitions) {
+      (spec.securityDefinitions[key] as any)._md_description = trim(spec.securityDefinitions[key].description);
     }
   }
 }
@@ -24,7 +24,7 @@ export function mdTags(spec: ISpecExtended, max: number) {
     tag._md_description = tag._md_description || trim(tag.description);
 
     if (n++ === max) {
-      return
+      return;
     }
   }
 }
@@ -38,7 +38,7 @@ export function mdOperations(spec: ISpecExtended, max: number) {
     }
 
     if (!op.summary && op.description) {
-      op.summary = op.summary || summary(text(op._md_description))
+      op.summary = op.summary || summary(text(op._md_description));
     }
 
     if (op.summary) {
@@ -51,7 +51,7 @@ export function mdOperations(spec: ISpecExtended, max: number) {
     }
 
     if (max && (n++ === max)) {
-      return
+      return;
     }
   }
 }
@@ -69,7 +69,7 @@ export function mdParameters(spec: ISpecExtended, max: number) {
     }
 
     if (n++ === max) {
-      return
+      return;
     }
   }
 }
@@ -87,7 +87,7 @@ export function mdResponses(spec: ISpecExtended, max: number) {
     }
 
     if (n++ === max) {
-      return
+      return;
     }
   }
 }
