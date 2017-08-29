@@ -5,6 +5,16 @@
     app-drawer
     app-toolbar
     main
+      <!--v-bottom-nav.white(:value="true")-->
+        <!--v-btn(flat class="teal&#45;&#45;text")-->
+          //span  Description
+          //v-icon description
+        <!--v-btn(flat class="teal&#45;&#45;text")-->
+          //span  Info
+          //v-icon info
+        <!--v-btn(flat class="teal&#45;&#45;text")-->
+          //span  Operations
+          //v-icon list
       router-view
 </template>
 

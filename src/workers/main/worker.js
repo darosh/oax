@@ -32,7 +32,7 @@ export default function () {
         }
 
         try {
-          OAS(res.bundled/* , event.data.url */,
+          OAS(res.bundled, event.data.url,
             event.data.progress ? (progress) => {
               self.postMessage(
                 JSON.stringify({

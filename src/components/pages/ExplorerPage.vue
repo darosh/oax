@@ -102,7 +102,7 @@
 </script>
 
 <style scoped lang="stylus">
-  .expansion-panel--disabled >>> .expansion-panel__header:after
+  .expansion-panel--disabled >>> .header__icon
     opacity 0.44
 
   .pre

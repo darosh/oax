@@ -29,12 +29,17 @@ function log(ph: any, progress: any) {
 }
 
 export function OAS(spec: ISpecExtended,
-                    // url: string,
+                    url: string,
                     progress: any = null,
                     defaultContentType: string = 'application/json') {
 
+  const parsedUrl = {
+    protocol: url.replace(/:.*/, ''),
+    host: url.replace(/^[^/]+:\/\//, '').replace(/\/.*$/, ''),
+  }
+
   log(phase.info, progress);
-  info(spec, /*url, */ defaultContentType);
+  info(spec, parsedUrl, defaultContentType);
 
   log(phase.meta, progress);
   spec._metas = metas(spec);
