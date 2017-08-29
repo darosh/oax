@@ -25,6 +25,7 @@
         isBooted: false,
         isMobile: false,
         closing: false,
+        opening: false,
         touchArea: {
           left: 0,
           right: 0
@@ -68,6 +69,7 @@
           'navigation-drawer--is-mobile': this.isMobile,
           'navigation-drawer--mini-variant': this.miniVariant,
           'navigation-drawer--open': this.isActive,
+          'navigation-drawer--opening': this.opening,
           'navigation-drawer--permanent': this.permanent,
           'navigation-drawer--persistent': this.persistent,
           'navigation-drawer--right': this.right,
@@ -103,10 +105,8 @@
           this.removeOverlay()
         }
 
-        if (!val) {
-          this.closing = true
-          setTimeout(() => { this.closing = false }, 300)
-        }
+        this[!val ? 'closing' : 'opening'] = true
+        setTimeout(() => { this[!val ? 'closing' : 'opening'] = false }, 310)
       },
       isMobile (val) {
         //        !val && this.removeOverlay()
@@ -229,4 +229,4 @@
   }
 </script>
 
-<style lang="stylus" src="../../../node_modules/vuetify/src/stylus/components/_navigation-drawer.styl"></style>
+<!--<style lang="stylus" src="../../../node_modules/vuetify/src/stylus/components/_navigation-drawer.styl"></style>-->

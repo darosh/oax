@@ -23,11 +23,13 @@ export const mutations = {
     openAll(state.resources, payload)
   },
   [types.SET_OPERATION] (state, payload) {
+    // setTimeout(_ => {
     if (state.operation === payload) {
       state.operation = null
     }
 
     state.operation = payload
+    // }, 50)
   },
   [types.PREV_OPERATION] (state) {
     let index = state.operations.indexOf(state.operation)

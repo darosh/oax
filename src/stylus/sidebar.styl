@@ -8,6 +8,14 @@ $delay-out := 0s
     margin-right: 0
     will-change: margin
 
+  .toolbar
+    will-change: padding
+
+  .navigation-drawer--closed,
+  .navigation-drawer--closing,
+  .navigation-drawer--opening
+    pointer-events none
+
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
     padding-right: 0
 

@@ -28,8 +28,6 @@ function hl(tree: any) {
     if ((node.tagName === 'code') && node.parentNode && (node.parentNode.tagName === 'pre')) {
       let h = serialize(node).replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 
-      console.log(h);
-
       if (node.attrs && node.attrs[0] && node.attrs[0].value) {
         let lang = node.attrs[0].value.split(' ')[0]
         h = hljs.highlight(lang, h).value
