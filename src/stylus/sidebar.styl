@@ -1,6 +1,4 @@
 $delta := 11px
-$delay := .320s
-$delay-out := 0s
 
 #oax
   main
@@ -15,6 +13,13 @@ $delay-out := 0s
   .navigation-drawer--closing,
   .navigation-drawer--opening
     pointer-events none
+
+  .navigation-drawer--closed,
+  .navigation-drawer--closing,
+  .navigation-drawer--opening,
+  .toolbar
+    transition-delay 100ms
+    transition-duration 200ms
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
     padding-right: 0

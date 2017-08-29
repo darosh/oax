@@ -78,12 +78,12 @@
             transition: none
         .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
           .flex.{size}{n}
-            transition: all 0s linear $right-delay-out
+            transition: all 0s linear $delay
             transition-property: flex-basis, max-width
         .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .layout
           .flex.{size}{n}
             transition: none
         .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
           .flex.{size}{n}
-            transition: all 0s linear $right-delay-out
+            transition: all 0s linear $delay
             transition-property: flex-basis, max-width

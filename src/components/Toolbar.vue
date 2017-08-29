@@ -22,28 +22,28 @@
             //v-icon view_quilt
           v-list(subheader)
             v-subheader View
-            v-list-tile(@click.native="TOGGLE_GROUPED(0)")
+            v-list-tile(@click="TOGGLE_GROUPED(0)")
               v-list-tile-action
                 v-icon view_column
               v-list-tile-content
                 v-list-tile-title Groups
               v-list-tile-action(v-if="IS_GROUPED === 0")
                 v-icon check
-            v-list-tile(@click.native="TOGGLE_GROUPED(1)")
+            v-list-tile(@click="TOGGLE_GROUPED(1)")
               v-list-tile-action
                 v-icon view_module
               v-list-tile-content
                 v-list-tile-title List
               v-list-tile-action(v-if="IS_GROUPED === 1")
                 v-icon check
-            v-list-tile(@click.native="TOGGLE_GROUPED(2)")
+            v-list-tile(@click="TOGGLE_GROUPED(2)")
               v-list-tile-action
                 v-icon view_stream
               v-list-tile-content
                 v-list-tile-title Table
               v-list-tile-action(v-if="IS_GROUPED === 2")
                 v-icon check
-            v-list-tile(@click.native="TOGGLE_GROUPED(3)")
+            v-list-tile(@click="TOGGLE_GROUPED(3)")
               v-list-tile-action
                 v-icon view_quilt
               v-list-tile-content
@@ -52,14 +52,14 @@
                 v-icon check
             v-divider
             v-subheader Layout
-            v-list-tile(@click.native="TOGGLE_WIDE()")
+            v-list-tile(@click="TOGGLE_WIDE()")
               v-list-tile-action
                 v-icon short_text
               v-list-tile-content
                 v-list-tile-title Wide
               v-list-tile-action(v-if="IS_WIDE")
                 v-icon check
-            v-list-tile(@click.native="TOGGLE_WIDE()")
+            v-list-tile(@click="TOGGLE_WIDE()")
               v-list-tile-action
                 v-icon wrap_text
               v-list-tile-content
@@ -75,28 +75,28 @@
         v-list(subheader)
           template(v-if="SPEC")
             v-subheader.hidden-sm-and-up View
-            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(0)")
+            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(0)")
               v-list-tile-action
                 v-icon view_column
               v-list-tile-content
                 v-list-tile-title Groups
               v-list-tile-action(v-if="IS_GROUPED === 0")
                 v-icon check
-            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(1)")
+            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(1)")
               v-list-tile-action
                 v-icon view_module
               v-list-tile-content
                 v-list-tile-title List
               v-list-tile-action(v-if="IS_GROUPED === 1")
                 v-icon check
-            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(2)")
+            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(2)")
               v-list-tile-action
                 v-icon view_stream
               v-list-tile-content
                 v-list-tile-title Table
               v-list-tile-action(v-if="IS_GROUPED === 2")
                 v-icon check
-            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_GROUPED(3)")
+            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(3)")
               v-list-tile-action
                 v-icon view_quilt
               v-list-tile-content
@@ -104,7 +104,7 @@
               v-list-tile-action(v-if="IS_GROUPED === 3")
                 v-icon check
             v-divider.hidden-sm-and-up
-            v-list-tile.hidden-sm-and-up(@click.native="TOGGLE_DESCRIPTION()")
+            v-list-tile.hidden-sm-and-up(@click="TOGGLE_DESCRIPTION()")
               v-list-tile-action
                   v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
               v-list-tile-content

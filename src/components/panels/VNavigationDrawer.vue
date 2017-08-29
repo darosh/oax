@@ -106,7 +106,7 @@
         }
 
         this[!val ? 'closing' : 'opening'] = true
-        setTimeout(() => { this[!val ? 'closing' : 'opening'] = false }, 310)
+        setTimeout(() => { this[!val ? 'closing' : 'opening'] = false }, 350)
       },
       isMobile (val) {
         //        !val && this.removeOverlay()
