@@ -114,7 +114,7 @@
                   v-icon lock
               v-list-tile-content
                 v-list-tile-title(style="min-width: 100px") Authorization
-          v-list-tile(@click.native="TOGGLE_DARK()")
+          v-list-tile(@click="TOGGLE_DARK()")
             v-list-tile-action
               v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
             v-list-tile-content

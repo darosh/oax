@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 sync(store, router)
 
 /* eslint-disable no-new */
-new Vue({
+window.OAX = new Vue({
   el: '#app',
   router,
   store,

@@ -75,6 +75,7 @@
     "postcss-discard-duplicates": "^2.1.0",
     "postcss-loader": "^2.0.6",
     "pug": "^2.0.0-rc.3",
+    "puppeteer": "^0.10.1",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
@@ -113,6 +114,7 @@
     "lint": "eslint --ext .js,.vue src",
     "report": "npm run build --report",
     "sample:gfm": "node ./config/sample-gfm.js",
+    "screenshots": "node ./build/screenshots.js",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts"
   }
 }
