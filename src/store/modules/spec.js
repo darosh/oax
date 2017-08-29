@@ -2,6 +2,7 @@ import main from '../../workers/main'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
+import { absoluteUrl } from '../../services/utils'
 
 export const state = {
   spec: null,
@@ -87,7 +88,7 @@ export const actions = {
 
     commit(types.SET_LOADING, {text: 'Worker starting', done: 0})
 
-    main(url, (progress) => {
+    main(absoluteUrl(url), (progress) => {
       if (url !== lastUrl) {
         return
       }

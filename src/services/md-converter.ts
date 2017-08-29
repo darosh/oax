@@ -1,6 +1,9 @@
 import {parseFragment, SAXParser, serialize} from 'parse5';
 import {Converter} from 'showdown';
 
+import walk from './walk';
+import hljs from './highlight';
+
 export const converter = new Converter();
 
 converter.setFlavor('github');
@@ -20,13 +23,34 @@ sax.on('text', (text) => {
 
 // let counter = 0;
 
+function hl(tree: any) {
+  walk(tree, (node: any) => {
+    if ((node.tagName === 'code') && node.parentNode && (node.parentNode.tagName === 'pre')) {
+      let h = serialize(node).replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+
+      console.log(h);
+
+      if (node.attrs && node.attrs[0] && node.attrs[0].value) {
+        let lang = node.attrs[0].value.split(' ')[0]
+        h = hljs.highlight(lang, h).value
+      } else {
+        h = hljs.highlightAuto(h).value
+      }
+
+      node.childNodes = (parseFragment(h) as any).childNodes
+    }
+  })
+}
+
 export function trim(v: string) {
   if (v) {
     const t = v.trim();
 
     if (t) {
       // console.log(++counter);
-      const h = serialize(parseFragment(converter.makeHtml(t)));
+      let parsed = parseFragment(converter.makeHtml(t));
+      hl(parsed)
+      const h = serialize(parsed);
       return h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
     }
   }

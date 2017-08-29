@@ -36,7 +36,7 @@ export default [
     note: 'Large API'
   },
   {
-    url: 'https://darosh.github.io/angular-swagger-ui-material/swagger-gfm.json',
+    url: './static/test/markdown/swagger-gfm.json',
     title: 'Swagger GFM',
     note: 'Github Flavoured Markdown'
   },

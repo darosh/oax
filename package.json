@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.89",
+  "version": "1.0.90",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -9,6 +9,7 @@
     "not ie <= 10"
   ],
   "dependencies": {
+    "@types/highlight.js": "^9.1.10",
     "@types/showdown": "^1.7.0",
     "@types/swagger-schema-official": "^2.0.5",
     "axios": "^0.16.2",
@@ -111,6 +112,7 @@
     "http-status": "node tools/http-data.js status > src/assets/http-status.json",
     "lint": "eslint --ext .js,.vue src",
     "report": "npm run build --report",
+    "sample:gfm": "node ./config/sample-gfm.js",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts"
   }
 }
