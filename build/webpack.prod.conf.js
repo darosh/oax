@@ -12,9 +12,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-var env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
-  : config.build.env
+var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -34,10 +32,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new /*webpack.optimize.*/UglifyJsPlugin({
+    // new webpack.optimize.UglifyJsPlugin({
+    new UglifyJsPlugin({
       compress: {
         warnings: false
       },
+      // TODO: web worker does not work mangled with webpack@3
+      mangle: true,
+      comments: false,
       sourceMap: false
     }),
     // extract css into its own file
@@ -55,9 +57,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : config.build.index,
+      filename: config.build.index,
       template: 'index.html',
       inject: true,
       minify: {
@@ -69,20 +69,31 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
-      serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
-        './service-worker-prod.js'), 'utf-8')}</script>`
+      serviceWorkerLoader: `<script>${require('uglify-js').minify(fs.readFileSync(path.join(__dirname, './service-worker-prod.js'), 'utf-8'), {fromString: true}).code}</script>`
     }),
+    // keep module.id stable when vendor modules does not change
+    // TODO: web worker does not work mangled with HashedModuleIdsPlugin
+    // new webpack.HashedModuleIdsPlugin(),
     // split vendor js into its own file
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'worker',
+    //   minChunks: function (module, count) {
+    //     return (
+    //       module.resource &&
+    //       /(axios|follow-redirects|is-buffer|yaml-js|parse5|debug|json-schema-bundler|standard|tape|zuul)/.test(module.resource)
+    //     )
+    //   }
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
+      // async: true,
       name: 'vendor',
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
+          (module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0)
+          // && (module.resource.indexOf(path.join(__dirname, '../node_modules/vuetify')) === -1)
         )
       }
     }),
@@ -102,7 +113,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({
-      cacheId: 'api',
+      cacheId: 'oax',
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
@@ -144,8 +155,7 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-  var BundleAnalyzerPlugin = require(
-    'webpack-bundle-analyzer').BundleAnalyzerPlugin
+  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 

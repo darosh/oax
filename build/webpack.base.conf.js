@@ -1,6 +1,5 @@
 var path = require('path')
 var utils = require('./utils')
-var webpack = require('webpack')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
@@ -22,22 +21,21 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
-  // externals:[{
-  //   ajv: '{this:this}',
-  //   'canvas-prebuilt': '{this:this}',
-  //   'canvas': '{this:this}',
-  //   escodegen: '{this:this}',
-  //   fs: '{this:this}',
-  //   net: '{this:this}',
-  //   tls: '{this:this}',
-  //   child_process: '{this:this}'
-  // }],
+  node: {
+    fs: 'empty'
+  },
+
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {appendTsSuffixTo: [/\.vue$/], silent: true}
+      },
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
@@ -53,18 +51,9 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        options: {appendTsSuffixTo: [/\.vue$/], silent: true}
-      },
-      {
-        test: /\.js$/,
+        test: /\.(js)$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
-      },
-      {
-        test: /\.styl$/,
-        loader: ['style-loader', 'css-loader', 'stylus-loader']
+        include: [resolve('src'), resolve('test'), resolve('node_modules/vuetify/src')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -72,6 +61,14 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
       {

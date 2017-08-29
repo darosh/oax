@@ -8,7 +8,7 @@
       "es2016"
     ],
     "jsx": "preserve",
-    "target": "es2016",
+    "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
     "noImplicitAny": true,
