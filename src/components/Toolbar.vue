@@ -1,7 +1,7 @@
 <template lang="pug">
   v-toolbar(fixed)
     template(v-if="IS_API")
-      v-btn(icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
+      v-btn(v-if="!MENU" icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
       v-toolbar-title(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer
@@ -175,6 +175,7 @@
         types.IS_DARK,
         types.IS_DESCRIPTION,
         types.IS_GROUPED,
+        types.MENU,
         types.URL,
         types.SPEC,
         types.PAGE_NAME,
