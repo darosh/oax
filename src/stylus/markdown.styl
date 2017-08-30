@@ -1,10 +1,11 @@
 .markdown-body
-  code, pre
-    font-weight: normal !important
+  //code, pre
+  //  font-weight: normal !important
 
   -ms-text-size-adjust: 100%
   -webkit-text-size-adjust: 100%
   font-size: 15px
+  font-weight: 400
   line-height: 1.5
   word-wrap: break-word
 
@@ -20,13 +21,11 @@
   strong
     font-weight: 500
   h1
-    //border-bottom: 1px solid #eaecef
     font-size: 32px
     font-weight: 500
     margin: 0.67em 0
     padding-bottom: 0.3em
   img
-    background-color: #fff
     border-style: none
     box-sizing: content-box
     max-width: 100%
@@ -45,16 +44,6 @@
     padding: 0
     margin: 24px 0
 
-  input
-    font: inherit
-    margin: 0
-    overflow: visible
-    font-family: inherit
-    font-size: inherit
-    line-height: inherit
-  [type="checkbox"]
-    box-sizing: border-box
-    padding: 0
   *
     box-sizing: border-box
   table
@@ -65,13 +54,10 @@
     overflow: auto
     th
       font-weight: 500
-    tr
-      background-color: rgba(128, 128, 128, 0.08)
-      border-top: 1px solid #c6cbd1
-      &:nth-child(2n)
-        background-color: rgba(128, 128, 128, 0.04)
+    tr, td, th
+      border: 1px solid $material-light.dividers
+
   h2
-    //border-bottom: 1px solid #eaecef
     font-size: 24px
     font-weight: 500
     padding-bottom: 0.3em
@@ -85,7 +71,6 @@
     font-size: 14px
     font-weight: 700
   h6
-    color: #6a737d
     font-size: 12px
     font-weight: 700
   p
@@ -102,10 +87,10 @@
   dd
     margin-left: 0
   code
-    //background-color: rgba(27, 31, 35, 0.05)
     border-radius: 3px
     font-family: "Roboto Mono", monospace
-    font-size: 12px
+    //font-size: 12px
+    background-color: $material-light.dividers
     margin: 0
     padding: 0
     padding-bottom: 0.2em
@@ -151,8 +136,8 @@
     line-height: 1
     &:focus
       outline: none
-  kbd
-    background-color rgba(#888, .8)
+//kbd
+//background-color rgba(#888, .8)
   kbd + kbd
     margin-left 4px
   li
@@ -172,11 +157,6 @@
     dd
       margin-bottom: 16px
       padding: 0 16px
-  :checked
-    & + .radio-label
-      border-color: #0366d6
-      position: relative
-      z-index: 1
 
 .markdown-body a:active,
 .markdown-body a:hover
@@ -186,7 +166,7 @@
 .markdown-body kbd,
 .markdown-body pre
   font-family: "Roboto Mono", monospace
-  font-size: 1em
+  //font-size: 1em
 
 .markdown-body td,
 .markdown-body th
@@ -198,7 +178,6 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6
-  //font-weight: 400
   line-height: 1.25
   margin-bottom: 16px
   margin-top: 24px
@@ -238,7 +217,6 @@
 
 .markdown-body table th,
 .markdown-body table td
-  border: 1px solid #dfe2e5
   padding: 6px 13px
 
 .markdown-body code::before,
@@ -279,9 +257,6 @@
   direction: ltr
   -webkit-font-feature-settings: 'liga'
   -webkit-font-smoothing: antialiased
-  //vertical-align: baseline
-  //margin-left -7px
-  //margin-top -1px
   color: $material-light.icons.active
 
 .task-list-item input[checked]:before
@@ -289,3 +264,30 @@
 
 .task-list-item input:not([checked]):before
   content: 'check_box_outline_blank'
+
+.application--dark
+  .task-list-item input:before
+    color: $material-dark.icons.active !important
+
+  .markdown-body
+    table
+      tr, td, th
+        border: 1px solid $material-dark.dividers
+
+    pre
+      code
+        background-color: transparent
+
+    pre
+      background-color: $material-dark.background
+      border: 1px solid rgba(#000, .5)
+
+    hr
+      background-color: $material-dark.dividers
+
+    blockquote
+      border-left: 4px solid $material-dark.dividers
+
+  kbd
+    background-color: #fff
+    color: $material-light.text.primary
