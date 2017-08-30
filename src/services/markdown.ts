@@ -12,6 +12,7 @@ converter.setOption('noHeaderId', true as any as string);
 converter.setOption('openLinksInNewWindow', true as any as string);
 converter.setOption('smoothLivePreview', true as any as string);
 converter.setOption('headerLevelStart', 1 as any as string);
+converter.setOption('parseImgDimensions', true as any as string);
 
 let TEXT = '';
 

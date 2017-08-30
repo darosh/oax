@@ -52,9 +52,8 @@ export function mdOperations(spec: ISpecExtended, max: [number, number]) {
   let n = 0;
 
   for (const tag of spec.tags) {
-    let m = 0;
-
     for (const op of tag._operations) {
+      let m = 0;
       mdOperation(op)
 
       if (max && (m++ === max[1])) {

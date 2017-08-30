@@ -38,7 +38,7 @@ export default [
   {
     url: './static/test/markdown/swagger-gfm.json',
     title: 'Swagger GFM',
-    note: 'Github Flavoured Markdown'
+    note: 'Markdown'
   },
   {
     url: 'https://api.apis.guru/v2/specs/bbc.com/1.0.0/swagger.json',
