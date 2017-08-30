@@ -59,6 +59,8 @@
   }
 </script>
 
+<style lang="css" src="../vendor/vuetify/dist/vuetify.min.css"></style>
+
 <style lang="stylus">
   @import './stylus/index'
 </style>

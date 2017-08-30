@@ -8,8 +8,8 @@ import { sync } from 'vuex-router-sync'
 import { configuration } from './services/configuration'
 import App from './App'
 
-import Vuetify from 'vuetify'
-// import Vuetify from './vendor/vuetify'
+// import Vuetify from 'vuetify'
+import Vuetify from '../vendor/vuetify'
 import VueVirtualScroller from 'vue-virtual-scroller'
 
 Vue.use(Vuetify)

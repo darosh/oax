@@ -86,6 +86,15 @@ var webpackConfig = merge(baseWebpackConfig, {
     // }),
     new webpack.optimize.CommonsChunkPlugin({
       // async: true,
+      name: 'vue',
+      minChunks: function (module, count) {
+        return (
+          module.resource && /vue/.test(module.resource)
+        )
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      // async: true,
       name: 'vendor',
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
@@ -101,7 +110,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      chunks: ['vendor']
+      chunks: ['vendor', 'vue']
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
