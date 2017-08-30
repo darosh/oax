@@ -2,7 +2,7 @@ import load from '../../services/load'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 import { OAS } from './../../models/oas'
-import { trim, summary, text } from './../../services/md-converter'
+import { trim, summary, text } from '../../services/markdown'
 
 export default function () {
   self.postMessage(JSON.stringify({id: -1}))

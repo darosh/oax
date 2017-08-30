@@ -1,7 +1,7 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-import {summary, text, trim} from '../../../services/md-converter';
+import {summary, text, trim} from '../../../services/markdown';
 
 export function mdInfo(spec: ISpecExtended) {
   if (spec.info.description) {

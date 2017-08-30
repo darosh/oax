@@ -1,12 +1,20 @@
-# GitHub Flavoured Markdown Test
+# GitHub Flavoured Markdown
 
-## Header (level 2)
+## Headers
 
 ### Header (level 3)
 
 #### Header (level 4)
 
 ##### Header (level 5)
+
+## Text
+
+* normal
+* _emphasis_
+* **strong**
+* ~~strikethrough~~
+* ```code```
 
 ## Table
 
@@ -21,27 +29,35 @@ www.example.com
 
 ## List
 
-* A
-* B
-* C
-
+1. A
+2. B
+3. C
 
 ## Blockquote
 
-> &hellip;in blockquote.
+> &hellip;in blockquote
 
 ## Horizontal Rule
 
 ---
 
-## Code Blocks
+## Image
 
+![](data:image/svg+xml;charset=utf-8;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+DQogICAgPGNpcmNsZSBjeD0iNiIgY3k9IjE4IiBmaWxsPSJub25lIiByPSIyIi8+DQogICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgZmlsbD0ibm9uZSIgcj0iLjUiLz4NCiAgICA8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgZmlsbD0ibm9uZSIgcj0iMiIvPg0KICAgIDxwYXRoIGQ9Ik05LjY0IDcuNjRjLjIzLS41LjM2LTEuMDUuMzYtMS42NCAwLTIuMjEtMS43OS00LTQtNFMyIDMuNzkgMiA2czEuNzkgNCA0IDRjLjU5IDAgMS4xNC0uMTMgMS42NC0uMzZMMTAgMTJsLTIuMzYgMi4zNkM3LjE0IDE0LjEzIDYuNTkgMTQgNiAxNGMtMi4yMSAwLTQgMS43OS00IDRzMS43OSA0IDQgNCA0LTEuNzkgNC00YzAtLjU5LS4xMy0xLjE0LS4zNi0xLjY0TDEyIDE0bDcgN2gzdi0xTDkuNjQgNy42NHpNNiA4Yy0xLjEgMC0yLS44OS0yLTJzLjktMiAyLTIgMiAuODkgMiAyLS45IDItMiAyem0wIDEyYy0xLjEgMC0yLS44OS0yLTJzLjktMiAyLTIgMiAuODkgMiAyLS45IDItMiAyem02LTcuNWMtLjI4IDAtLjUtLjIyLS41LS41cy4yMi0uNS41LS41LjUuMjIuNS41LS4yMi41LS41LjV6TTE5IDNsLTYgNiAyIDIgNy03VjN6Ii8+DQo8L3N2Zz4=)
 
-### Plain
+## Todo List
+
+- [x] Born 
+- [x] Live
+- [ ] Die
+
+## Block
 
 ```
-Hello block!
+... in block
 ```
+
+## Syntax Highlight
 
 ### JSON
 
@@ -62,7 +78,21 @@ Hello block!
   <parent role="father">
     <child name="John"></child>
   </parent>
-</root>
+</family>
+```
+
+### YAML
+
+```yaml
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+openapi: "3.0.0"
+info:
+  title: Uber API
+  description: Move your app forward with the Uber API
+  version: "1.0.0"
+servers:
+  - url: https://api.uber.com/v1
 ```
 
 ### HTTP
@@ -180,6 +210,41 @@ public abstract class L2Char extends L2Object {
 }
 ```
 
+### Diff
+
+```diff
+Index: languages/ini.js
+===================================================================
+--- languages/ini.js    (revision 199)
++++ languages/ini.js    (revision 200)
+@@ -1,8 +1,7 @@
+ hljs.LANGUAGES.ini =
+ {
+   case_insensitive: true,
+-  defaultMode:
+-  {
++  defaultMode: {
+     contains: ['comment', 'title', 'setting'],
+     illegal: '[^\\s]'
+   },
+
+*** /path/to/original timestamp
+--- /path/to/new      timestamp
+***************
+*** 1,3 ****
+--- 1,9 ----
++ This is an important
++ notice! It should
++ therefore be located at
++ the beginning of this
++ document!
+
+! compress the size of the
+! changes.
+
+  It is important to spell
+```
+
 ### HTML
 
 ```html
@@ -201,7 +266,13 @@ public abstract class L2Char extends L2Object {
 ### Markdown
 
 ```md
-##### Header (level 5)
+# Markdown
+
+## Text
+
+* normal
+* _emphasis_
+* **strong**
 
 ## Table
 
@@ -209,5 +280,4 @@ public abstract class L2Char extends L2Object {
 | --- | --- | --- |
 | Cell | Cell | Cell |
 | Cell | Cell | Cell |
-
 ```

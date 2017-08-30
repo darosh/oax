@@ -14,12 +14,18 @@ $delta := 11px
   .navigation-drawer--opening
     pointer-events none
 
+  .navigation-drawer
+    transition-property transform
+
   .navigation-drawer--closed,
   .navigation-drawer--closing,
   .navigation-drawer--opening,
   .toolbar
-    transition-delay 100ms
-    transition-duration 200ms
+    transition-delay 75ms
+    transition-duration 225ms
+
+  .toolbar
+    transition-property padding
 
   .navigation-drawer--persistent:not(.navigation-drawer--is-mobile).navigation-drawer--open.navigation-drawer--right ~ main
     padding-right: 0

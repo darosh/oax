@@ -1,4 +1,4 @@
-import { trim } from './md-converter'
+import { trim } from './markdown'
 
 export function md (obj, key = 'description') {
   const mkey = '_md_' + key

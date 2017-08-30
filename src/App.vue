@@ -62,7 +62,3 @@
 <style lang="stylus">
   @import './stylus/index'
 </style>
-
-<style lang="css">
-  @import '../node_modules/highlight.js/styles/github.css';
-</style>
