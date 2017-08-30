@@ -1,5 +1,3 @@
-// Based on "github-markdown-css": "^2.8.0"
-
 .markdown-body
   code, pre
     font-weight: normal !important
@@ -166,28 +164,9 @@
     &:focus
       outline: none
   kbd
-    display: inline-block
-    padding: 3px 5px
-    font-size: 11px
-    line-height: 10px
-    color: #444d56
-    vertical-align: middle
-    background-color: #fafbfc
-    border: solid 1px #c6cbd1
-    border-bottom-color: #959da5
-    border-radius: 3px
-    box-shadow: inset 0 -1px 0 #959da5
-    display: inline-block
-    padding: 3px 5px
-    font: 11px "Roboto Mono", monospace
-    line-height: 10px
-    color: #444d56
-    vertical-align: middle
-    background-color: #fafbfc
-    border: solid 1px #d1d5da
-    border-bottom-color: #c6cbd1
-    border-radius: 3px
-    box-shadow: inset 0 -1px 0 #c6cbd1
+    background-color rgba(#888, .8)
+  kbd + kbd
+    margin-left 4px
   li
     & > p
       margin-top: 16px
@@ -280,10 +259,11 @@
   letter-spacing: -.2em
 
 .markdown-body pre
-  background-color: rgba(128, 128, 128, .14)
-  border-radius: 3px
-  font-size: 85%
-  line-height: 1.45
+  background-color: $material-light.background
+  border: 1px solid $material-light.dividers
+  border-radius: 4px
+  font-size: 14px
+  line-height: 20px
   overflow: auto
   padding: 16px
 

@@ -14,7 +14,9 @@
 * _emphasis_
 * **strong**
 * ~~strikethrough~~
-* ```code```
+* `code`
+* [link](www.example.com)
+* <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>Del</kbd>
 
 ## Table
 
@@ -273,6 +275,10 @@ Index: languages/ini.js
 * normal
 * _emphasis_
 * **strong**
+* ~~strikethrough~~
+* `code`
+* [link](www.example.com)
+* <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>Del</kbd>
 
 ## Table
 

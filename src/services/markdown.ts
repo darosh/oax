@@ -30,6 +30,11 @@ function syntax(tree: any) {
         let lang = node.attrs[0].value.split(' ')[0]
         h = hljs.highlight(lang, h).value
         node.childNodes = (parseFragment(h) as any).childNodes
+      } else if (h.split('\n').length > 4) {
+        h = hljs.highlightAuto(h).value
+        if (h.trim()) {
+          node.childNodes = (parseFragment(h) as any).childNodes
+        }
       }
     }
   })
