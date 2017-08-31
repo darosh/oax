@@ -7,7 +7,7 @@ import {IBaseSecurityExtended} from '../interfaces/ISecurityExtended';
 
 export function mdInfo(spec: ISpecExtended) {
   if (spec.info.description) {
-    spec.info._ = spec.info._ || {}
+    spec.info._ = spec.info._ || {};
     spec.info._._md_description = trim(spec.info.description);
   }
 }
