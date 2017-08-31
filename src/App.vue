@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(:dark="IS_DARK")
+  v-app(v-hotkey="keymap", :dark="IS_DARK")
     div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-menu
     app-drawer
@@ -16,18 +16,37 @@
           //span  Operations
           //v-icon list
       router-view
+    v-dialog(width="300" v-model="log" hide-overlay persistent)
+      v-card
+        v-toolbar.transparent.elevation-0
+          v-toolbar-title Log
+          v-spacer
+          v-btn(icon flat @click="log = !log")
+            v-icon close
+        v-divider
+        v-card-text(style="padding-right: 26px;")
+          app-log(style="margin-bottom: 24px", v-if="LOADING", :items="LOADING", :log="true")
+          app-log(style="margin-bottom: 24px", v-else :items="LOG", :log="true")
 </template>
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from './store/types'
   import { throttle } from './services/events'
+  import VBtn from '../node_modules/vuetify/src/components/VBtn/VBtn.vue'
 
   export default {
     components: {
+      VBtn,
       appDrawer: () => import('./components/panels/DrawerRight'),
       appMenu: () => import('./components/panels/DrawerLeft'),
-      appToolbar: () => import('./components/Toolbar')
+      appToolbar: () => import('./components/Toolbar'),
+      appLog: () => import('./components/Log')
+    },
+    data () {
+      return {
+        log: false
+      }
     },
     created () {
       throttle('resize', 'resize.lazy', 200)
@@ -40,11 +59,14 @@
     computed: {
       ...mapGetters([
         types.IS_DARK,
-        types.MENU
+        types.LOG,
+        types.LOADING
       ]),
-      menu: {
-        get () { return this.MENU },
-        set (value) { this.SET_MENU(value) }
+      keymap () {
+        return {
+          'esc': () => (this.log = !this.log),
+          'alt+q': () => (this.SET_MENU())
+        }
       }
     },
     methods: {
@@ -60,6 +82,7 @@
 </script>
 
 <style lang="css" src="../vendor/vuetify/dist/vuetify.min.css"></style>
+<style lang="css" src="./stylus/codemirror.css"></style>
 
 <style lang="stylus">
   @import './stylus/index'

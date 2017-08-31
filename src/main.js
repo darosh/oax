@@ -11,9 +11,11 @@ import App from './App'
 // import Vuetify from 'vuetify'
 import Vuetify from '../vendor/vuetify'
 import VueVirtualScroller from 'vue-virtual-scroller'
+import VueHotkey from 'v-hotkey'
 
 Vue.use(Vuetify)
 Vue.use(VueVirtualScroller)
+Vue.use(VueHotkey)
 Vue.config.productionTip = false
 
 sync(store, router)
