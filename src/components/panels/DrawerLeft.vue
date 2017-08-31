@@ -15,16 +15,19 @@
       v-tabs-items
         v-tabs-content#tab-json
           v-divider
-          .pl-3.pr-3.pt-3
+          .pl-3.pr-3.pt-3.pb-3
             v-text-field(label="URL" v-model="url" solo single-line hide-details prepend-icon="link" v-focus.wait="MENU && (tab === 'tab-json')")
             v-radio-group(v-model="format", :mandatory="true" hide-details)
               v-layout.ma-0
                 v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
-            v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)
+
+          v-divider
+          codemirror(v-model="spec", :options="editorOptions")
+            <!--v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)-->
         v-tabs-content#tab-dir
           v-divider
           v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
-            v-text-field(solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && (tab === 'tab-dir')")
+            v-text-field(v-hotkey="{'':''}" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && (tab === 'tab-dir')")
           v-list.pa-0(two-line v-if="APIS")
             virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
               template(scope="props")
@@ -74,18 +77,44 @@
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../../store/types'
   import VNavigationDrawer from './VNavigationDrawer'
-  import {getColor} from 'random-material-color'
+  import { getColor } from 'random-material-color'
   import Vue from 'vue'
   import CircularJSON from 'circular-json'
   import test from './../../services/test'
 
   import focus from '../../directives/focus'
 
+  import codemirror from '../CodeMirror'
+
+  console.log(codemirror)
+
+//  const codemirror = require('vue-codemirror').codemirror
+
+  // custom new mode
+  //  CodeMirror.defineMode('mymode', () => {
+  // your mode code...
+  //  })
+
+  //  require('codemirror/addon/selection/active-line.js')
+
+  //  require('codemirror/addon/fold/foldgutter.css')
+  //  require('codemirror/addon/fold/brace-fold.js')
+  //  require('codemirror/addon/fold/comment-fold.js')
+  //  require('codemirror/addon/fold/foldcode.js')
+  //  require('codemirror/addon/fold/foldgutter.js')
+  //  require('codemirror/addon/fold/indent-fold.js')
+  //  require('codemirror/addon/fold/markdown-fold.js')
+  //  require('codemirror/addon/fold/xml-fold.js')
+
+  //  require('codemirror/addon/display/fullscreen.css')
+  //  require('codemirror/addon/display/fullscreen.js')
+
   export default {
     directives: {
       focus
     },
     components: {
+      codemirror,
       VNavigationDrawer
     },
     data () {
@@ -97,12 +126,28 @@
         spec: '',
         keys: {},
         apis: false,
-        test
+        test,
+        editorOptions: {
+          tabSize: 2,
+          //          fullScreen: true,
+          mode: { name: 'javascript', json: true },
+          // mode: {
+          //   ext: 'json'
+          // },
+          //          theme: 'default',
+          lineNumbers: true,
+          line: false
+          // keyMap: 'sublime',
+          // extraKeys: {'Ctrl': 'autocomplete'},
+          // foldGutter: false,
+          // gutters: ['CodeMirror-foldgutter']
+        }
       }
     },
     created () {
       this.LOAD_APIS()
-      this.spec = CircularJSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
+      // this.spec = CircularJSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
+      this.spec = CircularJSON.stringify(this.SPEC || '', null, 2)
     },
     computed: {
       ...mapGetters([
@@ -184,7 +229,7 @@
     },
     watch: {
       SPEC: function (value) {
-        this.spec = CircularJSON.stringify(value || '', null, 2).substr(0, 3000)
+        this.spec = CircularJSON.stringify(value || '', null, 2)
       },
       APIS: function () {
         if (this.apis) {
@@ -196,7 +241,8 @@
 
         for (const k in this.keys) {
           if (this.keys[k] === '?') {
-            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key /* || (link.setAttribute('href', k), link.hostname) */
+            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key
+            /* || (link.setAttribute('href', k), link.hostname) */
           }
         }
       }
@@ -208,7 +254,7 @@
   @import '../../stylus/_variables'
 
   $margin-scroll := 127px
-  $margin-edit := 200px
+  $margin-edit := 166px
   $margin-recent := 49px
 
   .scroller
@@ -221,23 +267,23 @@
       height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-landscape-height)
 
   >>> .input-group--solo .input-group__details
-    display none
+        display none
 
-  >>> textarea
-    height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)
+  >>> .CodeMirror
+        height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-portrait-height)
+        @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+          height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-portrait-height)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
+        @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+          height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
 
   >>> .scroller-recent
-    height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)
+        height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-portrait-height)
+        @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+          height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-portrait-height)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-landscape-height)
+        @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+          height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-landscape-height)
 </style>

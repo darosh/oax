@@ -9,7 +9,8 @@ export const state = {
   resources: null,
   operations: null,
   metas: null,
-  operation: null
+  operation: null,
+  observables: null
 }
 
 export const mutations = {
@@ -18,6 +19,7 @@ export const mutations = {
     state.operations = payload.operations
     state.spec = payload.spec
     state.metas = payload.metas
+    state.observables = payload.observables
   },
   [types.TOGGLE_RESOURCES] (state, payload) {
     openAll(state.resources, payload)

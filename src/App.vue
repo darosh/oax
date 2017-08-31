@@ -6,15 +6,15 @@
     app-toolbar
     main
       <!--v-bottom-nav.white(:value="true")-->
-        <!--v-btn(flat class="teal&#45;&#45;text")-->
-          //span  Description
-          //v-icon description
-        <!--v-btn(flat class="teal&#45;&#45;text")-->
-          //span  Info
-          //v-icon info
-        <!--v-btn(flat class="teal&#45;&#45;text")-->
-          //span  Operations
-          //v-icon list
+      <!--v-btn(flat class="teal&#45;&#45;text")-->
+      //span  Description
+      //v-icon description
+      <!--v-btn(flat class="teal&#45;&#45;text")-->
+      //span  Info
+      //v-icon info
+      <!--v-btn(flat class="teal&#45;&#45;text")-->
+      //span  Operations
+      //v-icon list
       router-view
     v-dialog(width="300" v-model="log" hide-overlay persistent)
       v-card
@@ -35,7 +35,12 @@
   import { throttle } from './services/events'
   import VBtn from '../node_modules/vuetify/src/components/VBtn/VBtn.vue'
 
+  //  import hotkey from 'v-hotkey/src/index'
+
   export default {
+    //    directives: {
+    //      hotkey
+    //    },
     components: {
       VBtn,
       appDrawer: () => import('./components/panels/DrawerRight'),
@@ -82,7 +87,6 @@
 </script>
 
 <style lang="css" src="../vendor/vuetify/dist/vuetify.min.css"></style>
-<style lang="css" src="./stylus/codemirror.css"></style>
 
 <style lang="stylus">
   @import './stylus/index'

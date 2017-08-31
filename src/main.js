@@ -11,7 +11,9 @@ import App from './App'
 // import Vuetify from 'vuetify'
 import Vuetify from '../vendor/vuetify'
 import VueVirtualScroller from 'vue-virtual-scroller'
-import VueHotkey from 'v-hotkey'
+import VueHotkey from 'v-hotkey/src/index'
+
+// console.log(VueHotkey)
 
 Vue.use(Vuetify)
 Vue.use(VueVirtualScroller)

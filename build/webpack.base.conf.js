@@ -53,7 +53,7 @@ module.exports = {
       {
         test: /\.(js)$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/vuetify/src')]
+````        include: [resolve('src'), resolve('test'), resolve('node_modules/vuetify/src'), resolve('node_modules/v-hotkey'), resolve('node_modules/codemirror'), resolve('node_modules/vue-codemirror')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
