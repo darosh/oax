@@ -31,4 +31,6 @@ export function observables(spec: ISpecExtended) {
       }
     }
   }
+
+  return list;
 }

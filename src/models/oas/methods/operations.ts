@@ -9,8 +9,14 @@ export function operations(spec: ISpecExtended) {
       _display: true,
       _result: null,
       _error: null,
-      _produces: op.produces[0]
+      _produces: op.produces[0],
+
+      description: op.description,
+      summary: op.summary
     };
+
+    delete op.description;
+    delete op.summary;
 
     if (op.parameters) {
       for (const param of (op.parameters as any as IParameterExtended[])) {

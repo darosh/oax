@@ -1,30 +1,38 @@
 import { markdown, summary } from '../workers/main'
 
+// const loading = 'Loading&hellip;'
+
 function update (el, binding) {
   const name = binding.modifiers.summary ? 'summary' : 'description'
   const v = binding.value
 
-  if (v[name]) {
+  if (v[name] || v._[name]) {
     const mname = '_md_' + name
     const jname = mname + '_job'
 
-    if (v[mname]) {
-      el.innerHTML = v[mname]
+    if (!v._) {
+      v._ = {}
+    }
+
+    if (v._[mname]) {
+      el.innerHTML = v._[mname]
       el.className += ' markdown'
     } else {
+      // el.innerHTML = loading
       el.className += ' markdown';
-      (v[jname] || (v[jname] = markdown(v[name]))).then(md => {
-        delete v[jname]
-        el.innerHTML = v[mname] = md
+      (v._[jname] || (v._[jname] = markdown(v[name] || v._[name]))).then(md => {
+        delete v._[jname]
+        el.innerHTML = v._[mname] = md
       })
     }
-  } else if (binding.modifiers.summary && v.description) {
+  } else if (binding.modifiers.summary && v._.description) {
+    // el.innerHTML = loading
     if (v._._md_description) {
       sum(el, binding)
     } else {
       const jname = '_md_description_job';
-      (v[jname] || (v[jname] = markdown(v.description))).then(md => {
-        delete v[jname]
+      (v._[jname] || (v._[jname] = markdown(v._.description))).then(md => {
+        delete v._[jname]
         v._._md_description = md
         sum(el, binding)
       })
@@ -34,7 +42,7 @@ function update (el, binding) {
 
 function sum (el, binding) {
   summary(binding.value._._md_description).then(s => {
-    binding.value.summary = s
+    binding.value._.summary = s
     update(el, binding)
   })
 }

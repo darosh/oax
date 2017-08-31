@@ -9,6 +9,9 @@ export interface IOperationObservable {
   _result: any;
   _md_description?: string;
   _md_summary?: string;
+
+  description?: string;
+  summary?: string;
 }
 
 export interface IOperationExtended extends Operation {

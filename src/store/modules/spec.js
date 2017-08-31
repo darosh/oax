@@ -105,7 +105,9 @@ export const actions = {
         commit(types.SET_ERROR, 'ERROR: ' + res.err.message)
         commit(types.SET_LOADING, false)
       } else {
-        commit(types.SET_LOADING, {text: 'Rendering', done: 1})
+        // const count = (res.bundled._observables || []).length
+        // commit(types.SET_LOADING, {text: `Initializing ${count} ${count === 1 ? 'obsevable' : 'obsevables'}`, done: 1})
+        commit(types.SET_LOADING, {text: 'Initializing', done: 1})
 
         setTimeout(() => {
           if (url !== lastUrl) {
