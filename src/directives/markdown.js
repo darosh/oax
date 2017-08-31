@@ -26,10 +26,10 @@ function update (el, binding) {
 
     if (v[mname]) {
       el.innerHTML = v[mname]
-      el.className += ' markdown-body'
+      el.className += ' markdown'
       updated(el)
     } else {
-      el.className += ' markdown-body';
+      el.className += ' markdown';
       (v[jname] || (v[jname] = markdown(v[name]))).then(md => {
         delete v[jname]
         el.innerHTML = v[mname] = md
