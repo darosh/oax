@@ -14,6 +14,7 @@ export function observables(spec: ISpecExtended) {
       }
     }
   }
+
   for (const tag of spec.tags) {
     list.push(tag._);
   }
