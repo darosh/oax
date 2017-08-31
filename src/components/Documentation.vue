@@ -7,8 +7,6 @@
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../store/types'
 
-  import { md } from '../services/md'
-
   export default {
     components: {
     },
@@ -22,8 +20,7 @@
     methods: {
       ...mapMutations([
         types.SET_OPERATION
-      ]),
-      md
+      ])
     }
   }
 </script>

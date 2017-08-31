@@ -27,8 +27,6 @@
   import appParameter from '../Parameter'
   import appResponseBlock from '../elements/ResponseBlock'
 
-  import { md } from '../../services/md'
-
   export default {
     props: ['item'],
     components: {
@@ -75,7 +73,6 @@
         types.SET_DRAWER,
         types.SET_OPERATION
       ]),
-      md,
       execute () {
         const item = this.item
         this.SET_FAB_PENDING(true)
