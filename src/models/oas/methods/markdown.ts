@@ -15,7 +15,10 @@ export function mdInfo(spec: ISpecExtended) {
 export function mdSecurity(spec: ISpecExtended) {
   if (spec.securityDefinitions) {
     for (const key in spec.securityDefinitions) {
-      (spec.securityDefinitions[key] as IBaseSecurityExtended)._._md_description = trim(spec.securityDefinitions[key].description);
+      if (spec.securityDefinitions.hasOwnProperty(key)) {
+        (spec.securityDefinitions[key] as IBaseSecurityExtended)._._md_description =
+          trim(spec.securityDefinitions[key].description);
+      }
     }
   }
 }
@@ -95,7 +98,8 @@ export function mdResponses(spec: ISpecExtended, max: number) {
     if (op.responses) {
       for (const respName in op.responses) {
         if (op.responses[respName].description) {
-          op.responses[respName]._._md_description = op.responses[respName]._._md_description || trim(op.responses[respName].description);
+          op.responses[respName]._._md_description =
+            op.responses[respName]._._md_description || trim(op.responses[respName].description);
         }
       }
     }

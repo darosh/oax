@@ -18,8 +18,8 @@ let TEXT = '';
 
 const sax = new SAXParser();
 
-sax.on('text', (text) => {
-  TEXT += text;
+sax.on('text', (t) => {
+  TEXT += t;
 });
 
 function syntax(tree: any) {

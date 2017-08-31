@@ -9,7 +9,9 @@ export function observables(spec: ISpecExtended) {
 
   if (spec.securityDefinitions) {
     for (const key in spec.securityDefinitions) {
-      list.push((spec.securityDefinitions[key] as IBaseSecurityExtended)._);
+      if (spec.securityDefinitions.responses.hasOwnProperty(key)) {
+        list.push((spec.securityDefinitions[key] as IBaseSecurityExtended)._);
+      }
     }
   }
   for (const tag of spec.tags) {
@@ -27,7 +29,9 @@ export function observables(spec: ISpecExtended) {
 
     if (op.responses) {
       for (const respName in op.responses) {
-        list.push(op.responses[respName]._);
+        if (op.responses.hasOwnProperty(respName)) {
+          list.push(op.responses[respName]._);
+        }
       }
     }
   }

@@ -7,9 +7,9 @@ export function operations(spec: ISpecExtended) {
 
     op._ = {
       _display: true,
-      _result: null,
       _error: null,
       _produces: op.produces[0],
+      _result: null,
 
       description: op.description,
       summary: op.summary
@@ -28,7 +28,9 @@ export function operations(spec: ISpecExtended) {
 
     if (op.responses) {
       for (const respName in op.responses) {
-        op.responses[respName]._ = {};
+        if (op.responses.hasOwnProperty(respName)) {
+          op.responses[respName]._ = {};
+        }
       }
     }
   }

@@ -7,6 +7,7 @@ import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
 
+/* tslint:disable */
 const phase = {
   info: [0, 'info', 'Parsing'],
   meta: [1, 'meta', 'Parsing'],
@@ -21,6 +22,7 @@ const phase = {
   mdResponses: [10, 'responses', 'Markdown'],
   observables: [11, 'observables', 'Collecting']
 };
+/* tslint:enable */
 
 const phases = Object.keys(phase).length - 1;
 
@@ -36,8 +38,8 @@ export function OAS(spec: ISpecExtended,
                     defaultContentType: string = 'application/json') {
 
   const parsedUrl = {
-    protocol: url.replace(/:.*/, ''),
-    host: url.replace(/^[^/]+:\/\//, '').replace(/\/.*$/, '')
+    host: url.replace(/^[^/]+:\/\//, '').replace(/\/.*$/, ''),
+    protocol: url.replace(/:.*/, '')
   };
 
   log(phase.info, progress);
