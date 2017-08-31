@@ -10,7 +10,7 @@
           a(:href="item.externalDocs.url") {{item.externalDocs.description}}
         v-divider(v-if="item.externalDocs && item.externalDocs.url")
         .pt-3.pb-3
-          div(v-if="o._display", v-for="(o, i) in item._operations", :key="o._id")
+          div(v-if="o._._display", v-for="(o, i) in item._operations", :key="o._id")
             .hover--block.relative(v-ripple="", @click.stop="SET_OPERATION(o)", :class="{'secondary white--text': OPERATION === o}")
               app-operation.pl-3.pr-3(:item="o" v-if="IS_ENDPOINT")
               div(v-if="IS_DESCRIPTION")
@@ -42,7 +42,7 @@
         types.OPERATION
       ]),
       opened: {
-        get () { return this.item._opened },
+        get () { return this.item._._opened },
         set (value) { this.SET_RESOURCE({resource: this.item, opened: value}) }
       }
     },

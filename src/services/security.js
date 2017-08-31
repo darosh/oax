@@ -11,17 +11,17 @@ export function name (sec) {
 }
 
 export function oauth2 (sec) {
-  sec._accessToken = null
-  sec._tokenType = null
-  sec._expiresIn = null
-  sec._validFrom = null
-  const clientId = encodeURIComponent(sec._clientId)
+  sec._._accessToken = null
+  sec._._tokenType = null
+  sec._._expiresIn = null
+  sec._._validFrom = null
+  const clientId = encodeURIComponent(sec._._clientId)
 
   const link = sec.authorizationUrl +
     '?response_type=token' +
     (clientId ? ('&client_id=' + clientId) : '') +
-    '&scope=' + getSelectedScopes(sec._scopes) +
-    '&redirect_uri=' + sec._callbackUrl
+    '&scope=' + getSelectedScopes(sec._._scopes) +
+    '&redirect_uri=' + sec._._callbackUrl
 
   window.open(link)
 
@@ -36,9 +36,9 @@ export function oauth2 (sec) {
         params: {
           grant_type: 'authorization_code',
           code: qp.code,
-          redirect_url: sec._callbackUrl,
+          redirect_url: sec._._callbackUrl,
           client_id: clientId,
-          client_secret: sec._clientSecret
+          client_secret: sec._._clientSecret
         }
       }).then(function (response) {
         const qp = response.data

@@ -3,15 +3,26 @@ import {ISpecExtended} from '../interfaces/ISpecExtended';
 
 export function operations(spec: ISpecExtended) {
   for (const op of spec._operations) {
-    op._display = true;
-    op._result = null;
-    op._error = null;
     op.produces = op.produces || spec.produces;
-    op._produces = op.produces[0];
+
+    op._ = {
+      _display: true,
+      _result: null,
+      _error: null,
+      _produces: op.produces[0]
+    };
 
     if (op.parameters) {
       for (const param of (op.parameters as any as IParameterExtended[])) {
-        param._value = null;
+        param._ = {
+          _value: null
+        };
+      }
+    }
+
+    if (op.responses) {
+      for (const respName in op.responses) {
+        op.responses[respName]._ = {};
       }
     }
   }

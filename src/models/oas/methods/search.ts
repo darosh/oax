@@ -21,18 +21,18 @@ export function getSearch(text: string) {
 
 export function filterSearch(resources: ITagExtended[], searchObject: any) {
   for (const r of resources) {
-    r._display = false;
-    r._opened = false;
+    r._._display = false;
+    r._._opened = false;
 
     for (const o of r._operations) {
 
       if ((searchObject.method ? searchObject.method === o._method : true) &&
         (searchObject.path ? o._pathName.toLowerCase().indexOf(searchObject.path) > -1 : true)) {
-        o._display = true;
-        r._display = true;
-        r._opened = true;
+        o._._display = true;
+        r._._display = true;
+        r._._opened = true;
       } else {
-        o._display = false;
+        o._._display = false;
       }
     }
   }

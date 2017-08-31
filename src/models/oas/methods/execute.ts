@@ -13,7 +13,7 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
 
   for (const param of (operation.parameters as Parameter[]) || []) {
     // This is my 1st as-any-as ever! :-)))
-    const value = (param as any as IParameterExtended)._value;
+    const value = (param as any as IParameterExtended)._._value;
 
     if (!value || (!value && (param.in !== 'path'))) {
       continue;
@@ -42,7 +42,7 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
 
   const config: any = {
     method: operation._method,
-    url: spec._scheme + '://' + merge(merge(spec.host, spec.basePath), path)
+    url: spec._._scheme + '://' + merge(merge(spec.host, spec.basePath), path)
   };
 
   if (Object.keys(headers).length) {

@@ -22,7 +22,7 @@
           v-tabs-item(ripple href="tab-info") Info
           v-tabs-item(ripple href="tab-params") Params
           v-tabs-item.relative(ripple href="tab-script") Script
-          v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._result") Result
+          v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._._result") Result
           v-tabs-slider
         v-divider
         v-tabs-items
@@ -65,7 +65,7 @@
         types.TAB
       ]),
       tab: {
-        get () { return this.operation._result ? this.TAB : 'tab-info' },
+        get () { return this.operation._._result ? this.TAB : 'tab-info' },
         set (value) { this.SET_TAB(value) }
       }
     },

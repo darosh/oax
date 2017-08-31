@@ -5,21 +5,27 @@ export function security(spec: Spec) {
   if (spec.securityDefinitions) {
     for (const sd in spec.securityDefinitions) {
       if (spec.securityDefinitions.hasOwnProperty(sd)) {
+        const sec = spec.securityDefinitions[sd] as IBaseSecurityExtended;
+        sec._ = {};
+
         if ((spec.securityDefinitions[sd] as OAuth2AccessCodeSecurity).scopes) {
-          const sec = spec.securityDefinitions[sd] as IBaseSecurityExtended;
-          sec._callbackUrl = null;
-          sec._clientId = null;
-          sec._clientSecret = null;
-          sec._accessToken = null;
-          sec._expiresIn = null;
-          sec._validFrom = null;
-          sec._apiKey = null;
-          sec._user = null;
-          sec._password = null;
+          // sec._ = {
+          //   _scopes: null,
+          //   _callbackUrl: null,
+          //   _clientId: null,
+          //   _clientSecret: null,
+          //   _accessToken: null,
+          //   _expiresIn: null,
+          //   _validFrom: null,
+          //   _apiKey: null,
+          //   _user: null,
+          //   _password: null
+          // };
+
           for (const scope in (spec.securityDefinitions[sd] as any).scopes) {
             if ((spec.securityDefinitions[sd] as any).scopes.hasOwnProperty(scope)) {
-              sec._scopes = sec._scopes || {};
-              sec._scopes[scope] = true;
+              sec._._scopes = sec._._scopes || {};
+              sec._._scopes[scope] = true;
             }
           }
         }

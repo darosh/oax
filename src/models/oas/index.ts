@@ -2,6 +2,7 @@ import {metas} from '../metas/index';
 import {ISpecExtended} from './interfaces/ISpecExtended';
 import {info} from './methods/info';
 import {mdInfo, mdOperations, mdParameters, mdResponses, mdSecurity, mdTags} from './methods/markdown';
+import {observables} from './methods/observables';
 import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
@@ -17,7 +18,8 @@ const phase = {
   mdTags: [7, 'tags', 'Markdown'],
   mdOperations: [8, 'operations', 'Markdown'],
   mdParameters: [9, 'parameters', 'Markdown'],
-  mdResponses: [10, 'responses', 'Markdown']
+  mdResponses: [10, 'responses', 'Markdown'],
+  observables: [11, 'observables', 'Collecting']
 };
 
 const phases = Object.keys(phase).length - 1;
@@ -35,8 +37,8 @@ export function OAS(spec: ISpecExtended,
 
   const parsedUrl = {
     protocol: url.replace(/:.*/, ''),
-    host: url.replace(/^[^/]+:\/\//, '').replace(/\/.*$/, ''),
-  }
+    host: url.replace(/^[^/]+:\/\//, '').replace(/\/.*$/, '')
+  };
 
   log(phase.info, progress);
   info(spec, parsedUrl, defaultContentType);
@@ -70,4 +72,7 @@ export function OAS(spec: ISpecExtended,
 
   log(phase.mdResponses, progress);
   mdResponses(spec, 10);
+
+  log(phase.observables, progress);
+  (spec as any)._observables = observables(spec);
 }

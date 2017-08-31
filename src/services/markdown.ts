@@ -1,8 +1,8 @@
 import {parseFragment, SAXParser, serialize} from 'parse5';
 import {Converter} from 'showdown';
 
-import walk from './walk';
 import hljs from './highlight';
+import walk from './walk';
 
 export const converter = new Converter();
 
@@ -25,20 +25,20 @@ sax.on('text', (text) => {
 function syntax(tree: any) {
   walk(tree, (node: any) => {
     if ((node.tagName === 'code') && node.parentNode && (node.parentNode.tagName === 'pre')) {
-      let h = serialize(node).replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      let h = serialize(node).replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
       if (node.attrs && node.attrs[0] && node.attrs[0].value) {
-        let lang = node.attrs[0].value.split(' ')[0]
-        h = hljs.highlight(lang, h).value
-        node.childNodes = (parseFragment(h) as any).childNodes
+        const lang = node.attrs[0].value.split(' ')[0];
+        h = hljs.highlight(lang, h).value;
+        node.childNodes = (parseFragment(h) as any).childNodes;
       } else if (h.split('\n').length > 4) {
-        h = hljs.highlightAuto(h).value
+        h = hljs.highlightAuto(h).value;
         if (h.trim()) {
-          node.childNodes = (parseFragment(h) as any).childNodes
+          node.childNodes = (parseFragment(h) as any).childNodes;
         }
       }
     }
-  })
+  });
 }
 
 export function trim(v: string) {
@@ -46,8 +46,8 @@ export function trim(v: string) {
     const t = v.trim();
 
     if (t) {
-      let parsed = parseFragment(converter.makeHtml(t));
-      syntax(parsed)
+      const parsed = parseFragment(converter.makeHtml(t));
+      syntax(parsed);
       const h = serialize(parsed);
       return h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
     }

@@ -57,14 +57,14 @@ export const mutations = {
     search(state.resources, payload)
   },
   [types.SET_RESULT] (state, payload) {
-    payload.operation._result = payload.result
-    payload.operation._error = payload.error
+    payload.operation._._result = payload.result
+    payload.operation._._error = payload.error
   },
   [types.SET_VALUE] (state, payload) {
-    payload.item._value = payload.value
+    payload.item._._value = payload.value
   },
   [types.SET_RESOURCE] (state, payload) {
-    payload.resource._opened = payload.opened
+    payload.resource._._opened = payload.opened
   }
 }
 
@@ -113,7 +113,7 @@ export const actions = {
           }
 
           Object.freeze(res.bundled)
-          // Object.freeze(res.bundled.tags)
+          Object.freeze(res.bundled.tags)
           Object.freeze(res.bundled._operations)
           Object.freeze(res.bundled._metas)
 
@@ -121,7 +121,8 @@ export const actions = {
             resources: res.bundled.tags,
             operations: res.bundled._operations,
             spec: res.bundled,
-            metas: res.bundled._metas
+            metas: res.bundled._metas,
+            observables: res.bundled._observables
           })
 
           commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
@@ -161,7 +162,8 @@ const sections = {
   'Schema': [0.45, 0.6],
   'Parsing': [0.66, 0.94],
   'Markdown': [0.66, 0.94],
-  'Worker finishing': [0.94, 0.94]
+  'Collecting': [0.95, 0.95],
+  'Worker finishing': [0.95, 0.95]
 }
 
 function report (p) {

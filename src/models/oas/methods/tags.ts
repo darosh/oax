@@ -38,7 +38,7 @@ export function clearTagOps(spec: ISpecExtended) {
 
 export function closeMoreTags(spec: ISpecExtended) {
   for (let i = 10; i < spec.tags.length; i++) {
-    spec.tags[i]._opened = false;
+    spec.tags[i]._._opened = false;
   }
 }
 
@@ -71,8 +71,10 @@ export function getDefaultTag(spec: ISpecExtended) {
 
   if (!dt) {
     dt = {
-      _display: true,
-      _opened: true,
+      _: {
+        _display: true,
+        _opened: true
+      },
       _operations: [],
       name: 'default'
     };
@@ -117,8 +119,9 @@ export function addTagOperations(spec: ISpecExtended) {
 export function extendTags(spec: ISpecExtended) {
   for (const tag of spec.tags) {
     tag._operations = tag._operations || [];
-    tag._display = true;
-    tag._opened = true;
+    tag._ = tag._ || {};
+    tag._._display = true;
+    tag._._opened = true;
   }
 }
 
@@ -128,6 +131,7 @@ export function addOpsTags(spec: ISpecExtended) {
       if (!(spec._map[tagName] >= 0)) {
         spec._map[tagName] = spec.tags.length;
         spec.tags.push({
+          _: {},
           name: tagName
         });
       }
@@ -172,6 +176,6 @@ export function operations(spec: Spec) {
 
 export function openAll(resourcesArray: ITagExtended[], opened = true) {
   for (const r of resourcesArray) {
-    r._opened = opened;
+    r._._opened = opened;
   }
 }

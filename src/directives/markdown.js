@@ -19,13 +19,13 @@ function update (el, binding) {
       })
     }
   } else if (binding.modifiers.summary && v.description) {
-    if (v._md_description) {
+    if (v._._md_description) {
       sum(el, binding)
     } else {
       const jname = '_md_description_job';
       (v[jname] || (v[jname] = markdown(v.description))).then(md => {
         delete v[jname]
-        v._md_description = md
+        v._._md_description = md
         sum(el, binding)
       })
     }
@@ -33,7 +33,7 @@ function update (el, binding) {
 }
 
 function sum (el, binding) {
-  summary(binding.value._md_description).then(s => {
+  summary(binding.value._._md_description).then(s => {
     binding.value.summary = s
     update(el, binding)
   })

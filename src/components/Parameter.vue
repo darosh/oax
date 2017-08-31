@@ -25,7 +25,7 @@
       },
       value: {
         get () {
-          return this.item._value
+          return this.item._._value
         },
         set (value) {
           this.SET_VALUE({item: this.item, value: value})
