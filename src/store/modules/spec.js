@@ -112,6 +112,11 @@ export const actions = {
             return
           }
 
+          Object.freeze(res.bundled)
+          // Object.freeze(res.bundled.tags)
+          Object.freeze(res.bundled._operations)
+          Object.freeze(res.bundled._metas)
+
           commit(types.SET_SPEC, {
             resources: res.bundled.tags,
             operations: res.bundled._operations,
