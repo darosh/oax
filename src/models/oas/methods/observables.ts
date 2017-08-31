@@ -9,7 +9,7 @@ export function observables(spec: ISpecExtended) {
 
   if (spec.securityDefinitions) {
     for (const key in spec.securityDefinitions) {
-      if (spec.securityDefinitions.responses.hasOwnProperty(key)) {
+      if (spec.securityDefinitions.hasOwnProperty(key)) {
         list.push((spec.securityDefinitions[key] as IBaseSecurityExtended)._);
       }
     }
