@@ -2982,7 +2982,7 @@ process.umask = function() { return 0; };
 
 module.exports = {
 	"name": "vuetify",
-	"version": "0.15.0-beta.4",
+	"version": "0.15.0-beta.5",
 	"author": {
 		"name": "John Leider",
 		"email": "john.j.leider@gmail.com"

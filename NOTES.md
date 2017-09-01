@@ -103,3 +103,4 @@
 - [ ] http://localhost:8080/#/?url=https%3A%2F%2Fapi.apis.guru%2Fv2%2Fspecs%2Fgoogleapis.com%2Fdiscovery%2Fv1%2Fswagger.json
 - [ ] https://stackoverflow.com/questions/36634281/list-of-swagger-ui-alternatives
 - [ ] https://groups.google.com/forum/#!topic/swagger-swaggersocket/uypw-ozjlx8
+- [ ] https://codepen.io/pixelass/pen/zGVWjN

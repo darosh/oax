@@ -1,4 +1,4 @@
-import main from '../../workers/main'
+import main from '../../worker'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
@@ -10,7 +10,8 @@ export const state = {
   operations: null,
   metas: null,
   operation: null,
-  observables: null
+  observables: null,
+  json: null
 }
 
 export const mutations = {
@@ -20,6 +21,7 @@ export const mutations = {
     state.spec = payload.spec
     state.metas = payload.metas
     state.observables = payload.observables
+    state.json = payload.json
   },
   [types.TOGGLE_RESOURCES] (state, payload) {
     openAll(state.resources, payload)
@@ -126,7 +128,8 @@ export const actions = {
             operations: res.bundled._operations,
             spec: res.bundled,
             metas: res.bundled._metas,
-            observables: res.bundled._observables
+            observables: res.bundled._observables,
+            json: res.json
           })
 
           commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})

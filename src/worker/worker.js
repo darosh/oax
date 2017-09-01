@@ -1,8 +1,10 @@
-import load from '../../services/load'
+import load from '../services/load'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
-import { OAS } from './../../models/oas'
-import { trim, summary, text } from '../../services/markdown'
+import { OAS } from './../models/oas'
+import { trim, summary, text } from '../services/markdown'
+
+let json = {text: null}
 
 export default function () {
   self.postMessage(JSON.stringify({id: -1}))
@@ -52,6 +54,8 @@ export default function () {
         }))
 
         ret.bundled = res.bundled
+        json.text = res.json
+        ret.json = res.json
 
         self.postMessage(CircularJSON.stringify(ret))
       }).catch(res => {

@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.105",
+  "version": "1.0.106",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -14,6 +14,7 @@
     "@types/swagger-schema-official": "^2.0.5",
     "axios": "^0.16.2",
     "circular-json": "^0.3.3",
+    "clipboard": "^1.7.1",
     "codemirror": "^5.29.0",
     "highlight.js": "^9.12.0",
     "intersection-observer": "^0.4.0",
@@ -27,7 +28,7 @@
     "vue-codemirror": "^3.1.4",
     "vue-router": "^2.7.0",
     "vue-virtual-scroller": "^0.8.1",
-    "vuetify": "^0.15.0-beta.4",
+    "vuetify": "^0.15.0-beta.5",
     "vuex": "^2.3.1",
     "vuex-router-sync": "^4.2.0",
     "webworkify-webpack": "^2.0.5",
@@ -109,7 +110,6 @@
     "build": "node build/build.js",
     "deploy": "npm --no-git-tag-version version patch && node build/build.js && gulp deploy",
     "dev": "node build/dev-server.js",
-    "hack": "node -e \"require('fs').createReadStream('./config/bootstrap.styl').pipe(fs.createWriteStream('./node_modules/vuetify/src/stylus/bootstrap.styl'))\"",
     "http-header": "node build/http-data.js header > src/assets/http-header.json",
     "http-method": "node build/http-data.js method > src/assets/http-method.json",
     "http-status": "node build/http-data.js status > src/assets/http-status.json",

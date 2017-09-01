@@ -79,16 +79,14 @@
   import VNavigationDrawer from './VNavigationDrawer'
   import { getColor } from 'random-material-color'
   import Vue from 'vue'
-  import CircularJSON from 'circular-json'
+  //  import CircularJSON from 'circular-json'
   import test from './../../services/test'
 
   import focus from '../../directives/focus'
 
   import codemirror from '../CodeMirror'
 
-  console.log(codemirror)
-
-//  const codemirror = require('vue-codemirror').codemirror
+  //  const codemirror = require('vue-codemirror').codemirror
 
   // custom new mode
   //  CodeMirror.defineMode('mymode', () => {
@@ -147,7 +145,7 @@
     created () {
       this.LOAD_APIS()
       // this.spec = CircularJSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
-      this.spec = CircularJSON.stringify(this.SPEC || '', null, 2)
+      this.spec = this.$store.state.spec.json || ''
     },
     computed: {
       ...mapGetters([
@@ -229,7 +227,7 @@
     },
     watch: {
       SPEC: function (value) {
-        this.spec = CircularJSON.stringify(value || '', null, 2)
+        this.spec = this.$store.state.spec.json || ''
       },
       APIS: function () {
         if (this.apis) {

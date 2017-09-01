@@ -11,4 +11,4 @@ debug.log
 **/.idea/workspace.xml
 **/.idea/tasks.xml
 
-!/vendor/vuetify/dist
+!/vendor/vuetify/dist/

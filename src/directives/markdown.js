@@ -1,4 +1,4 @@
-import { markdown, summary } from '../workers/main'
+import { markdown, summary } from '../worker'
 
 // const loading = 'Loading&hellip;'
 

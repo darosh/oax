@@ -13,6 +13,7 @@ export default function load (url, progress = null) {
       try {
         progress({text: 'bundle', section: 'Schema', loaded: 0, total: 1})
         schema.bundle()
+        schema.json = JSON.stringify(schema.bundled, null, 2)
         progress({text: 'dereference', section: 'Schema', loaded: 1, total: 1})
         schema.deref()
         resolve(schema)

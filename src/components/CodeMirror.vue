@@ -59,7 +59,9 @@
       const _this = this
       this.editor = (window.CodeMirror || window.CodeMirror.CodeMirror).fromTextArea(this.$el, this.options)
       this.editor.setValue(this.code || this.value || this.content)
-      this.editor.on('change', function (cm) {
+      this.editor.on('change', function (cm, changeObj) {
+        console.log(changeObj)
+
         _this.content = cm.getValue()
 
         if (_this.$emit) {
