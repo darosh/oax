@@ -27,26 +27,26 @@
         v-card-text(style="padding-right: 26px;")
           app-log(style="margin-bottom: 24px", v-if="LOADING", :items="LOADING", :log="true")
           app-log(style="margin-bottom: 24px", v-else :items="LOG", :log="true")
+    //app-tour
 </template>
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from './store/types'
   import { throttle } from './services/events'
-  import VBtn from '../node_modules/vuetify/src/components/VBtn/VBtn.vue'
 
-  //  import hotkey from 'v-hotkey/src/index'
+  import appTour from './components/Tour.vue'
 
   export default {
     //    directives: {
     //      hotkey
     //    },
     components: {
-      VBtn,
       appDrawer: () => import('./components/panels/DrawerRight'),
       appMenu: () => import('./components/panels/DrawerLeft'),
       appToolbar: () => import('./components/Toolbar'),
-      appLog: () => import('./components/Log')
+      appLog: () => import('./components/Log'),
+      appTour
     },
     data () {
       return {
