@@ -239,18 +239,20 @@
   @import '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
   .searching
+    overflow hidden
     width 208px
+    padding-left 8px
     transition $primary-transition
-    margin-right 8px
-    margin-left  -8px
-
-  .searching--closed *
-    display none
 
   .searching--closed
-    margin-right 0
-    margin-left  0
+    padding-left 0
     width 0
+
+  .searching > *
+    right 8px
+
+  .searching--closed > *
+    display none
 
   .hidden-searching
     @media $display-breakpoints.sm-and-down

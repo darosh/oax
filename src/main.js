@@ -8,14 +8,75 @@ import { sync } from 'vuex-router-sync'
 import { configuration } from './services/configuration'
 import App from './App'
 
-// import Vuetify from 'vuetify'
-import Vuetify from '../vendor/vuetify'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import VueHotkey from 'v-hotkey/src/index'
 
-// console.log(VueHotkey)
+// import Vuetify from 'vuetify'
+//
+// import {
+//   Vuetify,
+//   VApp,
+//   VAlert,
+//   VAvatar,
+//   VBtn,
+//   VBtnToggle,
+//   VCard,
+//   VCheckbox,
+//   VDataTable,
+//   VDatePicker,
+//   VDialog,
+//   VDivider,
+//   VExpansionPanel,
+//   VGrid,
+//   VIcon,
+//   VList,
+//   VMenu,
+//   VNavigationDrawer,
+//   VProgressCircular,
+//   VProgressLinear,
+//   VRadioGroup,
+//   VSelect,
+//   VSubheader,
+//   VSwitch,
+//   VTabs,
+//   VTextField,
+//   VToolbar
+// } from 'vuetify'
+//
+// Vue.use(Vuetify, {
+//   components: {
+//     VApp,
+//     VAlert,
+//     VAvatar,
+//     VBtn,
+//     VBtnToggle,
+//     VCard,
+//     VCheckbox,
+//     VDataTable,
+//     VDatePicker,
+//     VDialog,
+//     VDivider,
+//     VExpansionPanel,
+//     VGrid,
+//     VIcon,
+//     VList,
+//     VMenu,
+//     VNavigationDrawer,
+//     VProgressCircular,
+//     VProgressLinear,
+//     VRadioGroup,
+//     VSelect,
+//     VSubheader,
+//     VSwitch,
+//     VTabs,
+//     VTextField,
+//     VToolbar
+//   }
+// })
 
+import Vuetify from '../vendor/vuetify'
 Vue.use(Vuetify)
+
 Vue.use(VueVirtualScroller)
 Vue.use(VueHotkey)
 Vue.config.productionTip = false

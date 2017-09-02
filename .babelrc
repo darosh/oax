@@ -1,13 +1,23 @@
 {
   "presets": [
-    ["env", { "modules": false }],
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
     "stage-2"
   ],
-  "plugins": ["transform-runtime"],
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"],
-      "plugins": ["istanbul"]
-    }
-  }
+  "plugins": [
+    "transform-runtime",
+    [
+      "transform-imports",
+      {
+        "vuetify": {
+          "transform": "vuetify/src/components/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
 }
