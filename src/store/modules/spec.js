@@ -1,4 +1,4 @@
-import main from '../../worker'
+import { load, edit } from '../../worker'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
@@ -21,7 +21,10 @@ export const mutations = {
     state.spec = payload.spec
     state.metas = payload.metas
     state.observables = payload.observables
-    state.json = payload.json
+
+    if (payload.json) {
+      state.json = payload.json
+    }
   },
   [types.TOGGLE_RESOURCES] (state, payload) {
     openAll(state.resources, payload)
@@ -75,6 +78,22 @@ export const mutations = {
 let lastUrl = null
 
 export const actions = {
+  [types.EDIT_JSON] ({commit}, change) {
+    edit(change).then(res => {
+      Object.freeze(res.bundled)
+      Object.freeze(res.bundled.tags)
+      Object.freeze(res.bundled._operations)
+      Object.freeze(res.bundled._metas)
+
+      commit(types.SET_SPEC, {
+        resources: res.bundled.tags,
+        operations: res.bundled._operations,
+        spec: res.bundled,
+        metas: res.bundled._metas,
+        observables: res.bundled._observables
+      })
+    })
+  },
   [types.LOAD_URL] ({commit, getters}, url) {
     if (url === lastUrl) {
       return
@@ -94,7 +113,7 @@ export const actions = {
 
     commit(types.SET_LOADING, {text: 'Worker starting', done: 0})
 
-    main(absoluteUrl(url), (progress) => {
+    load(absoluteUrl(url), (progress) => {
       if (url !== lastUrl) {
         return
       }
@@ -153,7 +172,8 @@ export const getters = {
   [types.METAS]: (state) => state.metas,
   [types.OPERATIONS]: (state) => state.operations,
   [types.RESOURCES]: (state) => state.resources,
-  [types.SPEC]: (state) => state.spec
+  [types.SPEC]: (state) => state.spec,
+  [types.JSON]: (state) => state.json
 }
 
 export default {

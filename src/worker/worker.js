@@ -1,10 +1,11 @@
-import load from '../services/load'
+import { load, update } from '../services/load'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 import { OAS } from './../models/oas'
 import { trim, summary, text } from '../services/markdown'
+import edit from '../services/edit'
 
-let json = {text: null}
+let json = {text: null, lines: null, schema: null, url: null}
 
 export default function () {
   self.postMessage(JSON.stringify({id: -1}))
@@ -20,7 +21,7 @@ export default function () {
         id: event.data.id,
         summary: summary(text(event.data.summary))
       }))
-    } else {
+    } else if (event.data.url) {
       load(event.data.url, event.data.progress ? (progress) => {
         self.postMessage(JSON.stringify({
           id: event.data.id,
@@ -55,6 +56,9 @@ export default function () {
 
         ret.bundled = res.bundled
         json.text = res.json
+        json.lines = res.json.split('\n')
+        json.schema = res
+        json.url = event.data.url
         ret.json = res.json
 
         self.postMessage(CircularJSON.stringify(ret))
@@ -65,6 +69,33 @@ export default function () {
           err: serializeError(res)
         }))
       })
+    } else if (event.data.change) {
+      const ret = {
+        id: event.data.id
+      }
+
+      edit(json.lines, event.data.change)
+      json.text = json.lines.join('\n')
+
+      try {
+        update(json.schema, JSON.parse(json.text))
+      } catch (err) {
+        ret.err = serializeError(err)
+
+        self.postMessage(CircularJSON.stringify(ret))
+
+        return
+      }
+
+      ret.bundled = json.schema.bundled
+
+      try {
+        OAS(ret.bundled, json.url)
+      } catch (err) {
+        ret.err = serializeError(err)
+      }
+
+      self.postMessage(CircularJSON.stringify(ret))
     }
   }
 }

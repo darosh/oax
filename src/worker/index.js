@@ -31,7 +31,7 @@ worker.onmessage = function (event) {
   }
 }
 
-export default function load (url, progress = null) {
+export function load (url, progress = null) {
   id++
 
   const promise = new Promise((resolve, reject) => {
@@ -63,6 +63,18 @@ export function summary (summary) {
   })
 
   worker.postMessage({summary, id})
+
+  return promise
+}
+
+export function edit (change) {
+  id++
+
+  const promise = new Promise((resolve, reject) => {
+    jobs[id] = {resolve, reject}
+  })
+
+  worker.postMessage({change, id})
 
   return promise
 }

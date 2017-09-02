@@ -22,7 +22,7 @@
                 v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
 
           v-divider
-          codemirror(v-model="spec", :options="editorOptions")
+          codemirror(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
             <!--v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)-->
         v-tabs-content#tab-dir
           v-divider
@@ -79,33 +79,9 @@
   import VNavigationDrawer from './VNavigationDrawer'
   import { getColor } from 'random-material-color'
   import Vue from 'vue'
-  //  import CircularJSON from 'circular-json'
   import test from './../../services/test'
-
   import focus from '../../directives/focus'
-
   import codemirror from '../CodeMirror'
-
-  //  const codemirror = require('vue-codemirror').codemirror
-
-  // custom new mode
-  //  CodeMirror.defineMode('mymode', () => {
-  // your mode code...
-  //  })
-
-  //  require('codemirror/addon/selection/active-line.js')
-
-  //  require('codemirror/addon/fold/foldgutter.css')
-  //  require('codemirror/addon/fold/brace-fold.js')
-  //  require('codemirror/addon/fold/comment-fold.js')
-  //  require('codemirror/addon/fold/foldcode.js')
-  //  require('codemirror/addon/fold/foldgutter.js')
-  //  require('codemirror/addon/fold/indent-fold.js')
-  //  require('codemirror/addon/fold/markdown-fold.js')
-  //  require('codemirror/addon/fold/xml-fold.js')
-
-  //  require('codemirror/addon/display/fullscreen.css')
-  //  require('codemirror/addon/display/fullscreen.js')
 
   export default {
     directives: {
@@ -121,31 +97,24 @@
         filter: null,
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
-        spec: '',
+        spec: null,
         keys: {},
         apis: false,
         test,
         editorOptions: {
           tabSize: 2,
-          //          fullScreen: true,
-          mode: { name: 'javascript', json: true },
-          // mode: {
-          //   ext: 'json'
-          // },
-          //          theme: 'default',
+          mode: {name: 'javascript', json: true},
           lineNumbers: true,
           line: false
-          // keyMap: 'sublime',
-          // extraKeys: {'Ctrl': 'autocomplete'},
-          // foldGutter: false,
-          // gutters: ['CodeMirror-foldgutter']
         }
       }
     },
     created () {
       this.LOAD_APIS()
-      // this.spec = CircularJSON.stringify(this.SPEC || '', null, 2).substr(0, 3000)
-      this.spec = this.$store.state.spec.json || ''
+
+      if (this.JSON) {
+        this.spec = this.JSON
+      }
     },
     computed: {
       ...mapGetters([
@@ -156,7 +125,8 @@
         types.APIS,
         types.PROXY,
         types.IS_DARK,
-        types.RECENT
+        types.RECENT,
+        types.JSON
       ]),
       menu: {
         get () { return this.MENU && this.IS_API },
@@ -200,7 +170,8 @@
       ]),
       ...mapActions([
         types.LOAD_URL,
-        types.LOAD_APIS
+        types.LOAD_APIS,
+        types.EDIT_JSON
       ]),
       encodeURIComponent,
       getColor,
@@ -223,11 +194,17 @@
 
           return this.keys[item.url]
         }
+      },
+      change (changed) {
+        if (changed.origin !== 'setValue') {
+          delete changed.removed
+          this.EDIT_JSON(changed)
+        }
       }
     },
     watch: {
-      SPEC: function (value) {
-        this.spec = this.$store.state.spec.json || ''
+      JSON: function (value) {
+        this.spec = this.JSON
       },
       APIS: function () {
         if (this.apis) {
@@ -265,23 +242,23 @@
       height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-landscape-height)
 
   >>> .input-group--solo .input-group__details
-        display none
+    display none
 
   >>> .CodeMirror
-        height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)
+    height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)
 
-        @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-          height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-portrait-height)
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-portrait-height)
 
-        @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-          height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
 
   >>> .scroller-recent
-        height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)
+    height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)
 
-        @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-          height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-portrait-height)
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-portrait-height)
 
-        @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-          height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-landscape-height)
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-landscape-height)
 </style>

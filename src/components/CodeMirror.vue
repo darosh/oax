@@ -60,13 +60,12 @@
       this.editor = (window.CodeMirror || window.CodeMirror.CodeMirror).fromTextArea(this.$el, this.options)
       this.editor.setValue(this.code || this.value || this.content)
       this.editor.on('change', function (cm, changeObj) {
-        console.log(changeObj)
-
-        _this.content = cm.getValue()
+        // _this.content = cm.getValue()
 
         if (_this.$emit) {
-          _this.$emit('change', _this.content)
-          _this.$emit('input', _this.content)
+          _this.$emit('change', changeObj)
+          // _this.$emit('change', _this.content)
+          // _this.$emit('input', _this.content)
         }
       })
 
