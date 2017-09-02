@@ -1,8 +1,8 @@
 import yaml from 'yaml-js'
-import compactJSON from 'json-stringify-pretty-compact'
 
 const axios = require('axios')
 const schemaBundler = require('json-schema-bundler')
+const compactJSON = require('json-stringify-pretty-compact')
 
 const cache = {}
 

@@ -37,10 +37,20 @@ var webpackConfig = merge(baseWebpackConfig, {
       compress: {
         warnings: false
       },
-      // TODO: web worker does not work mangled with webpack@3
       mangle: true,
       comments: false,
-      sourceMap: false
+      sourceMap: false,
+      exclude: /worker/g
+    }),
+    new UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      // TODO: web worker does not work mangled with webpack@3
+      mangle: false,
+      comments: false,
+      sourceMap: false,
+      include: /worker/g
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -74,7 +84,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // keep module.id stable when vendor modules does not change
     // TODO: web worker does not work mangled with HashedModuleIdsPlugin
     // new webpack.HashedModuleIdsPlugin(),
-    // split vendor js into its own file
+    // spl  it vendor js into its own file
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'worker',
     //   minChunks: function (module, count) {
@@ -114,8 +124,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     // }),
     // copy custom static assets
     new webpack.optimize.CommonsChunkPlugin({
-      filename: "commons.js",
-      name: "commons"
+      filename: utils.assetsPath('js/[name].[chunkhash].js'),
+      name: "worker"
     }),
     new CopyWebpackPlugin([
       {
