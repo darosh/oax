@@ -22,7 +22,8 @@
                 v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
 
           v-divider
-          codemirror(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
+          div#cm-wrap
+            codemirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
             <!--v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)-->
         v-tabs-content#tab-dir
           v-divider
@@ -83,6 +84,9 @@
   import focus from '../../directives/focus'
   import codemirror from '../CodeMirror'
 
+  require('codemirror/addon/display/fullscreen.css')
+  require('codemirror/addon/display/fullscreen.js')
+
   export default {
     directives: {
       focus
@@ -105,7 +109,25 @@
           tabSize: 2,
           mode: {name: 'javascript', json: true},
           lineNumbers: true,
-          line: false
+          line: false,
+          extraKeys: {
+            F11: function (cm) {
+              if (!cm.getOption('fullScreen')) {
+                document.body.appendChild(document.querySelector('.CodeMirror'))
+              } else {
+                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
+              }
+              cm.focus()
+              cm.setOption('fullScreen', !cm.getOption('fullScreen'))
+            },
+            Esc: function (cm) {
+              if (cm.getOption('fullScreen')) {
+                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
+                cm.focus()
+                cm.setOption('fullScreen', false)
+              }
+            }
+          }
         }
       }
     },
