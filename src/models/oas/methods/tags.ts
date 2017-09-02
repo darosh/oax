@@ -16,7 +16,7 @@ export function tags(spec: ISpecExtended) {
   removeUnusedTags(spec);
   const untagged = getUntagged(spec);
 
-  if (untagged.length === spec._operations.length && untagged.length > 16) {
+  if ((untagged.length === spec._operations.length) && (untagged.length > 16) && (Object.keys(firstPaths(spec)).length < spec._operations.length)) {
     tagByPath(spec);
     addOpsTags(spec);
     extendTags(spec);
@@ -28,6 +28,27 @@ export function tags(spec: ISpecExtended) {
   clearTagOps(spec);
   addTagOperations(spec);
   closeMoreTags(spec);
+}
+
+export function firstPaths(spec: ISpecExtended) {
+  const rx = /^\/?([^\/?]+).*$/;
+  const ret: any = {}
+
+  for (const pathName in spec.paths) {
+    if (spec.paths.hasOwnProperty(pathName)) {
+      const path: Path = spec.paths[pathName];
+      const tag = pathName.replace(rx, '$1');
+      ret[tag] = ret[tag] || 0;
+
+      for (const httpMethod in path) {
+        if (HttpMethods[httpMethod]) {
+          ret[tag]++;
+        }
+      }
+    }
+  }
+
+  return ret;
 }
 
 export function clearTagOps(spec: ISpecExtended) {
