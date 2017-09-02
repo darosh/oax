@@ -15,7 +15,7 @@
     div.toolbar--scroll
       div.pt-3.pl-0.pr-0.pb-3
         app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
-        .pl-3.pr-3.pt-3(v-if="operation.summary || operation.description" v-markdown.summary="operation")
+        .pl-3.pr-3.pt-3(v-if="operation._.summary || operation._.description" v-markdown.summary="operation")
       //v-divider
       v-tabs.app--tabs(grow v-model="tab", :scrollable="false")
         v-tabs-bar.transparent

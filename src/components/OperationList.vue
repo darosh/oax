@@ -5,7 +5,7 @@
         v-divider.hidden-xs-only
         .pt-1.pb-1.plr-3-sm
           app-operation(:item="OPERATIONS[key]")
-          div(v-if="IS_DESCRIPTION && (item.summary || item.description)")
+          div(v-if="IS_DESCRIPTION && (item._.summary || item._.description)")
             .pt-1.pr-1(style="padding-left: 68px" v-markdown.summary="item")
         v-divider.hidden-sm-and-up
 </template>
