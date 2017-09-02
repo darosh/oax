@@ -1,4 +1,5 @@
-import { load, update } from '../services/load'
+import load from '../services/load'
+import update from '../services/update'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 import { OAS } from './../models/oas'

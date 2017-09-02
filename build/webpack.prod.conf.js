@@ -39,19 +39,19 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       mangle: true,
       comments: false,
-      sourceMap: false,
-      exclude: /worker/g
+      sourceMap: false
+      // exclude: /worker/g
     }),
-    new UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      // TODO: web worker does not work mangled with webpack@3
-      mangle: false,
-      comments: false,
-      sourceMap: false,
-      include: /worker/g
-    }),
+    // new UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   TODO: web worker does not work mangled with webpack@3
+    // mangle: false,
+    // comments: false,
+    // sourceMap: false,
+    // include: /worker/g
+    // }),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
@@ -79,7 +79,9 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
-      serviceWorkerLoader: `<script>${require('uglify-js').minify(fs.readFileSync(path.join(__dirname, './service-worker-prod.js'), 'utf-8'), {fromString: true}).code}</script>`
+      serviceWorkerLoader: `<script>${require('uglify-js').
+        minify(fs.readFileSync(path.join(__dirname, './service-worker-prod.js'),
+          'utf-8'), {fromString: true}).code}</script>`
     }),
     // keep module.id stable when vendor modules does not change
     // TODO: web worker does not work mangled with HashedModuleIdsPlugin
@@ -125,7 +127,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new webpack.optimize.CommonsChunkPlugin({
       filename: utils.assetsPath('js/[name].[chunkhash].js'),
-      name: "worker"
+      name: 'worker'
     }),
     new CopyWebpackPlugin([
       {
@@ -178,7 +180,8 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  var BundleAnalyzerPlugin = require(
+    'webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
