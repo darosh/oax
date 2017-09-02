@@ -6,6 +6,7 @@
 - [ ] check if params are inherited
 - [ ] refactor OAX global
 - [ ] disable animation config
+- [ ] extract menu tabs to components
   
 ##### UI
 
@@ -22,7 +23,12 @@
 
 - ###### Misc
   - [ ] fix model/scheme switch
-  - [ ] highlight cached APIs
   - [ ] add single column view
   - [ ] try out load progress
   - [ ] fix log file count progress (add size based progress?)
+  - [ ] ops virtual scroll?
+  - [ ] security
+
+- ###### Menu
+  - reorder tabs: dir, rec, edit, test
+  - [ ] highlight cached APIs

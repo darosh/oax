@@ -6,10 +6,10 @@
       v-toolbar-title(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer
       template(v-if="SPEC")
-        v-btn(v-if="!searching" icon @click.native.stop="searchBegin" v-tooltip:bottom="{html: 'Filter'}")
+        v-btn(icon @click.native.stop="searchBegin")
           v-icon search
-        v-toolbar-items(:style="!searching ? 'width: 0' : 'width: 208px'")
-          v-text-field(id="search" hide-details append-icon="close", :prepend-icon-cb="searchBegin", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line, :class="searching ? 'searching' : 'searching searching--closed'")
+        div(class="searching", :class="{'searching--closed': !searching}")
+          v-text-field(id="search" append-icon="close", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line)
         v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
           v-icon keyboard_arrow_down
         v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
@@ -210,11 +210,13 @@
       searchBegin () {
         this.searching = true
 
-        document.getElementById('search').focus()
+        setTimeout(() => {
+          document.getElementById('search').focus()
 
-        if (this.SEARCH) {
-          this.FILTER_RESOURCES(this.SEARCH)
-        }
+          if (this.SEARCH) {
+            this.FILTER_RESOURCES(this.SEARCH)
+          }
+        }, 50)
       },
       searchEnd () {
         this.searching = false
@@ -233,33 +235,27 @@
   .upper
     text-transform uppercase
 
-  .searching
-    width 200px
-    margin-right 8px
-
   @import '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
   .searching
-  .searching >>> *
-  .toolbar__items
+    width 208px
     transition $primary-transition
+    margin-right 8px
+    margin-left  -8px
 
-  .searching--closed >>> .input-group__details
+  .searching--closed *
     display none
 
   .searching--closed
-    width 0
     margin-right 0
-
-  .searching--closed >>> .input-group__append-icon
-  .searching--closed >>> .input-group__prepend-icon
-    display none
-
-  .searching--closed >>> input
-  .searching--closed >>> label
+    margin-left  0
     width 0
 
   .hidden-searching
     @media $display-breakpoints.sm-and-down
       display: none !important
+
+  .toolbar .input-group
+    position relative
+    top 3px
 </style>
