@@ -1,4 +1,5 @@
 import yaml from 'yaml-js'
+import compactJSON from 'json-stringify-pretty-compact'
 
 const axios = require('axios')
 const schemaBundler = require('json-schema-bundler')
@@ -13,7 +14,7 @@ export default function load (url, progress = null) {
       try {
         progress({text: 'bundle', section: 'Schema', loaded: 0, total: 1})
         schema.bundle()
-        schema.json = JSON.stringify(schema.bundled, null, 2)
+        schema.json = compactJSON(schema.bundled)
         progress({text: 'dereference', section: 'Schema', loaded: 1, total: 1})
         schema.deref()
         resolve(schema)
