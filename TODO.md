@@ -11,7 +11,7 @@
 ##### UI
 
 - ###### Toolbar
-  - [ ] fix search input
+  - [x] fix search input
   - [ ] hide on scroll
 
 - ###### Editor
