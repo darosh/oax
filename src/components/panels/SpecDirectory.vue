@@ -7,7 +7,7 @@
       virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
         template(scope="props")
           div(:key="props.itemKey")
-            v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+            v-list-tile(ripple avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
               v-list-tile-avatar
                 .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
               v-list-tile-content
