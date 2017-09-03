@@ -111,7 +111,7 @@
           lineNumbers: true,
           line: false,
           extraKeys: {
-            F11: function (cm) {
+            F10: function (cm) {
               if (!cm.getOption('fullScreen')) {
                 document.body.appendChild(document.querySelector('.CodeMirror'))
               } else {
