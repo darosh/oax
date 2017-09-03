@@ -1,3 +1,5 @@
+// TODO this should be mixin for left nav spec lists
+
 import Vue from 'vue'
 import { getColor } from 'random-material-color'
 
@@ -24,5 +26,10 @@ export function key (item) {
 }
 
 export function color (item) {
-  getColor({shades: ['400', '300'], text: key(item).split(':')[0]})
+  return getColor({shades: ['400', '300'], text: key.call(this, item).split(':')[0]})
+}
+
+export function letter (item) {
+  const s = key.call(this, item).split(':')
+  return (s[1] || s[0])[0].toUpperCase()
 }

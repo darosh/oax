@@ -9,7 +9,7 @@
           div(:key="props.itemKey")
             v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
               v-list-tile-avatar
-                .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
+                .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
               v-list-tile-content
                 v-list-tile-title {{props.item.title}}
                 v-list-tile-sub-title {{props.item.key}}
@@ -19,9 +19,8 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
-  import { getColor } from 'random-material-color'
   import focus from '../../directives/focus'
-  import { key, keys, initKeys } from '../../services/keys'
+  import { key, keys, initKeys, color, letter } from '../../services/keys'
 
   export default {
     directives: {
@@ -54,7 +53,6 @@
         types.LOAD_APIS
       ]),
       encodeURIComponent,
-      getColor,
       filtered () {
         if (!this.filter) {
           return this.APIS
@@ -65,7 +63,9 @@
           })
         }
       },
-      key
+      key,
+      color,
+      letter
     },
     watch: {
       APIS: initKeys

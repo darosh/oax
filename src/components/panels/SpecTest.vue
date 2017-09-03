@@ -7,7 +7,7 @@
           div(:key="props.itemKey")
             v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
               v-list-tile-avatar(v-if="key(props.item)")
-                .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: key(props.item).split(':')[0]})") {{(key(props.item).split(':')[1] || key(props.item).split(':')[0])[0].toUpperCase()}}
+                .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
               v-list-tile-avatar(v-else)
                 v-icon(class="secondary white--text") link
               v-list-tile-content
@@ -19,8 +19,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
-  import { getColor } from 'random-material-color'
-  import { key, keys, initKeys } from '../../services/keys'
+  import { key, keys, initKeys, color, letter } from '../../services/keys'
   import test from './../../services/test'
 
   export default {
@@ -43,7 +42,8 @@
         types.LOAD_APIS
       ]),
       encodeURIComponent,
-      getColor,
+      color,
+      letter,
       key
     },
     watch: {
