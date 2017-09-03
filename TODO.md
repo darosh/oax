@@ -20,6 +20,7 @@
   - [ ] search
   - [ ] folding
   - [ ] linting
+  - [ ] dark editor
 
 - ###### Misc
   - [ ] fix model/scheme switch
@@ -28,7 +29,8 @@
   - [ ] fix log file count progress (add size based progress?)
   - [ ] ops virtual scroll?
   - [ ] security
+  - [ ] dialog blink
 
 - ###### Menu
-  - reorder tabs: dir, rec, edit, test
+  - [ ] reorder tabs: dir, rec, edit, test
   - [ ] highlight cached APIs
