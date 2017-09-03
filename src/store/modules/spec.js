@@ -3,8 +3,10 @@ import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
 import { absoluteUrl } from '../../services/utils'
+import CircularJSON from 'circular-json'
 
-// const applyChange = require('deep-diff').default.applyChange
+import { applyPatch } from 'fast-json-patch'
+
 const FREEZE = false
 
 export const state = {
@@ -79,10 +81,16 @@ export const mutations = {
 }
 
 let lastUrl = null
+let circ = null
 
 export const actions = {
   [types.EDIT_JSON] ({commit}, change) {
     edit(change).then(res => {
+      circ = applyPatch(circ || JSON.parse(CircularJSON.stringify(state.spec)),
+        res.patch).newDocument
+
+      res.bundled = CircularJSON.parse(JSON.stringify(circ))
+
       if (FREEZE) {
         Object.freeze(res.bundled)
         Object.freeze(res.bundled.tags)
@@ -95,7 +103,7 @@ export const actions = {
         operations: res.bundled._operations,
         spec: res.bundled,
         metas: res.bundled._metas,
-        observables: res.bundled._observables
+        observables: FREEZE ? res.bundled._observables : null
       })
     }).catch(err => err)
   },
@@ -154,7 +162,7 @@ export const actions = {
             operations: res.bundled._operations,
             spec: res.bundled,
             metas: res.bundled._metas,
-            observables: res.bundled._observables,
+            observables: FREEZE ? res.bundled._observables : null,
             json: res.json
           })
 

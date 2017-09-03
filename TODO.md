@@ -2,11 +2,13 @@
 
 #### Internal
 
+- [ ] refactor model to: md or html (not both)
 - [ ] editing partial updates in UI thread
 - [ ] check if params are inherited
 - [ ] refactor OAX global
 - [ ] disable animation config
 - [ ] extract menu tabs to components
+- [ ] debounce search
   
 ##### UI
 

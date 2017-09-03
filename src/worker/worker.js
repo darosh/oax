@@ -6,7 +6,7 @@ import { OAS } from './../models/oas'
 import { trim, summary } from '../services/markdown'
 import edit from '../services/edit'
 
-// const diff = require('deep-diff').default.diff
+import { compare } from 'fast-json-patch'
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
@@ -96,8 +96,14 @@ export default function () {
         ret.err = serializeError(err)
       }
 
+      const source = json.old || JSON.parse(CircularJSON.stringify(json.obj))
+      const target = JSON.parse(CircularJSON.stringify(json.schema.bundled))
+      const patch = compare(source, target)
+
       json.obj = json.schema.bundled
-      ret.bundled = json.schema.bundled
+      json.old = target
+      // ret.bundled = json.schema.bundled
+      ret.patch = patch
 
       self.postMessage(CircularJSON.stringify(ret))
     }

@@ -2,10 +2,10 @@ import {metas} from '../metas/index';
 import {ISpecExtended} from './interfaces/ISpecExtended';
 import {info} from './methods/info';
 import {mdInfo, mdOperations, mdParameters, mdResponses, mdSecurity, mdTags} from './methods/markdown';
-import {observables} from './methods/observables';
 import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
+// import {observables} from './methods/observables';
 
 /* tslint:disable */
 const phase = {
@@ -19,8 +19,8 @@ const phase = {
   mdTags: [7, 'tags', 'Markdown'],
   mdOperations: [8, 'operations', 'Markdown'],
   mdParameters: [9, 'parameters', 'Markdown'],
-  mdResponses: [10, 'responses', 'Markdown'],
-  observables: [11, 'observables', 'Collecting']
+  mdResponses: [10, 'responses', 'Markdown']
+  // observables: [11, 'observables', 'Collecting']
 };
 /* tslint:enable */
 
@@ -81,6 +81,6 @@ export function OAS(spec: ISpecExtended,
   log(phase.mdResponses, progress);
   mdResponses(spec, 10);
 
-  log(phase.observables, progress);
-  (spec as any)._observables = observables(spec);
+  // log(phase.observables, progress);
+  // (spec as any)._observables = observables(spec);
 }
