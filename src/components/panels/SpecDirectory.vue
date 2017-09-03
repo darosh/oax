@@ -17,11 +17,11 @@
 </template>
 
 <script>
-  import { mapGetters, mapMutations, mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
   import { getColor } from 'random-material-color'
-  import Vue from 'vue'
   import focus from '../../directives/focus'
+  import { key, keys, initKeys } from '../../services/keys'
 
   export default {
     directives: {
@@ -34,8 +34,7 @@
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
         spec: null,
-        keys: {},
-        apis: false
+        keys
       }
     },
     created () {
@@ -44,26 +43,14 @@
     computed: {
       ...mapGetters([
         types.MENU,
-        types.SPEC,
-        types.IS_API,
-        types.URL,
-        types.APIS,
-        types.PROXY,
-        types.IS_DARK,
-        types.RECENT,
-        types.JSON
+        types.APIS
       ]),
       active () {
         return this.MENU && this.value
       }
     },
     methods: {
-      ...mapMutations([
-        types.SET_MENU,
-        types.RECENT_REMOVE
-      ]),
       ...mapActions([
-        types.LOAD_URL,
         types.LOAD_APIS
       ]),
       encodeURIComponent,
@@ -78,33 +65,10 @@
           })
         }
       },
-      key (item) {
-        if (this.keys[item.url]) {
-          return this.keys[item.url]
-        } else {
-          const val = !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '')
-          Vue.set(this.keys, item.url, val)
-
-          return this.keys[item.url]
-        }
-      }
+      key
     },
     watch: {
-      APIS: function () {
-        if (this.apis) {
-          return
-        }
-
-        this.apis = true
-        //        const link = document.createElement('a')
-
-        for (const k in this.keys) {
-          if (this.keys[k] === '?') {
-            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key
-            /* || (link.setAttribute('href', k), link.hostname) */
-          }
-        }
-      }
+      APIS: initKeys
     }
   }
 </script>

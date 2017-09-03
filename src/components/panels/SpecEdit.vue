@@ -6,15 +6,13 @@
       v-radio-group(v-model="format", :mandatory="true" hide-details)
         v-layout.ma-0
           v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
-
     v-divider
     div#cm-wrap
       codemirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
-      <!--v-text-field(v-model="spec", :label="format === 1 ? 'JSON' : 'YAML'" multi-line :rows="7" textarea)-->
 </template>
 
 <script>
-  import { mapGetters, mapMutations, mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
 
   import focus from '../../directives/focus'
@@ -36,7 +34,6 @@
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
         spec: null,
-        keys: {},
         editorOptions: {
           tabSize: 2,
           mode: {name: 'javascript', json: true},
@@ -72,9 +69,7 @@
       ...mapGetters([
         types.MENU,
         types.SPEC,
-        types.IS_API,
         types.URL,
-        types.APIS,
         types.JSON
       ]),
       active () {
@@ -90,10 +85,6 @@
       }
     },
     methods: {
-      ...mapMutations([
-        types.SET_MENU,
-        types.SET_PROXY
-      ]),
       ...mapActions([
         types.LOAD_URL,
         types.EDIT_JSON

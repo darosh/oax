@@ -22,20 +22,12 @@
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../../store/types'
   import { getColor } from 'random-material-color'
-  import Vue from 'vue'
-  import test from './../../services/test'
-  import focus from '../../directives/focus'
+  import { key, keys, initKeys } from '../../services/keys'
 
   export default {
-    directives: {
-      focus
-    },
     data () {
       return {
-        spec: null,
-        keys: {},
-        apis: false,
-        test
+        keys
       }
     },
     created () {
@@ -43,22 +35,12 @@
     },
     computed: {
       ...mapGetters([
-        types.MENU,
-        types.SPEC,
-        types.IS_API,
-        types.URL,
         types.APIS,
-        types.PROXY,
-        types.IS_DARK,
-        types.RECENT,
-        types.JSON
+        types.RECENT
       ])
     },
     methods: {
       ...mapMutations([
-        types.SET_MENU,
-        types.SET_PROXY,
-        types.TOGGLE_DARK,
         types.RECENT_REMOVE
       ]),
       ...mapActions([
@@ -68,33 +50,10 @@
       ]),
       encodeURIComponent,
       getColor,
-      key (item) {
-        if (this.keys[item.url]) {
-          return this.keys[item.url]
-        } else {
-          const val = !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '')
-          Vue.set(this.keys, item.url, val)
-
-          return this.keys[item.url]
-        }
-      }
+      key
     },
     watch: {
-      APIS: function () {
-        if (this.apis) {
-          return
-        }
-
-        this.apis = true
-        //        const link = document.createElement('a')
-
-        for (const k in this.keys) {
-          if (this.keys[k] === '?') {
-            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key
-            /* || (link.setAttribute('href', k), link.hostname) */
-          }
-        }
-      }
+      APIS: initKeys
     }
   }
 </script>

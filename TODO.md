@@ -31,6 +31,7 @@
   - [ ] security
   - [ ] dialog blink
   - [ ] set title
+  - [ ] load worker directly, without webworkify
 
 - ###### Menu
   - [ ] reorder tabs: dir, rec, edit, test

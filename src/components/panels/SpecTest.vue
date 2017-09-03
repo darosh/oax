@@ -17,21 +17,16 @@
 </template>
 
 <script>
-  import { mapGetters, mapMutations, mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
   import { getColor } from 'random-material-color'
-  import Vue from 'vue'
+  import { key, keys, initKeys } from '../../services/keys'
   import test from './../../services/test'
-  import focus from '../../directives/focus'
 
   export default {
-    directives: {
-      focus
-    },
     data () {
       return {
-        keys: {},
-        apis: false,
+        keys,
         test
       }
     },
@@ -40,56 +35,19 @@
     },
     computed: {
       ...mapGetters([
-        types.MENU,
-        types.SPEC,
-        types.IS_API,
-        types.URL,
-        types.APIS,
-        types.PROXY,
-        types.IS_DARK,
-        types.RECENT,
-        types.JSON
+        types.APIS
       ])
     },
     methods: {
-      ...mapMutations([
-        types.SET_MENU,
-        types.SET_PROXY,
-        types.TOGGLE_DARK,
-        types.RECENT_REMOVE
-      ]),
       ...mapActions([
-        types.LOAD_URL,
-        types.LOAD_APIS,
-        types.EDIT_JSON
+        types.LOAD_APIS
       ]),
       encodeURIComponent,
       getColor,
-      key (item) {
-        if (this.keys[item.url]) {
-          return this.keys[item.url]
-        } else {
-          const val = !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '')
-          Vue.set(this.keys, item.url, val)
-
-          return this.keys[item.url]
-        }
-      }
+      key
     },
     watch: {
-      APIS: function () {
-        if (this.apis) {
-          return
-        }
-
-        this.apis = true
-
-        for (const k in this.keys) {
-          if (this.keys[k] === '?') {
-            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key
-          }
-        }
-      }
+      APIS: initKeys
     }
   }
 </script>
