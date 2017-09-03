@@ -9,6 +9,7 @@
 - [ ] disable animation config
 - [ ] extract menu tabs to components
 - [ ] debounce search
+- [ ] debounce to config
   
 ##### UI
 
