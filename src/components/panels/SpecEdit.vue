@@ -105,7 +105,7 @@
             delete this.timeout
             this.EDIT_JSON(this.changes)
             delete this.changes
-          }, 250)
+          }, 200)
         }
       }
     },

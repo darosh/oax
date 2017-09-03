@@ -18,6 +18,7 @@
 
 - ###### Editor
   - [x] full screen
+  - [ ] highlight color
   - [ ] fix esc key
   - [ ] search
   - [ ] folding
@@ -34,6 +35,7 @@
   - [ ] dialog blink
   - [ ] set title
   - [ ] load worker directly, without webworkify
+  - [ ] refactor syntax stylus
 
 - ###### Menu
   - [ ] reorder tabs: dir, rec, edit, test
