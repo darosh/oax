@@ -3,10 +3,10 @@ import update from '../services/update'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 import { OAS } from './../models/oas'
-import { trim, summary, text } from '../services/markdown'
+import { trim, summary } from '../services/markdown'
 import edit from '../services/edit'
 
-const diff = require('deep-diff').default.diff
+// const diff = require('deep-diff').default.diff
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
@@ -22,7 +22,7 @@ export default function () {
     } else if (event.data.summary) {
       self.postMessage(JSON.stringify({
         id: event.data.id,
-        summary: summary(text(event.data.summary))
+        summary: summary(event.data.summary)
       }))
     } else if (event.data.url) {
       load(event.data.url, event.data.progress ? (progress) => {
@@ -78,16 +78,15 @@ export default function () {
         id: event.data.id
       }
 
-      edit(json.lines, event.data.change)
+      event.data.change.forEach(c => edit(json.lines, c))
+
       json.text = json.lines.join('\n')
 
       try {
         update(json.schema, JSON.parse(json.text))
       } catch (err) {
         ret.err = serializeError(err)
-
         self.postMessage(CircularJSON.stringify(ret))
-
         return
       }
 
@@ -97,8 +96,8 @@ export default function () {
         ret.err = serializeError(err)
       }
 
-      ret.diff = diff(json.obj, json.schema.bundled)
       json.obj = json.schema.bundled
+      ret.bundled = json.schema.bundled
 
       self.postMessage(CircularJSON.stringify(ret))
     }

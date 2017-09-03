@@ -4,6 +4,8 @@ import {Converter} from 'showdown';
 import hljs from './highlight';
 import walk from './walk';
 
+const cache: { [index: string]: { html: string, summary: string } | any } = {}
+
 export const converter = new Converter();
 
 converter.setFlavor('github');
@@ -43,24 +45,36 @@ function syntax(tree: any) {
 
 export function trim(v: string) {
   if (v) {
+    if (cache[v] && cache[v].html) {
+      return cache[v].html
+    }
+
     const t = v.trim();
 
     if (t) {
       const parsed = parseFragment(converter.makeHtml(t));
       syntax(parsed);
       const h = serialize(parsed);
-      return h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
+      cache[v] = cache[v] || {};
+      return cache[v].html = h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
     }
   }
+
   return '';
 }
 
-export function summary(t: string, range = [3, 120]) {
+export function summary(h: string, range = [3, 120]) {
+  if (cache[h] && cache[h].summary) {
+    return cache[h].summary;
+  }
+
+  const t = text(trim(h));
   const dot = t.indexOf('.') + 1;
-  return t.substr(0, (dot > range[0] && dot < range[1]) ? dot : range[1]);
+  cache[h] = cache[h] || {};
+  return cache[h].summary = t.substr(0, (dot > range[0] && dot < range[1]) ? dot : range[1]);
 }
 
-export function text(html: string) {
+function text(html: string) {
   TEXT = '';
   sax.write(html);
 

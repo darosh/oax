@@ -26,7 +26,13 @@ const phase = {
 
 const phases = Object.keys(phase).length - 1;
 
+// let last = Date.now();
+
 function log(ph: any, progress: any) {
+  // const now = Date.now()
+  // console.log(ph[1] + ' ' + ph[2], now - last)
+  // last = now
+
   if (progress) {
     progress({text: ph[1], loaded: ph[0], total: phases, section: ph[2]});
   }
@@ -67,7 +73,7 @@ export function OAS(spec: ISpecExtended,
   mdTags(spec, 10);
 
   log(phase.mdOperations, progress);
-  mdOperations(spec, [10, 10]);
+  mdOperations(spec, [5, 5]);
 
   log(phase.mdParameters, progress);
   mdParameters(spec, 10);

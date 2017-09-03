@@ -1,7 +1,7 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-import {summary, text, trim} from '../../../services/markdown';
+import {summary, trim} from '../../../services/markdown';
 import {IOperationObservable} from '../interfaces/IOperationExtended';
 import {IBaseSecurityExtended} from '../interfaces/ISecurityExtended';
 
@@ -41,7 +41,7 @@ function mdOperation(op: IOperationObservable) {
   }
 
   if (!op.summary && op.description) {
-    op.summary = op.summary || summary(text(op._md_description));
+    op.summary = op.summary || summary(op.description);
   }
 
   if (op.summary) {

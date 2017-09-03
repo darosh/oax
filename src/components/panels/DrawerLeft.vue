@@ -219,8 +219,21 @@
       },
       change (changed) {
         if (changed.origin !== 'setValue') {
+          // changed.removed may be big
           delete changed.removed
-          this.EDIT_JSON(changed)
+
+          if (this.timeout) {
+            clearTimeout(this.timeout)
+          }
+
+          this.changes = this.changes || []
+          this.changes.push(changed)
+
+          this.timeout = setTimeout(() => {
+            delete this.timeout
+            this.EDIT_JSON(this.changes)
+            delete this.changes
+          }, 250)
         }
       }
     },

@@ -3,6 +3,10 @@ import { markdown, summary } from '../worker'
 // const loading = 'Loading&hellip;'
 
 function update (el, binding) {
+  if (binding.value === binding.oldValue) {
+    return
+  }
+
   const name = binding.modifiers.summary ? 'summary' : 'description'
   const v = binding.value
 
@@ -53,14 +57,14 @@ export default {
     update(el, binding)
     // }
   },
-  componentUpdated (el, binding) {
+  bind (el, binding) {
     // if (binding.value !== binding.oldValue) {
     update(el, binding)
     // }
-  },
-  inserted: function (el, binding) {
-    // if (binding.value) {
-    update(el, binding)
-    // }
   }
+  // inserted: function (el, binding) {
+  //   if (binding.value) {
+  //   update(el, binding)
+  // }
+  // }
 }
