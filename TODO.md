@@ -30,6 +30,7 @@
   - [ ] ops virtual scroll?
   - [ ] security
   - [ ] dialog blink
+  - [ ] set title
 
 - ###### Menu
   - [ ] reorder tabs: dir, rec, edit, test

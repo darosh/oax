@@ -1,0 +1,125 @@
+<template lang="pug">
+  div
+    v-divider
+    v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
+      v-text-field(v-hotkey="{'':''}" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && value")
+    v-list.pa-0(two-line v-if="APIS")
+      virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
+        template(scope="props")
+          div(:key="props.itemKey")
+            v-list-tile(avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+              v-list-tile-avatar
+                .icon.white--text(:style="'background-color: ' + getColor({shades: ['400', '300'], text: props.item.key.split(':')[0]})") {{(props.item.key.split(':')[1] || props.item.key.split(':')[0])[0].toUpperCase()}}
+              v-list-tile-content
+                v-list-tile-title {{props.item.title}}
+                v-list-tile-sub-title {{props.item.key}}
+            v-divider
+</template>
+
+<script>
+  import { mapGetters, mapMutations, mapActions } from 'vuex'
+  import * as types from '../../store/types'
+  import { getColor } from 'random-material-color'
+  import Vue from 'vue'
+  import focus from '../../directives/focus'
+
+  export default {
+    directives: {
+      focus
+    },
+    props: ['value'],
+    data () {
+      return {
+        filter: null,
+        formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
+        format: 1,
+        spec: null,
+        keys: {},
+        apis: false
+      }
+    },
+    created () {
+      this.LOAD_APIS()
+    },
+    computed: {
+      ...mapGetters([
+        types.MENU,
+        types.SPEC,
+        types.IS_API,
+        types.URL,
+        types.APIS,
+        types.PROXY,
+        types.IS_DARK,
+        types.RECENT,
+        types.JSON
+      ]),
+      active () {
+        return this.MENU && this.value
+      }
+    },
+    methods: {
+      ...mapMutations([
+        types.SET_MENU,
+        types.RECENT_REMOVE
+      ]),
+      ...mapActions([
+        types.LOAD_URL,
+        types.LOAD_APIS
+      ]),
+      encodeURIComponent,
+      getColor,
+      filtered () {
+        if (!this.filter) {
+          return this.APIS
+        } else {
+          const f = this.filter.toLowerCase()
+          return this.APIS.filter(item => {
+            return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
+          })
+        }
+      },
+      key (item) {
+        if (this.keys[item.url]) {
+          return this.keys[item.url]
+        } else {
+          const val = !this.APIS ? '?' : ((this.APIS.filter(v => v.url === item.url)[0] || {}).key || '')
+          Vue.set(this.keys, item.url, val)
+
+          return this.keys[item.url]
+        }
+      }
+    },
+    watch: {
+      APIS: function () {
+        if (this.apis) {
+          return
+        }
+
+        this.apis = true
+        //        const link = document.createElement('a')
+
+        for (const k in this.keys) {
+          if (this.keys[k] === '?') {
+            this.keys[k] = (this.APIS.filter(v => v.url === k)[0] || {}).key
+            /* || (link.setAttribute('href', k), link.hostname) */
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<style scoped lang="stylus">
+  @import '../../stylus/_variables'
+
+  $margin-scroll := 127px
+
+  .scroller
+    height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height)
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
+      height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-portrait-height)
+
+    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
+      height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-landscape-height)
+</style>
