@@ -21,7 +21,7 @@
                   v-card-text
                     v-layout
                       v-spacer
-                      div.main-description(v-markdown="SPEC.info")
+                      div.main-description(v-markdown="SPEC.info._")
                       v-spacer
 
       app-meta-list(v-if="METAS", :metas="METAS")

@@ -10,34 +10,34 @@ function update (el, binding) {
   const name = binding.modifiers.summary ? 'summary' : 'description'
   const v = binding.value
 
-  if (v[name] || v._[name]) {
-    const mname = '_md_' + name
-    const jname = mname + '_job'
+  if (typeof v === 'string') {
+    el.textContent = v
+  } else if (v[name]) {
+    const nameH = name + '_html'
+    const nameJ = name + '_job'
 
-    if (!v._) {
-      v._ = {}
-    }
-
-    if (v._[mname]) {
-      el.innerHTML = v._[mname]
+    if (v[nameH]) {
+      el.innerHTML = v[name]
       el.className += ' markdown'
     } else {
       // el.innerHTML = loading
       el.className += ' markdown';
-      (v._[jname] || (v._[jname] = markdown(v[name] || v._[name]))).then(md => {
-        delete v._[jname]
-        el.innerHTML = v._[mname] = md
+      (v[nameJ] || (v[nameJ] = markdown(v[name]))).then(md => {
+        delete v[nameJ]
+        el.innerHTML = v[name] = md
+        v[nameH] = true
       })
     }
-  } else if (binding.modifiers.summary && v._.description) {
+  } else if (binding.modifiers.summary && v.description) {
     // el.innerHTML = loading
-    if (v._._md_description) {
+    if (v.description_html) {
       sum(el, binding)
     } else {
-      const jname = '_md_description_job';
-      (v._[jname] || (v._[jname] = markdown(v._.description))).then(md => {
-        delete v._[jname]
-        v._._md_description = md
+      const nameJ = 'description_job';
+      (v[nameJ] || (v[nameJ] = markdown(v.description))).then(md => {
+        delete v[nameJ]
+        v.description = md
+        v.description_html = true
         sum(el, binding)
       })
     }
@@ -45,8 +45,8 @@ function update (el, binding) {
 }
 
 function sum (el, binding) {
-  summary(binding.value._._md_description).then(s => {
-    binding.value._.summary = s
+  summary(binding.value.description).then(s => {
+    binding.value.summary = s
     update(el, binding)
   })
 }

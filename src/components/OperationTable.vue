@@ -7,8 +7,8 @@
           app-method(:item="props.item._method")
         td(@click.stop="SET_OPERATION(props.item)") {{props.item._pathName}}
         td(@click.stop="SET_OPERATION(props.item)") {{props.item.tags.join(', ')}}
-        td(@click.stop="SET_OPERATION(props.item)" v-markdown.summary="props.item")
-        td(@click.stop="SET_OPERATION(props.item)" v-markdown="props.item")
+        td(@click.stop="SET_OPERATION(props.item)" v-markdown.summary="props.item._")
+        td(@click.stop="SET_OPERATION(props.item)" v-markdown="props.item._")
         td(@click.stop="SET_OPERATION(props.item)") {{props.item.parameters && props.item.parameters.length}}
         td(@click.stop="SET_OPERATION(props.item)") {{Object.keys(props.item.responses).join(', ')}}
         td(@click.stop="SET_OPERATION(props.item)") {{props.item.security}}

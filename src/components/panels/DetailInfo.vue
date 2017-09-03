@@ -3,14 +3,14 @@
     v-expansion-panel-content(v-if="item._.description" v-model="exp1", ripple)
       div.subheading(slot="header") Description
       v-divider
-      v-card.pa-3(v-markdown="item")
+      v-card.pa-3(v-markdown="item._")
     v-expansion-panel-content(v-model="exp2", ripple)
       div.subheading(slot="header") Responses
       v-divider
       v-card.pb-3
         div.pt-3(v-for="(response, code) in item.responses", :key="code")
           .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
-            app-response-block(:code="code", :text="response")
+            app-response-block(:code="code", :text="response._")
           div(v-if="response.schema")
 
             pre.app-pre.ml-3.mr-3.pa-1.mt-1
