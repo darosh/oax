@@ -6,7 +6,9 @@ import { OAS } from './../models/oas'
 import { trim, summary, text } from '../services/markdown'
 import edit from '../services/edit'
 
-let json = {text: null, lines: null, schema: null, url: null}
+const diff = require('deep-diff').default.diff
+
+let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
 export default function () {
   self.postMessage(JSON.stringify({id: -1}))
@@ -56,6 +58,7 @@ export default function () {
         }))
 
         ret.bundled = res.bundled
+        json.obj = res.bundled
         json.text = res.json
         json.lines = res.json.split('\n')
         json.schema = res
@@ -88,13 +91,14 @@ export default function () {
         return
       }
 
-      ret.bundled = json.schema.bundled
-
       try {
-        OAS(ret.bundled, json.url)
+        OAS(json.schema.bundled, json.url)
       } catch (err) {
         ret.err = serializeError(err)
       }
+
+      ret.diff = diff(json.obj, json.schema.bundled)
+      json.obj = json.schema.bundled
 
       self.postMessage(CircularJSON.stringify(ret))
     }

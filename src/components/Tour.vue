@@ -35,7 +35,6 @@
         this.width = pos.width + 'px'
         this.height = pos.height + 'px'
         this.visible = true
-        console.log(this)
       }
     }
   }

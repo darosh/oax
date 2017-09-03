@@ -49,18 +49,18 @@ function sum (el, binding) {
 
 export default {
   update (el, binding) {
-    if (binding.value !== binding.oldValue) {
-      update(el, binding)
-    }
+    // if (binding.value !== binding.oldValue) {
+    update(el, binding)
+    // }
   },
   componentUpdated (el, binding) {
-    if (binding.value !== binding.oldValue) {
-      update(el, binding)
-    }
+    // if (binding.value !== binding.oldValue) {
+    update(el, binding)
+    // }
   },
   inserted: function (el, binding) {
-    if (binding.value) {
-      update(el, binding)
-    }
+    // if (binding.value) {
+    update(el, binding)
+    // }
   }
 }

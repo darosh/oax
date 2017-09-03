@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.111",
+  "version": "1.0.112",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -16,6 +16,7 @@
     "circular-json": "^0.3.3",
     "clipboard": "^1.7.1",
     "codemirror": "^5.29.0",
+    "deep-diff": "^0.3.8",
     "highlight.js": "^9.12.0",
     "intersection-observer": "^0.4.0",
     "json-schema-bundler": "0.0.6",

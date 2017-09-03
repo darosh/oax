@@ -4,6 +4,9 @@ import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
 import { absoluteUrl } from '../../services/utils'
 
+const applyChange = require('deep-diff').default.applyChange
+const FREEZE = true
+
 export const state = {
   spec: null,
   resources: null,
@@ -80,10 +83,16 @@ let lastUrl = null
 export const actions = {
   [types.EDIT_JSON] ({commit}, change) {
     edit(change).then(res => {
-      Object.freeze(res.bundled)
-      Object.freeze(res.bundled.tags)
-      Object.freeze(res.bundled._operations)
-      Object.freeze(res.bundled._metas)
+      (res.diff || []).forEach(d => applyChange(state.spec, true, d))
+
+      res.bundled = state.spec
+
+      if (FREEZE) {
+        Object.freeze(res.bundled)
+        Object.freeze(res.bundled.tags)
+        Object.freeze(res.bundled._operations)
+        Object.freeze(res.bundled._metas)
+      }
 
       commit(types.SET_SPEC, {
         resources: res.bundled.tags,
@@ -137,10 +146,12 @@ export const actions = {
             return
           }
 
-          Object.freeze(res.bundled)
-          Object.freeze(res.bundled.tags)
-          Object.freeze(res.bundled._operations)
-          Object.freeze(res.bundled._metas)
+          if (FREEZE) {
+            Object.freeze(res.bundled)
+            Object.freeze(res.bundled.tags)
+            Object.freeze(res.bundled._operations)
+            Object.freeze(res.bundled._metas)
+          }
 
           commit(types.SET_SPEC, {
             resources: res.bundled.tags,
