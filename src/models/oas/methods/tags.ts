@@ -140,7 +140,13 @@ export function addTagOperations(spec: ISpecExtended) {
 export function extendTags(spec: ISpecExtended) {
   for (const tag of spec.tags) {
     tag._operations = tag._operations || [];
-    tag._ = tag._ || {};
+
+    tag._ = tag._ || {
+      description: tag.description,
+      description_html: false
+    };
+    delete  tag.description;
+
     tag._._display = true;
     tag._._opened = true;
   }

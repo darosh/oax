@@ -204,6 +204,7 @@ const sections = {
   'Schema': [0.45, 0.6],
   'Parsing': [0.66, 0.94],
   'Markdown': [0.66, 0.94],
+  'Cleaning': [0.94, 0.95],
   'Collecting': [0.95, 0.95],
   'Worker finishing': [0.95, 0.95]
 }

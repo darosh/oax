@@ -4,7 +4,8 @@ import {IOperationExtended} from './IOperationExtended';
 export interface ITagObservable {
   _opened?: boolean;
   _display?: boolean;
-  _md_description?: string;
+  description?: string;
+  description_html?: boolean;
 }
 
 export interface ITagExtended extends Tag {

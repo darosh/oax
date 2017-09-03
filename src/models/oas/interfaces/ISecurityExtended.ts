@@ -11,7 +11,9 @@ export interface IBaseSecurityObservable {
   _apiKey?: string;
   _user?: string;
   _password?: string;
-  _md_description?: string;
+
+  description?: string;
+  description_html?: boolean;
 }
 
 export interface IBaseSecurityExtended extends BaseSecurity {

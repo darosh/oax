@@ -1,7 +1,8 @@
 import {Response} from 'swagger-schema-official';
 
 export interface IResponseObservable {
-  _md_description?: string;
+  description?: string;
+  description_html?: boolean;
 }
 
 export interface IResponseExtended extends Response {

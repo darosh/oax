@@ -68,7 +68,7 @@ export function summary(h: string, range = [3, 120]) {
     return cache[h].summary;
   }
 
-  const t = text(trim(h));
+  const t = text(h);
   const dot = t.indexOf('.') + 1;
   cache[h] = cache[h] || {};
   return cache[h].summary = t.substr(0, (dot > range[0] && dot < range[1]) ? dot : range[1]);
@@ -79,4 +79,18 @@ function text(html: string) {
   sax.write(html);
 
   return TEXT;
+}
+
+export function description(_: { description?: string, description_html?: boolean }) {
+  if (_.description && !_.description_html) {
+    _.description = trim(_.description);
+    _.description_html = true;
+  }
+}
+
+export function summaryHtml(_: { summary?: string, summary_html?: boolean }) {
+  if (_.summary && !_.summary_html) {
+    _.summary = trim(_.summary);
+    _.summary_html = true;
+  }
 }

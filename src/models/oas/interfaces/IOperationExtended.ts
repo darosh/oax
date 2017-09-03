@@ -7,11 +7,11 @@ export interface IOperationObservable {
   _produces: string;
   _error: any;
   _result: any;
-  _md_description?: string;
-  _md_summary?: string;
 
   description?: string;
+  description_html?: boolean;
   summary?: string;
+  summary_html?: boolean;
 }
 
 export interface IOperationExtended extends Operation {

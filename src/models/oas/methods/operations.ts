@@ -12,7 +12,9 @@ export function operations(spec: ISpecExtended) {
       _result: null,
 
       description: op.description,
-      summary: op.summary
+      description_html: false,
+      summary: op.summary,
+      summary_html: false
     };
 
     delete op.description;
@@ -21,15 +23,23 @@ export function operations(spec: ISpecExtended) {
     if (op.parameters) {
       for (const param of (op.parameters as any as IParameterExtended[])) {
         param._ = {
-          _value: null
+          _value: null,
+          description: param.description,
+          description_html: false
         };
+        delete param.description
       }
     }
 
     if (op.responses) {
       for (const respName in op.responses) {
         if (op.responses.hasOwnProperty(respName)) {
-          op.responses[respName]._ = {};
+          const resp = op.responses[respName];
+          resp._ = {
+            description: resp.description,
+            description_html: false
+          };
+          delete  resp.description;
         }
       }
     }

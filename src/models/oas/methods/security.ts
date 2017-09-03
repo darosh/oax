@@ -6,7 +6,7 @@ export function security(spec: Spec) {
     for (const sd in spec.securityDefinitions) {
       if (spec.securityDefinitions.hasOwnProperty(sd)) {
         const sec = spec.securityDefinitions[sd] as IBaseSecurityExtended;
-        sec._ = {};
+        sec._ = {description: sec.description, description_html: false};
 
         if ((spec.securityDefinitions[sd] as OAuth2AccessCodeSecurity).scopes) {
           // sec._ = {
