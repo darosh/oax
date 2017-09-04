@@ -31,7 +31,8 @@
 
 - ###### Misc
   - [x] refactor syntax stylus
-  - [ ] dialog blink
+  - [x] dialog blink
+  - [ ] dialog mixin bug
   - [ ] set title
   - [ ] fix model/scheme switch
   - [ ] add single column view
