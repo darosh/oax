@@ -17,37 +17,18 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
-  import * as types from '../../store/types'
-  import { key, keys, initKeys, color, letter } from '../../services/keys'
+  import keys from '../../mixins/keys'
   import test from './../../services/test'
 
   export default {
+    mixins: [keys],
     data () {
       return {
-        keys,
         test
       }
     },
-    created () {
-      this.LOAD_APIS()
-    },
-    computed: {
-      ...mapGetters([
-        types.APIS
-      ])
-    },
     methods: {
-      ...mapActions([
-        types.LOAD_APIS
-      ]),
-      encodeURIComponent,
-      color,
-      letter,
-      key
-    },
-    watch: {
-      APIS: initKeys
+      encodeURIComponent
     }
   }
 </script>

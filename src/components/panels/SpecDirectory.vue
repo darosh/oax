@@ -17,12 +17,13 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import keys from '../../mixins/keys'
+  import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import focus from '../../directives/focus'
-  import { key, keys, initKeys, color, letter } from '../../services/keys'
 
   export default {
+    mixins: [keys],
     directives: {
       focus
     },
@@ -32,26 +33,18 @@
         filter: null,
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
-        spec: null,
-        keys
+        spec: null
       }
-    },
-    created () {
-      this.LOAD_APIS()
     },
     computed: {
       ...mapGetters([
-        types.MENU,
-        types.APIS
+        types.MENU
       ]),
       active () {
         return this.MENU && this.value
       }
     },
     methods: {
-      ...mapActions([
-        types.LOAD_APIS
-      ]),
       encodeURIComponent,
       filtered () {
         if (!this.filter) {
@@ -62,13 +55,7 @@
             return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
           })
         }
-      },
-      key,
-      color,
-      letter
-    },
-    watch: {
-      APIS: initKeys
+      }
     }
   }
 </script>
