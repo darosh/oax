@@ -17,7 +17,7 @@
               h3.pl-3.pr-3.pt-3.title
                 span.uppercase {{sec.flow}}
                 |  OAuth 2.0 Authentication
-              div.pl-3.pr-3.pt-1 {{sec._.description}}
+              div.pl-3.pr-3.pt-1(v-if="sec._.description" v-markdown="sec._")
               .pa-3
                 v-checkbox.pa-0(hide-details :label="scopeKey", color="primary" v-model="sec._._scopes[scopeKey]" v-for="(scope, scopeKey) in sec.scopes", :key="scopeKey")
                 .pt-3
@@ -30,12 +30,12 @@
               v-btn.ml-3.mb-3(primary @click="authorize(sec)") Authorize
             template(v-else-if="sec.type === 'apiKey'")
               h3.pl-3.pr-3.pt-3.title API Key Authentication
-              div.pl-3.pr-3.pt-1 {{sec._.description}}
+              div.pl-3.pr-3.pt-1(v-if="sec._.description" v-markdown="sec._")
               .pa-3
                 v-text-field(hide-details v-model="sec._._apiKey" label="API key")
             template(v-else-if="sec.type === 'basic'")
               h3.pl-3.pr-3.pt-3.title Basic Authentication
-              div.pl-3.pr-3.pt-1 {{sec._.description}}
+              div.pl-3.pr-3.pt-1(v-if="sec._.description" v-markdown="sec._")
               .pa-3
                 v-text-field(hide-details v-model="sec._._user" label="User")
                 v-text-field(hide-details type="password" v-model="sec._._password" label="Password")
@@ -46,8 +46,12 @@
   import * as types from '../../store/types'
   import { first } from '../../utils/first'
   import { oauth2, name } from '../../utils/security'
+  import markdown from '../../directives/markdown'
 
   export default {
+    directives: {
+      markdown
+    },
     data () {
       return {
         tab: null,

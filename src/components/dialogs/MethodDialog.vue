@@ -48,7 +48,8 @@
         method: [],
         type: '',
         color: '',
-        ref: ''
+        ref: '',
+        initialized: false
       }
     },
     created () {
@@ -61,9 +62,10 @@
         types.DIALOG_IS,
         types.DIALOG_PARAM
       ]),
+      activated: function () { return this.DIALOG_IS('method') },
       active: {
         get () {
-          return this.DIALOG_IS('method')
+          return this.initialized && this.DIALOG_IS('method')
         },
         set (value) {
           if (!value) {
@@ -73,7 +75,7 @@
       }
     },
     watch: {
-      active: function (val) {
+      activated: function (val) {
         if (val) {
           this.show(this.DIALOG_PARAM)
         }
@@ -85,6 +87,7 @@
       ]),
       show (method) {
         methods().then((res) => {
+          this.initialized = true
           this.type = method
           this.method = res[method]
           this.ref = limit(this.method[1])

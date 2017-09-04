@@ -33,7 +33,8 @@
       return {
         type: '',
         header: [],
-        ref: ''
+        ref: '',
+        initialized: false
       }
     },
     created () {
@@ -46,9 +47,10 @@
         types.DIALOG_IS,
         types.DIALOG_PARAM
       ]),
+      activated: function () { return this.DIALOG_IS('header') },
       active: {
         get () {
-          return this.DIALOG_IS('header')
+          return this.initialized && this.DIALOG_IS('header')
         },
         set (value) {
           if (!value) {
@@ -58,7 +60,7 @@
       }
     },
     watch: {
-      active: function (val) {
+      activated: function (val) {
         if (val) {
           this.show(this.DIALOG_PARAM)
         }
@@ -71,6 +73,7 @@
       show (param) {
         this.type = param.toLowerCase()
         headers().then((res) => {
+          this.initialized = true
           this.header = res[this.type] || [param, 'Unknown header', '', '']
           this.ref = limit(this.header[2])
         })

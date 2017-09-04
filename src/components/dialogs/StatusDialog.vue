@@ -36,7 +36,8 @@
         status: {},
         type: '',
         color: '',
-        ref: ''
+        ref: '',
+        initialized: false
       }
     },
     created () {
@@ -49,9 +50,10 @@
         types.DIALOG_IS,
         types.DIALOG_PARAM
       ]),
+      activated: function () { return this.DIALOG_IS('status') },
       active: {
         get () {
-          return this.DIALOG_IS('status')
+          return this.initialized && this.DIALOG_IS('status')
         },
         set (value) {
           if (!value) {
@@ -61,7 +63,7 @@
       }
     },
     watch: {
-      active: function (val) {
+      activated: function (val) {
         if (val) {
           this.show(this.DIALOG_PARAM)
         }
@@ -73,6 +75,7 @@
       ]),
       show (code) {
         json().then((res) => {
+          this.initialized = true
           this.type = code
           this.status = res[code]
 
