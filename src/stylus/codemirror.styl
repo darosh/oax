@@ -1,16 +1,49 @@
 #oax
   .cm-string
-    color: $success-text
+    color: $oax-text.success
 
   .cm-property
     color: inherit
 
   .cm-number
-    color: $theme.info
+    color: $oax-text.info
 
   .cm-atom
-    color: $warning-text
+    color: $oax-text.warning
 
   .CodeMirror
     font-family: "Roboto Mono", monospace
     font-size: 13px
+    background-color: $material-light.cards
+    color: $material-light.text.primary
+
+  .CodeMirror-selected
+    background-color: rgba($material-light.dividers, .08)
+
+  .CodeMirror-focused .CodeMirror-selected
+    background-color: rgba($theme.primary, .25)
+
+  .CodeMirror-gutters
+    border-right: 1px solid $material-light.dividers
+    background-color: $material-light.background
+
+  .CodeMirror-linenumber
+    color: $material-light.text.disabled
+
+  .application--dark .CodeMirror
+    background-color: $material-dark.background
+    color: $material-dark.text.primary
+
+    .CodeMirror-selected
+      background-color: rgba($material-dark.dividers, .12)
+
+    .CodeMirror-gutters
+      border-right: 1px solid $material-dark.dividers
+      background-color: $material-dark.cards
+
+    .CodeMirror-linenumber
+      color: $material-dark.text.disabled
+
+  .application--dark
+    .CodeMirror-focused .CodeMirror-selected
+      background-color: rgba($theme.primary, .25)
