@@ -142,6 +142,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
+      // templateFilePath: path.resolve(__dirname, './service-worker.tmpl'),
       stripPrefix: 'dist/',
       runtimeCaching: [
         {

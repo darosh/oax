@@ -6,7 +6,8 @@ import { getColor } from 'random-material-color'
 export default {
   data () {
     return {
-      keys: {}
+      keys: {},
+      cached: {}
     }
   },
   created () {
@@ -14,19 +15,36 @@ export default {
   },
   computed: {
     ...mapGetters([
-      types.APIS
+      types.APIS,
+      types.SPEC_URL
     ])
   },
   methods: {
     ...mapActions([
       types.LOAD_APIS
     ]),
+    cache (url, value = false) {
+      if (!this.cached[url]) {
+        Vue.set(this.cached, url, value)
+
+        if (!value) {
+          window.caches.match(url).then(r => {
+            if (r) {
+              Vue.set(this.cached, url, true)
+            }
+          })
+        }
+      }
+
+      return this.cached[url]
+    },
     key (item) {
       if (this.keys[item.url]) {
         return this.keys[item.url]
       } else {
         const val = !this.APIS ? '?' : ((this.APIS.filter(
           v => v.url === item.url)[0] || {}).key || '')
+
         Vue.set(this.keys, item.url, val)
 
         return this.keys[item.url]
@@ -47,6 +65,11 @@ export default {
         if (this.keys[k] === '?') {
           this.keys[k] = (APIS.filter(v => v.url === k)[0] || {}).key
         }
+      }
+    },
+    SPEC_URL: function (url) {
+      if (!this.cached[url]) {
+        this.cache(url, true)
       }
     }
   }

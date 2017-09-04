@@ -41,6 +41,7 @@ export const OPERATIONS = 'OPERATIONS'
 export const RESOURCES = 'RESOURCES'
 export const SPEC = 'SPEC'
 export const JSON = 'JSON'
+export const SPEC_URL = 'SPEC_URL'
 
 // ui
 export const SET_DIALOG = 'SET_DIALOG'

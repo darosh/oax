@@ -15,7 +15,8 @@ export const state = {
   metas: null,
   operation: null,
   observables: null,
-  json: null
+  json: null,
+  url: null
 }
 
 export const mutations = {
@@ -25,6 +26,7 @@ export const mutations = {
     state.spec = payload.spec
     state.metas = payload.metas
     state.observables = payload.observables
+    state.url = payload.url
 
     if (payload.json) {
       state.json = payload.json
@@ -157,7 +159,8 @@ export const actions = {
               spec: res.bundled,
               metas: res.bundled._metas,
               observables: res.bundled._observables,
-              json: res.json
+              json: res.json,
+              url: url
             })
 
             commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
@@ -183,7 +186,8 @@ export const getters = {
   [types.OPERATIONS]: (state) => state.operations,
   [types.RESOURCES]: (state) => state.resources,
   [types.SPEC]: (state) => state.spec,
-  [types.JSON]: (state) => state.json
+  [types.JSON]: (state) => state.json,
+  [types.SPEC_URL]: (state) => state.url
 }
 
 export default {

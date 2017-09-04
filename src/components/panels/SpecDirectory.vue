@@ -13,6 +13,8 @@
               v-list-tile-content
                 v-list-tile-title {{props.item.title}}
                 v-list-tile-sub-title {{props.item.key}}
+              v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
+                v-icon file_download
             v-divider
 </template>
 
@@ -21,8 +23,13 @@
   import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import focus from '../../directives/focus'
+  import VListTileAction from 'vuetify/src/components/VList/VListTileAction'
+  import VIcon from '../../../node_modules/vuetify/src/components/VIcon/VIcon.vue'
 
   export default {
+    components: {
+      VIcon,
+      VListTileAction},
     mixins: [keys],
     directives: {
       focus
