@@ -18,7 +18,7 @@
 
 <script>
   import keys from '../../mixins/keys'
-  import test from './../../services/test'
+  import test from '../../assets/test'
 
   export default {
     mixins: [keys],
