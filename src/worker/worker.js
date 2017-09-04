@@ -4,7 +4,7 @@ import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 import { OAS } from './../models/oas'
 import { trim, summary } from '../services/markdown'
-import edit from '../services/edit'
+import edit from '../utils/codemirror/edit'
 
 import { compare } from 'fast-json-patch'
 
