@@ -24,55 +24,20 @@
 
 <script>
   import { ResponseStyle } from '../../services/response-style'
-  import { mapMutations, mapGetters } from 'vuex'
-  import * as types from '../../store/types'
   import limit from '../../utils/limit'
+  import dialog from '../../mixins/dialog'
 
   const json = () => import('../../assets/http-status.json')
 
   export default {
+    mixins: [dialog],
     data () {
       return {
-        status: {},
-        type: '',
-        color: '',
-        ref: '',
-        initialized: false
-      }
-    },
-    created () {
-      if (this.DIALOG_PARAM && this.active) {
-        this.show(this.DIALOG_PARAM)
-      }
-    },
-    computed: {
-      ...mapGetters([
-        types.DIALOG_IS,
-        types.DIALOG_PARAM
-      ]),
-      activated: function () { return this.DIALOG_IS('status') },
-      active: {
-        get () {
-          return this.initialized && this.DIALOG_IS('status')
-        },
-        set (value) {
-          if (!value) {
-            this.SET_DIALOG()
-          }
-        }
-      }
-    },
-    watch: {
-      activated: function (val) {
-        if (val) {
-          this.show(this.DIALOG_PARAM)
-        }
+        dialog: 'status',
+        status: {}
       }
     },
     methods: {
-      ...mapMutations([
-        types.SET_DIALOG
-      ]),
       show (code) {
         json().then((res) => {
           this.initialized = true

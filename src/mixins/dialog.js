@@ -1,6 +1,4 @@
-// TODO: vuex unknown SET_DIALOG error
-
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import * as types from '../store/types'
 
 export default {
@@ -26,7 +24,7 @@ export default {
     activated: function () { return this.DIALOG_IS(this.dialog) },
     active: {
       get () {
-        return this.DIALOG_IS(this.dialog)
+        return this.initialized && this.DIALOG_IS(this.dialog)
       },
       set (value) {
         if (!value) {
@@ -36,7 +34,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
+    ...mapMutations([
       types.SET_DIALOG
     ])
   },

@@ -22,54 +22,20 @@
 </template>
 
 <script>
-  import { mapMutations, mapGetters } from 'vuex'
-  import * as types from '../../store/types'
   import limit from '../../utils/limit'
+  import dialog from '../../mixins/dialog'
 
   const headers = () => import('../../assets/http-header.json')
 
   export default {
+    mixins: [dialog],
     data () {
       return {
-        type: '',
-        header: [],
-        ref: '',
-        initialized: false
-      }
-    },
-    created () {
-      if (this.DIALOG_PARAM && this.active) {
-        this.show(this.DIALOG_PARAM)
-      }
-    },
-    computed: {
-      ...mapGetters([
-        types.DIALOG_IS,
-        types.DIALOG_PARAM
-      ]),
-      activated: function () { return this.DIALOG_IS('header') },
-      active: {
-        get () {
-          return this.initialized && this.DIALOG_IS('header')
-        },
-        set (value) {
-          if (!value) {
-            this.SET_DIALOG()
-          }
-        }
-      }
-    },
-    watch: {
-      activated: function (val) {
-        if (val) {
-          this.show(this.DIALOG_PARAM)
-        }
+        dialog: 'header',
+        header: []
       }
     },
     methods: {
-      ...mapMutations([
-        types.SET_DIALOG
-      ]),
       show (param) {
         this.type = param.toLowerCase()
         headers().then((res) => {
