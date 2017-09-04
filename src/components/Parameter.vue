@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-if="!item.enum && (type === 'string')")
-    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="!item.enum && (type === 'number')" type="number")
-    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="!type && item.schema" multi-line :rows="3")
-    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="type === 'file'" type="file")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint="!!item._.description" v-markdown.hint="item._", :required="item.required" persistent-hint v-if="!item.enum && (type === 'string')")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint="!!item._.description" v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="!item.enum && (type === 'number')" type="number")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint="!!item._.description" v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="!type && item.schema" multi-line :rows="3")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint="!!item._.description" v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="type === 'file'" type="file")
     <!--TODO: Switch to primary checkbox colors in multiple select-->
     v-select(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="(type === 'array')", :items="item.items.enum" multiple)
     v-select(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="item.enum", :items="item.enum")
