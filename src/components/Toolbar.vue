@@ -15,124 +15,19 @@
           v-icon keyboard_arrow_down
         v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
           v-icon keyboard_arrow_up
-        v-btn.hidden-xs-only(v-if="IS_GROUPED < 2" icon @click.native.stop="TOGGLE_DESCRIPTION()" v-tooltip:bottom="{html: IS_DESCRIPTION ? 'Hide summary' : 'Show summary'}")
-          v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
         v-menu.hidden-xs-only(bottom left)
           v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
-            v-icon {{['view_column', 'view_module', 'view_stream', 'view_quilt'][IS_GROUPED]}}
-            //v-icon view_quilt
-          v-list(subheader)
-            v-subheader View
-            v-list-tile(@click="TOGGLE_GROUPED(0)")
-              v-list-tile-action
-                v-icon view_column
-              v-list-tile-content
-                v-list-tile-title Groups
-              v-list-tile-action(v-if="IS_GROUPED === 0")
-                v-icon check
-            v-list-tile(@click="TOGGLE_GROUPED(1)")
-              v-list-tile-action
-                v-icon view_module
-              v-list-tile-content
-                v-list-tile-title List
-              v-list-tile-action(v-if="IS_GROUPED === 1")
-                v-icon check
-            v-list-tile(@click="TOGGLE_GROUPED(2)")
-              v-list-tile-action
-                v-icon view_stream
-              v-list-tile-content
-                v-list-tile-title Table
-              v-list-tile-action(v-if="IS_GROUPED === 2")
-                v-icon check
-            v-list-tile(@click="TOGGLE_GROUPED(3)")
-              v-list-tile-action
-                v-icon view_quilt
-              v-list-tile-content
-                v-list-tile-title Documentation
-              v-list-tile-action(v-if="IS_GROUPED === 3")
-                v-icon check
-            v-divider
-            v-subheader Layout
-            v-list-tile(@click="TOGGLE_WIDE()")
-              v-list-tile-action
-                v-icon short_text
-              v-list-tile-content
-                v-list-tile-title Wide
-              v-list-tile-action(v-if="IS_WIDE")
-                v-icon check
-            v-list-tile(@click="TOGGLE_WIDE()")
-              v-list-tile-action
-                v-icon wrap_text
-              v-list-tile-content
-                v-list-tile-title Condensed
-              v-list-tile-action(v-if="!IS_WIDE")
-                v-icon check
+            v-icon visibility
+          app-toolbar-menu(type="a")
 
       v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
         v-icon lock
+
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
-        v-list(subheader)
-          template(v-if="SPEC")
-            v-subheader.hidden-sm-and-up View
-            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(0)")
-              v-list-tile-action
-                v-icon view_column
-              v-list-tile-content
-                v-list-tile-title Groups
-              v-list-tile-action(v-if="IS_GROUPED === 0")
-                v-icon check
-            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(1)")
-              v-list-tile-action
-                v-icon view_module
-              v-list-tile-content
-                v-list-tile-title List
-              v-list-tile-action(v-if="IS_GROUPED === 1")
-                v-icon check
-            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(2)")
-              v-list-tile-action
-                v-icon view_stream
-              v-list-tile-content
-                v-list-tile-title Table
-              v-list-tile-action(v-if="IS_GROUPED === 2")
-                v-icon check
-            v-list-tile.hidden-sm-and-up(@click="TOGGLE_GROUPED(3)")
-              v-list-tile-action
-                v-icon view_quilt
-              v-list-tile-content
-                v-list-tile-title Documentation
-              v-list-tile-action(v-if="IS_GROUPED === 3")
-                v-icon check
-            v-divider.hidden-sm-and-up
-            v-list-tile.hidden-sm-and-up(@click="TOGGLE_DESCRIPTION()")
-              v-list-tile-action
-                  v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
-              v-list-tile-content
-                v-list-tile-title(style="min-width: 100px") {{IS_DESCRIPTION ? 'Hide descriptions' : 'Show descriptions'}}
-            v-list-tile.hidden-sm-and-up(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click.native="SET_DIALOG('security')")
-              v-list-tile-action
-                  v-icon lock
-              v-list-tile-content
-                v-list-tile-title(style="min-width: 100px") Authorization
-          v-list-tile(@click="TOGGLE_DARK()")
-            v-list-tile-action
-              v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
-            v-list-tile-content
-              v-list-tile-title(style="min-width: 135px") {{IS_DARK ? 'Light theme' : 'Dark theme'}}
-          v-divider
-          v-subheader HTTP Reference
-          v-list-tile(to="/http-methods" tag="a")
-            v-list-tile-title Methods
-          v-list-tile(to="/http-statuses" tag="a")
-            v-list-tile-title Statuses
-          v-list-tile(to="/http-headers" tag="a")
-            v-list-tile-title Headers
-          v-divider
-          v-list-tile(to="/about" tag="a")
-            v-list-tile-action
-              v-icon help
-            v-list-tile-title About
+        app-toolbar-menu(type="b")
+
     template(v-else)
       v-toolbar-title {{PAGE_NAME}}
       v-spacer
@@ -142,22 +37,11 @@
         v-btn.hidden-xs-only(flat href="#/http-statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat href="#/http-headers" tag="a") Headers
         v-btn.hidden-xs-only(flat href="#/about" tag="a") About
+
       v-menu.hidden-sm-and-up(bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
-        v-list
-          v-subheader HTTP Reference
-          v-list-tile(to="/http-methods" tag="a")
-            v-list-tile-title Methods
-          v-list-tile(to="/http-statuses" tag="a")
-            v-list-tile-title Statuses
-          v-list-tile(to="/http-headers" tag="a")
-            v-list-tile-title Headers
-          v-divider
-          v-list-tile(to="/about" tag="a")
-            v-list-tile-action
-              v-icon help
-            v-list-tile-title About
+        app-toolbar-menu(type="c")
 </template>
 
 <script>
@@ -165,6 +49,9 @@
   import * as types from '../store/types'
 
   export default {
+    components: {
+      appToolbarMenu: () => import('./ToolbarMenu')
+    },
     data: function () {
       return {
         searching: false
