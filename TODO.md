@@ -22,25 +22,25 @@
 
 - ###### Editor
   - [x] full screen
-  - [ ] highlight color
-  - [ ] fix esc key
+  - [x] highlight color
+  - [x] fix esc key
+  - [x] dark editor
   - [ ] search
   - [ ] folding
   - [ ] linting
-  - [ ] dark editor
 
 - ###### Misc
+  - [x] refactor syntax stylus
+  - [ ] dialog blink
+  - [ ] set title
   - [ ] fix model/scheme switch
   - [ ] add single column view
   - [ ] try out load progress
   - [ ] fix log file count progress (add size based progress?)
   - [ ] ops virtual scroll?
   - [ ] security
-  - [ ] dialog blink
-  - [ ] set title
   - [ ] load worker directly, without webworkify
-  - [ ] refactor syntax stylus
 
 - ###### Menu
   - [x] reorder tabs: dir, rec, edit, test
-  - [ ] highlight cached APIs
+  - [x] highlight cached APIs
