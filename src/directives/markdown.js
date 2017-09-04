@@ -2,11 +2,12 @@ import { markdown, summary } from '../worker'
 
 // const loading = 'Loading&hellip;'
 
-function update (el, binding) {
+function update (elo, binding) {
   if (binding.value === binding.oldValue) {
     return
   }
 
+  const el = !binding.modifiers.hint ? elo : elo.querySelector('.input-group__hint')
   const name = binding.modifiers.summary ? 'summary' : 'description'
   const v = binding.value
 

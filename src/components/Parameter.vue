@@ -1,12 +1,12 @@
 <template lang="pug">
   div
-    v-text-field(spellcheck="false" v-model="value" v-if="!item.enum && (type === 'string')", :label="item.name", :hint="md(item)", :required="item.required" persistent-hint)
-    v-text-field(spellcheck="false" v-model="value" v-else-if="!item.enum && (type === 'number')" type="number", :label="item.name", :hint="md(item)", :required="item.required" persistent-hint)
-    v-text-field(spellcheck="false" v-model="value" v-else-if="!type && item.schema" multi-line :rows="3", :label="item.name", :hint="md(item)", :required="item.required" persistent-hint)
-    v-text-field(spellcheck="false" v-model="value" v-else-if="type === 'file'" type="file", :label="item.name", :hint="md(item)", :required="item.required" persistent-hint)
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-if="!item.enum && (type === 'string')")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="!item.enum && (type === 'number')" type="number")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="!type && item.schema" multi-line :rows="3")
+    v-text-field(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="type === 'file'" type="file")
     <!--TODO: Switch to primary checkbox colors in multiple select-->
-    v-select(spellcheck="false" v-model="value" v-else-if="(type === 'array')", :items="item.items.enum" multiple :label="item.name", :hint="md(item)", :required="item.required" persistent-hint)
-    v-select(spellcheck="false" v-model="value" v-else-if="item.enum", :items="item.enum", :label="item.name", :hint="md(item)", :required="item.required" persistent-hint)
+    v-select(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="(type === 'array')", :items="item.items.enum" multiple)
+    v-select(spellcheck="false" v-model="value", :label="item.name", hint=" " v-markdown.hint="item._", :required="item.required" persistent-hint v-else-if="item.enum", :items="item.enum")
     div(v-else) {{item}}
 </template>
 
@@ -14,11 +14,11 @@
   import { mapMutations } from 'vuex'
   import * as types from '../store/types'
   import { type } from '../models/oas/methods/schema'
-
-  import { md } from '../services/md'
+  import markdown from '../directives/markdown'
 
   export default {
     props: ['item'],
+    directives: {markdown},
     computed: {
       type () {
         return type(this.item)
@@ -35,8 +35,7 @@
     methods: {
       ...mapMutations([
         types.SET_VALUE
-      ]),
-      md
+      ])
     }
   }
 </script>

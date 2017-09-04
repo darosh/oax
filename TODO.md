@@ -6,13 +6,13 @@
 - [x] refactor model to: md or html (not both)
 - [x] editing partial updates in UI thread
 - [x] extract menu tabs to components
+- [x] remove md.js
 - [ ] check if params are inherited
 - [ ] refactor OAX global
 - [ ] disable animation config
 - [ ] debounce search
 - [ ] debounce value to config
 - [ ] use vuetify resize?
-- [ ] remove md.js
   
 ##### UI
 
