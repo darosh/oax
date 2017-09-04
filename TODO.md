@@ -2,15 +2,15 @@
 
 #### Internal
 
-- [ ] freeze to view, unfreeze for edit
-- [ ] refactor model to: md or html (not both)
-- [ ] editing partial updates in UI thread
+- [x] freeze to view, unfreeze for edit
+- [x] refactor model to: md or html (not both)
+- [x] editing partial updates in UI thread
+- [x] extract menu tabs to components
 - [ ] check if params are inherited
 - [ ] refactor OAX global
 - [ ] disable animation config
-- [ ] extract menu tabs to components
 - [ ] debounce search
-- [ ] debounce to config
+- [ ] debounce value to config
   
 ##### UI
 
@@ -40,5 +40,5 @@
   - [ ] refactor syntax stylus
 
 - ###### Menu
-  - [ ] reorder tabs: dir, rec, edit, test
+  - [x] reorder tabs: dir, rec, edit, test
   - [ ] highlight cached APIs
