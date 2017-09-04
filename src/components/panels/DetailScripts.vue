@@ -19,7 +19,7 @@
   import axiosScript from '../../models/scripts/axios-script'
   import angularScript from '../../models/scripts/angular-script'
   // import jqueryScript from '../../models/scripts/jquery-script'
-  import url from '../../services/url'
+  import url from '../../utils/url'
 
   export default {
     props: ['item'],

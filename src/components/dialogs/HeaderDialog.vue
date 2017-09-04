@@ -24,7 +24,7 @@
 <script>
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import limit from '../../services/limit'
+  import limit from '../../utils/limit'
 
   const headers = () => import('../../assets/http-header.json')
 

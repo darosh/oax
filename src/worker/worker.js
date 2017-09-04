@@ -1,10 +1,10 @@
 import load from '../services/load'
-import update from '../services/update'
+import update from '../utils/update'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 import { OAS } from './../models/oas'
 import { trim, summary } from '../services/markdown'
-import edit from '../utils/codemirror/edit'
+import edit from '../utils/edit'
 
 import { compare } from 'fast-json-patch'
 

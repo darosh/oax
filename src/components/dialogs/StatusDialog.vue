@@ -26,7 +26,7 @@
   import { ResponseStyle } from '../../services/response-style'
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import limit from '../../services/limit'
+  import limit from '../../utils/limit'
 
   const json = () => import('../../assets/http-status.json')
 

@@ -1,5 +1,5 @@
 import * as types from '../types'
-import yqlProxy from '../../services/yql-proxy'
+import yqlProxy from '../../utils/yql-proxy'
 import axios from 'axios'
 
 const LIST = 'https://api.apis.guru/v2/list.json'

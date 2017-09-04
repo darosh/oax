@@ -1,0 +1,10 @@
+{
+  "url": "https://api.apis.guru/v2/specs/github.com/v3/swagger.json",
+  "defaultTitle": "API",
+  "defaultDarkTheme": false,
+  "allowUrlEdit": true,
+  "allowSwithTheme": true,
+  "allowEditProxy": true,
+  "allowDownload": false,
+  "limitSpecButtonText": 8
+}

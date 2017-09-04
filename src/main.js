@@ -83,7 +83,7 @@ Vue.config.productionTip = false
 
 sync(store, router)
 
-window.OAX = {...configuration, ...(window.OAX || {})}
+window.OAX = window.OAX || {}
 
 /* eslint-disable no-new */
 window.OAX.app = new Vue({
@@ -95,6 +95,7 @@ window.OAX.app = new Vue({
   created () {
     let url = null
     const ioq = window.location.hash.indexOf('?')
+    window.OAX.state = this.$store.state
 
     if (ioq) {
       const qoq = window.location.hash.substr(ioq + 1)
@@ -102,7 +103,7 @@ window.OAX.app = new Vue({
       url = qoq ? decodeURIComponent(qoq[1]) : url
     }
 
-    store.dispatch(types.LOAD_URL, url || window.OAX.url)
+    store.dispatch(types.LOAD_URL, url || configuration.url)
     this.online()
     window.addEventListener('online', this.online)
     window.addEventListener('offline', this.online)

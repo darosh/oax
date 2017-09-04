@@ -2,7 +2,7 @@ import { load, edit } from '../../worker'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
-import { absoluteUrl } from '../../services/utils'
+import { absoluteUrl } from '../../services/absolute-url'
 import CircularJSON from 'circular-json'
 
 import { applyPatch } from 'fast-json-patch'

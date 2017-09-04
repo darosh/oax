@@ -1,4 +1,4 @@
-import {configuration} from './configuration';
+import {configuration} from '../services/configuration';
 
 export default function limit(text: string) {
   return text.length > configuration.limitSpecButtonText

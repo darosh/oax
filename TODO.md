@@ -7,11 +7,11 @@
 - [x] editing partial updates in UI thread
 - [x] extract menu tabs to components
 - [x] remove md.js
+- [x] refactor OAX global
 - [ ] check if params are inherited
-- [ ] refactor OAX global
-- [ ] disable animation config
-- [ ] debounce search
 - [ ] debounce value to config
+- [ ] debounce search
+- [ ] disable animation config
 - [ ] use vuetify resize?
   
 ##### UI
