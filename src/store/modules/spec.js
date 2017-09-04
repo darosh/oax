@@ -6,8 +6,7 @@ import { absoluteUrl } from '../../services/utils'
 import CircularJSON from 'circular-json'
 
 import { applyPatch } from 'fast-json-patch'
-
-const FREEZE = false
+import { observables } from '../../models/oas/methods/observables'
 
 export const state = {
   spec: null,
@@ -91,19 +90,11 @@ export const actions = {
 
       res.bundled = CircularJSON.parse(JSON.stringify(circ))
 
-      if (FREEZE) {
-        Object.freeze(res.bundled)
-        Object.freeze(res.bundled.tags)
-        Object.freeze(res.bundled._operations)
-        Object.freeze(res.bundled._metas)
-      }
-
       commit(types.SET_SPEC, {
         resources: res.bundled.tags,
         operations: res.bundled._operations,
         spec: res.bundled,
-        metas: res.bundled._metas,
-        observables: FREEZE ? res.bundled._observables : null
+        metas: res.bundled._metas
       })
     }).catch(err => err)
   },
@@ -143,31 +134,35 @@ export const actions = {
       } else {
         // const count = (res.bundled._observables || []).length
         // commit(types.SET_LOADING, {text: `Initializing ${count} ${count === 1 ? 'obsevable' : 'obsevables'}`, done: 1})
-        commit(types.SET_LOADING, {text: 'Initializing', done: 1})
+        commit(types.SET_LOADING, {text: 'Collecting observables', done: 0.98})
 
         setTimeout(() => {
           if (url !== lastUrl) {
             return
           }
 
-          if (FREEZE) {
-            Object.freeze(res.bundled)
+          res.bundled._observables = observables(res.bundled)
+
+          commit(types.SET_LOADING, {text: 'Initializing', done: 1})
+
+          setTimeout(() => {
             Object.freeze(res.bundled.tags)
             Object.freeze(res.bundled._operations)
             Object.freeze(res.bundled._metas)
-          }
+            Object.freeze(res.bundled)
 
-          commit(types.SET_SPEC, {
-            resources: res.bundled.tags,
-            operations: res.bundled._operations,
-            spec: res.bundled,
-            metas: res.bundled._metas,
-            observables: FREEZE ? res.bundled._observables : null,
-            json: res.json
-          })
+            commit(types.SET_SPEC, {
+              resources: res.bundled.tags,
+              operations: res.bundled._operations,
+              spec: res.bundled,
+              metas: res.bundled._metas,
+              observables: res.bundled._observables,
+              json: res.json
+            })
 
-          commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
-          commit(types.SET_LOADING, false)
+            commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
+            commit(types.SET_LOADING, false)
+          }, 0)
         }, 0)
       }
     }).catch((err) => {
