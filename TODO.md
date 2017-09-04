@@ -13,6 +13,8 @@
 - [ ] debounce search
 - [ ] disable animation config
 - [ ] use vuetify resize?
+- [ ] extract common base path
+- [ ] navigation top, meta. ops
   
 ##### UI
 

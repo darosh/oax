@@ -27,7 +27,7 @@ export function tags(spec: ISpecExtended) {
 
   clearTagOps(spec);
   addTagOperations(spec);
-  closeMoreTags(spec);
+  // closeMoreTags(spec);
 }
 
 export function firstPaths(spec: ISpecExtended) {
