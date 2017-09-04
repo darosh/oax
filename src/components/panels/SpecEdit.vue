@@ -3,9 +3,9 @@
     v-divider
     .pl-3.pr-3.pt-3.pb-3
       v-text-field(spellcheck="false" label="URL" v-model="url" solo single-line hide-details prepend-icon="link" v-focus.wait="MENU && value")
-      v-radio-group(v-model="format", :mandatory="true" hide-details)
-        v-layout.ma-0
-          v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
+      //v-radio-group(v-model="format", :mandatory="true" hide-details)
+        //v-layout.ma-0
+          //v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
     v-divider
     div#cm-wrap
       codemirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
@@ -48,14 +48,14 @@
               }
               cm.focus()
               cm.setOption('fullScreen', !cm.getOption('fullScreen'))
-            },
-            Esc: function (cm) {
-              if (cm.getOption('fullScreen')) {
-                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
-                cm.focus()
-                cm.setOption('fullScreen', false)
-              }
             }
+            //            Esc: function (cm) {
+            //              if (cm.getOption('fullScreen')) {
+            //                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
+            //                cm.focus()
+            //                cm.setOption('fullScreen', false)
+            //              }
+            //            }
           }
         }
       }
@@ -125,7 +125,8 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-edit := 166px
+  //$margin-edit := 166px
+  $margin-edit := 128px
 
   >>> .input-group--solo .input-group__details
     display none
