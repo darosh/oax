@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import position from '../services/element-position'
+  import position from '../utils/element-position'
 
   export default {
     data () {

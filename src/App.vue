@@ -33,7 +33,7 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from './store/types'
-  import { throttle } from './services/events'
+  import { throttle } from './utils/events'
 
   import appTour from './components/Tour.vue'
 
