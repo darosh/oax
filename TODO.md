@@ -11,6 +11,8 @@
 - [ ] disable animation config
 - [ ] debounce search
 - [ ] debounce value to config
+- [ ] use vuetify resize?
+- [ ] remove md.js
   
 ##### UI
 
