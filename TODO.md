@@ -2,6 +2,7 @@
 
 #### Internal
 
+- [ ] freeze to view, unfreeze for edit
 - [ ] refactor model to: md or html (not both)
 - [ ] editing partial updates in UI thread
 - [ ] check if params are inherited
