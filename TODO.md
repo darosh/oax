@@ -8,12 +8,12 @@
 - [x] extract menu tabs to components
 - [x] remove md.js
 - [x] refactor OAX global
+- [x] extract common base path
 - [ ] check if params are inherited
 - [ ] debounce value to config
 - [ ] debounce search
 - [ ] disable animation config
 - [ ] use vuetify resize?
-- [ ] extract common base path
 - [ ] navigation top, meta. ops
   
 ##### UI

@@ -6,23 +6,25 @@ import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
 import {extras} from "./methods/extras";
+import {base} from "./methods/base";
 // import {observables} from './methods/observables';
 
 /* tslint:disable */
 const phase = {
   info: [0, 'info', 'Parsing'],
-  meta: [1, 'meta', 'Parsing'],
-  tags: [2, 'tags', 'Parsing'],
-  operations: [3, 'operations', 'Parsing'],
-  security: [4, 'security', 'Parsing'],
-  mdInfo: [5, 'info', 'Markdown'],
-  mdSecurity: [6, 'security', 'Markdown'],
-  mdTags: [7, 'tags', 'Markdown'],
-  mdOperations: [8, 'operations', 'Markdown'],
-  mdParameters: [9, 'parameters', 'Markdown'],
-  mdResponses: [10, 'responses', 'Markdown'],
-  extras: [11, 'extras', 'Cleaning']
-  // observables: [11, 'observables', 'Collecting']
+  base: [1, 'base', 'Parsing'],
+  meta: [2, 'meta', 'Parsing'],
+  tags: [3, 'tags', 'Parsing'],
+  operations: [4, 'operations', 'Parsing'],
+  security: [5, 'security', 'Parsing'],
+  mdInfo: [6, 'info', 'Markdown'],
+  mdSecurity: [7, 'security', 'Markdown'],
+  mdTags: [8, 'tags', 'Markdown'],
+  mdOperations: [9, 'operations', 'Markdown'],
+  mdParameters: [10, 'parameters', 'Markdown'],
+  mdResponses: [11, 'responses', 'Markdown'],
+  extras: [12, 'extras', 'Cleaning']
+  // observables: [13, 'observables', 'Collecting']
 };
 /* tslint:enable */
 
@@ -52,6 +54,9 @@ export function OAS(spec: ISpecExtended,
 
   log(phase.info, progress);
   info(spec, parsedUrl, defaultContentType);
+
+  log(phase.base, progress);
+  base(spec);
 
   log(phase.meta, progress);
   spec._metas = metas(spec);
