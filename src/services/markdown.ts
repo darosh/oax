@@ -2,7 +2,7 @@ import {parseFragment, SAXParser, serialize} from 'parse5';
 import {Converter} from 'showdown';
 
 import hljs from './highlight';
-import walk from './walk';
+const walk = require('walk-parse5');
 
 const cache: { [index: string]: { html: string, summary: string } | any } = {}
 

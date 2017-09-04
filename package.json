@@ -33,6 +33,7 @@
     "vuetify": "^0.15.1",
     "vuex": "^2.3.1",
     "vuex-router-sync": "^4.2.0",
+    "walk-parse5": "^1.0.0",
     "webworkify-webpack": "^2.0.5",
     "yaml-js": "^0.2.0"
   },
