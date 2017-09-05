@@ -3,7 +3,7 @@
     v-expansion-panel-content(v-model="exp1", ripple)
       div.subheading(slot="header") Settings
       v-divider
-      v-card.pt-2.pb-0
+      v-card.pt-2.pb-2
         .pl-3.pr-3
           v-select.no-details(:items="SPEC.schemes" v-model="SPEC._._scheme", :disabled="SPEC.schemes.length === 1" label="Scheme")
         .pl-3.pr-3
