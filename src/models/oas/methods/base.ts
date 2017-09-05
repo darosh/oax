@@ -2,7 +2,6 @@ import {ISpecExtended} from "../interfaces/ISpecExtended";
 
 export function base(spec: ISpecExtended) {
   const extracted = extract(spec);
-  console.log(extracted);
 
   if (extracted) {
     spec.basePath = spec.basePath || '/';
