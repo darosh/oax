@@ -147,5 +147,5 @@
 
   .toolbar .input-group
     position relative
-    top 3px
+    top 12px
 </style>
