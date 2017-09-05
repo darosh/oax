@@ -8,7 +8,7 @@ const defaultState = {
   dark: false,
   grouped: 0,
   wide: false,
-  description: true,
+  description: false,
   endpoint: true
 }
 
