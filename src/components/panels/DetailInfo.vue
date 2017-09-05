@@ -11,8 +11,13 @@
         div.pt-3(v-for="(response, code) in item.responses", :key="code")
           .relative.response.hover--block.pl-3.pr-3(@click.stop="SET_DIALOG({type: 'status', param: code})", v-ripple="")
             app-response-block(:code="code", :text="response._")
+          div(v-if="response.headers")
+            .hover--block.pl-3.pr-3(v-for="(header, headerName) in response.headers", :key="headerName" v-ripple="", @click.stop="SET_DIALOG({type: 'header', param: headerName})")
+              div.pl-3
+                app-header(:item="headerName")
+                code(v-text="header.format || header.type")
+              .markdown.pl-3(v-markdown="header")
           div(v-if="response.schema")
-
             pre.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
@@ -34,6 +39,7 @@
   import appResponseBlock from '../elements/ResponseBlock'
 
   import markdown from '../../directives/markdown'
+  import appHeader from '../elements/Header'
 
   export default {
     props: ['item'],
@@ -43,7 +49,8 @@
     components: {
       appModel,
       appExample,
-      appResponseBlock
+      appResponseBlock,
+      appHeader
     },
     created () {
       this.SET_FAB_METHOD(this.execute)
