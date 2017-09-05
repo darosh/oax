@@ -48,3 +48,6 @@
 - ###### Menu
   - [x] reorder tabs: dir, rec, edit, test
   - [x] highlight cached APIs
+
+- hide path
+- fix dialog not showing after table http ref page view
