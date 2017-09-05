@@ -104,3 +104,7 @@
 - [ ] https://stackoverflow.com/questions/36634281/list-of-swagger-ui-alternatives
 - [ ] https://groups.google.com/forum/#!topic/swagger-swaggersocket/uypw-ozjlx8
 - [ ] https://codepen.io/pixelass/pen/zGVWjN
+
+- https://thingful.github.io/openapi-spec/#
+- https://kevinoid.github.io/appveyor-swagger/redoc/
+

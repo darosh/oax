@@ -1,6 +1,10 @@
 <template lang="pug">
   v-container(fluid).pl-4.pr-4.pa-3-sm
     v-layout(row wrap).stretch Not implemented yet.
+    h2 Parameters
+    pre {{SPEC.parameters}}
+    h2 Definitions
+    pre {{SPEC.definitions}}
 </template>
 
 <script>
@@ -14,7 +18,8 @@
       ...mapGetters([
         types.IS_DESCRIPTION,
         types.OPERATIONS,
-        types.OPERATION
+        types.OPERATION,
+        types.SPEC
       ])
     },
     methods: {
