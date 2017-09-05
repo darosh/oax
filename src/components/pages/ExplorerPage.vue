@@ -9,7 +9,7 @@
     v-alert.ma-0(error v-if="ERROR" value="true")
       .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="ERROR.message") {{ERROR.message}}
-    div(v-if="!SEARCH && SPEC && SPEC.info")
+    div(v-if="!SEARCH && SPEC && SPEC.info && (IS_GROUPED < 2)")
       v-container.pa-0-sm(fluid grid-list-xl)
         v-layout(column)
           v-flex
