@@ -16,8 +16,8 @@
             pre.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
-                v-btn-toggle.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView")
-                  v-btn(v-for="i in schemaViews", :key="i.text") {{i.text}}
+                v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView" mandatory)
+                  v-btn.transparent.elevation-0(v-for="i in schemaViews", :key="i") {{i}}
               app-model(:item="response.schema" v-if="schemaView === 1")
               app-example(:item="response.schema" v-else)
 </template>
@@ -43,7 +43,6 @@
     components: {
       appModel,
       appExample,
-      //      appParameter,
       appResponseBlock
     },
     created () {
@@ -52,14 +51,10 @@
     data () {
       return {
         responseStyle: ResponseStyle,
-        schemaViews: [
-          {text: 'Example', value: 1},
-          {text: 'Model', value: 2}
-        ],
-        schemaViewInternal: 0,
+        schemaViews: ['Example', 'Model'],
+        schemaView: 0,
         exp1: true,
         exp2: true
-        //        exp3: true
       }
     },
     computed: {
@@ -69,10 +64,6 @@
       ]),
       schema () {
         return schema(this.item)
-      },
-      schemaView: {
-        get () { return this.schemaViewInternal },
-        set (value) { this.schemaViewInternal = value || this.schemaViewInternal }
       }
     },
     methods: {
@@ -136,27 +127,30 @@
     margin-bottom 0
 
   .no-wrap
-    white-space nowrap
+    white-space: nowrap
 
   .no-details >>> .input-group__details
     display none
 
   .toggle-round
     margin-bottom -19px
+    border-radius: 14px
 
   .toggle-round >>> button
     font-size 13px !important
+    font-weight 500
     height 19px !important
     padding 0 4px
-    font-family Roboto, sans-serif
+    //box-shadow none
+    font-family: Roboto, sans-serif
 
-  /*
+
   .toggle-round >>> button:first-child
-      border-bottom-left-radius: 14px
-      border-top-left-radius: 14px
+    border-bottom-left-radius: 14px
+    border-top-left-radius: 14px
 
   .toggle-round >>> button:last-child
-      border-bottom-right-radius: 14px
-      border-top-right-radius: 14px
-  */
+    border-bottom-right-radius: 14px
+    border-top-right-radius: 14px
+
 </style>

@@ -43,6 +43,7 @@
   - [ ] ops virtual scroll?
   - [ ] security
   - [ ] load worker directly, without webworkify
+  - [ ] discriminator? https://github.com/kevinoid/appveyor-swagger
 
 - ###### Menu
   - [x] reorder tabs: dir, rec, edit, test
