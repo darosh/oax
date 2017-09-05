@@ -61,9 +61,6 @@
         ]
       }
     },
-    created () {
-      this.addItems()
-    },
     computed: {
       ...mapGetters([
         types.IS_DESCRIPTION,
