@@ -121,11 +121,21 @@ code
 a
   text-decoration none
 
-.main-description
-  max-width 888px
+.main-description.markdown
+  max-width 100%
+  overflow hidden
 
-  @media $display-breakpoints.xl-only
-    min-width 888px
+.main-description.markdown
+  > p
+  > ul
+  > ol
+    max-width 888px
+  > pre
+  > table
+    max-width 100%
+
+//@media $display-breakpoints.xl-only
+  //  min-width 888px
 
 #webpack-hot-middleware-clientOverlay
   font-size 150% !important

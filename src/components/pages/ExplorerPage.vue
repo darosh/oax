@@ -20,9 +20,7 @@
                 v-card.bg(v-if="SPEC.info._.description")
                   v-card-text
                     v-layout
-                      v-spacer
                       div.main-description(v-markdown="SPEC.info._")
-                      v-spacer
 
       app-meta-list(v-if="METAS", :metas="METAS")
     app-resource-list(:class="{wide: IS_WIDE}" v-if="IS_GROUPED === 0")
