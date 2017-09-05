@@ -1,22 +1,25 @@
 <template lang="pug">
   v-container(fluid v-if="OPERATIONS").pl-4.pr-4.pa-3-sm
-    v-data-table.elevation-1(:headers="headers", :items="OPERATIONS" hide-actions)
+    v-data-table.elevation-1(:headers="headers", :items="items" hide-actions)
       template(slot="items" scope="props")
-        td(@click.stop="SET_OPERATION(props.item)") {{props.item._id}}
-        td(@click.stop="SET_OPERATION(props.item)")
-          app-method(:item="props.item._method")
-        td(@click.stop="SET_OPERATION(props.item)" style="max-width: 240px")
-          app-path(:name="props.item._pathName")
-        td(@click.stop="SET_OPERATION(props.item)") {{props.item.tags.join(', ')}}
-        td(@click.stop="SET_OPERATION(props.item)" v-markdown.summary="props.item._" style="max-width: 240px")
-        td(@click.stop="SET_OPERATION(props.item)")
-          v-icon(v-if="props.item._.description" success) check_circle
-          v-icon(v-else error) cancel
-        td(@click.stop="SET_OPERATION(props.item)") {{props.item.parameters && props.item.parameters.length}}
-        td(@click.stop="SET_OPERATION(props.item)")
-          app-response.mr-1(:code="code" v-for="(response, code) in props.item.responses", :key="code")
+        td(@click="SET_OPERATION(props.item.op)") {{props.item.op._id}}
+        td(@click="SET_OPERATION(props.item.op)")
+          app-method(:item="props.item.op._method")
+        td(@click="SET_OPERATION(props.item.op)")
+          app-path(:name="props.item.op._pathName")
+        td(@click="SET_OPERATION(props.item.op)") {{props.item.op.tags.join(', ')}}
+        td(@click="SET_OPERATION(props.item.op)") {{props.item.op._.summary}}
+        //td
+        //  v-icon(v-if="props.item.op._.summary" success) check_circle
+        //  v-icon(v-else error) cancel
+        //td
+        //  v-icon(v-if="props.item.op._.description" success) check_circle
+        //  v-icon(v-else error) cancel
+        td(@click="SET_OPERATION(props.item.op)") {{props.item.op.parameters && props.item.op.parameters.length}}
+        td(@click="SET_OPERATION(props.item.op)")
+          app-response.mr-1(:code="code" v-for="(response, code) in props.item.op.responses", :key="code")
         td
-          template(v-for="(s, index) in schemas(props.item, SPEC)")
+          template(v-for="(s, index) in props.item.schemas")
             span(v-if="index")=", "
             a(@click="") {{s}}
         <!--td(@click.stop="SET_OPERATION(props.item)") {{props.item.security}}-->
@@ -31,7 +34,7 @@
   import markdown from '../directives/markdown'
   import appResponse from './elements/Response'
   import appPath from './elements/Path'
-  import {schemas} from '../models/oas/methods/schemas'
+  import { schemas } from '../models/oas/methods/schemas'
 
   export default {
     directives: {
@@ -44,20 +47,22 @@
     },
     data () {
       return {
-        selected: [],
         headers: [
-          {text: '#', value: '_id', align: 'left'},
-          {text: 'Method', value: '_method', align: 'left'},
-          {text: 'Path', value: '_pathName', align: 'left'},
-          {text: 'Tags', value: 'tags', align: 'left'},
-          {text: 'Summary', value: 'summary', align: 'left'},
-          {text: 'Description', value: 'description', align: 'left'},
-          {text: 'Parameters', value: 'parameters', align: 'left'},
-          {text: 'Responses', value: 'responses', align: 'left'},
+          {text: '#', value: 'op._id', align: 'left'},
+          {text: 'Method', value: 'op._method', align: 'left'},
+          {text: 'Path', value: 'op._pathName', align: 'left'},
+          {text: 'Tags', value: 'op.tags', align: 'left'},
+          {text: 'Summary', value: 'op.summary', align: 'left'},
+          // {text: 'Description', value: 'op.description', align: 'left'},
+          {text: 'Parameters', value: 'op.parameters', align: 'left'},
+          {text: 'Responses', value: 'op.responses', align: 'left'},
           {text: 'Schemas', value: 'schemas', align: 'left'}
           //          {text: 'Security', value: 'security', align: 'left'}
         ]
       }
+    },
+    created () {
+      this.addItems()
     },
     computed: {
       ...mapGetters([
@@ -65,7 +70,19 @@
         types.OPERATIONS,
         types.OPERATION,
         types.SPEC
-      ])
+      ]),
+      items () {
+        const items = []
+
+        while (items.length < this.OPERATIONS.length) {
+          items.push({
+            op: this.OPERATIONS[items.length],
+            schemas: this.schemas(this.OPERATIONS[items.length], this.SPEC)
+          })
+        }
+
+        return items
+      }
     },
     methods: {
       ...mapMutations([
@@ -75,3 +92,31 @@
     }
   }
 </script>
+
+<style scoped>
+  >>> table {
+    /*table-layout: fixed;*/
+    transform: translate3d(0, 0, 0);
+    cursor: pointer;
+  }
+
+  /*>>> thead > tr > th.column {*/
+    /*width: 280px;*/
+  /*}*/
+
+  /*>>> thead > tr > th.column:first-child {*/
+    /*width: 24px;*/
+  /*}*/
+
+  /*>>> thead > tr > th.column:nth-child(2) {*/
+    /*width: 80px;*/
+  /*}*/
+
+  /*>>> thead > tr > th.column:nth-child(6) {*/
+    /*width: 120px;*/
+  /*}*/
+
+  /*>>> thead > tr > th.column:nth-child(8) {*/
+    /*width: 320px;*/
+  /*}*/
+</style>

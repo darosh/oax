@@ -35,7 +35,7 @@ function mdOperation(op: IOperationObservable) {
   description(op)
 
   if (!op.summary && op.description) {
-    op.summary = op.summary || summary(op.description);
+    op.summary = summary(op.description);
   }
 
   summaryHtml(op)

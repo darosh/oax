@@ -80,7 +80,7 @@ export function OAS(spec: ISpecExtended,
   mdTags(spec, 10);
 
   log(phase.mdOperations, progress);
-  mdOperations(spec, [5, 5]);
+  mdOperations(spec, [Infinity, Infinity]);
 
   log(phase.mdParameters, progress);
   mdParameters(spec, 10);

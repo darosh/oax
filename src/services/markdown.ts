@@ -90,7 +90,7 @@ export function description(_: { description?: string, description_html?: boolea
 
 export function summaryHtml(_: { summary?: string, summary_html?: boolean }) {
   if (_.summary && !_.summary_html) {
-    _.summary = trim(_.summary);
+    // _.summary = trim(_.summary);
     _.summary_html = true;
   }
 }
