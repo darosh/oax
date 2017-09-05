@@ -1,6 +1,0 @@
-vuetify/*
-
-!vuetify/package.json
-!vuetify/src/stylus/settings/_custom.styl
-!vuetify/src/components/index.js
-!/vuetify/dist/

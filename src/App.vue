@@ -86,7 +86,9 @@
   }
 </script>
 
-<style lang="css" src="../vendor/vuetify/dist/vuetify.min.css"></style>
+<!--<style lang="css" src="../vendor/vuetify/dist/vuetify.min.css"></style>-->
+
+<!--<style lang="stylus" src="../node_modules/vuetify/src/stylus/main.styl"></style>-->
 
 <style lang="stylus">
   @import './stylus/index'

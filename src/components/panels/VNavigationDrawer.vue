@@ -229,4 +229,4 @@
   }
 </script>
 
-<!--<style lang="stylus" src="../../../node_modules/vuetify/src/stylus/components/_navigation-drawer.styl"></style>-->
+<style lang="stylus" src="../../../node_modules/vuetify/src/stylus/components/_navigation-drawer.styl"></style>

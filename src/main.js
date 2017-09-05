@@ -12,70 +12,73 @@ import VueVirtualScroller from 'vue-virtual-scroller'
 import VueHotkey from 'v-hotkey/src/index'
 
 // import Vuetify from 'vuetify'
-//
-// import {
-//   Vuetify,
-//   VApp,
-//   VAlert,
-//   VAvatar,
-//   VBtn,
-//   VBtnToggle,
-//   VCard,
-//   VCheckbox,
-//   VDataTable,
-//   VDatePicker,
-//   VDialog,
-//   VDivider,
-//   VExpansionPanel,
-//   VGrid,
-//   VIcon,
-//   VList,
-//   VMenu,
-//   VNavigationDrawer,
-//   VProgressCircular,
-//   VProgressLinear,
-//   VRadioGroup,
-//   VSelect,
-//   VSubheader,
-//   VSwitch,
-//   VTabs,
-//   VTextField,
-//   VToolbar
-// } from 'vuetify'
-//
-// Vue.use(Vuetify, {
-//   components: {
-//     VApp,
-//     VAlert,
-//     VAvatar,
-//     VBtn,
-//     VBtnToggle,
-//     VCard,
-//     VCheckbox,
-//     VDataTable,
-//     VDatePicker,
-//     VDialog,
-//     VDivider,
-//     VExpansionPanel,
-//     VGrid,
-//     VIcon,
-//     VList,
-//     VMenu,
-//     VNavigationDrawer,
-//     VProgressCircular,
-//     VProgressLinear,
-//     VRadioGroup,
-//     VSelect,
-//     VSubheader,
-//     VSwitch,
-//     VTabs,
-//     VTextField,
-//     VToolbar
-//   }
-// })
 
-import Vuetify from '../vendor/vuetify'
-Vue.use(Vuetify)
+import {
+  Vuetify,
+  VApp,
+  VAlert,
+  VAvatar,
+  VBtn,
+  VBtnToggle,
+  VCard,
+  VCheckbox,
+  VDataTable,
+  VDatePicker,
+  VDialog,
+  VDivider,
+  VExpansionPanel,
+  VGrid,
+  VIcon,
+  VList,
+  VMenu,
+  VNavigationDrawer,
+  VProgressCircular,
+  VProgressLinear,
+  VRadioGroup,
+  VSelect,
+  VSubheader,
+  VSwitch,
+  VTabs,
+  VTextField,
+  VToolbar
+} from 'vuetify'
+
+import { Ripple, Tooltip } from 'vuetify/src/directives'
+
+Vue.use(Vuetify, {
+  directives: {Ripple, Tooltip},
+  components: {
+    VApp,
+    VAlert,
+    VAvatar,
+    VBtn,
+    VBtnToggle,
+    VCard,
+    VCheckbox,
+    VDataTable,
+    VDatePicker,
+    VDialog,
+    VDivider,
+    VExpansionPanel,
+    VGrid,
+    VIcon,
+    VList,
+    VMenu,
+    VNavigationDrawer,
+    VProgressCircular,
+    VProgressLinear,
+    VRadioGroup,
+    VSelect,
+    VSubheader,
+    VSwitch,
+    VTabs,
+    VTextField,
+    VToolbar
+  }
+})
+
+// import Vuetify from '../vendor/vuetify'
+// Vue.use(Vuetify)
 
 Vue.use(VueVirtualScroller)
 Vue.use(VueHotkey)
@@ -99,7 +102,9 @@ window.OAX.app = new Vue({
 
     if (ioq) {
       const qoq = window.location.hash.substr(ioq + 1)
-        .split('&').map(v => v.split('=')).filter(v => v[0] === 'url')[0]
+        .split('&')
+        .map(v => v.split('='))
+        .filter(v => v[0] === 'url')[0]
       url = qoq ? decodeURIComponent(qoq[1]) : url
     }
 

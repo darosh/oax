@@ -9,7 +9,7 @@ const discardDuplicates = require('postcss-discard-duplicates')
 module.exports = () => ({
   'plugins': [
     discardDuplicates(),
-    willChange(),
+    // willChange(),
     // mqpacker(),
     precision(),
     calc(),

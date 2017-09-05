@@ -8,5 +8,5 @@ export default function update (schema, bundled) {
     : schema.getRefs(schema.bundled)
   schema.simplifyRefs(schema.refs)
 
-  schema.deref()
+  schema.deref(true, false)
 }

@@ -11,7 +11,6 @@
           <option name="FORCE_QUOTE_STYlE" value="true" />
           <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
           <option name="SPACES_WITHIN_IMPORTS" value="true" />
-          <option name="CHAINED_CALL_DOT_ON_NEW_LINE" value="false" />
         </JSCodeStyleSettings>
         <codeStyleSettings language="JavaScript">
           <option name="RIGHT_MARGIN" value="80" />
