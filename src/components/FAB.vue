@@ -26,7 +26,7 @@
 
 <style scoped lang="stylus">
   .fab--on-top
-    z-index 1000
+    z-index 500
     position fixed !important
     right -64px
     transition right 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) 0s

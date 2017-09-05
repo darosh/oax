@@ -42,7 +42,7 @@
           extraKeys: {
             F10: function (cm) {
               if (!cm.getOption('fullScreen')) {
-                document.body.appendChild(document.querySelector('.CodeMirror'))
+                document.querySelector('#cm-full').appendChild(document.querySelector('.CodeMirror'))
               } else {
                 document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
               }

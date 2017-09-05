@@ -28,6 +28,7 @@
           app-log(style="margin-bottom: 24px", v-if="LOADING", :items="LOADING", :log="true")
           app-log(style="margin-bottom: 24px", v-else :items="LOG", :log="true")
     //app-tour
+    #cm-full
 </template>
 
 <script>
