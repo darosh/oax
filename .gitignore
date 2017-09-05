@@ -12,3 +12,4 @@ debug.log
 **/.idea/tasks.xml
 
 !/vendor/vuetify/dist/
+!/vendor/json-schema-bundler/src
