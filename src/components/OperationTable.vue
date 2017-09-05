@@ -17,8 +17,7 @@
           app-response.mr-1(:code="code" v-for="(response, code) in props.item.responses", :key="code")
         td
           template(v-for="(s, index) in schemas(props.item, SPEC)")
-            span(v-if="index") ,
-            |
+            span(v-if="index")=", "
             a(@click="") {{s}}
         <!--td(@click.stop="SET_OPERATION(props.item)") {{props.item.security}}-->
 </template>
