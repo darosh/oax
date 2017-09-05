@@ -30,7 +30,7 @@
       v-list-tile-action
         v-icon view_column
       v-list-tile-content
-        v-list-tile-title Tag groups
+        v-list-tile-title Tags
       v-list-tile-action(v-if="IS_GROUPED === 0")
         v-icon check
 
@@ -38,7 +38,7 @@
       v-list-tile-action
         v-icon view_module
       v-list-tile-content
-        v-list-tile-title List
+        v-list-tile-title Operations
       v-list-tile-action(v-if="IS_GROUPED === 1")
         v-icon check
 
@@ -56,6 +56,14 @@
       v-list-tile-content
         v-list-tile-title Documentation
       v-list-tile-action(v-if="IS_GROUPED === 3")
+        v-icon check
+
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(4)")
+      v-list-tile-action
+        v-icon widgets
+      v-list-tile-content
+        v-list-tile-title Definitions
+      v-list-tile-action(v-if="IS_GROUPED === 4")
         v-icon check
 
     v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")

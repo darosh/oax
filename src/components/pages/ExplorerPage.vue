@@ -26,7 +26,8 @@
     app-resource-list(:class="{wide: IS_WIDE}" v-if="IS_GROUPED === 0")
     app-operation-list(:class="{wide: IS_WIDE}" v-else-if="IS_GROUPED === 1")
     app-operation-table(v-else-if="IS_GROUPED === 2")
-    app-documentation(v-else)
+    app-documentation(v-else-if="IS_GROUPED === 3")
+    app-definitions(v-else-if="IS_GROUPED === 4")
     app-method-dialog
     app-status-dialog
     app-header-dialog
@@ -55,6 +56,7 @@
       appOperationList: () => import('../OperationList'),
       appOperationTable: () => import('../OperationTable'),
       appDocumentation: () => import('../Documentation'),
+      appDefinitions: () => import('../Definitions'),
       appMethodDialog: () => import('../dialogs/MethodDialog'),
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
