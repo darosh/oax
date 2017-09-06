@@ -9,6 +9,7 @@
 - [ ] use vuetify resize?
 - [ ] navigation top, meta. ops
 - [ ] fix all url parsers to use new URL()?
+- [ ] try worker with blob
   
 ##### UI
 

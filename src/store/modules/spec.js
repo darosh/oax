@@ -136,7 +136,8 @@ export const actions = {
       } else {
         // const count = (res.bundled._observables || []).length
         // commit(types.UI_SET_LOADING, {text: `Initializing ${count} ${count === 1 ? 'obsevable' : 'obsevables'}`, done: 1})
-        commit(types.UI_SET_LOADING, {text: 'Collecting observables', done: 0.98})
+        commit(types.UI_SET_LOADING,
+          {text: 'Collecting observables', done: 0.98})
 
         setTimeout(() => {
           if (url !== lastUrl) {
@@ -163,7 +164,8 @@ export const actions = {
               url: url
             })
 
-            commit(types.RECENT_SET_UNSHIFT, {url, title: res.bundled.info.title})
+            commit(types.RECENT_SET_UNSHIFT,
+              {url, title: res.bundled.info.title})
             commit(types.UI_SET_LOADING, false)
           }, 0)
         }, 0)

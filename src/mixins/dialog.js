@@ -12,12 +12,16 @@ export default {
     }
   },
   created () {
-    if (this.UI_DIALOG_PARAM && this.active) {
+    if (this.activated) {
       this.show(this.UI_DIALOG_PARAM)
     }
   },
+  destroyed () {
+    this.UI_SET_DIALOG()
+  },
   computed: {
     ...mapGetters([
+      types.APP_PATH,
       types.UI_DIALOG,
       types.UI_DIALOG_PARAM
     ]),
@@ -43,6 +47,9 @@ export default {
       if (val) {
         this.show(this.UI_DIALOG_PARAM)
       }
+    },
+    APP_PATH: function () {
+      this.UI_SET_DIALOG()
     }
   }
 }

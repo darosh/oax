@@ -78,3 +78,15 @@ export function edit (change) {
 
   return promise
 }
+
+export function blobUrl (blob) {
+  id++
+
+  const promise = new Promise((resolve, reject) => {
+    jobs[id] = {resolve, reject}
+  })
+
+  worker.postMessage({blob, id})
+
+  return promise
+}

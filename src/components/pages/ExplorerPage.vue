@@ -32,6 +32,7 @@
     app-status-dialog
     app-header-dialog
     app-security-dialog
+    app-download-dialog
     app-fab
 </template>
 
@@ -61,6 +62,7 @@
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
       appSecurityDialog: () => import('../dialogs/SecurityDialog'),
+      appDownloadDialog: () => import('../dialogs/DownloadDialog'),
       appFab: () => import('../FAB')
     },
     data () {

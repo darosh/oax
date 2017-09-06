@@ -66,9 +66,9 @@ export function metas(spec: Spec): IMeta[] {
       value: info.version
     },
     {
-      download: 'swagger.json',
+      download: 'JSON / YAML',
       icon: 'file_download',
-      title: 'JSON'
+      title: 'Specification'
     },
     // {
     //   download: 'swagger.yaml',

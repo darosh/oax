@@ -7,6 +7,9 @@ import { trim, summary } from '../services/markdown'
 import edit from '../utils/edit'
 
 import { compare } from 'fast-json-patch'
+import yaml from 'yaml-js'
+
+const compactJSON = require('json-stringify-pretty-compact')
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
@@ -64,6 +67,7 @@ export default function () {
         json.schema = res
         json.url = event.data.url
         ret.json = res.json
+        // ret.blob = URL.createObjectURL(new Blob([res.json]))
 
         self.postMessage(CircularJSON.stringify(ret))
       }).catch(res => {
@@ -106,6 +110,18 @@ export default function () {
       ret.patch = patch
 
       self.postMessage(CircularJSON.stringify(ret))
+    } else if (event.data.blob) {
+      let data = event.data.blob.bundled ? json.text : compactJSON(
+        json.schema.cache[json.url])
+
+      if (!event.data.blob.json) {
+        data = yaml.dump(JSON.parse(data))
+      }
+
+      postMessage(JSON.stringify({
+        id: event.data.id,
+        blob: URL.createObjectURL(new Blob([data]))
+      }))
     }
   }
 }
