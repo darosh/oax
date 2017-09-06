@@ -68,15 +68,14 @@ export function metas(spec: Spec): IMeta[] {
     {
       download: 'swagger.json',
       icon: 'file_download',
-      link: '#',
       title: 'JSON'
     },
-    {
-      download: 'swagger.yaml',
-      icon: 'file_download',
-      link: '#',
-      title: 'YAML'
-    },
+    // {
+    //   download: 'swagger.yaml',
+    //   icon: 'file_download',
+    //   link: '#',
+    //   title: 'YAML'
+    // },
     {
       icon: 'cloud_download',
       link: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url,
