@@ -19,9 +19,9 @@
       //v-divider
       v-tabs.app--tabs(grow v-model="tab", :scrollable="false")
         v-tabs-bar.transparent
-          v-tabs-item(ripple href="tab-info") Info
-          v-tabs-item(ripple href="tab-params") Params
-          v-tabs-item.relative(ripple href="tab-script") Script
+          v-tabs-item(ripple href="tab-info") Response
+          v-tabs-item(ripple href="tab-params") Request
+          v-tabs-item.relative(ripple href="tab-script") Code
           v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._._result") Result
           v-tabs-slider
         v-divider
