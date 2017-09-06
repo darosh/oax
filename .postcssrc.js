@@ -1,6 +1,6 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
 const postcss = require('postcss')
-// const mqpacker = require('css-mqpacker')
+const mqpacker = require('css-mqpacker')
 const willChange = require('postcss-will-change')
 const autoprefixer = require('autoprefixer')
 const calc = require('postcss-calc')
@@ -10,7 +10,7 @@ module.exports = () => ({
   'plugins': [
     discardDuplicates(),
     // willChange(),
-    // mqpacker(),
+    mqpacker(),
     precision(),
     calc(),
     // to edit target browsers: use "browserslist" field in package.json
