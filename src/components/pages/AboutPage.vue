@@ -29,7 +29,7 @@
     h4 Log
     v-layout.pb-3
       v-flex.pt-3.pb-3(style="max-width: 260px")
-        app-log(v-if="LOADING", :items="LOADING", :log="true")
+        app-log(v-if="UI_LOADING", :items="UI_LOADING", :log="true")
         app-log(v-else :items="UI_LOG", :log="true")
 </template>
 
