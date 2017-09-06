@@ -2,7 +2,8 @@ import * as types from '../types'
 import yqlProxy from '../../utils/yql-proxy'
 import axios from 'axios'
 
-const LIST = 'https://api.apis.guru/v2/list.json'
+const BASE = 'https://darosh.github.io/openapi-directory-lite/'
+const LIST = BASE + 'list.json'
 
 export const state = {
   apis: null
@@ -45,14 +46,16 @@ export const actions = {
       const apis = []
 
       for (let key in data) {
-        const versions = Object.keys(data[key].versions)
-        versions.sort()
-        let v = data[key].versions[versions[0]]
+        // const versions = Object.keys(data[key].versions)
+        // versions.sort()
+        // let v = data[key].versions[versions[0]]
 
-        let title = (v.info && v.info.title) || key
-        let url = v.swaggerUrl
+        // let title = (v.info && v.info.title) || key
+        // let url = v.swaggerUrl
 
-        apis.push({title, key, url})
+        // apis.push({title, key, url})
+        let v = data[key]
+        apis.push({title: v.title, key, url: BASE + 'specs/' + v.spec, categories: v.categories})
       }
 
       apis.sort((a, b) => a.key.localeCompare(b.key))
