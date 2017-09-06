@@ -43,10 +43,10 @@ import {
   VToolbar
 } from 'vuetify'
 
-import { Ripple, Tooltip } from 'vuetify/src/directives'
+import { Ripple, Tooltip, Resize } from 'vuetify/src/directives'
 
 Vue.use(Vuetify, {
-  directives: {Ripple, Tooltip},
+  directives: {Ripple, Tooltip, Resize},
   components: {
     VApp,
     VAlert,

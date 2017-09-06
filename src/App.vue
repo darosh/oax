@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(v-hotkey="keymap", :dark="VIEW_DARK")
+  v-app(v-resize="resized" v-hotkey="keymap", :dark="VIEW_DARK")
     div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-menu
     app-drawer
@@ -34,7 +34,6 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from './store/types'
-  import { throttle } from './utils/events'
 
   import appTour from './components/Tour.vue'
 
@@ -55,12 +54,7 @@
       }
     },
     created () {
-      throttle('resize', 'resize.lazy', 200)
-      window.addEventListener('resize.lazy', this.resized)
       this.resized()
-    },
-    destroyed () {
-      removeEventListener('resize.lazy', this.resized)
     },
     computed: {
       ...mapGetters([
@@ -86,10 +80,6 @@
     }
   }
 </script>
-
-<!--<style lang="css" src="../vendor/vuetify/dist/vuetify.min.css"></style>-->
-
-<!--<style lang="stylus" src="../node_modules/vuetify/src/stylus/main.styl"></style>-->
 
 <style lang="stylus">
   @import './stylus/index'
