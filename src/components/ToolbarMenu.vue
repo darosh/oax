@@ -10,7 +10,7 @@
 
     v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_DARK()")
       v-list-tile-action
-        v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
+        v-icon brightness_4
       v-list-tile-content
         v-list-tile-title Dark theme
       v-list-tile-action(v-if="IS_DARK")
@@ -20,7 +20,7 @@
 
     v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_PATH()")
       v-list-tile-action
-        v-icon {{IS_PATH ? 'remove_circle' : 'directions'}}
+        v-icon directions
       v-list-tile-content
         v-list-tile-title Path
       v-list-tile-action(v-if="IS_PATH")
@@ -28,10 +28,20 @@
 
     v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_DESCRIPTION()")
       v-list-tile-action
-        v-icon {{IS_DESCRIPTION ? 'speaker_notes_off' : 'speaker_notes'}}
+        v-icon speaker_notes
       v-list-tile-content
         v-list-tile-title Summary
       v-list-tile-action(v-if="IS_DESCRIPTION")
+        v-icon check
+
+    v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
+
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_WIDE()")
+      v-list-tile-action
+        v-icon settings_ethernet
+      v-list-tile-content
+        v-list-tile-title Wide
+      v-list-tile-action(v-if="IS_WIDE")
         v-icon check
 
     v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
@@ -62,7 +72,8 @@
       v-list-tile-action(v-if="IS_GROUPED === 2")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(3)")
+
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(3)")
       v-list-tile-action
         v-icon view_quilt
       v-list-tile-content
@@ -70,22 +81,12 @@
       v-list-tile-action(v-if="IS_GROUPED === 3")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(4)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(4)")
       v-list-tile-action
         v-icon widgets
       v-list-tile-content
         v-list-tile-title Definitions
       v-list-tile-action(v-if="IS_GROUPED === 4")
-        v-icon check
-
-    v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
-
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_WIDE()")
-      v-list-tile-action
-        v-icon settings_ethernet
-      v-list-tile-content
-        v-list-tile-title Wide layout
-      v-list-tile-action(v-if="IS_WIDE")
         v-icon check
 
     v-divider(v-if="b", :class="{'hidden-sm-and-up': b}")
