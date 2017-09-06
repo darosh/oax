@@ -31,7 +31,6 @@
   - [ ] load worker directly, without webworkify
   - [ ] discriminator? https://github.com/kevinoid/appveyor-swagger
   - [ ] fix dialog not showing after table http ref page view
-  - [ ] hide dir after click on mobile
   - [ ] fix dialogs on mobile
   - [ ] https://github.com/APIs-guru/openapi-sampler
   - [ ] https://github.com/jonschlinkert/remarkable

@@ -7,7 +7,7 @@
       virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
         template(scope="props")
           div(:key="props.itemKey")
-            v-list-tile(ripple avatar @click="url = props.item.url", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+            v-list-tile(ripple avatar @click="clicked(props.item.url)", :href="'#/?url=' + encodeURIComponent(props.item.url)")
               v-list-tile-avatar
                 .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
               v-list-tile-content
@@ -20,7 +20,7 @@
 
 <script>
   import keys from '../../mixins/keys'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
   import focus from '../../directives/focus'
   import VListTileAction from 'vuetify/src/components/VList/VListTileAction'
@@ -29,7 +29,8 @@
   export default {
     components: {
       VIcon,
-      VListTileAction},
+      VListTileAction
+    },
     mixins: [keys],
     directives: {
       focus
@@ -45,13 +46,17 @@
     },
     computed: {
       ...mapGetters([
-        types.UI_LEFT_DRAWER
+        types.UI_LEFT_DRAWER,
+        types.UI_WIDTH
       ]),
       active () {
         return this.UI_LEFT_DRAWER && this.value
       }
     },
     methods: {
+      ...mapMutations([
+        types.UI_SET_LEFT_DRAWER
+      ]),
       encodeURIComponent,
       filtered () {
         if (!this.filter) {
@@ -61,6 +66,13 @@
           return this.APIS.filter(item => {
             return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
           })
+        }
+      },
+      clicked (url) {
+        this.url = url
+
+        if (this.UI_WIDTH < 1200) {
+          this.UI_SET_LEFT_DRAWER(false)
         }
       }
     }
