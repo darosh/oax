@@ -20,7 +20,7 @@ export const state = {
 }
 
 export const mutations = {
-  [types.SET_SPEC] (state, payload) {
+  [types.SPEC_SET] (state, payload) {
     state.resources = payload.resources
     state.operations = payload.operations
     state.spec = payload.spec
@@ -32,10 +32,10 @@ export const mutations = {
       state.json = payload.json
     }
   },
-  [types.TOGGLE_RESOURCES] (state, payload) {
+  [types.SPEC_SET_RESOURCES] (state, payload) {
     openAll(state.resources, payload)
   },
-  [types.SET_OPERATION] (state, payload) {
+  [types.SPEC_SET_OPERATION] (state, payload) {
     // setTimeout(_ => {
     if (state.operation === payload) {
       state.operation = null
@@ -44,7 +44,7 @@ export const mutations = {
     state.operation = payload
     // }, 50)
   },
-  [types.PREV_OPERATION] (state) {
+  [types.SPEC_SET_PREV_OPERATION] (state) {
     let index = state.operations.indexOf(state.operation)
 
     if (index === 0) {
@@ -55,7 +55,7 @@ export const mutations = {
 
     state.operation = state.operations[index]
   },
-  [types.NEXT_OPERATION] (state) {
+  [types.SPEC_SET_NEXT_OPERATION] (state) {
     let index = state.operations.indexOf(state.operation)
 
     if (index === (state.operations.length - 1)) {
@@ -66,17 +66,17 @@ export const mutations = {
 
     state.operation = state.operations[index]
   },
-  [types.FILTER_RESOURCES] (state, payload) {
+  [types.SPEC_SET_FILTER_RESOURCES] (state, payload) {
     search(state.resources, payload)
   },
-  [types.SET_RESULT] (state, payload) {
+  [types.SPEC_SET_RESULT] (state, payload) {
     payload.operation._._result = payload.result
     payload.operation._._error = payload.error
   },
-  [types.SET_VALUE] (state, payload) {
+  [types.SPEC_SET_VALUE] (state, payload) {
     payload.item._._value = payload.value
   },
-  [types.SET_RESOURCE] (state, payload) {
+  [types.SPEC_SET_RESOURCE] (state, payload) {
     payload.resource._._opened = payload.opened
   }
 }
@@ -85,14 +85,14 @@ let lastUrl = null
 let circ = null
 
 export const actions = {
-  [types.EDIT_JSON] ({commit}, change) {
+  [types.SPEC_SET_EDIT_JSON] ({commit}, change) {
     edit(change).then(res => {
       circ = applyPatch(circ || JSON.parse(CircularJSON.stringify(state.spec)),
         res.patch).newDocument
 
       res.bundled = CircularJSON.parse(JSON.stringify(circ))
 
-      commit(types.SET_SPEC, {
+      commit(types.SPEC_SET, {
         resources: res.bundled.tags,
         operations: res.bundled._operations,
         spec: res.bundled,
@@ -100,43 +100,43 @@ export const actions = {
       })
     }).catch(err => err)
   },
-  [types.LOAD_URL] ({commit, getters}, url) {
+  [types.SPEC_SET_LOAD_URL] ({commit}, url) {
     if (url === lastUrl) {
       return
     }
 
     lastUrl = url
-    commit(types.SET_ERROR, null)
-    commit(types.SET_URL, url)
-    commit(types.SET_OPERATION, null)
-    commit(types.SET_DRAWER, false)
-    commit(types.SET_SPEC, {
+    commit(types.UI_SET_ERROR, null)
+    commit(types.SETTINGS_SET_URL, url)
+    commit(types.SPEC_SET_OPERATION, null)
+    commit(types.UI_SET_DRAWER, false)
+    commit(types.SPEC_SET, {
       resources: null,
       operations: null,
       spec: null,
       metas: null
     })
 
-    commit(types.SET_LOADING, {text: 'Worker starting', done: 0})
+    commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
 
     load(absoluteUrl(url), (progress) => {
       if (url !== lastUrl) {
         return
       }
 
-      commit(types.SET_LOADING, report(progress))
+      commit(types.UI_SET_LOADING, report(progress))
     }).then((res) => {
       if (url !== lastUrl) {
         return
       }
 
       if (res.err) {
-        commit(types.SET_ERROR, 'ERROR: ' + res.err.message)
-        commit(types.SET_LOADING, false)
+        commit(types.UI_SET_ERROR, 'ERROR: ' + res.err.message)
+        commit(types.UI_SET_LOADING, false)
       } else {
         // const count = (res.bundled._observables || []).length
-        // commit(types.SET_LOADING, {text: `Initializing ${count} ${count === 1 ? 'obsevable' : 'obsevables'}`, done: 1})
-        commit(types.SET_LOADING, {text: 'Collecting observables', done: 0.98})
+        // commit(types.UI_SET_LOADING, {text: `Initializing ${count} ${count === 1 ? 'obsevable' : 'obsevables'}`, done: 1})
+        commit(types.UI_SET_LOADING, {text: 'Collecting observables', done: 0.98})
 
         setTimeout(() => {
           if (url !== lastUrl) {
@@ -145,7 +145,7 @@ export const actions = {
 
           res.bundled._observables = observables(res.bundled)
 
-          commit(types.SET_LOADING, {text: 'Initializing', done: 1})
+          commit(types.UI_SET_LOADING, {text: 'Initializing', done: 1})
 
           setTimeout(() => {
             Object.freeze(res.bundled.tags)
@@ -153,7 +153,7 @@ export const actions = {
             Object.freeze(res.bundled._metas)
             Object.freeze(res.bundled)
 
-            commit(types.SET_SPEC, {
+            commit(types.SPEC_SET, {
               resources: res.bundled.tags,
               operations: res.bundled._operations,
               spec: res.bundled,
@@ -163,8 +163,8 @@ export const actions = {
               url: url
             })
 
-            commit(types.RECENT_UNSHIFT, {url, title: res.bundled.info.title})
-            commit(types.SET_LOADING, false)
+            commit(types.RECENT_SET_UNSHIFT, {url, title: res.bundled.info.title})
+            commit(types.UI_SET_LOADING, false)
           }, 0)
         }, 0)
       }
@@ -173,20 +173,20 @@ export const actions = {
         return
       }
 
-      commit(types.SET_LOADING, false)
+      commit(types.UI_SET_LOADING, false)
       console.warn(err)
-      commit(types.SET_ERROR, err)
+      commit(types.UI_SET_ERROR, err)
     })
   }
 }
 
 export const getters = {
-  [types.OPERATION]: (state) => state.operation,
-  [types.METAS]: (state) => state.metas,
-  [types.OPERATIONS]: (state) => state.operations,
-  [types.RESOURCES]: (state) => state.resources,
+  [types.SPEC_OPERATION]: (state) => state.operation,
+  [types.SPEC_METAS]: (state) => state.metas,
+  [types.SPEC_OPERATIONS]: (state) => state.operations,
+  [types.SPEC_RESOURCES]: (state) => state.resources,
   [types.SPEC]: (state) => state.spec,
-  [types.JSON]: (state) => state.json,
+  [types.SPEC_JSON]: (state) => state.json,
   [types.SPEC_URL]: (state) => state.url
 }
 

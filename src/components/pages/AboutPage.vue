@@ -4,7 +4,7 @@
     v-divider
     v-layout.mt-3.mb-3
       v-flex
-        .subheading.pt-2 Version {{VERSION}}
+        .subheading.pt-2 Version {{APP_VERSION}}
       v-spacer
       v-btn.ma-0(flat @click="reload") Reload
     v-divider.mb-3
@@ -30,7 +30,7 @@
     v-layout.pb-3
       v-flex.pt-3.pb-3(style="max-width: 260px")
         app-log(v-if="LOADING", :items="LOADING", :log="true")
-        app-log(v-else :items="LOG", :log="true")
+        app-log(v-else :items="UI_LOG", :log="true")
 </template>
 
 <script>
@@ -50,9 +50,9 @@
     },
     computed: {
       ...mapGetters([
-        types.VERSION,
-        types.LOG,
-        types.LOADING
+        types.APP_VERSION,
+        types.UI_LOG,
+        types.UI_LOADING
       ])
     },
     methods: {

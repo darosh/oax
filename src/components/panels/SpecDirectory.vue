@@ -2,7 +2,7 @@
   div
     v-divider
     v-layout.pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
-      v-text-field(spellcheck="false" v-hotkey="{'':''}" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="MENU && value")
+      v-text-field(spellcheck="false" v-hotkey="{'':''}" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="UI_LEFT_DRAWER && value")
     v-list.pa-0(two-line v-if="APIS")
       virtual-scroller.scroller(:items="filtered()", item-height="73" prerender="20", key-field="key")
         template(scope="props")
@@ -45,10 +45,10 @@
     },
     computed: {
       ...mapGetters([
-        types.MENU
+        types.UI_LEFT_DRAWER
       ]),
       active () {
-        return this.MENU && this.value
+        return this.UI_LEFT_DRAWER && this.value
       }
     },
     methods: {

@@ -28,13 +28,13 @@
           return this.item._._value
         },
         set (value) {
-          this.SET_VALUE({item: this.item, value: value})
+          this.SPEC_SET_VALUE({item: this.item, value: value})
         }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_VALUE
+        types.SPEC_SET_VALUE
       ])
     }
   }

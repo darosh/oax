@@ -1,28 +1,28 @@
 <template lang="pug">
-  v-container(fluid v-if="OPERATIONS").pl-4.pr-4.pa-3-sm
+  v-container(fluid v-if="SPEC_OPERATIONS").pl-4.pr-4.pa-3-sm
     v-data-table.elevation-1(:headers="headers", :items="items" hide-actions)
       template(slot="items" scope="props")
-        td(@click="SET_OPERATION(props.item.op)") {{props.item.op._id}}
-        td(@click="SET_OPERATION(props.item.op)")
+        td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op._id}}
+        td(@click="SPEC_SET_OPERATION(props.item.op)")
           app-method(:item="props.item.op._method")
-        td(@click="SET_OPERATION(props.item.op)")
+        td(@click="SPEC_SET_OPERATION(props.item.op)")
           app-path(:name="props.item.op._pathName")
-        td(@click="SET_OPERATION(props.item.op)") {{props.item.op.tags.join(', ')}}
-        td(@click="SET_OPERATION(props.item.op)") {{props.item.op._.summary}}
+        td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op.tags.join(', ')}}
+        td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op._.summary}}
         //td
         //  v-icon(v-if="props.item.op._.summary" success) check_circle
         //  v-icon(v-else error) cancel
         //td
         //  v-icon(v-if="props.item.op._.description" success) check_circle
         //  v-icon(v-else error) cancel
-        td(@click="SET_OPERATION(props.item.op)") {{props.item.op.parameters && props.item.op.parameters.length}}
-        td(@click="SET_OPERATION(props.item.op)")
+        td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op.parameters && props.item.op.parameters.length}}
+        td(@click="SPEC_SET_OPERATION(props.item.op)")
           app-response.mr-1(:code="code" v-for="(response, code) in props.item.op.responses", :key="code")
         td
           template(v-for="(s, index) in props.item.schemas")
             span(v-if="index")=", "
             a(@click="") {{s}}
-        <!--td(@click.stop="SET_OPERATION(props.item)") {{props.item.security}}-->
+        <!--td(@click.stop="SPEC_SET_OPERATION(props.item)") {{props.item.security}}-->
 </template>
 
 <script>
@@ -63,18 +63,18 @@
     },
     computed: {
       ...mapGetters([
-        types.IS_DESCRIPTION,
-        types.OPERATIONS,
-        types.OPERATION,
+        types.VIEW_SUMMARY,
+        types.SPEC_OPERATIONS,
+        types.SPEC_OPERATION,
         types.SPEC
       ]),
       items () {
         const items = []
 
-        while (items.length < this.OPERATIONS.length) {
+        while (items.length < this.SPEC_OPERATIONS.length) {
           items.push({
-            op: this.OPERATIONS[items.length],
-            schemas: this.schemas(this.OPERATIONS[items.length], this.SPEC)
+            op: this.SPEC_OPERATIONS[items.length],
+            schemas: this.schemas(this.SPEC_OPERATIONS[items.length], this.SPEC)
           })
         }
 
@@ -83,7 +83,7 @@
     },
     methods: {
       ...mapMutations([
-        types.SET_OPERATION
+        types.SPEC_SET_OPERATION
       ]),
       schemas
     }

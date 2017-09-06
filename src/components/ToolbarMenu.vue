@@ -1,6 +1,6 @@
 <template lang="pug">
   v-list(subheader)
-    v-list-tile.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click="SET_DIALOG('security')")
+    v-list-tile.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click="UI_SET_DIALOG('security')")
       v-list-tile-action
         v-icon lock
       v-list-tile-content
@@ -8,85 +8,85 @@
 
     v-divider.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_DARK()")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_DARK()")
       v-list-tile-action
         v-icon brightness_4
       v-list-tile-content
         v-list-tile-title Dark theme
-      v-list-tile-action(v-if="IS_DARK")
+      v-list-tile-action(v-if="VIEW_DARK")
         v-icon check
 
     v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_PATH()")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_PATH()")
       v-list-tile-action
         v-icon directions
       v-list-tile-content
         v-list-tile-title Path
-      v-list-tile-action(v-if="IS_PATH")
+      v-list-tile-action(v-if="VIEW_PATH")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_DESCRIPTION()")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_SUMMARY()")
       v-list-tile-action
         v-icon speaker_notes
       v-list-tile-content
         v-list-tile-title Summary
-      v-list-tile-action(v-if="IS_DESCRIPTION")
+      v-list-tile-action(v-if="VIEW_SUMMARY")
         v-icon check
 
     v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_WIDE()")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_WIDE()")
       v-list-tile-action
         v-icon settings_ethernet
       v-list-tile-content
         v-list-tile-title Wide
-      v-list-tile-action(v-if="IS_WIDE")
+      v-list-tile-action(v-if="VIEW_WIDE")
         v-icon check
 
     v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
 
     v-subheader(v-if="!c", :class="{'hidden-sm-and-up': b}") View
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(0)")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(0)")
       v-list-tile-action
         v-icon view_column
       v-list-tile-content
         v-list-tile-title Tags
-      v-list-tile-action(v-if="IS_GROUPED === 0")
+      v-list-tile-action(v-if="VIEW_VIEW === 0")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(1)")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(1)")
       v-list-tile-action
         v-icon view_module
       v-list-tile-content
         v-list-tile-title Operations
-      v-list-tile-action(v-if="IS_GROUPED === 1")
+      v-list-tile-action(v-if="VIEW_VIEW === 1")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(2)")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(2)")
       v-list-tile-action
         v-icon view_stream
       v-list-tile-content
         v-list-tile-title Table
-      v-list-tile-action(v-if="IS_GROUPED === 2")
+      v-list-tile-action(v-if="VIEW_VIEW === 2")
         v-icon check
 
 
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(3)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
       v-list-tile-action
         v-icon view_quilt
       v-list-tile-content
         v-list-tile-title Documentation
-      v-list-tile-action(v-if="IS_GROUPED === 3")
+      v-list-tile-action(v-if="VIEW_VIEW === 3")
         v-icon check
 
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_GROUPED(4)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(4)")
       v-list-tile-action
         v-icon widgets
       v-list-tile-content
         v-list-tile-title Definitions
-      v-list-tile-action(v-if="IS_GROUPED === 4")
+      v-list-tile-action(v-if="VIEW_VIEW === 4")
         v-icon check
 
     v-divider(v-if="b", :class="{'hidden-sm-and-up': b}")
@@ -140,34 +140,34 @@
     },
     computed: {
       ...mapGetters([
-        types.IS_API,
-        types.IS_DARK,
-        types.IS_DESCRIPTION,
-        types.IS_PATH,
-        types.IS_GROUPED,
-        types.MENU,
-        types.URL,
+        types.APP_API_PAGE,
+        types.VIEW_DARK,
+        types.VIEW_SUMMARY,
+        types.VIEW_PATH,
+        types.VIEW_VIEW,
+        types.UI_LEFT_DRAWER,
+        types.SETTINGS_URL,
         types.SPEC,
-        types.PAGE_NAME,
-        types.SEARCH,
-        types.IS_WIDE
+        types.APP_PAGE_NAME,
+        types.SETTINGS_SEARCH,
+        types.VIEW_WIDE
       ])
     },
     methods: {
       ...mapMutations([
-        types.TOGGLE_DARK,
-        types.TOGGLE_GROUPED,
-        types.TOGGLE_WIDE,
-        types.TOGGLE_DESCRIPTION,
-        types.TOGGLE_PATH,
-        types.SET_DIALOG,
-        types.SET_SEARCH,
-        types.FILTER_RESOURCES,
-        types.TOGGLE_RESOURCES,
-        types.SET_MENU
+        types.VIEW_SET_DARK,
+        types.VIEW_SET_VIEW,
+        types.VIEW_SET_WIDE,
+        types.VIEW_SET_SUMMARY,
+        types.VIEW_SET_PATH,
+        types.UI_SET_DIALOG,
+        types.SETTINGS_SET_SEARCH,
+        types.SPEC_SET_FILTER_RESOURCES,
+        types.SPEC_SET_RESOURCES,
+        types.UI_SET_LEFT_DRAWER
       ]),
       ...mapActions([
-        types.LOAD_URL
+        types.SPEC_SET_LOAD_URL
       ])
     }
   }

@@ -1,8 +1,8 @@
 <template lang="pug">
   // TODO v-toolbar(fixed scroll-off-screen scroll-target="main")
   v-toolbar(fixed)
-    template(v-if="IS_API")
-      v-btn(v-if="!MENU" icon, @click.stop="SET_MENU()", :class="searching ? 'hidden-xs-only' : ''")
+    template(v-if="APP_API_PAGE")
+      v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
       v-toolbar-title(:class="searching ? 'hidden-sm-and-down' : ''") API
       v-spacer
@@ -11,16 +11,16 @@
           v-icon search
         div(class="searching", :class="{'searching--closed': !searching}")
           v-text-field(spellcheck="false" id="search" append-icon="close", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line)
-        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
+        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
           v-icon keyboard_arrow_down
-        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="IS_GROUPED === 0" icon @click.native.stop="TOGGLE_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
+        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
           v-icon keyboard_arrow_up
         v-menu.hidden-xs-only(bottom left)
           v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
             v-icon visibility
           app-toolbar-menu(type="a")
 
-      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
+      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="UI_SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
         v-icon lock
 
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
@@ -29,7 +29,7 @@
         app-toolbar-menu(type="b")
 
     template(v-else)
-      v-toolbar-title {{PAGE_NAME}}
+      v-toolbar-title {{APP_PAGE_NAME}}
       v-spacer
       v-toolbar-items
         v-btn(flat href="#/" tag="a") API
@@ -59,41 +59,41 @@
     },
     computed: {
       ...mapGetters([
-        types.IS_API,
-        types.IS_DARK,
-        types.IS_DESCRIPTION,
-        types.IS_GROUPED,
-        types.MENU,
-        types.URL,
+        types.APP_API_PAGE,
+        types.VIEW_DARK,
+        types.VIEW_SUMMARY,
+        types.VIEW_VIEW,
+        types.UI_LEFT_DRAWER,
+        types.SETTINGS_URL,
         types.SPEC,
-        types.PAGE_NAME,
-        types.SEARCH,
-        types.IS_WIDE
+        types.APP_PAGE_NAME,
+        types.SETTINGS_SEARCH,
+        types.VIEW_WIDE
       ]),
       search: {
         get () {
-          return this.searching ? this.SEARCH : null
+          return this.searching ? this.SETTINGS_SEARCH : null
         },
         set (value) {
-          this.SET_SEARCH(value)
-          this.FILTER_RESOURCES(value)
+          this.SETTINGS_SET_SEARCH(value)
+          this.SPEC_SET_FILTER_RESOURCES(value)
         }
       }
     },
     methods: {
       ...mapMutations([
-        types.TOGGLE_DARK,
-        types.TOGGLE_GROUPED,
-        types.TOGGLE_WIDE,
-        types.TOGGLE_DESCRIPTION,
-        types.SET_DIALOG,
-        types.SET_SEARCH,
-        types.FILTER_RESOURCES,
-        types.TOGGLE_RESOURCES,
-        types.SET_MENU
+        types.VIEW_SET_DARK,
+        types.VIEW_SET_VIEW,
+        types.VIEW_SET_WIDE,
+        types.VIEW_SET_SUMMARY,
+        types.UI_SET_DIALOG,
+        types.SETTINGS_SET_SEARCH,
+        types.SPEC_SET_FILTER_RESOURCES,
+        types.SPEC_SET_RESOURCES,
+        types.UI_SET_LEFT_DRAWER
       ]),
       ...mapActions([
-        types.LOAD_URL
+        types.SPEC_SET_LOAD_URL
       ]),
       searchBegin () {
         this.searching = true
@@ -101,8 +101,8 @@
         setTimeout(() => {
           document.getElementById('search').focus()
 
-          if (this.SEARCH) {
-            this.FILTER_RESOURCES(this.SEARCH)
+          if (this.SETTINGS_SEARCH) {
+            this.SPEC_SET_FILTER_RESOURCES(this.SETTINGS_SEARCH)
           }
         }, 50)
       },
@@ -111,8 +111,8 @@
 
         document.getElementById('search').blur()
 
-        if (this.SEARCH) {
-          this.FILTER_RESOURCES(null)
+        if (this.SETTINGS_SEARCH) {
+          this.SPEC_SET_FILTER_RESOURCES(null)
         }
       }
     }

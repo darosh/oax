@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(v-hotkey="keymap", :dark="IS_DARK")
+  v-app(v-hotkey="keymap", :dark="VIEW_DARK")
     div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-menu
     app-drawer
@@ -25,8 +25,8 @@
             v-icon close
         v-divider
         v-card-text(style="padding-right: 26px;")
-          app-log(style="margin-bottom: 24px", v-if="LOADING", :items="LOADING", :log="true")
-          app-log(style="margin-bottom: 24px", v-else :items="LOG", :log="true")
+          app-log(style="margin-bottom: 24px", v-if="UI_LOADING", :items="UI_LOADING", :log="true")
+          app-log(style="margin-bottom: 24px", v-else :items="UI_LOG", :log="true")
     //app-tour
     #cm-full
 </template>
@@ -64,24 +64,24 @@
     },
     computed: {
       ...mapGetters([
-        types.IS_DARK,
-        types.LOG,
-        types.LOADING
+        types.VIEW_DARK,
+        types.UI_LOG,
+        types.UI_LOADING
       ]),
       keymap () {
         return {
           'esc': () => (this.log = !this.log),
-          'alt+q': () => (this.SET_MENU())
+          'alt+q': () => (this.UI_SET_LEFT_DRAWER())
         }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_WIDTH,
-        types.SET_MENU
+        types.UI_SET_WIDTH,
+        types.UI_SET_LEFT_DRAWER
       ]),
       resized () {
-        this.SET_WIDTH(window.innerWidth)
+        this.UI_SET_WIDTH(window.innerWidth)
       }
     }
   }

@@ -12,15 +12,15 @@
     },
     computed: {
       ...mapGetters([
-        types.IS_DESCRIPTION,
-        types.OPERATIONS,
-        types.OPERATION,
+        types.VIEW_SUMMARY,
+        types.SPEC_OPERATIONS,
+        types.SPEC_OPERATION,
         types.SPEC
       ])
     },
     methods: {
       ...mapMutations([
-        types.SET_OPERATION
+        types.SPEC_SET_OPERATION
       ])
     }
   }

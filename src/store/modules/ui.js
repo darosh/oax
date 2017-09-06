@@ -21,11 +21,11 @@ export const state = {
 }
 
 export const mutations = {
-  [types.SET_DIALOG] (state, payload = {type: null, param: null}) {
+  [types.UI_SET_DIALOG] (state, payload = {type: null, param: null}) {
     state.dialog.type = typeof payload === 'string' ? payload : payload.type
     state.dialog.param = typeof payload === 'string' ? null : payload.param
   },
-  [types.SET_LOADING] (state, payload) {
+  [types.UI_SET_LOADING] (state, payload) {
     if (payload === false) {
       state.loading[0].elapsed = Date.now() - state.loading[0].time
       state.loading.elapsed += state.loading[0].elapsed
@@ -47,45 +47,45 @@ export const mutations = {
       state.loading.unshift(payload)
     }
   },
-  [types.SET_ERROR] (state, payload) {
+  [types.UI_SET_ERROR] (state, payload) {
     state.error = payload
   },
-  [types.SET_FAB_METHOD] (state, payload) {
+  [types.UI_SET_FAB_METHOD] (state, payload) {
     state.fabMethod = payload
   },
-  [types.SET_FAB_PENDING] (state, payload) {
+  [types.UI_SET_FAB_PENDING] (state, payload) {
     state.fabPending = payload
   },
-  [types.SET_TAB] (state, payload) {
+  [types.UI_SET_TAB] (state, payload) {
     state.tab = payload
   },
-  [types.SET_WIDTH] (state, payload) {
+  [types.UI_SET_WIDTH] (state, payload) {
     state.width = payload
   },
-  [types.SET_DRAWER] (state, payload) {
+  [types.UI_SET_DRAWER] (state, payload) {
     state.drawer = payload
   },
-  [types.SET_MENU] (state, payload) {
+  [types.UI_SET_LEFT_DRAWER] (state, payload) {
     state.menu = typeof payload === 'undefined' ? !state.menu : payload
   },
-  [types.SET_ONLINE] (state, payload) {
+  [types.UI_SET_ONLINE] (state, payload) {
     state.online = payload
   }
 }
 
 export const getters = {
-  [types.DIALOG_IS]: state => type => state.dialog.type === type,
-  [types.DIALOG_PARAM]: state => state.dialog.param,
-  [types.ERROR]: state => state.error,
-  [types.LOADING]: state => state.loading,
-  [types.LOG]: state => state.log,
-  [types.FAB_METHOD]: state => state.fabMethod,
-  [types.FAB_PENDING]: state => state.fabPending,
-  [types.TAB]: state => state.tab,
-  [types.WIDTH]: state => state.width,
-  [types.DRAWER]: state => state.drawer,
-  [types.MENU]: state => state.menu,
-  [types.ONLINE]: state => state.online
+  [types.UI_DIALOG]: state => type => state.dialog.type === type,
+  [types.UI_DIALOG_PARAM]: state => state.dialog.param,
+  [types.UI_ERROR]: state => state.error,
+  [types.UI_LOADING]: state => state.loading,
+  [types.UI_LOG]: state => state.log,
+  [types.UI_FAB_METHOD]: state => state.fabMethod,
+  [types.UI_FAB_PENDING]: state => state.fabPending,
+  [types.UI_TAB]: state => state.tab,
+  [types.UI_WIDTH]: state => state.width,
+  [types.UI_RIGHT_DRAWER]: state => state.drawer,
+  [types.UI_LEFT_DRAWER]: state => state.menu,
+  [types.UI_ONLINE]: state => state.online
 }
 
 export default {

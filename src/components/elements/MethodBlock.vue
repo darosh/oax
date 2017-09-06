@@ -17,8 +17,8 @@
     props: ['item', 'sum'],
     computed: {
       ...mapGetters([
-        types.IS_DESCRIPTION,
-        types.IS_PATH])
+        types.VIEW_SUMMARY,
+        types.VIEW_PATH])
     },
     methods: {
       params (value) {

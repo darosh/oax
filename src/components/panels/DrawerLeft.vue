@@ -1,7 +1,7 @@
 <template lang="pug">
   v-navigation-drawer.pb-0(style="overflow: hidden" persistent v-model="menu", :mobile-break-point="1200", :enable-resize-watcher="true", :disable-route-watcher="true", :touchless="true")
     v-toolbar.elevation-0(style="background-color: transparent")
-      v-btn(icon @click.stop="SET_MENU(false)")
+      v-btn(icon @click.stop="UI_SET_LEFT_DRAWER(false)")
         v-icon close
       v-toolbar-title Specification
     //v-divider
@@ -47,19 +47,19 @@
     },
     computed: {
       ...mapGetters([
-        types.MENU,
-        types.IS_API
+        types.UI_LEFT_DRAWER,
+        types.APP_API_PAGE
       ]),
       menu: {
-        get () { return this.MENU && this.IS_API },
+        get () { return this.UI_LEFT_DRAWER && this.APP_API_PAGE },
         set (value) {
-          this.SET_MENU(!!value)
+          this.UI_SET_LEFT_DRAWER(!!value)
         }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_MENU
+        types.UI_SET_LEFT_DRAWER
       ])
     }
   }

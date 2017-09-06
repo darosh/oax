@@ -1,7 +1,7 @@
 <template lang="pug">
   v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
     div(style="height: 100%; overflow: auto")
-      app-detail(v-if="OPERATION", :operation="OPERATION")
+      app-detail(v-if="SPEC_OPERATION", :operation="SPEC_OPERATION")
 </template>
 
 <script>
@@ -19,31 +19,31 @@
     },
     computed: {
       ...mapGetters([
-        types.OPERATION,
-        types.IS_API,
-        types.WIDTH,
-        types.DRAWER
+        types.SPEC_OPERATION,
+        types.APP_API_PAGE,
+        types.UI_WIDTH,
+        types.UI_RIGHT_DRAWER
       ]),
       drawer: {
-        get () { return this.IS_API && this.DRAWER },
-        set (value) { this.SET_DRAWER(value) }
+        get () { return this.APP_API_PAGE && this.UI_RIGHT_DRAWER },
+        set (value) { this.UI_SET_DRAWER(value) }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_DRAWER
+        types.UI_SET_DRAWER
       ])
     },
     watch: {
-      OPERATION: function (val) {
+      SPEC_OPERATION: function (val) {
         setTimeout(() => {
           this.drawer = !!val
         }, 100)
       },
       drawer: function (val) {
-        if (val && !this.OPERATION) {
+        if (val && !this.SPEC_OPERATION) {
           Vue.nextTick(() => {
-            this.SET_DRAWER(false)
+            this.UI_SET_DRAWER(false)
           })
         }
       }

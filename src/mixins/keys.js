@@ -11,7 +11,7 @@ export default {
     }
   },
   created () {
-    this.LOAD_APIS()
+    this.APIS_RUN_LOAD()
   },
   computed: {
     ...mapGetters([
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      types.LOAD_APIS
+      types.APIS_RUN_LOAD
     ]),
     cache (url, value = false) {
       if (!this.cached[url]) {

@@ -5,16 +5,16 @@
         v-icon close
       v-toolbar-title Operation
       v-spacer
-      v-btn(icon @click.stop="PREV_OPERATION" v-tooltip:left="{html: 'Previous operation'}")
+      v-btn(icon @click.stop="SPEC_SET_PREV_OPERATION" v-tooltip:left="{html: 'Previous operation'}")
         v-icon skip_previous
-      v-btn(icon @click.stop="NEXT_OPERATION" v-tooltip:left="{html: 'Next operation'}")
+      v-btn(icon @click.stop="SPEC_SET_NEXT_OPERATION" v-tooltip:left="{html: 'Next operation'}")
         v-icon skip_next
       v-btn(icon v-tooltip:left="{html: 'Operation authorization'}")
         v-icon lock_open
     v-divider
     div.toolbar--scroll
       div.pt-3.pl-0.pr-0.pb-3
-        app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="SET_DIALOG({type: 'method', param: operation._method})")
+        app-operation.hover--block.pl-3.pr-3(:item="operation", v-ripple="", @click.native.stop="UI_SET_DIALOG({type: 'method', param: operation._method})")
         .pl-3.pr-3.pt-3(v-if="operation._.summary || operation._.description" v-markdown.summary="operation._")
       //v-divider
       v-tabs.app--tabs(grow v-model="tab", :scrollable="false")
@@ -62,23 +62,23 @@
     },
     computed: {
       ...mapGetters([
-        types.TAB
+        types.UI_TAB
       ]),
       tab: {
-        get () { return this.operation._._result ? this.TAB : 'tab-info' },
-        set (value) { this.SET_TAB(value) }
+        get () { return this.operation._._result ? this.UI_TAB : 'tab-info' },
+        set (value) { this.UI_SET_TAB(value) }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_TAB,
-        types.SET_DIALOG,
-        types.SET_DRAWER,
-        types.PREV_OPERATION,
-        types.NEXT_OPERATION
+        types.UI_SET_TAB,
+        types.UI_SET_DIALOG,
+        types.UI_SET_DRAWER,
+        types.SPEC_SET_PREV_OPERATION,
+        types.SPEC_SET_NEXT_OPERATION
       ]),
       close () {
-        this.SET_DRAWER(false)
+        this.UI_SET_DRAWER(false)
       }
     }
   }

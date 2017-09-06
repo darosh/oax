@@ -4,7 +4,7 @@
       v-toolbar.elevation-0(style="background-color: transparent")
         v-toolbar-title Security
         v-spacer
-        v-btn(icon @click.native.stop="SET_DIALOG()")
+        v-btn(icon @click.native.stop="UI_SET_DIALOG()")
           v-icon close
       v-divider
       v-tabs.dlg-tabs(v-if="SPEC && (tab && active || activated)" v-model="tab", :scrollable="false" style="max-height: calc(90vh - 64px - 1px); overflow: auto")
@@ -63,24 +63,24 @@
     },
     computed: {
       ...mapGetters([
-        types.DIALOG_IS,
+        types.UI_DIALOG,
         types.SPEC
       ]),
       active: {
         get () {
-          this.activated = this.DIALOG_IS('security') || this.activated
-          return this.DIALOG_IS('security')
+          this.activated = this.UI_DIALOG('security') || this.activated
+          return this.UI_DIALOG('security')
         },
         set (value) {
           if (!value) {
-            this.SET_DIALOG()
+            this.UI_SET_DIALOG()
           }
         }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_DIALOG
+        types.UI_SET_DIALOG
       ]),
       setTab (val) {
         if (val) {

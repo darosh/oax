@@ -108,7 +108,7 @@ window.OAX.app = new Vue({
       url = qoq ? decodeURIComponent(qoq[1]) : url
     }
 
-    store.dispatch(types.LOAD_URL, url || configuration.url)
+    store.dispatch(types.SPEC_SET_LOAD_URL, url || configuration.url)
     this.online()
     window.addEventListener('online', this.online)
     window.addEventListener('offline', this.online)
@@ -116,9 +116,9 @@ window.OAX.app = new Vue({
   methods: {
     online () {
       if (typeof window.navigator.onLine === 'undefined') {
-        store.commit(types.SET_ONLINE, true)
+        store.commit(types.UI_SET_ONLINE, true)
       } else {
-        store.commit(types.SET_ONLINE, navigator.onLine)
+        store.commit(types.UI_SET_ONLINE, navigator.onLine)
       }
     }
   }

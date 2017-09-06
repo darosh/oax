@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container(fluid).pl-4.pr-4.pa-3-sm
     v-layout(row wrap).stretch
-      v-flex(xs12 sm6 md4 lg3 xl20p v-ripple="" relative v-if="item._._display" v-for="(item, key) in OPERATIONS", :key="item._id", @click.stop="SET_OPERATION(item)", :class="{'secondary white--text': OPERATION === OPERATIONS[key]}").hover--block
+      v-flex(xs12 sm6 md4 lg3 xl20p v-ripple="" relative v-if="item._._display" v-for="(item, key) in SPEC_OPERATIONS", :key="item._id", @click.stop="SPEC_SET_OPERATION(item)", :class="{'secondary white--text': SPEC_OPERATION === SPEC_OPERATIONS[key]}").hover--block
         v-divider.hidden-xs-only
         .pt-1.pb-1.plr-3-sm
-          app-operation(:item="OPERATIONS[key]")
-          div(v-if="IS_DESCRIPTION && (item._.summary || item._.description)")
+          app-operation(:item="SPEC_OPERATIONS[key]")
+          div(v-if="VIEW_SUMMARY && (item._.summary || item._.description)")
             .pt-1.pr-1(style="padding-left: 68px" v-markdown.summary="item._")
         v-divider.hidden-sm-and-up
 </template>
@@ -27,14 +27,14 @@
     },
     computed: {
       ...mapGetters([
-        types.IS_DESCRIPTION,
-        types.OPERATIONS,
-        types.OPERATION
+        types.VIEW_SUMMARY,
+        types.SPEC_OPERATIONS,
+        types.SPEC_OPERATION
       ])
     },
     methods: {
       ...mapMutations([
-        types.SET_OPERATION
+        types.SPEC_SET_OPERATION
       ])
     }
   }

@@ -9,39 +9,37 @@ const defaultState = {
   grouped: 0,
   wide: false,
   description: false,
-  path: true,
-  endpoint: true
+  path: true
 }
 
 export const state = storedState || defaultState
 
 export const mutations = {
-  [types.TOGGLE_DARK] (state) {
+  [types.VIEW_SET_DARK] (state) {
     state.dark = !state.dark
   },
-  [types.TOGGLE_GROUPED] (state, payload) {
+  [types.VIEW_SET_VIEW] (state, payload) {
     state.grouped = payload
   },
-  [types.TOGGLE_WIDE] (state, payload) {
+  [types.VIEW_SET_WIDE] (state, payload) {
     state.wide = payload !== undefined ? payload : !state.wide
   },
-  [types.TOGGLE_DESCRIPTION] (state) {
+  [types.VIEW_SET_SUMMARY] (state) {
     state.description = !state.description
     state.path = !state.path && !state.description ? true : state.path
   },
-  [types.TOGGLE_PATH] (state) {
+  [types.VIEW_SET_PATH] (state) {
     state.path = !state.path
     state.description = !state.path && !state.description ? true : state.description
   }
 }
 
 export const getters = {
-  [types.IS_DARK]: state => state.dark,
-  [types.IS_GROUPED]: state => state.grouped,
-  [types.IS_WIDE]: state => state.wide,
-  [types.IS_DESCRIPTION]: state => state.description,
-  [types.IS_PATH]: state => state.path,
-  [types.IS_ENDPOINT]: state => state.endpoint
+  [types.VIEW_DARK]: state => state.dark,
+  [types.VIEW_VIEW]: state => state.grouped,
+  [types.VIEW_WIDE]: state => state.wide,
+  [types.VIEW_SUMMARY]: state => state.description,
+  [types.VIEW_PATH]: state => state.path
 }
 
 export default {

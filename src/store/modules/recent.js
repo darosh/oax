@@ -5,7 +5,7 @@ export const state = {
 }
 
 export const mutations = {
-  [types.RECENT_UNSHIFT] (state, payload) {
+  [types.RECENT_SET_UNSHIFT] (state, payload) {
     const past = state.recent.filter(item => item.url === payload.url)
 
     // if (past[0]) {
@@ -16,7 +16,7 @@ export const mutations = {
       state.recent.unshift(payload)
     }
   },
-  [types.RECENT_REMOVE] (state, payload) {
+  [types.RECENT_SET_REMOVE] (state, payload) {
     state.recent.splice(typeof payload === 'number' ? payload : state.recent.indexOf(payload), 1)
   }
 }

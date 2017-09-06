@@ -13,7 +13,7 @@
                 v-list-tile-title {{props.item.title}}
                 v-list-tile-sub-title {{key(props.item)}}
               v-list-tile-action
-                v-btn(icon ripple @click.capture.stop.prevent="RECENT_REMOVE(props.item)")
+                v-btn(icon ripple @click.capture.stop.prevent="RECENT_SET_REMOVE(props.item)")
                   v-icon close
             v-divider
 </template>
@@ -32,11 +32,11 @@
     },
     methods: {
       ...mapMutations([
-        types.RECENT_REMOVE
+        types.RECENT_SET_REMOVE
       ]),
       ...mapActions([
-        types.LOAD_URL,
-        types.EDIT_JSON
+        types.SPEC_SET_LOAD_URL,
+        types.SPEC_SET_EDIT_JSON
       ]),
       encodeURIComponent
     }

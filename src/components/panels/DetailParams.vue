@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panel(expand :class="IS_DARK ? 'application--dark' : 'application--light'")
+  v-expansion-panel(expand :class="VIEW_DARK ? 'application--dark' : 'application--light'")
     v-expansion-panel-content(v-model="exp1", ripple)
       div.subheading(slot="header") Settings
       v-divider
@@ -36,7 +36,7 @@
       appResponseBlock
     },
     created () {
-      this.SET_FAB_METHOD(this.execute)
+      this.UI_SET_FAB_METHOD(this.execute)
     },
     data () {
       return {
@@ -53,7 +53,7 @@
     computed: {
       ...mapGetters([
         types.SPEC,
-        types.IS_DARK
+        types.VIEW_DARK
       ]),
       schema () {
         return schema(this.item)
@@ -65,34 +65,34 @@
     },
     methods: {
       ...mapMutations([
-        types.SET_DIALOG,
-        types.SET_FAB_METHOD,
-        types.SET_TAB,
-        types.SET_RESULT,
-        types.SET_FAB_PENDING,
-        types.SET_DRAWER,
-        types.SET_OPERATION
+        types.UI_SET_DIALOG,
+        types.UI_SET_FAB_METHOD,
+        types.UI_SET_TAB,
+        types.SPEC_SET_RESULT,
+        types.UI_SET_FAB_PENDING,
+        types.UI_SET_DRAWER,
+        types.SPEC_SET_OPERATION
       ]),
       execute () {
         const item = this.item
-        this.SET_FAB_PENDING(true)
-        this.SET_RESULT({operation: item, error: null, result: null})
+        this.UI_SET_FAB_PENDING(true)
+        this.SPEC_SET_RESULT({operation: item, error: null, result: null})
         execute(this.item, this.SPEC).then(res => {
-          this.SET_FAB_PENDING(false)
-          this.SET_RESULT({operation: item, error: null, result: res})
-          this.SET_OPERATION(item)
+          this.UI_SET_FAB_PENDING(false)
+          this.SPEC_SET_RESULT({operation: item, error: null, result: res})
+          this.SPEC_SET_OPERATION(item)
           this.open()
-          this.SET_TAB('tab-result')
+          this.UI_SET_TAB('tab-result')
         }).catch(err => {
-          this.SET_FAB_PENDING(false)
-          this.SET_RESULT({operation: item, error: err, result: err.response || err})
-          this.SET_OPERATION(item)
+          this.UI_SET_FAB_PENDING(false)
+          this.SPEC_SET_RESULT({operation: item, error: err, result: err.response || err})
+          this.SPEC_SET_OPERATION(item)
           this.open()
-          this.SET_TAB('tab-result')
+          this.UI_SET_TAB('tab-result')
         })
       },
       open () {
-        this.SET_DRAWER(true)
+        this.UI_SET_DRAWER(true)
       }
     }
   }

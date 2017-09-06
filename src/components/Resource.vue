@@ -11,9 +11,9 @@
         v-divider(v-if="item.externalDocs && item.externalDocs.url")
         .pt-3.pb-3
           div(v-if="o._._display", v-for="(o, i) in item._operations", :key="o._id")
-            .hover--block.relative(v-ripple="", @click.stop="SET_OPERATION(o)", :class="{'secondary white--text': OPERATION === o}")
-              app-operation.pl-3.pr-3(:sum="!IS_PATH", :item="o" v-if="IS_ENDPOINT")
-              div(v-if="IS_DESCRIPTION && IS_PATH")
+            .hover--block.relative(v-ripple="", @click.stop="SPEC_SET_OPERATION(o)", :class="{'secondary white--text': SPEC_OPERATION === o}")
+              app-operation.pl-3.pr-3(:sum="!VIEW_PATH", :item="o")
+              div(v-if="VIEW_SUMMARY && VIEW_PATH")
                 .pt-1.pr-3.pb-1(v-if="o._.summary || o._.description" style="padding-left: 84px" v-markdown.summary="o._")
                 .pl-3.pr-3
                   v-divider(v-if="i < (item._operations.length - 1)")
@@ -37,20 +37,19 @@
     props: ['item'],
     computed: {
       ...mapGetters([
-        types.IS_DESCRIPTION,
-        types.IS_PATH,
-        types.IS_ENDPOINT,
-        types.OPERATION
+        types.VIEW_SUMMARY,
+        types.VIEW_PATH,
+        types.SPEC_OPERATION
       ]),
       opened: {
         get () { return this.item._._opened },
-        set (value) { this.SET_RESOURCE({resource: this.item, opened: value}) }
+        set (value) { this.SPEC_SET_RESOURCE({resource: this.item, opened: value}) }
       }
     },
     methods: {
       ...mapMutations([
-        types.SET_OPERATION,
-        types.SET_RESOURCE
+        types.SPEC_SET_OPERATION,
+        types.SPEC_SET_RESOURCE
       ])
     }
   }

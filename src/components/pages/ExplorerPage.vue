@@ -1,15 +1,15 @@
 <template lang="pug">
-  v-container(fluid :class="ERROR ? 'pa-0' : ''")
-    v-layout.ma-0(v-if="LOADING")
+  v-container(fluid :class="UI_ERROR ? 'pa-0' : ''")
+    v-layout.ma-0(v-if="UI_LOADING")
       v-spacer
       div.pt-2
-        v-progress-linear(:value="Math.round(LOADING[0].done * 100)", :height="4", class="primary--text")
-        app-log(:items="LOADING")
+        v-progress-linear(:value="Math.round(UI_LOADING[0].done * 100)", :height="4", class="primary--text")
+        app-log(:items="UI_LOADING")
       v-spacer
-    v-alert.ma-0(error v-if="ERROR" value="true")
-      .pre(v-if="!ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
-      span(v-if="ERROR.message") {{ERROR.message}}
-    div(v-if="!SEARCH && SPEC && SPEC.info && (IS_GROUPED < 2)")
+    v-alert.ma-0(error v-if="UI_ERROR" value="true")
+      .pre(v-if="!UI_ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
+      span(v-if="UI_ERROR.message") {{UI_ERROR.message}}
+    div(v-if="!SETTINGS_SEARCH && SPEC && SPEC.info && (VIEW_VIEW < 2)")
       v-container.pa-0-sm(fluid grid-list-xl)
         v-layout(column)
           v-flex
@@ -22,12 +22,12 @@
                     v-layout
                       div.main-description(v-markdown="SPEC.info._")
 
-      app-meta-list(v-if="METAS", :metas="METAS")
-    app-resource-list(:class="{wide: IS_WIDE}" v-if="IS_GROUPED === 0")
-    app-operation-list(:class="{wide: IS_WIDE}" v-else-if="IS_GROUPED === 1")
-    app-operation-table(v-else-if="IS_GROUPED === 2")
-    app-documentation(v-else-if="IS_GROUPED === 3")
-    app-definitions(v-else-if="IS_GROUPED === 4")
+      app-meta-list(v-if="SPEC_METAS", :metas="SPEC_METAS")
+    app-resource-list(:class="{wide: VIEW_WIDE}" v-if="VIEW_VIEW === 0")
+    app-operation-list(:class="{wide: VIEW_WIDE}" v-else-if="VIEW_VIEW === 1")
+    app-operation-table(v-else-if="VIEW_VIEW === 2")
+    app-documentation(v-else-if="VIEW_VIEW === 3")
+    app-definitions(v-else-if="VIEW_VIEW === 4")
     app-method-dialog
     app-status-dialog
     app-header-dialog
@@ -70,31 +70,31 @@
     },
     computed: {
       ...mapGetters([
-        types.METAS,
-        types.ERROR,
-        types.LOADING,
-        types.IS_GROUPED,
-        types.IS_WIDE,
-        types.OPERATIONS,
-        types.RESOURCES,
+        types.SPEC_METAS,
+        types.UI_ERROR,
+        types.UI_LOADING,
+        types.VIEW_VIEW,
+        types.VIEW_WIDE,
+        types.SPEC_OPERATIONS,
+        types.SPEC_RESOURCES,
         types.SPEC,
-        types.SEARCH
+        types.SETTINGS_SEARCH
       ])
     },
     methods: {
       ...mapActions([
-        types.LOAD_URL
+        types.SPEC_SET_LOAD_URL
       ])
     },
     created () {
       if (this.$route.query.url) {
-        //        this.LOAD_URL(this.$route.query.url)
+        //        this.SPEC_SET_LOAD_URL(this.$route.query.url)
       }
     },
     watch: {
       $route: function (value) {
         if (value.query.url) {
-          this.LOAD_URL(value.query.url)
+          this.SPEC_SET_LOAD_URL(value.query.url)
         }
       }
     }

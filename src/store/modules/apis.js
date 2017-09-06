@@ -9,7 +9,7 @@ export const state = {
 }
 
 export const mutations = {
-  [types.SET_APIS] (state, payload) {
+  [types.APIS_SET] (state, payload) {
     state.apis = payload
   }
 }
@@ -17,7 +17,7 @@ export const mutations = {
 let loadingApis = false
 
 export const actions = {
-  [types.LOAD_APIS] ({commit}) {
+  [types.APIS_RUN_LOAD] ({commit}) {
     if (loadingApis || state.apis) {
       return
     }
@@ -30,14 +30,14 @@ export const actions = {
         const data = res.data.query.results.json
         const apis = getApis(data)
         loadingApis = false
-        commit(types.SET_APIS, apis)
+        commit(types.APIS_SET, apis)
       })
     } else {
       axios.get(LIST).then(res => {
         const data = res.data
         const apis = getApis(data)
         loadingApis = false
-        commit(types.SET_APIS, apis)
+        commit(types.APIS_SET, apis)
       })
     }
 

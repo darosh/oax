@@ -19,7 +19,7 @@
         v-spacer
         a(v-if="status[2]" class="btn btn--flat primary--text" target="_blank", :href="status[3]")
           div(class="btn__content btn--short") Spec
-        v-btn(flat @click.native.stop="SET_DIALOG()") Close
+        v-btn(flat @click.native.stop="UI_SET_DIALOG()") Close
 </template>
 
 <script>

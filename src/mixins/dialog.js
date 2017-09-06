@@ -12,36 +12,36 @@ export default {
     }
   },
   created () {
-    if (this.DIALOG_PARAM && this.active) {
-      this.show(this.DIALOG_PARAM)
+    if (this.UI_DIALOG_PARAM && this.active) {
+      this.show(this.UI_DIALOG_PARAM)
     }
   },
   computed: {
     ...mapGetters([
-      types.DIALOG_IS,
-      types.DIALOG_PARAM
+      types.UI_DIALOG,
+      types.UI_DIALOG_PARAM
     ]),
-    activated: function () { return this.DIALOG_IS(this.dialog) },
+    activated: function () { return this.UI_DIALOG(this.dialog) },
     active: {
       get () {
-        return this.initialized && this.DIALOG_IS(this.dialog)
+        return this.initialized && this.UI_DIALOG(this.dialog)
       },
       set (value) {
         if (!value) {
-          this.SET_DIALOG()
+          this.UI_SET_DIALOG()
         }
       }
     }
   },
   methods: {
     ...mapMutations([
-      types.SET_DIALOG
+      types.UI_SET_DIALOG
     ])
   },
   watch: {
     activated: function (val) {
       if (val) {
-        this.show(this.DIALOG_PARAM)
+        this.show(this.UI_DIALOG_PARAM)
       }
     }
   }
