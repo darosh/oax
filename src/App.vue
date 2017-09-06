@@ -16,6 +16,7 @@
       //span  Operations
       //v-icon list
       router-view
+    // app-download-dialog
     v-dialog(width="300" v-model="log" hide-overlay persistent)
       v-card
         v-toolbar.transparent.elevation-0
@@ -45,6 +46,7 @@
       appDrawer: () => import('./components/panels/DrawerRight'),
       appMenu: () => import('./components/panels/DrawerLeft'),
       appToolbar: () => import('./components/Toolbar'),
+      //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
       appLog: () => import('./components/Log'),
       appTour
     },

@@ -1,11 +1,11 @@
 <template lang="pug">
-  v-dialog(v-model="active" fullscreen transition="dialog-bottom-transition")
+  v-dialog(v-model="active" fullscreen transition="dialog-bottom-transition", :overlay="false")
     v-card
       v-layout(column style="height: 100vh")
         v-toolbar.transparent.elevation-0
           v-btn(icon @click="UI_SET_DIALOG()")
             v-icon keyboard_backspace
-          v-toolbar-title Download
+          v-toolbar-title.hidden-xs-only Download
           v-spacer.hidden-xs-only
           .ml-4.hidden-sm-and-up
           v-radio-group(v-model="json" mandatory style="max-width: 220px")
@@ -46,9 +46,15 @@
       },
       update () {
         this.blob = null
-        blobUrl({json: this.json, bundled: this.bundled}).then(res => {
-          this.blob = res.blob
-        })
+
+        if (this.active) {
+          const start = Date.now()
+          blobUrl({json: this.json, bundled: this.bundled}).then(res => {
+            setTimeout(() => {
+              this.blob = res.blob
+            }, Math.max(320 - Date.now() + start, 0))
+          })
+        }
       }
     },
     watch: {
@@ -59,7 +65,7 @@
   }
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus">
   iframe
     width: 100%
     margin: 0
@@ -67,4 +73,7 @@
 
   .dialog__content
     z-index 1000
+
+  .dialog--fullscreen
+    overflow hidden
 </style>
