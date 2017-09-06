@@ -8,6 +8,7 @@
 - [ ] disable animation config
 - [ ] use vuetify resize?
 - [ ] navigation top, meta. ops
+- [ ] fix all url parsers to use new URL()?
   
 ##### UI
 
