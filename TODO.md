@@ -2,13 +2,6 @@
 
 #### Internal
 
-- [x] freeze to view, unfreeze for edit
-- [x] refactor model to: md or html (not both)
-- [x] editing partial updates in UI thread
-- [x] extract menu tabs to components
-- [x] remove md.js
-- [x] refactor OAX global
-- [x] extract common base path
 - [ ] check if params are inherited
 - [ ] debounce value to config
 - [ ] debounce search
@@ -19,21 +12,14 @@
 ##### UI
 
 - ###### Toolbar
-  - [x] fix search input
   - [ ] hide on scroll
 
 - ###### Editor
-  - [x] full screen
-  - [x] highlight color
-  - [x] fix esc key
-  - [x] dark editor
   - [ ] search
   - [ ] folding
   - [ ] linting
 
 - ###### Misc
-  - [x] refactor syntax stylus
-  - [x] dialog blink
   - [ ] dialog mixin bug
   - [ ] set title
   - [ ] fix model/scheme switch
@@ -44,12 +30,8 @@
   - [ ] security
   - [ ] load worker directly, without webworkify
   - [ ] discriminator? https://github.com/kevinoid/appveyor-swagger
-
-- ###### Menu
-  - [x] reorder tabs: dir, rec, edit, test
-  - [x] highlight cached APIs
-
-- hide path
-- fix dialog not showing after table http ref page view
-- hide dir after click on mobile
-- fix dialogs on mobile
+  - [ ] fix dialog not showing after table http ref page view
+  - [ ] hide dir after click on mobile
+  - [ ] fix dialogs on mobile
+  - [ ] https://github.com/APIs-guru/openapi-sampler
+  - [ ] https://github.com/jonschlinkert/remarkable
