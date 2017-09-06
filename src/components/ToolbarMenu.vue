@@ -6,12 +6,24 @@
       v-list-tile-content
         v-list-tile-title(style="min-width: 100px") Authorization
 
+    v-divider.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length")
+
     v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_DARK()")
       v-list-tile-action
         v-icon {{IS_DARK ? 'brightness_5' : 'brightness_4'}}
       v-list-tile-content
         v-list-tile-title Dark theme
       v-list-tile-action(v-if="IS_DARK")
+        v-icon check
+
+    v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
+
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_PATH()")
+      v-list-tile-action
+        v-icon {{IS_PATH ? 'remove_circle' : 'directions'}}
+      v-list-tile-content
+        v-list-tile-title Path
+      v-list-tile-action(v-if="IS_PATH")
         v-icon check
 
     v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_DESCRIPTION()")
@@ -68,22 +80,12 @@
 
     v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
 
-    v-subheader(v-if="!c", :class="{'hidden-sm-and-up': b}") Layout
-
     v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_WIDE()")
       v-list-tile-action
-        v-icon short_text
+        v-icon settings_ethernet
       v-list-tile-content
-        v-list-tile-title Wide
+        v-list-tile-title Wide layout
       v-list-tile-action(v-if="IS_WIDE")
-        v-icon check
-
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="TOGGLE_WIDE()")
-      v-list-tile-action
-        v-icon wrap_text
-      v-list-tile-content
-        v-list-tile-title Condensed
-      v-list-tile-action(v-if="!IS_WIDE")
         v-icon check
 
     v-divider(v-if="b", :class="{'hidden-sm-and-up': b}")
@@ -94,17 +96,17 @@
 
       v-list-tile(to="/http-methods" tag="a")
         v-list-tile-action
-          v-icon description
+          v-icon web_asset
         v-list-tile-title Methods
 
       v-list-tile(to="/http-statuses" tag="a")
         v-list-tile-action
-          v-icon description
+          v-icon web_asset
         v-list-tile-title Statuses
 
       v-list-tile(to="/http-headers" tag="a")
         v-list-tile-action
-          v-icon description
+          v-icon web_asset
         v-list-tile-title Headers
 
       v-divider
@@ -140,6 +142,7 @@
         types.IS_API,
         types.IS_DARK,
         types.IS_DESCRIPTION,
+        types.IS_PATH,
         types.IS_GROUPED,
         types.MENU,
         types.URL,
@@ -155,6 +158,7 @@
         types.TOGGLE_GROUPED,
         types.TOGGLE_WIDE,
         types.TOGGLE_DESCRIPTION,
+        types.TOGGLE_PATH,
         types.SET_DIALOG,
         types.SET_SEARCH,
         types.FILTER_RESOURCES,

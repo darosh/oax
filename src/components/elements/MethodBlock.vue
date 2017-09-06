@@ -1,20 +1,30 @@
 <template lang="pug">
   div.operation(:class="{deprecated: item.deprecated}")
     app-method(:item="item._method")
-    .operation--message.pl-1(v-html="params(item._pathName)")
+    .operation--message.pl-1.markdown(v-if="sum && item._.summary") {{item._.summary}}
+    .operation--message.pl-1(v-else-if="!(sum && item._.summary)" v-html="params(item._pathName)")
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import * as types from '../../store/types'
   import appMethod from './Method'
 
   export default {
     components: {
       appMethod
     },
-    props: ['item'],
+    props: ['item', 'sum'],
+    computed: {
+      ...mapGetters([
+        types.IS_DESCRIPTION,
+        types.IS_PATH])
+    },
     methods: {
       params (value) {
-        return value.replace(/\//g, '/\u200b').replace(/{/g, '<span class="param text-success">').replace(/}/g, '</span>')
+        return value.replace(/\//g, '/\u200b')
+          .replace(/{/g, '<span class="param text-success">')
+          .replace(/}/g, '</span>')
       }
     }
   }

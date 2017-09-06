@@ -4,12 +4,14 @@ export const TOGGLE_DARK = 'TOGGLE_DARK'
 export const TOGGLE_GROUPED = 'TOGGLE_GROUPED'
 export const TOGGLE_WIDE = 'TOGGLE_WIDE'
 export const TOGGLE_DESCRIPTION = 'TOGGLE_DESCRIPTION'
+export const TOGGLE_PATH = 'TOGGLE_PATH'
 
 export const IS_DARK = 'IS_DARK'
 // TODO IS_GROUPED is VIEW enum now, should be renamed somehow
 export const IS_GROUPED = 'IS_GROUPED'
 export const IS_WIDE = 'IS_WIDE'
 export const IS_DESCRIPTION = 'IS_DESCRIPTION'
+export const IS_PATH = 'IS_PATH'
 export const IS_ENDPOINT = 'IS_ENDPOINT'
 
 // settings

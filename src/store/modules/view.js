@@ -9,6 +9,7 @@ const defaultState = {
   grouped: 0,
   wide: false,
   description: false,
+  path: true,
   endpoint: true
 }
 
@@ -26,6 +27,11 @@ export const mutations = {
   },
   [types.TOGGLE_DESCRIPTION] (state) {
     state.description = !state.description
+    state.path = !state.path && !state.description ? true : state.path
+  },
+  [types.TOGGLE_PATH] (state) {
+    state.path = !state.path
+    state.description = !state.path && !state.description ? true : state.description
   }
 }
 
@@ -34,6 +40,7 @@ export const getters = {
   [types.IS_GROUPED]: state => state.grouped,
   [types.IS_WIDE]: state => state.wide,
   [types.IS_DESCRIPTION]: state => state.description,
+  [types.IS_PATH]: state => state.path,
   [types.IS_ENDPOINT]: state => state.endpoint
 }
 

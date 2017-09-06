@@ -51,3 +51,5 @@
 
 - hide path
 - fix dialog not showing after table http ref page view
+- hide dir after click on mobile
+- fix dialogs on mobile
