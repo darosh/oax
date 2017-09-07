@@ -11,6 +11,8 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
   const headers: IExtra = {};
   let body: any = null;
 
+  headers['Content-Type'] = operation._._produces;
+
   for (const param of (operation.parameters as Parameter[]) || []) {
     // This is my 1st as-any-as ever! :-)))
     const value = (param as any as IParameterExtended)._._value;

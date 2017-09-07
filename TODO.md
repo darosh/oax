@@ -36,3 +36,16 @@
   - [ ] fix dialogs on mobile
   - [ ] https://github.com/APIs-guru/openapi-sampler
   - [ ] https://github.com/jonschlinkert/remarkable
+
+{
+  "swaggerUrl": "https://darosh.github.io/openapi-directory-lite/specs/swagger.io/generator/2.2.3.yaml",
+  "localVariablePrefix": "_",
+  "invokerPackage": "Test",
+  "apiPackage": "Test",
+  "modelPackage": "Test",
+  "projectName": "Test",
+  "moduleName": "Test",
+  "projectDescription": "Test",
+  "projectVersion": "1",
+  "projectLicenseName": "MIT"
+}
