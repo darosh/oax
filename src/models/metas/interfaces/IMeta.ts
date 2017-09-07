@@ -5,4 +5,5 @@ export interface IMeta {
   link?: string;
   download?: string;
   image?: string;
+  dialog?: string;
 }

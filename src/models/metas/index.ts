@@ -7,6 +7,11 @@ export function metas(spec: Spec): IMeta[] {
   const contact: Contact = info.contact || {};
   const license: License = info.license || {} as any;
 
+  function origin() {
+    const o = (info as IExtra)['x-origin'];
+    return (o && o[0] && o[0].url) || (o && o.url)
+  }
+
   return [
     {
       icon: 'person',
@@ -68,19 +73,20 @@ export function metas(spec: Spec): IMeta[] {
     {
       download: 'JSON / YAML',
       icon: 'file_download',
-      title: 'Specification'
+      title: 'Specification',
+      dialog: 'download'
     },
-    // {
-    //   download: 'swagger.yaml',
-    //   icon: 'file_download',
-    //   link: '#',
-    //   title: 'YAML'
-    // },
+    {
+      download: 'Client / Server',
+      icon: 'file_download',
+      title: 'Generate code',
+      dialog: 'generator'
+    },
     {
       icon: 'cloud_download',
-      link: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url,
+      link: origin(),
       title: 'Origin',
-      value: (info as IExtra)['x-origin'] && (info as IExtra)['x-origin'].url
+      value: origin()
     }
   ];
 }

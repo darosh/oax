@@ -5,8 +5,8 @@ import {mdInfo, mdOperations, mdParameters, mdResponses, mdSecurity, mdTags} fro
 import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
-import {extras} from "./methods/extras";
 import {base} from "./methods/base";
+// import {extras} from "./methods/extras";
 // import {observables} from './methods/observables';
 
 /* tslint:disable */
@@ -23,7 +23,7 @@ const phase = {
   mdOperations: [9, 'operations', 'Markdown'],
   mdParameters: [10, 'parameters', 'Markdown'],
   mdResponses: [11, 'responses', 'Markdown'],
-  extras: [12, 'extras', 'Cleaning']
+  // extras: [12, 'extras', 'Cleaning']
   // observables: [13, 'observables', 'Collecting']
 };
 /* tslint:enable */
@@ -88,9 +88,8 @@ export function OAS(spec: ISpecExtended,
   log(phase.mdResponses, progress);
   mdResponses(spec, 10);
 
-  log(phase.extras, progress);
-  extras(spec);
-
+  // log(phase.extras, progress);
+  // extras(spec);
 
   // log(phase.observables, progress);
   // (spec as any)._observables = observables(spec);

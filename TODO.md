@@ -36,6 +36,7 @@
   - [ ] fix dialogs on mobile
   - [ ] https://github.com/APIs-guru/openapi-sampler
   - [ ] https://github.com/jonschlinkert/remarkable
+  - [ ] fix grid columns
 
 {
   "swaggerUrl": "https://darosh.github.io/openapi-directory-lite/specs/swagger.io/generator/2.2.3.yaml",

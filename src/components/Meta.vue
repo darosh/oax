@@ -1,6 +1,6 @@
 <template lang="pug">
   v-list.list--single(two-line subheader)
-    v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :ripple="!!(item.link || item.download)", @click.stop="item.download ? UI_SET_DIALOG('download') : null")
+    v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :ripple="!!(item.link || item.download)", @click.stop="item.dialog ? UI_SET_DIALOG(item.dialog) : null")
       v-list-tile-avatar
         v-icon.white--text.secondary {{item.icon}}
       v-list-tile-content
