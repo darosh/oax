@@ -8,7 +8,7 @@
     v-tabs(v-model="tab")
       v-tabs-items
         v-tabs-content#tab-dir-1
-          v-toolbar.elevation-0(dense v-if="category")
+          v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
             v-toolbar-title.subheading(style="margin-top: 2px") {{APIS_CATEGORIES[category].title}}
               <!--div.body-1(style="width: 50%") {{APIS_CATEGORIES[category].description}}-->
             v-spacer
@@ -29,7 +29,7 @@
                       v-icon file_download
                   v-divider
         v-tabs-content#tab-dir-2.scroller
-          v-container(fluid grid-list-sm)
+          v-container(fluid grid-list-sm v-if="APIS")
             v-layout(row wrap)
               v-flex(xs4 d-flex, @click="setCategory(null)")
                 div.btn--category(v-ripple="")
