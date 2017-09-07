@@ -74,6 +74,7 @@ export const SETTINGS_SET_SEARCH = 'SETTINGS_SET_SEARCH'
 
 // apis
 export const APIS = 'APIS'
+export const APIS_CATEGORIES = 'APIS_CATEGORIES'
 export const APIS_SET = 'APIS_SET'
 export const APIS_RUN_LOAD = 'APIS_RUN_LOAD'
 
