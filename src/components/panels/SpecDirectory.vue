@@ -9,7 +9,7 @@
       v-tabs-items
         v-tabs-content#tab-dir-1
           v-toolbar.elevation-0(dense v-if="category")
-            v-toolbar-title.subheading {{APIS_CATEGORIES[category].title}}
+            v-toolbar-title.subheading(style="margin-top: 2px") {{APIS_CATEGORIES[category].title}}
               <!--div.body-1(style="width: 50%") {{APIS_CATEGORIES[category].description}}-->
             v-spacer
             v-btn(icon @click="category = null")
