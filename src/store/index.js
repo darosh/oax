@@ -10,6 +10,7 @@ import * as view from './modules/view'
 import * as spec from './modules/spec'
 import * as ui from './modules/ui'
 import * as settings from './modules/settings'
+import * as generator from './modules/generator'
 
 Vue.use(Vuex)
 
@@ -27,7 +28,8 @@ export default new Vuex.Store({
     view,
     spec,
     ui,
-    settings
+    settings,
+    generator
   }
   // strict: process.env.NODE_ENV !== 'production'
 })
