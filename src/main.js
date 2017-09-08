@@ -11,6 +11,8 @@ import App from './App'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import VueHotkey from 'v-hotkey/src/index'
 
+import { selectMixin, select } from './utils/select'
+
 // import Vuetify from 'vuetify'
 
 import {
@@ -89,6 +91,12 @@ Vue.config.productionTip = false
 sync(store, router)
 
 window.OAX = window.OAX || {}
+
+if (process.env !== 'production') {
+  window.OAX.select = select
+}
+
+Vue.mixin(selectMixin)
 
 /* eslint-disable no-new */
 window.OAX.app = new Vue({

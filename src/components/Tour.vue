@@ -15,25 +15,14 @@
         visible: false
       }
     },
-    created () {
-      setTimeout(() => {
-        this.highlight(document.querySelector('#app > nav > div > button:nth-child(1) .icon'))
-      }, 3000)
-      setTimeout(() => {
-        this.highlight(document.querySelector('.expansion-panel__header'))
-      }, 4000)
-      setTimeout(() => {
-        this.highlight(document.querySelector('.list--single'))
-      }, 5000)
-    },
     methods: {
       position,
       highlight (el) {
         const pos = this.position(el)
         this.top = pos.top + 'px'
         this.left = pos.left + 'px'
-        this.width = pos.width + 'px'
-        this.height = pos.height + 'px'
+        this.width = Math.max(pos.width, pos.height) + 'px'
+        this.height = Math.max(pos.width, pos.height) + 'px'
         this.visible = true
       }
     }
@@ -44,7 +33,7 @@
   div.focus
     height: 0
     width: 0
-    border-radius: 5px
+    border-radius: 50%
     position: absolute
     z-index: 9999
 
@@ -56,6 +45,7 @@
 
     top: 50%
     left: 50%
+
     // box-shadow: 0 0 0 120vmax rgba(0, 0, 0, 0.9)
-    box-shadow: rgba(64, 64, 64, 0.8) 0px 0px 0px 125vmax
+    box-shadow: rgba(66, 165, 245, 0.8) 0px 0px 0px 125vmax
 </style>

@@ -28,7 +28,7 @@
         v-card-text(style="padding-right: 26px;")
           app-log(style="margin-bottom: 24px", v-if="UI_LOADING", :items="UI_LOADING", :log="true")
           app-log(style="margin-bottom: 24px", v-else :items="UI_LOG", :log="true")
-    //app-tour
+    app-tour
     #cm-full
 </template>
 
