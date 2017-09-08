@@ -79,7 +79,7 @@ export function metas(spec: Spec): IMeta[] {
     {
       download: 'Client / Server',
       icon: 'file_download',
-      title: 'Generate code',
+      title: 'Code generator',
       dialog: 'generator'
     },
     {
