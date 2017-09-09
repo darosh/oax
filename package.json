@@ -25,7 +25,7 @@
     "parse5": "^3.0.2",
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
-    "showdown": "^1.7.2",
+    "showdown": "^1.7.4",
     "v-hotkey": "^0.2.0",
     "vue": "^2.4.2",
     "vue-codemirror": "^3.1.4",
