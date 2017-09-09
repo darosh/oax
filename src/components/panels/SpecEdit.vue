@@ -8,7 +8,7 @@
           //v-radio.ma-0.pt-0.pb-0.ml-1(v-for="i in formats", :key="i.text", :label="i.text", :value="i.value", color="primary" hide-details)
     v-divider
     div#cm-wrap
-      codemirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
+      app-codemirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
 </template>
 
 <script>
@@ -16,7 +16,7 @@
   import * as types from '../../store/types'
 
   import focus from '../../directives/focus'
-  import codemirror from '../CodeMirror'
+  import appCodemirror from '../CodeMirror'
 
   require('codemirror/addon/display/fullscreen.css')
   require('codemirror/addon/display/fullscreen.js')
@@ -26,7 +26,7 @@
       focus
     },
     components: {
-      codemirror
+      appCodemirror
     },
     props: ['value'],
     data () {

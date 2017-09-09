@@ -40,6 +40,7 @@ export const UI_RIGHT_DRAWER = 'UI_RIGHT_DRAWER'
 export const UI_TAB = 'UI_TAB'
 export const UI_WIDTH = 'UI_WIDTH'
 export const UI_ANIMATION = 'UI_ANIMATION'
+export const UI_HIGHLIGHT = 'UI_HIGHLIGHT'
 // ui set
 export const UI_SET_DIALOG = 'UI_SET_DIALOG'
 export const UI_SET_DRAWER = 'UI_SET_DRAWER'

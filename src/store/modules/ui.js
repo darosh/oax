@@ -18,7 +18,12 @@ export const state = {
   drawer: false,
   menu: false,
   online: false,
-  animation: true
+  animation: true,
+  highlight: null
+  // highlight: {
+  //   el: 'app-meta',
+  //   text: 'Metadata'
+  // }
 }
 
 export const mutations = {
@@ -87,7 +92,8 @@ export const getters = {
   [types.UI_RIGHT_DRAWER]: state => state.drawer,
   [types.UI_LEFT_DRAWER]: state => state.menu,
   [types.UI_ONLINE]: state => state.online,
-  [types.UI_ANIMATION]: state => state.animation
+  [types.UI_ANIMATION]: state => state.animation,
+  [types.UI_HIGHLIGHT]: state => state.highlight
 }
 
 export default {

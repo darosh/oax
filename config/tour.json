@@ -1,0 +1,13 @@
+[
+  {
+    "url": "/",
+    "query": {
+      "url": "https://darosh.github.io/openapi-directory-lite/specs/github.com/v3.yaml"
+    },
+    "run": [
+    ],
+    "highlight": {
+      "select": ""
+    }
+  }
+]

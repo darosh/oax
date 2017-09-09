@@ -1,8 +1,8 @@
 <template lang="pug">
   v-app(v-resize="resized", :class="classes" v-hotkey="keymap", :dark="VIEW_DARK")
     div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
-    app-menu
-    app-drawer
+    app-drawer-left
+    app-drawer-right
     app-toolbar
     main
       <!--v-bottom-nav.white(:value="true")-->
@@ -28,7 +28,7 @@
         v-card-text(style="padding-right: 26px;")
           app-log(style="margin-bottom: 24px", v-if="UI_LOADING", :items="UI_LOADING", :log="true")
           app-log(style="margin-bottom: 24px", v-else :items="UI_LOG", :log="true")
-    //app-tour
+    app-tour(v-if="UI_HIGHLIGHT")
     #cm-full
 </template>
 
@@ -43,8 +43,8 @@
     //      hotkey
     //    },
     components: {
-      appDrawer: () => import('./components/panels/DrawerRight'),
-      appMenu: () => import('./components/panels/DrawerLeft'),
+      appDrawerRight: () => import('./components/panels/DrawerRight'),
+      appDrawerLeft: () => import('./components/panels/DrawerLeft'),
       appToolbar: () => import('./components/Toolbar'),
       //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
       appLog: () => import('./components/Log'),
@@ -63,7 +63,8 @@
         types.VIEW_DARK,
         types.UI_LOG,
         types.UI_LOADING,
-        types.UI_ANIMATION
+        types.UI_ANIMATION,
+        types.UI_HIGHLIGHT
       ]),
       keymap () {
         return {
