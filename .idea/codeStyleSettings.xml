@@ -12,6 +12,9 @@
           <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
           <option name="SPACES_WITHIN_IMPORTS" value="true" />
         </JSCodeStyleSettings>
+        <JSON>
+          <option name="ARRAY_WRAPPING" value="0" />
+        </JSON>
         <codeStyleSettings language="JavaScript">
           <option name="RIGHT_MARGIN" value="80" />
           <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
