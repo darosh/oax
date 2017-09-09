@@ -83,7 +83,8 @@
               this.UI_SET_LEFT_DRAWER()
             }
           },
-          'alt+l': () => (this.log = !this.log)
+          'alt+l': () => (this.log = !this.log),
+          'alt+t': () => (this.VIEW_SET_DARK())
         }
       },
       classes () {
@@ -97,7 +98,8 @@
         types.UI_SET_WIDTH,
         types.UI_SET_DIALOG,
         types.UI_SET_LEFT_DRAWER,
-        types.UI_SET_DRAWER
+        types.UI_SET_DRAWER,
+        types.VIEW_SET_DARK
       ]),
       resized () {
         this.UI_SET_WIDTH(window.innerWidth)
