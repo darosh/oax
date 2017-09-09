@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(v-resize="resized" v-hotkey="keymap", :dark="VIEW_DARK")
+  v-app(v-resize="resized", :class="classes" v-hotkey="keymap", :dark="VIEW_DARK")
     div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-menu
     app-drawer
@@ -62,12 +62,18 @@
       ...mapGetters([
         types.VIEW_DARK,
         types.UI_LOG,
-        types.UI_LOADING
+        types.UI_LOADING,
+        types.UI_ANIMATION
       ]),
       keymap () {
         return {
           'esc': () => (this.log = !this.log),
           'alt+q': () => (this.UI_SET_LEFT_DRAWER())
+        }
+      },
+      classes () {
+        return {
+          'no-animation': !this.UI_ANIMATION
         }
       }
     },

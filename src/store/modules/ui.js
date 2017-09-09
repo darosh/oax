@@ -17,7 +17,8 @@ export const state = {
   width: null,
   drawer: false,
   menu: false,
-  online: false
+  online: false,
+  animation: true
 }
 
 export const mutations = {
@@ -85,7 +86,8 @@ export const getters = {
   [types.UI_WIDTH]: state => state.width,
   [types.UI_RIGHT_DRAWER]: state => state.drawer,
   [types.UI_LEFT_DRAWER]: state => state.menu,
-  [types.UI_ONLINE]: state => state.online
+  [types.UI_ONLINE]: state => state.online,
+  [types.UI_ANIMATION]: state => state.animation
 }
 
 export default {
