@@ -9,7 +9,7 @@
       v-tabs-items
         v-tabs-content#tab-dir-1
           v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
-            v-toolbar-title.subheading(style="margin-top: 2px") {{APIS_CATEGORIES[category].title}}
+            v-toolbar-title.subheading(style="margin-top: 2px") {{category === true ? 'Uncategorized' : APIS_CATEGORIES[category].title}}
               <!--div.body-1(style="width: 50%") {{APIS_CATEGORIES[category].description}}-->
             v-spacer
             v-btn(icon @click="category = null")
@@ -46,6 +46,13 @@
                       v-icon(large) {{categories[key]}}
                     div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
                     div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
+              v-flex(xs4 d-flex, @click="setCategory(true)")
+                div.btn--category(v-ripple="")
+                  v-layout.btn--category__layout(column)
+                    div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
+                    div.btn--category__icon.text-xs-center
+                    div.btn--category__counter.pa-1.pl-2.subheading Uncategorized
+                    div.btn--category__text.pa-1.pl-2.subheading.black--text {{uncategorized}}
 </template>
 
 <script>
@@ -95,6 +102,11 @@
         },
         set () {
         }
+      },
+      uncategorized () {
+        if (this.APIS) {
+          return this.APIS.filter(d => !d.categories).length
+        }
       }
     },
     methods: {
@@ -107,8 +119,14 @@
           return this.APIS
         } else {
           return this.APIS.filter(item => {
-            if (this.category && ((item.categories || []).indexOf(this.category) === -1)) {
-              return false
+            if (this.category) {
+              if (this.category === true) {
+                if (item.categories) {
+                  return false
+                }
+              } else if ((item.categories || []).indexOf(this.category) === -1) {
+                return false
+              }
             }
 
             if (this.filter) {
