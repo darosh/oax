@@ -15,17 +15,17 @@
     "note": "OAS 3.0"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/docusign.net/v2.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/docusign.net/v2.json",
     "title": "DocuSign",
     "note": "Markdown"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/bitbucket.org/2.0.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/bitbucket.org/2.0.json",
     "title": "Bitbucket",
     "note": "Markdown code blocks"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/googleapis.com/discovery/v1.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/googleapis.com/discovery/v1.json",
     "title": "Google Discovery",
     "note": "Resolved bug"
   },
@@ -40,7 +40,7 @@
     "note": "Markdown"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/bbc.com/1.0.0.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/bbc.com/1.0.0.json",
     "title": "BBC Nitro",
     "note": "Large models/schemes"
   },
@@ -60,17 +60,17 @@
     "note": "External docs"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/apacta.com/0.0.1.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/apacta.com/0.0.1.json",
     "title": "Apacta",
     "note": "Large Markdown"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/apis.guru/2.0.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/apis.guru/2.0.json",
     "title": "APIs Guru",
     "note": "Try GET"
   },
   {
-    "url": "https://darosh.github.io/openapi-directory-lite/specs/traccar.org/3.13.yaml",
+    "url": "https://darosh.github.io/openapi-directory-lite/specs/traccar.org/3.13.json",
     "title": "Traccar",
     "note": "Short paths"
   },
