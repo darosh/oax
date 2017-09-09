@@ -1,7 +1,7 @@
 <template lang="pug">
   v-list.list--single(two-line subheader)
     v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :ripple="!!(item.link || item.download)", @click.stop="item.dialog ? UI_SET_DIALOG(item.dialog) : null")
-      v-list-tile-avatar
+      v-list-tile-avatar(:tile="!!item.dialog")
         v-icon.white--text.secondary {{item.icon}}
       v-list-tile-content
         v-list-tile-title {{ item.title }}
@@ -33,4 +33,7 @@
 
   img
     margin-top: 4px
+
+  .avatar--tile .icon
+    border-radius: 2px
 </style>

@@ -71,6 +71,12 @@ export function metas(spec: Spec): IMeta[] {
       value: info.version
     },
     {
+      icon: 'cloud_download',
+      link: origin(),
+      title: 'Origin',
+      value: origin()
+    },
+    {
       download: 'JSON / YAML',
       icon: 'file_download',
       title: 'Specification',
@@ -81,12 +87,6 @@ export function metas(spec: Spec): IMeta[] {
       icon: 'file_download',
       title: 'Code generator',
       dialog: 'generator'
-    },
-    {
-      icon: 'cloud_download',
-      link: origin(),
-      title: 'Origin',
-      value: origin()
     }
   ];
 }
