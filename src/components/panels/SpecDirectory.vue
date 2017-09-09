@@ -4,7 +4,7 @@
     v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-0.ma-0.elevation-2.relative
       v-text-field(spellcheck="false" v-hotkey="{'':''}" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="UI_LEFT_DRAWER && value")
       v-btn(icon @click="showFilter = !showFilter")
-        v-icon(:primary="showFilter") filter_list
+        v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
     v-tabs(v-model="tab")
       v-tabs-items
         v-tabs-content#tab-dir-1
@@ -194,6 +194,7 @@
 
   .btn--category__icon .icon
     color: rgba(255, 255, 255, .96)
+    fill: rgba(255, 255, 255, .96)
 
   .btn--category__counter
     position: absolute
@@ -216,4 +217,5 @@
       opacity: .87
     .btn--category__icon .icon
       color: rgba(0, 0, 0, .64)
+      fill: rgba(0, 0, 0, .64)
 </style>

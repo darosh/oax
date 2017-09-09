@@ -21,6 +21,7 @@
     "intersection-observer": "^0.4.0",
     "json-schema-bundler": "0.0.7",
     "json-stringify-pretty-compact": "^1.0.4",
+    "material-design-icons-svg": "^1.1.2",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "parse5": "^3.0.2",
     "random-material-color": "^1.0.3",
@@ -29,6 +30,7 @@
     "v-hotkey": "^0.2.0",
     "vue": "^2.4.2",
     "vue-codemirror": "^3.1.4",
+    "vue-icons": "^2.0.0",
     "vue-router": "^2.7.0",
     "vue-virtual-scroller": "^0.8.1",
     "vuetify": "^0.15.2",
@@ -125,6 +127,9 @@
     "report": "npm run build --report",
     "sample:gfm": "node ./config/sample-gfm.js",
     "screenshots": "node ./build/screenshots.js",
-    "tslint": "tslint --fix -c tslint.json src/**/*.ts"
+    "tslint": "tslint --fix -c tslint.json src/**/*.ts",
+    "vuetify:theme": "node ./build/copy.js ./config/vuetify/_custom.styl ./node_modules/vuetify/src/stylus/settings/_custom.styl",
+    "vuetify:icons": "node ./build/copy.js ./config/vuetify/VIcon.vue ./node_modules/vuetify/src/components/VIcon/VIcon.vue",
+    "vuetify": "npm run vuetify:theme && npm run vuetify:icons"
   }
 }

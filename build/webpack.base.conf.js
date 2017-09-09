@@ -1,6 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
+var webpack = require('webpack')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -8,6 +9,14 @@ function resolve (dir) {
 }
 
 module.exports = {
+  // plugins: [
+  //   new webpack.NormalModuleReplacementPlugin(
+  //     /VIcon\.vue/, function (resource) {
+  //       resource.request = resource.request.replace(/VIcon\.vue$/, '../../../../../src/components/elements/VIcon.vue')
+  //       console.log(resource.request)
+  //     }
+  //   ),
+  // ],
   entry: {
     app: './src/main.js',
     worker: './src/worker/worker.js'
