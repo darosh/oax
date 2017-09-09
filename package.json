@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.149",
+  "version": "1.0.151",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -128,8 +128,8 @@
     "sample:gfm": "node ./config/sample-gfm.js",
     "screenshots": "node ./build/screenshots.js",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts",
-    "vuetify:theme": "node ./build/copy.js ./config/vuetify/_custom.styl ./node_modules/vuetify/src/stylus/settings/_custom.styl",
+    "vuetify": "npm run vuetify:theme && npm run vuetify:icons",
     "vuetify:icons": "node ./build/copy.js ./config/vuetify/VIcon.vue ./node_modules/vuetify/src/components/VIcon/VIcon.vue",
-    "vuetify": "npm run vuetify:theme && npm run vuetify:icons"
+    "vuetify:theme": "node ./build/copy.js ./config/vuetify/_custom.styl ./node_modules/vuetify/src/stylus/settings/_custom.styl"
   }
 }

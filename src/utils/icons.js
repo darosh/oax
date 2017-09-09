@@ -71,4 +71,5 @@ export {default as view_module} from 'material-design-icons-svg/paths/view-modul
 export {default as view_stream} from 'material-design-icons-svg/paths/view-stream.json'
 export {default as visibility} from 'material-design-icons-svg/paths/eye.json'
 export {default as vpn_key} from 'material-design-icons-svg/paths/account-key.json'
+export {default as warning} from 'material-design-icons-svg/paths/alert.json'
 export {default as web_asset} from 'material-design-icons-svg/paths/file-document-box.json'
