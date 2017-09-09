@@ -6,3 +6,19 @@
 
 #oax .tabs__wrapper
   overflow-x visible
+
+@media only screen and (max-width: 799px)
+  #oax .toolbar .toolbar__content > *:not(.btn):first-child
+    margin-left: 16px
+
+  #oax .toolbar .toolbar__content > *.btn:first-child
+    margin-left: 12px
+
+  #oax .toolbar .toolbar__content > *:not(.btn):not(.menu):last-child
+    margin-right: 16px
+
+  #oax .toolbar .toolbar__content > *.menu:last-child
+    margin-right: 4px
+
+  #oax .toolbar .toolbar__content > *.btn:last-child
+    margin-right: 12px
