@@ -95,17 +95,17 @@
 
       v-subheader(style="min-width: 180px") HTTP Reference
 
-      v-list-tile(to="/http-methods" tag="a")
+      v-list-tile(to="/methods" tag="a")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Methods
 
-      v-list-tile(to="/http-statuses" tag="a")
+      v-list-tile(to="/statuses" tag="a")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Statuses
 
-      v-list-tile(to="/http-headers" tag="a")
+      v-list-tile(to="/headers" tag="a")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Headers

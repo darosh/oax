@@ -12,7 +12,7 @@
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
-        v-btn(flat icon to="http-statuses" tag="a")
+        v-btn(flat icon to="statuses" tag="a")
           v-icon list
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right

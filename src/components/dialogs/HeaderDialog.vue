@@ -11,7 +11,7 @@
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
-        v-btn(flat icon to="http-headers" tag="a")
+        v-btn(flat icon to="headers" tag="a")
           v-icon list
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right

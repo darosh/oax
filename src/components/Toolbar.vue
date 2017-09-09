@@ -33,9 +33,9 @@
       v-spacer
       v-toolbar-items
         v-btn(flat href="#/" tag="a") API
-        v-btn.hidden-xs-only(flat href="#/http-methods" tag="a") Methods
-        v-btn.hidden-xs-only(flat href="#/http-statuses" tag="a") Statuses
-        v-btn.hidden-xs-only(flat href="#/http-headers" tag="a") Headers
+        v-btn.hidden-xs-only(flat href="#/methods" tag="a") Methods
+        v-btn.hidden-xs-only(flat href="#/statuses" tag="a") Statuses
+        v-btn.hidden-xs-only(flat href="#/headers" tag="a") Headers
         v-btn.hidden-xs-only(flat href="#/about" tag="a") About
 
       v-menu.hidden-sm-and-up(bottom left)

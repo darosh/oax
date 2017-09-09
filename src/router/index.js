@@ -16,17 +16,17 @@ export default new Router({
       meta: {name: 'About'}
     },
     {
-      path: '/http-methods',
+      path: '/methods',
       component: () => import('../components/pages/MethodPage'),
       meta: {name: 'Methods'}
     },
     {
-      path: '/http-statuses',
+      path: '/statuses',
       component: () => import('../components/pages/StatusPage'),
       meta: {name: 'Statuses'}
     },
     {
-      path: '/http-headers',
+      path: '/headers',
       component: () => import('../components/pages/HeaderPage'),
       meta: {name: 'Headers'}
     }
