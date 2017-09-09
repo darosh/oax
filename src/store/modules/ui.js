@@ -15,8 +15,8 @@ export const state = {
   fabPending: false,
   tab: 'tab-info',
   width: null,
-  drawer: false,
-  menu: false,
+  right: false,
+  left: false,
   online: false,
   animation: true,
   highlight: null
@@ -69,10 +69,10 @@ export const mutations = {
     state.width = payload
   },
   [types.UI_SET_DRAWER] (state, payload) {
-    state.drawer = payload
+    state.right = payload
   },
   [types.UI_SET_LEFT_DRAWER] (state, payload) {
-    state.menu = typeof payload === 'undefined' ? !state.menu : payload
+    state.left = typeof payload === 'undefined' ? !state.left : payload
   },
   [types.UI_SET_ONLINE] (state, payload) {
     state.online = payload
@@ -89,8 +89,8 @@ export const getters = {
   [types.UI_FAB_PENDING]: state => state.fabPending,
   [types.UI_TAB]: state => state.tab,
   [types.UI_WIDTH]: state => state.width,
-  [types.UI_RIGHT_DRAWER]: state => state.drawer,
-  [types.UI_LEFT_DRAWER]: state => state.menu,
+  [types.UI_RIGHT_DRAWER]: state => state.right,
+  [types.UI_LEFT_DRAWER]: state => state.left,
   [types.UI_ONLINE]: state => state.online,
   [types.UI_ANIMATION]: state => state.animation,
   [types.UI_HIGHLIGHT]: state => state.highlight

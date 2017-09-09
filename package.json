@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.148",
+  "version": "1.0.149",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -115,6 +115,7 @@
   "scripts": {
     "build": "node build/build.js",
     "deploy": "npm --no-git-tag-version version patch && node build/build.js && deploy-to-gh-pages --local ./dist",
+    "deploy-manual": "cd ./dist && git push --force \"https://github.com/darosh/oax.git\" master:gh-pages",
     "dev": "node build/dev-server.js",
     "doc": "node ./build/doc.js",
     "http-header": "node build/http-data.js header > src/assets/http-header.json",

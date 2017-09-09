@@ -6,7 +6,7 @@ const getters = {
   [types.APP_API_PAGE]: state => state.route.path === '/',
   [types.APP_PATH]: state => state.route.path,
   [types.APP_PAGE_NAME]: state => state.route.meta.name,
-  [types.UI_FAB]: state => (state.route.path === '/') && !!state.spec.operation && state.ui.drawer
+  [types.UI_FAB]: state => (state.route.path === '/') && !!state.spec.operation && state.ui.right
 }
 
 export default getters
