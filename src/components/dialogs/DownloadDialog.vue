@@ -4,7 +4,7 @@
       v-layout(column style="height: 100vh")
         v-toolbar.transparent.elevation-0
           v-btn(icon @click="UI_SET_DIALOG()")
-            v-icon keyboard_backspace
+            v-icon close
           v-toolbar-title.hidden-xs-only Download
           v-spacer.hidden-xs-only
           .ml-4.hidden-sm-and-up

@@ -26,6 +26,7 @@ export const SPEC_SET_RESULT = 'SPEC_SET_RESULT'
 export const SPEC_SET_VALUE = 'SPEC_SET_VALUE'
 
 // ui
+export const UI_DLG = 'UI_DLG'
 export const UI_DIALOG = 'UI_DIALOG'
 export const UI_DIALOG_PARAM = 'UI_DIALOG_PARAM'
 export const UI_ERROR = 'UI_ERROR'

@@ -80,6 +80,7 @@ export const mutations = {
 }
 
 export const getters = {
+  [types.UI_DLG]: state => state.dialog.type,
   [types.UI_DIALOG]: state => type => state.dialog.type === type,
   [types.UI_DIALOG_PARAM]: state => state.dialog.param,
   [types.UI_ERROR]: state => state.error,

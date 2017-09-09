@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(v-resize="resized", :class="classes" v-hotkey="keymap", :dark="VIEW_DARK")
+  v-app(v-resize="resized", v-hotkey="keymap" , :class="classes", :dark="VIEW_DARK")
     div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-drawer-left
     app-drawer-right
@@ -63,13 +63,27 @@
         types.VIEW_DARK,
         types.UI_LOG,
         types.UI_LOADING,
+        types.UI_DIALOG,
+        types.UI_DLG,
+        types.UI_LEFT_DRAWER,
+        types.UI_RIGHT_DRAWER,
         types.UI_ANIMATION,
         types.UI_HIGHLIGHT
       ]),
       keymap () {
         return {
-          'esc': () => (this.log = !this.log),
-          'alt+q': () => (this.UI_SET_LEFT_DRAWER())
+          'esc': () => {
+            if (this.UI_DLG) {
+              this.UI_SET_DIALOG()
+            } else if (this.UI_LEFT_DRAWER) {
+              this.UI_SET_LEFT_DRAWER()
+            } else if (this.UI_RIGHT_DRAWER) {
+              this.UI_SET_DRAWER()
+            } else {
+              this.UI_SET_LEFT_DRAWER()
+            }
+          },
+          'alt+l': () => (this.log = !this.log)
         }
       },
       classes () {
@@ -81,7 +95,9 @@
     methods: {
       ...mapMutations([
         types.UI_SET_WIDTH,
-        types.UI_SET_LEFT_DRAWER
+        types.UI_SET_DIALOG,
+        types.UI_SET_LEFT_DRAWER,
+        types.UI_SET_DRAWER
       ]),
       resized () {
         this.UI_SET_WIDTH(window.innerWidth)
