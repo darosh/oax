@@ -6,11 +6,44 @@
     "lg": [1280, 720],
     "xl": [1920, 1080]
   },
+  "themes": {
+    "light": {
+      "eval": "OAX.state.view.dark = false"
+    },
+    "dark": {
+      "eval": "OAX.state.view.dark = true"
+    }
+  },
+  "before" : "OAX.state.ui.animation = false",
   "shots": [
     {
       "title": "loading",
-      "url": "",
-      "eval": [],
+      "url": "/",
+      "wait": ".expansion-panel",
+      "eval": "OAX.state.ui.loading = OAX.state.ui.log"
+    },
+    {
+      "title": "about",
+      "url": "/about",
+      "eval": null,
+      "el": null
+    },
+    {
+      "title": "methods",
+      "url": "/methods",
+      "eval": null,
+      "el": null
+    },
+    {
+      "title": "statuses",
+      "url": "/statuses",
+      "eval": null,
+      "el": null
+    },
+    {
+      "title": "headers",
+      "url": "/headers",
+      "eval": null,
       "el": null
     }
   ]
