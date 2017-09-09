@@ -28,8 +28,8 @@
                   =' '
                   b.body-2(v-if="GENERATOR_LANGUAGE") {{GENERATOR_LANGUAGE}}
               v-stepper-content(:step="2")
-                v-container(fluid)
-                  v-layout(row wrap style="margin: 0 -16px")
+                v-container.pa-0(fluid)
+                  v-layout(row wrap style="margin: 0 0")
                     v-flex(style="margin-right: -1px" xs12 sm6 md3 lg2 xl2 v-for="(l, key) in GENERATOR_LANGUAGES", :key="key")
                       v-radio-group.pa-0.ma-0(v-model="language", :mandatory="false" hide-details)
                         v-radio.pa-0(color="primary", :value="l", :label="l", @click.native="go(2)")
@@ -43,10 +43,10 @@
                   v-btn(primary @click="go(3, 'client')") Submit
               v-stepper-step(:step="4", :complete="step > 4", :editable="!!(GENERATOR_TYPE && GENERATOR_LANGUAGE && GENERATOR_GENERATED)") Download
               v-stepper-content(:step="4")
-                v-layout(row align-center v-if="!GENERATOR_GENERATED")
+                v-layout.mb-4(row align-center v-if="!GENERATOR_GENERATED")
                   v-progress-circular.mr-2(indeterminate class="primary--text")
                   v-flex Generaing code&hellip;
-                v-btn(v-else primary :href="GENERATOR_GENERATED") Download
+                v-btn.mb-4(v-else primary :href="GENERATOR_GENERATED") Download
 </template>
 
 <script>
