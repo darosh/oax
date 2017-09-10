@@ -1,4 +1,4 @@
-# Screenshots: md / dark <small>[888 &times; 666]</small>
+# Screenshots: md-dark <small>888&times;666</small>
 
 ## loading
 
