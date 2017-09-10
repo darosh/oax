@@ -48,4 +48,24 @@
 
 ## Test
 
-...
+ &nbsp;|SUI|RD|SUR|ASUIM|OAX|OAX:DEV
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
+|Petstore|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Petstore|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Petstore 3.0|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|DocuSign|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Bitbucket|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Google Discovery|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Drupal LoopBack API|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Swagger GFM|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|BBC Nitro|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Swagger 1.2|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Petstore Separate|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Petstore External|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Apacta|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|APIs Guru|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Traccar|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Thingful|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Polymorphic|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+|Swagger|[SUI]()|[RD]()|[SUR]()|[ASUIM]()|[OAX]()|[OAX:DEV]()|
+

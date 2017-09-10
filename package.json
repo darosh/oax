@@ -120,6 +120,7 @@
     "deploy-manual": "cd ./dist && git push --force \"https://github.com/darosh/oax.git\" master:gh-pages",
     "dev": "node build/dev-server.js",
     "doc": "node ./build/doc.js",
+    "doc:test": "node ./build/test.js",
     "http-header": "node build/http-data.js header > src/assets/http-header.json",
     "http-method": "node build/http-data.js method > src/assets/http-method.json",
     "http-status": "node build/http-data.js status > src/assets/http-status.json",
