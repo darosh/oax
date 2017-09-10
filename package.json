@@ -115,7 +115,7 @@
   },
   "private": true,
   "scripts": {
-    "app:http-data": "node build/http-data.js header > src/assets/http-header.json && node build/http-data.js method > src/assets/http-method.json && node build/http-data.js status > src/assets/http-status.json",
+    "app:http-data": "node build/app/http-data.js header > src/assets/http-header.json && node build/app/http-data.js method > src/assets/http-method.json && node build/app/http-data.js status > src/assets/http-status.json",
     "build": "node build/build.js",
     "deploy": "npm --no-git-tag-version version patch && node build/build.js && deploy-to-gh-pages --local ./dist",
     "deploy-push": "cd ./dist && git push --force \"https://github.com/darosh/oax.git\" master:gh-pages",
