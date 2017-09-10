@@ -65,7 +65,8 @@
         types.UI_TAB
       ]),
       tab: {
-        get () { return this.operation._._result ? this.UI_TAB : 'tab-info' },
+        // TODO get () { return this.operation._._result ? this.UI_TAB : 'tab-info' },
+        get () { return this.UI_TAB },
         set (value) { this.UI_SET_TAB(value) }
       }
     },

@@ -42,6 +42,14 @@
       "eval": "OAX.state.spec.operation = OAX.state.spec.operations[0]; OAX.state.ui.right = true"
     },
     {
+      "title": "request",
+      "eval": "OAX.select.vue('app-detail').tab = 'tab-params'"
+    },
+    {
+      "title": "code",
+      "eval": "OAX.select.vue('app-detail').tab = 'tab-script'"
+    },
+    {
       "title": "method",
       "eval": "OAX.state.ui.dialog = {type: 'method', param: 'get'}",
       "evalAfter": "OAX.state.ui.dialog = {type: null}"
