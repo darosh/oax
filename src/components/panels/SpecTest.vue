@@ -11,8 +11,8 @@
               v-list-tile-avatar(v-else)
                 v-icon(class="secondary white--text") link
               v-list-tile-content
-                v-list-tile-title {{props.item.note}}
-                v-list-tile-sub-title {{props.item.title}}
+                v-list-tile-title {{props.item.title}}
+                v-list-tile-sub-title {{props.item.note}}
               v-list-tile-action(v-if="cache(props.item.url)")
                 v-icon file_download
             v-divider
@@ -20,7 +20,7 @@
 
 <script>
   import keys from '../../mixins/keys'
-  import test from '../../assets/test'
+  import test from 'openapi-samples'
 
   export default {
     mixins: [keys],

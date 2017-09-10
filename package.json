@@ -23,6 +23,7 @@
     "json-stringify-pretty-compact": "^1.0.4",
     "material-design-icons-svg": "^1.1.2",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
+    "openapi-samples": "github:darosh/openapi-samples",
     "parse5": "^3.0.2",
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
