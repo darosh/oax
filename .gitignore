@@ -10,3 +10,5 @@ debug.log
 
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+
+package-lock.json
