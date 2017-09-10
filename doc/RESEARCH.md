@@ -48,6 +48,8 @@
 
 ## Testing
 
+**Warning:** some of the links bellow may freeze your browser.
+
  &nbsp;| &nbsp;|SUI|RD|SUR|ASUIM|OAX|&nbsp;
 ---:|:---|:---:|:---:|:---:|:---:|:---:|:---
 |1|Petstore 2.0|[A1](http://petstore.swagger.io/?url=https://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json)|[B1](https://rebilly.github.io/ReDoc/?url=https://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json)|[C1](http://swaggerui.herokuapp.com/?url=https://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json)|[D1](http://darosh.github.io/angular-swagger-ui-material/#/?url=https://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json)|[E1](https://darosh.github.io/oax/#/?url=https://cdn.rawgit.com/swagger-api/swagger-ui/f0fdc661/test/e2e/specs/petstore.json)||
