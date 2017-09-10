@@ -1,17 +1,19 @@
 # Research
 
-_Last updated 2017-09-10._
+**Disclaimer:** information bellow may be wrong or outdated.
+ 
+ _Last updated 2017-09-10._
 
 ## Tools
 
-|Source|Demo|Start|Contributors|Last|Status|
-|:---|:---:|---:|---:|---:|:---:|
-|[Swagger UI](https://github.com/swagger-api/swagger-ui)|[SUI](http://petstore.swagger.io/)|9113|255|2017-09-17|active
-|[ReDoc](https://github.com/Rebilly/ReDoc)|[RD](https://rebilly.github.io/ReDoc/)|1374|28|2017-08-28|active
-|[Swagger UI Responsive](https://github.com/jensoleg/swagger-ui)|[SUR](http://swaggerui.herokuapp.com/?url=http://petstore.swagger.io/v2/swagger.json)|762|81|2016-10-01|?
-|[Angular Swagger UI](https://github.com/Orange-OpenSource/angular-swagger-ui)|[ASUI](http://orange-opensource.github.io/angular-swagger-ui/)|89|11|2017-06-22|?
-|[Angular Swagger UI Material](https://github.com/darosh/angular-swagger-ui-material)|[ASUIM](http://darosh.github.io/angular-swagger-ui-material/)|69|3|2016-11-16|abandoned
-|[OpenAPI Specification Explorer](https://github.com/darosh/oax)|[OAX](https://darosh.github.io/oax/)|3|1|2017-09-10|WIP
+|Source|Demo|Stars|Contributors|Last|Licence|Status|
+|:---|:---:|---:|---:|---:|:---:|:---:|
+|[Swagger UI](https://github.com/swagger-api/swagger-ui)|[SUI](http://petstore.swagger.io/)|9113|255|2017-09-17|Apache|active
+|[ReDoc](https://github.com/Rebilly/ReDoc)|[RD](https://rebilly.github.io/ReDoc/)|1374|28|2017-08-28|MIT|active
+|[Swagger UI Responsive](https://github.com/jensoleg/swagger-ui)|[SUR](http://swaggerui.herokuapp.com/?url=http://petstore.swagger.io/v2/swagger.json)|762|81|2016-10-01|Apache|?
+|[Angular Swagger UI](https://github.com/Orange-OpenSource/angular-swagger-ui)|[ASUI](http://orange-opensource.github.io/angular-swagger-ui/)|89|11|2017-06-22|MIT|?
+|[Angular Swagger UI Material](https://github.com/darosh/angular-swagger-ui-material)|[ASUIM](http://darosh.github.io/angular-swagger-ui-material/)|69|3|2016-11-16|MIT|abandoned
+|[OpenAPI Specification Explorer](https://github.com/darosh/oax)|[OAX](https://darosh.github.io/oax/)|3|1|2017-09-10|MIT|WIP
 
 ## Features
 
@@ -26,6 +28,7 @@ _Last updated 2017-09-10._
 |Drop| | | | | | |
 |Generator  |❌   |❌   |❌    |❌   |❌    |✔    |
 |Framework  |React|NG4  |?    |NG1  |NG1  |Vue2 |
+|UI         |?    |?    |?    |Bootstrap|Angular Material|Vuetify|
 |Language   |ES6  |TS   |JS   |JS   |JS   |ES6/TS|
 |Markdown   | | | | | | |
 |Syntax| | | | | | |
