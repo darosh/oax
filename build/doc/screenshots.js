@@ -3,6 +3,16 @@ const puppeteer = require('puppeteer')
 const cfg = require('../../config/doc/screenshots.json')
 const base = 'http://localhost:8080/#'
 
+if (process.argv[2]) {
+  const pick = process.argv[2].split(',')
+
+  Object.keys(cfg.screens).map(k => {
+    if (pick.indexOf(k) === -1) {
+      delete cfg.screens[k]
+    }
+  })
+}
+
 rimraf.sync('doc/screenshots/images/**/*.png')
 
 function path (theme, screen, shot, index) {

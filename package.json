@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.158",
+  "version": "1.0.159",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -121,6 +121,7 @@
     "deploy-push": "cd ./dist && git push --force \"https://github.com/darosh/oax.git\" master:gh-pages",
     "dev": "node build/dev-server.js",
     "doc:screenshots": "node ./build/doc/screenshots.js",
+    "doc:screenshots-md": "node ./build/doc/screenshots.js md",
     "doc:screenshots-index": "node ./build/doc/screenshots-index.js",
     "doc:test-links": "node ./build/doc/test-links.js",
     "lint": "eslint --ext .js,.vue src",
