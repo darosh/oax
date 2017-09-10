@@ -37,7 +37,7 @@
         v-btn.hidden-xs-only(flat to="/statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat to="/headers" tag="a") Headers
         v-btn.hidden-xs-only(flat to="/about" tag="a") About
-        v-btn.hidden-xs-only(flat to="https://github.com/darosh/oax" tag="a" target="_blank") GitHub
+        v-btn.hidden-xs-only(flat href="https://github.com/darosh/oax" tag="a" target="_blank") GitHub
 
       v-menu.hidden-sm-and-up(bottom left)
         v-btn(icon slot="activator")
