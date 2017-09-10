@@ -1,0 +1,1 @@
+<% tests.forEach((v, i) => { %> <% }) %>
