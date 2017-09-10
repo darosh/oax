@@ -28,8 +28,33 @@
       "eval": "Object.assign(OAX.state.spec, window.temp)"
     },
     {
+      "title": "download",
+      "eval": "OAX.state.ui.dialog = {type: 'download'}",
+      "evalAfter": "OAX.state.ui.dialog = {type: null}"
+    },
+    {
+      "title": "generator",
+      "eval": "OAX.state.ui.dialog = {type: 'generator'}",
+      "evalAfter": "OAX.state.ui.dialog = {type: null}"
+    },
+    {
       "title": "right",
       "eval": "OAX.state.spec.operation = OAX.state.spec.operations[0]; OAX.state.ui.right = true"
+    },
+    {
+      "title": "method",
+      "eval": "OAX.state.ui.dialog = {type: 'method', param: 'get'}",
+      "evalAfter": "OAX.state.ui.dialog = {type: null}"
+    },
+    {
+      "title": "status",
+      "eval": "OAX.state.ui.dialog = {type: 'status', param: '451'}",
+      "evalAfter": "OAX.state.ui.dialog = {type: null}"
+    },
+    {
+      "title": "header",
+      "eval": "OAX.state.ui.dialog = {type: 'header', param: 'X-Frame-Options'}",
+      "evalAfter": "OAX.state.ui.dialog = {type: null}"
     },
     {
       "title": "left",
