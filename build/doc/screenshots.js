@@ -3,11 +3,11 @@ const puppeteer = require('puppeteer')
 const cfg = require('../../config/doc/screenshots.json')
 const base = 'http://localhost:8080/#'
 
-rimraf.sync('screenshots/images/**/*.png')
+rimraf.sync('doc/screenshots/images/**/*.png')
 
 function path (theme, screen, shot, index) {
   console.log(theme, screen, shot, index)
-  return `screenshots/images/${theme}_${screen}_${index < 10
+  return `doc/screenshots/images/${theme}_${screen}_${index < 10
     ? '0' + index
     : index}_${shot}.png`
 }

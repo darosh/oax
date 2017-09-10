@@ -3,10 +3,10 @@ const fs = require('fs')
 const template = require('lodash.template')
 const cfg = require('../../config/doc/screenshots.json')
 
-rimraf.sync('screenshots/**/*.md')
+rimraf.sync('doc/screenshots/**/*.md')
 
-const tmpl = fs.readFileSync('config/screenshots.md', 'utf8')
-const tmplIndex = fs.readFileSync('config/screenshots_index.md', 'utf8')
+const tmpl = fs.readFileSync('config/doc/screenshots.md', 'utf8')
+const tmplIndex = fs.readFileSync('config/doc/screenshots_index.md', 'utf8')
 const compiled = template(tmpl)
 const compiledIndex = template(tmplIndex)
 const files = []
@@ -40,7 +40,7 @@ for (const theme in cfg.themes) {
       })
     }
 
-    fs.writeFileSync(`screenshots/${theme}-${screen}.md`, compiled({
+    fs.writeFileSync(`doc/screenshots/${theme}-${screen}.md`, compiled({
       screen,
       size,
       theme,
@@ -52,7 +52,7 @@ for (const theme in cfg.themes) {
   }
 }
 
-fs.writeFileSync(`screenshots/README.md`, compiledIndex({
+fs.writeFileSync(`doc/screenshots/README.md`, compiledIndex({
   files,
   themes: cfg.themes,
   screens: cfg.screens
