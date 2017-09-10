@@ -3,6 +3,5 @@
   "RD": "https://rebilly.github.io/ReDoc/?url=",
   "SUR": "http://swaggerui.herokuapp.com/?url=",
   "ASUIM": "http://darosh.github.io/angular-swagger-ui-material/#/?url=",
-  "OAX": "https://darosh.github.io/oax/#/?url=",
-  "OAX:DEV": "http://localhost:8080/#/?url="
+  "OAX": "https://darosh.github.io/oax/#/?url="
 }
