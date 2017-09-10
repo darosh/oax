@@ -1,6 +1,6 @@
 const rimraf = require('rimraf')
 const puppeteer = require('puppeteer')
-const cfg = require('../config/screenshots.json')
+const cfg = require('../../config/doc/screenshots.json')
 const base = 'http://localhost:8080/#'
 
 rimraf.sync('screenshots/images/**/*.png')

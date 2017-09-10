@@ -126,7 +126,6 @@
     "http-status": "node build/http-data.js status > src/assets/http-status.json",
     "lint": "eslint --ext .js,.vue src",
     "report": "npm run build --report",
-    "sample:gfm": "node ./config/sample-gfm.js",
     "screenshots": "node ./build/screenshots.js",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts",
     "vuetify": "npm run vuetify:theme && npm run vuetify:icons",

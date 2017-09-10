@@ -1,7 +1,7 @@
 const rimraf = require('rimraf')
 const fs = require('fs')
 const template = require('lodash.template')
-const cfg = require('../config/screenshots.json')
+const cfg = require('../../config/doc/screenshots.json')
 
 rimraf.sync('screenshots/**/*.md')
 

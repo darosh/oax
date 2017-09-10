@@ -1,6 +1,6 @@
 const fs = require('fs')
-const tools = require('../config/tools.json')
-const tests = require('../src/assets/test.json')
+const tools = require('../../config/doc/tools.json')
+const tests = require('../../src/assets/test.json')
 
 const template = require('lodash.template')
 const tmpl = fs.readFileSync('config/test.md', 'utf8')
