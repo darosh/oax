@@ -20,15 +20,15 @@ _Last updated 2017-09-10._
 |1.2        |     |     |     |     |     |❌    |
 |2.0        |     |     |     |     |     |✔    |
 |3.0        |     |     |     |     |     |❌    |
-|Remote     |✔    |✔    |✔    |❌    |✔   |✔     |
-|Edit| | | | | | |
+|Remote     |✔    |✔   |✔    |❌   |✔    |✔    |
+|Edit       |❌   |❌   |❌    |❌   |❌    |✔    |
 |Local| | | | | | |
 |Drop| | | | | | |
-|Framework| | | | | | |
-|Language| | | | | | |
-|Markdown| | | | | | |
+|Framework  |React|NG4  |?    |NG1  |NG1  |Vue2|
+|Language   |ES6  |TS   |JS   |JS   |JS   |ES6/TS|
+|Markdown   | | | | | | |
 |Syntax| | | | | | |
-|Try| | | | | | |
+|Try        |✔    |❌    |✔    |✔    |✔   |✔     |
 |SEO| | | | | | |
 |Mobile| | | | | | |
 |Offline| | | | | | |
