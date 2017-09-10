@@ -37,7 +37,16 @@
 |Mobile| | | | | | |
 |Offline| | | | | | |
 |Web workers| | | | | | |
-
+|`discriminator`| |✔| | | | |
+|`x-logo`       | |✔| | | | |
+|`x-traitTag`   | |✔| | | | |
+|`x-code`       | |✔| | | | |
+|`x-examples`   | |✔| | | | |
+|`x-nullable`   | |✔| | | | |
+|`x-displayName`| |✔| | | | |
+|`x-tagGroups`  | |✔| | | | |
+|`x-servers`    | |✔| | | | |
+|`x-origin`     | | | | | |✔|
 
 ## Articles
 
