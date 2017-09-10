@@ -1,25 +1,18 @@
 <template lang="pug">
-  v-dialog(v-model="active" fullscreen transition="dialog-bottom-transition", :overlay="false")
+  v-dialog(content-class="download-dialog" v-model="active" fullscreen transition="dialog-bottom-transition", :overlay="false")
     v-card
       v-layout(column style="height: 100vh")
         v-toolbar.transparent.elevation-0
           v-btn(icon @click="UI_SET_DIALOG()")
             v-icon close
-          v-toolbar-title.hidden-xs-only Download
-          v-spacer.hidden-xs-only
-          .ml-4.hidden-sm-and-up
-          v-radio-group(v-model="json" mandatory style="max-width: 220px")
-            v-layout.ml-3.mt-2(wrap)
-              v-radio(label="JSON", :value="true" style="max-width: 90px; min-width: 90px" color="primary")
-              v-radio(label="YAML", :value="false" style="max-width: 90px; min-width: 90px" color="primary")
-          v-radio-group(v-model="bundled" mandatory style="max-width: 220px" primary)
-            v-layout.ml-3.mt-2(wrap)
-              v-radio(label="Original", :value="false"  style="max-width: 110px; min-width: 100px" color="primary")
-              v-radio(label="Bundled", :value="true"  style="max-width: 110px; min-width: 100px" color="primary")
+          v-toolbar-title Download
+          v-spacer
+          v-select(style="max-width: 68px" hide-details single-line bottom v-model="json", :items="[{text: 'JSON', value: true},{text: 'YAML', value: false}]")
+          v-select.ml-3(style="max-width: 86px" hide-details single-line bottom v-model="bundled", :items="[{text: 'Bundled', value: true},{text: 'Original', value: false}]")
         div
           v-divider
         v-flex(fill-height d-flex)
-          iframe(:src="blob")
+          iframe(:src="blob" style="background-color: #fff")
           v-btn(fab primary dark fixed right bottom :href="blob", :download="'api.' + (json ? 'json' : 'yaml')")
             v-icon file_download
 </template>
@@ -27,8 +20,10 @@
 <script>
   import dialog from '../../mixins/dialog'
   import { blobUrl } from '../../worker'
+  import VToolbar from '../../../node_modules/vuetify/src/components/VToolbar/VToolbar.vue'
 
   export default {
+    components: {VToolbar},
     mixins: [dialog],
     data () {
       return {
@@ -37,8 +32,6 @@
         bundled: true,
         blob: null
       }
-    },
-    created () {
     },
     methods: {
       show () {
@@ -58,7 +51,9 @@
       }
     },
     watch: {
-      active: function () { this.update() },
+      active: function () {
+        this.update()
+      },
       json: function () { this.update() },
       bundled: function () { this.update() }
     }
@@ -72,7 +67,7 @@
     border none
 
   .dialog__content
-    z-index 1000
+    z-index 6
 
   .dialog--fullscreen
     overflow hidden

@@ -5,7 +5,7 @@
         v-toolbar.transparent.elevation-0
           v-btn(icon @click="UI_SET_DIALOG()")
             v-icon close
-          v-toolbar-title.hidden-xs-only Code generator
+          v-toolbar-title Code generator
         div
           v-divider
         v-flex(fill-height d-flex)

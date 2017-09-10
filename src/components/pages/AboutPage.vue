@@ -47,7 +47,8 @@
         keys: {
           'Esc': 'Close dialog, Close right panel, Close left panel, Open left panel',
           'Alt + l': 'Show log',
-          'Alt + t': 'Switch theme'
+          'Alt + t': 'Switch theme',
+          'F10': 'Fullscreen spec editor'
         },
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({
           name: i,
