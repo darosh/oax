@@ -2,7 +2,7 @@
   "screens": {
     "xs": [360, 640],
     "sm": [480, 320],
-    "md": [1024, 768],
+    "md": [888, 768],
     "lg": [1280, 720],
     "xl": [1920, 1080]
   },
@@ -20,31 +20,58 @@
       "title": "loading",
       "url": "/",
       "wait": ".expansion-panel",
-      "eval": "OAX.state.ui.loading = OAX.state.ui.log"
+      "eval": "OAX.state.ui.loading = OAX.state.ui.log; window.temp = {spec: OAX.state.spec.spec, resources: OAX.state.spec.resources}; OAX.state.spec.spec = null; OAX.state.spec.resources = null"
     },
     {
-      "title": "about",
-      "url": "/about",
-      "eval": null,
-      "el": null
+      "title": "landing",
+      "url": "/",
+      "eval": "Object.assign(OAX.state.spec, window.temp)"
+    },
+    {
+      "title": "right",
+      "eval": "OAX.state.spec.operation = OAX.state.spec.operations[0]; OAX.state.ui.right = true"
+    },
+    {
+      "title": "left",
+      "eval": "OAX.state.ui.left = true; OAX.state.spec.operation = null"
+    },
+    {
+      "title": "categories",
+      "eval": "OAX.select.vue('app-spec-directory').showFilter = true"
+    },
+    {
+      "title": "recent",
+      "eval": "OAX.select.vue('app-drawer-left').tab = 'tab-recent'"
+    },
+    {
+      "title": "edit",
+      "eval": "OAX.select.vue('app-drawer-left').tab = 'tab-edit'",
+      "waitEval": ".CodeMirror-line"
+    },
+    {
+      "title": "fullscreen",
+      "eval": "OAX.select.vue('app-spec-edit').fullScreen()",
+      "evalAfter": "OAX.select.vue('app-spec-edit').fullScreen()"
+    },
+    {
+      "title": "test",
+      "eval": "OAX.select.vue('app-drawer-left').tab = 'tab-test'"
     },
     {
       "title": "methods",
-      "url": "/methods",
-      "eval": null,
-      "el": null
+      "url": "/methods"
     },
     {
       "title": "statuses",
-      "url": "/statuses",
-      "eval": null,
-      "el": null
+      "url": "/statuses"
     },
     {
       "title": "headers",
-      "url": "/headers",
-      "eval": null,
-      "el": null
+      "url": "/headers"
+    },
+    {
+      "title": "about",
+      "url": "/about"
     }
   ]
 }

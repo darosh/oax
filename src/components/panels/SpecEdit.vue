@@ -40,15 +40,7 @@
           lineNumbers: true,
           line: false,
           extraKeys: {
-            F10: function (cm) {
-              if (!cm.getOption('fullScreen')) {
-                document.querySelector('#cm-full').appendChild(document.querySelector('.CodeMirror'))
-              } else {
-                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
-              }
-              cm.focus()
-              cm.setOption('fullScreen', !cm.getOption('fullScreen'))
-            }
+            F10: this.fullScreen
             //            Esc: function (cm) {
             //              if (cm.getOption('fullScreen')) {
             //                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
@@ -107,12 +99,27 @@
             delete this.changes
           }, 200)
         }
+      },
+      fullScreen (cm) {
+        cm = cm || document.querySelector('.CodeMirror').CodeMirror
+
+        if (!cm.getOption('fullScreen')) {
+          document.querySelector('#cm-full').appendChild(document.querySelector('.CodeMirror'))
+        } else {
+          document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
+        }
+        cm.focus()
+        cm.setOption('fullScreen', !cm.getOption('fullScreen'))
       }
     },
     watch: {
       active: function (value) {
         if (value) {
-          document.querySelector('#cm-wrap .CodeMirror').CodeMirror.refresh()
+          // document.querySelector('#cm-wrap .CodeMirror').CodeMirror.refresh()
+
+          setTimeout(() => {
+            document.querySelector('#cm-wrap .CodeMirror').CodeMirror.refresh()
+          }, 20)
         }
       },
       SPEC_JSON: function () {

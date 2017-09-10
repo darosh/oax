@@ -1,4 +1,4 @@
-# Screenshots: <%=screen%> / <%=theme%> <small>[<%=size[0]%> &times; <%=size[0]%>]</small>
+# Screenshots: <%=screen%> / <%=theme%> <small>[<%=size[0]%> &times; <%=size[1]%>]</small>
 <%screens.forEach(function(s){ %>
 ## <%=s.title%>
 

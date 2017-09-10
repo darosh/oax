@@ -49,6 +49,14 @@ function path (theme, screen, shot, index) {
         await page.waitFor(s.wait)
       }
 
+      if (s.eval) {
+        await page.evaluate(s.eval)
+      }
+
+      if (s.waitEval) {
+        await page.waitFor(s.waitEval)
+      }
+
       if (s.skip) {
         continue
       }
@@ -60,8 +68,12 @@ function path (theme, screen, shot, index) {
         await page.screenshot({path: path(theme, screen, s.title, index)})
       }
 
-      await page.goto('about:blank')
+      if (s.evalAfter) {
+        await page.evaluate(s.evalAfter)
+      }
     }
+
+    await page.goto('about:blank')
   }
 
   browser.close()
