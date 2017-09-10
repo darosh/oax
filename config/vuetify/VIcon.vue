@@ -1,3 +1,8 @@
+<!-- Modified version of node_modules/vuetify/src/components/VIcon/VIcon.vue -->
+<!-- Adding inline SVG icon support -->
+<!-- Removing icon font support -->
+<!-- Fill styles may be missing -->
+
 <script>
   import Themeable from '../../mixins/themeable'
   import Contextualable from '../../mixins/contextualable'
