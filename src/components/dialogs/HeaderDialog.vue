@@ -16,8 +16,7 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a.btn.btn--flat.primary--text(v-if="header[3]" target="_blank", @click.native.stop="active = false", :href="header[3]")
-          .btn__content Spec
+        v-btn.btn--short.primary--text(flat v-if="header[3]" target="_blank", @click.native.stop="active = false", :href="header[3]") Spec
         v-btn(flat @click.native.stop="active = false") Close
 </template>
 

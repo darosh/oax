@@ -28,19 +28,20 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        a(class="btn btn--flat primary--text" target="_blank", :href="method[2]")
-          div(class="btn__content") Spec
-        v-btn(flat @click.native.stop="UI_SET_DIALOG()") Close
+        v-btn.btn--short.primary--text(flat target="_blank", :href="method[2]") Spec
+        v-btn.btn--short(flat @click.native.stop="UI_SET_DIALOG()") Close
 </template>
 
 <script>
   import { MethodStyle } from '../../services/method-style'
   import limit from '../../utils/limit'
   import dialog from '../../mixins/dialog'
+  import VBtn from '../../../node_modules/vuetify/src/components/VBtn/VBtn.vue'
 
   const methods = () => import('../../assets/http-method.json')
 
   export default {
+    components: {VBtn},
     mixins: [dialog],
     data () {
       return {
