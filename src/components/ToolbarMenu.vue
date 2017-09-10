@@ -116,6 +116,10 @@
         v-list-tile-action
           v-icon help
         v-list-tile-title About
+      v-list-tile(href="https://github.com/darosh/oax" tag="a" target="_blank")
+        v-list-tile-action
+          v-icon github_circle
+        v-list-tile-title GitHub
 </template>
 
 <script>
