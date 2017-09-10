@@ -15,7 +15,25 @@ _Last updated 2017-09-10._
 
 ## Features
 
-...
+|&nbsp;|SUI|RD|SUR|ASUI|ASUIM|OAX|
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+|1.2| | | | | |⛔|
+|2.0| | | | | |✅|
+|3.0| | | | | |⛔|
+|Remote| | | | | | |
+|Edit| | | | | | |
+|Local| | | | | | |
+|Drop| | | | | | |
+|Framework| | | | | | |
+|Language| | | | | | |
+|Markdown| | | | | | |
+|Syntax| | | | | | |
+|Try| | | | | | |
+|SEO| | | | | | |
+|Mobile| | | | | | |
+|Offline| | | | | | |
+|Web workers| | | | | | |
+
 
 ## Articles
 
