@@ -1,36 +1,35 @@
 <template lang="pug">
-  v-container
-    h2.pt-3.pb-3.ma-0 OpenAPI Specification Explorer
-    v-divider
-    v-layout.mt-3.mb-3
-      v-flex
-        .subheading.pt-2 Version {{APP_VERSION}}
-      v-spacer
-      v-btn.ma-0(flat @click="reload") Reload
-    v-divider.mb-3
-    h4 Keyboard shotcuts
-    h5 Application
-    p
-      kbd Esc
-      |  Log
-    h5 API
-    p
-      kbd Alt
-      |  +
-      kbd q
-      |   Edit
-    v-divider.mb-3
-    h4 Dependencies
-    p This app wouldn be posssible without following packages
-    ul.mb-3
-      li(v-for="(i, k) in dependencies" v-if="k[0] !== '@'")
-        a(:href="'https://www.npmjs.com/package/' + k" target="_blank") {{k}}
-    v-divider.mb-3
-    h4 Log
-    v-layout.pb-3
-      v-flex.pt-3.pb-3(style="max-width: 260px")
-        app-log(v-if="UI_LOADING", :items="UI_LOADING", :log="true")
-        app-log(v-else :items="UI_LOG", :log="true")
+  v-container(fluid)
+    v-layout
+      v-spacer.hidden-xs-only
+      v-flex(style="max-width: 888px")
+        v-card.pa-4.mb-1
+          .pt-3.hidden-xs-only
+          h3.pb-3.ma-0 OpenAPI Specification Explorer
+          .pb-3.hidden-xs-only
+          v-divider
+          v-layout.mt-3.mb-3
+            v-flex
+              .subheading.pt-2 Version {{APP_VERSION}}
+            v-spacer
+            v-btn.ma-0(flat @click="reload") Reload
+          v-divider.mb-3
+          h4 Keyboard shotcuts
+          table.mb-3
+            tbody
+              tr(v-for="(notes, key) in keys", :key="key")
+                td
+                  kbd.nowrap {{key}}
+                td.pl-3 {{notes}}
+          v-divider.mb-3
+          h4 Acknowledgement
+          p This app wouldn be posssible without following packages
+          span(v-for="(i, k) in libs", :key="k")
+            span(v-if="k") ,
+              =" "
+            a.subheading.nowrap(:href="i.href" target="_blank") {{i.name}}
+            | &nbsp;{{i.version}}
+      v-spacer.hidden-xs-only
 </template>
 
 <script>
@@ -45,7 +44,19 @@
     },
     data () {
       return {
-        dependencies
+        keys: {
+          'Esc': 'Close dialog, Close right panel, Close left panel, Open left panel',
+          'Alt + l': 'Show log',
+          'Alt + t': 'Switch theme'
+        },
+        libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({
+          name: i,
+          version: dependencies[i].indexOf('github:') === 0 ? '' : dependencies[i][0] === '^' ? dependencies[i].substr(
+            1) : dependencies[i],
+          href: dependencies[i].indexOf('github:') === 0
+            ? 'https://github.com/' + i.substr(6)
+            : ('https://www.npmjs.com/package/' + i)
+        }))
       }
     },
     computed: {
