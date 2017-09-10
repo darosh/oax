@@ -127,7 +127,7 @@
     "report": "npm run build --report",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts",
     "vuetify": "npm run vuetify:theme && npm run vuetify:icons",
-    "vuetify:icons": "node ./build/copy.js ./config/vuetify/VIcon.vue ./node_modules/vuetify/src/components/VIcon/VIcon.vue",
-    "vuetify:theme": "node ./build/copy.js ./config/vuetify/_custom.styl ./node_modules/vuetify/src/stylus/settings/_custom.styl"
+    "vuetify:icons": "node ./build/app/copy.js ./config/vuetify/VIcon.vue ./node_modules/vuetify/src/components/VIcon/VIcon.vue",
+    "vuetify:theme": "node ./build/app/copy.js ./config/vuetify/_custom.styl ./node_modules/vuetify/src/stylus/settings/_custom.styl"
   }
 }
