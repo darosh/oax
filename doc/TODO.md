@@ -2,6 +2,8 @@
 
 #### Internal
 
+- [ ] cfg to store
+- [ ] home link getter
 - [ ] check if params are inherited
 - [ ] debounce value to config
 - [ ] debounce search
