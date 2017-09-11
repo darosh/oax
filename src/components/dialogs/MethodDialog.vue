@@ -36,12 +36,10 @@
   import { MethodStyle } from '../../services/method-style'
   import limit from '../../utils/limit'
   import dialog from '../../mixins/dialog'
-  import VBtn from '../../../node_modules/vuetify/src/components/VBtn/VBtn.vue'
 
   const methods = () => import('../../assets/http-method.json')
 
   export default {
-    components: {VBtn},
     mixins: [dialog],
     data () {
       return {

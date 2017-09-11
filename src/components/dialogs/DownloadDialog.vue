@@ -20,10 +20,8 @@
 <script>
   import dialog from '../../mixins/dialog'
   import { blobUrl } from '../../worker'
-  import VToolbar from '../../../node_modules/vuetify/src/components/VToolbar/VToolbar.vue'
 
   export default {
-    components: {VToolbar},
     mixins: [dialog],
     data () {
       return {
