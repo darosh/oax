@@ -19,8 +19,7 @@
                 v-divider(v-if="SPEC.info._.description")
                 v-card.bg(v-if="SPEC.info._.description")
                   v-card-text
-                    v-layout
-                      div.main-description(v-markdown="SPEC.info._")
+                    .main-description(v-markdown="SPEC.info._")
 
       app-meta-list(v-if="SPEC_METAS", :metas="SPEC_METAS")
     app-resource-list(:class="{wide: VIEW_WIDE}" v-if="VIEW_VIEW === 0")
