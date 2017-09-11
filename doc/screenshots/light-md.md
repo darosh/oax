@@ -1,4 +1,4 @@
-# Screenshots: md-light <small>888&times;666</small>
+# md-light <small>888&times;666</small>
 
 ## loading
 

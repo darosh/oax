@@ -1,4 +1,4 @@
-# Screenshots: xs-dark <small>360&times;640</small>
+# xs-dark <small>360&times;640</small>
 
 ## loading
 

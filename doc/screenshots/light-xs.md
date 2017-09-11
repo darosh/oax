@@ -1,4 +1,4 @@
-# Screenshots: xs-light <small>360&times;640</small>
+# xs-light <small>360&times;640</small>
 
 ## loading
 
