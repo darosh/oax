@@ -17,8 +17,10 @@ rimraf.sync('doc/screenshots/**/*.md')
 
 const tmpl = fs.readFileSync('config/doc/screenshots.md', 'utf8')
 const tmplIndex = fs.readFileSync('config/doc/screenshots_index.md', 'utf8')
+const tmplShot = fs.readFileSync('config/doc/screenshot.md', 'utf8')
 const compiled = template(tmpl)
 const compiledIndex = template(tmplIndex)
+const compiledShot = template(tmplShot)
 const files = []
 
 function path (theme, screen, shot, index) {
@@ -61,8 +63,23 @@ for (const theme in cfg.themes) {
   }
 }
 
+const shots = cfg.shots.filter(v => !v.skip)
+
+shots.forEach((shot, index) => {
+  fs.writeFileSync(
+    `doc/screenshots/${(index + 1) < 10 ? '0' + (index + 1) : (index +
+      1)}_${shot.title}.md`, compiledShot({
+      index,
+      shot,
+      shots,
+      screens: cfg.screens,
+      themes: cfg.themes
+    }))
+})
+
 fs.writeFileSync(`doc/screenshots/README.md`, compiledIndex({
   files,
   themes: cfg.themes,
-  screens: cfg.screens
+  screens: cfg.screens,
+  shots: shots.map(v => v.title)
 }))
