@@ -32,7 +32,7 @@
           v-container.pa-2(fluid grid-list-md v-if="APIS")
             v-layout(row wrap)
               v-flex(xs4 d-flex, @click="setCategory(null)")
-                v-card.btn--category(tile="true" v-ripple="")
+                v-card.btn--category(v-ripple="")
                     div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
                     div.btn--category__icon.text-xs-center
                     div.btn--category__counter.pa-1.pl-2.subheading All

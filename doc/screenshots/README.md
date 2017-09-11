@@ -1,10 +1,10 @@
 # Screenshots
 
- &nbsp;|xs|md
-:---:|:---:|:---:
-&nbsp;|360&times;640|888&times;666
-light|[xs-light](./light-xs.md)|[md-light](./light-md.md)
-dark|[xs-dark](./dark-xs.md)|[md-dark](./dark-md.md)
+ &nbsp;|xs|sm|md|lg|xl
+:---:|:---:|:---:|:---:|:---:|:---:
+&nbsp;|360&times;640|480&times;320|888&times;666|1280&times;720|1920&times;1080
+light|[xs-light](./light-xs.md)|[sm-light](./light-sm.md)|[md-light](./light-md.md)|[lg-light](./light-lg.md)|[xl-light](./light-xl.md)
+dark|[xs-dark](./dark-xs.md)|[sm-dark](./dark-sm.md)|[md-dark](./dark-md.md)|[lg-dark](./dark-lg.md)|[xl-dark](./dark-xl.md)
 
 
 |#|Name|
