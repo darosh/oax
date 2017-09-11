@@ -22,7 +22,6 @@ const compiledIndex = template(tmplIndex)
 const files = []
 
 function path (theme, screen, shot, index) {
-  console.log(theme, screen, shot, index)
   return `./images/${theme}_${screen}_${index < 10
     ? '0' + index
     : index}_${shot}.png`

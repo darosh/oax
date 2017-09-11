@@ -30,12 +30,44 @@
     {
       "title": "download",
       "eval": "OAX.state.ui.dialog = {type: 'download'}",
+      "waitFnc": "return !!OAX.select.vue('app-download-dialog').blob",
       "evalAfter": "OAX.state.ui.dialog = {type: null}"
     },
     {
       "title": "generator",
       "eval": "OAX.state.ui.dialog = {type: 'generator'}",
       "evalAfter": "OAX.state.ui.dialog = {type: null}"
+    },
+    {
+      "title": "language"
+    },
+    {
+      "title": "options"
+    },
+    {
+      "title": "menu",
+      "eval": "OAX.select.vue('app-toolbar v-menu:10').activate()",
+      "evalAfter": "OAX.select('app-resource-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:10').deactivate()"
+    },
+    {
+      "title": "view",
+      "eval": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : '')).activate()",
+      "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : '')).deactivate()"
+    },
+    {
+      "title": "wide"
+    },
+    {
+      "title": "summary+paths"
+    },
+    {
+      "title": "summary"
+    },
+    {
+      "title": "operations"
+    },
+    {
+      "title": "table"
     },
     {
       "title": "right",

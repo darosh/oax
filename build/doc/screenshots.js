@@ -16,7 +16,7 @@ if (process.argv[2]) {
 rimraf.sync('doc/screenshots/images/**/*.png')
 
 function path (theme, screen, shot, index) {
-  console.log(theme, screen, shot, index)
+  console.log(screen, `${index < 10 ? '0' + index : index}`, shot, theme)
   return `doc/screenshots/images/${theme}_${screen}_${index < 10
     ? '0' + index
     : index}_${shot}.png`
@@ -55,6 +55,10 @@ function path (theme, screen, shot, index) {
 
       if (s.waitEval) {
         await page.waitFor(s.waitEval)
+      }
+
+      if (s.waitFnc) {
+        await page.waitFor(new Function(s.waitFnc))
       }
 
       if (s.skip) {
