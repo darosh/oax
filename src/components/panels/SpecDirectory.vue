@@ -57,17 +57,9 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
   import focus from '../../directives/focus'
-  import VListTileAction from 'vuetify/src/components/VList/VListTileAction'
-  import VIcon from '../../../node_modules/vuetify/src/components/VIcon/VIcon.vue'
   import categories from '../../assets/categories.json'
-  import VBtn from '../../../node_modules/vuetify/src/components/VBtn/VBtn.vue'
 
   export default {
-    components: {
-      VBtn,
-      VIcon,
-      VListTileAction
-    },
     mixins: [keys],
     directives: {
       focus
