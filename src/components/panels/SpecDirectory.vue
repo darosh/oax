@@ -29,29 +29,26 @@
                       v-icon file_download
                   v-divider
         v-tabs-content#tab-dir-2.scroller
-          v-container(fluid grid-list-sm v-if="APIS")
+          v-container.pa-2(fluid grid-list-md v-if="APIS")
             v-layout(row wrap)
               v-flex(xs4 d-flex, @click="setCategory(null)")
-                div.btn--category(v-ripple="")
-                  v-layout.btn--category__layout(column)
+                v-card.btn--category(tile="true" v-ripple="")
                     div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
                     div.btn--category__icon.text-xs-center
                     div.btn--category__counter.pa-1.pl-2.subheading All
                     div.btn--category__text.pa-1.pl-2.subheading.black--text {{APIS.length}}
               v-flex(xs4 v-for="(item, key) in APIS_CATEGORIES", :key="key" d-flex, @click="setCategory(key)")
-                div.btn--category(v-ripple="")
-                  v-layout.btn--category__layout(column)
+                v-card.btn--category(v-ripple="")
                     div.btn--category__background(:style="{'background-color': item.color}")
                     div.btn--category__icon.text-xs-center
                       v-icon(large) {{categories[key]}}
                     div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
                     div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
               v-flex(xs4 d-flex, @click="setCategory(true)")
-                div.btn--category(v-ripple="")
-                  v-layout.btn--category__layout(column)
+                v-card.btn--category(v-ripple="")
                     div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
                     div.btn--category__icon.text-xs-center
-                    div.btn--category__counter.pa-1.pl-2.subheading Uncategorized
+                    div.btn--category__counter.pa-1.pl-2.subheading Unclassified
                     div.btn--category__text.pa-1.pl-2.subheading.black--text {{uncategorized}}
 </template>
 
@@ -178,10 +175,6 @@
     cursor pointer
     border-radius: 2px
 
-  .btn--category__layout
-    position: relative
-    border-radius: 2px
-
   .btn--category__background
     height: 72px
     border-radius: 2px
@@ -203,6 +196,8 @@
     width: 100%
     line-height: 1.2
     background-color: rgba(255, 255, 255, .42)
+    border-bottom-left-radius: 2px
+    border-bottom-right-radius: 2px
 
   .btn--category__text
     position: absolute
