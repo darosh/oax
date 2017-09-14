@@ -200,9 +200,9 @@
   .application--dark
     .btn--category__counter
       background-color: rgba(64, 64, 64, .64)
-    .btn--category__background
-      opacity: .87
     .btn--category__icon .icon
       color: rgba(0, 0, 0, .64)
       fill: rgba(0, 0, 0, .64)
+    /*.btn--category__background*/
+      /*opacity: .87*/
 </style>
