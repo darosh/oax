@@ -20,12 +20,13 @@
       "title": "loading",
       "url": "/",
       "wait": ".expansion-panel",
-      "eval": "OAX.state.ui.loading = OAX.state.ui.log; window.temp = {spec: OAX.state.spec.spec, resources: OAX.state.spec.resources}; OAX.state.spec.spec = null; OAX.state.spec.resources = null"
+      "eval": "OAX.state.ui.loading = OAX.state.ui.log; window.temp = {spec: OAX.state.spec.spec, resources: OAX.state.spec.resources}; OAX.state.spec.spec = null; OAX.state.spec.resources = null",
+      "evalAfter": "Object.assign(OAX.state.spec, window.temp)"
     },
     {
       "title": "landing",
       "url": "/",
-      "eval": "Object.assign(OAX.state.spec, window.temp)"
+      "wait": ".expansion-panel"
     },
     {
       "title": "download",
@@ -35,19 +36,23 @@
     },
     {
       "title": "generator",
-      "eval": "OAX.state.ui.dialog = {type: 'generator'}",
+      "eval": "OAX.state.ui.dialog = {type: 'generator'}"
+    },
+    {
+      "title": "language",
+      "eval": "OAX.app.$store.dispatch('GENERATOR_RUN_SET_TYPE', 'client'); OAX.select.vue('app-generator-dialog').step++",
+      "waitFnc": "return OAX.state.generator.languages['client']"
+    },
+    {
+      "title": "options",
+      "eval": "OAX.app.$store.dispatch('GENERATOR_RUN_SET_LANGUAGE', 'javascript'); OAX.select.vue('app-generator-dialog').step++",
+      "waitFnc": "return OAX.state.generator.options['client']['javascript']",
       "evalAfter": "OAX.state.ui.dialog = {type: null}"
-    },
-    {
-      "title": "language"
-    },
-    {
-      "title": "options"
     },
     {
       "title": "menu",
       "eval": "OAX.select.vue('app-toolbar v-menu:10').activate()",
-      "evalAfter": "OAX.select('app-resource-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:10').deactivate()"
+      "evalAfter": "OAX.select('app-tag-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:10').deactivate()"
     },
     {
       "title": "view",
@@ -55,19 +60,24 @@
       "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : '')).deactivate()"
     },
     {
-      "title": "wide"
+      "title": "wide",
+      "eval": "OAX.state.view.wide = true"
     },
     {
-      "title": "summary+paths"
+      "title": "summary+paths",
+      "eval": "OAX.state.view.summary = true"
     },
     {
-      "title": "summary"
+      "title": "summary",
+      "eval": "OAX.state.view.path = false"
     },
     {
-      "title": "operations"
+      "title": "operations",
+      "eval": "OAX.state.view.type = 1"
     },
     {
-      "title": "table"
+      "title": "table",
+      "eval": "OAX.state.view.type = 2"
     },
     {
       "title": "right",
