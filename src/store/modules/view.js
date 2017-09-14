@@ -1,14 +1,14 @@
 import * as types from '../types'
 
-export const STORAGE_KEY = 'oasui'
+export const STORAGE_KEY = 'oax'
 
-const storedState = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '""')
+const storedState = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || 'null')
 
 const defaultState = {
   dark: false,
   grouped: 0,
   wide: false,
-  description: false,
+  summary: false,
   path: true
 }
 
@@ -25,12 +25,12 @@ export const mutations = {
     state.wide = payload !== undefined ? payload : !state.wide
   },
   [types.VIEW_SET_SUMMARY] (state) {
-    state.description = !state.description
-    state.path = !state.path && !state.description ? true : state.path
+    state.summary = !state.summary
+    state.path = !state.path && !state.summary ? true : state.path
   },
   [types.VIEW_SET_PATH] (state) {
     state.path = !state.path
-    state.description = !state.path && !state.description ? true : state.description
+    state.summary = !state.path && !state.summary ? true : state.summary
   }
 }
 
@@ -38,7 +38,7 @@ export const getters = {
   [types.VIEW_DARK]: state => state.dark,
   [types.VIEW_VIEW]: state => state.grouped,
   [types.VIEW_WIDE]: state => state.wide,
-  [types.VIEW_SUMMARY]: state => state.description,
+  [types.VIEW_SUMMARY]: state => state.summary,
   [types.VIEW_PATH]: state => state.path
 }
 
