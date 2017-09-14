@@ -6,7 +6,7 @@ const storedState = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || 'null
 
 const defaultState = {
   dark: false,
-  grouped: 0,
+  type: 0,
   wide: false,
   summary: false,
   path: true
@@ -19,7 +19,7 @@ export const mutations = {
     state.dark = !state.dark
   },
   [types.VIEW_SET_VIEW] (state, payload) {
-    state.grouped = payload
+    state.type = payload
   },
   [types.VIEW_SET_WIDE] (state, payload) {
     state.wide = payload !== undefined ? payload : !state.wide
@@ -36,7 +36,7 @@ export const mutations = {
 
 export const getters = {
   [types.VIEW_DARK]: state => state.dark,
-  [types.VIEW_VIEW]: state => state.grouped,
+  [types.VIEW_VIEW]: state => state.type,
   [types.VIEW_WIDE]: state => state.wide,
   [types.VIEW_SUMMARY]: state => state.summary,
   [types.VIEW_PATH]: state => state.path
