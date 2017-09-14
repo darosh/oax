@@ -7,8 +7,8 @@
             v-icon close
           v-toolbar-title Download
           v-spacer
-          v-select(style="max-width: 68px" hide-details single-line bottom v-model="json", :items="[{text: 'JSON', value: true},{text: 'YAML', value: false}]")
-          v-select.ml-3(style="max-width: 86px" hide-details single-line bottom v-model="bundled", :items="[{text: 'Bundled', value: true},{text: 'Original', value: false}]")
+          v-select(style="max-width: 78px; min-width: 78px" hide-details single-line bottom v-model="json", :items="[{text: 'JSON', value: true},{text: 'YAML', value: false}]")
+          v-select.ml-3(style="max-width: 86px; min-width: 86px" hide-details single-line bottom v-model="bundled", :items="[{text: 'Bundled', value: true},{text: 'Original', value: false}]")
         div
           v-divider
         v-flex(fill-height d-flex)
