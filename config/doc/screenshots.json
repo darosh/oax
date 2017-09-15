@@ -159,7 +159,7 @@
       "title": "markdown",
       "url": "/",
       "eval": "OAX.app.$store.dispatch('SPEC_SET_LOAD_URL', 'https://darosh.github.io/openapi-samples/specs/markdown/markdown.json')",
-      "wait": ".markdown"
+      "waitFnc": "return OAX.state.spec.spec"
     },
     {
       "title": "syntax",
