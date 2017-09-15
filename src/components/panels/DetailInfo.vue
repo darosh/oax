@@ -18,7 +18,7 @@
                 code(v-text="header.format || header.type")
               .markdown.pl-3(v-markdown="header")
           div(v-if="response.schema")
-            pre.app-pre.ml-3.mr-3.pa-1.mt-1
+            pre.app-example.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
                 v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView" mandatory)
@@ -160,4 +160,11 @@
     border-bottom-right-radius: 14px
     border-top-right-radius: 14px
 
+  .app-example >>> .click
+    cursor: pointer
+    opacity: .64
+  .app-example >>> ul
+    padding: 0 0 0 16px
+  .app-example >>> ul li
+    list-style none
 </style>

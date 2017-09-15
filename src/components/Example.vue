@@ -1,18 +1,20 @@
 <template lang="pug">
-  span
-    span(v-if="level > 3") &hellip;
-    span(v-else-if="item.type === 'array'")
-      | [
-      app-example(:item="item.items", :level="level + 1")
-      | ]
-    span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
-      | {
-      br(v-if="item.properties && Object.keys(item.properties).length")
-      div(v-for="(prop, propName) in item.properties") {{space(level+1)}}
-        b "{{propName}}":&#32;
-        app-example(:item="prop", :level="level + 1")
-      | {{!item.properties || !Object.keys(item.properties).length ? '' : space(level)}}}
-    span(v-else) {{value}}
+  span(v-if="item.type === 'array'")
+    | [
+    app-example(:item="item.items", :level="level + 1")
+    | ]
+  span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
+    | {
+    ul
+      li(v-for="(prop, propName) in item.properties")
+        span(v-if="expanded[propName] === null") &nbsp;
+        span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
+        | "{{propName}}":
+        =" "
+        app-example(v-if="expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1")
+        span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
+    | }
+  span(v-else :class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{value}}
 </template>
 
 <script>
@@ -21,9 +23,28 @@
   export default {
     name: 'app-example',
     props: {item: {}, level: {default: 0}},
+    data () {
+      const e = {}
+
+      if (this.item.properties) {
+        Object.keys(this.item.properties).forEach(p => {
+          e[p] = (this.item.properties[p] && (this.item.properties[p].properties || this.item.properties[p].items)) ? this.level < 1 : null
+        })
+      }
+
+      return {
+        expanded: e
+      }
+    },
     computed: {
+      v () {
+        return value(this.item)
+      },
       value () {
-        return JSON.stringify(value(this.item))
+        return JSON.stringify(this.v)
+      },
+      type () {
+        return typeof this.v
       }
     },
     methods: {

@@ -18,7 +18,7 @@ export function value(schemaObject: Schema): any {
     return schemaObject.example;
   }
 
-  const typeValue = schemaObject.format || schemaObject.type;
+  const typeValue = schemaObject.format || schemaObject.type || (schemaObject.enum ? 'enum' : null);
 
   switch (typeValue) {
     case 'int32':
@@ -43,6 +43,11 @@ export function value(schemaObject: Schema): any {
       return (new Date(0)).toISOString();
     case 'password':
       return 'password';
+    case 'enum':
+      return schemaObject.enum[0];
+    default:
+      console.warn('Unknown schema', schemaObject)
+      return '?';
   }
 }
 

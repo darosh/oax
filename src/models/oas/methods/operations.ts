@@ -1,5 +1,7 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
+// const sampler = require('openapi-sampler');
+
 
 export function operations(spec: ISpecExtended) {
   for (const op of spec._operations) {
@@ -40,6 +42,15 @@ export function operations(spec: ISpecExtended) {
             description_html: false
           };
           delete  resp.description;
+
+          // if(resp.schema) {
+          //   if(resp.schema.properties && !resp.schema.type) {
+          //     resp.schema.type = 'object'
+          //   }
+          //
+          //   (resp as any)._sampler = sampler.sample(resp.schema)
+          //   console.log(JSON.stringify((resp as any)._sampler), resp.schema)
+          // }
         }
       }
     }
