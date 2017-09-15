@@ -49,11 +49,11 @@ export function firstPaths(spec: ISpecExtended) {
             ret[tag]++;
           }
         }
+      } else {
+        return {}
       }
     }
   }
-
-  console.log(ret);
 
   return ret;
 }
