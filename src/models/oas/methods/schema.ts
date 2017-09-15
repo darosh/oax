@@ -46,13 +46,13 @@ export function value(schemaObject: Schema): any {
     case 'enum':
       return schemaObject.enum[0];
     default:
-      console.warn('Unknown schema', schemaObject)
+      console.warn('Unknown schema value', schemaObject);
       return '?';
   }
 }
 
 export function type(schemaObject: Schema): any {
-  const typeValue = schemaObject.format || schemaObject.type;
+  const typeValue = schemaObject.format || schemaObject.type || (schemaObject.enum ? 'enum' : null);
 
   switch (typeValue) {
     case 'int32':
@@ -76,6 +76,8 @@ export function type(schemaObject: Schema): any {
       return 'password';
     case 'file':
       return 'file';
+    case 'enum':
+      return 'enum';
   }
 
   return typeValue;

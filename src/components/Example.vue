@@ -46,11 +46,6 @@
       type () {
         return typeof this.v
       }
-    },
-    methods: {
-      space (level) {
-        return '  '.repeat(level >= 0 ? level : 0)
-      }
     }
   }
 </script>

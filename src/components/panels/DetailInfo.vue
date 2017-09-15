@@ -58,7 +58,7 @@
     data () {
       return {
         responseStyle: ResponseStyle,
-        schemaViews: ['Example', 'Model'],
+        schemaViews: ['Example', 'Schema'],
         schemaView: 0,
         exp1: true,
         exp2: true
