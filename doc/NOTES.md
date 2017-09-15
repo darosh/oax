@@ -57,11 +57,8 @@
 
 ## Dev notes
 
-- [x] Swipe down to refresh, this is probably not an issue?
 - [ ] Pre scroll in drawer
-- [x] Drawer over dialog
 - [ ] Mobile icons
-- [x] Mobile paddings
 - [ ] Tab bar is scrolling on swipe
 - [ ] Tab bar double line
 - [ ] Expand panels border on mobile
@@ -70,21 +67,16 @@
 - [ ] Alert layout, padding?
 - [ ] Drawer border left missing when scrolled
 - [ ] Fixed sidebar toolbars
-- [x] Dialog toolbar shadow is ugly
 - [ ] Dialog icon buttons deforned on mobile
 - [ ] Data table borders weird
 - [ ] Highlight selected http reference toolbar button
 - [ ] Switching http reference is slow on mobile
-- [x] Add mono font to HTML index
 - [ ] Review code splitting for best UX
-- [x] Reopen same operation on selection
 - [ ] Dialog toolbar right subtitles have bigger margin on right?
-- [x] Replace dialog rfc link titles with specs
 - [ ] Insert direct api spec by text
 - [ ] Use spec loader worker
 - [ ] Show search when searching
 - [ ] Close and clear search on mobile at least
-- [x] Expansion panel border color makes shadow look blurry?
 - [ ] Extract common base path from "paths"
 - [ ] yql for apisguru only on localhost?
 - [ ] highlight path params
