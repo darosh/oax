@@ -33,24 +33,27 @@ export function tags(spec: ISpecExtended) {
 }
 
 export function firstPaths(spec: ISpecExtended) {
-  const rx = /^\/?([^\/{}#?]+).*$/;
+  const rx = /^[^{}#?]+$/;
   const ret: any = {}
 
   for (const pathName in spec.paths) {
     if (spec.paths.hasOwnProperty(pathName)) {
       const path: Path = spec.paths[pathName];
-      const tag = pathName.replace(rx, '$1');
-      ret[tag] = ret[tag] || 0;
+      const tag = pathName.split('/')[1]
 
-      for (const httpMethod in path) {
-        if (HttpMethods[httpMethod]) {
-          ret[tag]++;
+      if(tag && rx.test(tag)) {
+        ret[tag] = ret[tag] || 0;
+
+        for (const httpMethod in path) {
+          if (HttpMethods[httpMethod]) {
+            ret[tag]++;
+          }
         }
       }
     }
   }
 
-  console.log(ret)
+  console.log(ret);
 
   return ret;
 }
