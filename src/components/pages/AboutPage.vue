@@ -55,7 +55,7 @@
           version: dependencies[i].indexOf('github:') === 0 ? '' : dependencies[i][0] === '^' ? dependencies[i].substr(
             1) : dependencies[i],
           href: dependencies[i].indexOf('github:') === 0
-            ? 'https://github.com/' + i.substr(6)
+            ? 'https://github.com/' + dependencies[i].substr(7)
             : ('https://www.npmjs.com/package/' + i)
         }))
       }
