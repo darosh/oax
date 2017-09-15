@@ -2,6 +2,7 @@ const rimraf = require('rimraf')
 const puppeteer = require('puppeteer')
 const cfg = require('../../config/doc/screenshots.json')
 const base = 'http://localhost:8080/#'
+let about = true
 
 if (process.argv[2]) {
   const pick = process.argv[2].split(',')
@@ -37,8 +38,14 @@ function path (theme, screen, shot, index) {
     for (const shot in cfg.shots) {
       const s = cfg.shots[shot]
 
+      if (s.evalBefore) {
+        await page.evaluate(s.evalBefore)
+      }
+
       if (s.url) {
+        await page.goto('about:url')
         await page.goto(base + s.url, {waitUntil: 'networkidle'})
+        about = false
 
         if (cfg.before) {
           await page.evaluate(new Function(cfg.before))
@@ -47,6 +54,10 @@ function path (theme, screen, shot, index) {
 
       if (s.wait) {
         await page.waitFor(s.wait)
+      }
+
+      if (s.waitPreEvalFnc) {
+        await page.waitFor(new Function(s.waitPreEvalFnc))
       }
 
       if (s.eval) {
@@ -78,6 +89,7 @@ function path (theme, screen, shot, index) {
     }
 
     await page.goto('about:blank')
+    about = true
   }
 
   browser.close()

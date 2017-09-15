@@ -29,6 +29,11 @@
       "wait": ".expansion-panel"
     },
     {
+      "title": "security",
+      "eval": "OAX.state.ui.dialog = {type: 'security'}",
+      "evalAfter": "OAX.state.ui.dialog = {type: null}"
+    },
+    {
       "title": "download",
       "eval": "OAX.state.ui.dialog = {type: 'download'}",
       "waitFnc": "return !!OAX.select.vue('app-download-dialog').blob",
@@ -73,7 +78,9 @@
     },
     {
       "title": "operations",
-      "eval": "OAX.state.view.type = 1"
+      "evalBefore": "OAX.state.view.type = 1",
+      "waitPreEvalFnc": "return OAX.select('app-operation-list')",
+      "eval": "OAX.select('app-operation-list').scrollIntoView()"
     },
     {
       "title": "table",
@@ -147,6 +154,16 @@
     {
       "title": "about",
       "url": "/about"
+    },
+    {
+      "title": "markdown",
+      "url": "/",
+      "eval": "OAX.app.$store.dispatch('SPEC_SET_LOAD_URL', 'https://darosh.github.io/openapi-samples/specs/markdown/markdown.json')",
+      "wait": ".markdown"
+    },
+    {
+      "title": "syntax",
+      "eval": "document.querySelector('.language-json').scrollIntoView()"
     }
   ]
 }
