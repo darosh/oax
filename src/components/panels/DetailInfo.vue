@@ -24,7 +24,7 @@
                 v-btn.toggle-round.transparent.pt-0.elevation-0.pr-0(v-model="expcol[code]", @click.stop="expcol[code] = !expcol[code]") {{expcol[code] ? 'Collapse' : 'Expand'}}
                 v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView" mandatory)
                   v-btn.transparent.elevation-0(v-for="i in schemaViews", :key="i") {{i}}
-              app-model(:item="response.schema" v-if="schemaView === 1")
+              app-model(:item="response.schema" v-if="schemaView === 1" v-model="expcol[code]")
               app-example(:item="response.schema" v-else v-model="expcol[code]")
 </template>
 

@@ -22,16 +22,8 @@
     name: 'app-json',
     props: {value: {}, item: {}, level: {default: 0}},
     data () {
-      const e = {}
-
-      if (typeof this.item === 'object') {
-        Object.keys(this.item).forEach(p => {
-          e[p] = (this.item[p] && (typeof this.item[p] === 'object')) ? this.level < 1 : null
-        })
-      }
-
       return {
-        expanded: e
+        expanded: this.init(this.item)
       }
     },
     computed: {
@@ -46,6 +38,24 @@
       },
       val () {
         return JSON.stringify(this.item)
+      }
+    },
+    methods: {
+      init (item) {
+        const e = {}
+
+        if (typeof item === 'object') {
+          Object.keys(item).forEach(p => {
+            e[p] = (item[p] && (typeof item[p] === 'object')) ? this.level < 1 : null
+          })
+        }
+
+        return e
+      }
+    },
+    watch: {
+      item: function () {
+        this.expanded = this.init(this.item)
       }
     }
   }
