@@ -21,9 +21,9 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
-  import { value, type } from '../models/oas/methods/schema'
+  import { value, type } from '../../models/oas/methods/schema'
 
   export default {
     name: 'app-model',

@@ -6,10 +6,10 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
-  import position from '../utils/element-position'
-  import { select } from '../utils/select'
+  import position from '../../utils/element-position'
+  import { select } from '../../utils/select'
 
   export default {
     data () {

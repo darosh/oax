@@ -22,9 +22,9 @@
   import { schema } from '../../models/oas/methods/schema'
   import { execute } from '../../models/oas/methods/execute'
 
-  import appModel from '../Model'
-  import appExample from '../Example'
-  import appParameter from '../Parameter'
+  import appModel from '../parts/Model'
+  import appExample from '../parts/Example'
+  import appParameter from '../parts/Parameter'
   import appResponseBlock from '../elements/ResponseBlock'
 
   export default {

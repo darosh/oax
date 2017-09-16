@@ -35,7 +35,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import appLog from '../Log'
+  import appLog from '../app/Log'
   import { dependencies } from '../../../package.json'
 
   export default {

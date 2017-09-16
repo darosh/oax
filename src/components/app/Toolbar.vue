@@ -47,7 +47,7 @@
 
 <script>
   import { mapMutations, mapActions, mapGetters } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
   export default {
     components: {
@@ -124,7 +124,7 @@
   .upper
     text-transform uppercase
 
-  @import '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
+  @import '../../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
   .searching
     overflow hidden

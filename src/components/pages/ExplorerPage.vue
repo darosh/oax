@@ -40,9 +40,9 @@
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
 
-  import appLog from '../Log'
-  import appMetaList from '../MetaList'
-  import appTagList from '../TagList'
+  import appLog from '../app/Log'
+  import appMetaList from '../views/MetaList'
+  import appTagList from '../views/TagList'
 
   import markdown from '../../directives/markdown'
 
@@ -54,17 +54,17 @@
       appLog,
       appMetaList,
       appTagList,
-      appOperationList: () => import('../OperationList'),
-      appOperationTable: () => import('../OperationTable'),
-      appDocumentation: () => import('../Documentation'),
-      appDefinitions: () => import('../Definitions'),
+      appOperationList: () => import('../views/OperationList'),
+      appOperationTable: () => import('../views/OperationTable'),
+      appDocumentation: () => import('../views/Documentation'),
+      appDefinitions: () => import('../views/Definitions'),
       appMethodDialog: () => import('../dialogs/MethodDialog'),
       appStatusDialog: () => import('../dialogs/StatusDialog'),
       appHeaderDialog: () => import('../dialogs/HeaderDialog'),
       appSecurityDialog: () => import('../dialogs/SecurityDialog'),
       appDownloadDialog: () => import('../dialogs/DownloadDialog'),
       appGeneratorDialog: () => import('../dialogs/GeneratorDialog'),
-      appFab: () => import('../FAB')
+      appFab: () => import('../parts/FAB')
     },
     data () {
       return {

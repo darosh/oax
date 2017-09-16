@@ -36,7 +36,7 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from './store/types'
 
-  import appTour from './components/Tour.vue'
+  import appTour from './components/app/Tour.vue'
 
   export default {
     //    directives: {
@@ -45,9 +45,9 @@
     components: {
       appDrawerRight: () => import('./components/panels/DrawerRight'),
       appDrawerLeft: () => import('./components/panels/DrawerLeft'),
-      appToolbar: () => import('./components/Toolbar'),
+      appToolbar: () => import('./components/app/Toolbar'),
       //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
-      appLog: () => import('./components/Log'),
+      appLog: () => import('./components/app/Log'),
       appTour
     },
     data () {

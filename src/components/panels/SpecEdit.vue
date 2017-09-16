@@ -16,7 +16,7 @@
   import * as types from '../../store/types'
 
   import focus from '../../directives/focus'
-  import appCodemirror from '../CodeMirror'
+  import appCodemirror from '../parts/CodeMirror'
 
   require('codemirror/addon/display/fullscreen.css')
   require('codemirror/addon/display/fullscreen.js')

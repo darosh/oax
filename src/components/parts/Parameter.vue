@@ -12,9 +12,9 @@
 
 <script>
   import { mapMutations } from 'vuex'
-  import * as types from '../store/types'
-  import { type } from '../models/oas/methods/schema'
-  import markdown from '../directives/markdown'
+  import * as types from '../../store/types'
+  import { type } from '../../models/oas/methods/schema'
+  import markdown from '../../directives/markdown'
 
   export default {
     props: ['item'],

@@ -27,14 +27,14 @@
 
 <script>
   import { mapMutations, mapGetters } from 'vuex'
-  import * as types from '../store/types'
+  import * as types from '../../store/types'
 
-  import appMethod from './elements/Method'
+  import appMethod from '../elements/Method'
 
-  import markdown from '../directives/markdown'
-  import appResponse from './elements/Response'
-  import appPath from './elements/Path'
-  import { schemas } from '../models/oas/methods/schemas'
+  import markdown from '../../directives/markdown'
+  import appResponse from '../elements/Response'
+  import appPath from '../elements/Path'
+  import { schemas } from '../../models/oas/methods/schemas'
 
   export default {
     directives: {

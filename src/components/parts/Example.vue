@@ -1,28 +1,31 @@
 <template lang="pug">
-  span(v-if="item.type === 'array'")
+  app-json(v-if="item.example", :item="item.example", :level="level" v-model="value")
+  span(v-else-if="item.type === 'array'")
     | [
-    app-example(:item="item.items", :level="level + 1")
+    app-example(:item="item.items", :level="level + 1" v-model="value")
     | ]
   span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
     | {
     ul
       li(v-for="(prop, propName) in item.properties")
-        span(v-if="expanded[propName] === null") &nbsp;
+        span(v-if="value || expanded[propName] === null") &nbsp;
         span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
         | "{{propName}}":
         =" "
-        app-example(v-if="expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1")
+        app-example(v-if="expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1" v-model="value")
         span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
     | }
-  span(v-else :class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{value}}
+  span(v-else :class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{val}}
 </template>
 
 <script>
-  import { value } from '../models/oas/methods/schema'
+  import { value } from '../../models/oas/methods/schema'
+  import appJson from './Json'
 
   export default {
     name: 'app-example',
-    props: {item: {}, level: {default: 0}},
+    components: { appJson },
+    props: {value: {}, item: {}, level: {default: 0}},
     data () {
       const e = {}
 
@@ -40,7 +43,7 @@
       v () {
         return value(this.item)
       },
-      value () {
+      val () {
         return JSON.stringify(this.v)
       },
       type () {

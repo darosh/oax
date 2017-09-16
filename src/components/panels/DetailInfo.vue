@@ -21,10 +21,11 @@
             pre.app-example.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
+                v-btn.toggle-round.transparent.pt-0.elevation-0.pr-0(v-model="expcol[code]", @click.stop="expcol[code] = !expcol[code]") {{expcol[code] ? 'Collapse' : 'Expand'}}
                 v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView" mandatory)
                   v-btn.transparent.elevation-0(v-for="i in schemaViews", :key="i") {{i}}
               app-model(:item="response.schema" v-if="schemaView === 1")
-              app-example(:item="response.schema" v-else)
+              app-example(:item="response.schema" v-else v-model="expcol[code]")
 </template>
 
 <script>
@@ -34,8 +35,8 @@
   import { schema } from '../../models/oas/methods/schema'
   import { execute } from '../../models/oas/methods/execute'
 
-  import appModel from '../Model'
-  import appExample from '../Example'
+  import appModel from '../parts/Model'
+  import appExample from '../parts/Example'
   import appResponseBlock from '../elements/ResponseBlock'
 
   import markdown from '../../directives/markdown'
@@ -56,12 +57,19 @@
       this.UI_SET_FAB_METHOD(this.execute)
     },
     data () {
+      const expcol = {}
+
+      for (const code in this.item.responses) {
+        expcol[code] = null
+      }
+
       return {
         responseStyle: ResponseStyle,
         schemaViews: ['Example', 'Schema'],
         schemaView: 0,
         exp1: true,
-        exp2: true
+        exp2: true,
+        expcol: expcol
       }
     },
     computed: {
@@ -140,23 +148,31 @@
     display none
 
   .toggle-round
+    margin-top 0
     margin-bottom -19px
     border-radius: 14px
 
-  .toggle-round >>> button
+  button.toggle-round
+    min-width 64px
+  button.toggle-round >>> .btn__content
+    padding 0 8px
+
+  .toggle-round >>> button,
+  button.toggle-round
     font-size 13px !important
     font-weight 500
     height 19px !important
     padding 0 4px
-    //box-shadow none
+    margin-top 0
     font-family: Roboto, sans-serif
 
-
-  .toggle-round >>> button:first-child
+  .toggle-round >>> button:first-child,
+  button.toggle-round
     border-bottom-left-radius: 14px
     border-top-left-radius: 14px
 
-  .toggle-round >>> button:last-child
+  .toggle-round >>> button:last-child,
+  button.toggle-round
     border-bottom-right-radius: 14px
     border-top-right-radius: 14px
 
