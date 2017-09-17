@@ -1,25 +1,28 @@
 <template lang="pug">
-  span(v-if="item.type === 'array'")
-    | [
-    app-model(:item="item.items", :level="level + 1", v-model="value")
-    | ]
-  span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
-    b(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
-      =" "
-    | {
-    ul
-      li(v-for="(prop, propName) in item.properties")
-        div.cm-comment(v-if="prop.description")  // {{prop.description}}
-        div.cm-comment(v-if="prop.enum")  // ({{prop.enum.join('|')}})
-        span(v-if="value || (expanded[propName] === null)") &nbsp;
-        span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
-        | "{{propName}}":
+  span
+    div.cm-comment(v-if="item.description" style="white-space: pre-wrap") // {{item.description}}
+    div.cm-comment(v-if="item.enum" style="white-space: pre-wrap") // ({{item.enum.join(' | ')}})
+    span(v-if="item.type === 'array'")
+      | [
+      app-model(:item="item.items", :level="level + 1", v-model="value")
+      | ]
+    span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
+      b(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
         =" "
-        app-model(v-if="value || expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1", v-model="value")
-        span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
-    | }
-  span(v-else)
-    span(:class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{item.format || item.type || t}}
+      | {
+      ul
+        li(v-for="(prop, propName) in item.properties")
+          div.cm-comment(v-if="prop.description" style="white-space: pre-wrap")  // {{prop.description}}
+          div.cm-comment(v-if="prop.enum" style="white-space: pre-wrap")  // ({{prop.enum.join(' | ')}})
+          span(v-if="value || (expanded[propName] === null)") &nbsp;
+          span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
+          | "{{propName}}":
+          =" "
+          app-model(v-if="value || expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1", v-model="value")
+          span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
+      | }
+    span(v-else)
+      span(:class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{item.format || item.type || t}}
 </template>
 
 <script>

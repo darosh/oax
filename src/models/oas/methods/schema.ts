@@ -2,8 +2,14 @@ import {Schema} from 'swagger-schema-official';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 
 const randExp = require('randexp');
+var DRange = require('discontinuous-range');
 
-randExp.prototype.randInt = (from: number/*, to: number*/) => from;
+console.log(randExp.prototype.defaultRange)
+
+randExp.prototype.defaultRange = new DRange(97, 122);
+randExp.prototype.randInt = (from: number, to: number) => {
+  return (from + 1 <= to) ? from + 1 : from
+};
 
 export function schema(operation: IOperationExtended) {
   for (const code in operation.responses) {
