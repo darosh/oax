@@ -2,9 +2,7 @@ import {Schema} from 'swagger-schema-official';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 
 const randExp = require('randexp');
-var DRange = require('discontinuous-range');
-
-console.log(randExp.prototype.defaultRange)
+const DRange = require('discontinuous-range');
 
 randExp.prototype.defaultRange = new DRange(97, 122);
 randExp.prototype.randInt = (from: number, to: number) => {
