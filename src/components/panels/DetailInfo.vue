@@ -154,12 +154,4 @@
 
   .no-details >>> .input-group__details
     display none
-
-  .app-example >>> .click
-    cursor: pointer
-    opacity: .64
-  .app-example >>> ul
-    padding: 0 0 0 16px
-  .app-example >>> ul li
-    list-style none
 </style>

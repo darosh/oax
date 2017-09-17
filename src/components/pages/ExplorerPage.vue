@@ -33,6 +33,7 @@
     app-security-dialog
     app-download-dialog
     app-generator-dialog
+    app-schema-dialog
     app-fab
 </template>
 
@@ -64,6 +65,7 @@
       appSecurityDialog: () => import('../dialogs/SecurityDialog'),
       appDownloadDialog: () => import('../dialogs/DownloadDialog'),
       appGeneratorDialog: () => import('../dialogs/GeneratorDialog'),
+      appSchemaDialog: () => import('../dialogs/SchemaDialog'),
       appFab: () => import('../parts/FAB')
     },
     data () {

@@ -1,7 +1,10 @@
 <template lang="pug">
   span(v-if="array")
     | [
-    app-json(v-for="(i, k) in item", :item="i", :level="level + 1", :key="k", v-model="value")
+    template(v-for="(i, k) in item")
+      app-json(:item="i", :level="level + 1", :key="k", v-model="value")
+      span(v-if="k < (item.length - 1)")
+        =", "
     | ]
   span(v-else-if="object")
     | {
