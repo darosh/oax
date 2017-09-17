@@ -8,9 +8,9 @@
           span.subheader Schema
       v-tabs(grow :scrollable="false")
         v-tabs-bar.transparent
-          v-tabs-item(href="tab-schema" v-ripple) Schema
-          v-tabs-item(href="tab-example" v-ripple) Example
-          v-tabs-item(href="tab-json" v-ripple) Raw
+          v-tabs-item(href="tab-schema" v-ripple="") Schema
+          v-tabs-item(href="tab-example" v-ripple="") Example
+          v-tabs-item(href="tab-json" v-ripple="") Raw
           v-tabs-slider
         v-divider
         v-tabs-items
@@ -72,7 +72,8 @@
     },
     computed: {
       ...mapGetters([
-        types.SPEC
+        types.SPEC,
+        types.UI_DIALOG_PARAM
       ])
     },
     methods: {
@@ -85,6 +86,11 @@
         let ind = ms.indexOf(this.name) + (prev ? -1 : 1)
         ind = ind < 0 ? ms.length - 1 : ind >= ms.length ? 0 : ind
         this.show(ms[ind])
+      }
+    },
+    watch: {
+      UI_DIALOG_PARAM: function (name) {
+        this.show(name)
       }
     }
   }

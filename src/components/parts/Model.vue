@@ -9,6 +9,8 @@
     | {
     ul
       li(v-for="(prop, propName) in item.properties")
+        div.cm-comment(v-if="prop.description")  // {{prop.description}}
+        div.cm-comment(v-if="prop.enum")  // ({{prop.enum.join('|')}})
         span(v-if="value || (expanded[propName] === null)") &nbsp;
         span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
         | "{{propName}}":
@@ -16,7 +18,8 @@
         app-model(v-if="value || expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1", v-model="value")
         span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
     | }
-  span(v-else :class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{item.format || item.type || t}}
+  span(v-else)
+    span(:class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{item.format || item.type || t}}
 </template>
 
 <script>

@@ -25,6 +25,7 @@
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "openapi-samples": "github:darosh/openapi-samples",
     "parse5": "^3.0.2",
+    "randexp": "^0.4.6",
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
     "showdown": "^1.7.4",

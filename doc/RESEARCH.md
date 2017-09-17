@@ -47,6 +47,8 @@
 |`x-tagGroups`  | |✔| | | | |
 |`x-servers`    | |✔| | | | |
 |`x-origin`     | | | | | |✔|
+|`pattern`      | | | | | |✔|
+|`allOf`        | | | | | |.|
 
 ## Articles
 

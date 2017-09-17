@@ -1,6 +1,10 @@
 import {Schema} from 'swagger-schema-official';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 
+const randExp = require('randexp');
+
+randExp.prototype.randInt = (from: number/*, to: number*/) => from;
+
 export function schema(operation: IOperationExtended) {
   for (const code in operation.responses) {
     if (operation.responses.hasOwnProperty(code)) {
@@ -30,7 +34,7 @@ export function value(schemaObject: Schema): any {
     case 'number':
       return 0.5;
     case 'string':
-      return schemaObject.enum ? schemaObject.enum[0] : 'string';
+      return schemaObject.enum ? schemaObject.enum[0] : schemaObject.pattern ? randExp.randexp(new RegExp(schemaObject.pattern)) : 'string';
     case 'byte':
       return btoa('string');
     case 'binary':
