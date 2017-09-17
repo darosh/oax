@@ -1,7 +1,9 @@
 <template lang="pug">
   span
-    div.cm-comment(v-if="item.description" style="white-space: pre-wrap") // {{item.description}}
-    div.cm-comment(v-if="item.enum" style="white-space: pre-wrap") // ({{item.enum.join(' | ')}})
+    div.cm-comment(v-if="item.description && !level" style="white-space: pre-wrap") // {{item.description}}
+    div.cm-comment(v-if="item.enum  && !level" style="white-space: pre-wrap") // ({{item.enum.join(' | ')}})
+    div.cm-comment(v-if="item.pattern  && !level") // /{{item.pattern}}/
+    div.cm-comment(v-if="((item.minLength) <= 0 || item.maxLength)  && !level") // {{item.minLength}}..{{item.maxLength}}
     span(v-if="item.type === 'array'")
       | [
       app-model(:item="item.items", :level="level + 1", v-model="value")
@@ -14,6 +16,8 @@
         li(v-for="(prop, propName) in item.properties")
           div.cm-comment(v-if="prop.description" style="white-space: pre-wrap")  // {{prop.description}}
           div.cm-comment(v-if="prop.enum" style="white-space: pre-wrap")  // ({{prop.enum.join(' | ')}})
+          div.cm-comment(v-if="prop.pattern")  // /{{prop.pattern}}/
+          div.cm-comment(v-if="((prop.minLength) <= 0 || prop.maxLength)")  // {{prop.minLength}}..{{prop.maxLength}}
           span(v-if="value || (expanded[propName] === null)") &nbsp;
           span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
           | "{{propName}}":
