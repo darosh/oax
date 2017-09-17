@@ -19,7 +19,7 @@
               v-layout.ma-0
                 v-spacer
                 v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColSchema = !expColSchema") {{expColSchema ? 'Collapse' : 'Expand'}}
-              .mt-3
+              .mt-4
               app-model(v-if="json", :item="json" v-model="expColSchema")
           v-tabs-content#tab-example
             pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")

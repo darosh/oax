@@ -24,7 +24,7 @@
                 v-btn.btn--mini.transparent.pt-0.elevation-0.btn--tool.mt-0.mr-1(@click.stop="expcol[code] = !expcol[code]") {{expcol[code] ? 'Collapse' : 'Expand'}}
                 v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round.btn--tool(v-model="schemaView" mandatory)
                   v-btn.transparent.elevation-0(v-for="i in schemaViews", :key="i") {{i}}
-              div.mt-3(v-if="schemaView === 1")
+              .mt-4(v-if="schemaView === 1")
               app-model(:item="response.schema" v-if="schemaView === 1" v-model="expcol[code]")
               app-example(:item="response.schema" v-else v-model="expcol[code]")
 </template>

@@ -9,7 +9,7 @@
       app-model(:item="item.items", :level="level + 1", v-model="value")
       | ]
     span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
-      b(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
+      b.primary--text(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
         =" "
       | {
       ul
