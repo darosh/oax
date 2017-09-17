@@ -11,6 +11,9 @@
   .cm-atom
     color: $oax-text.warning
 
+  .cm-comment
+    color: $material-light.text.secondary
+
   .CodeMirror
     font-family: "Roboto Mono", monospace
     font-size: 13px
@@ -48,5 +51,8 @@
     .CodeMirror-focused .CodeMirror-selected
       background-color: rgba($theme.primary, .25)
 
-  .CodeMirror-fullscreen
+    .cm-comment
+      color: $material-dark.text.secondary
+
+.CodeMirror-fullscreen
       z-index: 1000

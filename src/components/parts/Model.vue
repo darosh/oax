@@ -1,23 +1,41 @@
 <template lang="pug">
   span
     div.cm-comment(v-if="item.description && !level" style="white-space: pre-wrap") // {{item.description}}
-    div.cm-comment(v-if="item.enum  && !level" style="white-space: pre-wrap") // ({{item.enum.join(' | ')}})
-    div.cm-comment(v-if="item.pattern  && !level") // /{{item.pattern}}/
-    div.cm-comment(v-if="((item.minLength) <= 0 || item.maxLength)  && !level") // {{item.minLength}}..{{item.maxLength}}
+    div.cm-comment(v-if="item.enum  && !level" style="white-space: pre-wrap") // (
+      span.cm-string(v-html="item.enum.join('&#x200B;<span class=\"cm-comment\">|</span>')")
+      | )
+    div.cm-comment(v-if="item.pattern  && !level") //
+      span.cm-atom  /{{item.pattern}}/
+    div.cm-comment(v-if="((item.minLength) <= 0 || item.maxLength)  && !level") //
+      span.cm-number  {{item.minLength}}
+      | ..
+      span.cm-number {{item.maxLength}}
     span(v-if="item.type === 'array'")
+      div.cm-comment(v-if="item.items.description" style="white-space: pre-wrap")  // {{item.items.description}}
+      div.cm-comment(v-if="((item.minItems) <= 0 || item.maxItems)")  // [
+        span.cm-number {{item.minItems}}
+        |..
+        span.cm-number {{item.maxItems}}
+        | ]
       | [
       app-model(:item="item.items", :level="level + 1", v-model="value")
       | ]
     span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
-      b.primary--text(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
+      b.primary--text.link(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
         =" "
       | {
       ul
         li(v-for="(prop, propName) in item.properties")
           div.cm-comment(v-if="prop.description" style="white-space: pre-wrap")  // {{prop.description}}
-          div.cm-comment(v-if="prop.enum" style="white-space: pre-wrap")  // ({{prop.enum.join(' | ')}})
-          div.cm-comment(v-if="prop.pattern")  // /{{prop.pattern}}/
-          div.cm-comment(v-if="((prop.minLength) <= 0 || prop.maxLength)")  // {{prop.minLength}}..{{prop.maxLength}}
+          div.cm-comment(v-if="prop.enum  && !level" style="white-space: pre-wrap") // (
+            span.cm-string(v-html="prop.enum.join('&#x200B;<span class=\"cm-comment\">|</span>')")
+            | )
+          div.cm-comment(v-if="prop.pattern")  //
+            span.cm-atom  /{{prop.pattern}}/
+          div.cm-comment(v-if="((prop.minLength) <= 0 || prop.maxLength)")  //
+            span.cm-number  {{prop.minLength}}
+            | ..
+            span.cm-number {{prop.maxLength}}
           span(v-if="value || (expanded[propName] === null)") &nbsp;
           span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
           | "{{propName}}":
