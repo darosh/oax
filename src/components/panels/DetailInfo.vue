@@ -21,8 +21,8 @@
             pre.app-example.app-pre.ml-3.mr-3.pa-1.mt-1
               v-layout.ma-0
                 v-spacer
-                v-btn.toggle-round.transparent.pt-0.elevation-0.pr-0(v-model="expcol[code]", @click.stop="expcol[code] = !expcol[code]") {{expcol[code] ? 'Collapse' : 'Expand'}}
-                v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round(v-model="schemaView" mandatory)
+                v-btn.btn--mini.transparent.pt-0.elevation-0.btn--tool.mt-0(v-model="expcol[code]", @click.stop="expcol[code] = !expcol[code]") {{expcol[code] ? 'Collapse' : 'Expand'}}
+                v-btn-toggle.transparent.pt-0.elevation-0.pr-0.toggle-round.btn--tool(v-model="schemaView" mandatory)
                   v-btn.transparent.elevation-0(v-for="i in schemaViews", :key="i") {{i}}
               app-model(:item="response.schema" v-if="schemaView === 1" v-model="expcol[code]")
               app-example(:item="response.schema" v-else v-model="expcol[code]")
@@ -146,35 +146,6 @@
 
   .no-details >>> .input-group__details
     display none
-
-  .toggle-round
-    margin-top 0
-    margin-bottom -19px
-    border-radius: 14px
-
-  button.toggle-round
-    min-width 64px
-  button.toggle-round >>> .btn__content
-    padding 0 8px
-
-  .toggle-round >>> button,
-  button.toggle-round
-    font-size 13px !important
-    font-weight 500
-    height 19px !important
-    padding 0 4px
-    margin-top 0
-    font-family: Roboto, sans-serif
-
-  .toggle-round >>> button:first-child,
-  button.toggle-round
-    border-bottom-left-radius: 14px
-    border-top-left-radius: 14px
-
-  .toggle-round >>> button:last-child,
-  button.toggle-round
-    border-bottom-right-radius: 14px
-    border-top-right-radius: 14px
 
   .app-example >>> .click
     cursor: pointer

@@ -1,0 +1,38 @@
+$mini-height := 19px
+
+.btn
+  &.btn--mini
+    font-family: Roboto, sans-serif
+    font-size 13px
+    font-weight 500
+    height: $mini-height
+    border-radius: ($mini-height / 2)
+    min-width: ($mini-height * 3)
+
+    .btn__content
+      padding: 0 ($mini-height / 2)
+
+
+    &.btn--tool
+      margin-bottom: -($mini-height)
+
+.btn-toggle.toggle-round
+  border-radius: ($mini-height / 2)
+
+  &.btn--tool
+    margin-bottom: -($mini-height)
+
+  button
+    font-family: Roboto, sans-serif
+    font-size 13px
+    font-weight 500
+    height $mini-height
+    border none !important
+
+    &:first-child
+      border-bottom-left-radius: ($mini-height / 2)
+      border-top-left-radius: ($mini-height / 2)
+
+    &:last-child
+      border-bottom-right-radius: ($mini-height / 2)
+      border-top-right-radius: ($mini-height / 2)
