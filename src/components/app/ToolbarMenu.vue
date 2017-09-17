@@ -72,7 +72,6 @@
       v-list-tile-action(v-if="VIEW_VIEW === 2")
         v-icon check
 
-
     //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
       v-list-tile-action
         v-icon view_quilt
