@@ -64,8 +64,8 @@
     margin: 0
     border none
 
-  .dialog__content
-    z-index 6
+  /*.dialog__content*/
+    /*z-index 6*/
 
   .dialog--fullscreen
     overflow hidden

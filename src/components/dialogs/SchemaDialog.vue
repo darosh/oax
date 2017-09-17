@@ -1,11 +1,12 @@
 <template lang="pug">
-  v-dialog(v-model="active" width="360")
+  v-dialog(v-model="active" width="360" content-class="dialog--info")
     v-card
-      v-toolbar.elevation-0
-        v-toolbar-title.main-title {{name}}
+      v-toolbar.elevation-0.primary.white--text
+        v-toolbar-title.main-title
+          b {{name}}
         v-spacer
         v-toolbar-title
-          span.subheader Schema
+          span.subheader.white--text Schema
       v-tabs(grow :scrollable="false")
         v-tabs-bar.transparent
           v-tabs-item(href="tab-schema" v-ripple="") Schema

@@ -18,6 +18,7 @@
         span.cm-number {{item.maxItems}}
         | ]
       | [
+      // b.primary--text.link(v-if="itemsName", @click.stop="UI_SET_DIALOG({type: 'schema', param: itemsName})") {{itemsName}}
       app-model(:item="item.items", :level="level + 1", v-model="value")
       | ]
     span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
@@ -38,6 +39,7 @@
             span.cm-number {{prop.maxLength}}
           span(v-if="value || (expanded[propName] === null)") &nbsp;
           span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
+          span.cm-error(v-if="required(propName)") *
           | "{{propName}}":
           =" "
           app-model(v-if="value || expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1", v-model="value")
@@ -85,6 +87,15 @@
         }
 
         return null
+      },
+      itemsName () {
+        for (const def in this.SPEC.definitions) {
+          if (this.SPEC.definitions[def] === this.item.items) {
+            return def
+          }
+        }
+
+        return null
       }
     },
     methods: {
@@ -103,6 +114,9 @@
         }
 
         return e
+      },
+      required (prop) {
+        return this.item.required && (this.item.required.indexOf(prop) > -1)
       }
     },
     watch: {

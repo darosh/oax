@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="active" width="360")
+  v-dialog(v-model="active" width="360" content-class="dialog--info")
     v-card
       v-toolbar.elevation-0
         v-spacer

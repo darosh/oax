@@ -109,6 +109,6 @@
 </script>
 
 <style lang="stylus">
-  .dialog__content
-    z-index 1000
+  /*.dialog__content*/
+    //z-index 1000
 </style>
