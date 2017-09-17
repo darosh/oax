@@ -16,7 +16,7 @@
         app-model(v-if="value || expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1", v-model="value")
         span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
     | }
-  span(v-else :class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{t}}
+  span(v-else :class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{item.format || item.type || t}}
 </template>
 
 <script>
