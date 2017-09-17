@@ -30,7 +30,7 @@ export function value(schemaObject: Schema): any {
     case 'number':
       return 0.5;
     case 'string':
-      return 'string';
+      return schemaObject.enum ? schemaObject.enum[0] : 'string';
     case 'byte':
       return btoa('string');
     case 'binary':
