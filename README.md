@@ -4,17 +4,16 @@
 
 |Feature|Comment|
 |:---|:---|
-|![](https://img.shields.io/badge/OpenApi%20directory%20browser-100%-brightgreen.svg?style=flat-square)| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
-|![](https://img.shields.io/badge/Light%20%26%20dark%20theme-100%-brightgreen.svg?style=flat-square)|
-|![](https://img.shields.io/badge/Offline%20%26%20progressive-80%-brightgreen.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/View%20%26%20layout%20options-75%-brightgreen.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Schema%20%26%20examples-70%-yellow.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Try%20out%20API-50%-yellow.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Edit%20specification-30%-yellow.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Security%20definitions-25%-red.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Customization%20%26%20configuration-10%-red.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/SEO%20%26%20SSR-0%-red.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/SEO%20%26%20SSR-0%-red.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/OpenApi%20directory%20browser-100%25-brightgreen.svg?style=flat-square)| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|![](https://img.shields.io/badge/Light%20%26%20dark%20theme-100%25-brightgreen.svg?style=flat-square)|
+|![](https://img.shields.io/badge/Offline%20%26%20progressive-80%25-brightgreen.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/View%20%26%20layout%20options-75%25-brightgreen.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Schema%20%26%20examples-70%25-yellow.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Try%20out%20API-50%25-yellow.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Edit%20specification-30%25-yellow.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Security%20definitions-25%25-red.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Customization%20%26%20configuration-10%25-red.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/SEO%20%26%20SSR-0%25-red.svg?style=flat-square)| 
 
 ## Build Setup
 
