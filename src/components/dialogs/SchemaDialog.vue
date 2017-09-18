@@ -75,7 +75,8 @@
     computed: {
       ...mapGetters([
         types.SPEC,
-        types.UI_DIALOG_PARAM
+        types.UI_DIALOG_PARAM,
+        types.UI_DLG
       ])
     },
     methods: {
@@ -92,7 +93,9 @@
     },
     watch: {
       UI_DIALOG_PARAM: function (name) {
-        this.show(name)
+        if (this.UI_DLG === 'schema') {
+          this.show(name)
+        }
       }
     }
   }

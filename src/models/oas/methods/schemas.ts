@@ -8,7 +8,11 @@ export function schemas(op: IOperationExtended, spec: ISpecExtended) {
   if (op.responses) {
     for (const responseName in op.responses) {
       if (op.responses[responseName].schema) {
-        ret[schemaName(op.responses[responseName].schema, spec)] = true;
+        const k = schemaName(op.responses[responseName].schema, spec);
+
+        if (k) {
+          ret[k] = true;
+        }
       }
     }
   }
@@ -16,7 +20,11 @@ export function schemas(op: IOperationExtended, spec: ISpecExtended) {
   if (op.parameters) {
     for (const param of op.parameters) {
       if ((param as BodyParameter).schema) {
-        ret[schemaName((param as BodyParameter).schema, spec)] = true;
+        const k = schemaName((param as BodyParameter).schema, spec);
+
+        if (k) {
+          ret[k] = true;
+        }
       }
     }
   }
@@ -31,5 +39,5 @@ export function schemaName(schema: any, spec: ISpecExtended) {
     }
   }
 
-  return '@inline';
+  return null;
 }

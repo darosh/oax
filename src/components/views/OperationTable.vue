@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container(fluid v-if="SPEC_OPERATIONS").pl-4.pr-4.pa-3-sm
-    v-data-table.elevation-1(:headers="headers", :items="items" hide-actions)
+    //v-container.pa-0(style="overflow-x: scroll" fluid v-if="SPEC_OPERATIONS").pl-4.pr-4.pa-3-sm
+    v-data-table.pa-3-sm.table__no--overflow.elevation-1(v-if="SPEC_OPERATIONS", :headers="headers", :items="items" hide-actions)
       template(slot="items" scope="props")
         td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op._id}}
         td(@click="SPEC_SET_OPERATION(props.item.op)")
@@ -21,7 +21,7 @@
         td
           template(v-for="(s, index) in props.item.schemas")
             span(v-if="index")=", "
-            a(@click="") {{s}}
+            a(@click.stop="UI_SET_DIALOG({type: 'schema', param: s})") {{s}}
         <!--td(@click.stop="SPEC_SET_OPERATION(props.item)") {{props.item.security}}-->
 </template>
 
@@ -83,7 +83,8 @@
     },
     methods: {
       ...mapMutations([
-        types.SPEC_SET_OPERATION
+        types.SPEC_SET_OPERATION,
+        types.UI_SET_DIALOG
       ]),
       schemas
     }
