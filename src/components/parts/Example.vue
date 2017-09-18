@@ -8,8 +8,8 @@
     | {
     ul
       li(v-for="(prop, propName) in item.properties")
-        span(v-if="value || expanded[propName] === null") &nbsp;
-        span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
+        span.expander(v-if="value || expanded[propName] === null") &nbsp;
+        span.expander(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
         | "{{propName}}":
         =" "
         app-example(v-if="value || expanded[propName] || (expanded[propName] === null)", :item="prop", :level="level + 1" v-model="value")

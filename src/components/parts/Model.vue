@@ -27,18 +27,18 @@
       | {
       ul
         li(v-for="(prop, propName) in item.properties")
-          div.cm-comment(v-if="prop.description" style="white-space: pre-wrap")  // {{prop.description}}
+          div.cm-comment(v-if="prop.description" style="white-space: pre-wrap") // {{prop.description}}
           div.cm-comment(v-if="prop.enum  && !level" style="white-space: pre-wrap") // (
             span.cm-string(v-html="prop.enum.join('&#x200B;<span class=\"cm-comment\">|</span>')")
             | )
-          div.cm-comment(v-if="prop.pattern")  //
+          div.cm-comment(v-if="prop.pattern") //
             span.cm-atom  /{{prop.pattern}}/
-          div.cm-comment(v-if="((prop.minLength) <= 0 || prop.maxLength)")  //
+          div.cm-comment(v-if="((prop.minLength) <= 0 || prop.maxLength)") //
             span.cm-number  {{prop.minLength}}
             | ..
             span.cm-number {{prop.maxLength}}
-          span(v-if="value || (expanded[propName] === null)") &nbsp;
-          span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
+          span.expander(v-if="value || (expanded[propName] === null)") &nbsp;
+          span.expander(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") {{expanded[propName] ? '&minus;' : '+'}}
           span.cm-error(v-if="required(propName)") *
           | "{{propName}}":
           =" "
