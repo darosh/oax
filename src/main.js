@@ -111,11 +111,11 @@ window.OAX.app = new Vue({
   components: {App},
   created () {
     let url = null
-    const ioq = window.location.hash.indexOf('?')
+    const ioq = window.location.href.indexOf('?')
     window.OAX.state = this.$store.state
 
     if (ioq) {
-      const qoq = window.location.hash.substr(ioq + 1)
+      const qoq = window.location.href.substr(ioq + 1)
         .split('&')
         .map(v => v.split('='))
         .filter(v => v[0] === 'url')[0]
