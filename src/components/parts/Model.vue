@@ -1,32 +1,37 @@
 <template lang="pug">
   span
-    div.cm-comment(v-if="item.description && !level" style="white-space: pre-wrap") // {{item.description}}
-    div.cm-comment(v-if="item.enum  && !level" style="white-space: pre-wrap") // (
-      span.cm-string(v-html="item.enum.join('&#x200B;<span class=\"cm-comment\">|</span>')")
+    div.cm-comment(v-if="merged.description && !level" style="white-space: pre-wrap") // {{merged.description}}
+    div.cm-comment(v-if="merged.enum  && !level" style="white-space: pre-wrap") // (
+      span.cm-string(v-html="merged.enum.join('&#x200B;<span class=\"cm-comment\">|</span>')")
       | )
-    div.cm-comment(v-if="item.pattern  && !level") //
-      span.cm-atom  /{{item.pattern}}/
-    div.cm-comment(v-if="((item.minLength) <= 0 || item.maxLength)  && !level") //
-      span.cm-number  {{item.minLength}}
+    div.cm-comment(v-if="merged.pattern  && !level") //
+      span.cm-atom  /{{merged.pattern}}/
+    div.cm-comment(v-if="((merged.minLength) <= 0 || merged.maxLength)  && !level") //
+      span.cm-number  {{merged.minLength}}
       | ..
-      span.cm-number {{item.maxLength}}
-    span(v-if="item.type === 'array'")
-      div.cm-comment(v-if="item.items.description" style="white-space: pre-wrap")  // {{item.items.description}}
-      div.cm-comment(v-if="((item.minItems) <= 0 || item.maxItems)")  // [
-        span.cm-number {{item.minItems}}
-        |..
-        span.cm-number {{item.maxItems}}
+      span.cm-number {{merged.maxLength}}
+    span(v-if="merged.type === 'array'")
+      div.cm-comment(v-if="merged.items.description" style="white-space: pre-wrap")  // {{merged.items.description}}
+      div.cm-comment(v-if="((merged.minItems) <= 0 || merged.maxItems)")  // [
+        span.cm-number {{merged.minItems}}
+        | ..
+        span.cm-number {{merged.maxItems}}
         | ]
       | [
       // b.primary--text.link(v-if="itemsName", @click.stop="UI_SET_DIALOG({type: 'schema', param: itemsName})") {{itemsName}}
-      app-model(:item="item.items", :level="level + 1", v-model="value")
+      app-model(:item="merged.items", :level="level + 1", v-model="value")
       | ]
-    span(v-else-if="item.type === 'object' || item.properties || (typeof item === 'object' && !Object.keys(item).length)")
+    span(v-else-if="merged.type === 'object' || merged.properties || (typeof merged === 'object' && !Object.keys(merged).length)")
       b.primary--text.link(v-if="name", @click.stop="UI_SET_DIALOG({type: 'schema', param: name})") {{name}}
-        =" "
+      span(v-if="name && parentNames")
+        =": "
+      span(v-if="parentNames", v-for="(n, k) in parentNames", :key="k")
+        span(v-if="k")
+          =","
+        b.primary--text.link(@click.stop="UI_SET_DIALOG({type: 'schema', param: n})") {{n}}
       | {
       ul
-        li(v-for="(prop, propName) in item.properties")
+        li(v-for="(prop, propName) in merged.properties")
           div.cm-comment(v-if="prop.description" style="white-space: pre-wrap") // {{prop.description}}
           div.cm-comment(v-if="prop.enum  && !level" style="white-space: pre-wrap") // (
             span.cm-string(v-html="prop.enum.join('&#x200B;<span class=\"cm-comment\">|</span>')")
@@ -46,7 +51,7 @@
           span(v-else class="click", @click.stop="expanded[propName] = !expanded[propName]") &hellip;
       | }
     span(v-else)
-      span(:class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{item.format || item.type || t}}
+      span(:class="{'cm-string': type === 'string', 'cm-atom': type === 'boolean', 'cm-number': type === 'number'}") {{merged.format || merged.type || t}}
 </template>
 
 <script>
@@ -54,13 +59,18 @@
   import * as types from '../../store/types'
 
   import { value, type } from '../../models/oas/methods/schema'
+  import allOf from '../../utils/allof'
+  import { name, names } from '../../utils/name'
 
   export default {
     name: 'app-model',
     props: {value: {}, item: {}, level: {default: 0}},
     data () {
+      let merged = this.item.allOf ? allOf(this.item) : this.item
+
       return {
-        expanded: this.init(this.item.properties)
+        merged: merged,
+        expanded: this.init(merged.properties)
       }
     },
     computed: {
@@ -68,10 +78,10 @@
         types.SPEC
       ]),
       v () {
-        return value(this.item)
+        return value(this.merged)
       },
       t () {
-        return type(this.item)
+        return type(this.merged)
       },
       val () {
         return JSON.stringify(this.v)
@@ -80,22 +90,13 @@
         return typeof this.v
       },
       name () {
-        for (const def in this.SPEC.definitions) {
-          if (this.SPEC.definitions[def] === this.item) {
-            return def
-          }
-        }
-
-        return null
+        return name(this.SPEC, this.item)
+      },
+      parentNames () {
+        return this.item.allOf ? names(this.SPEC, this.item) : null
       },
       itemsName () {
-        for (const def in this.SPEC.definitions) {
-          if (this.SPEC.definitions[def] === this.item.items) {
-            return def
-          }
-        }
-
-        return null
+        return name(this.SPEC, this.merged.items)
       }
     },
     methods: {
@@ -116,12 +117,13 @@
         return e
       },
       required (prop) {
-        return this.item.required && (this.item.required.indexOf(prop) > -1)
+        return this.merged.required && (this.merged.required.indexOf(prop) > -1)
       }
     },
     watch: {
       item: function () {
-        this.expanded = this.init(this.item.properties)
+        this.merged = this.item.allOf ? allOf(this.item) : this.item
+        this.expanded = this.init(this.merged.properties)
       }
     }
   }
