@@ -1,4 +1,4 @@
-# OAX &mdash; OpenAPI Specification Explorer [![demo: online](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://darosh.github.io/oax/) [![work: in progress](https://img.shields.io/badge/work-in%20progress-yellow.svg?style=flat-square)](doc/NOTES.md)
+# OAX &mdash; OpenAPI Specification Explorer [![demo: online](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://darosh.github.io/oax/) 
 
 ## Status
 
