@@ -14,6 +14,7 @@
 |![](https://img.shields.io/badge/Security%20definitions-25%-red.svg?style=flat-square)| 
 |![](https://img.shields.io/badge/Customization%20%26%20configuration-10%-red.svg?style=flat-square)| 
 |![](https://img.shields.io/badge/SEO%20%26%20SSR-0%-red.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/SEO%20%26%20SSR-0%-red.svg?style=flat-square)| 
 
 ## Build Setup
 
