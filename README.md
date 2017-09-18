@@ -19,7 +19,7 @@
 |Responsive & mobile|![100%](https://placehold.it/12/44cc11?text=+) 100%|  
 |Offline & progressive|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
 |View & layout options|![75%](https://placehold.it/12/44cc11?text=+) 75%| 
-|Schema & examples|![70%](https://placehold.it/12/dfb317?text=+) 70%| 
+|Schema & examples|![75%](https://placehold.it/12/dfb317?text=+) 75%| 
 |Try out API|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
 |Edit specification|![30%](https://placehold.it/12/dfb317?text=+) 30%| using [CodeMirror](http://codemirror.net/) editor and web worker
 |Security definitions|![25%](https://placehold.it/12/e05d44?text=+) 25%| 

@@ -27,9 +27,10 @@
         =": "
       span(v-if="parentNames", v-for="(n, k) in parentNames", :key="k")
         span(v-if="k")
-          =","
+          =", "
         b.primary--text.link(@click.stop="UI_SET_DIALOG({type: 'schema', param: n})") {{n}}
-      | {
+      span(v-if="name")=" {"
+      span(v-else="name")="{"
       ul
         li(v-for="(prop, propName) in merged.properties")
           div.cm-comment(v-if="prop.description" style="white-space: pre-wrap") // {{prop.description}}
@@ -59,7 +60,7 @@
   import * as types from '../../store/types'
 
   import { value, type } from '../../models/oas/methods/schema'
-  import allOf from '../../utils/allof'
+  import { allOf, mergeAllOf } from '../../utils/allof'
   import { name, names } from '../../utils/name'
 
   export default {
@@ -93,7 +94,7 @@
         return name(this.SPEC, this.item)
       },
       parentNames () {
-        return this.item.allOf ? names(this.SPEC, this.item) : null
+        return this.item.allOf ? names(this.SPEC, mergeAllOf({allOf: [].concat(this.item.allOf)})) : null
       },
       itemsName () {
         return name(this.SPEC, this.merged.items)
