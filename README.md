@@ -2,10 +2,10 @@
 
 ## Status
 
-|Feature|Comment|
-|:---|:---|
-|![](https://img.shields.io/badge/OpenApi%20directory%20browser-100%25-brightgreen.svg?style=flat-square)| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
-|![](https://img.shields.io/badge/Light%20%26%20dark%20theme-100%25-brightgreen.svg?style=flat-square)|
+|Status|Feature|Comment|
+|:---|:---|:---|
+|OpenApi directory browser|![100](https://placehold.it/32/44cc1?text=+) 100| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|Light & dark theme|![100](https://placehold.it/32/44cc1?text=+) 100| 
 |![](https://img.shields.io/badge/Offline%20%26%20progressive-80%25-brightgreen.svg?style=flat-square)| 
 |![](https://img.shields.io/badge/View%20%26%20layout%20options-75%25-brightgreen.svg?style=flat-square)| 
 |![](https://img.shields.io/badge/Schema%20%26%20examples-70%25-yellow.svg?style=flat-square)| 
