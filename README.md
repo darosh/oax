@@ -1,19 +1,19 @@
-# OAX &mdash; OpenAPI Specification Explorer [![demo: online](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://darosh.github.io/oax/) 
+# OAX &mdash; OpenAPI Specification Explorer [![demo: online](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://darosh.github.io/oax/)
 
 ## Status
 
 |Feature|Status|Note|
 |:---|:---|:---|
-|OpenApi directory browser|![100%](https://placehold.it/14/44cc11?text=+) 100%| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
-|Light & dark theme|![100%](https://placehold.it/14/44cc11?text=+) 100%| 
-|Offline & progressive|![80%](https://placehold.it/14/44cc11?text=+) 80%| 
-|View & layout options|![75%](https://placehold.it/14/44cc11?text=+) 75%| 
-|Schema & examples|![70%](https://placehold.it/14/dfb317?text=+) 70%| 
-|Try out API|![50%](https://placehold.it/14/dfb317?text=+) 50%| 
-|Edit specification|![30%](https://placehold.it/14/dfb317?text=+) 30%| 
-|Security definitions|![25%](https://placehold.it/14/e05d44?text=+) 25%| 
-|Customization & configuration|![10%](https://placehold.it/14/e05d44?text=+) 10%| 
-|SEO & SSR|![0%](https://placehold.it/14/e05d44?text=+) 0%| 
+|OpenApi directory browser|![100%](https://placehold.it/12/44cc11?text=+) 100%| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|Light & dark theme|![100%](https://placehold.it/12/44cc11?text=+) 100%| 
+|Offline & progressive|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
+|View & layout options|![75%](https://placehold.it/12/44cc11?text=+) 75%| 
+|Schema & examples|![70%](https://placehold.it/12/dfb317?text=+) 70%| 
+|Try out API|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
+|Edit specification|![30%](https://placehold.it/12/dfb317?text=+) 30%| 
+|Security definitions|![25%](https://placehold.it/12/e05d44?text=+) 25%| 
+|Customization & configuration|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
+|SEO & SSR|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
 
 ## Build Setup
 
