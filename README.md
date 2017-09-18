@@ -2,19 +2,18 @@
 
 ## Status
 
-|Status|Feature|Comment|
+|Feature|Status|Note|
 |:---|:---|:---|
-|OpenApi directory browser|![100](https://placehold.it/16/44cc11?text=+) 100| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
-|Light & dark theme|![100](https://placehold.it/16/44cc11?text=+) 100| 
-|Offline & progressive|![80](https://placehold.it/16/44cc11?text=+) 80| 
-|View & layout options|![75](https://placehold.it/16/44cc11?text=+) 75| 
-|Schema & examples|![70](https://placehold.it/16/dfb317?text=+) 70| 
-|Try out API|![50](https://placehold.it/16/dfb317?text=+) 50| 
-|Edit specification|![30](https://placehold.it/16/dfb317?text=+) 30| 
-|![](https://img.shields.io/badge/Edit%20specification-30%25-yellow.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Security%20definitions-25%25-red.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Customization%20%26%20configuration-10%25-red.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/SEO%20%26%20SSR-0%25-red.svg?style=flat-square)| 
+|OpenApi directory browser|![100%](https://placehold.it/14/44cc11?text=+) 100%| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|Light & dark theme|![100%](https://placehold.it/14/44cc11?text=+) 100%| 
+|Offline & progressive|![80%](https://placehold.it/14/44cc11?text=+) 80%| 
+|View & layout options|![75%](https://placehold.it/14/44cc11?text=+) 75%| 
+|Schema & examples|![70%](https://placehold.it/14/dfb317?text=+) 70%| 
+|Try out API|![50%](https://placehold.it/14/dfb317?text=+) 50%| 
+|Edit specification|![30%](https://placehold.it/14/dfb317?text=+) 30%| 
+|Security definitions|![25%](https://placehold.it/14/e05d44?text=+) 25%| 
+|Customization & configuration|![10%](https://placehold.it/14/e05d44?text=+) 10%| 
+|SEO & SSR|![0%](https://placehold.it/14/e05d44?text=+) 0%| 
 
 ## Build Setup
 
