@@ -32,7 +32,7 @@
       v-toolbar-title {{APP_PAGE_NAME}}
       v-spacer
       v-toolbar-items
-        v-btn(flat to="/" tag="a" exact) API
+        v-btn(flat :to="APP_HOME" tag="a" exact) API
         v-btn.hidden-xs-only(flat to="/methods" tag="a") Methods
         v-btn.hidden-xs-only(flat to="/statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat to="/headers" tag="a") Headers
@@ -60,6 +60,7 @@
     },
     computed: {
       ...mapGetters([
+        types.APP_HOME,
         types.APP_API_PAGE,
         types.VIEW_DARK,
         types.VIEW_SUMMARY,
