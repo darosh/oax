@@ -77,16 +77,16 @@ export function metas(spec: Spec): IMeta[] {
       value: origin()
     },
     {
+      dialog: 'download',
       download: 'JSON / YAML',
       icon: 'file_download',
-      title: 'Specification',
-      dialog: 'download'
+      title: 'Specification'
     },
     {
+      dialog: 'generator',
       download: 'Client / Server',
       icon: 'file_download',
-      title: 'Code generator',
-      dialog: 'generator'
+      title: 'Code generator'
     }
   ];
 }

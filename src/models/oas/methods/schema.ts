@@ -38,7 +38,11 @@ export function value(schemaObject: Schema): any {
     case 'number':
       return 0.5;
     case 'string':
-      return schemaObject.enum ? schemaObject.enum[0] : schemaObject.pattern ? randExp.randexp(new RegExp(schemaObject.pattern)) : 'string';
+      return schemaObject.enum
+        ? schemaObject.enum[0]
+        : schemaObject.pattern
+          ? randExp.randexp(new RegExp(schemaObject.pattern))
+          : 'string';
     case 'byte':
       return btoa('string');
     case 'binary':

@@ -18,7 +18,10 @@ export function tags(spec: ISpecExtended) {
 
   const fpKeys = Object.keys(firstPaths(spec));
 
-  if (fpKeys.length && (untagged.length === spec._operations.length) && (untagged.length > 16) && (fpKeys.length < spec._operations.length)) {
+  if (fpKeys.length
+    && (untagged.length === spec._operations.length)
+    && (untagged.length > 16)
+    && (fpKeys.length < spec._operations.length)) {
     tagByPath(spec);
     addOpsTags(spec);
     extendTags(spec);
