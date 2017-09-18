@@ -1,7 +1,7 @@
 const rimraf = require('rimraf')
 const puppeteer = require('puppeteer')
 const cfg = require('../../config/doc/screenshots.json')
-const base = 'http://localhost:8080/#'
+const base = 'http://localhost:8080'
 let about = true
 
 if (process.argv[2]) {
