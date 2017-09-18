@@ -4,12 +4,13 @@
 
 |Status|Feature|Comment|
 |:---|:---|:---|
-|OpenApi directory browser|![100](https://placehold.it/32/44cc1?text=+) 100| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
-|Light & dark theme|![100](https://placehold.it/32/44cc1?text=+) 100| 
-|![](https://img.shields.io/badge/Offline%20%26%20progressive-80%25-brightgreen.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/View%20%26%20layout%20options-75%25-brightgreen.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Schema%20%26%20examples-70%25-yellow.svg?style=flat-square)| 
-|![](https://img.shields.io/badge/Try%20out%20API-50%25-yellow.svg?style=flat-square)| 
+|OpenApi directory browser|![100](https://placehold.it/16/44cc11?text=+) 100| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|Light & dark theme|![100](https://placehold.it/16/44cc11?text=+) 100| 
+|Offline & progressive|![80](https://placehold.it/16/44cc11?text=+) 80| 
+|View & layout options|![75](https://placehold.it/16/44cc11?text=+) 75| 
+|Schema & examples|![70](https://placehold.it/16/dfb317?text=+) 70| 
+|Try out API|![50](https://placehold.it/16/dfb317?text=+) 50| 
+|Edit specification|![30](https://placehold.it/16/dfb317?text=+) 30| 
 |![](https://img.shields.io/badge/Edit%20specification-30%25-yellow.svg?style=flat-square)| 
 |![](https://img.shields.io/badge/Security%20definitions-25%25-red.svg?style=flat-square)| 
 |![](https://img.shields.io/badge/Customization%20%26%20configuration-10%25-red.svg?style=flat-square)| 
