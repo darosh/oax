@@ -8,6 +8,7 @@
 |Markdown & syntax highlight|![100%](https://placehold.it/12/44cc11?text=+) 100%| 
 |Using web worker|![100%](https://placehold.it/12/44cc11?text=+) 100%| for non-blocked user interface
 |Light & dark theme|![100%](https://placehold.it/12/44cc11?text=+) 100%| 
+|Built-in HTTP reference|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [know-your-http-well](https://github.com/for-GET/know-your-http-well) 
 |Offline & progressive|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
 |View & layout options|![75%](https://placehold.it/12/44cc11?text=+) 75%| 
 |Schema & examples|![70%](https://placehold.it/12/dfb317?text=+) 70%| 
@@ -15,7 +16,9 @@
 |Edit specification|![30%](https://placehold.it/12/dfb317?text=+) 30%| 
 |Security definitions|![25%](https://placehold.it/12/e05d44?text=+) 25%| 
 |Customization & configuration|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
+|Keyboard shortcuts & navigation|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
 |SEO & SSR|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
+|Local storage for user settings|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
 
 ## Build Setup
 
