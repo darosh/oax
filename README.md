@@ -1,5 +1,11 @@
 # OAX &mdash; OpenAPI Specification Explorer [![demo: online](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://darosh.github.io/oax/)
 
+## Resources
+
+* Online [demo](https://darosh.github.io/oax/)
+* Automated [screenshots](./doc/screenshots/README.md)
+* [Research](./doc/RESEARCH.md) notes
+
 ## Status
 
 |Feature|Status|Note|
