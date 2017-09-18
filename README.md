@@ -21,6 +21,7 @@
 |Keyboard shortcuts & navigation|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
 |SEO & SSR|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
 |Local storage for user settings|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
+|Cross-browser compatibility|![0%](https://placehold.it/12/e05d44?text=+) 0%| not tested yet (Chrome browser should work) 
 
 ## Build Setup
 
