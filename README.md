@@ -1,5 +1,20 @@
 # OAX &mdash; OpenAPI Specification Explorer [![demo: online](https://img.shields.io/badge/demo-online-brightgreen.svg?style=flat-square)](https://darosh.github.io/oax/) [![work: in progress](https://img.shields.io/badge/work-in%20progress-yellow.svg?style=flat-square)](doc/NOTES.md)
 
+## Status
+
+|Feature|Comment|
+|:---|:---|
+|![](https://img.shields.io/badge/OpenApi%20directory%20browser-100%-brightgreen.svg?style=flat-square)| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|![](https://img.shields.io/badge/Light%20&%20dark%20theme-100%-brightgreen.svg?style=flat-square)|
+|![](https://img.shields.io/badge/Offline%20&%20progressive-80%-brightgreen.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/View%20&%20layout%20options-75%-brightgreen.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Schema%20&%20examples-70%-yellow.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Try%20out%20API-50%-yellow.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Edit%20specification-30%-yellow.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Security%20definitions-25%-red.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/Customization%20&%20configuration-10%-red.svg?style=flat-square)| 
+|![](https://img.shields.io/badge/SEO%20&%20SSR-0%-red.svg?style=flat-square)| 
+
 ## Build Setup
 
 ``` bash
