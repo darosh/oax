@@ -19,11 +19,11 @@
             virtual-scroller.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
               template(scope="props")
                 div(:key="props.itemKey")
-                  v-list-tile(ripple avatar @click="clicked(props.item.url)", :href="'#/?url=' + encodeURIComponent(props.item.url)")
+                  v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
                     v-list-tile-avatar
                       .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
                     v-list-tile-content
-                      v-list-tile-title {{props.item.title}}
+                      v-list-tile-title.main--text {{props.item.title}}
                       v-list-tile-sub-title {{props.item.key}}
                     v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
                       v-icon file_download

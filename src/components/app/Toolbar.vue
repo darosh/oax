@@ -32,7 +32,7 @@
       v-toolbar-title {{APP_PAGE_NAME}}
       v-spacer
       v-toolbar-items
-        v-btn(flat to="/" tag="a") API
+        v-btn(flat to="/" tag="a" exact) API
         v-btn.hidden-xs-only(flat to="/methods" tag="a") Methods
         v-btn.hidden-xs-only(flat to="/statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat to="/headers" tag="a") Headers
