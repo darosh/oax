@@ -5,10 +5,12 @@
 |Feature|Status|Note|
 |:---|:---|:---|
 |OpenApi directory browser|![100%](https://placehold.it/12/44cc11?text=+) 100%| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
+|SDK code generator|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [swagger-codegen](https://github.com/swagger-api/swagger-codegen) 
 |Markdown & syntax highlight|![100%](https://placehold.it/12/44cc11?text=+) 100%| 
 |Using web worker|![100%](https://placehold.it/12/44cc11?text=+) 100%| for non-blocked user interface
 |Light & dark theme|![100%](https://placehold.it/12/44cc11?text=+) 100%| 
 |Built-in HTTP reference|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [know-your-http-well](https://github.com/for-GET/know-your-http-well) 
+|Responsive & mobile|![100%](https://placehold.it/12/44cc11?text=+) 100%|  
 |Offline & progressive|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
 |View & layout options|![75%](https://placehold.it/12/44cc11?text=+) 75%| 
 |Schema & examples|![70%](https://placehold.it/12/dfb317?text=+) 70%| 
