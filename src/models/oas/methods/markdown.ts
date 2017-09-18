@@ -6,7 +6,7 @@ import {IOperationObservable} from '../interfaces/IOperationExtended';
 import {IBaseSecurityExtended} from '../interfaces/ISecurityExtended';
 
 export function mdInfo(spec: ISpecExtended) {
-  description(spec.info._)
+  description(spec.info._);
 }
 
 export function mdSecurity(spec: ISpecExtended) {
@@ -32,13 +32,13 @@ export function mdTags(spec: ISpecExtended, max: number) {
 }
 
 function mdOperation(op: IOperationObservable) {
-  description(op)
+  description(op);
 
   if (!op.summary && op.description) {
     op.summary = summary(op.description);
   }
 
-  summaryHtml(op)
+  summaryHtml(op);
 
   if (op.summary === op.description) {
     delete op.description;
@@ -87,7 +87,7 @@ export function mdResponses(spec: ISpecExtended, max: number) {
   for (const op of spec._operations) {
     if (op.responses) {
       for (const respName in op.responses) {
-        description(op.responses[respName]._)
+        description(op.responses[respName]._);
       }
     }
 

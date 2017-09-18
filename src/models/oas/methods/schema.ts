@@ -6,7 +6,7 @@ const DRange = require('discontinuous-range');
 
 randExp.prototype.defaultRange = new DRange(97, 122);
 randExp.prototype.randInt = (from: number, to: number) => {
-  return (from + 1 <= to) ? from + 1 : from
+  return (from + 1 <= to) ? from + 1 : from;
 };
 
 export function schema(operation: IOperationExtended) {

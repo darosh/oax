@@ -1,20 +1,20 @@
-import {ISpecExtended} from "../interfaces/ISpecExtended";
+import {ISpecExtended} from '../interfaces/ISpecExtended';
 
 export function base(spec: ISpecExtended) {
   const extracted = extract(spec);
 
   if (extracted) {
     spec.basePath = spec.basePath || '/';
-    spec.basePath += (spec.basePath.length && (spec.basePath[spec.basePath.length - 1] === '/') ? '' : '/') + extracted
+    spec.basePath += (spec.basePath.length && (spec.basePath[spec.basePath.length - 1] === '/') ? '' : '/') + extracted;
   }
 }
 
 export function extract(spec: ISpecExtended): string {
-  const parts: { [index: string]: Array<string> } = {};
+  const parts: { [index: string]: string[] } = {};
   let level = 0;
-  const current: Array<string> = [];
+  const current: string[] = [];
   const paths = Object.keys(spec.paths);
-  let done: any = false
+  let done: any = false;
 
   if (!paths.length) {
     return '';
@@ -34,7 +34,7 @@ export function extract(spec: ISpecExtended): string {
         }
       }
 
-      const part = parts[pathName][level]
+      const part = parts[pathName][level];
 
       if (!part) {
         done = current.slice(0, level);
@@ -57,13 +57,13 @@ export function extract(spec: ISpecExtended): string {
   }
 
   if (!done.length) {
-    return ''
+    return '';
   }
 
-  const b = done.join('/')
+  const b = done.join('/');
 
   for (const pathName of paths) {
-    let newName = pathName.substr(b.length + 1)
+    let newName = pathName.substr(b.length + 1);
     newName = newName[0] !== '/' ? '/' + newName : newName;
     const t = spec.paths[pathName];
     spec.paths[newName] = t;

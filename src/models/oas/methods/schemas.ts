@@ -1,11 +1,11 @@
-import {IOperationExtended} from "../interfaces/IOperationExtended";
-import {BodyParameter} from "swagger-schema-official";
-import {ISpecExtended} from "../interfaces/ISpecExtended";
+import {BodyParameter} from 'swagger-schema-official';
+import {IOperationExtended} from '../interfaces/IOperationExtended';
+import {ISpecExtended} from '../interfaces/ISpecExtended';
 
 export function schemas(op: IOperationExtended, spec: ISpecExtended) {
-  let ret: { [key: string]: boolean } = {};
+  const ret: { [key: string]: boolean } = {};
 
-  if(op.responses) {
+  if (op.responses) {
     for (const responseName in op.responses) {
       if (op.responses[responseName].schema) {
         ret[schemaName(op.responses[responseName].schema, spec)] = true;
@@ -13,7 +13,7 @@ export function schemas(op: IOperationExtended, spec: ISpecExtended) {
     }
   }
 
-  if(op.parameters) {
+  if (op.parameters) {
     for (const param of op.parameters) {
       if ((param as BodyParameter).schema) {
         ret[schemaName((param as BodyParameter).schema, spec)] = true;

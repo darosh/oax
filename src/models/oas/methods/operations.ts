@@ -2,7 +2,6 @@ import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 // const sampler = require('openapi-sampler');
 
-
 export function operations(spec: ISpecExtended) {
   for (const op of spec._operations) {
     op.produces = op.produces || spec.produces;
@@ -29,7 +28,7 @@ export function operations(spec: ISpecExtended) {
           description: param.description,
           description_html: false
         };
-        delete param.description
+        delete param.description;
       }
     }
 

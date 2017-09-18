@@ -5,7 +5,7 @@ import hljs from '../utils/highlight';
 
 const walk = require('walk-parse5');
 
-const cache: { [index: string]: { html: string, summary: string } | any } = {}
+const cache: { [index: string]: { html: string, summary: string } | any } = {};
 
 export const converter = new Converter();
 
@@ -53,7 +53,7 @@ function syntax(tree: any) {
 export function trim(v: string) {
   if (v) {
     if (cache[v] && cache[v].html) {
-      return cache[v].html
+      return cache[v].html;
     }
 
     const t = v.trim();

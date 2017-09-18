@@ -1,11 +1,11 @@
 import {metas} from '../metas/index';
 import {ISpecExtended} from './interfaces/ISpecExtended';
+import {base} from './methods/base';
 import {info} from './methods/info';
 import {mdInfo, mdOperations, mdParameters, mdResponses, mdSecurity, mdTags} from './methods/markdown';
 import {operations} from './methods/operations';
 import {security} from './methods/security';
 import {tags} from './methods/tags';
-import {base} from "./methods/base";
 // import {extras} from "./methods/extras";
 // import {observables} from './methods/observables';
 

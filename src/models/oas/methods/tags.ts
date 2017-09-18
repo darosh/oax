@@ -34,14 +34,14 @@ export function tags(spec: ISpecExtended) {
 
 export function firstPaths(spec: ISpecExtended) {
   const rx = /^[^{}#?]+$/;
-  const ret: any = {}
+  const ret: any = {};
 
   for (const pathName in spec.paths) {
     if (spec.paths.hasOwnProperty(pathName)) {
       const path: Path = spec.paths[pathName];
-      const tag = pathName.split('/')[1]
+      const tag = pathName.split('/')[1];
 
-      if(tag && rx.test(tag)) {
+      if (tag && rx.test(tag)) {
         ret[tag] = ret[tag] || 0;
 
         for (const httpMethod in path) {
@@ -50,7 +50,7 @@ export function firstPaths(spec: ISpecExtended) {
           }
         }
       } else {
-        return {}
+        return {};
       }
     }
   }

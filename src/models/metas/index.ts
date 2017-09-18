@@ -9,7 +9,7 @@ export function metas(spec: Spec): IMeta[] {
 
   function origin() {
     const o = (info as IExtra)['x-origin'];
-    return (o && o[0] && o[0].url) || (o && o.url)
+    return (o && o[0] && o[0].url) || (o && o.url);
   }
 
   return [
