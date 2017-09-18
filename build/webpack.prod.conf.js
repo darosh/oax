@@ -1,4 +1,3 @@
-var fs = require('fs')
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
@@ -13,6 +12,11 @@ var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 var env = config.build.env
+
+var babel = require("babel-core");
+var uglify = require('uglify-js');
+
+let workerJS = uglify.minify(babel.transformFileSync(path.join(__dirname, './service-worker-prod.js')).code).code
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -79,9 +83,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
-      serviceWorkerLoader: `<script>${require('uglify-js').
-        minify(fs.readFileSync(path.join(__dirname, './service-worker-prod.js'),
-          'utf-8'), {fromString: true}).code}</script>`
+      serviceWorkerLoader: `<script>${workerJS}</script>`
     }),
     // keep module.id stable when vendor modules does not change
     // TODO: web worker does not work mangled with HashedModuleIdsPlugin
