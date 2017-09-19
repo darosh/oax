@@ -32,103 +32,107 @@
 
 [![](./images/light_md_08_menu.png)](./images/light_md_08_menu.png)
 
+## layout
+
+[![](./images/light_md_09_layout.png)](./images/light_md_09_layout.png)
+
 ## view
 
-[![](./images/light_md_09_view.png)](./images/light_md_09_view.png)
+[![](./images/light_md_10_view.png)](./images/light_md_10_view.png)
 
 ## wide
 
-[![](./images/light_md_10_wide.png)](./images/light_md_10_wide.png)
+[![](./images/light_md_11_wide.png)](./images/light_md_11_wide.png)
 
 ## summary+paths
 
-[![](./images/light_md_11_summary+paths.png)](./images/light_md_11_summary+paths.png)
+[![](./images/light_md_12_summary+paths.png)](./images/light_md_12_summary+paths.png)
 
 ## summary
 
-[![](./images/light_md_12_summary.png)](./images/light_md_12_summary.png)
+[![](./images/light_md_13_summary.png)](./images/light_md_13_summary.png)
 
 ## operations
 
-[![](./images/light_md_13_operations.png)](./images/light_md_13_operations.png)
+[![](./images/light_md_14_operations.png)](./images/light_md_14_operations.png)
 
 ## table
 
-[![](./images/light_md_14_table.png)](./images/light_md_14_table.png)
+[![](./images/light_md_15_table.png)](./images/light_md_15_table.png)
 
 ## schemas
 
-[![](./images/light_md_15_schemas.png)](./images/light_md_15_schemas.png)
+[![](./images/light_md_16_schemas.png)](./images/light_md_16_schemas.png)
 
 ## right
 
-[![](./images/light_md_16_right.png)](./images/light_md_16_right.png)
+[![](./images/light_md_17_right.png)](./images/light_md_17_right.png)
 
 ## request
 
-[![](./images/light_md_17_request.png)](./images/light_md_17_request.png)
+[![](./images/light_md_18_request.png)](./images/light_md_18_request.png)
 
 ## code
 
-[![](./images/light_md_18_code.png)](./images/light_md_18_code.png)
+[![](./images/light_md_19_code.png)](./images/light_md_19_code.png)
 
 ## method
 
-[![](./images/light_md_19_method.png)](./images/light_md_19_method.png)
+[![](./images/light_md_20_method.png)](./images/light_md_20_method.png)
 
 ## status
 
-[![](./images/light_md_20_status.png)](./images/light_md_20_status.png)
+[![](./images/light_md_21_status.png)](./images/light_md_21_status.png)
 
 ## header
 
-[![](./images/light_md_21_header.png)](./images/light_md_21_header.png)
+[![](./images/light_md_22_header.png)](./images/light_md_22_header.png)
 
 ## left
 
-[![](./images/light_md_22_left.png)](./images/light_md_22_left.png)
+[![](./images/light_md_23_left.png)](./images/light_md_23_left.png)
 
 ## categories
 
-[![](./images/light_md_23_categories.png)](./images/light_md_23_categories.png)
+[![](./images/light_md_24_categories.png)](./images/light_md_24_categories.png)
 
 ## recent
 
-[![](./images/light_md_24_recent.png)](./images/light_md_24_recent.png)
+[![](./images/light_md_25_recent.png)](./images/light_md_25_recent.png)
 
 ## edit
 
-[![](./images/light_md_25_edit.png)](./images/light_md_25_edit.png)
+[![](./images/light_md_26_edit.png)](./images/light_md_26_edit.png)
 
 ## fullscreen
 
-[![](./images/light_md_26_fullscreen.png)](./images/light_md_26_fullscreen.png)
+[![](./images/light_md_27_fullscreen.png)](./images/light_md_27_fullscreen.png)
 
 ## test
 
-[![](./images/light_md_27_test.png)](./images/light_md_27_test.png)
+[![](./images/light_md_28_test.png)](./images/light_md_28_test.png)
 
 ## methods
 
-[![](./images/light_md_28_methods.png)](./images/light_md_28_methods.png)
+[![](./images/light_md_29_methods.png)](./images/light_md_29_methods.png)
 
 ## statuses
 
-[![](./images/light_md_29_statuses.png)](./images/light_md_29_statuses.png)
+[![](./images/light_md_30_statuses.png)](./images/light_md_30_statuses.png)
 
 ## headers
 
-[![](./images/light_md_30_headers.png)](./images/light_md_30_headers.png)
+[![](./images/light_md_31_headers.png)](./images/light_md_31_headers.png)
 
 ## about
 
-[![](./images/light_md_31_about.png)](./images/light_md_31_about.png)
+[![](./images/light_md_32_about.png)](./images/light_md_32_about.png)
 
 ## markdown
 
-[![](./images/light_md_32_markdown.png)](./images/light_md_32_markdown.png)
+[![](./images/light_md_33_markdown.png)](./images/light_md_33_markdown.png)
 
 ## syntax
 
-[![](./images/light_md_33_syntax.png)](./images/light_md_33_syntax.png)
+[![](./images/light_md_34_syntax.png)](./images/light_md_34_syntax.png)
 

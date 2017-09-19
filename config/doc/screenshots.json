@@ -60,9 +60,14 @@
       "evalAfter": "OAX.select('app-tag-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:10').deactivate()"
     },
     {
+      "title": "layout",
+      "eval": "OAX.select.vue('app-toolbar v-menu').activate()",
+      "evalAfter": "OAX.select.vue('app-toolbar v-menu').deactivate()"
+    },
+    {
       "title": "view",
-      "eval": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : '')).activate()",
-      "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : '')).deactivate()"
+      "eval": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : ':8')).activate()",
+      "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : ':8')).deactivate()"
     },
     {
       "title": "wide",

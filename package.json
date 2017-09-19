@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.181",
+  "version": "1.0.182",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
