@@ -4,8 +4,8 @@
       v-flex(xs12 sm6 md4 lg3 xl20p v-ripple="" relative v-if="item._._display" v-for="(item, key) in SPEC_OPERATIONS", :key="item._id", @click.stop="SPEC_SET_OPERATION(item)", :class="{'secondary white--text': SPEC_OPERATION === SPEC_OPERATIONS[key]}").hover--block
         v-divider.hidden-xs-only
         .pt-1.pb-1.plr-3-sm
-          app-operation(:item="SPEC_OPERATIONS[key]")
-          div(v-if="VIEW_SUMMARY && (item._.summary || item._.description)")
+          app-operation(:sum="!VIEW_PATH", :item="SPEC_OPERATIONS[key]")
+          div(v-if="VIEW_SUMMARY && VIEW_PATH && (item._.summary || item._.description)")
             .pt-1.pr-1(style="padding-left: 68px" v-markdown.summary="item._")
         v-divider.hidden-sm-and-up
 </template>
@@ -28,6 +28,7 @@
     computed: {
       ...mapGetters([
         types.VIEW_SUMMARY,
+        types.VIEW_PATH,
         types.SPEC_OPERATIONS,
         types.SPEC_OPERATION
       ])
