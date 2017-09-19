@@ -4,7 +4,7 @@
     template(v-if="APP_API_PAGE")
       v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
-      v-menu(bottom right style="height: 100%; display: flex")
+      v-menu.menu--api(bottom right style="height: 100%; display: flex")
         v-toolbar-items(slot="activator" style="height: 100%")
           v-btn(flat style="height: 100%; min-width: 0")
             v-toolbar-title(style="margin-left: 0", :class="searching ? 'hidden-sm-and-down' : ''") API
@@ -202,6 +202,6 @@
     position relative
     top 12px
 
-  >>> .menu__activator .btn__content
+  .menu--api >>> .menu__activator .btn__content
     padding 0 2px 0 12px
 </style>
