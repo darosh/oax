@@ -43,7 +43,7 @@ function path (theme, screen, shot, index) {
       }
 
       if (s.url) {
-        await page.goto('about:url')
+        // await page.goto('about:url')
         await page.goto(base + s.url, {waitUntil: 'networkidle'})
         about = false
 
