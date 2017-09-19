@@ -56,6 +56,7 @@
 - https://tech.trustpilot.com/an-evaluation-of-auto-generated-rest-api-documentation-uis-53031753a789
 - https://swagger.io/redoc-openapi-powered-documentation/
 - https://nordicapis.com/ultimate-guide-to-30-api-documentation-solutions/
+- https://github.com/Mermade/awesome-openapi3
 
 ## Testing
 
