@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container(fluid)
-    v-layout
+  v-container(fluid style="max-width: 80em")
+    v-layout.ma-3-md
       v-spacer.hidden-xs-only
-      v-flex(style="max-width: 888px")
+      v-flex
         v-card.pa-4.mb-1
           .pt-3.hidden-xs-only
           h3.pb-3.ma-0 OpenAPI Specification Explorer
