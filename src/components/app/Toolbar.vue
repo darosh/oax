@@ -4,7 +4,57 @@
     template(v-if="APP_API_PAGE")
       v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
-      v-toolbar-title(:class="searching ? 'hidden-sm-and-down' : ''") API
+      v-menu(bottom right style="height: 100%; display: flex")
+        v-toolbar-items(slot="activator" style="height: 100%")
+          v-btn(flat style="height: 100%; min-width: 0")
+            v-toolbar-title(style="margin-left: 0", :class="searching ? 'hidden-sm-and-down' : ''") API
+              span.secondary--text(v-if="VIEW_VIEW" style="text-transform: none; font-weight: 400")
+                =" "
+                | &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas'}[VIEW_VIEW]}}
+            v-icon arrow_drop_down
+        v-list
+          v-subheader API View
+
+          v-list-tile(@click="VIEW_SET_VIEW(0)")
+            v-list-tile-action
+              v-icon view_column
+            v-list-tile-content
+              v-list-tile-title Tags
+            v-list-tile-action(v-if="VIEW_VIEW === 0")
+              v-icon check
+
+          v-list-tile(@click="VIEW_SET_VIEW(1)")
+            v-list-tile-action
+              v-icon view_module
+            v-list-tile-content
+              v-list-tile-title Operations
+            v-list-tile-action(v-if="VIEW_VIEW === 1")
+              v-icon check
+
+          v-list-tile(@click="VIEW_SET_VIEW(2)")
+            v-list-tile-action
+              v-icon view_stream
+            v-list-tile-content
+              v-list-tile-title Table
+            v-list-tile-action(v-if="VIEW_VIEW === 2")
+              v-icon check
+
+          //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
+            v-list-tile-action
+              v-icon view_quilt
+            v-list-tile-content
+              v-list-tile-title Documentation
+            v-list-tile-action(v-if="VIEW_VIEW === 3")
+              v-icon check
+
+          v-list-tile(@click="VIEW_SET_VIEW(3)")
+            v-list-tile-action
+              v-icon widgets
+            v-list-tile-content
+              v-list-tile-title Schemas
+            v-list-tile-action(v-if="VIEW_VIEW === 3")
+              v-icon check
+
       v-spacer
       template(v-if="SPEC")
         v-btn(icon @click.native.stop="searchBegin")
@@ -68,6 +118,7 @@
         types.UI_LEFT_DRAWER,
         types.SETTINGS_URL,
         types.SPEC,
+        types.VIEW_VIEW,
         types.APP_PAGE_NAME,
         types.SETTINGS_SEARCH,
         types.VIEW_WIDE
@@ -150,4 +201,7 @@
   .toolbar .input-group
     position relative
     top 12px
+
+  >>> .menu__activator .btn__content
+    padding 0 2px 0 12px
 </style>

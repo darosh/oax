@@ -44,11 +44,11 @@
       v-list-tile-action(v-if="VIEW_WIDE")
         v-icon check
 
-    v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
+    //v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
 
-    v-subheader(v-if="!c", :class="{'hidden-sm-and-up': b}") View
+    //v-subheader(v-if="!c", :class="{'hidden-sm-and-up': b}") View
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(0)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(0)")
       v-list-tile-action
         v-icon view_column
       v-list-tile-content
@@ -56,7 +56,7 @@
       v-list-tile-action(v-if="VIEW_VIEW === 0")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(1)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(1)")
       v-list-tile-action
         v-icon view_module
       v-list-tile-content
@@ -64,7 +64,7 @@
       v-list-tile-action(v-if="VIEW_VIEW === 1")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(2)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(2)")
       v-list-tile-action
         v-icon view_stream
       v-list-tile-content
@@ -80,7 +80,7 @@
       v-list-tile-action(v-if="VIEW_VIEW === 3")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
+    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
       v-list-tile-action
         v-icon widgets
       v-list-tile-content
