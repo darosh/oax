@@ -12,7 +12,7 @@
                 =" "
                 | &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas'}[VIEW_VIEW]}}
             v-icon arrow_drop_down
-        v-list
+        v-list(subheader)
           v-subheader API View
 
           v-list-tile(@click="VIEW_SET_VIEW(0)")
