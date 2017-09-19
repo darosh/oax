@@ -24,12 +24,12 @@ export const mutations = {
   [types.VIEW_SET_WIDE] (state, payload) {
     state.wide = payload !== undefined ? payload : !state.wide
   },
-  [types.VIEW_SET_SUMMARY] (state) {
-    state.summary = !state.summary
+  [types.VIEW_SET_SUMMARY] (state, payload) {
+    state.summary = payload === undefined ? !state.summary : payload
     state.path = !state.path && !state.summary ? true : state.path
   },
-  [types.VIEW_SET_PATH] (state) {
-    state.path = !state.path
+  [types.VIEW_SET_PATH] (state, payload) {
+    state.path = payload === undefined ? !state.path : payload
     state.summary = !state.path && !state.summary ? true : state.summary
   }
 }

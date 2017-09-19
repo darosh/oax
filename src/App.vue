@@ -47,6 +47,8 @@
     computed: {
       ...mapGetters([
         types.VIEW_DARK,
+        types.VIEW_PATH,
+        types.VIEW_SUMMARY,
         types.APP_API_PAGE,
         types.APP_HOME,
         types.UI_LOG,
@@ -75,6 +77,16 @@
           },
           'alt+v': () => (this.APP_API_PAGE ? this.VIEW_SET_VIEW() : this.$router.push(this.APP_HOME)),
           'alt+w': () => (this.VIEW_SET_WIDE()),
+          'alt+s': () => {
+            if (!this.APP_API_PAGE) {
+              this.$router.push(this.APP_HOME)
+            } else {
+              let p = ((this.VIEW_SUMMARY * 2 + this.VIEW_PATH * 1) + 1) % 4
+              p = !p ? 1 : p
+              this.VIEW_SET_PATH(!!(p & 1))
+              this.VIEW_SET_SUMMARY(!!(p & 2))
+            }
+          },
           'alt+l': () => (this.log = !this.log),
           'alt+h': () => (this.$router.push('/about')),
           'alt+t': () => (this.VIEW_SET_DARK())
@@ -89,6 +101,8 @@
     methods: {
       ...mapMutations([
         types.VIEW_SET_VIEW,
+        types.VIEW_SET_SUMMARY,
+        types.VIEW_SET_PATH,
         types.VIEW_SET_WIDE,
         types.UI_SET_WIDTH,
         types.UI_SET_DIALOG,

@@ -49,6 +49,7 @@
           'Alt + l': 'Show/hide log',
           'Alt + t': 'Switch theme',
           'Alt + v': 'Switch API view (or navigate to API)',
+          'Alt + s': 'Switch path/summary API view (or navigate to API)',
           'Alt + w': 'Switch wide API view (or navigate to API)',
           'Alt + h': 'Navigate to About page',
           'F10': 'Fullscreen specification editor'
