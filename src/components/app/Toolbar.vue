@@ -8,9 +8,8 @@
         v-toolbar-items(slot="activator" style="height: 100%")
           v-btn(flat style="height: 100%; min-width: 0")
             v-toolbar-title(style="margin-left: 0", :class="searching ? 'hidden-sm-and-down' : ''") API
-              span.secondary--text(v-if="VIEW_VIEW" style="text-transform: none; font-weight: 400")
-                =" "
-                | &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas'}[VIEW_VIEW]}}
+              span.secondary--text(v-if="VIEW_VIEW" style="text-transform: none")
+                |  &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas'}[VIEW_VIEW]}}
             v-icon arrow_drop_down
         v-list(subheader)
           v-subheader API View
