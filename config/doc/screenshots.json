@@ -56,8 +56,8 @@
     },
     {
       "title": "menu",
-      "eval": "OAX.select.vue('app-toolbar v-menu:10').activate()",
-      "evalAfter": "OAX.select('app-tag-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:10').deactivate()"
+      "eval": "OAX.select.vue('app-toolbar v-menu:9').activate()",
+      "evalAfter": "OAX.select('app-tag-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:9').deactivate()"
     },
     {
       "title": "layout",
@@ -66,8 +66,8 @@
     },
     {
       "title": "view",
-      "eval": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : ':8')).activate()",
-      "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':10' : ':8')).deactivate()"
+      "eval": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':9' : ':7')).activate()",
+      "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':9' : ':7')).deactivate()"
     },
     {
       "title": "wide",
