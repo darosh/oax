@@ -28,9 +28,6 @@
   import appTour from './components/app/Tour.vue'
 
   export default {
-    //    directives: {
-    //      hotkey
-    //    },
     components: {
       appDrawerRight: () => import('./components/panels/DrawerRight'),
       appDrawerLeft: () => import('./components/panels/DrawerLeft'),
@@ -72,6 +69,7 @@
               this.UI_SET_LEFT_DRAWER()
             }
           },
+          'alt+v': () => (this.VIEW_SET_VIEW()),
           'alt+l': () => (this.log = !this.log),
           'alt+t': () => (this.VIEW_SET_DARK())
         }
@@ -84,6 +82,7 @@
     },
     methods: {
       ...mapMutations([
+        types.VIEW_SET_VIEW,
         types.UI_SET_WIDTH,
         types.UI_SET_DIALOG,
         types.UI_SET_LEFT_DRAWER,
