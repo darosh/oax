@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-container(fluid grid-list-xl v-if="SPEC").pl-4.pr-4.pa-3-sm
-    v-layout(row wrap).stretch
+  v-container(fluid grid-list-xl v-if="SPEC").pa-0-sm
+    v-layout(row wrap)
       v-flex(xs12 sm6 md4 lg3 xl20p, v-for="(definition, key) in SPEC.definitions", :key="key")
-        v-card.primary.clickable(v-ripple="" , @click.stop="UI_SET_DIALOG({type: 'schema', param: key})")
-          v-card-title.white--text.mono-title
+        v-card.clickable(v-ripple="" , @click.stop="UI_SET_DIALOG({type: 'schema', param: key})")
+          v-card-title.primary--text.mono-title
             b {{key}}
 </template>
 
