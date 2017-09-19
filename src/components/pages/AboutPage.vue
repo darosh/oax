@@ -51,6 +51,8 @@
           'Alt + v': 'Switch API view (or navigate to API)',
           'Alt + s': 'Switch path/summary API view (or navigate to API)',
           'Alt + w': 'Switch wide API view (or navigate to API)',
+          'Alt + o': 'Next operation (or navigate to API)',
+          'Alt + i': 'Previous operation (or navigate to API)',
           'Alt + h': 'Navigate to About page',
           'F10': 'Fullscreen specification editor'
         },

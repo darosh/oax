@@ -89,7 +89,21 @@
           },
           'alt+l': () => (this.log = !this.log),
           'alt+h': () => (this.$router.push('/about')),
-          'alt+t': () => (this.VIEW_SET_DARK())
+          'alt+t': () => (this.VIEW_SET_DARK()),
+          'alt+o': () => {
+            if (!this.APP_API_PAGE) {
+              this.$router.push(this.APP_HOME)
+            } else {
+              this.SPEC_SET_NEXT_OPERATION()
+            }
+          },
+          'alt+i': () => {
+            if (!this.APP_API_PAGE) {
+              this.$router.push(this.APP_HOME)
+            } else {
+              this.SPEC_SET_PREV_OPERATION()
+            }
+          }
         }
       },
       classes () {
@@ -107,6 +121,8 @@
         types.UI_SET_WIDTH,
         types.UI_SET_DIALOG,
         types.UI_SET_LEFT_DRAWER,
+        types.SPEC_SET_NEXT_OPERATION,
+        types.SPEC_SET_PREV_OPERATION,
         types.UI_SET_DRAWER,
         types.VIEW_SET_DARK
       ]),

@@ -18,13 +18,13 @@
 |Built-in HTTP reference|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [know-your-http-well](https://github.com/for-GET/know-your-http-well) 
 |Responsive & mobile|![100%](https://placehold.it/12/44cc11?text=+) 100%|  
 |Offline & progressive|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
-|View & layout options|![75%](https://placehold.it/12/44cc11?text=+) 75%| 
+|Keyboard shortcuts & navigation|![80%](https://placehold.it/12/44cc11?text=+) 80%|
+|View & layout options|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
 |Schema & examples|![75%](https://placehold.it/12/dfb317?text=+) 75%| 
 |Try out API|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
 |Edit specification|![30%](https://placehold.it/12/dfb317?text=+) 30%| using [CodeMirror](http://codemirror.net/) editor and web worker
 |Security definitions|![25%](https://placehold.it/12/e05d44?text=+) 25%| 
 |Customization & configuration|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
-|Keyboard shortcuts & navigation|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
 |SEO & SSR|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
 |Local storage for user settings|![0%](https://placehold.it/12/e05d44?text=+) 0%| 
 |Cross-browser compatibility|![0%](https://placehold.it/12/e05d44?text=+) 0%| not tested yet (Chrome browser should work) 
