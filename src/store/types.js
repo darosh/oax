@@ -13,6 +13,7 @@ export const SPEC_OPERATION = 'SPEC_OPERATION'
 export const SPEC_OPERATIONS = 'SPEC_OPERATIONS'
 export const SPEC_RESOURCES = 'SPEC_RESOURCES'
 export const SPEC_URL = 'SPEC_URL'
+export const SPEC_TAG_OPENED = 'SPEC_TAG_OPENED'
 // spec set
 export const SPEC_SET = 'SPEC_SET'
 export const SPEC_SET_EDIT_JSON = 'SPEC_SET_EDIT_JSON'

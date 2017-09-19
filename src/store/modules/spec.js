@@ -36,13 +36,11 @@ export const mutations = {
     openAll(state.resources, payload)
   },
   [types.SPEC_SET_OPERATION] (state, payload) {
-    // setTimeout(_ => {
     if (state.operation === payload) {
       state.operation = null
     }
 
     state.operation = payload
-    // }, 50)
   },
   [types.SPEC_SET_PREV_OPERATION] (state) {
     let index = state.operations.indexOf(state.operation)
@@ -183,6 +181,17 @@ export const actions = {
 }
 
 export const getters = {
+  [types.SPEC_TAG_OPENED]: (state) => {
+    if (state.spec && state.spec.tags) {
+      for (const tag of state.spec.tags) {
+        if (tag._._opened) {
+          return true
+        }
+      }
+    }
+
+    return false
+  },
   [types.SPEC_OPERATION]: (state) => state.operation,
   [types.SPEC_METAS]: (state) => state.metas,
   [types.SPEC_OPERATIONS]: (state) => state.operations,

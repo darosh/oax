@@ -60,10 +60,9 @@
           v-icon search
         div(class="searching", :class="{'searching--closed': !searching}")
           v-text-field(spellcheck="false" id="search" append-icon="close", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line)
-        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(true)" v-tooltip:bottom="{html: 'Expand all groups'}")
-          v-icon keyboard_arrow_down
-        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(false)" v-tooltip:bottom="{html: 'Collapse all groups'}")
-          v-icon keyboard_arrow_up
+        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(!SPEC_TAG_OPENED)" v-tooltip:bottom="{html: 'Expand/Collapse'}")
+          v-icon(v-if="SPEC_TAG_OPENED") keyboard_arrow_up
+          v-icon(v-else) keyboard_arrow_down
         v-menu.hidden-xs-only(bottom left)
           v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
             v-icon visibility
@@ -110,6 +109,7 @@
     computed: {
       ...mapGetters([
         types.APP_HOME,
+        types.SPEC_TAG_OPENED,
         types.APP_API_PAGE,
         types.VIEW_DARK,
         types.VIEW_SUMMARY,
