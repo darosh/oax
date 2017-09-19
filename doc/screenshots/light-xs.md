@@ -56,75 +56,79 @@
 
 [![](./images/light_xs_14_table.png)](./images/light_xs_14_table.png)
 
+## schemas
+
+[![](./images/light_xs_15_schemas.png)](./images/light_xs_15_schemas.png)
+
 ## right
 
-[![](./images/light_xs_15_right.png)](./images/light_xs_15_right.png)
+[![](./images/light_xs_16_right.png)](./images/light_xs_16_right.png)
 
 ## request
 
-[![](./images/light_xs_16_request.png)](./images/light_xs_16_request.png)
+[![](./images/light_xs_17_request.png)](./images/light_xs_17_request.png)
 
 ## code
 
-[![](./images/light_xs_17_code.png)](./images/light_xs_17_code.png)
+[![](./images/light_xs_18_code.png)](./images/light_xs_18_code.png)
 
 ## method
 
-[![](./images/light_xs_18_method.png)](./images/light_xs_18_method.png)
+[![](./images/light_xs_19_method.png)](./images/light_xs_19_method.png)
 
 ## status
 
-[![](./images/light_xs_19_status.png)](./images/light_xs_19_status.png)
+[![](./images/light_xs_20_status.png)](./images/light_xs_20_status.png)
 
 ## header
 
-[![](./images/light_xs_20_header.png)](./images/light_xs_20_header.png)
+[![](./images/light_xs_21_header.png)](./images/light_xs_21_header.png)
 
 ## left
 
-[![](./images/light_xs_21_left.png)](./images/light_xs_21_left.png)
+[![](./images/light_xs_22_left.png)](./images/light_xs_22_left.png)
 
 ## categories
 
-[![](./images/light_xs_22_categories.png)](./images/light_xs_22_categories.png)
+[![](./images/light_xs_23_categories.png)](./images/light_xs_23_categories.png)
 
 ## recent
 
-[![](./images/light_xs_23_recent.png)](./images/light_xs_23_recent.png)
+[![](./images/light_xs_24_recent.png)](./images/light_xs_24_recent.png)
 
 ## edit
 
-[![](./images/light_xs_24_edit.png)](./images/light_xs_24_edit.png)
+[![](./images/light_xs_25_edit.png)](./images/light_xs_25_edit.png)
 
 ## fullscreen
 
-[![](./images/light_xs_25_fullscreen.png)](./images/light_xs_25_fullscreen.png)
+[![](./images/light_xs_26_fullscreen.png)](./images/light_xs_26_fullscreen.png)
 
 ## test
 
-[![](./images/light_xs_26_test.png)](./images/light_xs_26_test.png)
+[![](./images/light_xs_27_test.png)](./images/light_xs_27_test.png)
 
 ## methods
 
-[![](./images/light_xs_27_methods.png)](./images/light_xs_27_methods.png)
+[![](./images/light_xs_28_methods.png)](./images/light_xs_28_methods.png)
 
 ## statuses
 
-[![](./images/light_xs_28_statuses.png)](./images/light_xs_28_statuses.png)
+[![](./images/light_xs_29_statuses.png)](./images/light_xs_29_statuses.png)
 
 ## headers
 
-[![](./images/light_xs_29_headers.png)](./images/light_xs_29_headers.png)
+[![](./images/light_xs_30_headers.png)](./images/light_xs_30_headers.png)
 
 ## about
 
-[![](./images/light_xs_30_about.png)](./images/light_xs_30_about.png)
+[![](./images/light_xs_31_about.png)](./images/light_xs_31_about.png)
 
 ## markdown
 
-[![](./images/light_xs_31_markdown.png)](./images/light_xs_31_markdown.png)
+[![](./images/light_xs_32_markdown.png)](./images/light_xs_32_markdown.png)
 
 ## syntax
 
-[![](./images/light_xs_32_syntax.png)](./images/light_xs_32_syntax.png)
+[![](./images/light_xs_33_syntax.png)](./images/light_xs_33_syntax.png)
 
