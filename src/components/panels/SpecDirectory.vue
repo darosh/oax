@@ -2,7 +2,7 @@
   div
     v-divider
     v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-0.ma-0.elevation-2.relative
-      v-text-field(spellcheck="false" v-hotkey="{'':''}" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search" v-focus.wait="UI_LEFT_DRAWER && value")
+      v-text-field(spellcheck="false" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search", :append-icon="filter ? 'close' : null", :append-icon-cb="() => filter = null" v-focus.wait="UI_LEFT_DRAWER && value")
       v-btn(icon @click="showFilter = !showFilter")
         v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
     v-tabs(v-model="tab")
