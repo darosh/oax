@@ -2,9 +2,9 @@
   v-container(fluid grid-list-xl v-if="SPEC").pl-4.pr-4.pa-3-sm
     v-layout(row wrap).stretch
       v-flex(xs12 sm6 md4 lg3 xl20p, v-for="(definition, key) in SPEC.definitions", :key="key")
-        v-card.clickable(v-ripple="" , @click.stop="UI_SET_DIALOG({type: 'schema', param: key})")
-          v-card-title.mono-title
-            b.primary--text {{key}}
+        v-card.primary.clickable(v-ripple="" , @click.stop="UI_SET_DIALOG({type: 'schema', param: key})")
+          v-card-title.white--text.mono-title
+            b {{key}}
 </template>
 
 <script>
@@ -36,4 +36,8 @@
     cursor pointer
   .mono-title
     font-family "Roboto Mono", monospace
+    width 100%
+    overflow hidden
+    display block
+    text-overflow ellipsis
 </style>

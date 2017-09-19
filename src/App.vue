@@ -70,6 +70,7 @@
             }
           },
           'alt+v': () => (this.VIEW_SET_VIEW()),
+          'alt+w': () => (this.VIEW_SET_WIDE()),
           'alt+l': () => (this.log = !this.log),
           'alt+t': () => (this.VIEW_SET_DARK())
         }
@@ -83,6 +84,7 @@
     methods: {
       ...mapMutations([
         types.VIEW_SET_VIEW,
+        types.VIEW_SET_WIDE,
         types.UI_SET_WIDTH,
         types.UI_SET_DIALOG,
         types.UI_SET_LEFT_DRAWER,

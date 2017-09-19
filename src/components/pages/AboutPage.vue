@@ -49,6 +49,7 @@
           'Alt + l': 'Show log',
           'Alt + t': 'Switch theme',
           'Alt + v': 'Switch API view',
+          'Alt + w': 'Switch wide view',
           'F10': 'Fullscreen specification editor'
         },
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({

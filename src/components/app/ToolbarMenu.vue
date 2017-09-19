@@ -16,9 +16,9 @@
       v-list-tile-action(v-if="VIEW_DARK")
         v-icon check
 
-    v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
+    v-divider(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_PATH()")
+    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_PATH()")
       v-list-tile-action
         v-icon directions
       v-list-tile-content
@@ -26,7 +26,7 @@
       v-list-tile-action(v-if="VIEW_PATH")
         v-icon check
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_SUMMARY()")
+    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_SUMMARY()")
       v-list-tile-action
         v-icon speaker_notes
       v-list-tile-content
@@ -34,9 +34,9 @@
       v-list-tile-action(v-if="VIEW_SUMMARY")
         v-icon check
 
-    v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
+    v-divider(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_WIDE()")
+    v-list-tile(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_WIDE()")
       v-list-tile-action
         v-icon settings_ethernet
       v-list-tile-content

@@ -87,8 +87,12 @@
       "eval": "OAX.state.view.type = 2"
     },
     {
+      "title": "schemas",
+      "eval": "OAX.state.view.type = 3"
+    },
+    {
       "title": "right",
-      "eval": "OAX.state.spec.operation = OAX.state.spec.operations[0]; OAX.state.ui.right = true"
+      "eval": "OAX.state.view.type = 2; OAX.state.spec.operation = OAX.state.spec.operations[0]; OAX.state.ui.right = true"
     },
     {
       "title": "request",
