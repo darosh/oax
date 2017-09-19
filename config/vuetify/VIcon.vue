@@ -134,4 +134,12 @@
 
   .application .theme--dark.btn .icon
     fill: #fff
+
+  .datatable thead th .icon svg
+    width: 16px
+    height: 16px
+    margin-top -1px
+
+  .datatable thead th.column.sortable.active.desc i
+    transform-origin: center 9px !important
 </style>
