@@ -25,8 +25,8 @@
     app-tag-list(:class="{wide: VIEW_WIDE}" v-if="VIEW_VIEW === 0")
     app-operation-list(:class="{wide: VIEW_WIDE}" v-else-if="VIEW_VIEW === 1")
     app-operation-table(v-else-if="VIEW_VIEW === 2")
-    app-documentation(v-else-if="VIEW_VIEW === 3")
-    app-definitions(v-else-if="VIEW_VIEW === 4")
+    app-definitions(v-else-if="VIEW_VIEW === 3")
+    app-documentation(v-else-if="VIEW_VIEW === 4")
     app-method-dialog
     app-status-dialog
     app-header-dialog

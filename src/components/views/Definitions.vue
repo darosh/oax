@@ -1,6 +1,10 @@
 <template lang="pug">
-  v-container(fluid).pl-4.pr-4.pa-3-sm
-    v-layout(row wrap).stretch Not implemented yet.
+  v-container(fluid grid-list-xl v-if="SPEC").pl-4.pr-4.pa-3-sm
+    v-layout(row wrap).stretch
+      v-flex(xs12 sm6 md4 lg3 xl20p, v-for="(definition, key) in SPEC.definitions", :key="key")
+        v-card.clickable(v-ripple="" , @click.stop="UI_SET_DIALOG({type: 'schema', param: key})")
+          v-card-title.mono-title
+            b.primary--text {{key}}
 </template>
 
 <script>
@@ -20,8 +24,16 @@
     },
     methods: {
       ...mapMutations([
-        types.SPEC_SET_OPERATION
+        types.SPEC_SET_OPERATION,
+        types.UI_SET_DIALOG
       ])
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  .clickable:hover
+    cursor pointer
+  .mono-title
+    font-family "Roboto Mono", monospace
+</style>

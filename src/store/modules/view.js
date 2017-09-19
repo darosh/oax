@@ -19,7 +19,7 @@ export const mutations = {
     state.dark = !state.dark
   },
   [types.VIEW_SET_VIEW] (state, payload) {
-    state.type = payload !== undefined ? payload : (state.type + 1) % 3
+    state.type = payload !== undefined ? payload : (state.type + 1) % 4
   },
   [types.VIEW_SET_WIDE] (state, payload) {
     state.wide = payload !== undefined ? payload : !state.wide

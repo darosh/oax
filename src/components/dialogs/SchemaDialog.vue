@@ -37,7 +37,7 @@
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
-        v-btn(flat icon to="statuses" tag="a")
+        v-btn(flat icon @click="VIEW_SET_VIEW(3); UI_SET_DIALOG()")
           v-icon list
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
 
   import dialog from '../../mixins/dialog'
@@ -80,6 +80,9 @@
       ])
     },
     methods: {
+      ...mapMutations([
+        types.VIEW_SET_VIEW
+      ]),
       show (name) {
         this.name = name
         this.json = this.SPEC.definitions[name]
@@ -103,6 +106,6 @@
 
 <style scoped lang="stylus">
   .main-title.toolbar__title
-    max-width: 220px
+    max-width: 240px
     font-family "Roboto Mono", monospace
 </style>

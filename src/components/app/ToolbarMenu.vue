@@ -80,12 +80,12 @@
       v-list-tile-action(v-if="VIEW_VIEW === 3")
         v-icon check
 
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(4)")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
       v-list-tile-action
         v-icon widgets
       v-list-tile-content
-        v-list-tile-title Definitions
-      v-list-tile-action(v-if="VIEW_VIEW === 4")
+        v-list-tile-title Schemas
+      v-list-tile-action(v-if="VIEW_VIEW === 3")
         v-icon check
 
     v-divider(v-if="b", :class="{'hidden-sm-and-up': b}")

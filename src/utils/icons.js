@@ -75,3 +75,4 @@ export {default as vpn_key} from 'material-design-icons-svg/paths/account-key.js
 export {default as warning} from 'material-design-icons-svg/paths/alert.json'
 export {default as web_asset} from 'material-design-icons-svg/paths/file-document-box.json'
 export {default as do_not_disturb_alt} from 'material-design-icons-svg/paths/cancel.json'
+export {default as widgets} from 'material-design-icons-svg/paths/widgets.json'
