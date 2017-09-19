@@ -47,6 +47,8 @@
     computed: {
       ...mapGetters([
         types.VIEW_DARK,
+        types.APP_API_PAGE,
+        types.APP_HOME,
         types.UI_LOG,
         types.UI_LOADING,
         types.UI_DIALOG,
@@ -61,6 +63,8 @@
           'esc': () => {
             if (this.UI_DLG) {
               this.UI_SET_DIALOG()
+            } else if (!this.APP_API_PAGE) {
+              this.$router.push(this.APP_HOME)
             } else if (this.UI_LEFT_DRAWER) {
               this.UI_SET_LEFT_DRAWER()
             } else if (this.UI_RIGHT_DRAWER) {
@@ -69,9 +73,10 @@
               this.UI_SET_LEFT_DRAWER()
             }
           },
-          'alt+v': () => (this.VIEW_SET_VIEW()),
+          'alt+v': () => (this.APP_API_PAGE ? this.VIEW_SET_VIEW() : this.$router.push(this.APP_HOME)),
           'alt+w': () => (this.VIEW_SET_WIDE()),
           'alt+l': () => (this.log = !this.log),
+          'alt+h': () => (this.$router.push('/about')),
           'alt+t': () => (this.VIEW_SET_DARK())
         }
       },

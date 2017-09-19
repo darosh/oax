@@ -45,11 +45,12 @@
     data () {
       return {
         keys: {
-          'Esc': 'Close dialog, Close right panel, Close left panel, Open left panel',
-          'Alt + l': 'Show log',
+          'Esc': 'Close dialog, Close right panel, Close left panel, Open left panel, Navigate to API',
+          'Alt + l': 'Show/hide log',
           'Alt + t': 'Switch theme',
-          'Alt + v': 'Switch API view',
-          'Alt + w': 'Switch wide view',
+          'Alt + v': 'Switch API view (or navigate to API)',
+          'Alt + w': 'Switch wide API view (or navigate to API)',
+          'Alt + h': 'Navigate to About page',
           'F10': 'Fullscreen specification editor'
         },
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import { state, mutations, actions } from './mutations'
 import plugins from './plugins'
 import getters from './getters'
+import mutations from './mutations'
 
 import * as apis from './modules/apis'
 import * as recent from './modules/recent'
@@ -18,7 +19,7 @@ export const STORAGE_KEY = 'oas-ui'
 
 export default new Vuex.Store({
   // state,
-  // mutations,
+  mutations,
   // actions,
   getters,
   plugins,
