@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list(subheader)
+  v-list
     v-list-tile.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click="UI_SET_DIALOG('security')")
       v-list-tile-action
         v-icon lock
