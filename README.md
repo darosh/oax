@@ -12,10 +12,10 @@
 |:---|:---|:---|
 |OpenApi directory browser|![100%](https://placehold.it/12/44cc11?text=+) 100%| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
 |SDK code generator|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [swagger-codegen](https://github.com/swagger-api/swagger-codegen) via [generator.swagger.io](https://generator.swagger.io/) 
-|Markdown & syntax highlight|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [showdown](https://github.com/showdownjs/showdown) & [highlight.js](https://highlightjs.org/) with 40 language highlighters 
+|Markdown & syntax highlight|![100%](https://placehold.it/12/44cc11?text=+) 100%| using [showdown](https://github.com/showdownjs/showdown) & [highlight.js](https://highlightjs.org/) with 40 language highlighters 
 |Using web worker|![100%](https://placehold.it/12/44cc11?text=+) 100%| for non-blocked user interface
 |Light & dark theme|![100%](https://placehold.it/12/44cc11?text=+) 100%| thanks to [Vuetify](https://vuetifyjs.com/)
-|Built-in HTTP reference|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [know-your-http-well](https://github.com/for-GET/know-your-http-well) 
+|Built-in HTTP reference|![100%](https://placehold.it/12/44cc11?text=+) 100%| by [know-your-http-well](https://github.com/for-GET/know-your-http-well) 
 |Responsive & mobile|![100%](https://placehold.it/12/44cc11?text=+) 100%|  
 |Offline & progressive|![80%](https://placehold.it/12/44cc11?text=+) 80%| 
 |Keyboard shortcuts & navigation|![80%](https://placehold.it/12/44cc11?text=+) 80%|
