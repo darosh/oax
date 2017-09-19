@@ -19,24 +19,24 @@
               v-icon view_column
             v-list-tile-content
               v-list-tile-title Tags
-            v-list-tile-action(v-if="VIEW_VIEW === 0")
-              v-icon check
+            v-list-tile-action
+              v-icon(v-if="VIEW_VIEW === 0") check
 
           v-list-tile(@click="VIEW_SET_VIEW(1)")
             v-list-tile-action
               v-icon view_module
             v-list-tile-content
               v-list-tile-title Operations
-            v-list-tile-action(v-if="VIEW_VIEW === 1")
-              v-icon check
+            v-list-tile-action
+              v-icon(v-if="VIEW_VIEW === 1") check
 
           v-list-tile(@click="VIEW_SET_VIEW(2)")
             v-list-tile-action
               v-icon view_stream
             v-list-tile-content
               v-list-tile-title Table
-            v-list-tile-action(v-if="VIEW_VIEW === 2")
-              v-icon check
+            v-list-tile-action
+              v-icon(v-if="VIEW_VIEW === 2") check
 
           //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
             v-list-tile-action
@@ -51,8 +51,8 @@
               v-icon widgets
             v-list-tile-content
               v-list-tile-title Schemas
-            v-list-tile-action(v-if="VIEW_VIEW === 3")
-              v-icon check
+            v-list-tile-action
+              v-icon(v-if="VIEW_VIEW === 3") check
 
       v-spacer
       template(v-if="SPEC")

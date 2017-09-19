@@ -15,8 +15,8 @@
         v-icon brightness_4
       v-list-tile-content
         v-list-tile-title Dark theme
-      v-list-tile-action(v-if="VIEW_DARK")
-        v-icon check
+      v-list-tile-action
+        v-icon(v-if="VIEW_DARK") check
 
     v-divider(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}")
 
@@ -25,16 +25,16 @@
         v-icon directions
       v-list-tile-content
         v-list-tile-title Path
-      v-list-tile-action(v-if="VIEW_PATH")
-        v-icon check
+      v-list-tile-action
+        v-icon(v-if="VIEW_PATH") check
 
     v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_SUMMARY()")
       v-list-tile-action
         v-icon speaker_notes
       v-list-tile-content
         v-list-tile-title Summary
-      v-list-tile-action(v-if="VIEW_SUMMARY")
-        v-icon check
+      v-list-tile-action
+        v-icon(v-if="VIEW_SUMMARY") check
 
     v-divider(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}")
 
@@ -43,52 +43,8 @@
         v-icon settings_ethernet
       v-list-tile-content
         v-list-tile-title Wide
-      v-list-tile-action(v-if="VIEW_WIDE")
-        v-icon check
-
-    //v-divider(v-if="!c", :class="{'hidden-sm-and-up': b}")
-
-    //v-subheader(v-if="!c", :class="{'hidden-sm-and-up': b}") View
-
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(0)")
       v-list-tile-action
-        v-icon view_column
-      v-list-tile-content
-        v-list-tile-title Tags
-      v-list-tile-action(v-if="VIEW_VIEW === 0")
-        v-icon check
-
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(1)")
-      v-list-tile-action
-        v-icon view_module
-      v-list-tile-content
-        v-list-tile-title Operations
-      v-list-tile-action(v-if="VIEW_VIEW === 1")
-        v-icon check
-
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(2)")
-      v-list-tile-action
-        v-icon view_stream
-      v-list-tile-content
-        v-list-tile-title Table
-      v-list-tile-action(v-if="VIEW_VIEW === 2")
-        v-icon check
-
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
-      v-list-tile-action
-        v-icon view_quilt
-      v-list-tile-content
-        v-list-tile-title Documentation
-      v-list-tile-action(v-if="VIEW_VIEW === 3")
-        v-icon check
-
-    //v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="VIEW_SET_VIEW(3)")
-      v-list-tile-action
-        v-icon widgets
-      v-list-tile-content
-        v-list-tile-title Schemas
-      v-list-tile-action(v-if="VIEW_VIEW === 3")
-        v-icon check
+        v-icon(v-if="VIEW_WIDE") check
 
     v-divider(v-if="b", :class="{'hidden-sm-and-up': b}")
 
