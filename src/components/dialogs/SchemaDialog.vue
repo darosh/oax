@@ -12,7 +12,7 @@
           v-tabs-item(href="tab-schema" v-ripple="") Schema
           v-tabs-item(href="tab-example" v-ripple="") Example
           v-tabs-item(href="tab-json" v-ripple="") Raw
-          v-tabs-slider
+          v-tabs-slider(style="width: 33.33%")
         v-divider
         v-tabs-items
           v-tabs-content#tab-schema
