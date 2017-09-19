@@ -57,6 +57,7 @@
 - https://swagger.io/redoc-openapi-powered-documentation/
 - https://nordicapis.com/ultimate-guide-to-30-api-documentation-solutions/
 - https://github.com/Mermade/awesome-openapi3
+- https://github.com/Mermade/openapi-specification-extensions
 
 ## Testing
 
