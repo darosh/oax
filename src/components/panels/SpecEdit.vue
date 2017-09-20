@@ -29,6 +29,10 @@
   require('codemirror/addon/search/matchesonscrollbar.js')
   require('codemirror/addon/search/matchesonscrollbar.css')
   require('codemirror/addon/search/search')
+  require('codemirror/addon/fold/foldgutter.js')
+  require('codemirror/addon/fold/foldgutter.css')
+  require('codemirror/addon/fold/foldcode')
+  require('codemirror/addon/fold/brace-fold')
 
   export default {
     directives: {
@@ -49,8 +53,11 @@
           mode: {name: 'javascript', json: true},
           lineNumbers: true,
           line: false,
+          foldGutter: true,
+          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
           extraKeys: {
-            F10: this.fullScreen
+              'Ctrl-Q': function (cm){cm.foldCode(cm.getCursor())},
+              F10: this.fullScreen
             //            Esc: function (cm) {
             //              if (cm.getOption('fullScreen')) {
             //                document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
@@ -159,4 +166,18 @@
 
   >>> .CodeMirror-search-hint
     display none
+  >>> .CodeMirror-foldmarker
+    color: #fff
+    background-color: $theme.primary
+    border: 1px solid $theme.primary
+    height: 11px
+    border-radius 6px
+    line-height: 7px
+    padding 0 2px
+    margin 0 2px 2px 2px
+    vertical-align middle
+    font-size 19px
+    display inline-block
+    font-family Roboto, sans-serif
+    text-shadow none
 </style>
