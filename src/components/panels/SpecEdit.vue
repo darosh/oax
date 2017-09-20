@@ -9,6 +9,7 @@
     v-divider
     div#cm-wrap
       app-codemirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions")
+      //app-ace(v-if="this.spec !== null" editor-id="editor", :content="spec")
 </template>
 
 <script>
@@ -17,9 +18,17 @@
 
   import focus from '../../directives/focus'
   import appCodemirror from '../parts/CodeMirror'
+  // import appAce from '../parts/Ace'
 
   require('codemirror/addon/display/fullscreen.css')
   require('codemirror/addon/display/fullscreen.js')
+  require('codemirror/addon/dialog/dialog.js')
+  require('codemirror/addon/dialog/dialog.css')
+  require('codemirror/addon/search/searchcursor')
+  require('codemirror/addon/scroll/annotatescrollbar')
+  require('codemirror/addon/search/matchesonscrollbar.js')
+  require('codemirror/addon/search/matchesonscrollbar.css')
+  require('codemirror/addon/search/search')
 
   export default {
     directives: {
@@ -27,6 +36,7 @@
     },
     components: {
       appCodemirror
+      // appAce
     },
     props: ['value'],
     data () {
@@ -146,4 +156,7 @@
 
     @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
       height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
+
+  >>> .CodeMirror-search-hint
+    display none
 </style>
