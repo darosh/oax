@@ -14,7 +14,6 @@
     "@types/swagger-schema-official": "^2.0.6",
     "ace-builds": "^1.2.8",
     "axios": "^0.16.2",
-    "brace": "^0.10.0",
     "circular-json": "^0.3.3",
     "clipboard": "^1.7.1",
     "codemirror": "^5.29.0",
@@ -83,7 +82,6 @@
     "imagemin-cli": "^3.0.0",
     "know-your-http-well": "^0.5.0",
     "lodash.template": "^4.4.0",
-    "napa": "^3.0.0",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
@@ -133,7 +131,6 @@
     "doc:test-links": "node ./build/doc/test-links.js",
     "imagemin": "imagemin doc/screenshots/images/*.png --out-dir doc/screenshots/images",
     "lint": "eslint --ext .js,.vue src",
-    "napa": "napa swagger-api/swagger-editor",
     "report": "npm run build --report",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts",
     "vuetify": "node ./build/app/copy.js ./config/vuetify/VIcon.vue ./node_modules/vuetify/src/components/VIcon/VIcon.vue && node ./build/app/copy.js ./config/vuetify/_custom.styl ./node_modules/vuetify/src/stylus/settings/_custom.styl"
