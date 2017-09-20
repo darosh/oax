@@ -15,7 +15,7 @@ import * as generator from './modules/generator'
 
 Vue.use(Vuex)
 
-export const STORAGE_KEY = 'oas-ui'
+export const STORAGE_KEY = 'oax'
 
 export default new Vuex.Store({
   // state,

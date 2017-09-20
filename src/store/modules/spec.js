@@ -10,9 +10,9 @@ import { observables } from '../../models/oas/methods/observables'
 
 export const state = {
   spec: null,
-  resources: null,
-  operations: null,
-  metas: null,
+  // resources: null,
+  // operations: null,
+  // metas: null,
   operation: null,
   observables: null,
   json: null,
@@ -21,10 +21,10 @@ export const state = {
 
 export const mutations = {
   [types.SPEC_SET] (state, payload) {
-    state.resources = payload.resources
-    state.operations = payload.operations
+    // state.resources = payload.resources
+    // state.operations = payload.operations
     state.spec = payload.spec
-    state.metas = payload.metas
+    // state.metas = payload.metas
     state.observables = payload.observables
     state.url = payload.url
 
@@ -33,7 +33,7 @@ export const mutations = {
     }
   },
   [types.SPEC_SET_RESOURCES] (state, payload) {
-    openAll(state.resources, payload)
+    openAll(state.spec.tags, payload)
   },
   [types.SPEC_SET_OPERATION] (state, payload) {
     if (state.operation === payload) {
@@ -43,29 +43,29 @@ export const mutations = {
     state.operation = payload
   },
   [types.SPEC_SET_PREV_OPERATION] (state) {
-    let index = state.operations.indexOf(state.operation)
+    let index = state.spec._operations.indexOf(state.operation)
 
     if (index === 0) {
-      index = state.operations.length
+      index = state.spec._operations.length
     }
 
     index--
 
-    state.operation = state.operations[index]
+    state.operation = state.spec._operations[index]
   },
   [types.SPEC_SET_NEXT_OPERATION] (state) {
-    let index = state.operations.indexOf(state.operation)
+    let index = state.spec._operations.indexOf(state.operation)
 
-    if (index === (state.operations.length - 1)) {
+    if (index === (state.spec._operations.length - 1)) {
       index = -1
     }
 
     index++
 
-    state.operation = state.operations[index]
+    state.operation = state.spec._operations[index]
   },
   [types.SPEC_SET_FILTER_RESOURCES] (state, payload) {
-    search(state.resources, payload)
+    search(state.tags, payload)
   },
   [types.SPEC_SET_RESULT] (state, payload) {
     payload.operation._._result = payload.result
@@ -102,10 +102,10 @@ export const actions = {
       }
 
       commit(types.SPEC_SET, {
-        resources: res.bundled.tags,
-        operations: res.bundled._operations,
-        spec: res.bundled,
-        metas: res.bundled._metas
+        // resources: res.bundled.tags,
+        // operations: res.bundled._operations,
+        spec: res.bundled
+        // metas: res.bundled._metas
       })
     }).catch(err => err)
   },
@@ -120,10 +120,10 @@ export const actions = {
     commit(types.SPEC_SET_OPERATION, null)
     commit(types.UI_SET_DRAWER, false)
     commit(types.SPEC_SET, {
-      resources: null,
-      operations: null,
-      spec: null,
-      metas: null
+      // resources: null,
+      // operations: null,
+      spec: null
+      // metas: null
     })
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
@@ -164,10 +164,10 @@ export const actions = {
             Object.freeze(res.bundled)
 
             commit(types.SPEC_SET, {
-              resources: res.bundled.tags,
-              operations: res.bundled._operations,
+              // resources: res.bundled.tags,
+              // operations: res.bundled._operations,
               spec: res.bundled,
-              metas: res.bundled._metas,
+              // metas: res.bundled._metas,
               observables: res.bundled._observables,
               json: res.json,
               url: url
@@ -204,9 +204,9 @@ export const getters = {
     return false
   },
   [types.SPEC_OPERATION]: (state) => state.operation,
-  [types.SPEC_METAS]: (state) => state.metas,
-  [types.SPEC_OPERATIONS]: (state) => state.operations,
-  [types.SPEC_RESOURCES]: (state) => state.resources,
+  [types.SPEC_METAS]: (state) => ((state.spec && state.spec._metas) || null),
+  [types.SPEC_OPERATIONS]: (state) => ((state.spec && state.spec._operations) || null),
+  [types.SPEC_RESOURCES]: (state) => ((state.spec && state.spec.tags) || null),
   [types.SPEC]: (state) => state.spec,
   [types.SPEC_JSON]: (state) => state.json,
   [types.SPEC_URL]: (state) => state.url
