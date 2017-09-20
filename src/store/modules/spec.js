@@ -10,9 +10,6 @@ import { observables } from '../../models/oas/methods/observables'
 
 export const state = {
   spec: null,
-  // resources: null,
-  // operations: null,
-  // metas: null,
   operation: null,
   observables: null,
   json: null,
@@ -21,10 +18,7 @@ export const state = {
 
 export const mutations = {
   [types.SPEC_SET] (state, payload) {
-    // state.resources = payload.resources
-    // state.operations = payload.operations
     state.spec = payload.spec
-    // state.metas = payload.metas
     state.observables = payload.observables
     state.url = payload.url
 
@@ -102,10 +96,7 @@ export const actions = {
       }
 
       commit(types.SPEC_SET, {
-        // resources: res.bundled.tags,
-        // operations: res.bundled._operations,
         spec: res.bundled
-        // metas: res.bundled._metas
       })
     }).catch(err => err)
   },
@@ -120,10 +111,7 @@ export const actions = {
     commit(types.SPEC_SET_OPERATION, null)
     commit(types.UI_SET_DRAWER, false)
     commit(types.SPEC_SET, {
-      // resources: null,
-      // operations: null,
       spec: null
-      // metas: null
     })
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
@@ -164,10 +152,7 @@ export const actions = {
             Object.freeze(res.bundled)
 
             commit(types.SPEC_SET, {
-              // resources: res.bundled.tags,
-              // operations: res.bundled._operations,
               spec: res.bundled,
-              // metas: res.bundled._metas,
               observables: res.bundled._observables,
               json: res.json,
               url: url
