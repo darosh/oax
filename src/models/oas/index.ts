@@ -46,14 +46,8 @@ export function OAS(spec: ISpecExtended,
                     url: string,
                     progress: any = null,
                     defaultContentType: string = 'application/json') {
-
-  const parsedUrl = {
-    host: url.replace(/^[^/]+:\/\//, '').replace(/\/.*$/, ''),
-    protocol: url.replace(/:.*/, '')
-  };
-
   log(phase.info, progress);
-  info(spec, parsedUrl, defaultContentType);
+  info(spec, url, defaultContentType);
 
   log(phase.base, progress);
   base(spec);

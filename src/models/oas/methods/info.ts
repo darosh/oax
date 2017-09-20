@@ -1,10 +1,13 @@
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-export function info(spec: ISpecExtended, url: { protocol: string, host: string }, defaultContentType: string) {
+export function info(spec: ISpecExtended, url: string, defaultContentType: string) {
   spec.schemes = spec.schemes || [];
 
+  const parsedUrl = new URL(url)
+
   if (spec.schemes.length === 0) {
-    spec.schemes.push(url.protocol);
+    const proto = parsedUrl.protocol.substr(0, parsedUrl.protocol.length - 1)
+    spec.schemes.push(proto);
   }
 
   spec._ = {
@@ -15,7 +18,15 @@ export function info(spec: ISpecExtended, url: { protocol: string, host: string 
   spec.info._ = {description: spec.info.description, description_html: false};
   delete spec.info.description;
 
-  spec.host = spec.host || url.host;
+  let subUrl;
+
+  try {
+    subUrl = new URL(parsedUrl.pathname.substr(1))
+    spec.basePath = subUrl.origin + (spec.basePath || '');
+  } catch (ign) {
+  }
+
+  spec.host = spec.host || parsedUrl.host;
   spec.consumes = spec.consumes || [defaultContentType];
   spec.produces = spec.produces || [defaultContentType];
 }
