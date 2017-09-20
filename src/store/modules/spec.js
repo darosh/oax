@@ -85,10 +85,21 @@ let circ = null
 export const actions = {
   [types.SPEC_SET_EDIT_JSON] ({commit}, change) {
     edit(change).then(res => {
-      circ = applyPatch(circ || JSON.parse(CircularJSON.stringify(state.spec)),
-        res.patch).newDocument
+      if (!circ) {
+        const copy = {...state.spec}
+        delete copy._observables
+        circ = JSON.parse(CircularJSON.stringify(copy))
+      }
 
-      res.bundled = CircularJSON.parse(JSON.stringify(circ))
+      circ = applyPatch(circ, res.patch).newDocument
+
+      try {
+        res.bundled = CircularJSON.parse(JSON.stringify(circ))
+      } catch (err) {
+        // console.log(JSON.stringify(circ))
+        res.bundled = circ
+        console.warn(err)
+      }
 
       commit(types.SPEC_SET, {
         resources: res.bundled.tags,
