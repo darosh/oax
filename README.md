@@ -23,7 +23,7 @@
 |Schema & examples|![75%](https://placehold.it/12/dfb317?text=+) 75%| 
 |Try out API|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
 |CORS proxy|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
-|Edit specification|![30%](https://placehold.it/12/dfb317?text=+) 30%| using [CodeMirror](http://codemirror.net/) editor and web worker
+|Edit specification|![50%](https://placehold.it/12/dfb317?text=+) 50%| using [CodeMirror](http://codemirror.net/) editor and web worker
 |Search|![10%](https://placehold.it/12/dfb317?text=+) 10%| 
 |Security definitions|![25%](https://placehold.it/12/e05d44?text=+) 25%| 
 |Customization & configuration|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
