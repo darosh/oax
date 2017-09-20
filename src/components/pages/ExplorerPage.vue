@@ -10,7 +10,7 @@
       .pre(v-if="!UI_ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="UI_ERROR.message") {{UI_ERROR.message}}
     div(v-if="!SETTINGS_SEARCH && SPEC && SPEC.info && (VIEW_VIEW < 1)")
-      v-container.pa-0-sm(fluid grid-list-xl)
+      v-container.pa-0-sm(fluid grid-list-xl v-if="SPEC.info._.description || SPEC.info.title")
         v-layout(column)
           v-flex
             v-expansion-panel.expansion-panel-round(expand :class="{'expansion-panel--disabled': !SPEC.info._.description}")
