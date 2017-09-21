@@ -49,7 +49,7 @@
           matchBrackets: true,
           showCursorWhenSelecting: true,
           extraKeys: {
-            'F8': () => this.fullScreen()
+            'F8': () => {this.fullScreen()}
           }
         }
       }
@@ -88,7 +88,7 @@
       editorReady (editor) {
         setTimeout(() => {
           this.editorResolve(editor)
-        }, Math.max(0, 20 - Date.now() + this.beginTime))
+        }, Math.max(0, 200 - Date.now() + this.beginTime))
       },
       change (changed) {
         if (changed.origin !== 'setValue') {
@@ -131,7 +131,9 @@
     watch: {
       active: function (value) {
         if (value) {
-          this.editor.then(editor => editor.refresh())
+          setTimeout(() => {
+            this.editor.then(editor => editor.refresh())
+          }, 200)
         } else {
           this.fullScreen(true)
         }

@@ -104,6 +104,10 @@
               this.SPEC_SET_PREV_OPERATION()
             }
           },
+          'shift+tab': (e) => {
+            e.preventDefault()
+            this.UI_SET_NEXT_TAB()
+          },
           'F8': () => {
             if (!this.APP_API_PAGE) {
               this.UI_SET_ANIMATION(false)
@@ -148,6 +152,7 @@
         types.VIEW_SET_DARK,
         types.UI_SET_LEFT_TAB,
         types.UI_SET_EDIT_FOCUS,
+        types.UI_SET_NEXT_TAB,
         types.UI_SET_ANIMATION
       ]),
       resized () {

@@ -59,6 +59,7 @@ export const UI_SET_TAB = 'UI_SET_TAB'
 export const UI_SET_TITLE = 'UI_SET_TITLE'
 export const UI_SET_WIDTH = 'UI_SET_WIDTH'
 export const UI_SET_LEFT_TAB = 'UI_SET_LEFT_TAB'
+export const UI_SET_NEXT_TAB = 'UI_SET_NEXT_TAB'
 export const UI_SET_EDIT_FOCUS = 'UI_SET_EDIT_FOCUS'
 export const UI_SET_ANIMATION = 'UI_SET_ANIMATION'
 

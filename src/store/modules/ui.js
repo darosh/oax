@@ -1,4 +1,5 @@
 import * as types from '../types'
+import {next} from '../../utils/next'
 
 export const STORAGE_KEY = 'oas-ui'
 
@@ -87,6 +88,10 @@ export const mutations = {
   },
   [types.UI_SET_ANIMATION] (state, payload) {
     state.animation = payload
+  },
+  [types.UI_SET_NEXT_TAB] (state, payload) {
+    const tabs = ['tab-dir', 'tab-recent', 'tab-edit', 'tab-test']
+    state.leftTab = next(state.leftTab, tabs)
   }
 }
 

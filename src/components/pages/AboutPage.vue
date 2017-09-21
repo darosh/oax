@@ -54,6 +54,7 @@
           'Alt + o': 'Next operation (or navigate to API)',
           'Alt + i': 'Previous operation (or navigate to API)',
           'Alt + h': 'Navigate to About page',
+          'Shift + Tab': 'Next tab',
           'F8': 'Open editor or toggle editor fullscreen'
         },
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({
