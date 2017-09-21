@@ -18,7 +18,7 @@
         v-tabs-content#tab-recent
           app-spec-recent
         v-tabs-content#tab-edit
-          app-spec-edit(:value="tab === 'tab-edit'")
+          app-spec-edit(v-if="tab === 'tab-edit'", :value="tab === 'tab-edit'")
         v-tabs-content#tab-test
           app-spec-test
 </template>

@@ -5,9 +5,6 @@
 </template>
 
 <script>
-  window.CodeMirror = require('codemirror')
-  require('codemirror/lib/codemirror.css')
-  window.CodeMirror = window.CodeMirror.CodeMirror || window.CodeMirror
   export default {
     data: function () {
       return {
