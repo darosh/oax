@@ -37,13 +37,13 @@
       ...mapActions([
         types.SPEC_SET_LOAD_URL,
         types.SPEC_SET_EDIT_JSON
-      ])
-    },
-    clicked (url) {
-      this.url = url
+      ]),
+      clicked (url) {
+        this.url = url
 
-      if (this.UI_WIDTH < 1200) {
-        this.UI_SET_LEFT_DRAWER(false)
+        if (this.UI_WIDTH < 1200) {
+          this.UI_SET_LEFT_DRAWER(false)
+        }
       }
     }
   }

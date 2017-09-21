@@ -19,7 +19,10 @@
             tbody
               tr(v-for="(notes, key) in keys", :key="key")
                 td
-                  kbd.nowrap {{key}}
+                  div(style="z-index: 10000; position: relative; font-size: 18px; padding:8px; font-family: 'Roboto', monospaced; ")
+                    span(v-for="(k, i) in key.split(' + ')")
+                      span(v-if="i") +
+                      .key {{k}}
                 td.pl-3 {{notes}}
           v-divider.mb-3
           h4 Acknowledgement
@@ -46,14 +49,14 @@
       return {
         keys: {
           'Esc': 'Close dialog, Close right panel, Close left panel, Open left panel, Navigate to API',
-          'Alt + l': 'Show/hide log',
-          'Alt + t': 'Switch theme',
-          'Alt + v': 'Switch API view (or navigate to API)',
-          'Alt + s': 'Switch path/summary API view (or navigate to API)',
-          'Alt + w': 'Switch wide API view (or navigate to API)',
-          'Alt + o': 'Next operation (or navigate to API)',
-          'Alt + i': 'Previous operation (or navigate to API)',
-          'Alt + h': 'Navigate to About page',
+          'Alt + L': 'Show/hide log',
+          'Alt + T': 'Switch theme',
+          'Alt + V': 'Switch API view (or navigate to API)',
+          'Alt + S': 'Switch path/summary API view (or navigate to API)',
+          'Alt + W': 'Switch wide API view (or navigate to API)',
+          'Alt + O': 'Next operation (or navigate to API)',
+          'Alt + I': 'Previous operation (or navigate to API)',
+          'Alt + H': 'Navigate to About page',
           'Shift + Tab': 'Next tab',
           'F8': 'Open editor or toggle editor fullscreen'
         },

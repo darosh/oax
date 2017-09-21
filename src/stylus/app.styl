@@ -185,3 +185,66 @@ a
   width: fit-content
   overflow-x: visible
   overflow-y: visible
+
+
+// https://github.com/JSlote/kbd.css/tree/master
+#oax .application--light
+  .key
+    display: inline-block
+    padding: .19em .49em .29em .5em
+    margin: 0 .6em 0em .4em
+    min-width 2em
+    text-align center
+
+    position: relative
+    top: -.2em
+    color: rgba(0,0,0,.78)
+    text-shadow: 0 -1px 0px rgba(255,255,255,.66)
+    font-size: .8em
+
+    letter-spacing 0.06em
+    line-height 1
+    font-weight 700
+    text-decoration: none
+    box-shadow: inset 0 -.2em .12em -.15em rgba(255, 255, 255, .7)
+    cursor:default
+    border:0.5px solid rgba(0,0,0, .04)
+
+    border-radius: .3em
+    background: radial-gradient(ellipse at top right, #ddd 0%, white 100%)
+
+  .key::before,
+  .key::after
+    content:''
+    left:-.1em
+    right:-.17em
+    top:.16em
+
+    bottom:-.3em
+    border-radius: .4em
+
+  .key::before
+    position absolute
+    z-index:-1
+    border:0.5px solid rgba(164,164,164,1)
+    box-shadow: 0 1px 1px rgba(0,0,0,.26)
+    background: #a8a8a8
+    background: radial-gradient(circle 3em at -1.7em 0, white 0%, white 70%, rgba(255,255,255,0) 80%)
+
+  .key::after
+    position absolute
+    z-index:-2
+    background: #a8a8a8
+    background: radial-gradient(ellipse 1em 1.7em at top right, #aaa 0%, #aaa 70%, #ccc 100%)
+
+  .key:hover
+    top: 0
+    box-shadow: inset 0 -.2em .3em -.1em rgba(200, 200, 200, .5)
+
+  .key:hover::before,
+  .key:hover::after
+    top:-.1em
+    bottom: -.2em
+
+  .key:hover::before
+    box-shadow: inset 0 1px 6px 0 rgba(0,0,0,.96)

@@ -5,7 +5,7 @@
       v-text-field(spellcheck="false" label="URL" v-model="url" solo single-line hide-details prepend-icon="link")
     v-divider
     div#cm-wrap
-      app-code-mirror#editor(v-if="this.spec !== null", @change="change" v-model="spec", :options="editorOptions", @ready="editorReady")
+      app-code-mirror#editor(v-if="this.spec !== null", @change="change", :code="spec", :options="editorOptions", @ready="editorReady")
 </template>
 
 <script>
@@ -29,6 +29,7 @@
 
       return {
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
+        // scrollOnActive: false,
         format: 1,
         spec: null,
         editor: editor,
@@ -132,14 +133,24 @@
       active: function (value) {
         if (value) {
           setTimeout(() => {
-            this.editor.then(editor => editor.refresh())
-          }, 200)
+            this.editor.then(editor => {
+              editor.refresh()
+              //              if (this.scrollOnActive) {
+              //                setTimeout(() => {
+              //                  this.scrollOnActive = false
+              //                  const scrollInfo = editor.getScrollInfo()
+              //                  editor.scrollTo(scrollInfo.left, scrollInfo.top)
+              //                }, 100)
+              //              }
+            })
+          }, 0)
         } else {
           this.fullScreen(true)
         }
       },
       SPEC_JSON: function () {
         this.spec = this.SPEC_JSON
+        // this.scrollOnActive = !this.active
       },
       UI_EDIT_FOCUS: function (value) {
         if (value === 'editor') {
