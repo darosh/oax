@@ -39,7 +39,7 @@
           mode: {name: 'javascript', json: true},
           keyMap: 'sublime',
           lineNumbers: true,
-          line: false,
+          styleActiveLine: true,
           foldGutter: true,
           gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
           foldOptions: {
@@ -82,6 +82,7 @@
       require('codemirror/addon/search/matchesonscrollbar.js')
       require('codemirror/addon/search/search')
       require('codemirror/addon/search/searchcursor')
+      require('codemirror/addon/selection/active-line')
       require('codemirror/keymap/sublime')
       // require('codemirror/addon/wrap/hardwrap')
 
