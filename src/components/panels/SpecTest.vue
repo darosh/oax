@@ -5,7 +5,7 @@
       virtual-scroller.scroller-recent(:items="test", item-height="73" prerender="20" key-field="url")
         template(scope="props")
           div(:key="props.itemKey")
-            v-list-tile(ripple avatar @click="url = props.item.url", :to="{path: '/', query: {url: props.item.url}}" exact)
+            v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
               v-list-tile-avatar(v-if="key(props.item)")
                 .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
               v-list-tile-avatar(v-else)
@@ -30,7 +30,13 @@
       }
     },
     methods: {
-      encodeURIComponent
+      clicked (url) {
+        this.url = url
+
+        if (this.UI_WIDTH < 1200) {
+          this.UI_SET_LEFT_DRAWER(false)
+        }
+      }
     }
   }
 </script>
