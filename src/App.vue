@@ -103,6 +103,27 @@
             } else {
               this.SPEC_SET_PREV_OPERATION()
             }
+          },
+          'F8': () => {
+            if (!this.APP_API_PAGE) {
+              this.UI_SET_ANIMATION(false)
+            }
+
+            this.UI_SET_EDIT_FOCUS(null)
+
+            setTimeout(() => {
+              if (!this.APP_API_PAGE) {
+                this.$router.push(this.APP_HOME)
+              }
+
+              this.UI_SET_LEFT_TAB('tab-edit')
+              this.UI_SET_LEFT_DRAWER(true)
+
+              setTimeout(() => {
+                this.UI_SET_EDIT_FOCUS('editor')
+                this.UI_SET_ANIMATION(true)
+              }, 0)
+            }, 0)
           }
         }
       },
@@ -124,7 +145,10 @@
         types.SPEC_SET_NEXT_OPERATION,
         types.SPEC_SET_PREV_OPERATION,
         types.UI_SET_DRAWER,
-        types.VIEW_SET_DARK
+        types.VIEW_SET_DARK,
+        types.UI_SET_LEFT_TAB,
+        types.UI_SET_EDIT_FOCUS,
+        types.UI_SET_ANIMATION
       ]),
       resized () {
         this.UI_SET_WIDTH(window.innerWidth)

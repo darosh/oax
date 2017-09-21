@@ -44,6 +44,8 @@ export const UI_TAB = 'UI_TAB'
 export const UI_WIDTH = 'UI_WIDTH'
 export const UI_ANIMATION = 'UI_ANIMATION'
 export const UI_HIGHLIGHT = 'UI_HIGHLIGHT'
+export const UI_LEFT_TAB = 'UI_LEFT_TAB'
+export const UI_EDIT_FOCUS = 'UI_EDIT_FOCUS'
 // ui set
 export const UI_SET_DIALOG = 'UI_SET_DIALOG'
 export const UI_SET_DRAWER = 'UI_SET_DRAWER'
@@ -56,6 +58,9 @@ export const UI_SET_ONLINE = 'UI_SET_ONLINE'
 export const UI_SET_TAB = 'UI_SET_TAB'
 export const UI_SET_TITLE = 'UI_SET_TITLE'
 export const UI_SET_WIDTH = 'UI_SET_WIDTH'
+export const UI_SET_LEFT_TAB = 'UI_SET_LEFT_TAB'
+export const UI_SET_EDIT_FOCUS = 'UI_SET_EDIT_FOCUS'
+export const UI_SET_ANIMATION = 'UI_SET_ANIMATION'
 
 // view
 export const VIEW_DARK = 'VIEW_DARK'

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import codeMirror from '../../services/codemirror'
+
   export default {
     data: function () {
       return {
@@ -16,18 +18,6 @@
       value: String,
       unseenLines: Array,
       marker: Function,
-      loadtheme: {
-        type: Boolean,
-        default: function () {
-          return true
-        }
-      },
-      debugger: {
-        type: Boolean,
-        default: function () {
-          return true
-        }
-      },
       options: {
         type: Object,
         required: true
@@ -43,26 +33,16 @@
       if (this.options.mode === undefined) {
         this.options.mode = 'text/javascript'
       }
-
-      const language = this.options.mode
-
-      if (language === 'yaml') {
-        require('codemirror/mode/yaml/yaml')
-      } else {
-        require('codemirror/mode/javascript/javascript')
-      }
     },
     mounted: function () {
       const _this = this
-      this.editor = (window.CodeMirror || window.CodeMirror.CodeMirror).fromTextArea(this.$el, this.options)
+      const CodeMirror = codeMirror()
+      this.editor = CodeMirror.fromTextArea(this.$el, this.options)
       this.editor.setValue(this.code || this.value || this.content)
-      this.editor.on('change', function (cm, changeObj) {
-        // _this.content = cm.getValue()
 
+      this.editor.on('change', function (cm, changeObj) {
         if (_this.$emit) {
           _this.$emit('change', changeObj)
-          // _this.$emit('change', _this.content)
-          // _this.$emit('input', _this.content)
         }
       })
 
@@ -85,13 +65,15 @@
         'scrollCursorIntoView',
         'update'
       ]
-      for (var i = events.length - 1; i >= 0; i--) {
+
+      for (let i = events.length - 1; i >= 0; i--) {
         (function (event) {
           _this.editor.on(event, function (a, b, c) {
             _this.$emit(event, a, b, c)
           })
         })(events[i])
       }
+
       this.$emit('ready', this.editor)
       this.unseenLineMarkers()
 
@@ -110,27 +92,28 @@
     watch: {
       options: {
         deep: true,
-        handler (options, oldOptions) {
-          var key
-          for (key in options) {
-            this.editor.setOption(key, options[key])
+        handler (options) {
+          for (const key in options) {
+            if(options.hasOwnProperty(key)) {
+              this.editor.setOption(key, options[key])
+            }
           }
         }
       },
-      code: function (newVal, oldVal) {
+      code: function (newVal) {
         const editorValue = this.editor.getValue()
         if (newVal !== editorValue) {
-          var scrollInfo = this.editor.getScrollInfo()
+          const scrollInfo = this.editor.getScrollInfo()
           this.editor.setValue(newVal)
           this.content = newVal
           this.editor.scrollTo(scrollInfo.left, scrollInfo.top)
         }
         this.unseenLineMarkers()
       },
-      value: function (newVal, oldVal) {
+      value: function (newVal) {
         const editorValue = this.editor.getValue()
         if (newVal !== editorValue) {
-          var scrollInfo = this.editor.getScrollInfo()
+          const scrollInfo = this.editor.getScrollInfo()
           this.editor.setValue(newVal)
           this.content = newVal
           this.editor.scrollTo(scrollInfo.left, scrollInfo.top)
@@ -143,10 +126,10 @@
         this.editor.refresh()
       },
       unseenLineMarkers: function () {
-        var _this = this
+        const _this = this
         if (_this.unseenLines !== undefined && _this.marker !== undefined) {
           _this.unseenLines.forEach(line => {
-            var info = _this.editor.lineInfo(line)
+            const info = _this.editor.lineInfo(line)
             _this.editor.setGutterMarker(line, 'breakpoints', info.gutterMarkers ? null : _this.marker())
           })
         }

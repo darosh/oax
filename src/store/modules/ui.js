@@ -19,7 +19,9 @@ export const state = {
   left: false,
   online: false,
   animation: true,
-  highlight: null
+  highlight: null,
+  leftTab: null,
+  editFocus: null
   // highlight: {
   //   el: 'app-meta',
   //   text: 'Metadata'
@@ -76,6 +78,15 @@ export const mutations = {
   },
   [types.UI_SET_ONLINE] (state, payload) {
     state.online = payload
+  },
+  [types.UI_SET_LEFT_TAB] (state, payload) {
+    state.leftTab = payload
+  },
+  [types.UI_SET_EDIT_FOCUS] (state, payload) {
+    state.editFocus = payload
+  },
+  [types.UI_SET_ANIMATION] (state, payload) {
+    state.animation = payload
   }
 }
 
@@ -94,7 +105,9 @@ export const getters = {
   [types.UI_LEFT_DRAWER]: state => state.left,
   [types.UI_ONLINE]: state => state.online,
   [types.UI_ANIMATION]: state => state.animation,
-  [types.UI_HIGHLIGHT]: state => state.highlight
+  [types.UI_HIGHLIGHT]: state => state.highlight,
+  [types.UI_LEFT_TAB]: state => state.leftTab,
+  [types.UI_EDIT_FOCUS]: state => state.editFocus
 }
 
 export default {

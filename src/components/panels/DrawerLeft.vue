@@ -18,7 +18,7 @@
         v-tabs-content#tab-recent
           app-spec-recent
         v-tabs-content#tab-edit
-          app-spec-edit(v-if="tab === 'tab-edit'", :value="tab === 'tab-edit'")
+          app-spec-edit(v-if="menu && (tab === 'tab-edit')", :value="tab === 'tab-edit'")
         v-tabs-content#tab-test
           app-spec-test
 </template>
@@ -40,26 +40,29 @@
       appSpecRecent,
       appSpecTest
     },
-    data () {
-      return {
-        tab: 'tab-dir'
-      }
-    },
     computed: {
       ...mapGetters([
         types.UI_LEFT_DRAWER,
-        types.APP_API_PAGE
+        types.APP_API_PAGE,
+        types.UI_LEFT_TAB
       ]),
       menu: {
         get () { return this.UI_LEFT_DRAWER && this.APP_API_PAGE },
         set (value) {
           this.UI_SET_LEFT_DRAWER(!!value)
         }
+      },
+      tab: {
+        get () { return this.UI_LEFT_TAB },
+        set (value) {
+          this.UI_SET_LEFT_TAB(value)
+        }
       }
     },
     methods: {
       ...mapMutations([
-        types.UI_SET_LEFT_DRAWER
+        types.UI_SET_LEFT_DRAWER,
+        types.UI_SET_LEFT_TAB
       ])
     }
   }
