@@ -18,7 +18,7 @@
         v-tabs-content#tab-recent
           app-spec-recent
         v-tabs-content#tab-edit
-          app-spec-edit(v-if="menu && (tab === 'tab-edit')", :value="tab === 'tab-edit'")
+          app-spec-edit(v-if="editReady || (tab === 'tab-edit')", :value="tab === 'tab-edit'")
         v-tabs-content#tab-test
           app-spec-test
 </template>
@@ -33,6 +33,11 @@
   import appSpecTest from './SpecTest'
 
   export default {
+    data () {
+      return {
+        editReady: false
+      }
+    },
     components: {
       VNavigationDrawer,
       appSpecEdit,
@@ -55,6 +60,7 @@
       tab: {
         get () { return this.UI_LEFT_TAB },
         set (value) {
+          this.editReady = this.editReady || (value === 'tab-edit')
           this.UI_SET_LEFT_TAB(value)
         }
       }

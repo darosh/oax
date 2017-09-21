@@ -33,6 +33,7 @@
         spec: null,
         editor: editor,
         editorResolve: editorResolve,
+        editorResolved: false,
         editorOptions: {
           tabSize: 2,
           mode: {name: 'javascript', json: true},
@@ -48,7 +49,7 @@
           matchBrackets: true,
           showCursorWhenSelecting: true,
           extraKeys: {
-            'F8': this.fullScreen
+            'F8': () => this.fullScreen()
           }
         }
       }
@@ -56,6 +57,7 @@
     created () {
       if (this.SPEC_JSON) {
         this.spec = this.SPEC_JSON
+        this.beginTime = Date.now()
       }
     },
     computed: {
@@ -84,7 +86,9 @@
         types.SPEC_SET_EDIT_JSON
       ]),
       editorReady (editor) {
-        this.editorResolve(editor)
+        setTimeout(() => {
+          this.editorResolve(editor)
+        }, Math.max(0, 20 - Date.now() + this.beginTime))
       },
       change (changed) {
         if (changed.origin !== 'setValue') {
@@ -105,32 +109,31 @@
           }, 200)
         }
       },
-      fullScreen () {
+      fullScreen (cancel = false) {
         this.editor.then(editor => {
-          if (!editor.getOption('fullScreen')) {
-            document.querySelector('#cm-full').appendChild(document.querySelector('.CodeMirror'))
-          } else {
+          if (editor.getOption('fullScreen') || cancel) {
             document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
+          } else {
+            document.querySelector('#cm-full').appendChild(document.querySelector('.CodeMirror'))
           }
-          editor.focus()
-          editor.setOption('fullScreen', !editor.getOption('fullScreen'))
+
+          if (!cancel) {
+            editor.focus()
+          }
+
+          editor.setOption('fullScreen', cancel ? false : !editor.getOption('fullScreen'))
         })
       }
     },
     beforeDestroy () {
-      this.editor.then(editor => {
-          if (editor.getOption('fullScreen')) {
-            document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
-          }
-        }
-      )
+      this.fullScreen(true)
     },
     watch: {
       active: function (value) {
         if (value) {
-          setTimeout(() => {
-            this.editor.then(editor => editor.refresh())
-          }, 20)
+          this.editor.then(editor => editor.refresh())
+        } else {
+          this.fullScreen(true)
         }
       },
       SPEC_JSON: function () {
