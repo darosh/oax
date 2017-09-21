@@ -8,8 +8,8 @@
 
 ## Status
 
-|Feature|Status|Note|
-|:---|:---|:---|
+|Feature|Status|Note|To do
+|:---|:---|:---|:---
 |OpenApi directory browser|![100%](https://placehold.it/12/44cc11?text=+) 100%| 500+ API specifications powered by [APIs.guru](https://apis.guru/openapi-directory/)
 |SDK code generator|![100%](https://placehold.it/12/44cc11?text=+) 100%| powered by [swagger-codegen](https://github.com/swagger-api/swagger-codegen) via [generator.swagger.io](https://generator.swagger.io/) 
 |Markdown & syntax highlight|![100%](https://placehold.it/12/44cc11?text=+) 100%| using [showdown](https://github.com/showdownjs/showdown) & [highlight.js](https://highlightjs.org/) with 40 language highlighters 
@@ -23,7 +23,7 @@
 |Schema & examples|![75%](https://placehold.it/12/dfb317?text=+) 75%| 
 |Try out API|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
 |CORS proxy|![50%](https://placehold.it/12/dfb317?text=+) 50%| 
-|Edit specification|![50%](https://placehold.it/12/dfb317?text=+) 50%| using [CodeMirror](http://codemirror.net/) editor and web worker
+|Edit specification|![50%](https://placehold.it/12/dfb317?text=+) 50%| using [CodeMirror](http://codemirror.net/) editor and web worker|key map help, linting, hinting, scroll to operation, markdown
 |Search|![10%](https://placehold.it/12/dfb317?text=+) 10%| 
 |Security definitions|![25%](https://placehold.it/12/e05d44?text=+) 25%| 
 |Customization & configuration|![10%](https://placehold.it/12/e05d44?text=+) 10%| 
