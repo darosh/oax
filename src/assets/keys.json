@@ -17,7 +17,7 @@
     }
   },
   "editor": {
-    "basic": {
+    "Basic": {
       "Left": "goCharLeft",
       "Right": "goCharRight",
       "Up": "goLineUp",
@@ -33,7 +33,7 @@
       "Insert": "toggleOverwrite",
       "Backspace": "smartBackspace"
     },
-    "cursor": {
+    "Cursor": {
       "Ctrl+Home": "goDocStart",
       "Ctrl+End": "goDocEnd",
       "Ctrl+Left": "goGroupLeft",
@@ -47,7 +47,7 @@
       "Ctrl+M": "goToBracket",
       "Ctrl+K Ctrl+C": "showInCenter"
     },
-    "edit": {
+    "Edit": {
       "Ctrl+Z": "undo",
       "Shift+Ctrl+Z": "redo",
       "Ctrl+Y": "redo",
@@ -74,7 +74,7 @@
       "Ctrl+Enter": "insertLineAfter",
       "Shift+Ctrl+Enter": "insertLineBefore"
     },
-    "selection": {
+    "Selection": {
       "Ctrl+A": "selectAll",
       "Ctrl+U": "undoSelection",
       "Shift+Ctrl+U": "redoSelection",
@@ -86,13 +86,13 @@
       "Ctrl+Alt+Up": "selectLinesUpward",
       "Ctrl+Alt+Down": "selectLinesDownward"
     },
-    "folding": {
+    "Folding": {
       "Shift+Ctrl+[": "fold",
       "Shift+Ctrl+]": "unfold",
       "Ctrl+K Ctrl+J": "unfoldAll",
       "Ctrl+K Ctrl+0": "unfoldAll"
     },
-    "search & replace": {
+    "Search & replace": {
       "Ctrl+F": "find",
       "Ctrl+G": "findNext",
       "Shift+Ctrl+G": "findPrev",
@@ -107,7 +107,7 @@
       "F3": "findNext",
       "Shift+F3": "findPrev"
     },
-    "bookmarks": {
+    "Bookmarks": {
       "F2": "nextBookmark",
       "Shift+F2": "prevBookmark",
       "Ctrl+F2": "toggleBookmark",
@@ -115,7 +115,7 @@
       "Alt+F2": "selectBookmarks",
       "Ctrl+K Ctrl+G": "clearBookmarks"
     },
-    "sublime": {
+    "Sublime": {
       "Ctrl+K Ctrl+Space": "setSublimeMark",
       "Ctrl+K Ctrl+A": "selectToSublimeMark",
       "Ctrl+K Ctrl+W": "deleteToSublimeMark",
