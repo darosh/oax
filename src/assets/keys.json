@@ -91,7 +91,7 @@
       "Ctrl+K Ctrl+J": "unfoldAll",
       "Ctrl+K Ctrl+0": "unfoldAll"
     },
-    "Search & replace": {
+    "Search & Replace": {
       "Ctrl+F": "find",
       "Ctrl+G": "findNext",
       "Shift+Ctrl+G": "findPrev",
