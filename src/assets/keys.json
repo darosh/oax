@@ -1,111 +1,126 @@
 {
-  "basic": {
-    "Left": "goCharLeft",
-    "Right": "goCharRight",
-    "Up": "goLineUp",
-    "Down": "goLineDown",
-    "End": "goLineEnd",
-    "Home": "goLineStartSmart",
-    "PageUp": "goPageUp",
-    "PageDown": "goPageDown",
-    "Delete": "delCharAfter",
-    "Shift-Backspace": "delCharBefore",
-    "Tab": "defaultTab",
-    "Enter": "newlineAndIndent",
-    "Insert": "toggleOverwrite",
-    "Backspace": "smartBackspace"
+  "app": {
+    "application": {
+      "Esc": ["Close dialog", "Close right panel", "Close left panel", "Open left panel", "Navigate to API"],
+      "Shift+Tab": "Next tab",
+      "F8": "Open editor",
+      "Alt+L": "Show/hide log",
+      "Alt+T": "Switch theme",
+      "Alt+H": "Go to help page"
+    },
+    "API": {
+      "Alt+V": "Switch API view",
+      "Alt+S": "Switch path/summary view",
+      "Alt+W": "Switch wide view",
+      "Alt+O": "Next operation",
+      "Alt+I": "Previous operation"
+    }
   },
-  "cursor": {
-    "Ctrl-Home": "goDocStart",
-    "Ctrl-End": "goDocEnd",
-    "Ctrl-Left": "goGroupLeft",
-    "Ctrl-Right": "goGroupRight",
-    "Alt-Left": "goSubwordLeft",
-    "Alt-Right": "goSubwordRight",
-    "Ctrl-Up": "scrollLineUp",
-    "Ctrl-Down": "scrollLineDown",
-    "Alt-CtrlUp": "addCursorToPrevLine",
-    "Alt-CtrlDown": "addCursorToNextLine",
-    "Ctrl-M": "goToBracket",
-    "Ctrl-K Ctrl-C": "showInCenter"
-  },
-  "edit": {
-    "Ctrl-Z": "undo",
-    "Shift-Ctrl-Z": "redo",
-    "Ctrl-Y": "redo",
-    "Ctrl-[": "indentLess",
-    "Ctrl-]": "indentMore",
-    "Shift-Ctrl-Up": "swapLineUp",
-    "Shift-Ctrl-Down": "swapLineDown",
-    "Ctrl-/": "toggleCommentIndented",
-    "Ctrl-J": "joinLines",
-    "Shift-Ctrl-D": "duplicateLine",
-    "Ctrl-T": "transposeChars",
-    "F9": "sortLines",
-    "Ctrl-F9": "sortLinesInsensitive",
-    "Alt-Q": "wrapLines",
-    "Ctrl-K Ctrl-Backspace": "delLineLeft",
-    "Ctrl-K Ctrl-K": "delLineRight",
-    "Ctrl-K Ctrl-U": "upcaseAtCursor",
-    "Ctrl-K Ctrl-L": "downcaseAtCursor",
-    "Ctrl-Backspace": "delGroupBefore",
-    "Ctrl-Delete": "delGroupAfter",
-    "Shift-Ctrl-L": "splitSelectionByLine",
-    "Shift-Tab": "indentLess",
-    "Shift-Ctrl-K": "deleteLine",
-    "Ctrl-Enter": "insertLineAfter",
-    "Shift-Ctrl-Enter": "insertLineBefore"
-  },
-  "selection": {
-    "Ctrl-A": "selectAll",
-    "Ctrl-U": "undoSelection",
-    "Shift-Ctrl-U": "redoSelection",
-    "Alt-U": "redoSelection",
-    "Ctrl-D": "selectNextOccurrence",
-    "Shift-Ctrl-Space": "selectScope",
-    "Shift-Ctrl-M": "selectBetweenBrackets",
-    "Ctrl-L": "selectLine",
-    "Ctrl-Alt-Up": "selectLinesUpward",
-    "Ctrl-Alt-Down": "selectLinesDownward"
-  },
-  "folding": {
-    "Shift-Ctrl-[": "fold",
-    "Shift-Ctrl-]": "unfold",
-    "Ctrl-K Ctrl-J": "unfoldAll",
-    "Ctrl-K Ctrl-0": "unfoldAll"
-  },
-  "search & replace": {
-    "Ctrl-F": "find",
-    "Ctrl-G": "findNext",
-    "Shift-Ctrl-G": "findPrev",
-    "Shift-Ctrl-F": "replace",
-    "Shift-Ctrl-R": "replaceAll",
-    "Ctrl-F3": "findUnder",
-    "Shift-Ctrl-F3": "findUnderPrevious",
-    "Alt-F3": "findAllUnder",
-    "Ctrl-I": "findIncremental",
-    "Shift-Ctrl-I": "findIncrementalReverse",
-    "Ctrl-H": "replace",
-    "F3": "findNext",
-    "Shift-F3": "findPrev"
-  },
-  "bookmarks": {
-    "F2": "nextBookmark",
-    "Shift-F2": "prevBookmark",
-    "Ctrl-F2": "toggleBookmark",
-    "Shift-Ctrl-F2": "clearBookmarks",
-    "Alt-F2": "selectBookmarks",
-    "Ctrl-K Ctrl-G": "clearBookmarks"
-  },
-  "sublime": {
-    "Ctrl-K Ctrl-Space": "setSublimeMark",
-    "Ctrl-K Ctrl-A": "selectToSublimeMark",
-    "Ctrl-K Ctrl-W": "deleteToSublimeMark",
-    "Ctrl-K Ctrl-X": "swapWithSublimeMark",
-    "Ctrl-K Ctrl-Y": "sublimeYank"
-  },
-  "misc": {
-    "Ctrl-S": "save",
-    "Esc": "singleSelectionTop"
+  "editor": {
+    "basic": {
+      "Left": "goCharLeft",
+      "Right": "goCharRight",
+      "Up": "goLineUp",
+      "Down": "goLineDown",
+      "End": "goLineEnd",
+      "Home": "goLineStartSmart",
+      "PageUp": "goPageUp",
+      "PageDown": "goPageDown",
+      "Delete": "delCharAfter",
+      "Shift+Backspace": "delCharBefore",
+      "Tab": "defaultTab",
+      "Enter": "newlineAndIndent",
+      "Insert": "toggleOverwrite",
+      "Backspace": "smartBackspace"
+    },
+    "cursor": {
+      "Ctrl+Home": "goDocStart",
+      "Ctrl+End": "goDocEnd",
+      "Ctrl+Left": "goGroupLeft",
+      "Ctrl+Right": "goGroupRight",
+      "Alt+Left": "goSubwordLeft",
+      "Alt+Right": "goSubwordRight",
+      "Ctrl+Up": "scrollLineUp",
+      "Ctrl+Down": "scrollLineDown",
+      "Alt+Shift+Up": "addCursorToPrevLine",
+      "Alt+Shift+Down": "addCursorToNextLine",
+      "Ctrl+M": "goToBracket",
+      "Ctrl+K Ctrl+C": "showInCenter"
+    },
+    "edit": {
+      "Ctrl+Z": "undo",
+      "Shift+Ctrl+Z": "redo",
+      "Ctrl+Y": "redo",
+      "Ctrl+[": "indentLess",
+      "Ctrl+]": "indentMore",
+      "Shift+Ctrl+Up": "swapLineUp",
+      "Shift+Ctrl+Down": "swapLineDown",
+      "Ctrl+/": "toggleCommentIndented",
+      "Ctrl+J": "joinLines",
+      "Shift+Ctrl+D": "duplicateLine",
+      "Ctrl+T": "transposeChars",
+      "F9": "sortLines",
+      "Ctrl+F9": "sortLinesInsensitive",
+      "Alt+Q": "wrapLines",
+      "Ctrl+K Ctrl+Backspace": "delLineLeft",
+      "Ctrl+K Ctrl+K": "delLineRight",
+      "Ctrl+K Ctrl+U": "upcaseAtCursor",
+      "Ctrl+K Ctrl+L": "downcaseAtCursor",
+      "Ctrl+Backspace": "delGroupBefore",
+      "Ctrl+Delete": "delGroupAfter",
+      "Shift+Ctrl+L": "splitSelectionByLine",
+      "Shift+Tab": "indentLess",
+      "Shift+Ctrl+K": "deleteLine",
+      "Ctrl+Enter": "insertLineAfter",
+      "Shift+Ctrl+Enter": "insertLineBefore"
+    },
+    "selection": {
+      "Ctrl+A": "selectAll",
+      "Ctrl+U": "undoSelection",
+      "Shift+Ctrl+U": "redoSelection",
+      "Alt+U": "redoSelection",
+      "Ctrl+D": "selectNextOccurrence",
+      "Shift+Ctrl+Space": "selectScope",
+      "Shift+Ctrl+M": "selectBetweenBrackets",
+      "Ctrl+L": "selectLine",
+      "Ctrl+Alt+Up": "selectLinesUpward",
+      "Ctrl+Alt+Down": "selectLinesDownward"
+    },
+    "folding": {
+      "Shift+Ctrl+[": "fold",
+      "Shift+Ctrl+]": "unfold",
+      "Ctrl+K Ctrl+J": "unfoldAll",
+      "Ctrl+K Ctrl+0": "unfoldAll"
+    },
+    "search & replace": {
+      "Ctrl+F": "find",
+      "Ctrl+G": "findNext",
+      "Shift+Ctrl+G": "findPrev",
+      "Shift+Ctrl+F": "replace",
+      "Shift+Ctrl+R": "replaceAll",
+      "Ctrl+F3": "findUnder",
+      "Shift+Ctrl+F3": "findUnderPrevious",
+      "Alt+F3": "findAllUnder",
+      "Ctrl+I": "findIncremental",
+      "Shift+Ctrl+I": "findIncrementalReverse",
+      "Ctrl+H": "replace",
+      "F3": "findNext",
+      "Shift+F3": "findPrev"
+    },
+    "bookmarks": {
+      "F2": "nextBookmark",
+      "Shift+F2": "prevBookmark",
+      "Ctrl+F2": "toggleBookmark",
+      "Shift+Ctrl+F2": "clearBookmarks",
+      "Alt+F2": "selectBookmarks",
+      "Ctrl+K Ctrl+G": "clearBookmarks"
+    },
+    "sublime": {
+      "Ctrl+K Ctrl+Space": "setSublimeMark",
+      "Ctrl+K Ctrl+A": "selectToSublimeMark",
+      "Ctrl+K Ctrl+W": "deleteToSublimeMark",
+      "Ctrl+K Ctrl+X": "swapWithSublimeMark",
+      "Ctrl+K Ctrl+Y": "sublimeYank"
+    }
   }
 }

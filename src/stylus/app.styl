@@ -203,7 +203,7 @@ a
     line-height 1
     font-weight 700
     text-decoration: none
-    box-shadow: inset 2px -2px 2px -1px rgba(255, 255, 255, 0.96)
+    box-shadow: inset 2px -2px 0px -1px rgba(255, 255, 255, 0.96)
     cursor: default
     border: 1px solid rgba(0, 0, 0, .06)
     border-radius: 4px
@@ -214,6 +214,8 @@ a
 
     path
       fill: rgba(0, 0, 0, .78) !important
+  .application--dark .key path
+      fill: #fff !important
 
   .key::before,
   .key::after
@@ -238,19 +240,23 @@ a
     z-index: -2
     background: radial-gradient(ellipse 10px 20px at top right, #888 0%, #aaa 70%, #ccc 100%)
 
-  .key:hover
-    top: 1px
-    box-shadow: inset 0 -4px 4px -2px rgba(200, 200, 200, .5)
+  .application--dark .key::before
+    border: 0.75px solid darken(#333, 35%)
+    background: radial-gradient(circle 25px at -10px 5px, #fff 10%, #ddd 60%, darken(#333, 25%) 80%)
 
-  .key:hover::before,
-  .key:hover::after
-    padding-bottom 1px
-    top: -2px
-    bottom: -2px
-    border-radius: 6px
-
-  .key:hover::before
-    box-shadow: inset 0 1px 6px 0 rgba(0, 0, 0, .96)
+  //.key:hover
+  //  top: 1px
+  //  box-shadow: inset 0 -4px 4px -2px rgba(200, 200, 200, .5)
+  //
+  //.key:hover::before,
+  //.key:hover::after
+  //  padding-bottom 1px
+  //  top: -2px
+  //  bottom: -2px
+  //  border-radius: 6px
+  //
+  //.key:hover::before
+  //  box-shadow: inset 0 1px 6px 0 rgba(0, 0, 0, .96)
 
   .keys, .keyboard
     z-index: 1
@@ -259,21 +265,54 @@ a
     padding: 8px
     font-family: Roboto, sans-serif
 
+  .keyboard
+    border: 1px solid $material-light.dividers
+    background-color: rgba(#000, $material-light.divider-percent/2)
+  .application--dark .keyboard
+    border: 1px solid $material-dark.dividers
+    background-color: rgba(#fff, $material-dark.divider-percent/2)
   .keyboard .key
     margin: 5px 6px
 
+  $kp := desaturate(lighten($theme.info, 70%), 10%)
+  $ks := desaturate(lighten($theme.success, 60%), 30%)
+  $kw := desaturate(lighten($theme.warning, 60%), 10%)
+  $ke := desaturate(lighten($theme.error, 60%), 10%)
+
   .key.key-primary
-    background: lighten($theme.primary, 66%)
-  //.key.key-primary::before
-  //  border: 0.75px solid darken($theme.primary, 35%)
-  //  background: radial-gradient(circle 25px at -10px 5px, #fff 10%, #ddd 60%, darken($theme.primary, 25%) 80%)
+    background: $kp
   .key.key-success
-    background: lighten($theme.success, 66%)
-  //.key.key-success::before
-  //  border: 0.75px solid darken($theme.success, 35%)
-  //  background: radial-gradient(circle 25px at -10px 5px, #fff 10%, #ddd 60%, darken($theme.success, 25%) 80%)
+    background: $ks
   .key.key-warning
-    background: lighten($theme.warning, 66%)
-  //.key.key-warning::before
-    //border: 0.75px solid darken($theme.warning, 35%)
-    //background: radial-gradient(circle 25px at -10px 5px, #fff 10%, #ddd 60%, darken($theme.warning, 25%) 80%)
+    background: $kw
+  .key.key-error
+    background: $ke
+
+  .key.key-primary.key-warning
+    background: linear-gradient(90deg, $kp, $kw) no-repeat
+  .key.key-primary.key-error
+    background: linear-gradient(90deg, $kp, $ke) no-repeat
+  .key.key-success.key-error
+    background: linear-gradient(90deg, $ks, $ke) no-repeat
+  .key.key-warning.key-error
+    background: linear-gradient(90deg, $kw, $ke) no-repeat
+  .key.key-success.key-warning.key-error
+    background: linear-gradient(90deg, $ks, $kw, $ke) no-repeat
+  .key.key-primary.key-success.key-warning.key-error
+    background: linear-gradient(90deg, $kp, $ks, $kw, $ke) no-repeat
+
+  .table-stripes
+    td
+      padding 8px 8px 10px 8px
+      vertical-align top
+    border-collapse collapse
+    tr:nth-child(odd)
+      background-color: rgba(#000, $material-light.divider-percent/2)
+  .application--dark .table-stripes
+    tr:nth-child(odd)
+      background-color: rgba(#fff, $material-dark.divider-percent*2)
+
+  .application--dark .key
+    color: #fff
+    background: lighten(#333, 30%)
+    box-shadow: inset 2px -2px 0px -1px rgba(255, 255, 255, 0.36)

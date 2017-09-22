@@ -1,5 +1,5 @@
 <template lang="pug">
-  .keyboard.elevation-1
+  .keyboard
     .line(v-for="(line, lineIndex) in keyboard", :key="lineIndex")
       .key(:class="classes[text(key)]" v-for="(key, keyIndex) in line", :key="keyIndex", :style="{'flex-grow': grow(key) ? 1 : 0.2, 'font-size': symbol(key) ? '90%' : '70%'}")
         v-icon(v-if="key.icon" style="width: 12px; height:12px") {{key.icon}}
@@ -12,28 +12,69 @@
   export default {
     props: ['shortcuts'],
     data () {
+      const textKeys = {
+        PageUp: 'PgUp',
+        PageDown: 'PgDn',
+        Insert: 'Ins',
+        Delete: 'Del'
+      }
+
       return {
         keyboard,
-        classes: {
+        textKeys,
+        defaultClasses: {
+          Single: 'key-primary',
           Alt: 'key-success',
+          Ctrl: 'key-error',
           Shift: 'key-warning'
-        }
+        },
+        classes: {}
       }
     },
     created () {
       Object.keys(this.shortcuts).forEach(sc => {
-        const s = sc.split('+')
+        const s = []
+        sc.split(' ').forEach(d => d.split('+').forEach(e => s.push(e)))
 
+        console.log(s)
         if (s.length === 1) {
-          this.classes[s[0]] = 'key-primary'
-        } else if (s[0] === 'Alt') {
-          this.classes[s[1]] = 'key-success'
-        } else if (s[0] === 'Shift') {
-          this.classes[s[1]] = 'key-warning'
+          this.addClass(s, this.defaultClasses.Single)
+        }
+
+        if (s.indexOf('Alt') > -1) {
+          this.addClass(s, this.defaultClasses.Alt)
+          this.classes.Alt = this.defaultClasses.Alt
+        }
+
+        if (s.indexOf('Shift') > -1) {
+          this.addClass(s, this.defaultClasses.Shift)
+          this.classes.Shift = this.defaultClasses.Shift
+        }
+
+        if (s.indexOf('Ctrl') > -1) {
+          this.addClass(s, this.defaultClasses.Ctrl)
+          this.classes.Ctrl = this.defaultClasses.Ctrl
         }
       })
     },
     methods: {
+      addClass (keys, c) {
+        keys.forEach(t => {
+          const k = this.textKey(t)
+
+          console.log(k)
+
+          if (!this.defaultClasses[k]) {
+            this.classes[k] = this.classes[k] || ''
+            if (this.classes[k].indexOf(c) === -1) {
+              this.classes[k] += ' ' + c
+            }
+          }
+        })
+      },
+      textKey (text) {
+        return this.textKeys[text] || text
+      },
       text (key) {
         const s = (key.text || key).split(' ')
         return s[1] || s[0]
@@ -58,10 +99,6 @@
 
   .keyboard .line:first-child {
     font-size: 85%;
-  }
-
-  .keyboard {
-    background-color: #f8f8f8;
   }
 
   .keyboard .line {

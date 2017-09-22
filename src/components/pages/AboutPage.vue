@@ -15,16 +15,48 @@
             v-btn.ma-0(flat @click="reload") Reload
           v-divider.mb-3
           div.hidden-xs-only
-            h4 Keyboard shotcuts
-            app-keyboard(:shortcuts="keys").mb-3
-            table.mb-3
+            h4 Keyboard shortcuts
+            h5 Application shortcuts
+            app-keyboard(:shortcuts="appKeys").mb-4
+
+            h6 Application
+            table.table-stripes.mb-4
               tbody
-                tr(v-for="(notes, key) in keys", :key="key")
+                tr(v-for="(notes, key) in keys.app.application", :key="key")
+                  td.keys.nowrap
+                    span(v-for="(k, i) in key.split('+')")
+                      span(v-if="i") +
+                      .key {{k}}
+                  td.pl-3(v-if="!Array.isArray(notes)") {{notes}}
+                  td.pl-3(v-else) One of:
+                    ul
+                      li(v-for="n in notes") {{n}}
+
+            h6 API
+            table.table-stripes.mb-4
+              tbody
+                tr(v-for="(notes, key) in keys.app.API", :key="key")
                   td.keys.nowrap
                     span(v-for="(k, i) in key.split('+')")
                       span(v-if="i") +
                       .key {{k}}
                   td.pl-3 {{notes}}
+
+            h5 Editor shortcuts
+
+            template(v-for="(section, sectionKey) in keys.editor")
+              h6 {{sectionKey}}
+              app-keyboard(:shortcuts="section").mb-4
+              table.table-stripes.mb-4
+                tbody
+                  tr(v-for="(notes, key) in section", :key="key")
+                    td.keys.nowrap
+                      span(v-for="(k, i) in key.split(' ')")
+                        span(v-for="(l, j) in k.split('+')")
+                          span(v-if="j") +
+                          .key {{l}}
+                    td.pl-3 {{notes}}
+
             v-divider.mb-3
           h4 Acknowledgement
           p This app wouldn be posssible without following packages
@@ -42,6 +74,7 @@
   import appLog from '../app/Log'
   import { dependencies } from '../../../package.json'
   import appKeyboard from '../parts/Keyboard'
+  import keys from '../../assets/keys.json'
 
   export default {
     components: {
@@ -49,20 +82,13 @@
       appKeyboard
     },
     data () {
+      const editorKeys = {}
+      Object.keys(keys.editor).forEach(k => Object.assign(editorKeys, keys.editor[k]))
+
       return {
-        keys: {
-          'Esc': 'Close dialog, Close right panel, Close left panel, Open left panel, Navigate to API',
-          'Alt+L': 'Show/hide log',
-          'Alt+T': 'Switch theme',
-          'Alt+V': 'Switch API view (or navigate to API)',
-          'Alt+S': 'Switch path/summary API view (or navigate to API)',
-          'Alt+W': 'Switch wide API view (or navigate to API)',
-          'Alt+O': 'Next operation (or navigate to API)',
-          'Alt+I': 'Previous operation (or navigate to API)',
-          'Alt+H': 'Navigate to About page',
-          'Shift+Tab': 'Next tab',
-          'F8': 'Open editor or toggle editor fullscreen'
-        },
+        keys,
+        appKeys: {...keys.app.application, ...keys.app.API},
+        editorKeys,
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({
           name: i,
           version: dependencies[i].indexOf('github:') === 0 ? '' : dependencies[i][0] === '^' ? dependencies[i].substr(
