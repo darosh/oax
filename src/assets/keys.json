@@ -1,16 +1,16 @@
 {
   "app": {
     "application": {
-      "Esc": ["close dialog", "close right panel", "close left panel", "open left panel", "navigate to API"],
-      "Shift+Tab": "next tab",
-      "F8": "open editor",
+      "Esc": ["close dialog", "close right panel", "close left panel", "open left panel", "go to API"],
+      "Alt+H": "go to help",
       "Alt+L": "show/hide log",
-      "Alt+T": "switch theme",
-      "Alt+H": "go to help page"
+      "Alt+T": "switch theme"
     },
     "API": {
-      "Alt+V": "switch api view",
-      "Alt+S": "switch path/summary view",
+      "Shift+Tab": "next tab",
+      "F8": "open editor",
+      "Alt+V": "switch API view",
+      "Alt+S": "switch path/summary",
       "Alt+W": "switch wide view",
       "Alt+O": "next operation",
       "Alt+I": "previous operation"

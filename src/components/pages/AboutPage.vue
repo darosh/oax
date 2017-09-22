@@ -89,7 +89,7 @@
 
       const editorActions = {}
 
-      Object.keys(editorKeys).forEach(k => editorActions[k] = editorKeys[k].replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase())
+      Object.keys(editorKeys).forEach(k => editorActions[k] = editorKeys[k].replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().replace(/^del /, 'delete '))
 
       return {
         keys,
