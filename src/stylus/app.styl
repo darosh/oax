@@ -283,6 +283,22 @@ a
   $kw := desaturate(lighten($theme.warning, 60%), 10%)
   $ke := desaturate(lighten($theme.error, 60%), 10%)
 
+  .table-stripes
+    td
+      padding 8px 8px 10px 8px
+      vertical-align top
+    border-collapse collapse
+    tr:nth-child(odd)
+      background-color: rgba(#000, $material-light.divider-percent/2)
+  .application--dark .table-stripes
+    tr:nth-child(odd)
+      background-color: rgba(#fff, $material-dark.divider-percent*2)
+
+  .application--dark .key
+    color: #fff
+    background: lighten(#333, 30%)
+    box-shadow: inset 2px -2px 0px -1px rgba(255, 255, 255, 0.36)
+
   .key.key-primary
     background: $kp
   .key.key-success
@@ -305,18 +321,9 @@ a
   .key.key-primary.key-success.key-warning.key-error
     background: linear-gradient(90deg, $kp, $ks, $kw, $ke) no-repeat
 
-  .table-stripes
-    td
-      padding 8px 8px 10px 8px
-      vertical-align top
-    border-collapse collapse
-    tr:nth-child(odd)
-      background-color: rgba(#000, $material-light.divider-percent/2)
-  .application--dark .table-stripes
-    tr:nth-child(odd)
-      background-color: rgba(#fff, $material-dark.divider-percent*2)
-
-  .application--dark .key
-    color: #fff
-    background: lighten(#333, 30%)
-    box-shadow: inset 2px -2px 0px -1px rgba(255, 255, 255, 0.36)
+  .application--dark
+    .key.key-primary
+    .key.key-success
+    .key.key-warning
+    .key.key-error
+      color: #000
