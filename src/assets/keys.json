@@ -8,7 +8,7 @@
       "Alt+T": "switch theme",
       "Alt+H": "go to help page"
     },
-    "api": {
+    "API": {
       "Alt+V": "switch api view",
       "Alt+S": "switch path/summary view",
       "Alt+W": "switch wide view",

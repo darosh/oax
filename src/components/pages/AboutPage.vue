@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(fluid style="max-width: 80em")
-    v-layout.ma-3-md
+    v-layout.gpu.ma-3-md
       v-spacer.hidden-xs-only
       v-flex
         v-card.pa-4.mb-1
@@ -19,34 +19,36 @@
             h5 Application shortcuts
             app-keyboard(:shortcuts="appKeys").mb-4
 
-            h6 Application
-            table.table-stripes.mb-4
-              tbody
-                tr(v-for="(notes, key) in keys.app.application", :key="key")
-                  td.keys.nowrap
-                    span(v-for="(k, i) in key.split('+')")
-                      span(v-if="i") +
-                      .key {{k}}
-                  td.pl-3(v-if="!Array.isArray(notes)") {{notes}}
-                  td.pl-3(v-else) one of:
-                    ul
-                      li(v-for="n in notes") {{n}}
+            div(style="float: left").mr-4
+              h6 Application
+              table.table-stripes.mb-4
+                tbody
+                  tr(v-for="(notes, key) in keys.app.application", :key="key")
+                    td.keys.nowrap
+                      span(v-for="(k, i) in key.split('+')")
+                        span(v-if="i") +
+                        .key {{k}}
+                    td.pl-3(v-if="!Array.isArray(notes)") {{notes}}
+                    td.pl-3(v-else) one of:
+                      ul
+                        li(v-for="n in notes") {{n}}
 
-            h6 API
-            table.table-stripes.mb-4
-              tbody
-                tr(v-for="(notes, key) in keys.app.API", :key="key")
-                  td.keys.nowrap
-                    span(v-for="(k, i) in key.split('+')")
-                      span(v-if="i") +
-                      .key {{k}}
-                  td.pl-3 {{notes}}
+            div
+              h6 API
+              table.table-stripes.mb-4
+                tbody
+                  tr(v-for="(notes, key) in keys.app.API", :key="key")
+                    td.keys.nowrap
+                      span(v-for="(k, i) in key.split('+')")
+                        span(v-if="i") +
+                        .key {{k}}
+                    td.pl-3 {{notes}}
 
-            h5 Editor shortcuts
+            h5(style="clear: both") Editor shortcuts
 
             template(v-for="(section, sectionKey) in keys.editor")
-              h6 {{sectionKey}}
-              app-keyboard(:shortcuts="section").mb-4
+              h6(style="clear: both") {{sectionKey}}
+              app-keyboard(:shortcuts="section" style="float:left").mb-4.mr-4
               table.table-stripes.mb-4
                 tbody
                   tr(v-for="(notes, key) in section", :key="key")
