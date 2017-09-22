@@ -82,9 +82,7 @@
       "Ctrl+D": "selectNextOccurrence",
       "Shift+Ctrl+Space": "selectScope",
       "Shift+Ctrl+M": "selectBetweenBrackets",
-      "Ctrl+L": "selectLine",
-      "Ctrl+Alt+Up": "selectLinesUpward",
-      "Ctrl+Alt+Down": "selectLinesDownward"
+      "Ctrl+L": "selectLine"
     },
     "Folding": {
       "Shift+Ctrl+[": "fold",
