@@ -14,19 +14,18 @@
             v-spacer
             v-btn.ma-0(flat @click="reload") Reload
           v-divider.mb-3
-          h4 Keyboard shotcuts
-          app-keyboard(:shortcuts="keys").mb-3
-
-          table.mb-3
-            tbody
-              tr(v-for="(notes, key) in keys", :key="key")
-                td
-                  div.keys
+          div.hidden-xs-only
+            h4 Keyboard shotcuts
+            app-keyboard(:shortcuts="keys").mb-3
+            table.mb-3
+              tbody
+                tr(v-for="(notes, key) in keys", :key="key")
+                  td.keys.nowrap
                     span(v-for="(k, i) in key.split('+')")
                       span(v-if="i") +
                       .key {{k}}
-                td.pl-3 {{notes}}
-          v-divider.mb-3
+                  td.pl-3 {{notes}}
+            v-divider.mb-3
           h4 Acknowledgement
           p This app wouldn be posssible without following packages
           span(v-for="(i, k) in libs", :key="k")
