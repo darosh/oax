@@ -36,7 +36,6 @@
         const s = []
         sc.split(' ').forEach(d => d.split('+').forEach(e => s.push(e)))
 
-        console.log(s)
         if (s.length === 1) {
           this.addClass(s, this.defaultClasses.Single)
         }
@@ -61,8 +60,6 @@
       addClass (keys, c) {
         keys.forEach(t => {
           const k = this.textKey(t)
-
-          console.log(k)
 
           if (!this.defaultClasses[k]) {
             this.classes[k] = this.classes[k] || ''

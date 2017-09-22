@@ -90,7 +90,6 @@ export const actions = {
       try {
         res.bundled = CircularJSON.parse(JSON.stringify(circ))
       } catch (err) {
-        // console.log(JSON.stringify(circ))
         res.bundled = circ
         console.warn(err)
       }

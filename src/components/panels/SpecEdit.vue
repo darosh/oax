@@ -29,7 +29,7 @@
 
       return {
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
-        // scrollOnActive: false,
+        scrollOnActive: false,
         format: 1,
         spec: null,
         editor: editor,
@@ -135,26 +135,31 @@
           setTimeout(() => {
             this.editor.then(editor => {
               editor.refresh()
-              //              if (this.scrollOnActive) {
-              //                setTimeout(() => {
-              //                  this.scrollOnActive = false
-              //                  const scrollInfo = editor.getScrollInfo()
-              //                  editor.scrollTo(scrollInfo.left, scrollInfo.top)
-              //                }, 100)
-              //              }
+
+              // TODO editor.scrollTo dows not work?
+              if (this.scrollOnActive) {
+                setTimeout(() => {
+                  this.scrollOnActive = false
+                  const scrollInfo = editor.getScrollInfo()
+                  editor.scrollTo(scrollInfo.left, scrollInfo.top)
+                }, 100)
+              }
             })
-          }, 0)
+          }, 50)
         } else {
           this.fullScreen(true)
         }
       },
       SPEC_JSON: function () {
         this.spec = this.SPEC_JSON
-        // this.scrollOnActive = !this.active
+        this.scrollOnActive = !this.active
       },
       UI_EDIT_FOCUS: function (value) {
         if (value === 'editor') {
-          this.editor.then(editor => editor.focus())
+          this.editor.then(editor => {
+            editor.refresh()
+            editor.focus()
+          })
         }
       }
     }
