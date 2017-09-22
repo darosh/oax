@@ -32,7 +32,7 @@
               h6 Application
               table.table-stripes.mb-4
                 tbody
-                  tr(v-for="(notes, key) in keys.app.application", :key="key")
+                  tr(v-for="(notes, key) in keys.app.Application", :key="key")
                     td.keys.nowrap
                       span(v-for="(k, i) in key.split('+')")
                         span(v-if="i") +
@@ -54,6 +54,8 @@
                     td.pl-3 {{notes}}
 
             h5(style="clear: both") Editor shortcuts
+
+            p Editor shortcuts should be identical to <a href="https://codemirror.net/demo/sublime.html" target="_blank">CodeMirror Sublime keymap</a> except some extra keys.
 
             template(v-for="(section, sectionKey) in keys.editor")
               h6(style="clear: both") {{sectionKey}}
@@ -102,7 +104,7 @@
 
       return {
         keys,
-        appKeys: {...keys.app.application, ...keys.app.API},
+        appKeys: {...keys.app.Application, ...keys.app.API},
         editorKeys,
         editorActions,
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({

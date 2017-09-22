@@ -1,6 +1,6 @@
 {
   "app": {
-    "application": {
+    "Application": {
       "Esc": ["close dialog", "close right panel", "close left panel", "open left panel", "go to API"],
       "Alt+H": "go to help",
       "Alt+L": "show/hide log",
@@ -17,21 +17,22 @@
     }
   },
   "editor": {
-    "Basic": {
+    "Basic & Extra": {
+      "F8": "switchFullscreen",
       "Left": "goCharLeft",
       "Right": "goCharRight",
       "Up": "goLineUp",
       "Down": "goLineDown",
-      "End": "goLineEnd",
       "Home": "goLineStartSmart",
+      "End": "goLineEnd",
       "PageUp": "goPageUp",
       "PageDown": "goPageDown",
-      "Delete": "delCharAfter",
-      "Shift+Backspace": "delCharBefore",
       "Tab": "defaultTab",
       "Enter": "newlineAndIndent",
+      "Delete": "delCharAfter",
       "Insert": "toggleOverwrite",
-      "Backspace": "smartBackspace"
+      "Backspace": "smartBackspace",
+      "Shift+Backspace": "delCharBefore"
     },
     "Cursor": {
       "Ctrl+Home": "goDocStart",
