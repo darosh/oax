@@ -42,8 +42,8 @@
       "Alt+Right": "goSubwordRight",
       "Ctrl+Up": "scrollLineUp",
       "Ctrl+Down": "scrollLineDown",
-      "Alt+Shift+Up": "addCursorToPrevLine",
-      "Alt+Shift+Down": "addCursorToNextLine",
+      "Ctrl+Alt+Up": "addCursorToPrevLine",
+      "Ctrl+Alt+Down": "addCursorToNextLine",
       "Ctrl+M": "goToBracket",
       "Ctrl+K Ctrl+C": "showInCenter"
     },
