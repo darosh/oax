@@ -36,7 +36,7 @@
                     td.keys.nowrap
                       span(v-for="(k, i) in key.split('+')")
                         span(v-if="i") +
-                        .key {{k}}
+                        .key(:class="classes[k]") {{k}}
                     td.pl-3(v-if="!Array.isArray(notes)") {{notes}}
                     td.pl-3(v-else) one of:
                       ul
@@ -50,7 +50,7 @@
                     td.keys.nowrap
                       span(v-for="(k, i) in key.split('+')")
                         span(v-if="i") +
-                        .key {{k}}
+                        .key(:class="classes[k]") {{k}}
                     td.pl-3 {{notes}}
 
             h5(style="clear: both") Editor shortcuts
@@ -67,7 +67,7 @@
                       span(v-for="(k, i) in key.split(' ')")
                         span(v-for="(l, j) in k.split('+')")
                           span(v-if="j") +
-                          .key {{l}}
+                          .key(:class="classes[l]") {{l}}
                     td.pl-3 {{editorActions[key]}}
 
             v-divider.mb-3
@@ -107,6 +107,11 @@
         appKeys: {...keys.app.Application, ...keys.app.API},
         editorKeys,
         editorActions,
+        classes: {
+          Alt: 'key-success',
+          Ctrl: 'key-error',
+          Shift: 'key-warning'
+        },
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({
           name: i,
           version: dependencies[i].indexOf('github:') === 0 ? '' : dependencies[i][0] === '^' ? dependencies[i].substr(

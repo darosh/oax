@@ -189,74 +189,47 @@ a
 #oax
   .key
     display: inline-block
-    padding: 2px 5px 3px 4px
+    padding: 2px 2px 3px 2px
     margin: 0 5px 0 5px
     text-align center
-
     font-size: 80%
     position: relative
     top: -2px
+    min-width: 1.5em
     color: rgba(0, 0, 0, .78)
-    //text-shadow: 0 -1px 0px rgba(255, 255, 255, .66)
-
     letter-spacing 0.06em
     line-height 1
     font-weight 700
     text-decoration: none
-    box-shadow: inset 2px -2px 0px -1px rgba(255, 255, 255, 0.56)
+    box-shadow: inset 1px -1px 0 0px rgba(255, 255, 255, 0.36)
     cursor: default
-    border: 1px solid rgba(0, 0, 0, .06)
-    border-radius: 4px
-    border-bottom-left-radius: 5px
-    border-bottom-right-radius: 5px
+    border: 1px solid rgba(0, 0, 0, .09)
+    border-radius: 5px
     background: lighten(#ddd, 30%)
-    //background: radial-gradient(ellipse at top right, $theme.primary 10%, $theme.primary 100%)
 
     path
       fill: rgba(0, 0, 0, .78) !important
   .application--dark .key path
       fill: #fff !important
 
-  .key::before,
-  .key::after
+  .key::before
     content: ''
     left: -2px
     right: -3px
-    top: 2px
-    bottom: -4px
-    border-radius: 4px
+    top: 0
+    bottom: -3px
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
     border-bottom-left-radius: 6px
     border-bottom-right-radius: 6px
 
   .key::before
     position absolute
     z-index: -1
-    border: 0.75px solid darken(#ddd, 35%)
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .26)
-    background: radial-gradient(circle 25px at -10px 5px, #fff 10%, #ddd 60%, darken(#ddd, 25%) 80%)
-
-  .key::after
-    position absolute
-    z-index: -2
-    background: radial-gradient(ellipse 10px 20px at top right, #888 0%, #aaa 70%, #ccc 100%)
+    background: #a8a8a8
 
   .application--dark .key::before
-    border: 0.75px solid darken(#333, 35%)
-    background: radial-gradient(circle 25px at -10px 5px, #fff 10%, #ddd 60%, darken(#333, 25%) 80%)
-
-  //.key:hover
-  //  top: 1px
-  //  box-shadow: inset 0 -4px 4px -2px rgba(200, 200, 200, .5)
-  //
-  //.key:hover::before,
-  //.key:hover::after
-  //  padding-bottom 1px
-  //  top: -2px
-  //  bottom: -2px
-  //  border-radius: 6px
-  //
-  //.key:hover::before
-  //  box-shadow: inset 0 1px 6px 0 rgba(0, 0, 0, .96)
+    background: rgba(#000, .36)
 
   .keys, .keyboard
     z-index: 1
@@ -276,12 +249,13 @@ a
     border: 1px solid $material-dark.dividers
     background-color: rgba(#fff, $material-dark.divider-percent/2)
   .keyboard .key
-    margin: 5px 6px
+    margin: 4px 4px
 
-  $kp := desaturate(lighten($theme.info, 70%), 10%)
+
+  $kp := desaturate(lighten($theme.info, 70%), 30%)
   $ks := desaturate(lighten($theme.success, 60%), 30%)
   $kw := desaturate(lighten($theme.warning, 60%), 10%)
-  $ke := desaturate(lighten($theme.error, 60%), 10%)
+  $ke := desaturate(lighten($theme.error, 75%), 10%)
 
   .table-stripes
     td
@@ -296,8 +270,8 @@ a
 
   .application--dark .key
     color: #fff
-    background: lighten(#333, 30%)
-    box-shadow: inset 2px -2px 0px -1px rgba(255, 255, 255, 0.36)
+    background: lighten(#222, 30%)
+    box-shadow: inset 1px -1px 0 0px rgba(255, 255, 255, 0.18)
 
   .key.key-primary
     background: $kp
@@ -309,17 +283,18 @@ a
     background: $ke
 
   .key.key-primary.key-warning
-    background: linear-gradient(90deg, $kp, $kw) no-repeat
+    background: linear-gradient(45deg, $kp 50%, $kw 50%) no-repeat
+
   .key.key-primary.key-error
-    background: linear-gradient(90deg, $kp, $ke) no-repeat
+    background: linear-gradient(45deg, $kp 50%, $ke 50%) no-repeat
   .key.key-success.key-error
-    background: linear-gradient(90deg, $ks, $ke) no-repeat
+    background: linear-gradient(45deg, $ks 50%, $ke 50%) no-repeat
   .key.key-warning.key-error
-    background: linear-gradient(90deg, $kw, $ke) no-repeat
+    background: linear-gradient(45deg, $kw 50%, $ke 50%) no-repeat
   .key.key-success.key-warning.key-error
-    background: linear-gradient(90deg, $ks, $kw, $ke) no-repeat
+    background: linear-gradient(45deg, $ks 33%, $kw 33%, $kw 67%, $ke 67%) no-repeat
   .key.key-primary.key-success.key-warning.key-error
-    background: linear-gradient(90deg, $kp, $ks, $kw, $ke) no-repeat
+    background: linear-gradient(45deg, $kp 25%, $ks 25%, $ks 50%, $kw 50%, $kw 75%, $ke 75%) no-repeat
 
   .application--dark
     .key.key-primary

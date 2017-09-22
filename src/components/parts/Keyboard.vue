@@ -89,7 +89,8 @@
 
 <style scoped lang="css">
   .keyboard {
-    max-width: 520px;
+    max-width: 500px;
+    min-width: 500px;
     display: flex;
     flex-direction: column;
   }
