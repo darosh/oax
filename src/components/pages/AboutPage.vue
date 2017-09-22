@@ -16,6 +16,15 @@
           v-divider.mb-3
           div.hidden-xs-only
             h4 Keyboard shortcuts
+
+            h5 Key color legend
+
+            span.keyboard.mb-4(style="display: inline-block")
+              span.key.key-primary Single
+              span.key.key-success Alt
+              span.key.key-warning Shift
+              span.key.key-error Ctrl
+
             h5 Application shortcuts
             app-keyboard(:shortcuts="appKeys").mb-4
 
