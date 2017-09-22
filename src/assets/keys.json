@@ -1,19 +1,19 @@
 {
   "app": {
     "application": {
-      "Esc": ["Close dialog", "Close right panel", "Close left panel", "Open left panel", "Navigate to API"],
-      "Shift+Tab": "Next tab",
-      "F8": "Open editor",
-      "Alt+L": "Show/hide log",
-      "Alt+T": "Switch theme",
-      "Alt+H": "Go to help page"
+      "Esc": ["close dialog", "close right panel", "close left panel", "open left panel", "navigate to API"],
+      "shift+tab": "next tab",
+      "f8": "open editor",
+      "alt+l": "show/hide log",
+      "alt+t": "switch theme",
+      "alt+h": "go to help page"
     },
-    "API": {
-      "Alt+V": "Switch API view",
-      "Alt+S": "Switch path/summary view",
-      "Alt+W": "Switch wide view",
-      "Alt+O": "Next operation",
-      "Alt+I": "Previous operation"
+    "api": {
+      "alt+v": "switch api view",
+      "alt+s": "switch path/summary view",
+      "alt+w": "switch wide view",
+      "alt+o": "next operation",
+      "alt+i": "previous operation"
     }
   },
   "editor": {

@@ -75,12 +75,10 @@
               this.UI_SET_LEFT_DRAWER()
             }
           },
-          'alt+v': () => (this.APP_API_PAGE ? this.VIEW_SET_VIEW() : this.$router.push(this.APP_HOME)),
+          'alt+v': () => (this.APP_API_PAGE ? this.VIEW_SET_VIEW() : ''),
           'alt+w': () => (this.VIEW_SET_WIDE()),
           'alt+s': () => {
-            if (!this.APP_API_PAGE) {
-              this.$router.push(this.APP_HOME)
-            } else {
+            if (this.APP_API_PAGE) {
               let p = ((this.VIEW_SUMMARY * 2 + this.VIEW_PATH * 1) + 1) % 4
               p = !p ? 1 : p
               this.VIEW_SET_PATH(!!(p & 1))
@@ -91,16 +89,12 @@
           'alt+h': () => (this.$router.push('/about')),
           'alt+t': () => (this.VIEW_SET_DARK()),
           'alt+o': () => {
-            if (!this.APP_API_PAGE) {
-              this.$router.push(this.APP_HOME)
-            } else {
+            if (this.APP_API_PAGE) {
               this.SPEC_SET_NEXT_OPERATION()
             }
           },
           'alt+i': () => {
-            if (!this.APP_API_PAGE) {
-              this.$router.push(this.APP_HOME)
-            } else {
+            if (this.APP_API_PAGE) {
               this.SPEC_SET_PREV_OPERATION()
             }
           },

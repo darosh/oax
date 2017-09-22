@@ -28,7 +28,7 @@
                       span(v-if="i") +
                       .key {{k}}
                   td.pl-3(v-if="!Array.isArray(notes)") {{notes}}
-                  td.pl-3(v-else) One of:
+                  td.pl-3(v-else) one of:
                     ul
                       li(v-for="n in notes") {{n}}
 
@@ -55,7 +55,7 @@
                         span(v-for="(l, j) in k.split('+')")
                           span(v-if="j") +
                           .key {{l}}
-                    td.pl-3 {{notes}}
+                    td.pl-3 {{editorActions[key]}}
 
             v-divider.mb-3
           h4 Acknowledgement
@@ -85,10 +85,15 @@
       const editorKeys = {}
       Object.keys(keys.editor).forEach(k => Object.assign(editorKeys, keys.editor[k]))
 
+      const editorActions = {}
+
+      Object.keys(editorKeys).forEach(k => editorActions[k] = editorKeys[k].replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase())
+
       return {
         keys,
         appKeys: {...keys.app.application, ...keys.app.API},
         editorKeys,
+        editorActions,
         libs: Object.keys(dependencies).filter(i => i[0] !== '@').map(i => ({
           name: i,
           version: dependencies[i].indexOf('github:') === 0 ? '' : dependencies[i][0] === '^' ? dependencies[i].substr(
