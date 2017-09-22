@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid style="max-width: 80em")
+  v-container(v-once fluid style="max-width: 80em")
     v-layout.gpu.ma-3-md
       v-spacer.hidden-xs-only
       v-flex
