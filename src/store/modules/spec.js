@@ -7,6 +7,7 @@ import CircularJSON from 'circular-json'
 
 import { applyPatch } from 'fast-json-patch'
 import { observables } from '../../models/oas/methods/observables'
+import { setError } from '../../services/codemirror'
 
 export const state = {
   spec: null,
@@ -18,6 +19,7 @@ export const state = {
 
 export const mutations = {
   [types.SPEC_SET] (state, payload) {
+    setError()
     state.spec = payload.spec
     state.observables = payload.observables
     state.url = payload.url
@@ -97,7 +99,11 @@ export const actions = {
       commit(types.SPEC_SET, {
         spec: res.bundled
       })
-    }).catch(err => err)
+    }).catch(err => {
+      if (err.json) {
+        setError(err)
+      }
+    })
   },
   [types.SPEC_SET_LOAD_URL] ({commit}, url) {
     if (url === lastUrl) {
@@ -189,7 +195,8 @@ export const getters = {
   },
   [types.SPEC_OPERATION]: (state) => state.operation,
   [types.SPEC_METAS]: (state) => ((state.spec && state.spec._metas) || null),
-  [types.SPEC_OPERATIONS]: (state) => ((state.spec && state.spec._operations) || null),
+  [types.SPEC_OPERATIONS]: (state) => ((state.spec && state.spec._operations) ||
+    null),
   [types.SPEC_RESOURCES]: (state) => ((state.spec && state.spec.tags) || null),
   [types.SPEC]: (state) => state.spec,
   [types.SPEC_JSON]: (state) => state.json,

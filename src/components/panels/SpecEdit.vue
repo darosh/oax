@@ -36,19 +36,20 @@
         editorResolve: editorResolve,
         editorResolved: false,
         editorOptions: {
-          tabSize: 2,
           mode: {name: 'javascript', json: true},
           keyMap: 'sublime',
+          tabSize: 2,
           lineNumbers: true,
           styleActiveLine: true,
           foldGutter: true,
-          gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-          foldOptions: {
-            widget: '...'
-          },
+          lint: {delay: 400},
           autoCloseBrackets: true,
           matchBrackets: true,
           showCursorWhenSelecting: true,
+          gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
+          foldOptions: {
+            widget: '...'
+          },
           extraKeys: {
             'F8': () => {this.fullScreen()}
           }
@@ -107,7 +108,7 @@
             delete this.timeout
             this.SPEC_SET_EDIT_JSON(this.changes)
             delete this.changes
-          }, 200)
+          }, 400)
         }
       },
       fullScreen (cancel = false) {

@@ -3,6 +3,7 @@ export default function codeMirror () {
     return window.CodeMirror
   }
 
+  // window.jsonlint = require('jsonlint').parser
   window.CodeMirror = require('codemirror')
   require('codemirror/lib/codemirror.css')
   window.CodeMirror = window.CodeMirror.CodeMirror || window.CodeMirror
@@ -25,9 +26,48 @@ export default function codeMirror () {
   require('codemirror/addon/selection/active-line')
   require('codemirror/keymap/sublime')
   require('codemirror/mode/javascript/javascript')
+  require('codemirror/addon/lint/lint.js')
+  require('codemirror/addon/lint/lint.css')
+  // require('codemirror/addon/lint/json-lint')
 
   // require('codemirror/mode/yaml/yaml')
   // require('codemirror/addon/wrap/hardwrap')
 
+  register()
+
   return window.CodeMirror
+}
+
+let lastErr = null
+let lastPromise = null
+
+export function register () {
+  window.CodeMirror.registerHelper('lint', 'json', lint)
+}
+
+export function setError (err) {
+  lastErr = err ? [
+    {
+      from: window.CodeMirror.Pos(err.line, 0),
+      to: window.CodeMirror.Pos(err.line, 0),
+      message: err.message
+    }] : []
+
+  if (lastPromise) {
+    lastPromise(lastErr)
+    lastPromise = null
+    lastErr = null
+  }
+}
+
+function lint () {
+  return new Promise(resolve => {
+    lastPromise = resolve
+
+    if (lastErr) {
+      lastPromise(lastErr)
+      lastPromise = null
+      lastErr = null
+    }
+  })
 }

@@ -8,6 +8,7 @@ import edit from '../utils/edit'
 
 import { compare } from 'fast-json-patch'
 import yaml from 'yaml-js'
+import jsonParseError from '../utils/json-parse-error'
 
 const compactJSON = require('json-stringify-pretty-compact')
 
@@ -85,9 +86,20 @@ export default function () {
       event.data.change.forEach(c => edit(json.lines, c))
 
       json.text = json.lines.join('\n')
+      let parsed
 
       try {
-        update(json.schema, JSON.parse(json.text))
+        parsed = JSON.parse(json.text)
+      } catch (err) {
+        ret.err = serializeError(err)
+        ret.err.line = jsonParseError(err, json.text)
+        ret.err.json = true
+        self.postMessage(CircularJSON.stringify(ret))
+        return
+      }
+
+      try {
+        update(json.schema, parsed)
       } catch (err) {
         ret.err = serializeError(err)
         self.postMessage(CircularJSON.stringify(ret))
