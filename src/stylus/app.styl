@@ -185,120 +185,21 @@ a
   overflow-x: visible
   overflow-y: visible
 
-// https://github.com/JSlote/kbd.css/tree/master
 #oax
-  .key
-    display: inline-block
-    padding: 2px 2px 3px 2px
-    margin: 0 5px 0 5px
-    text-align center
-    font-size: 80%
-    position: relative
-    top: -2px
-    min-width: 1.5em
-    color: rgba(0, 0, 0, .78)
-    letter-spacing 0.06em
-    line-height 1
-    font-weight 700
-    text-decoration: none
-    box-shadow: inset 1px -1px 0 0px rgba(255, 255, 255, 0.36)
-    cursor: default
-    border: 1px solid rgba(0, 0, 0, .09)
-    border-radius: 5px
-    background: lighten(#ddd, 30%)
-
-    path
-      fill: rgba(0, 0, 0, .78) !important
-  .application--dark .key path
-      fill: #fff !important
-
-  .key::before
-    content: ''
-    left: -2px
-    right: -3px
-    top: 0
-    bottom: -3px
-    border-top-left-radius: 5px
-    border-top-right-radius: 5px
-    border-bottom-left-radius: 6px
-    border-bottom-right-radius: 6px
-
-  .key::before
-    position absolute
-    z-index: -1
-    background: #a8a8a8
-
-  .application--dark .key::before
-    background: rgba(#000, .36)
-
-  .keys, .keyboard
-    z-index: 1
-    position: relative
-    font-size: 18px
-    padding: 8px
-    font-family: Roboto, sans-serif
-
   .gpu
     transform: translate3d(0,0,0)
     backface-visibility: hidden
-
-  .keyboard
-    border: 1px solid $material-light.dividers
-    background-color: rgba(#000, $material-light.divider-percent/2)
-  .application--dark .keyboard
-    border: 1px solid $material-dark.dividers
-    background-color: rgba(#fff, $material-dark.divider-percent/2)
-  .keyboard .key
-    margin: 4px 4px
-
-
-  $kp := desaturate(lighten($theme.info, 70%), 30%)
-  $ks := desaturate(lighten($theme.success, 60%), 30%)
-  $kw := desaturate(lighten($theme.warning, 60%), 10%)
-  $ke := desaturate(lighten($theme.error, 75%), 10%)
 
   .table-stripes
     td
       padding 8px 8px 10px 8px
       vertical-align top
+
     border-collapse collapse
+
     tr:nth-child(odd)
       background-color: rgba(#000, $material-light.divider-percent/2)
+
   .application--dark .table-stripes
     tr:nth-child(odd)
       background-color: rgba(#fff, $material-dark.divider-percent*2)
-
-  .application--dark .key
-    color: #fff
-    background: lighten(#222, 30%)
-    box-shadow: inset 1px -1px 0 0px rgba(255, 255, 255, 0.18)
-
-  .key.key-primary
-    background: $kp
-  .key.key-success
-    background: $ks
-  .key.key-warning
-    background: $kw
-  .key.key-error
-    background: $ke
-
-  .key.key-primary.key-warning
-    background: linear-gradient(45deg, $kp 50%, $kw 50%) no-repeat
-
-  .key.key-primary.key-error
-    background: linear-gradient(45deg, $kp 50%, $ke 50%) no-repeat
-  .key.key-success.key-error
-    background: linear-gradient(45deg, $ks 50%, $ke 50%) no-repeat
-  .key.key-warning.key-error
-    background: linear-gradient(45deg, $kw 50%, $ke 50%) no-repeat
-  .key.key-success.key-warning.key-error
-    background: linear-gradient(45deg, $ks 33%, $kw 33%, $kw 67%, $ke 67%) no-repeat
-  .key.key-primary.key-success.key-warning.key-error
-    background: linear-gradient(45deg, $kp 25%, $ks 25%, $ks 50%, $kw 50%, $kw 75%, $ke 75%) no-repeat
-
-  .application--dark
-    .key.key-primary
-    .key.key-success
-    .key.key-warning
-    .key.key-error
-      color: #000

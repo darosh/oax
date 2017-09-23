@@ -20,7 +20,6 @@ $oax-text := {
   success: $green.darken-1
 }
 
-
 $grid-breakpoints := {
   xs: 0
   sm: 800px
@@ -31,3 +30,8 @@ $grid-breakpoints := {
 
 $delay := .315s
 $delay-out := 0s
+
+$kp := desaturate(lighten($theme.info, 70%), 30%)
+$ks := desaturate(lighten($theme.success, 60%), 30%)
+$kw := desaturate(lighten($theme.warning, 60%), 10%)
+$ke := desaturate(lighten($theme.error, 75%), 10%)
