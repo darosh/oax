@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.221",
+  "version": "1.0.222",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -20,7 +20,7 @@
     "fast-json-patch": "^2.0.5",
     "highlight.js": "^9.12.0",
     "intersection-observer": "^0.4.2",
-    "json-schema-bundler": "0.0.7",
+    "json-schema-bundler": "^0.1.10",
     "json-stringify-pretty-compact": "^1.0.4",
     "lodash-es": "^4.17.4",
     "lodash.sortedindex": "^4.1.0",
@@ -32,6 +32,7 @@
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
     "showdown": "^1.7.4",
+    "swagger-schema-official": "^2.0.0-bab6bed",
     "v-hotkey": "^0.2.0",
     "vue": "^2.4.4",
     "vue-router": "^2.7.0",
@@ -121,6 +122,7 @@
   "private": true,
   "scripts": {
     "app:http-data": "node build/app/http-data.js header > src/assets/http-header.json && node build/app/http-data.js method > src/assets/http-method.json && node build/app/http-data.js status > src/assets/http-status.json",
+    "bundle": "node build/schema-bundle.js",
     "build": "node build/build.js",
     "deploy": "npm --no-git-tag-version version patch && node build/build.js && deploy-to-gh-pages --local ./dist",
     "deploy-404": "npm --no-git-tag-version version patch && node build/build.js && node ./build/app/copy.js dist/index.html dist/404.html && deploy-to-gh-pages --local ./dist",

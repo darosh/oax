@@ -1,0 +1,712 @@
+{
+  "title": "A JSON Schema for Swagger 2.0 API.",
+  "id": "http://swagger.io/v2/schema.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": ["swagger", "info", "paths"],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-": {
+      "description": "Any property starting with x- is valid.",
+      "additionalProperties": true,
+      "additionalItems": true
+    }
+  },
+  "properties": {
+    "swagger": {"type": "string", "enum": ["2.0"], "description": "The Swagger version of this document."},
+    "info": {
+      "type": "object",
+      "description": "General information about the API.",
+      "required": ["version", "title"],
+      "additionalProperties": false,
+      "patternProperties": {"^x-": "~patternProperties~^x-"},
+      "properties": {
+        "title": {"type": "string", "description": "A unique and precise title of the API."},
+        "version": {"type": "string", "description": "A semantic version number of the API."},
+        "description": {
+          "type": "string",
+          "description": "A longer description of the API. Should be different from the title.  GitHub Flavored Markdown is allowed."
+        },
+        "termsOfService": {"type": "string", "description": "The terms of service for the API."},
+        "contact": {
+          "type": "object",
+          "description": "Contact information for the owners of the API.",
+          "additionalProperties": false,
+          "properties": {
+            "name": {"type": "string", "description": "The identifying name of the contact person/organization."},
+            "url": {"type": "string", "description": "The URL pointing to the contact information.", "format": "uri"},
+            "email": {
+              "type": "string",
+              "description": "The email address of the contact person/organization.",
+              "format": "email"
+            }
+          },
+          "patternProperties": {"^x-": "~patternProperties~^x-"}
+        },
+        "license": {
+          "type": "object",
+          "required": ["name"],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the license type. It's encouraged to use an OSI compatible license."
+            },
+            "url": {"type": "string", "description": "The URL pointing to the license.", "format": "uri"}
+          },
+          "patternProperties": {"^x-": "~patternProperties~^x-"}
+        }
+      }
+    },
+    "host": {
+      "type": "string",
+      "pattern": "^[^{}/ :\\\\]+(?::\\d+)?$",
+      "description": "The host (name or ip) of the API. Example: 'swagger.io'"
+    },
+    "basePath": {"type": "string", "pattern": "^/", "description": "The base path to the API. Example: '/api'."},
+    "schemes": {
+      "type": "array",
+      "description": "The transfer protocol of the API.",
+      "items": {"type": "string", "enum": ["http", "https", "ws", "wss"]},
+      "uniqueItems": true
+    },
+    "consumes": {
+      "description": "A list of MIME types accepted by the API.",
+      "allOf": [
+        {
+          "type": "array",
+          "items": {"type": "string", "description": "The MIME type of the HTTP message."},
+          "uniqueItems": true
+        }
+      ]
+    },
+    "produces": {"description": "A list of MIME types the API can produce.", "allOf": ["~properties~consumes~allOf~0"]},
+    "paths": {
+      "type": "object",
+      "description": "Relative paths to the individual endpoints. They must be relative to the 'basePath'.",
+      "patternProperties": {
+        "^x-": "~patternProperties~^x-",
+        "^/": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {"^x-": "~patternProperties~^x-"},
+          "properties": {
+            "$ref": {"type": "string"},
+            "get": {
+              "type": "object",
+              "required": ["responses"],
+              "additionalProperties": false,
+              "patternProperties": {"^x-": "~patternProperties~^x-"},
+              "properties": {
+                "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+                "summary": {"type": "string", "description": "A brief summary of the operation."},
+                "description": {
+                  "type": "string",
+                  "description": "A longer description of the operation, GitHub Flavored Markdown is allowed."
+                },
+                "externalDocs": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "information about external documentation",
+                  "required": ["url"],
+                  "properties": {"description": {"type": "string"}, "url": {"type": "string", "format": "uri"}},
+                  "patternProperties": {"^x-": "~patternProperties~^x-"}
+                },
+                "operationId": {"type": "string", "description": "A unique identifier of the operation."},
+                "produces": {
+                  "description": "A list of MIME types the API can produce.",
+                  "allOf": ["~properties~consumes~allOf~0"]
+                },
+                "consumes": {
+                  "description": "A list of MIME types the API can consume.",
+                  "allOf": ["~properties~consumes~allOf~0"]
+                },
+                "parameters": {
+                  "type": "array",
+                  "description": "The parameters needed to send a valid API call.",
+                  "additionalItems": false,
+                  "items": {
+                    "oneOf": [
+                      {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "required": ["name", "in", "schema"],
+                            "patternProperties": {"^x-": "~patternProperties~^x-"},
+                            "properties": {
+                              "description": {
+                                "type": "string",
+                                "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed."
+                              },
+                              "name": {"type": "string", "description": "The name of the parameter."},
+                              "in": {
+                                "type": "string",
+                                "description": "Determines the location of the parameter.",
+                                "enum": ["body"]
+                              },
+                              "required": {
+                                "type": "boolean",
+                                "description": "Determines whether or not this parameter is required or optional.",
+                                "default": false
+                              },
+                              "schema": {
+                                "type": "object",
+                                "description": "A deterministic version of a JSON Schema object.",
+                                "patternProperties": {"^x-": "~patternProperties~^x-"},
+                                "properties": {
+                                  "$ref": {"type": "string"},
+                                  "format": {"type": "string"},
+                                  "title": {"type": "string"},
+                                  "description": {"type": "string"},
+                                  "default": {},
+                                  "multipleOf": {"type": "number", "minimum": 0, "exclusiveMinimum": true},
+                                  "maximum": {"type": "number"},
+                                  "exclusiveMaximum": {"type": "boolean", "default": false},
+                                  "minimum": {"type": "number"},
+                                  "exclusiveMinimum": {"type": "boolean", "default": false},
+                                  "maxLength": {"type": "integer", "minimum": 0},
+                                  "minLength": {
+                                    "allOf": [
+                                      "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                      {"default": 0}
+                                    ]
+                                  },
+                                  "pattern": {"type": "string", "format": "regex"},
+                                  "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "uniqueItems": {"type": "boolean", "default": false},
+                                  "maxProperties": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minProperties": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "required": {
+                                    "type": "array",
+                                    "items": {"type": "string"},
+                                    "minItems": 1,
+                                    "uniqueItems": true
+                                  },
+                                  "enum": {"type": "array", "minItems": 1, "uniqueItems": true},
+                                  "additionalProperties": {
+                                    "anyOf": [
+                                      "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema",
+                                      {"type": "boolean"}
+                                    ],
+                                    "default": {}
+                                  },
+                                  "type": {
+                                    "anyOf": [
+                                      {"enum": ["array", "boolean", "integer", "null", "number", "object", "string"]},
+                                      {
+                                        "type": "array",
+                                        "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~type~anyOf~0",
+                                        "minItems": 1,
+                                        "uniqueItems": true
+                                      }
+                                    ]
+                                  },
+                                  "items": {
+                                    "anyOf": [
+                                      "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema",
+                                      {
+                                        "type": "array",
+                                        "minItems": 1,
+                                        "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema"
+                                      }
+                                    ],
+                                    "default": {}
+                                  },
+                                  "allOf": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema"
+                                  },
+                                  "properties": {
+                                    "type": "object",
+                                    "additionalProperties": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema",
+                                    "default": {}
+                                  },
+                                  "discriminator": {"type": "string"},
+                                  "readOnly": {"type": "boolean", "default": false},
+                                  "xml": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "name": {"type": "string"},
+                                      "namespace": {"type": "string"},
+                                      "prefix": {"type": "string"},
+                                      "attribute": {"type": "boolean", "default": false},
+                                      "wrapped": {"type": "boolean", "default": false}
+                                    },
+                                    "patternProperties": {"^x-": "~patternProperties~^x-"}
+                                  },
+                                  "externalDocs": "~properties~paths~patternProperties~^/~properties~get~properties~externalDocs",
+                                  "example": {}
+                                },
+                                "additionalProperties": false
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "required": ["name", "in", "type"],
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "patternProperties": {"^x-": "~patternProperties~^x-"},
+                                "properties": {
+                                  "required": {
+                                    "type": "boolean",
+                                    "description": "Determines whether or not this parameter is required or optional.",
+                                    "default": false
+                                  },
+                                  "in": {
+                                    "type": "string",
+                                    "description": "Determines the location of the parameter.",
+                                    "enum": ["header"]
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed."
+                                  },
+                                  "name": {"type": "string", "description": "The name of the parameter."},
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["string", "number", "boolean", "integer", "array"]
+                                  },
+                                  "format": {"type": "string"},
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": ["string", "number", "integer", "boolean", "array"]
+                                      },
+                                      "format": {"type": "string"},
+                                      "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items",
+                                      "collectionFormat": {
+                                        "type": "string",
+                                        "enum": ["csv", "ssv", "tsv", "pipes"],
+                                        "default": "csv"
+                                      },
+                                      "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                      "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+                                      "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+                                      "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+                                      "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+                                      "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                      "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                      "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+                                      "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                      "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                      "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+                                      "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum",
+                                      "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf"
+                                    },
+                                    "patternProperties": {"^x-": "~patternProperties~^x-"}
+                                  },
+                                  "collectionFormat": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items~properties~collectionFormat",
+                                  "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                  "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+                                  "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+                                  "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+                                  "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+                                  "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+                                  "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+                                  "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum",
+                                  "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf"
+                                }
+                              },
+                              {
+                                "additionalProperties": false,
+                                "patternProperties": {"^x-": "~patternProperties~^x-"},
+                                "properties": {
+                                  "required": {
+                                    "type": "boolean",
+                                    "description": "Determines whether or not this parameter is required or optional.",
+                                    "default": false
+                                  },
+                                  "in": {
+                                    "type": "string",
+                                    "description": "Determines the location of the parameter.",
+                                    "enum": ["formData"]
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed."
+                                  },
+                                  "name": {"type": "string", "description": "The name of the parameter."},
+                                  "allowEmptyValue": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "allows sending a parameter by name only or with an empty value."
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["string", "number", "boolean", "integer", "array", "file"]
+                                  },
+                                  "format": {"type": "string"},
+                                  "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items",
+                                  "collectionFormat": {
+                                    "type": "string",
+                                    "enum": ["csv", "ssv", "tsv", "pipes", "multi"],
+                                    "default": "csv"
+                                  },
+                                  "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                  "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+                                  "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+                                  "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+                                  "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+                                  "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+                                  "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+                                  "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum",
+                                  "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf"
+                                }
+                              },
+                              {
+                                "additionalProperties": false,
+                                "patternProperties": {"^x-": "~patternProperties~^x-"},
+                                "properties": {
+                                  "required": {
+                                    "type": "boolean",
+                                    "description": "Determines whether or not this parameter is required or optional.",
+                                    "default": false
+                                  },
+                                  "in": {
+                                    "type": "string",
+                                    "description": "Determines the location of the parameter.",
+                                    "enum": ["query"]
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed."
+                                  },
+                                  "name": {"type": "string", "description": "The name of the parameter."},
+                                  "allowEmptyValue": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "allows sending a parameter by name only or with an empty value."
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["string", "number", "boolean", "integer", "array"]
+                                  },
+                                  "format": {"type": "string"},
+                                  "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items",
+                                  "collectionFormat": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~1~properties~collectionFormat",
+                                  "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                  "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+                                  "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+                                  "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+                                  "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+                                  "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+                                  "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+                                  "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum",
+                                  "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf"
+                                }
+                              },
+                              {
+                                "additionalProperties": false,
+                                "patternProperties": {"^x-": "~patternProperties~^x-"},
+                                "required": ["required"],
+                                "properties": {
+                                  "required": {
+                                    "type": "boolean",
+                                    "enum": [true],
+                                    "description": "Determines whether or not this parameter is required or optional."
+                                  },
+                                  "in": {
+                                    "type": "string",
+                                    "description": "Determines the location of the parameter.",
+                                    "enum": ["path"]
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed."
+                                  },
+                                  "name": {"type": "string", "description": "The name of the parameter."},
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["string", "number", "boolean", "integer", "array"]
+                                  },
+                                  "format": {"type": "string"},
+                                  "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items",
+                                  "collectionFormat": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items~properties~collectionFormat",
+                                  "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                  "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+                                  "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+                                  "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+                                  "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+                                  "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+                                  "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+                                  "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum",
+                                  "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "required": ["$ref"],
+                        "additionalProperties": false,
+                        "properties": {"$ref": {"type": "string"}}
+                      }
+                    ]
+                  },
+                  "uniqueItems": true
+                },
+                "responses": {
+                  "type": "object",
+                  "description": "Response objects names can either be any valid HTTP status code or 'default'.",
+                  "minProperties": 1,
+                  "additionalProperties": false,
+                  "patternProperties": {
+                    "^([0-9]{3})$|^(default)$": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "required": ["description"],
+                          "properties": {
+                            "description": {"type": "string"},
+                            "schema": {
+                              "oneOf": [
+                                "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema",
+                                {
+                                  "type": "object",
+                                  "description": "A deterministic version of a JSON Schema object.",
+                                  "patternProperties": {"^x-": "~patternProperties~^x-"},
+                                  "required": ["type"],
+                                  "properties": {
+                                    "format": {"type": "string"},
+                                    "title": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~title",
+                                    "description": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~description",
+                                    "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                    "required": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~required",
+                                    "type": {"type": "string", "enum": ["file"]},
+                                    "readOnly": {"type": "boolean", "default": false},
+                                    "externalDocs": "~properties~paths~patternProperties~^/~properties~get~properties~externalDocs",
+                                    "example": {}
+                                  },
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "headers": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": ["type"],
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["string", "number", "integer", "boolean", "array"]
+                                  },
+                                  "format": {"type": "string"},
+                                  "items": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items",
+                                  "collectionFormat": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~1~oneOf~0~properties~items~properties~collectionFormat",
+                                  "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+                                  "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+                                  "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+                                  "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+                                  "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+                                  "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+                                  "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+                                  "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+                                  "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+                                  "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum",
+                                  "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf",
+                                  "description": {"type": "string"}
+                                },
+                                "patternProperties": {"^x-": "~patternProperties~^x-"}
+                              }
+                            },
+                            "examples": {"type": "object", "additionalProperties": true}
+                          },
+                          "additionalProperties": false,
+                          "patternProperties": {"^x-": "~patternProperties~^x-"}
+                        },
+                        "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~1"
+                      ]
+                    },
+                    "^x-": "~patternProperties~^x-"
+                  },
+                  "not": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {"^x-": "~patternProperties~^x-"}
+                  }
+                },
+                "schemes": "~properties~schemes",
+                "deprecated": {"type": "boolean", "default": false},
+                "security": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+                  },
+                  "uniqueItems": true
+                }
+              }
+            },
+            "put": "~properties~paths~patternProperties~^/~properties~get",
+            "post": "~properties~paths~patternProperties~^/~properties~get",
+            "delete": "~properties~paths~patternProperties~^/~properties~get",
+            "options": "~properties~paths~patternProperties~^/~properties~get",
+            "head": "~properties~paths~patternProperties~^/~properties~get",
+            "patch": "~properties~paths~patternProperties~^/~properties~get",
+            "parameters": "~properties~paths~patternProperties~^/~properties~get~properties~parameters"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "definitions": {
+      "type": "object",
+      "additionalProperties": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema",
+      "description": "One or more JSON objects describing the schemas being consumed and produced by the API."
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0",
+      "description": "One or more JSON representations for parameters"
+    },
+    "responses": {
+      "type": "object",
+      "additionalProperties": "~properties~paths~patternProperties~^/~properties~get~properties~responses~patternProperties~^([0-9]{3})$|^(default)$~oneOf~0",
+      "description": "One or more JSON representations for responses"
+    },
+    "security": "~properties~paths~patternProperties~^/~properties~get~properties~security",
+    "securityDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type"],
+            "properties": {"type": {"type": "string", "enum": ["basic"]}, "description": {"type": "string"}},
+            "patternProperties": {"^x-": "~patternProperties~^x-"}
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "name", "in"],
+            "properties": {
+              "type": {"type": "string", "enum": ["apiKey"]},
+              "name": {"type": "string"},
+              "in": {"type": "string", "enum": ["header", "query"]},
+              "description": {"type": "string"}
+            },
+            "patternProperties": {"^x-": "~patternProperties~^x-"}
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "flow", "authorizationUrl"],
+            "properties": {
+              "type": {"type": "string", "enum": ["oauth2"]},
+              "flow": {"type": "string", "enum": ["implicit"]},
+              "scopes": {"type": "object", "additionalProperties": {"type": "string"}},
+              "authorizationUrl": {"type": "string", "format": "uri"},
+              "description": {"type": "string"}
+            },
+            "patternProperties": {"^x-": "~patternProperties~^x-"}
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "flow", "tokenUrl"],
+            "properties": {
+              "type": {"type": "string", "enum": ["oauth2"]},
+              "flow": {"type": "string", "enum": ["password"]},
+              "scopes": "~properties~securityDefinitions~additionalProperties~oneOf~2~properties~scopes",
+              "tokenUrl": {"type": "string", "format": "uri"},
+              "description": {"type": "string"}
+            },
+            "patternProperties": {"^x-": "~patternProperties~^x-"}
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "flow", "tokenUrl"],
+            "properties": {
+              "type": {"type": "string", "enum": ["oauth2"]},
+              "flow": {"type": "string", "enum": ["application"]},
+              "scopes": "~properties~securityDefinitions~additionalProperties~oneOf~2~properties~scopes",
+              "tokenUrl": {"type": "string", "format": "uri"},
+              "description": {"type": "string"}
+            },
+            "patternProperties": {"^x-": "~patternProperties~^x-"}
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "flow", "authorizationUrl", "tokenUrl"],
+            "properties": {
+              "type": {"type": "string", "enum": ["oauth2"]},
+              "flow": {"type": "string", "enum": ["accessCode"]},
+              "scopes": "~properties~securityDefinitions~additionalProperties~oneOf~2~properties~scopes",
+              "authorizationUrl": {"type": "string", "format": "uri"},
+              "tokenUrl": {"type": "string", "format": "uri"},
+              "description": {"type": "string"}
+            },
+            "patternProperties": {"^x-": "~patternProperties~^x-"}
+          }
+        ]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "externalDocs": "~properties~paths~patternProperties~^/~properties~get~properties~externalDocs"
+        },
+        "patternProperties": {"^x-": "~patternProperties~^x-"}
+      },
+      "uniqueItems": true
+    },
+    "externalDocs": "~properties~paths~patternProperties~^/~properties~get~properties~externalDocs"
+  },
+  "definitions": {
+    "title": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~title",
+    "description": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~description",
+    "default": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~default",
+    "multipleOf": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~multipleOf",
+    "maximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maximum",
+    "exclusiveMaximum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMaximum",
+    "minimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minimum",
+    "exclusiveMinimum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~exclusiveMinimum",
+    "maxLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+    "minLength": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+    "pattern": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~pattern",
+    "maxItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~maxLength",
+    "minItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~minLength",
+    "uniqueItems": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~uniqueItems",
+    "enum": "~properties~paths~patternProperties~^/~properties~get~properties~parameters~items~oneOf~0~oneOf~0~properties~schema~properties~enum"
+  }
+}

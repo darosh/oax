@@ -2,7 +2,6 @@ import { load, edit } from '../../worker'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
-import { absoluteUrl } from '../../services/absolute-url'
 import CircularJSON from 'circular-json'
 
 import { applyPatch } from 'fast-json-patch'
@@ -121,7 +120,7 @@ export const actions = {
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
 
-    load(absoluteUrl(url), (progress) => {
+    load(new URL(url, window.location.href).href, (progress) => {
       if (url !== lastUrl) {
         return
       }
