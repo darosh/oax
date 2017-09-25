@@ -6,6 +6,7 @@
 
 <script>
   import codeMirror from '../../services/codemirror'
+  import jsonPath from '../../utils/codemirror-json-path'
 
   export default {
     props: {
@@ -30,6 +31,18 @@
         if (_this.$emit) {
           _this.$emit('change', changeObj)
         }
+      })
+
+      this.editor.on('cursorActivity', function (editor) {
+        if (_this.cursorActivityTimeout) {
+          clearTimeout(_this.cursorActivityTimeout)
+        }
+
+        _this.cursorActivityTimeout = setTimeout(() => {
+          _this.cursorActivityTimeout = null
+          const parent = jsonPath(editor)
+          console.log(parent)
+        }, 200)
       })
 
       //      const events = [

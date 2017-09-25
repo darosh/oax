@@ -7,7 +7,7 @@ import CircularJSON from 'circular-json'
 
 import { applyPatch } from 'fast-json-patch'
 import { observables } from '../../models/oas/methods/observables'
-import { setError } from '../../services/codemirror'
+import { setError } from '../../services/codemirror-lint-json'
 
 export const state = {
   spec: null,
