@@ -41,7 +41,16 @@
         _this.cursorActivityTimeout = setTimeout(() => {
           _this.cursorActivityTimeout = null
           const parent = jsonPath(editor)
-          console.log(parent)
+
+          //          if(!editor.$panelNode) {
+          //            editor.$panelNode  = document.createElement("div")
+          //            editor.$panelNode.className = "panel"
+          //            editor.addPanel(editor.$panelNode, {position: 'bottom', stable: false});
+          //          }
+
+          //          editor.$panelNode.textContent = parent.join(' > ')
+
+          _this.$emit('path', parent)
         }, 200)
       })
 
@@ -107,3 +116,9 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .panel
+    height: 48px
+    padding: 12px
+</style>

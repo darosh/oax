@@ -62,6 +62,7 @@
 
 .CodeMirror-fullscreen
   z-index: 1000
+  margin-bottom: 24px
 
 .application--dark .CodeMirror-cursor
   border-left-color: #fff
@@ -87,3 +88,18 @@
 
 #oax div.CodeMirror span.CodeMirror-matchingbracket
   color: $theme.primary
+
+#oax .CodeMirror-scrollbar-filler
+  display none !important
+
+#cm-full .breadcrumbs
+  position: fixed
+  left: 0
+  bottom: 0
+  z-index: 40
+
+#cm-full .divider
+  position: fixed
+  left: 0
+  bottom: 24px
+  z-index: 40

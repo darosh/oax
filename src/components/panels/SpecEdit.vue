@@ -5,7 +5,9 @@
       v-text-field(spellcheck="false" label="URL" v-model="url" solo single-line hide-details prepend-icon="link")
     v-divider
     div#cm-wrap
-      app-code-mirror#editor(v-if="this.spec !== null", @change="change", :code="spec", :options="editorOptions", @ready="editorReady")
+      app-code-mirror#editor(@path="breadcrumbs = $event", v-if="this.spec !== null", @change="change", :code="spec", :options="editorOptions", @ready="editorReady")
+      v-divider
+      app-breadcrumbs(:items="breadcrumbs")
 </template>
 
 <script>
@@ -14,13 +16,15 @@
 
   import focus from '../../directives/focus'
   import appCodeMirror from '../parts/CodeMirror'
+  import appBreadcrumbs from '../parts/Breadcrumbs'
 
   export default {
     directives: {
       focus
     },
     components: {
-      appCodeMirror
+      appCodeMirror,
+      appBreadcrumbs
     },
     props: ['value'],
     data () {
@@ -28,6 +32,7 @@
       const editor = new Promise((resolve) => { editorResolve = resolve })
 
       return {
+        breadcrumbs: [],
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         scrollOnActive: false,
         format: 1,
@@ -114,9 +119,13 @@
       fullScreen (cancel = false) {
         this.editor.then(editor => {
           if (editor.getOption('fullScreen') || cancel) {
-            document.querySelector('#cm-wrap').appendChild(document.querySelector('.CodeMirror'))
+            const cmf = document.querySelectorAll('#cm-full > *')
+            const cmw = document.querySelector('#cm-wrap')
+            cmf.forEach(e => cmw.appendChild(e))
           } else {
-            document.querySelector('#cm-full').appendChild(document.querySelector('.CodeMirror'))
+            const cmf = document.querySelector('#cm-full')
+            const cmw = document.querySelectorAll('#cm-wrap > *')
+            cmw.forEach(e => cmf.appendChild(e))
           }
 
           if (!cancel) {
@@ -170,7 +179,7 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-edit := 128px
+  $margin-edit := 128px + 24px + 1px
 
   >>> .input-group--solo .input-group__details
     display none
