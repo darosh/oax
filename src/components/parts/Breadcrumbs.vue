@@ -45,7 +45,7 @@
     text-decoration: none
     position: relative
     height: $bc-height
-    line-height: $bc-height
+    line-height: $bc-height + 1px
     padding: 0 8px 0 0
     text-align: center
     margin-right: ($bc-height/2 + 1px)
