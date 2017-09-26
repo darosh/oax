@@ -62,15 +62,15 @@
       border-color: transparent
       border-left-color: $bcbg-dark
 
-  .breadcrumbs li:nth-child(1) span
-    background-color: $theme.primary
+  .breadcrumbs li:first-child:not(:last-child) span
     color #fff
-  .breadcrumbs li:nth-child(1) span:after
+  .breadcrumbs li:first-child span
+    background-color: $theme.primary
+  .breadcrumbs li:first-child span:after
     border-left-color: $theme.primary
 
   .breadcrumbs li:last-child span
     background-color: $bcbg-alt
-
   .breadcrumbs li:last-child span:before
     border-color: $bcbg-alt
     border-left-color: transparent
@@ -78,7 +78,6 @@
   .application--dark
     .breadcrumbs li:last-child span
       background-color: $bcbg-alt-dark
-
     .breadcrumbs li:last-child span:before
       border-color: $bcbg-alt-dark
       border-left-color: transparent
@@ -86,13 +85,11 @@
   .breadcrumbs li:first-child span
     margin-right: ($bc-height/2)
     padding-left: 8px
-
   .breadcrumbs li:first-child span:before
     border: none
 
   .breadcrumbs li:last-child span
     padding-right: 8px
-
   .breadcrumbs li:last-child span:after
     border: none
 
