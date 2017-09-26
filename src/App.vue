@@ -26,12 +26,14 @@
   import * as types from './store/types'
 
   import appTour from './components/app/Tour.vue'
+  import appToolbar from './components/app/Toolbar'
 
   export default {
     components: {
       appDrawerRight: () => import('./components/panels/DrawerRight'),
       appDrawerLeft: () => import('./components/panels/DrawerLeft'),
-      appToolbar: () => import('./components/app/Toolbar'),
+      // appToolbar: () => import('./components/app/Toolbar'),
+      appToolbar,
       //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
       appLog: () => import('./components/app/Log'),
       appTour

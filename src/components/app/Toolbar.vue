@@ -54,7 +54,8 @@
             v-list-tile-action
               v-icon(v-if="VIEW_VIEW === 3") check
 
-      v-spacer
+      v-spacer(style="flex: 1 0 auto")
+
       template(v-if="SPEC")
         v-btn(icon @click.native.stop="searchBegin")
           v-icon search
