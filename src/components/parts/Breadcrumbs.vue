@@ -15,7 +15,8 @@
 
   $bcbg := $material-light.background
   $bcbg-dark := $material-dark.background
-  $bcbg-alt := darken($bcbg, 12%)
+  $bcbg-alt := darken($bcbg, 6%)
+  $bcbg-alt-dark := lighten($bcbg-dark, 6%)
   $bc-height := 24px
 
   .breadcrumbs
@@ -51,7 +52,7 @@
 
   .application--dark
     .breadcrumbs
-      background-color: lighten($bcbg-dark, 24%)
+      background-color: lighten($bcbg-dark, 18%)
     .breadcrumbs li span
       background: $bcbg-dark
     .breadcrumbs li span:before
@@ -68,12 +69,19 @@
     border-left-color: $theme.primary
 
   .breadcrumbs li:last-child span
-    color: #000
     background-color: $bcbg-alt
 
   .breadcrumbs li:last-child span:before
     border-color: $bcbg-alt
     border-left-color: transparent
+
+  .application--dark
+    .breadcrumbs li:last-child span
+      background-color: $bcbg-alt-dark
+
+    .breadcrumbs li:last-child span:before
+      border-color: $bcbg-alt-dark
+      border-left-color: transparent
 
   .breadcrumbs li:first-child span
     margin-right: ($bc-height/2)
