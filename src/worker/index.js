@@ -29,7 +29,7 @@ worker.onmessage = function (event) {
 }
 
 /**
- * @param payload object with one of properties: blob|change|summary|md|url
+ * @param payload object with one of properties: blob|change|summary|md|url|searchSpecs
  * @param progress
  * @returns {Promise}
  */

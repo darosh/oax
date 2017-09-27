@@ -9,6 +9,7 @@ import edit from '../utils/edit'
 import { compare } from 'fast-json-patch'
 import yaml from 'yaml-js'
 import jsonParseError from '../utils/json-parse-error'
+import searchSpecs from '../services/search-specs'
 
 const compactJSON = require('json-stringify-pretty-compact')
 
@@ -134,6 +135,21 @@ export default function () {
         id: event.data.id,
         blob: URL.createObjectURL(new Blob([data]))
       }))
+    } else if (event.data.searchSpecs !== undefined) {
+      const res = searchSpecs(event.data.searchSpecs)
+
+      const done = function (found) {
+        postMessage(JSON.stringify({
+          id: event.data.id,
+          found
+        }))
+      }
+
+      if (res && res.then) {
+        res.then(done)
+      } else {
+        done(res)
+      }
     }
   }
 }

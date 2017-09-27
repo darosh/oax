@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.232",
+  "version": "1.0.233",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -21,6 +21,7 @@
     "json-schema-bundler": "^0.1.10",
     "json-stringify-pretty-compact": "^1.0.4",
     "lodash-es": "^4.17.4",
+    "lunr": "^2.1.3",
     "material-design-icons-svg": "^1.1.2",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "openapi-samples": "github:darosh/openapi-samples",

@@ -3,9 +3,9 @@
     v-divider
     v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-0.ma-0.elevation-2.relative
       v-text-field(spellcheck="false" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search", :append-icon="filter ? 'close' : null", :append-icon-cb="() => filter = null" v-focus.wait="UI_LEFT_DRAWER && value")
-      v-btn.mr-0(icon @click="fullText = !fullText")
+      v-btn.mr-0(icon @click="fullText = !fullText" v-tooltip:left="{html: 'Search in specifications'}")
         v-icon(:primary="fullText") file_find
-      v-btn(icon @click="showFilter = !showFilter")
+      v-btn(icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
         v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
     v-tabs(v-model="tab")
       v-tabs-items
@@ -35,23 +35,23 @@
             v-layout(row wrap)
               v-flex(xs4 d-flex, @click="setCategory(null)")
                 v-card.btn--category(v-ripple="")
-                    div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
-                    div.btn--category__icon.text-xs-center
-                    div.btn--category__counter.pa-1.pl-2.subheading All
-                    div.btn--category__text.pa-1.pl-2.subheading.black--text {{APIS.length}}
+                  div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
+                  div.btn--category__icon.text-xs-center
+                  div.btn--category__counter.pa-1.pl-2.subheading All
+                  div.btn--category__text.pa-1.pl-2.subheading.black--text {{APIS.length}}
               v-flex(xs4 v-for="(item, key) in APIS_CATEGORIES", :key="key" d-flex, @click="setCategory(key)")
                 v-card.btn--category(v-ripple="")
-                    div.btn--category__background(:style="{'background-color': item.color}")
-                    div.btn--category__icon.text-xs-center
-                      v-icon(large) {{categories[key]}}
-                    div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
-                    div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
+                  div.btn--category__background(:style="{'background-color': item.color}")
+                  div.btn--category__icon.text-xs-center
+                    v-icon(large) {{categories[key]}}
+                  div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
+                  div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
               v-flex(xs4 d-flex, @click="setCategory(true)")
                 v-card.btn--category(v-ripple="")
-                    div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
-                    div.btn--category__icon.text-xs-center
-                    div.btn--category__counter.pa-1.pl-2.subheading Unclassified
-                    div.btn--category__text.pa-1.pl-2.subheading.black--text {{uncategorized}}
+                  div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
+                  div.btn--category__icon.text-xs-center
+                  div.btn--category__counter.pa-1.pl-2.subheading Unclassified
+                  div.btn--category__text.pa-1.pl-2.subheading.black--text {{uncategorized}}
 </template>
 
 <script>
@@ -60,6 +60,7 @@
   import * as types from '../../store/types'
   import focus from '../../directives/focus'
   import categories from '../../assets/categories.json'
+  import worker from '../../worker'
 
   export default {
     mixins: [keys],
@@ -75,6 +76,8 @@
         spec: null,
         showFilter: false,
         fullText: false,
+        fullTextInitialized: false,
+        fullTextResult: null,
         categories,
         category: null
       }
@@ -110,24 +113,42 @@
         if (!this.filter && !this.category) {
           return this.APIS
         } else {
-          return this.APIS.filter(item => {
-            if (this.category) {
-              if (this.category === true) {
-                if (item.categories) {
+          if (this.fullTextResult) {
+            return this.fullTextResult.map(d => {
+              return this.APIS[d.ref]
+            }).filter(item => {
+              if (this.category) {
+                if (this.category === true) {
+                  if (item.categories) {
+                    return false
+                  }
+                } else if ((item.categories || []).indexOf(this.category) === -1) {
                   return false
                 }
-              } else if ((item.categories || []).indexOf(this.category) === -1) {
-                return false
               }
-            }
 
-            if (this.filter) {
-              const f = this.filter.toLowerCase()
-              return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
-            }
+              return true
+            })
+          } else {
+            return this.APIS.filter(item => {
+              if (this.category) {
+                if (this.category === true) {
+                  if (item.categories) {
+                    return false
+                  }
+                } else if ((item.categories || []).indexOf(this.category) === -1) {
+                  return false
+                }
+              }
 
-            return true
-          })
+              if (this.filter) {
+                const f = this.filter.toLowerCase()
+                return item.key.toLowerCase().indexOf(f) > -1 || item.title.toLowerCase().indexOf(f) > -1
+              }
+
+              return true
+            })
+          }
         }
       },
       clicked (url) {
@@ -140,6 +161,24 @@
       setCategory (c) {
         this.category = c
         this.showFilter = false
+      }
+    },
+    watch: {
+      fullText (value) {
+        if (value && !this.fullTextInitialized && !this.filter) {
+          worker({searchSpecs: ''}).then(() => {
+            this.fullTextInitialized = true
+          })
+        } else if (!value) {
+          this.fullTextResult = null
+        } else if (this.filter) {
+          worker({searchSpecs: this.filter}).then(res => this.fullTextResult = res.found)
+        }
+      },
+      filter (value) {
+        if (this.fullText) {
+          worker({searchSpecs: value}).then(res => this.fullTextResult = res.found)
+        }
       }
     }
   }
@@ -206,6 +245,7 @@
     .btn--category__icon .icon
       color: rgba(0, 0, 0, .64)
       fill: rgba(0, 0, 0, .64)
-    /*.btn--category__background*/
-      /*opacity: .87*/
+
+  /*.btn--category__background*/
+  /*opacity: .87*/
 </style>
