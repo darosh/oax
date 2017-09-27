@@ -45,7 +45,7 @@
               v-stepper-content(:step="4")
                 v-layout.mb-4(row align-center v-if="!GENERATOR_GENERATED")
                   v-progress-circular.mr-2(indeterminate class="primary--text")
-                  v-flex Generaing code&hellip;
+                  v-flex Generating code&hellip;
                 v-btn.mb-4(v-else primary :href="GENERATOR_GENERATED") Download
 </template>
 
