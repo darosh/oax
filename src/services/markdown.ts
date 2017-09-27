@@ -81,7 +81,7 @@ export function summary(h: string, range = [3, 120]) {
   return cache[h].summary = t.substr(0, (dot > range[0] && dot < range[1]) ? dot : range[1]);
 }
 
-function text(html: string) {
+export function text(html: string) {
   TEXT = '';
   sax.write(html);
 
