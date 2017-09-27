@@ -110,21 +110,20 @@
       ]),
       encodeURIComponent,
       filtered () {
-        if (!this.filter && !this.category) {
+        if (!this.category &&
+          (!this.filter || (this.fullTextResult && (this.fullTextResult.length === this.APIS.length)))) {
           return this.APIS
         } else {
           if (this.fullTextResult) {
-            return this.fullTextResult.map(d => {
-              return this.APIS[d.ref]
-            }).filter(item => {
-              if (this.category) {
-                if (this.category === true) {
-                  if (item.categories) {
-                    return false
-                  }
-                } else if ((item.categories || []).indexOf(this.category) === -1) {
+            const items = this.fullTextResult.map(d => this.APIS[d])
+
+            return !this.category ? items : items.filter(item => {
+              if (this.category === true) {
+                if (item.categories) {
                   return false
                 }
+              } else if ((item.categories || []).indexOf(this.category) === -1) {
+                return false
               }
 
               return true
@@ -172,12 +171,12 @@
         } else if (!value) {
           this.fullTextResult = null
         } else if (this.filter) {
-          worker({searchSpecs: this.filter}).then(res => this.fullTextResult = res.found)
+          worker({searchSpecs: this.filter}).then(res => this.fullTextResult = Object.freeze(res.found))
         }
       },
       filter (value) {
         if (this.fullText) {
-          worker({searchSpecs: value}).then(res => this.fullTextResult = res.found)
+          worker({searchSpecs: value}).then(res => this.fullTextResult = Object.freeze(res.found))
         }
       }
     }
