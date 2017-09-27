@@ -1,4 +1,4 @@
-import { load, edit } from '../../worker'
+import worker from '../../worker'
 import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
@@ -79,7 +79,7 @@ let circ = null
 
 export const actions = {
   [types.SPEC_SET_EDIT_JSON] ({commit}, change) {
-    edit(change).then(res => {
+    worker({change}).then(res => {
       if (!circ) {
         const copy = {...state.spec}
         delete copy._observables
@@ -120,7 +120,7 @@ export const actions = {
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
 
-    load(new URL(url, window.location.href).href, (progress) => {
+    worker({url: new URL(url, window.location.href).href}, (progress) => {
       if (url !== lastUrl) {
         return
       }

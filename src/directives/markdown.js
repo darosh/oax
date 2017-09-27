@@ -1,4 +1,4 @@
-import { markdown, summary } from '../worker'
+import worker from '../worker'
 
 // const loading = 'Loading&hellip;'
 
@@ -23,7 +23,7 @@ function update (elo, binding) {
     } else {
       // el.innerHTML = loading
       el.className += ' markdown';
-      (v[nameJ] || (v[nameJ] = markdown(v[name]))).then(md => {
+      (v[nameJ] || (v[nameJ] = worker({md: v[name]}))).then(md => {
         delete v[nameJ]
         el.innerHTML = v[name] = md
         v[nameH] = true
@@ -35,7 +35,7 @@ function update (elo, binding) {
       sum(el, binding)
     } else {
       const nameJ = 'description_job';
-      (v[nameJ] || (v[nameJ] = markdown(v.description))).then(md => {
+      (v[nameJ] || (v[nameJ] = worker({md: v.description}))).then(md => {
         delete v[nameJ]
         v.description = md
         v.description_html = true
@@ -46,7 +46,7 @@ function update (elo, binding) {
 }
 
 function sum (el, binding) {
-  summary(binding.value.description).then(s => {
+  worker({summary: binding.value.description}).then(s => {
     binding.value.summary = s
     update(el, binding)
   })

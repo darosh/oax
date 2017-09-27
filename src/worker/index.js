@@ -1,7 +1,6 @@
 import CircularJSON from 'circular-json'
 import work from 'webworkify-webpack'
 
-// const worker = work(require.resolve('./worker.js'), {all: true})
 const worker = work(require.resolve('./worker.js'))
 
 const jobs = {}
@@ -10,9 +9,7 @@ let id = 0
 worker.onmessage = function (event) {
   const data = CircularJSON.parse(event.data)
 
-  // if (data.id === -1) {
-  //   return console.log('Worker started')
-  // }
+  data.elapsed = Date.now() - data.start
 
   if (data.md) {
     jobs[data.id].resolve(data.md)
@@ -31,62 +28,22 @@ worker.onmessage = function (event) {
   }
 }
 
-export function load (url, progress = null) {
+/**
+ * @param payload object with one of properties: blob|change|summary|md|url
+ * @param progress
+ * @returns {Promise}
+ */
+export default function (payload, progress = null) {
   id++
 
   const promise = new Promise((resolve, reject) => {
     jobs[id] = {resolve, reject, progress}
   })
 
-  worker.postMessage({id, url, progress: !!progress})
-
-  return promise
-}
-
-export function markdown (md) {
-  id++
-
-  const promise = new Promise((resolve, reject) => {
-    jobs[id] = {resolve, reject}
-  })
-
-  worker.postMessage({md, id})
-
-  return promise
-}
-
-export function summary (summary) {
-  id++
-
-  const promise = new Promise((resolve, reject) => {
-    jobs[id] = {resolve, reject}
-  })
-
-  worker.postMessage({summary, id})
-
-  return promise
-}
-
-export function edit (change) {
-  id++
-
-  const promise = new Promise((resolve, reject) => {
-    jobs[id] = {resolve, reject}
-  })
-
-  worker.postMessage({change, id})
-
-  return promise
-}
-
-export function blobUrl (blob) {
-  id++
-
-  const promise = new Promise((resolve, reject) => {
-    jobs[id] = {resolve, reject}
-  })
-
-  worker.postMessage({blob, id})
+  payload.id = id
+  payload.progress = !!progress
+  payload.start = Date.now()
+  worker.postMessage(payload)
 
   return promise
 }

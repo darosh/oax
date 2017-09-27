@@ -12,14 +12,15 @@
         div
           v-divider
         v-flex(fill-height d-flex)
-          iframe(:src="blob" style="background-color: #fff")
+          iframe(v-if="blob", :src="blob" style="background-color: #fff")
+          v-progress-circular.mt-4(v-else indeterminate class="primary--text")
           v-btn(fab primary dark fixed right bottom :href="blob", :download="'api.' + (json ? 'json' : 'yaml')")
             v-icon file_download
 </template>
 
 <script>
   import dialog from '../../mixins/dialog'
-  import { blobUrl } from '../../worker'
+  import worker from '../../worker'
 
   export default {
     mixins: [dialog],
@@ -40,7 +41,7 @@
 
         if (this.active) {
           const start = Date.now()
-          blobUrl({json: this.json, bundled: this.bundled}).then(res => {
+          worker({blob:{json: this.json, bundled: this.bundled}}).then(res => {
             setTimeout(() => {
               this.blob = res.blob
             }, Math.max(320 - Date.now() + start, 0))
