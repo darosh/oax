@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.229",
+  "version": "1.0.230",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -47,7 +47,7 @@
   "devDependencies": {
     "autoprefixer": "^7.1.4",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.0",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-filehash": "^6.9.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -102,7 +102,7 @@
     "stylus-loader": "^3.0.1",
     "sw-precache-webpack-plugin": "^0.11.4",
     "ts-loader": "^2.3.7",
-    "typescript": "^2.5.2",
+    "typescript": "^2.5.3",
     "uglify-js": "^3.1.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.8",
