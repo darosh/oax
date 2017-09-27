@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.231",
+  "version": "1.0.232",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -12,10 +12,8 @@
     "@types/highlight.js": "^9.1.10",
     "@types/showdown": "^1.7.1",
     "@types/swagger-schema-official": "^2.0.6",
-    "ace-builds": "^1.2.8",
     "axios": "^0.16.2",
     "circular-json": "^0.3.3",
-    "clipboard": "^1.7.1",
     "codemirror": "^5.30.0",
     "fast-json-patch": "^2.0.5",
     "highlight.js": "^9.12.0",
@@ -23,7 +21,6 @@
     "json-schema-bundler": "^0.1.10",
     "json-stringify-pretty-compact": "^1.0.4",
     "lodash-es": "^4.17.4",
-    "lodash.sortedindex": "^4.1.0",
     "material-design-icons-svg": "^1.1.2",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "openapi-samples": "github:darosh/openapi-samples",
