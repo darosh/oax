@@ -81,3 +81,4 @@ export {default as arrow_left_thick} from 'material-design-icons-svg/paths/arrow
 export {default as arrow_right_thick} from 'material-design-icons-svg/paths/arrow-right-thick.json'
 export {default as arrow_down_thick} from 'material-design-icons-svg/paths/arrow-down-thick.json'
 export {default as arrow_up_thick} from 'material-design-icons-svg/paths/arrow-up-thick.json'
+export {default as file_find} from 'material-design-icons-svg/paths/file-find.json'
