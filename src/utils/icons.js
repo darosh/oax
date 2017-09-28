@@ -85,6 +85,8 @@ export {default as file_find} from 'material-design-icons-svg/paths/file-find.js
 export {default as numeric_1_box_outline} from 'material-design-icons-svg/paths/numeric-1-box-outline'
 export {default as numeric_2_box_outline} from 'material-design-icons-svg/paths/numeric-2-box-outline'
 export {default as numeric_3_box_outline} from 'material-design-icons-svg/paths/numeric-3-box-outline'
+export {default as numeric_4_box_outline} from 'material-design-icons-svg/paths/numeric-4-box-outline'
 export {default as numeric_1_box} from 'material-design-icons-svg/paths/numeric-1-box'
 export {default as numeric_2_box} from 'material-design-icons-svg/paths/numeric-2-box'
 export {default as numeric_3_box} from 'material-design-icons-svg/paths/numeric-3-box'
+export {default as numeric_4_box} from 'material-design-icons-svg/paths/numeric-4-box'
