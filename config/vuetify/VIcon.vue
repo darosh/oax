@@ -119,6 +119,9 @@
   .white--text .icon
     fill: #fff !important
 
+  .primary--text.icon
+    fill: $theme.primary !important
+
   svg.icon
     display: inline-block
 
