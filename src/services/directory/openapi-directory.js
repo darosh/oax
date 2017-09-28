@@ -1,5 +1,3 @@
-import { apiPath } from 'openapi-directory-lite'
-
 export default {
   title: 'OpenAPI Directory',
   subTitle: 'Community driven online collection',

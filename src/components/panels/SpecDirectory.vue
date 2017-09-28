@@ -8,24 +8,12 @@
           v-icon {{'numeric_' + collection + '_box'}}
         v-list(subheader two-line)
           v-subheader API Collection
-          v-list-tile(@click="collection = 1")
-            v-list-tile-action
-              v-icon {{'numeric_1_box' + (collection !== 1 ? '_outline' : '')}}
+          v-list-tile(@click="collection = k + 1" ripple avatar v-for="(d, k) in configuration.directory", :key="k")
+            v-list-tile-avatar(tile)
+              .icon.white--text(:class="collection !== (k+1) ? 'secondary' : 'primary'") {{k+1}}
             v-list-tile-content
-              v-list-tile-title OpenAPI Directory
-              v-list-tile-sub-title Community driven online collection
-          v-list-tile(@click="collection = 2")
-            v-list-tile-action
-              v-icon {{'numeric_2_box' + (collection !== 2 ? '_outline' : '')}}
-            v-list-tile-content
-              v-list-tile-title OpenAPI Directory Lite
-              v-list-tile-sub-title Offline version with full text search
-          v-list-tile(@click="collection = 3")
-            v-list-tile-action
-              v-icon {{'numeric_3_box' + (collection !== 3 ? '_outline' : '')}}
-            v-list-tile-content
-              v-list-tile-title SwaggerHub Registry
-              v-list-tile-sub-title Online collection by SmartBear
+              v-list-tile-title {{directory[d].title}}
+              v-list-tile-sub-title {{directory[d].subTitle}}
       v-btn.mr-0(icon @click="fullText = !fullText" v-tooltip:left="{html: 'Search in specifications'}")
         v-icon(:primary="fullText") file_find
       v-btn(icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
@@ -85,10 +73,10 @@
   import focus from '../../directives/focus'
   import categories from '../../assets/categories.json'
   import worker from '../../worker'
-  import VList from 'vuetify/src/components/VList/VList'
+  import { configuration } from '../../services/configuration'
+  import * as directory from '../../services/directory'
 
   export default {
-    components: {VList},
     mixins: [keys],
     directives: {
       focus
@@ -96,6 +84,8 @@
     props: ['value'],
     data () {
       return {
+        configuration,
+        directory,
         filter: null,
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
