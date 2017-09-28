@@ -20,7 +20,7 @@
         v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
     .pt-3.text-xs-center(v-if="!APIS")
       v-progress-circular(class="primary--text" indeterminate)
-    v-tabs(v-else v-model="tab")
+    v-tabs(v-model="tab")
       v-tabs-items
         v-tabs-content#tab-dir-1
           v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
@@ -35,7 +35,7 @@
               template(scope="props")
                 .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                   v-progress-circular(class="primary--text" indeterminate )
-                  .hidden(:dummy="APIS_RUN_LOAD(true)")
+                  .hidden(:dummy="APIS_RUN_LOAD({next: true, search: filter})")
                 div(v-else :key="props.itemKey")
                   v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
                     v-list-tile-avatar
@@ -93,7 +93,7 @@
       return {
         configuration,
         directory,
-        filter: null,
+        filter: '',
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         format: 1,
         spec: null,
@@ -143,8 +143,10 @@
         types.UI_SET_LEFT_DRAWER,
         types.APIS_SET_COLLECTION
       ]),
-      icon(item) {
-        return categories[(item.categories.length > 1 && item.categories[0] === 'cloud') ? item.categories[1] : item.categories[0]]
+      icon (item) {
+        return categories[(item.categories.length > 1 && item.categories[0] === 'cloud')
+          ? item.categories[1]
+          : item.categories[0]]
       },
       filtered () {
         if (!this.category &&
@@ -152,7 +154,7 @@
           this.last = this.APIS_COLLECTION_OBJECT.next ? this.APIS[this.APIS.length - 1].key : null
           return this.APIS
         } else {
-          if (this.fullTextResult) {
+          if (this.fullTextResult && this.APIS_COLLECTION_OBJECT.fullText) {
             const items = this.fullTextResult.map(d => this.APIS[d])
 
             return !this.category ? items : items.filter(item => {
@@ -167,6 +169,11 @@
               return true
             })
           } else {
+            if (this.APIS_COLLECTION_OBJECT.search) {
+              this.last = this.APIS_COLLECTION_OBJECT.next ? this.APIS[this.APIS.length - 1].key : null
+              return this.APIS
+            }
+
             return this.APIS.filter(item => {
               if (this.category) {
                 if (this.category === true) {
@@ -198,6 +205,7 @@
       setCategory (c) {
         this.category = c
         this.showFilter = false
+        this.fullTextResult = null
       }
     },
     watch: {
@@ -213,13 +221,15 @@
         }
       },
       filter (value) {
-        if (this.fullText) {
+        if (this.fullText && this.APIS_COLLECTION_OBJECT.fullText) {
           worker({searchSpecs: value}).then(res => this.fullTextResult = Object.freeze(res.found))
+        } else if (this.APIS_COLLECTION_OBJECT.search) {
+          this.APIS_RUN_LOAD({search: this.filter})
         }
       },
       collection () {
         this.category = null
-        this.APIS_RUN_LOAD()
+        this.APIS_RUN_LOAD({search: this.filter})
       }
     }
   }

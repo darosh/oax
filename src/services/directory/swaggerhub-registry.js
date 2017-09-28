@@ -1,9 +1,19 @@
 const that = {
   title: 'SwaggerHub Registry',
-  subTitle: 'Online collection by SmartBear',
+  subTitle: 'Free specification hosting by SmartBear',
   base: 'https://api.swaggerhub.com/specs?specType=API&state=PUBLISHED&sort=UPDATED&order=DESC&limit=25',
   pagination: true,
   next: null,
+  lastSearch: '',
+  search (search) {
+    if (that.next && (search === that.lastSearch)) {
+      return that.next
+    } else {
+      that.lastSearch = search
+    }
+
+    return that.base + '&query=' + search
+  },
   transform (data, apis) {
     for (let i = 0; i < data.apis.length; i++) {
       const url = data.apis[i].properties.filter(d => d.type === 'Swagger')[0].url
@@ -17,7 +27,11 @@ const that = {
       apis.push(api)
     }
 
-    that.next = that.base + '&page=' + ((data.offset + 25) / 25 + 1)
+    if (data.totalCount > (data.offset + 25)) {
+      that.next = that.base + '&page=' + (data.offset / 25 + 1) + (that.lastSearch ? '&query=' + that.lastSearch : '')
+    } else {
+      that.next = null
+    }
 
     return {apis}
   }
