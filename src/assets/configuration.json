@@ -6,5 +6,6 @@
   "allowSwithTheme": true,
   "allowEditProxy": true,
   "allowDownload": false,
-  "limitSpecButtonText": 8
+  "limitSpecButtonText": 8,
+  "directory": ["openAPIDirectory", "openAPIDirectoryLite", "swaggerHubRegistry", "apisIoOpenAPIs"]
 }

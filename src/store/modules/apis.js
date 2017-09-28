@@ -4,13 +4,17 @@ import { apiPath, indexPath } from 'openapi-directory-lite'
 
 export const state = {
   apis: null,
-  categories: null
+  categories: null,
+  collection: 2
 }
 
 export const mutations = {
   [types.APIS_SET] (state, payload) {
     state.apis = payload.apis
     state.categories = payload.categories
+  },
+  [types.APIS_SET_COLLECTION] (state, payload) {
+    state.collection = payload
   }
 }
 
@@ -87,6 +91,7 @@ export const actions = {
 
 export const getters = {
   [types.APIS]: (state) => state.apis,
+  [types.APIS_COLLECTION]: (state) => state.collection,
   [types.APIS_CATEGORIES]: state => state.categories
 }
 

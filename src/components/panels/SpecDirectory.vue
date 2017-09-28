@@ -3,6 +3,29 @@
     v-divider
     v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-0.ma-0.elevation-2.relative
       v-text-field(spellcheck="false" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search", :append-icon="filter ? 'close' : null", :append-icon-cb="() => filter = null" v-focus.wait="UI_LEFT_DRAWER && value")
+      v-menu(bottom left)
+        v-btn.mr-0(slot="activator" icon)
+          v-icon {{'numeric_' + collection + '_box'}}
+        v-list(subheader two-line)
+          v-subheader API Collection
+          v-list-tile(@click="collection = 1")
+            v-list-tile-action
+              v-icon {{'numeric_1_box' + (collection !== 1 ? '_outline' : '')}}
+            v-list-tile-content
+              v-list-tile-title OpenAPI Directory
+              v-list-tile-sub-title Community driven online collection
+          v-list-tile(@click="collection = 2")
+            v-list-tile-action
+              v-icon {{'numeric_2_box' + (collection !== 2 ? '_outline' : '')}}
+            v-list-tile-content
+              v-list-tile-title OpenAPI Directory Lite
+              v-list-tile-sub-title Offline version with full text search
+          v-list-tile(@click="collection = 3")
+            v-list-tile-action
+              v-icon {{'numeric_3_box' + (collection !== 3 ? '_outline' : '')}}
+            v-list-tile-content
+              v-list-tile-title SwaggerHub Registry
+              v-list-tile-sub-title Online collection by SmartBear
       v-btn.mr-0(icon @click="fullText = !fullText" v-tooltip:left="{html: 'Search in specifications'}")
         v-icon(:primary="fullText") file_find
       v-btn(icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
@@ -62,8 +85,10 @@
   import focus from '../../directives/focus'
   import categories from '../../assets/categories.json'
   import worker from '../../worker'
+  import VList from 'vuetify/src/components/VList/VList'
 
   export default {
+    components: {VList},
     mixins: [keys],
     directives: {
       focus
@@ -87,7 +112,8 @@
       ...mapGetters([
         types.UI_LEFT_DRAWER,
         types.UI_WIDTH,
-        types.APIS_CATEGORIES
+        types.APIS_CATEGORIES,
+        types.APIS_COLLECTION
       ]),
       active () {
         return this.UI_LEFT_DRAWER && this.value
@@ -103,11 +129,20 @@
         if (this.APIS) {
           return this.APIS.filter(d => !d.categories).length
         }
+      },
+      collection: {
+        get () {
+          return this.APIS_COLLECTION
+        },
+        set (value) {
+          return this.APIS_SET_COLLECTION(value)
+        }
       }
     },
     methods: {
       ...mapMutations([
-        types.UI_SET_LEFT_DRAWER
+        types.UI_SET_LEFT_DRAWER,
+        types.APIS_SET_COLLECTION
       ]),
       icon(item) {
         return categories[(item.categories.length > 1 && item.categories[0] === 'cloud') ? item.categories[1] : item.categories[0]]
