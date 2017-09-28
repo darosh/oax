@@ -23,7 +23,8 @@
                 div(:key="props.itemKey")
                   v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
                     v-list-tile-avatar
-                      .icon.white--text(:style="{'background-color': color(props.item)}") {{letter(props.item)}}
+                      v-icon(v-if="props.item.categories", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
+                      .icon.white--text(v-else :style="{'background-color': color(props.item)}") {{letter(props.item)}}
                     v-list-tile-content
                       v-list-tile-title.main--text {{props.item.title}}
                       v-list-tile-sub-title {{props.item.key}}
@@ -108,7 +109,9 @@
       ...mapMutations([
         types.UI_SET_LEFT_DRAWER
       ]),
-      encodeURIComponent,
+      icon(item) {
+        return categories[(item.categories.length > 1 && item.categories[0] === 'cloud') ? item.categories[1] : item.categories[0]]
+      },
       filtered () {
         if (!this.category &&
           (!this.filter || (this.fullTextResult && (this.fullTextResult.length === this.APIS.length)))) {
