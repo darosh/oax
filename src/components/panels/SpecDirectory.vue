@@ -18,7 +18,9 @@
         v-icon(:primary="fullText") file_find
       v-btn.ml-1.mr-0(v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
         v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
-    v-tabs(v-model="tab")
+    .pt-3.text-xs-center(v-if="!APIS")
+      v-progress-circular(class="primary--text" indeterminate)
+    v-tabs(v-else v-model="tab")
       v-tabs-items
         v-tabs-content#tab-dir-1
           v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
@@ -31,7 +33,10 @@
           v-list.pa-0(two-line v-if="APIS")
             virtual-scroller.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
               template(scope="props")
-                div(:key="props.itemKey")
+                .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
+                  v-progress-circular(class="primary--text" indeterminate )
+                  .hidden(:dummy="APIS_RUN_LOAD(true)")
+                div(v-else :key="props.itemKey")
                   v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
                     v-list-tile-avatar
                       v-icon(v-if="props.item.categories && icon(props.item)", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
@@ -75,8 +80,10 @@
   import worker from '../../worker'
   import { configuration } from '../../services/configuration'
   import * as directory from '../../services/directory'
+  import VProgressCircular from 'vuetify/src/components/VProgressCircular/VProgressCircular'
 
   export default {
+    components: {VProgressCircular},
     mixins: [keys],
     directives: {
       focus
@@ -95,7 +102,8 @@
         fullTextInitialized: false,
         fullTextResult: null,
         categories,
-        category: null
+        category: null,
+        last: null
       }
     },
     computed: {
@@ -141,6 +149,7 @@
       filtered () {
         if (!this.category &&
           (!this.filter || (this.fullTextResult && (this.fullTextResult.length === this.APIS.length)))) {
+          this.last = this.APIS_COLLECTION_OBJECT.next ? this.APIS[this.APIS.length - 1].key : null
           return this.APIS
         } else {
           if (this.fullTextResult) {
@@ -209,6 +218,7 @@
         }
       },
       collection () {
+        this.category = null
         this.APIS_RUN_LOAD()
       }
     }

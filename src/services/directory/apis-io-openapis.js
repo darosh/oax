@@ -1,3 +1,5 @@
+import { configuration } from '../configuration'
+
 export default {
   title: 'APIs.io OpenAPIs',
   subTitle: 'OpenAPI specifications from APIs.io',
@@ -14,6 +16,8 @@ export default {
       if (keys[data[i].key] > 1) {
         data[i].key += ':' + keys[data[i].key]
       }
+
+      data[i].url = configuration.proxy + data[i].url
     }
 
     return {apis: data}

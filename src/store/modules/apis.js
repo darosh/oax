@@ -20,21 +20,25 @@ export const mutations = {
 }
 
 export const actions = {
-  [types.APIS_RUN_LOAD] ({commit, getters}) {
+  [types.APIS_RUN_LOAD] ({commit, getters}, next) {
     const obj = getters[types.APIS_COLLECTION_OBJECT]
 
     if (obj.loadingApis) {
       return
-    } else if (obj.loaded) {
+    } else if (obj.loaded && !next) {
       commit(types.APIS_SET, obj.loaded)
       return
     }
 
     obj.loadingApis = true
 
-    axios.get(obj.base).then(res => {
+    if (!next) {
+      commit(types.APIS_SET, {apis: null, categories: null})
+    }
+
+    axios.get(obj.next || obj.base).then(res => {
       const data = res.data
-      const {apis, categories} = obj.transform(data, [])
+      const {apis, categories} = obj.transform(data, (obj.loaded && obj.loaded.apis) || [])
       obj.loadingApis = false
       obj.loaded = {apis, categories}
       commit(types.APIS_SET, {apis, categories})
