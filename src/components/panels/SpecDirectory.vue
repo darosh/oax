@@ -1,22 +1,22 @@
 <template lang="pug">
   div
     v-divider
-    v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-0.ma-0.elevation-2.relative
-      v-text-field(spellcheck="false" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search", :append-icon="filter ? 'close' : null", :append-icon-cb="() => filter = null" v-focus.wait="UI_LEFT_DRAWER && value")
+    v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
+      v-text-field.mr-2(spellcheck="false" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search", :append-icon="filter ? 'close' : null", :append-icon-cb="() => filter = null" v-focus.wait="UI_LEFT_DRAWER && value")
       v-menu(bottom left)
-        v-btn.mr-0(slot="activator" icon)
+        v-btn.ml-1.mr-0(slot="activator" icon)
           v-icon {{'numeric_' + collection + '_box'}}
         v-list(subheader two-line)
           v-subheader API Collection
           v-list-tile(@click="collection = k + 1" ripple avatar v-for="(d, k) in configuration.directory", :key="k")
-            v-list-tile-avatar(tile)
+            v-list-tile-avatar(:tile="collection === (k+1)")
               .icon.white--text(:class="collection !== (k+1) ? 'secondary' : 'primary'") {{k+1}}
             v-list-tile-content
               v-list-tile-title {{directory[d].title}}
               v-list-tile-sub-title {{directory[d].subTitle}}
-      v-btn.mr-0(icon @click="fullText = !fullText" v-tooltip:left="{html: 'Search in specifications'}")
+      v-btn.ml-1.mr-0(v-if="APIS_COLLECTION_OBJECT.fullText" icon @click="fullText = !fullText" v-tooltip:left="{html: 'Search in specifications'}")
         v-icon(:primary="fullText") file_find
-      v-btn(icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
+      v-btn.ml-1.mr-0(v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
         v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
     v-tabs(v-model="tab")
       v-tabs-items
@@ -34,7 +34,7 @@
                 div(:key="props.itemKey")
                   v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
                     v-list-tile-avatar
-                      v-icon(v-if="props.item.categories", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
+                      v-icon(v-if="props.item.categories && icon(props.item)", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
                       .icon.white--text(v-else :style="{'background-color': color(props.item)}") {{letter(props.item)}}
                     v-list-tile-content
                       v-list-tile-title.main--text {{props.item.title}}
@@ -42,7 +42,7 @@
                     v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
                       v-icon file_download
                   v-divider
-        v-tabs-content#tab-dir-2.scroller
+        v-tabs-content#tab-dir-2.scroller(v-if="APIS_COLLECTION_OBJECT.categories")
           v-container.pa-2(fluid grid-list-md v-if="APIS")
             v-layout(row wrap)
               v-flex(xs4 d-flex, @click="setCategory(null)")
@@ -55,7 +55,7 @@
                 v-card.btn--category(v-ripple="")
                   div.btn--category__background(:style="{'background-color': item.color}")
                   div.btn--category__icon.text-xs-center
-                    v-icon(large) {{categories[key]}}
+                    v-icon(v-if="categories[key]" large) {{categories[key]}}
                   div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
                   div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
               v-flex(xs4 d-flex, @click="setCategory(true)")
@@ -103,14 +103,15 @@
         types.UI_LEFT_DRAWER,
         types.UI_WIDTH,
         types.APIS_CATEGORIES,
-        types.APIS_COLLECTION
+        types.APIS_COLLECTION,
+        types.APIS_COLLECTION_OBJECT
       ]),
       active () {
         return this.UI_LEFT_DRAWER && this.value
       },
       tab: {
         get () {
-          return this.showFilter ? 'tab-dir-2' : 'tab-dir-1'
+          return (this.showFilter && this.APIS_COLLECTION_OBJECT.categories) ? 'tab-dir-2' : 'tab-dir-1'
         },
         set () {
         }
@@ -206,6 +207,9 @@
         if (this.fullText) {
           worker({searchSpecs: value}).then(res => this.fullTextResult = Object.freeze(res.found))
         }
+      },
+      collection () {
+        this.APIS_RUN_LOAD()
       }
     }
   }

@@ -1,6 +1,7 @@
 import * as types from '../types'
 import axios from 'axios'
-import { apiPath, indexPath } from 'openapi-directory-lite'
+import { configuration } from '../../services/configuration'
+import * as directory from '../../services/directory'
 
 export const state = {
   apis: null,
@@ -18,81 +19,34 @@ export const mutations = {
   }
 }
 
-let loadingApis = false
-
 export const actions = {
-  [types.APIS_RUN_LOAD] ({commit}) {
-    if (loadingApis || state.apis) {
+  [types.APIS_RUN_LOAD] ({commit, getters}) {
+    const obj = getters[types.APIS_COLLECTION_OBJECT]
+
+    if (obj.loadingApis) {
+      return
+    } else if (obj.loaded) {
+      commit(types.APIS_SET, obj.loaded)
       return
     }
 
-    loadingApis = true
+    obj.loadingApis = true
 
-    axios.get(indexPath()).then(res => {
+    axios.get(obj.base).then(res => {
       const data = res.data
-      const apis = getApis(data)
-      const categories = colored(data.categories)
-      loadingApis = false
+      const {apis, categories} = obj.transform(data, [])
+      obj.loadingApis = false
+      obj.loaded = {apis, categories}
       commit(types.APIS_SET, {apis, categories})
     })
-
-    function getApis (data) {
-      const apis = []
-
-      for (let key in data.specs) {
-        let v = data.specs[key]
-        apis.push({
-          title: v.title,
-          key,
-          url: apiPath(key, data.specs[key]),
-          categories: v.categories
-        })
-      }
-
-      apis.sort((a, b) => a.key.localeCompare(b.key))
-
-      return apis
-    }
-
-    function colored (categories) {
-      const colors = [
-        '#CE93D8',
-        '#B39DDB',
-        '#9FA8DA',
-        '#90CAF9',
-        '#81D4FA',
-        '#80DEEA',
-        '#80CBC4',
-        '#A5D6A7',
-        '#C5E1A5',
-        '#E6EE9C',
-        '#FFF59D',
-        '#FFE082',
-        '#FFCC80',
-        '#FFAB91'
-      ]
-
-      const sort = []
-
-      for (const c in categories) {
-        sort.push({key: c, count: categories[c].count})
-      }
-
-      sort.sort((a, b) => a.count - b.count)
-
-      sort.forEach((v, i) => {
-        categories[v.key].color = colors[Math.round((i / (sort.length - 1)) * (colors.length - 1))]
-      })
-
-      return categories
-    }
   }
 }
 
 export const getters = {
   [types.APIS]: (state) => state.apis,
   [types.APIS_COLLECTION]: (state) => state.collection,
-  [types.APIS_CATEGORIES]: state => state.categories
+  [types.APIS_CATEGORIES]: state => state.categories,
+  [types.APIS_COLLECTION_OBJECT]: state => directory[configuration.directory[state.collection - 1]]
 }
 
 export default {

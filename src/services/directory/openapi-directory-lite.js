@@ -4,7 +4,9 @@ export default {
   title: 'OpenAPI Directory Lite',
   subTitle: 'Offline version with full text search',
   base: indexPath(),
+  keys: true,
   categories: true,
+  fullText: true,
   transform (data) {
     const apis = []
 
@@ -27,7 +29,7 @@ export default {
   }
 }
 
-function colored (categories) {
+export function colored (categories) {
   const colors = [
     '#CE93D8',
     '#B39DDB',

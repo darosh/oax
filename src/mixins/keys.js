@@ -39,6 +39,8 @@ export default {
       return this.cached[url]
     },
     key (item) {
+      console.log(item)
+
       if (this.keys[item.url]) {
         return this.keys[item.url]
       } else {
