@@ -24,6 +24,7 @@
         this.result = null
 
         if (this.SPEC_URL) {
+          // POST curl -X POST -d @swagger.json -H 'Content-Type:application/json' http://online.swagger.io/validator/debug
           axios.get('https://online.swagger.io/validator/debug?url=' + this.SPEC_URL).then(res => {
             this.result = res.data
           })
