@@ -52,7 +52,7 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-recent := 49px
+  $margin-recent := 57px
 
   >>> .scroller-recent
     height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)

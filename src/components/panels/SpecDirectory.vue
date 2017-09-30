@@ -238,9 +238,9 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../stylus/_variables'
+  @import '../../stylus/_variables.styl'
 
-  $margin-scroll := 127px
+  $margin-scroll := 137px
 
   .scroller
     overflow: auto

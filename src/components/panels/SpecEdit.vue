@@ -179,7 +179,7 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-edit := 128px + 24px + 1px
+  $margin-edit := 137px + 24px
 
   >>> .input-group--solo .input-group__details
     display none
