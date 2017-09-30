@@ -13,7 +13,7 @@
         v-tabs-item.relative(ripple href="tab-dir") Directory
         v-tabs-item.relative(ripple href="tab-recent") Recent
         v-tabs-item.relative(ripple href="tab-edit") Edit
-        v-tabs-item.relative(ripple href="tab-test") Test
+        v-tabs-item.relative(ripple href="tab-test") Validator
         v-tabs-slider
       v-tabs-items(touchless)
         v-tabs-content#tab-dir
@@ -23,7 +23,7 @@
         v-tabs-content#tab-edit
           app-spec-edit(v-if="editReady || (tab === 'tab-edit')", :value="tab === 'tab-edit'")
         v-tabs-content#tab-test
-          app-spec-test
+          app-spec-test(v-if="tab === 'tab-test'")
 </template>
 
 <script>

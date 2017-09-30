@@ -90,6 +90,7 @@ export {default as numeric_1_box} from 'material-design-icons-svg/paths/numeric-
 export {default as numeric_2_box} from 'material-design-icons-svg/paths/numeric-2-box'
 export {default as numeric_3_box} from 'material-design-icons-svg/paths/numeric-3-box'
 export {default as numeric_4_box} from 'material-design-icons-svg/paths/numeric-4-box'
+export {default as numeric_5_box} from 'material-design-icons-svg/paths/numeric-5-box'
 export {default as emoticon} from 'material-design-icons-svg/paths/emoticon'
 export {default as arrow_collapse_right} from 'material-design-icons-svg/paths/arrow-collapse-right'
 export {default as arrow_collapse_left} from 'material-design-icons-svg/paths/arrow-collapse-left'

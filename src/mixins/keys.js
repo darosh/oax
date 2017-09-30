@@ -56,7 +56,7 @@ export default {
     },
     letter (item) {
       const s = this.key(item).split(':')
-      return (s[1] || s[0])[0].toUpperCase()
+      return (s[1] || s[0]).trim()[0].toUpperCase()
     }
   },
   watch: {
