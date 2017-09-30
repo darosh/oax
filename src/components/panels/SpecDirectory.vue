@@ -35,7 +35,7 @@
               v-icon cancel
           v-divider(v-if="category")
           v-list.pa-0(two-line v-if="APIS")
-            virtual-scroller.gpu.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
+            virtual-scroller.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
               template(scope="props")
                 .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                   v-progress-circular(class="primary--text" indeterminate )
@@ -84,11 +84,10 @@
   import worker from '../../worker'
   import { configuration } from '../../services/configuration'
   import * as directory from '../../services/directory'
-  import VProgressCircular from 'vuetify/src/components/VProgressCircular/VProgressCircular'
+  import layout from '../mixins/layout'
 
   export default {
-    components: {VProgressCircular},
-    mixins: [keys],
+    mixins: [keys, layout],
     directives: {
       focus
     },
@@ -113,7 +112,6 @@
     computed: {
       ...mapGetters([
         types.UI_LEFT_DRAWER,
-        types.UI_WIDTH,
         types.APIS_CATEGORIES,
         types.APIS_COLLECTION,
         types.APIS_COLLECTION_OBJECT
@@ -202,7 +200,7 @@
       clicked (url) {
         this.url = url
 
-        if (this.UI_WIDTH < 1200) {
+        if (this.$vuetify.breakpoint.width < this.$mobile) {
           this.UI_SET_LEFT_DRAWER(false)
         }
       },

@@ -49,12 +49,12 @@ import {
   VTooltip
 } from 'vuetify'
 
-import { Ripple, Resize } from 'vuetify/src/directives'
+import { Ripple } from 'vuetify/src/directives'
 
 // Vue.component('v-icon', vIcon)
 
 Vue.use(Vuetify, {
-  directives: {Ripple, Resize},
+  directives: {Ripple},
   components: {
     VApp,
     VAlert,

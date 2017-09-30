@@ -10,11 +10,13 @@ export default {
       types.VIEW_WIDE
     ]),
     $mobile () { return 1140 },
+    $half () { return 1520 },
     $panel () {
       return Math.min(480, Math.round(this.$vuetify.breakpoint.width / this.$columns)) - 12
     },
     $panelLeft () {
-      return this.UI_LEFT_DRAWER_HALF ? Math.round(this.$vuetify.breakpoint.width / 2) : this.$panel
+      const w = this.$vuetify.breakpoint.width
+      return (this.UI_LEFT_DRAWER_HALF && (this.$half < w)) ? Math.round(w / 2) : this.$panel
     },
     $column () {
       return this.$vuetify.breakpoint.width / this.$columns

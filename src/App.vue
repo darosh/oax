@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(v-resize="resized", v-hotkey="keymap" , :class="classes", :dark="VIEW_DARK")
+  v-app(v-hotkey="keymap" , :class="classes", :dark="VIEW_DARK")
     app-drawer-left
     app-drawer-right
     app-toolbar
@@ -44,9 +44,6 @@
       return {
         log: false
       }
-    },
-    created () {
-      this.resized()
     },
     computed: {
       ...mapGetters([
@@ -141,7 +138,6 @@
         types.VIEW_SET_SUMMARY,
         types.VIEW_SET_PATH,
         types.VIEW_SET_WIDE,
-        types.UI_SET_WIDTH,
         types.UI_SET_DIALOG,
         types.UI_SET_LEFT_DRAWER,
         types.SPEC_SET_NEXT_OPERATION,
@@ -152,10 +148,7 @@
         types.UI_SET_EDIT_FOCUS,
         types.UI_SET_NEXT_TAB,
         types.UI_SET_ANIMATION
-      ]),
-      resized () {
-        this.UI_SET_WIDTH(window.innerWidth)
-      }
+      ])
     }
   }
 </script>

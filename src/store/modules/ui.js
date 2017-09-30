@@ -15,7 +15,6 @@ export const state = {
   fabMethod: null,
   fabPending: false,
   tab: 'tab-info',
-  width: null,
   right: false,
   left: false,
   leftHalf: false,
@@ -69,9 +68,6 @@ export const mutations = {
   [types.UI_SET_TAB] (state, payload) {
     state.tab = payload
   },
-  [types.UI_SET_WIDTH] (state, payload) {
-    state.width = payload
-  },
   [types.UI_SET_DRAWER] (state, payload) {
     state.right = payload
   },
@@ -109,7 +105,6 @@ export const getters = {
   [types.UI_FAB_METHOD]: state => state.fabMethod,
   [types.UI_FAB_PENDING]: state => state.fabPending,
   [types.UI_TAB]: state => state.tab,
-  [types.UI_WIDTH]: state => state.width,
   [types.UI_RIGHT_DRAWER]: state => state.right,
   [types.UI_LEFT_DRAWER]: state => state.left,
   [types.UI_LEFT_DRAWER_HALF]: state => state.leftHalf,

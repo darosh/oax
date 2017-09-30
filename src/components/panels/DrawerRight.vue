@@ -20,7 +20,6 @@
       ...mapGetters([
         types.SPEC_OPERATION,
         types.APP_API_PAGE,
-        types.UI_WIDTH,
         types.UI_RIGHT_DRAWER
       ]),
       drawer: {

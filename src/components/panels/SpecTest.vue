@@ -24,7 +24,7 @@
         this.result = null
 
         if (this.SPEC_URL) {
-          axios.get('http://online.swagger.io/validator/debug?url=' + this.SPEC_URL).then(res => {
+          axios.get('https://online.swagger.io/validator/debug?url=' + this.SPEC_URL).then(res => {
             this.result = res.data
           })
         }

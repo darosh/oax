@@ -4,10 +4,9 @@
       v-btn(icon @click.stop="UI_SET_LEFT_DRAWER(false)")
         v-icon close
       v-toolbar-title Specification
-      v-spacer
-      v-btn.mr-3(icon @click="UI_SET_LEFT_DRAWER_HALF(!UI_LEFT_DRAWER_HALF)")
+      v-spacer(v-if="$half < $vuetify.breakpoint.width")
+      v-btn.mr-3(v-if="$half < $vuetify.breakpoint.width" icon @click="UI_SET_LEFT_DRAWER_HALF(!UI_LEFT_DRAWER_HALF)")
         v-icon {{UI_LEFT_DRAWER_HALF ? 'arrow_collapse_left' : 'arrow_collapse_right'}}
-    //v-divider
     v-tabs.app--tabs(:scrollable="false" grow v-model="tab")
       v-tabs-bar.transparent
         v-tabs-item.relative(ripple href="tab-dir") Directory
