@@ -49,7 +49,7 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
 
-  import dialog from '../../mixins/dialog'
+  import dialog from '../mixins/dialog'
   import appJson from '../parts/Json'
   import appExample from '../parts/Example'
   import appModel from '../parts/Model'

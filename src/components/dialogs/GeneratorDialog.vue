@@ -52,7 +52,7 @@
 <script>
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../../store/types'
-  import dialog from '../../mixins/dialog'
+  import dialog from '../mixins/dialog'
 
   export default {
     mixins: [dialog],

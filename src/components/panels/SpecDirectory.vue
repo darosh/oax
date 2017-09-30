@@ -76,7 +76,7 @@
 </template>
 
 <script>
-  import keys from '../../mixins/keys'
+  import keys from '../mixins/keys'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
   import focus from '../../directives/focus'

@@ -1,5 +1,5 @@
 import { mapGetters, mapActions } from 'vuex'
-import * as types from '../store/types'
+import * as types from '../../store/types'
 import Vue from 'vue'
 import { getColor } from 'random-material-color'
 

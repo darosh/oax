@@ -22,7 +22,7 @@
 
 <script>
   import limit from '../../utils/limit'
-  import dialog from '../../mixins/dialog'
+  import dialog from '../mixins/dialog'
 
   const headers = () => import('../../assets/http-header.json')
 

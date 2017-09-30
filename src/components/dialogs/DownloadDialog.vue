@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import dialog from '../../mixins/dialog'
+  import dialog from '../mixins/dialog'
   import worker from '../../worker'
 
   export default {

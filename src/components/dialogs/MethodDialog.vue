@@ -35,7 +35,7 @@
 <script>
   import { MethodStyle } from '../../services/method-style'
   import limit from '../../utils/limit'
-  import dialog from '../../mixins/dialog'
+  import dialog from '../mixins/dialog'
 
   const methods = () => import('../../assets/http-method.json')
 

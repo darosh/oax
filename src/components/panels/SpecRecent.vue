@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import keys from '../../mixins/keys'
+  import keys from '../mixins/keys'
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../../store/types'
 
