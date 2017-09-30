@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid grid-list-xl v-if="SPEC").pa-0-sm
     v-layout(row wrap)
-      v-flex(xs12 sm6 md4 lg3 xl20p, v-for="(definition, key) in SPEC.definitions", :key="key")
+      .flex(:style="{'flex-basis': $inner, 'max-width': $inner}", v-for="(definition, key) in SPEC.definitions", :key="key")
         v-card.clickable(v-ripple="" , @click.stop="UI_SET_DIALOG({type: 'schema', param: key})")
           v-card-title.primary--text.mono-title
             b {{key}}
@@ -10,10 +10,10 @@
 <script>
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
+  import layout from '../mixins/layout'
 
   export default {
-    components: {
-    },
+    mixins: [layout],
     computed: {
       ...mapGetters([
         types.VIEW_SUMMARY,

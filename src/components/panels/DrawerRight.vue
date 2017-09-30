@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer.pb-0(style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", :mobile-break-point="1200", :enable-resize-watcher="true", :touchless="true")
+  v-navigation-drawer.pb-0(app style="overflow: hidden" right overflow :persistent="true", :disable-route-watcher="true" v-model="drawer", @input="drawer = $event", :mobile-break-point="$mobile", :enable-resize-watcher="true", :touchless="true", :width="$panel")
     div(style="height: 100%; overflow: auto")
       app-detail(v-if="SPEC_OPERATION", :operation="SPEC_OPERATION")
 </template>
@@ -8,14 +8,13 @@
   import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
-
+  import layout from '../mixins/layout'
   import appDetail from './Detail'
-  import VNavigationDrawer from './VNavigationDrawer'
 
   export default {
+    mixins: [layout],
     components: {
-      appDetail,
-      VNavigationDrawer
+      appDetail
     },
     computed: {
       ...mapGetters([

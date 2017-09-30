@@ -1,11 +1,10 @@
 <template lang="pug">
-  div
-    v-btn(@click.native.stop="UI_FAB_METHOD && UI_FAB_METHOD()" fab fixed bottom right secondary,
-    class="white--text fab--on-top",
-    :class="{show: UI_FAB, 'fab--on-top--disabled': (UI_FAB_PENDING || !UI_ONLINE)}")
-      v-progress-circular(v-if="UI_FAB_PENDING" indeterminate :width="3")
-      v-icon(v-if="!UI_FAB_PENDING && UI_ONLINE" ) play_arrow
-      v-icon(v-if="!UI_ONLINE && !UI_FAB_PENDING" ) do_not_disturb_alt
+  v-btn(@click.native.stop="UI_FAB_METHOD && UI_FAB_METHOD()" fab fixed bottom right secondary,
+  class="white--text fab--on-top",
+  :class="{show: UI_FAB, 'fab--on-top--disabled': (UI_FAB_PENDING || !UI_ONLINE)}")
+    v-progress-circular(v-if="UI_FAB_PENDING" indeterminate :width="3")
+    v-icon(v-if="!UI_FAB_PENDING && UI_ONLINE" ) play_arrow
+    v-icon(v-if="!UI_ONLINE && !UI_FAB_PENDING" ) do_not_disturb_alt
 </template>
 
 <script>

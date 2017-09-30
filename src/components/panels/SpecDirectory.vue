@@ -14,14 +14,18 @@
             v-list-tile-content
               v-list-tile-title {{directory[d].title}}
               v-list-tile-sub-title {{directory[d].subTitle}}
-      v-btn.ml-1.mr-0(v-if="APIS_COLLECTION_OBJECT.fullText" icon @click="fullText = !fullText" v-tooltip:left="{html: 'Search in specifications'}")
-        v-icon(:primary="fullText") file_find
-      v-btn.ml-1.mr-0(v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter" v-tooltip:left="{html: 'Filter categories'}")
-        v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
+      v-tooltip(left)
+        v-btn.ml-1.mr-0(slot="activator" v-if="APIS_COLLECTION_OBJECT.fullText" icon @click="fullText = !fullText")
+          v-icon(:primary="fullText") file_find
+        span Search in specifications
+      v-tooltip(left)
+        v-btn.ml-1.mr-0(slot="activator" v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter")
+          v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
+        span Filter categories
     .pt-3.text-xs-center(v-if="!APIS")
       v-progress-circular(class="primary--text" indeterminate)
     v-tabs(v-model="tab")
-      v-tabs-items
+      v-tabs-items(touchless)
         v-tabs-content#tab-dir-1
           v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
             v-toolbar-title.subheading(style="margin-top: 2px") {{category === true ? 'Uncategorized' : APIS_CATEGORIES[category].title}}
@@ -31,7 +35,7 @@
               v-icon cancel
           v-divider(v-if="category")
           v-list.pa-0(two-line v-if="APIS")
-            virtual-scroller.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
+            virtual-scroller.gpu.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
               template(scope="props")
                 .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                   v-progress-circular(class="primary--text" indeterminate )

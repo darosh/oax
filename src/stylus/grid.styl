@@ -1,100 +1,16 @@
-$layout-columns := {
-  xs: 12
-  sm: 6
-  md: 4
-  lg: 3
-}
+#oax
+  main .content .layout .flex
+      transition: none
+      will-change: flex-basis, max-width, width
 
-$breakpoints := {
-  xs: $grid-breakpoints.xs
-  sm: $grid-breakpoints.sm
-  md: $grid-breakpoints.md
-  lg: $grid-breakpoints.lg
-}
+  .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
+      transition: all 0s linear $delay
+      transition-property: flex-basis, max-width, width
 
-.wide .layout
-  for size, width in $breakpoints
-    @media all and (min-width: width)
-      for n in $layout-columns[size]
-        .flex.{size}{n}
-          flex-basis (1 / max($grid-columns / n - 2, 1) * 100) %
-          max-width (1 / max($grid-columns / n - 2, 1) * 100) %
+  .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
+  .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
+      transition: none
 
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
-  .layout
-    for size, width in $breakpoints
-      @media all and (min-width: width)
-        for n in $layout-columns[size]
-          .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 1, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 1 , 1) * 100) %
-
-  .wide .layout
-    for size, width in $breakpoints
-      @media all and (min-width: width)
-        for n in $layout-columns[size]
-          .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 3, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 3, 1) * 100) %
-
-.navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main
-  .layout
-    for size, width in $breakpoints
-      @media all and (min-width: width)
-        for n in $layout-columns[size]
-          .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 2, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 2, 1) * 100) %
-
-  .wide .layout
-    for size, width in $breakpoints
-      @media all and (min-width: width)
-        for n in $layout-columns[size]
-          .flex.{size}{n}
-            flex-basis (1 / max($grid-columns / n - 4, 1) * 100) %
-            max-width (1 / max($grid-columns / n - 4, 1) * 100) %
-
-@media $display-breakpoints.xl-only
-  main .layout .flex.xl20p
-    flex-basis: 20%
-    max-width: 20%
-
-  main .wide .layout .flex.xl20p
-    flex-basis: 33.33%
-    max-width: 33.33%
-
-  #oax .navigation-drawer--open ~ main
-    .layout .flex.xl20p
-      flex-basis: 25%
-      max-width: 25%
-
-    .wide .layout .flex.xl20p
-      flex-basis: 50%
-      max-width: 50%
-
-  #oax .navigation-drawer--open + .navigation-drawer--open ~ main
-    .layout .flex.xl20p
-      flex-basis: 33.33%
-      max-width: 33.33%
-
-    .wide .layout .flex.xl20p
-      flex-basis: 100%
-      max-width: 100%
-
-for size, width in $grid-breakpoints
-  @media all and (min-width: width)
-    for n in $layout-columns[size]
-      main .layout
-        .flex.{size}{n}
-          transition: none
-      .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
-        .flex.{size}{n}
-          transition: all 0s linear $delay
-          transition-property: flex-basis, max-width
-      .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .layout
-        .flex.{size}{n}
-          transition: none
-      .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .layout
-        .flex.{size}{n}
-          transition: all 0s linear $delay
-          transition-property: flex-basis, max-width
+  .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
+      transition: all 0s linear $delay
+      transition-property: flex-basis, max-width, width

@@ -14,7 +14,7 @@
           v-tabs-item(href="tab-json" v-ripple="") Raw
           v-tabs-slider(style="width: 33.33%")
         v-divider
-        v-tabs-items
+        v-tabs-items(touchless)
           v-tabs-content#tab-schema
             pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
               v-layout.ma-0

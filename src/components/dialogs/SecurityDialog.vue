@@ -11,7 +11,7 @@
         v-tabs-bar.transparent(:class="Object.keys((SPEC && SPEC.securityDefinitions) || {}).length === 1 ? 'tabs--single' : ''")
           v-tabs-item(ripple :href="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey") {{name(sec)}}
           v-tabs-slider
-        v-tabs-items
+        v-tabs-items(touchless)
           v-tabs-content(:id="secKey" v-for="(sec, secKey) in SPEC.securityDefinitions", :key="secKey")
             template(v-if="sec.type === 'oauth2'")
               h3.pl-3.pr-3.pt-3.title

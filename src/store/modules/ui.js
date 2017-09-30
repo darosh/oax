@@ -18,6 +18,7 @@ export const state = {
   width: null,
   right: false,
   left: false,
+  leftHalf: false,
   online: false,
   animation: true,
   highlight: null,
@@ -77,6 +78,9 @@ export const mutations = {
   [types.UI_SET_LEFT_DRAWER] (state, payload) {
     state.left = typeof payload === 'undefined' ? !state.left : payload
   },
+  [types.UI_SET_LEFT_DRAWER_HALF] (state, payload) {
+    state.leftHalf = payload
+  },
   [types.UI_SET_ONLINE] (state, payload) {
     state.online = payload
   },
@@ -108,6 +112,7 @@ export const getters = {
   [types.UI_WIDTH]: state => state.width,
   [types.UI_RIGHT_DRAWER]: state => state.right,
   [types.UI_LEFT_DRAWER]: state => state.left,
+  [types.UI_LEFT_DRAWER_HALF]: state => state.leftHalf,
   [types.UI_ONLINE]: state => state.online,
   [types.UI_ANIMATION]: state => state.animation,
   [types.UI_HIGHLIGHT]: state => state.highlight,

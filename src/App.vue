@@ -1,11 +1,11 @@
 <template lang="pug">
   v-app(v-resize="resized", v-hotkey="keymap" , :class="classes", :dark="VIEW_DARK")
-    div(style="font-size: 4px; position: absolute; top: 0; font-family: 'Roboto Mono'; font-weight: bold;") :-)
     app-drawer-left
     app-drawer-right
     app-toolbar
     main
-      router-view
+      v-content
+        router-view
     v-dialog(width="300" v-model="log" hide-overlay persistent)
       v-card
         v-toolbar.transparent.elevation-0
@@ -18,6 +18,7 @@
           app-log(style="margin-bottom: 24px", v-if="UI_LOADING", :items="UI_LOADING", :log="true")
           app-log(style="margin-bottom: 24px", v-else :items="UI_LOG", :log="true")
     app-tour(v-if="UI_HIGHLIGHT")
+    appFab
     #cm-full
 </template>
 
@@ -35,6 +36,7 @@
       // appToolbar: () => import('./components/app/Toolbar'),
       appToolbar,
       //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
+      appFab: () => import('./components/parts/FAB'),
       appLog: () => import('./components/app/Log'),
       appTour
     },
@@ -159,5 +161,5 @@
 </script>
 
 <style lang="stylus">
-  @import './stylus/index'
+  @import './stylus/index.styl'
 </style>

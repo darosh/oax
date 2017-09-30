@@ -1,0 +1,41 @@
+@import '../../node_modules/vuetify/src/stylus/bootstrap'
+@import '../../node_modules/vuetify/src/stylus/theme'
+
+icon($material)
+  fill: $material.icons.active
+
+  &:disabled
+    fill: $material.icons.inactive
+
+theme(icon, "icon")
+
+.white--text
+.white--text .icon
+  fill: #fff !important
+
+.primary--text.icon
+  fill: $theme.primary !important
+
+svg.icon
+  display: inline-block
+
+.icon--large
+  transform: scale(1.5)
+  transform-origin: left top
+
+.application--light .stepper .stepper__step__step .icon
+  fill: #fff
+
+.stepper__step__step .icon
+  transform: scale(0.75)
+
+.application .theme--dark.btn .icon
+  fill: #fff
+
+.datatable thead th .icon svg
+  width: 16px
+  height: 16px
+  margin-top -1px
+
+.datatable thead th.column.sortable.active.desc i
+  transform-origin: center 9px !important

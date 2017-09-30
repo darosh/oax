@@ -5,12 +5,18 @@
         v-icon close
       v-toolbar-title Operation
       v-spacer
-      v-btn(icon @click.stop="SPEC_SET_PREV_OPERATION" v-tooltip:left="{html: 'Previous operation'}")
-        v-icon skip_previous
-      v-btn(icon @click.stop="SPEC_SET_NEXT_OPERATION" v-tooltip:left="{html: 'Next operation'}")
-        v-icon skip_next
-      v-btn(icon v-tooltip:left="{html: 'Operation authorization'}")
-        v-icon lock_open
+      v-tooltip(left)
+        v-btn(slot="activator" icon @click.stop="SPEC_SET_PREV_OPERATION")
+          v-icon skip_previous
+        span Previous operation
+      v-tooltip(left)
+        v-btn(slot="activator" icon @click.stop="SPEC_SET_NEXT_OPERATION")
+          v-icon skip_next
+        span Next operation
+      v-tooltip(left)
+        v-btn(slot="activator" icon)
+          v-icon lock_open
+        span Operation authorization
     v-divider
     div.toolbar--scroll
       div.pt-3.pl-0.pr-0.pb-3
@@ -25,7 +31,7 @@
           v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._._result") Result
           v-tabs-slider
         v-divider
-        v-tabs-items
+        v-tabs-items(touchless)
           v-tabs-content#tab-info
             app-info(:item="operation")
           v-tabs-content#tab-params

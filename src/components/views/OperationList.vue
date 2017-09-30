@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid).pl-4.pr-4.pa-3-sm
     v-layout(row wrap).stretch
-      v-flex(xs12 sm6 md4 lg3 xl20p v-ripple="" relative v-if="item._._display" v-for="(item, key) in SPEC_OPERATIONS", :key="item._id", @click.stop="SPEC_SET_OPERATION(item)", :class="{'secondary white--text': SPEC_OPERATION === SPEC_OPERATIONS[key]}").hover--block
+      .flex(:style="{'flex-basis': $inner, 'max-width': $inner}",  v-ripple="" relative v-if="item._._display" v-for="(item, key) in SPEC_OPERATIONS", :key="item._id", @click.stop="SPEC_SET_OPERATION(item)", :class="{'secondary white--text': SPEC_OPERATION === SPEC_OPERATIONS[key]}").hover--block
         v-divider.hidden-xs-only
         .pt-1.pb-1.plr-3-sm
           app-operation(:sum="!VIEW_PATH", :item="SPEC_OPERATIONS[key]")
@@ -13,12 +13,14 @@
 <script>
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
+  import layout from '../mixins/layout'
 
   import appOperation from '../elements/MethodBlock'
 
   import markdown from '../../directives/markdown'
 
   export default {
+    mixins: [layout],
     directives: {
       markdown
     },

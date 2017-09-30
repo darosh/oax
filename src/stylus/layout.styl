@@ -1,22 +1,23 @@
 @media $display-breakpoints.md-and-up
-  #oax.html, #oax body
-    display: block !important
-    height: 100vh !important
-    overflow-y: hidden !important
-
   #oax
-    .application, main
+    html
+    body
+      display: block !important
+      height: 100vh !important
+      overflow-y: hidden !important
+
+    .application
+    main
+    main > .content
       display: block
-      height: 100vh
+      height: 100vh !important
       overflow-y: hidden
 
-    .toolbar--fixed + main
-      height: "calc(100vh - %s)" % $toolbar-height
-      margin-top: $toolbar-height
-      padding: 0
+    main > .content
+    main > .content > .container
+      height: calc(100vh - 64px)
 
-#oax
-  .application > main > .container
-    min-height: 0
-    //overflow-y: hidden
-    //overflow-x: hidden
+    main > .content > .container
+      overflow-y: overlay !important
+      overflow-x: auto !important
+

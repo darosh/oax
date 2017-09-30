@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid :class="UI_ERROR ? 'pa-0' : ''")
+  v-container.gpu(fluid :class="UI_ERROR ? 'pa-0' : ''")
     v-layout.ma-0(v-if="UI_LOADING")
       v-spacer
       div.pt-2
@@ -34,7 +34,6 @@
     app-download-dialog
     app-generator-dialog
     app-schema-dialog
-    app-fab
 </template>
 
 <script>
@@ -65,8 +64,7 @@
       appSecurityDialog: () => import('../dialogs/SecurityDialog'),
       appDownloadDialog: () => import('../dialogs/DownloadDialog'),
       appGeneratorDialog: () => import('../dialogs/GeneratorDialog'),
-      appSchemaDialog: () => import('../dialogs/SchemaDialog'),
-      appFab: () => import('../parts/FAB')
+      appSchemaDialog: () => import('../dialogs/SchemaDialog')
     },
     data () {
       return {

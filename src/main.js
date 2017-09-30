@@ -45,15 +45,16 @@ import {
   VSwitch,
   VTabs,
   VTextField,
-  VToolbar
+  VToolbar,
+  VTooltip
 } from 'vuetify'
 
-import { Ripple, Tooltip, Resize } from 'vuetify/src/directives'
+import { Ripple, Resize } from 'vuetify/src/directives'
 
 // Vue.component('v-icon', vIcon)
 
 Vue.use(Vuetify, {
-  directives: {Ripple, Tooltip, Resize},
+  directives: {Ripple, Resize},
   components: {
     VApp,
     VAlert,
@@ -81,7 +82,8 @@ Vue.use(Vuetify, {
     VSwitch,
     VTabs,
     VTextField,
-    VToolbar
+    VToolbar,
+    VTooltip
   }
 })
 

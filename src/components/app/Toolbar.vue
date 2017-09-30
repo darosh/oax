@@ -1,6 +1,6 @@
 <template lang="pug">
   // TODO v-toolbar(fixed scroll-off-screen scroll-target="main")
-  v-toolbar(fixed)
+  v-toolbar.gpu(fixed app)
     template(v-if="APP_API_PAGE")
       v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
@@ -61,16 +61,22 @@
           v-icon search
         div(class="searching", :class="{'searching--closed': !searching}")
           v-text-field(spellcheck="false" id="search" append-icon="close", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line)
-        v-btn(:class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(!SPEC_TAG_OPENED)" v-tooltip:bottom="{html: 'Expand/Collapse'}")
-          v-icon(v-if="SPEC_TAG_OPENED") keyboard_arrow_up
-          v-icon(v-else) keyboard_arrow_down
+        v-tooltip(bottom)
+          v-btn(slot="activator", :class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(!SPEC_TAG_OPENED)")
+            v-icon(v-if="SPEC_TAG_OPENED") keyboard_arrow_up
+            v-icon(v-else) keyboard_arrow_down
+          span Expand/Collapse
         v-menu.hidden-xs-only(bottom left)
-          v-btn(icon slot="activator" v-tooltip:bottom="{html: 'Switch view'}")
-            v-icon visibility
+          v-tooltip(bottom slot="activator")
+            v-btn(icon slot="activator")
+              v-icon visibility
+            span Switch view
           app-toolbar-menu(type="a")
 
-      v-btn.hidden-xs-only(v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="UI_SET_DIALOG('security')" v-tooltip:bottom="{html: 'Authorization'}")
-        v-icon lock
+      v-tooltip(bottom)
+        v-btn.hidden-xs-only(slot="activator" v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="UI_SET_DIALOG('security')")
+          v-icon lock
+        span Authorization
 
       v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
