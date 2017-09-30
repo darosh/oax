@@ -6,6 +6,7 @@ export default {
   base: indexPath(),
   keys: true,
   categories: true,
+  unclassified: true,
   fullText: true,
   transform (data) {
     const apis = []
