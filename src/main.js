@@ -100,9 +100,8 @@ window.OAX = window.OAX || {}
 
 if (process.env !== 'production') {
   window.OAX.select = select
+  Vue.mixin(selectMixin)
 }
-
-Vue.mixin(selectMixin)
 
 /* eslint-disable no-new */
 window.OAX.app = new Vue({
