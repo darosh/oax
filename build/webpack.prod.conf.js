@@ -156,8 +156,8 @@ var webpackConfig = merge(baseWebpackConfig, {
           handler: 'cacheFirst'
         },
         {
-          urlPattern: /^https?:\/\/.*\//,
-          handler: 'cacheFirst'
+          urlPattern: /^https:\/\/.*\//,
+          handler: 'networkFirst'
         }
       ]
     })
