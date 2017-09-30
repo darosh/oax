@@ -54,20 +54,20 @@
         v-tabs-content#tab-dir-2.scroller(v-if="APIS_COLLECTION_OBJECT.categories")
           v-container.pa-2(fluid grid-list-md v-if="APIS")
             v-layout(row wrap)
-              v-flex(xs4 d-flex, @click="setCategory(null)")
+              v-flex(:style="{'flex-basis': mini, 'max-width': mini}",  d-flex, @click="setCategory(null)")
                 v-card.btn--category(v-ripple="")
                   div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
                   div.btn--category__icon.text-xs-center
                   div.btn--category__counter.pa-1.pl-2.subheading All
                   div.btn--category__text.pa-1.pl-2.subheading.black--text {{APIS.length}}
-              v-flex(xs4 v-for="(item, key) in APIS_CATEGORIES", :key="key" d-flex, @click="setCategory(key)")
+              v-flex(:style="{'flex-basis': mini, 'max-width': mini}", v-for="(item, key) in APIS_CATEGORIES", :key="key" d-flex, @click="setCategory(key)")
                 v-card.btn--category(v-ripple="")
                   div.btn--category__background(:style="{'background-color': item.color}")
                   div.btn--category__icon.text-xs-center
                     v-icon(v-if="categories[key]" large) {{categories[key]}}
                   div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
                   div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
-              v-flex(xs4 d-flex, @click="setCategory(true)")
+              v-flex(v-if="APIS_COLLECTION_OBJECT.unclassified", :style="{'flex-basis': mini, 'max-width': mini}", d-flex, @click="setCategory(true)")
                 v-card.btn--category(v-ripple="")
                   div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
                   div.btn--category__icon.text-xs-center
@@ -116,6 +116,9 @@
         types.APIS_COLLECTION,
         types.APIS_COLLECTION_OBJECT
       ]),
+      mini () {
+        return (100 /Math.round(Math.max(3, (this.$panelLeft / 150)))) + '%'
+      },
       active () {
         return this.UI_LEFT_DRAWER && this.value
       },

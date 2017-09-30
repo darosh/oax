@@ -6,6 +6,7 @@ export default {
   base: 'https://api.apis.guru/v2/list.json',
   keys: true,
   categories: true,
+  unclassified: true,
   transform (data) {
     const apis = []
 
