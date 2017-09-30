@@ -19,12 +19,13 @@
 </template>
 
 <script>
-  import keys from '../mixins/keys'
   import { mapGetters, mapMutations, mapActions } from 'vuex'
   import * as types from '../../store/types'
+  import keys from '../mixins/keys'
+  import layout from '../mixins/layout'
 
   export default {
-    mixins: [keys],
+    mixins: [keys, layout],
     computed: {
       ...mapGetters([
         types.RECENT
@@ -32,7 +33,8 @@
     },
     methods: {
       ...mapMutations([
-        types.RECENT_SET_REMOVE
+        types.RECENT_SET_REMOVE,
+        types.UI_SET_LEFT_DRAWER
       ]),
       ...mapActions([
         types.SPEC_SET_LOAD_URL,
@@ -41,7 +43,7 @@
       clicked (url) {
         this.url = url
 
-        if (this.UI_WIDTH < 1200) {
+        if (this.$vuetify.breakpoint.width < this.$mobile) {
           this.UI_SET_LEFT_DRAWER(false)
         }
       }

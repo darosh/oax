@@ -14,3 +14,6 @@
   .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
       transition: all 0s linear $delay
       transition-property: flex-basis, max-width, width
+
+  .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
+    transition: none !important

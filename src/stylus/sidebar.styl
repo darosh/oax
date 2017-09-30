@@ -16,3 +16,6 @@
     transition-delay: $delay, $delay
     transition-duration:  0s, 0s
     transition-property: padding-left, padding-right
+
+  .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--right) ~ main .content
+    transition: none !important
