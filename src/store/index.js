@@ -18,6 +18,7 @@ Vue.use(Vuex)
 export const STORAGE_KEY = 'oax'
 
 export default new Vuex.Store({
+  strict: process.env.NODE_ENV !== 'production',
   // state,
   mutations,
   // actions,
@@ -32,5 +33,4 @@ export default new Vuex.Store({
     settings,
     generator
   }
-  // strict: process.env.NODE_ENV !== 'production'
 })

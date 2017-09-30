@@ -13,10 +13,6 @@ import VueHotkey from 'v-hotkey/src/index'
 
 import { selectMixin, select } from './utils/select'
 
-// import vIcon from './components/elements/VIcon'
-
-// import Vuetify from 'vuetify'
-
 import {
   Vuetify,
   VApp,
@@ -51,8 +47,6 @@ import {
 
 import { Ripple } from 'vuetify/src/directives'
 
-// Vue.component('v-icon', vIcon)
-
 Vue.use(Vuetify, {
   directives: {Ripple},
   components: {
@@ -86,9 +80,6 @@ Vue.use(Vuetify, {
     VTooltip
   }
 })
-
-// import Vuetify from '../vendor/vuetify'
-// Vue.use(Vuetify)
 
 Vue.use(VueVirtualScroller)
 Vue.use(VueHotkey)
