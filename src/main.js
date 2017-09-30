@@ -98,7 +98,7 @@ sync(store, router)
 
 window.OAX = window.OAX || {}
 
-if (process.env !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   window.OAX.select = select
   Vue.mixin(selectMixin)
 }
