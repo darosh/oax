@@ -16,10 +16,30 @@ export const mutations = {
   },
   [types.APIS_SET_COLLECTION] (state, payload) {
     state.collection = payload
+  },
+  [types.APIS_SET_PUSH] (state, payload) {
+    state.categories.push(payload)
   }
 }
 
 let lastObj = null
+
+// function getLoaded (obj, next, searchText) {
+//   if(obj.search) {
+//     return obj.loaded && obj.loaded[searchText] ? obj.loaded[searchText] : null
+//   } else {
+//     return obj.loaded
+//   }
+// }
+//
+// function setLoaded (obj, apis, categories, nextUrl, searchText) {
+//   if(obj.search) {
+//     obj.loaded = obj.loaded || {}
+//     obj.loaded[searchText] = {apis, nextUrl}
+//   } else {
+//     obj.loaded = {apis, categories}
+//   }
+// }
 
 export const actions = {
   [types.APIS_RUN_LOAD] ({commit, getters}, {next, search} = {}) {
