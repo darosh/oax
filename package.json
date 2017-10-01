@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.249",
+  "version": "1.0.250",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -39,7 +39,6 @@
     "vuex": "^2.4.1",
     "vuex-router-sync": "^4.3.2",
     "walk-parse5": "^1.0.0",
-    "webworkify-webpack": "^2.0.5",
     "yaml-js": "^0.2.0"
   },
   "devDependencies": {

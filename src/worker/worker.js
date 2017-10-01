@@ -15,8 +15,10 @@ const compactJSON = require('json-stringify-pretty-compact')
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
-export default function () {
-  self.postMessage(JSON.stringify({id: -1}))
+export default function worker () {
+  if (!self || !self.document) {
+    self.postMessage(JSON.stringify({id: -1}))
+  }
 
   self.onmessage = function (event) {
     if (event.data.md) {
@@ -153,3 +155,5 @@ export default function () {
     }
   }
 }
+
+worker()

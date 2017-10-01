@@ -1,7 +1,11 @@
 import CircularJSON from 'circular-json'
-import work from 'webworkify-webpack'
+// import work from 'webworkify-webpack'
 
-const worker = work(require.resolve('./worker.js'))
+// const worker = work(require.resolve('./worker.js'))
+
+/* eslint-disable import/no-webpack-loader-syntax */
+const Work = require('worker-loader!./worker.js')
+const worker = new Work()
 
 const jobs = {}
 let id = 0

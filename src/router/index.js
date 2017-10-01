@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: window.location.hostname === 'localhost' ? 'history' : 'hash',
+  mode: (window.location.hostname === 'localhost' && location.port === '8080') ? 'history' : 'hash',
   routes: [
     {
       path: '/',

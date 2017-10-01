@@ -18,8 +18,8 @@ module.exports = {
   //   ),
   // ],
   entry: {
-    app: './src/main.js',
-    worker: './src/worker/worker.js'
+    app: './src/main.js'
+    // worker: './src/worker/worker.js'
   },
   output: {
     path: config.build.assetsRoot,
