@@ -23,6 +23,7 @@
   "monitoring": "network_check",
   "open_data": "lock_open",
   "payment": "monetization_on",
+  "prediction": "developer_board",
   "project_management": "dashboard",
   "search": "search",
   "security": "security",
