@@ -1,6 +1,6 @@
 import worker from '../worker'
-
-// const loading = 'Loading&hellip;'
+import store from '../store'
+import * as types from '../store/types'
 
 function update (elo, binding) {
   if (binding.value === binding.oldValue) {
@@ -21,25 +21,32 @@ function update (elo, binding) {
       el.innerHTML = v[name]
       el.className += ' markdown'
     } else {
-      // el.innerHTML = loading
-      el.className += ' markdown';
-      (v[nameJ] || (v[nameJ] = worker({md: v[name]}))).then(md => {
-        delete v[nameJ]
-        el.innerHTML = v[name] = md
-        v[nameH] = true
+      el.className += ' markdown'
+
+      store.commit(types.SPEC_FNC, () => {
+        (v[nameJ] || (v[nameJ] = worker({md: v[name]}))).then(md => {
+          store.commit(types.SPEC_FNC, () => {
+            delete v[nameJ]
+            el.innerHTML = v[name] = md
+            v[nameH] = true
+          })
+        })
       })
     }
   } else if (binding.modifiers.summary && v.description) {
-    // el.innerHTML = loading
     if (v.description_html) {
       sum(el, binding)
     } else {
-      const nameJ = 'description_job';
-      (v[nameJ] || (v[nameJ] = worker({md: v.description}))).then(md => {
-        delete v[nameJ]
-        v.description = md
-        v.description_html = true
-        sum(el, binding)
+      const nameJ = 'description_job'
+      store.commit(types.SPEC_FNC, () => {
+        (v[nameJ] || (v[nameJ] = worker({md: v.description}))).then(md => {
+          store.commit(types.SPEC_FNC, () => {
+            delete v[nameJ]
+            v.description = md
+            v.description_html = true
+            sum(el, binding)
+          })
+        })
       })
     }
   }
@@ -47,25 +54,18 @@ function update (elo, binding) {
 
 function sum (el, binding) {
   worker({summary: binding.value.description}).then(s => {
-    binding.value.summary = s
+    store.commit(types.SPEC_FNC, () => {
+      binding.value.summary = s
+    })
     update(el, binding)
   })
 }
 
 export default {
   update (el, binding) {
-    // if (binding.value !== binding.oldValue) {
     update(el, binding)
-    // }
   },
   bind (el, binding) {
-    // if (binding.value !== binding.oldValue) {
     update(el, binding)
-    // }
   }
-  // inserted: function (el, binding) {
-  //   if (binding.value) {
-  //   update(el, binding)
-  // }
-  // }
 }
