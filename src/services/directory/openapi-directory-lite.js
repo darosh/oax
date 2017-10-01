@@ -2,7 +2,7 @@ import { indexPath, apiPath } from 'openapi-directory-lite'
 
 export default {
   title: 'OpenAPI Directory Lite',
-  subTitle: 'Offline version with full text search',
+  subTitle: 'Smaller version with full text search',
   base: indexPath(),
   keys: true,
   categories: true,
