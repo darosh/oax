@@ -54,14 +54,14 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-recent := 57px
+  $margin-scroll := 48px
 
-  >>> .scroller-recent
-    height 'calc(100vh - %s)' % ($margin-recent + $toolbar-height)
+  .scroller-recent
+    height 'calc(100vh - %s)' % ($margin-scroll + 64px)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-portrait-height)
+    @media $mobile-portrait
+      height 'calc(100vh - %s)' % ($margin-scroll + 56px)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - %s)' % ($margin-recent + $toolbar-mobile-landscape-height)
+    @media $mobile-landscape
+      height 'calc(100vh - %s)' % ($margin-scroll + 48px)
 </style>

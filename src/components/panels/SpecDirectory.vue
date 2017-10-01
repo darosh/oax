@@ -243,23 +243,23 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables.styl'
 
-  $margin-scroll := 137px
+  $margin-scroll := (80+48)px
 
   .scroller
     overflow: auto
-    height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height)
+    height 'calc(100vh - %s)' % ($margin-scroll + 64px)
     &.filtered
       height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height + 50px)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-portrait-height)
+    @media $mobile-portrait
+      height 'calc(100vh - %s)' % ($margin-scroll + 56px)
       &.filtered
-        height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-portrait-height + 50px)
+        height 'calc(100vh - %s)' % ($margin-scroll + 56px + 50px)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-landscape-height)
+    @media $mobile-landscape
+      height 'calc(100vh - %s)' % ($margin-scroll + 48px)
       &.filtered
-        height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-mobile-landscape-height + 50px)
+        height 'calc(100vh - %s)' % ($margin-scroll + 48px + 50px)
 
   .btn--category
     cursor pointer

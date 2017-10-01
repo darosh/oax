@@ -179,17 +179,17 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-edit := 137px + 24px
+  $margin-scroll:= 48px + 80px + 24px
 
   >>> .input-group--solo .input-group__details
     display none
 
   >>> .CodeMirror
-    height 'calc(100vh - %s)' % ($margin-edit + $toolbar-height)
+      height 'calc(100vh - %s)' % ($margin-scroll + 64px)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: portrait)
-      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-portrait-height)
+      @media $mobile-portrait
+        height 'calc(100vh - %s)' % ($margin-scroll + 56px)
 
-    @media all and (max-width: $grid-breakpoints.sm) and (orientation: landscape)
-      height 'calc(100vh - %s)' % ($margin-edit + $toolbar-mobile-landscape-height)
+      @media $mobile-landscape
+        height 'calc(100vh - %s)' % ($margin-scroll + 48px)
 </style>
