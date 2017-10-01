@@ -66,9 +66,10 @@ module.exports = {
           resolve('src'),
           resolve('node_modules/vuetify/src'),
           resolve('node_modules/v-hotkey'),
-          // resolve('node_modules/openapi-directory-lite'),
           resolve('node_modules/codemirror'),
-          resolve('node_modules/walk-parse5')
+          resolve('node_modules/walk-parse5'),
+          resolve('node_modules/vue-virtual-scroller'),
+          resolve('node_modules/vue-observe-visibility')
           ]
       },
       {

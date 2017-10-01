@@ -16,6 +16,7 @@ export const SPEC_URL = 'SPEC_URL'
 export const SPEC_TAG_OPENED = 'SPEC_TAG_OPENED'
 // spec set
 export const SPEC_SET = 'SPEC_SET'
+export const SPEC_FNC = 'SPEC_FNC'
 export const SPEC_SET_EDIT_JSON = 'SPEC_SET_EDIT_JSON'
 export const SPEC_SET_FILTER_RESOURCES = 'SPEC_SET_FILTER_RESOURCES'
 export const SPEC_SET_LOAD_URL = 'SPEC_SET_LOAD_URL'

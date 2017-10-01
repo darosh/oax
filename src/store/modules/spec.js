@@ -17,6 +17,9 @@ export const state = {
 }
 
 export const mutations = {
+  [types.SPEC_FNC] (state, payload) {
+    payload()
+  },
   [types.SPEC_SET] (state, payload) {
     setError()
     state.spec = payload.spec

@@ -23,9 +23,13 @@
   import * as types from '../../store/types'
   import keys from '../mixins/keys'
   import layout from '../mixins/layout'
+  import VirtualScroller from 'vue-virtual-scroller/src/components/VirtualScroller'
 
   export default {
     mixins: [keys, layout],
+    components: {
+      VirtualScroller
+    },
     computed: {
       ...mapGetters([
         types.RECENT

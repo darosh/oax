@@ -85,11 +85,15 @@
   import { configuration } from '../../services/configuration'
   import * as directory from '../../services/directory'
   import layout from '../mixins/layout'
+  import VirtualScroller from 'vue-virtual-scroller/src/components/VirtualScroller'
 
   export default {
     mixins: [keys, layout],
     directives: {
       focus
+    },
+    components: {
+      VirtualScroller
     },
     props: ['value'],
     data () {

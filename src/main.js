@@ -8,7 +8,7 @@ import { sync } from 'vuex-router-sync'
 import { configuration } from './services/configuration'
 import App from './App'
 
-import VueVirtualScroller from 'vue-virtual-scroller'
+// import VueVirtualScroller from 'vue-virtual-scroller/src/index'
 import VueHotkey from 'v-hotkey/src/index'
 
 import { selectMixin, select } from './utils/select'
@@ -81,7 +81,7 @@ Vue.use(Vuetify, {
   }
 })
 
-Vue.use(VueVirtualScroller)
+// Vue.use(VueVirtualScroller)
 Vue.use(VueHotkey)
 Vue.config.productionTip = false
 
