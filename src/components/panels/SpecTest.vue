@@ -1,38 +1,34 @@
 <template lang="pug">
   div
     v-divider
-    pre.pa-3 {{result}}
+    div.mt-3.text-xs-center(v-if="!VALIDATOR")
+      v-progress-circular(class="primary--text" indeterminate)
+    pre.pa-3(v-else) {{VALIDATOR}}
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import * as types from '../../store/types'
 
-  import axios from 'axios'
-
   export default {
-    data () {
-      return {
-        result: null
-      }
-    },
     created () {
       this.update()
     },
     methods: {
+      ...mapActions([
+        types.VALIDATOR_RUN
+      ]),
       update () {
-        this.result = null
-
         if (this.SPEC_URL) {
-          // POST curl -X POST -d @swagger.json -H 'Content-Type:application/json' http://online.swagger.io/validator/debug
-          axios.get('https://online.swagger.io/validator/debug?url=' + this.SPEC_URL).then(res => {
-            this.result = res.data
-          })
+          this.VALIDATOR_RUN({url: this.SPEC_URL})
         }
       }
     },
     computed: {
-      ...mapGetters([types.SPEC_URL])
+      ...mapGetters([
+        types.SPEC_URL,
+        types.VALIDATOR
+      ])
     },
     watch: {
       SPEC_URL: function () {

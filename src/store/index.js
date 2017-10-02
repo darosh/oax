@@ -12,6 +12,7 @@ import * as spec from './modules/spec'
 import * as ui from './modules/ui'
 import * as settings from './modules/settings'
 import * as generator from './modules/generator'
+import * as validator from './modules/validator'
 
 Vue.use(Vuex)
 
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     spec,
     ui,
     settings,
-    generator
+    generator,
+    validator
   }
 })
