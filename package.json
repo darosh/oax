@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.255",
+  "version": "1.0.256",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -29,7 +29,7 @@
     "randexp": "^0.4.6",
     "random-material-color": "^1.0.3",
     "serialize-error": "^2.1.0",
-    "showdown": "^1.7.4",
+    "showdown": "^1.7.5",
     "swagger-schema-official": "^2.0.0-bab6bed",
     "v-hotkey": "^0.2.0",
     "vue": "^2.4.4",
