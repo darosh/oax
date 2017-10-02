@@ -4,8 +4,10 @@
     .pl-3.pr-3.pt-3.pb-3
       v-text-field(spellcheck="false" label="URL" v-model="url" solo single-line hide-details prepend-icon="link")
     v-divider
-    div#cm-wrap
-      app-code-mirror#editor(@path="breadcrumbs = $event", v-if="this.spec !== null", @change="change", :code="spec", :options="editorOptions", @ready="editorReady")
+    div.mt-3.text-xs-center(v-if="!active")
+      v-progress-circular(class="primary--text" indeterminate)
+    div#cm-wrap(v-else)
+      app-code-mirror#editor(@path="breadcrumbs = $event", @change="change", :code="spec", :options="editorOptions", @ready="editorReady")
       v-divider
       app-breadcrumbs(:items="breadcrumbs")
 </template>
@@ -32,6 +34,7 @@
       const editor = new Promise((resolve) => { editorResolve = resolve })
 
       return {
+        activated: false,
         breadcrumbs: [],
         formats: [{text: 'JSON', value: 1}, {text: 'YAML', value: 2}],
         scrollOnActive: false,
@@ -76,7 +79,7 @@
         types.UI_EDIT_FOCUS
       ]),
       active () {
-        return this.UI_LEFT_DRAWER && this.value
+        return this.activated
       },
       url: {
         get () {
@@ -140,29 +143,24 @@
       this.fullScreen(true)
     },
     watch: {
-      active: function (value) {
-        if (value) {
+      value: function (value) {
+        if (value && !this.activated) {
           setTimeout(() => {
-            this.editor.then(editor => {
-              editor.refresh()
-
-              // TODO editor.scrollTo dows not work?
-              if (this.scrollOnActive) {
-                setTimeout(() => {
-                  this.scrollOnActive = false
-                  const scrollInfo = editor.getScrollInfo()
-                  editor.scrollTo(scrollInfo.left, scrollInfo.top)
-                }, 100)
-              }
-            })
-          }, 50)
-        } else {
+            if (this.value) {
+              this.activated = true
+            }
+          }, 325)
+        }
+      },
+      active: function (value) {
+        if (!value) {
           this.fullScreen(true)
         }
       },
       SPEC_JSON: function () {
         this.spec = this.SPEC_JSON
-        this.scrollOnActive = !this.active
+        this.activated = false
+        this.editor = new Promise((resolve) => { this.editorResolve = resolve })
       },
       UI_EDIT_FOCUS: function (value) {
         if (value === 'editor') {
@@ -179,17 +177,17 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-scroll:= 48px + 80px + 24px
+  $margin-scroll := 48px + 80px + 24px
 
   >>> .input-group--solo .input-group__details
     display none
 
   >>> .CodeMirror
-      height 'calc(100vh - %s)' % ($margin-scroll + 64px)
+    height 'calc(100vh - %s)' % ($margin-scroll + 64px)
 
-      @media $mobile-portrait
-        height 'calc(100vh - %s)' % ($margin-scroll + 56px)
+    @media $mobile-portrait
+      height 'calc(100vh - %s)' % ($margin-scroll + 56px)
 
-      @media $mobile-landscape
-        height 'calc(100vh - %s)' % ($margin-scroll + 48px)
+    @media $mobile-landscape
+      height 'calc(100vh - %s)' % ($margin-scroll + 48px)
 </style>

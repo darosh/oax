@@ -20,7 +20,7 @@
         v-tabs-content#tab-recent
           app-spec-recent
         v-tabs-content#tab-edit
-          app-spec-edit(v-if="editReady || (tab === 'tab-edit')", :value="tab === 'tab-edit'")
+          app-spec-edit(:value="tab === 'tab-edit'")
         v-tabs-content#tab-test
           app-spec-test(v-if="tab === 'tab-test'")
 </template>
@@ -38,7 +38,6 @@
     mixins: [layout],
     data () {
       return {
-        editReady: false,
         half: false
       }
     },
@@ -64,7 +63,6 @@
       tab: {
         get () { return this.UI_LEFT_TAB },
         set (value) {
-          this.editReady = this.editReady || (value === 'tab-edit')
           this.UI_SET_LEFT_TAB(value)
         }
       }
