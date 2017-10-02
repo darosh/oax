@@ -5,6 +5,8 @@
       app-json(:item="i", :level="level + 1", :key="k", v-model="value")
       span(v-if="k < (item.length - 1)")
         =", "
+        br
+        span &nbsp;&nbsp;
     | ]
   span(v-else-if="object")
     | {

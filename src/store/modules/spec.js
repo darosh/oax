@@ -120,7 +120,8 @@ export const actions = {
     commit(types.SPEC_SET_OPERATION, null)
     commit(types.UI_SET_DRAWER, false)
     commit(types.SPEC_SET, {
-      spec: null
+      spec: null,
+      url: url
     })
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})

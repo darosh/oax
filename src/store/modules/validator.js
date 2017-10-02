@@ -33,7 +33,7 @@ export const actions = {
       lastUrl = url
       lastJson = null
 
-      axios.get('http://online.swagger.io/validator/debug', {params: {url}}).then(res => {
+      axios.get('https://online.swagger.io/validator/debug', {params: {url}}).then(res => {
         urlCache[url] = res.data
 
         if (lastUrl === url) {
@@ -44,7 +44,7 @@ export const actions = {
       lastUrl = null
       lastJson = json
 
-      axios.post('http://online.swagger.io/validator/debug', {data: json}).then(res => {
+      axios.post('https://online.swagger.io/validator/debug', {data: json}).then(res => {
         jsonCache[json] = res.data
 
         if (lastJson === json) {

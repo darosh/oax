@@ -94,3 +94,4 @@ export {default as numeric_5_box} from 'material-design-icons-svg/paths/numeric-
 export {default as emoticon} from 'material-design-icons-svg/paths/emoticon'
 export {default as arrow_collapse_right} from 'material-design-icons-svg/paths/arrow-collapse-right'
 export {default as arrow_collapse_left} from 'material-design-icons-svg/paths/arrow-collapse-left'
+export {default as check_circle} from 'material-design-icons-svg/paths/checkbox-marked-circle'

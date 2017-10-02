@@ -6,7 +6,7 @@
         v-progress-linear(:value="Math.round(UI_LOADING[0].done * 100)", :height="4", class="primary--text")
         app-log(:items="UI_LOADING")
       v-spacer
-    v-alert.ma-0(error v-if="UI_ERROR" value="true")
+    v-alert.ma-0(error v-if="UI_ERROR" icon="warning" value="true")
       .pre(v-if="!UI_ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="UI_ERROR.message") {{UI_ERROR.message}}
     div(v-if="!SETTINGS_SEARCH && SPEC && SPEC.info && (VIEW_VIEW < 1)")

@@ -3,7 +3,7 @@
     v-expansion-panel-content(v-model="exp1", ripple, v-if="item._._error")
       div.subheading(slot="header") {{item._._error.name || 'Error'}}
       v-divider
-      v-alert.ma-0(error value="true") {{item._._error.message || item._._error}}
+      v-alert.ma-0(error icon="warning" value="true") {{item._._error.message || item._._error}}
     v-expansion-panel-content(v-model="exp2", ripple, v-if="item._._result.status")
       div.subheading(slot="header") Response status
       v-divider
