@@ -22,13 +22,14 @@ export const mutations = {
   },
   [types.SPEC_SET] (state, payload) {
     setError()
-    state.spec = payload.spec
-    state.observables = payload.observables
-    state.url = payload.url
-
-    if (payload.json) {
-      state.json = payload.json
-    }
+    Object.assign(state, payload)
+    // state.spec = payload.spec
+    // state.observables = payload.observables
+    // state.url = payload.url
+    //
+    // if (payload.json) {
+    //   state.json = payload.json
+    // }
   },
   [types.SPEC_SET_RESOURCES] (state, payload) {
     openAll(state.spec.tags, payload)
@@ -99,7 +100,8 @@ export const actions = {
       }
 
       commit(types.SPEC_SET, {
-        spec: res.bundled
+        spec: res.bundled,
+        observables: null
       })
     }).catch(err => {
       if (err.json) {
@@ -157,17 +159,22 @@ export const actions = {
             Object.freeze(res.bundled._operations)
             Object.freeze(res.bundled._metas)
             Object.freeze(res.bundled)
-
-            commit(types.SPEC_SET, {
-              spec: res.bundled,
-              observables: res.bundled._observables,
-              json: res.json,
-              url: url
-            })
-
-            commit(types.RECENT_SET_UNSHIFT,
-              {url, title: res.bundled.info.title})
-            commit(types.UI_SET_LOADING, false)
+            setTimeout(() => {
+              commit(types.SPEC_SET, {
+                observables: res.bundled._observables,
+                spec: null,
+                json: null
+              })
+              setTimeout(() => {
+                commit(types.SPEC_SET, {
+                  spec: res.bundled,
+                  json: res.json,
+                  url: url
+                })
+                commit(types.RECENT_SET_UNSHIFT, {url, title: res.bundled.info.title})
+                commit(types.UI_SET_LOADING, false)
+              }, 0)
+            }, 0)
           }, 0)
         }, 0)
       }
