@@ -177,7 +177,7 @@
 <style scoped lang="stylus">
   @import '../../stylus/_variables'
 
-  $margin-scroll := 48px + 80px + 24px + 1
+  $margin-scroll := 48px + 80px + 24px + 1px
 
   >>> .input-group--solo .input-group__details
     display none
