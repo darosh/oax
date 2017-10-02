@@ -39,7 +39,7 @@
               template(scope="props")
                 .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                   v-progress-circular(class="primary--text" indeterminate )
-                  .hidden(:dummy="APIS_RUN_LOAD({next: true, search: filter})")
+                  .hidden(:dummy="APIS_RUN_LOAD({next: true, searchText: filter})")
                 div(v-else :key="props.itemKey")
                   v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
                     v-list-tile-avatar
@@ -233,12 +233,12 @@
         if (this.fullText && this.APIS_COLLECTION_OBJECT.fullText) {
           worker({searchSpecs: value}).then(res => this.fullTextResult = Object.freeze(res.found))
         } else if (this.APIS_COLLECTION_OBJECT.search) {
-          this.APIS_RUN_LOAD({search: this.filter})
+          this.APIS_RUN_LOAD({searchText: this.filter})
         }
       },
       collection () {
         this.category = null
-        this.APIS_RUN_LOAD({search: this.filter})
+        this.APIS_RUN_LOAD({searchText: this.filter})
       }
     }
   }

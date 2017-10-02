@@ -19,71 +19,93 @@ export const mutations = {
   },
   [types.APIS_SET_PUSH] (state, payload) {
     state.categories.push(payload)
+  },
+  APIS_PUSH (state, payload) {
+    payload.apis.push(payload.api)
   }
 }
 
-let lastObj = null
+function getLoaded (obj, searchText) {
+  if (obj.pagination) {
+    const loaded = (obj.loaded && obj.loaded[searchText || 'no_search_text'])
+      ? obj.loaded[searchText || 'no_search_text']
+      : null
 
-// function getLoaded (obj, next, searchText) {
-//   if(obj.search) {
-//     return obj.loaded && obj.loaded[searchText] ? obj.loaded[searchText] : null
-//   } else {
-//     return obj.loaded
-//   }
-// }
-//
-// function setLoaded (obj, apis, categories, nextUrl, searchText) {
-//   if(obj.search) {
-//     obj.loaded = obj.loaded || {}
-//     obj.loaded[searchText] = {apis, nextUrl}
-//   } else {
-//     obj.loaded = {apis, categories}
-//   }
-// }
+    if (loaded && (!!loaded.nextUrl !== !!obj.next)) {
+      obj.next = !!loaded.nextUrl
+    }
+
+    return loaded
+  } else {
+    return obj.loaded
+  }
+}
+
+function setLoaded (obj, apis, categories, nextUrl, searchText) {
+  if (obj.pagination) {
+    obj.loaded = obj.loaded || {}
+    obj.loaded[searchText || 'no_search_text'] = {apis, nextUrl, searchText}
+
+    if (!!nextUrl !== !!obj.next) {
+      obj.next = !!nextUrl
+    }
+  } else {
+    obj.loaded = {apis, categories}
+  }
+}
+
+let lastUrl = null
 
 export const actions = {
-  [types.APIS_RUN_LOAD] ({commit, getters}, {next, search} = {}) {
-    const obj = lastObj = getters[types.APIS_COLLECTION_OBJECT]
+  [types.APIS_RUN_LOAD] ({commit, getters}, {next, searchText} = {}) {
+    const obj = getters[types.APIS_COLLECTION_OBJECT]
+    const loaded = getLoaded(obj, searchText)
 
-    if (obj.loadingApis) {
-      return
-    } else if (obj.loaded && !next && !obj.pagination) {
-      commit(types.APIS_SET, obj.loaded)
+    if (obj.loading) {
       return
     }
 
-    obj.loadingApis = true
+    if (loaded) {
+      commit(types.APIS_SET, loaded)
+
+      if (!obj.pagination) {
+        return
+      } else if (!next) {
+        return
+      }
+    } else {
+      commit(types.APIS_SET, {apis: null, categories: null})
+    }
 
     let url
 
-    if (obj.search && (obj.lastSearch !== search)) {
-      commit(types.APIS_SET, {apis: null, categories: null})
-      obj.loaded = null
-      obj.lastSearch = null
-      obj.next = null
-      url = search ? obj.search(search) : obj.base
-    } else {
-      if (!next) {
-        commit(types.APIS_SET, {apis: null, categories: null})
+    if (obj.pagination) {
+      if (next && loaded.nextUrl) {
+        url = loaded.nextUrl
+      } else {
+        url = obj.search(searchText)
       }
-
-      url = obj.next || obj.base
+    } else {
+      url = obj.base
     }
 
+    lastUrl = url
+
+    obj.loading = true
+
     axios.get(url).then(res => {
-      if (obj !== lastObj) {
-        return
-      }
+      obj.loading = false
+      const {apis, categories, nextUrl} =
+        obj.transform(res.data,
+          (loaded && loaded.apis) || [],
+          searchText,
+          (payload) => { commit('APIS_PUSH', payload) })
 
-      if (obj.search && (search || obj.lastSearch) && (search !== obj.lastSearch)) {
-        return
-      }
+      setLoaded(obj, apis, categories, nextUrl, searchText)
 
-      const data = res.data
-      const {apis, categories} = obj.transform(data, (obj.loaded && obj.loaded.apis) || [])
-      obj.loadingApis = false
-      obj.loaded = {apis, categories}
-      commit(types.APIS_SET, {apis, categories})
+      if (url === lastUrl) {
+        commit(types.APIS_SET, {apis, categories})
+      }
     })
   }
 }

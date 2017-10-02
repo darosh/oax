@@ -3,18 +3,10 @@ const that = {
   subTitle: 'Free specification hosting by SmartBear',
   base: 'https://api.swaggerhub.com/specs?specType=API&state=PUBLISHED&sort=UPDATED&order=DESC&limit=25',
   pagination: true,
-  next: null,
-  lastSearch: '',
   search (search) {
-    if (that.next && (search === that.lastSearch)) {
-      return that.next
-    } else {
-      that.lastSearch = search
-    }
-
-    return that.base + '&query=' + search
+    return that.base + (search ? '&query=' + search : '')
   },
-  transform (data, apis) {
+  transform (data, apis, search, push) {
     for (let i = 0; i < data.apis.length; i++) {
       const url = data.apis[i].properties.filter(d => d.type === 'Swagger')[0].url
 
@@ -24,16 +16,18 @@ const that = {
         key: url.split('/').slice(4, 7).join(':')
       }
 
-      apis.push(api)
+      push({apis, api})
     }
+
+    let nextUrl
 
     if (data.totalCount > (data.offset + 25)) {
-      that.next = that.base + '&page=' + (data.offset / 25 + 1) + (that.lastSearch ? '&query=' + that.lastSearch : '')
+      nextUrl = that.base + '&page=' + (data.offset / 25 + 1) + (search ? '&query=' + search : '')
     } else {
-      that.next = null
+      nextUrl = null
     }
 
-    return {apis}
+    return {apis, nextUrl}
   }
 }
 
