@@ -8,18 +8,8 @@ function resolve (dir) {
 }
 
 module.exports = {
-  // plugins: [
-  //   new webpack.NormalModuleReplacementPlugin(
-  //     /VIcon\.vue/, function (resource) {
-  //       resource.request = resource.request.replace(/VIcon\.vue$/, '../../../../../src/components/elements/VIcon.vue')
-  //       console.log(resource.request)
-  //     }
-  //   ),
-  // ],
   entry: {
     app: './src/main.js'
-    // markdown: './src/services/markdown.ts'
-    // worker: './src/worker/worker.js'
   },
   output: {
     path: config.build.assetsRoot,
