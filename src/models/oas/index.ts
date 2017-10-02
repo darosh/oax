@@ -10,7 +10,7 @@ import {tags} from './methods/tags';
 // import {observables} from './methods/observables';
 
 // TODO: this is export for worker code splitting
-// export {trim, summary} from '../../services/markdown';
+export {trim, summary} from '../../services/markdown';
 
 /* tslint:disable */
 const phase = {
