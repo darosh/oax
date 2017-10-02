@@ -2,7 +2,7 @@
   v-container.gpu(fluid :class="UI_ERROR ? 'pa-0' : ''")
     v-layout.ma-0(v-if="UI_LOADING")
       v-spacer
-      div.pt-2
+      v-flex.pt-2.pl-4.pr-4(xs12 sm6 md4 lg3 xl2)
         v-progress-linear(:value="Math.round(UI_LOADING[0].done * 100)", :height="4", class="primary--text")
         app-log(:items="UI_LOADING")
       v-spacer
