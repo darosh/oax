@@ -9,6 +9,9 @@ import {tags} from './methods/tags';
 // import {extras} from "./methods/extras";
 // import {observables} from './methods/observables';
 
+// TODO: this is export for worker code splitting
+export {trim, summary} from '../../services/markdown';
+
 /* tslint:disable */
 const phase = {
   info: [0, 'info', 'Parsing'],

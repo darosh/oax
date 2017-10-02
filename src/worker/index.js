@@ -4,6 +4,7 @@ import CircularJSON from 'circular-json'
 // const worker = work(require.resolve('./worker.js'))
 
 /* eslint-disable import/no-webpack-loader-syntax */
+// const Work = require('worker-loader?inline&fallback=false!./worker.js')
 const Work = require('worker-loader!./worker.js')
 const worker = new Work()
 

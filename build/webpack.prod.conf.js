@@ -127,10 +127,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     //   chunks: ['vendor', 'vue']
     // }),
     // copy custom static assets
-    new webpack.optimize.CommonsChunkPlugin({
-      filename: utils.assetsPath('js/[name].[chunkhash].js'),
-      name: 'worker'
-    }),
+
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    //   name: 'markdown'
+    // }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
