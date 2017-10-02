@@ -3,7 +3,7 @@ import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 
 import update from '../utils/update'
-// import { OAS } from './../models/oas'
+import { OAS } from './../models/oas'
 // import { trim, summary } from '../services/markdown'
 import edit from '../utils/edit'
 
@@ -21,8 +21,8 @@ export default function worker () {
     if (event.data.md) {
       // require.ensure(['../services/markdown'], function () {
       //   const trim = require('../services/markdown').trim
-      require.ensure(['./../models/oas'], function () {
-        const trim = require('./../models/oas').trim
+      require.ensure(['../services/markdown'], function () {
+        const trim = require('../services/markdown').trim
         self.postMessage(JSON.stringify({
           id: event.data.id,
           md: trim(event.data.md)
@@ -31,8 +31,8 @@ export default function worker () {
     } else if (event.data.summary) {
       // require.ensure(['../services/markdown'], function () {
       //   const summary = require('../services/markdown').summary
-      require.ensure(['./../models/oas'], function () {
-        const summary = require('./../models/oas').summary
+      require.ensure(['../services/markdown'], function () {
+        const summary = require('../services/markdown').summary
         self.postMessage(JSON.stringify({
           id: event.data.id,
           summary: summary(event.data.summary)
@@ -51,39 +51,39 @@ export default function worker () {
           url: event.data.url
         }
 
-        require.ensure(['./../models/oas'], function () {
-          const OAS = require('./../models/oas').OAS
-          try {
-            OAS(res.bundled, event.data.url,
-              event.data.progress ? (progress) => {
-                self.postMessage(
-                  JSON.stringify({
-                    id: event.data.id,
-                    url: event.data.url,
-                    progress
-                  }))
-              } : null)
-          } catch (err) {
-            ret.err = serializeError(err)
-          }
+        // require.ensure(['./../models/oas'], function () {
+        //   const OAS = require('./../models/oas').OAS
+        try {
+          OAS(res.bundled, event.data.url,
+            event.data.progress ? (progress) => {
+              self.postMessage(
+                JSON.stringify({
+                  id: event.data.id,
+                  url: event.data.url,
+                  progress
+                }))
+            } : null)
+        } catch (err) {
+          ret.err = serializeError(err)
+        }
 
-          self.postMessage(JSON.stringify({
-            id: event.data.id,
-            url: event.data.url,
-            progress: {section: 'Worker finishing'}
-          }))
+        self.postMessage(JSON.stringify({
+          id: event.data.id,
+          url: event.data.url,
+          progress: {section: 'Worker finishing'}
+        }))
 
-          ret.bundled = res.bundled
-          json.obj = res.bundled
-          json.text = res.json
-          json.lines = res.json.split('\n')
-          json.schema = res
-          json.url = event.data.url
-          ret.json = res.json
-          // ret.blob = URL.createObjectURL(new Blob([res.json]))
+        ret.bundled = res.bundled
+        json.obj = res.bundled
+        json.text = res.json
+        json.lines = res.json.split('\n')
+        json.schema = res
+        json.url = event.data.url
+        ret.json = res.json
+        // ret.blob = URL.createObjectURL(new Blob([res.json]))
 
-          self.postMessage(CircularJSON.stringify(ret))
-        })
+        self.postMessage(CircularJSON.stringify(ret))
+        // })
       }).catch(res => {
         self.postMessage(CircularJSON.stringify({
           id: event.data.id,
@@ -119,25 +119,25 @@ export default function worker () {
         return
       }
 
-      require.ensure(['./../models/oas'], function () {
-        const OAS = require('./../models/oas').OAS
-        try {
-          OAS(json.schema.bundled, json.url)
-        } catch (err) {
-          ret.err = serializeError(err)
-        }
+      // require.ensure(['./../models/oas'], function () {
+      //   const OAS = require('./../models/oas').OAS
+      try {
+        OAS(json.schema.bundled, json.url)
+      } catch (err) {
+        ret.err = serializeError(err)
+      }
 
-        const source = json.old || JSON.parse(CircularJSON.stringify(json.obj))
-        const target = JSON.parse(CircularJSON.stringify(json.schema.bundled))
-        const patch = compare(source, target)
+      const source = json.old || JSON.parse(CircularJSON.stringify(json.obj))
+      const target = JSON.parse(CircularJSON.stringify(json.schema.bundled))
+      const patch = compare(source, target)
 
-        json.obj = json.schema.bundled
-        json.old = target
-        // ret.bundled = json.schema.bundled
-        ret.patch = patch
+      json.obj = json.schema.bundled
+      json.old = target
+      // ret.bundled = json.schema.bundled
+      ret.patch = patch
 
-        self.postMessage(CircularJSON.stringify(ret))
-      })
+      self.postMessage(CircularJSON.stringify(ret))
+      // })
     } else if (event.data.blob) {
       // require.ensure([], function () {
       const compactJSON = require('json-stringify-pretty-compact')

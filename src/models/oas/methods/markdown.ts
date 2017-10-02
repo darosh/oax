@@ -1,19 +1,27 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-import {description, summary, summaryHtml, text} from '../../../services/markdown';
+// import {description, summary, summaryHtml, text} from '../../../services/markdown';
 import {IOperationObservable} from '../interfaces/IOperationExtended';
 import {IBaseSecurityExtended} from '../interfaces/ISecurityExtended';
 
 export function mdInfo(spec: ISpecExtended) {
-  description(spec.info._);
+  if (spec.info._.description) {
+    (require as any).ensure(['../../../services/markdown'], function () {
+      const description = require('../../../services/markdown').description;
+      description(spec.info._);
+    });
+  }
 }
 
 export function mdSecurity(spec: ISpecExtended) {
   if (spec.securityDefinitions) {
     for (const key in spec.securityDefinitions) {
       if (spec.securityDefinitions.hasOwnProperty(key)) {
-        description((spec.securityDefinitions[key] as IBaseSecurityExtended)._);
+        (require as any).ensure(['../../../services/markdown'], function () {
+          const description = require('../../../services/markdown').description;
+          description((spec.securityDefinitions[key] as IBaseSecurityExtended)._);
+        });
       }
     }
   }
@@ -23,27 +31,38 @@ export function mdTags(spec: ISpecExtended, max: number) {
   let n = 0;
 
   for (const tag of spec.tags) {
-    description(tag._);
+    (require as any).ensure(['../../../services/markdown'], function () {
+      const description = require('../../../services/markdown').description;
+      description(tag._);
 
-    if (n++ === max) {
-      return;
-    }
+      if (n++ === max) {
+        return;
+      }
+    })
   }
 }
 
 function mdOperation(op: IOperationObservable) {
-  description(op);
+  (require as any).ensure(['../../../services/markdown'], function () {
+    const description = require('../../../services/markdown').description;
+    description(op);
 
-  if (!op.summary && op.description) {
-    op.summary = summary(op.description);
-  }
+    if (!op.summary && op.description) {
+      const summary = require('../../../services/markdown').summary;
+      op.summary = summary(op.description);
+    }
 
-  summaryHtml(op);
+    const summaryHtml = require('../../../services/markdown').summary;
+    summaryHtml(op);
 
-  if (op.summary && op.description && (op.summary === text(op.description))) {
-    delete op.description;
-    delete op.description_html;
-  }
+    if (op.summary && op.description) {
+      const text = require('../../../services/markdown').text;
+      if (op.summary === text(op.description)) {
+        delete op.description;
+        delete op.description_html;
+      }
+    }
+  });
 }
 
 export function mdOperations(spec: ISpecExtended, max: [number, number]) {
@@ -71,7 +90,10 @@ export function mdParameters(spec: ISpecExtended, max: number) {
   for (const op of spec._operations) {
     if (op.parameters) {
       for (const param of (op.parameters as any as IParameterExtended[])) {
-        description(param._);
+        (require as any).ensure(['../../../services/markdown'], function () {
+          const description = require('../../../services/markdown').description;
+          description(param._);
+        });
       }
     }
 
@@ -87,7 +109,10 @@ export function mdResponses(spec: ISpecExtended, max: number) {
   for (const op of spec._operations) {
     if (op.responses) {
       for (const respName in op.responses) {
-        description(op.responses[respName]._);
+        (require as any).ensure(['../../../services/markdown'], function () {
+          const description = require('../../../services/markdown').description;
+          description(op.responses[respName]._);
+        });
       }
     }
 
