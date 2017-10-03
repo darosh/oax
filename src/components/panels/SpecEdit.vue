@@ -100,7 +100,7 @@
           this.editorResolve(editor)
         }, Math.max(0, 200 - Date.now() + this.beginTime))
       },
-      change (changed) {
+      change ({changed, editor}) {
         if (changed.origin !== 'setValue') {
           // changed.removed may be big
           delete changed.removed
@@ -114,7 +114,7 @@
 
           this.timeout = setTimeout(() => {
             delete this.timeout
-            this.SPEC_SET_EDIT_JSON(this.changes)
+            this.SPEC_SET_EDIT_JSON({router: this.$router, change: this.changes, doc: editor.getValue()})
             delete this.changes
           }, 400)
         }

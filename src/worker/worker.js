@@ -45,7 +45,7 @@ export default function worker () {
           url: event.data.url,
           progress
         }))
-      } : null).then(res => {
+      } : null, event.data.doc).then(res => {
         const ret = {
           id: event.data.id,
           url: event.data.url

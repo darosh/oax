@@ -7,9 +7,16 @@ const compactJSON = require('json-stringify-pretty-compact')
 
 const cache = {}
 
-export default function load (url, progress = null) {
+export default function load (url, progress = null, doc) {
   return new Promise((resolve, reject) => {
     const schema = new schemaBundler.Schema(url, progress, yaml.load, axios.get)
+
+    if (doc) {
+      try {
+        cache[url] = JSON.parse(doc)
+      } catch (ign) {}
+    }
+
     schema.cache = cache
     schema.load().then(() => {
       try {

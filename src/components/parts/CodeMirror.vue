@@ -27,9 +27,9 @@
       this.editor = CodeMirror.fromTextArea(this.$el, this.options)
       this.editor.setValue(this.code || '')
 
-      this.editor.on('change', function (cm, changeObj) {
+      this.editor.on('change', function (editor, changed) {
         if (_this.$emit) {
-          _this.$emit('change', changeObj)
+          _this.$emit('change', {editor, changed})
         }
       })
 

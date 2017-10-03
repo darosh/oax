@@ -80,9 +80,22 @@ export const mutations = {
 
 let lastUrl = null
 let circ = null
+let lastSlot = null
 
 export const actions = {
-  [types.SPEC_SET_EDIT_JSON] ({commit}, change) {
+  [types.SPEC_SET_EDIT_JSON] ({commit, getters}, {change, doc, router}) {
+    if (!isMemory(state.url)) {
+      const url = getters[types.RECENT_FREE_SLOT]
+      lastUrl = url
+      lastSlot = {url, doc, title: url}
+      commit(types.RECENT_SET_UNSHIFT, lastSlot)
+      commit(types.SETTINGS_SET_URL, url)
+      commit(types.SPEC_SET, {url})
+      router.push({path: '/', query: {url}})
+    } else {
+      commit(types.RECENT_SET_DOC, {slot: lastSlot, doc})
+    }
+
     worker({change}).then(res => {
       if (!circ) {
         const copy = {...state.spec}
@@ -109,7 +122,7 @@ export const actions = {
       }
     })
   },
-  [types.SPEC_SET_LOAD_URL] ({commit}, url) {
+  [types.SPEC_SET_LOAD_URL] ({commit, getters}, url) {
     if (url === lastUrl) {
       return
     }
@@ -126,7 +139,13 @@ export const actions = {
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
 
-    worker({url: new URL(url, window.location.href).href}, (progress) => {
+    const mem = isMemory(url)
+
+    worker({
+      url: mem ? url : new URL(url, window.location.href).href,
+      doc: (mem && (getters[types.RECENT].filter(r => r.url === url)[0] || {}).doc) || undefined
+    },
+    (progress) => {
       if (url !== lastUrl) {
         return
       }
@@ -243,4 +262,8 @@ function report (p) {
     done: sections[s][0] +
     (sections[s][1] - sections[s][0]) * (p.total ? (p.loaded / p.total) : 1)
   }
+}
+
+function isMemory (url) {
+  return url.indexOf('memory://') > -1
 }
