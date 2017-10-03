@@ -7,6 +7,7 @@ import CircularJSON from 'circular-json'
 import { applyPatch } from 'fast-json-patch'
 import { observables } from '../../models/oas/methods/observables'
 import { setError } from '../../services/codemirror-lint-json'
+import { isMemory } from '../../utils/memory'
 
 export const state = {
   spec: null,
@@ -128,22 +129,25 @@ export const actions = {
     }
 
     lastUrl = url
+
+    const mem = isMemory(url)
+    const doc = (mem && (getters[types.RECENT].filter(r => r.url === url)[0] || {}).doc) || ''
+
     commit(types.UI_SET_ERROR, null)
     commit(types.SETTINGS_SET_URL, url)
     commit(types.SPEC_SET_OPERATION, null)
     commit(types.UI_SET_DRAWER, false)
     commit(types.SPEC_SET, {
       spec: null,
-      url: url
+      url: url,
+      json: doc
     })
 
     commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
 
-    const mem = isMemory(url)
-
     worker({
       url: mem ? url : new URL(url, window.location.href).href,
-      doc: (mem && (getters[types.RECENT].filter(r => r.url === url)[0] || {}).doc) || undefined
+      doc
     },
     (progress) => {
       if (url !== lastUrl) {
@@ -204,8 +208,9 @@ export const actions = {
       }
 
       commit(types.UI_SET_LOADING, false)
-      console.warn(err)
       commit(types.UI_SET_ERROR, err)
+      // console.warn(err)
+      throw err
     })
   }
 }
@@ -262,8 +267,4 @@ function report (p) {
     done: sections[s][0] +
     (sections[s][1] - sections[s][0]) * (p.total ? (p.loaded / p.total) : 1)
   }
-}
-
-function isMemory (url) {
-  return url.indexOf('memory://') > -1
 }

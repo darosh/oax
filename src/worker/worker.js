@@ -53,6 +53,8 @@ export default function worker () {
 
         require.ensure(['./../models/oas'], function () {
           const OAS = require('./../models/oas').OAS
+          let toThrow
+
           try {
             OAS(res.bundled, event.data.url,
               event.data.progress ? (progress) => {
@@ -64,6 +66,7 @@ export default function worker () {
                   }))
               } : null)
           } catch (err) {
+            toThrow = err
             ret.err = serializeError(err)
           }
 
@@ -83,6 +86,10 @@ export default function worker () {
           // ret.blob = URL.createObjectURL(new Blob([res.json]))
 
           self.postMessage(CircularJSON.stringify(ret))
+
+          if (toThrow) {
+            throw toThrow
+          }
         })
       }).catch(res => {
         self.postMessage(CircularJSON.stringify({
@@ -90,6 +97,8 @@ export default function worker () {
           url: event.data.url,
           err: serializeError(res)
         }))
+
+        throw res
       })
     } else if (event.data.change) {
       const ret = {

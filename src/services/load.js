@@ -4,19 +4,23 @@ const axios = require('axios')
 // const schemaBundler = require('json-schema-bundler')
 const schemaBundler = require('json-schema-bundler/src/schema')
 const compactJSON = require('json-stringify-pretty-compact')
+// import {isMemory} from '../utils/memory'
 
 const cache = {}
 
 export default function load (url, progress = null, doc) {
   return new Promise((resolve, reject) => {
-    const schema = new schemaBundler.Schema(url, progress, yaml.load, axios.get)
+    const validUrl = new URL(url.replace(/^memory:\/\//, 'https://')).href
 
     if (doc) {
       try {
-        cache[url] = JSON.parse(doc)
-      } catch (ign) {}
+        cache[validUrl] = JSON.parse(doc)
+      } catch (err) {
+        reject(err)
+      }
     }
 
+    const schema = new schemaBundler.Schema(validUrl, progress, yaml.load, axios.get)
     schema.cache = cache
     schema.load().then(() => {
       try {
