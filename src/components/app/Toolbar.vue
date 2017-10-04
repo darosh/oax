@@ -62,7 +62,7 @@
         div(class="searching", :class="{'searching--closed': !searching}")
           v-text-field(spellcheck="false" id="search" append-icon="close", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line)
         v-tooltip(bottom)
-          v-btn(slot="activator", :class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_SET_RESOURCES(!SPEC_TAG_OPENED)")
+          v-btn(slot="activator", :class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_RUN_RESOURCES(!SPEC_TAG_OPENED)")
             v-icon(v-if="SPEC_TAG_OPENED") keyboard_arrow_up
             v-icon(v-else) keyboard_arrow_down
           span Expand/Collapse
@@ -148,11 +148,11 @@
         types.UI_SET_DIALOG,
         types.SETTINGS_SET_SEARCH,
         types.SPEC_SET_FILTER_RESOURCES,
-        types.SPEC_SET_RESOURCES,
         types.UI_SET_LEFT_DRAWER
       ]),
       ...mapActions([
-        types.SPEC_SET_LOAD_URL
+        types.SPEC_SET_LOAD_URL,
+        types.SPEC_RUN_RESOURCES
       ]),
       searchBegin () {
         this.searching = true

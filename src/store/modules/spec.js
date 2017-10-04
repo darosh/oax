@@ -3,7 +3,6 @@ import * as types from '../types'
 import search from '../../models/oas/methods/search'
 import { openAll } from '../../models/oas/methods/tags'
 import CircularJSON from 'circular-json'
-
 import { applyPatch } from 'fast-json-patch'
 import { observables } from '../../models/oas/methods/observables'
 import { setError } from '../../services/codemirror-lint-json'
@@ -14,7 +13,8 @@ export const state = {
   operation: null,
   observables: null,
   json: null,
-  url: null
+  url: null,
+  expandingItems: 0
 }
 
 export const mutations = {
@@ -34,6 +34,9 @@ export const mutations = {
   },
   [types.SPEC_SET_RESOURCES] (state, payload) {
     openAll(state.spec.tags, payload)
+  },
+  [types.SPEC_SET_EXPANDING] (state, payload) {
+    state.expandingItems = payload
   },
   [types.SPEC_SET_OPERATION] (state, payload) {
     if (state.operation === payload) {
@@ -84,6 +87,19 @@ let circ = null
 let lastSlot = null
 
 export const actions = {
+  [types.SPEC_RUN_RESOURCES] ({commit}, payload) {
+    commit(types.SPEC_SET_EXPANDING, state.spec.tags.length)
+
+    setTimeout(() => {
+      commit(types.SPEC_SET_RESOURCES, payload)
+
+      setTimeout(() => {
+        setTimeout(() => {
+          commit(types.SPEC_SET_EXPANDING, 0)
+        }, 0)
+      }, 0)
+    }, 0)
+  },
   [types.SPEC_SET_EDIT_JSON] ({commit, getters}, {change, doc, router}) {
     if (!isMemory(state.url)) {
       const url = getters[types.RECENT_FREE_SLOT]
@@ -234,7 +250,8 @@ export const getters = {
   [types.SPEC_RESOURCES]: (state) => ((state.spec && state.spec.tags) || null),
   [types.SPEC]: (state) => state.spec,
   [types.SPEC_JSON]: (state) => state.json,
-  [types.SPEC_URL]: (state) => state.url
+  [types.SPEC_URL]: (state) => state.url,
+  [types.SPEC_EXPANDING_ITEMS]: (state) => state.expandingItems
 }
 
 export default {

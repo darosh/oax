@@ -124,7 +124,6 @@
         types.UI_SET_DIALOG,
         types.SETTINGS_SET_SEARCH,
         types.SPEC_SET_FILTER_RESOURCES,
-        types.SPEC_SET_RESOURCES,
         types.UI_SET_LEFT_DRAWER
       ]),
       ...mapActions([

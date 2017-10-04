@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panel.expansion-panel-round(expand)
+  v-expansion-panel.expansion-panel-round(expand :class="{'fast-expansion': SPEC_EXPANDING_ITEMS > 10}")
     v-expansion-panel-content.relative(v-model="opened", ripple)
       .title(slot="header") {{item.name}}
       v-divider
@@ -39,7 +39,8 @@
       ...mapGetters([
         types.VIEW_SUMMARY,
         types.VIEW_PATH,
-        types.SPEC_OPERATION
+        types.SPEC_OPERATION,
+        types.SPEC_EXPANDING_ITEMS
       ]),
       opened: {
         get () { return this.item._._opened },
@@ -54,3 +55,9 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .fast-expansion
+    .expansion-panel__body
+      transition none
+</style>
