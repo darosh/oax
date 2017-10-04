@@ -55,8 +55,9 @@ export default {
         {shades: ['400', '300'], text: this.key(item).split(':')[0]})
     },
     letter (item) {
-      const s = this.key(item).split(':')
-      return (s[1] || s[0]).trim()[0].toUpperCase()
+      let s = this.key(item).split(':')
+      s = (s[1] || s[0]).trim()[0]
+      return (s === '#' ? item.title[0].toUpperCase() + (item.title[1] || '').toLowerCase() : s.toUpperCase())
     }
   },
   watch: {
