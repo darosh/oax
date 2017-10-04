@@ -43,7 +43,7 @@ export default {
         return this.keys[item.url]
       } else {
         const val = !this.APIS ? '?' : ((this.APIS.filter(
-          v => v.url === item.url)[0] || {}).key || '')
+          v => v.url === item.url)[0] || {}).key || '') || item.title
 
         Vue.set(this.keys, item.url, val)
 
