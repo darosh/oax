@@ -20,14 +20,6 @@ $oax-text := {
   success: $green.darken-1
 }
 
-//$grid-breakpoints := {
-//  xs: 0
-//  sm: 800px
-//  md: 1200px
-//  lg: (1600px - 16px) // Desktop gets a 16dp reduction
-//  xl: (1920px - 16px) // https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
-//}
-
 $delay := .315s
 $delay-out := 0s
 
@@ -35,3 +27,13 @@ $kp := desaturate(lighten($theme.info, 70%), 30%)
 $ks := desaturate(lighten($theme.success, 60%), 30%)
 $kw := desaturate(lighten($theme.warning, 60%), 10%)
 $ke := desaturate(lighten($theme.error, 75%), 10%)
+
+@require '../../node_modules/vuetify/src/stylus/settings/_theme.styl'
+
+$material-light.tabs.active = $theme.primary
+$material-dark.tabs.active = $theme.primary
+
+@require '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
+
+$mobile-portrait := "only screen and (max-width: %s) and (orientation: portrait)" % ($grid-breakpoints.md - 1)
+$mobile-landscape := "only screen and (max-width: %s) and (orientation: landscape)" % ($grid-breakpoints.md - 1)
