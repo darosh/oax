@@ -26,6 +26,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
   import appSpecDirectory from './SpecDirectory'
@@ -38,7 +39,8 @@
     mixins: [layout],
     data () {
       return {
-        half: false
+        half: false,
+        opened: false
       }
     },
     components: {
@@ -55,7 +57,7 @@
         types.UI_LEFT_DRAWER_HALF
       ]),
       menu: {
-        get () { return this.UI_LEFT_DRAWER && this.APP_API_PAGE },
+        get () { return this.UI_LEFT_DRAWER && this.APP_API_PAGE && this.opened},
         set (value) {
           this.UI_SET_LEFT_DRAWER(!!value)
         }
@@ -73,6 +75,17 @@
         types.UI_SET_LEFT_TAB,
         types.UI_SET_LEFT_DRAWER_HALF
       ])
+    },
+    watch: {
+      UI_LEFT_DRAWER (value) {
+        if (value) {
+          Vue.nextTick(() => {
+            this.opened = true
+          })
+        } else {
+          this.opened = false
+        }
+      }
     }
   }
 </script>

@@ -19,11 +19,11 @@
         span Operation authorization
     v-divider
     div.toolbar--scroll
-      v-tabs(v-model="tab")
+      v-tabs(v-model="tab" v-if="UI_RIGHT_DRAWER")
         v-tabs-items(touchless)
           v-tabs-content(v-if="t", v-for="(t, i) in tabs", :key="i", :id="'tab-op-' + i")
             app-detail-header(:operation="t")
-        app-detail-tab(:operation="operation")
+      app-detail-tab(:operation="operation")
 </template>
 
 <script>
@@ -49,7 +49,8 @@
     },
     computed: {
       ...mapGetters([
-        types.SPEC_OPERATIONS
+        types.SPEC_OPERATIONS,
+        types.UI_RIGHT_DRAWER
       ])
     },
     methods: {

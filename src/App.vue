@@ -71,7 +71,7 @@
             } else if (this.UI_LEFT_DRAWER) {
               this.UI_SET_LEFT_DRAWER()
             } else if (this.UI_RIGHT_DRAWER) {
-              this.UI_SET_DRAWER()
+              this.UI_SET_DRAWER(false)
             } else {
               this.UI_SET_LEFT_DRAWER()
             }

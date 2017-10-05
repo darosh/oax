@@ -16,6 +16,11 @@
     components: {
       appDetail
     },
+    data () {
+      return {
+        opened: false
+      }
+    },
     computed: {
       ...mapGetters([
         types.SPEC_OPERATION,
@@ -23,7 +28,7 @@
         types.UI_RIGHT_DRAWER
       ]),
       drawer: {
-        get () { return this.APP_API_PAGE && this.UI_RIGHT_DRAWER },
+        get () { return this.APP_API_PAGE && this.UI_RIGHT_DRAWER && this.opened},
         set (value) { this.UI_SET_DRAWER(value) }
       }
     },
@@ -43,6 +48,15 @@
           Vue.nextTick(() => {
             this.UI_SET_DRAWER(false)
           })
+        }
+      },
+      UI_RIGHT_DRAWER: function (value) {
+        if (value) {
+          Vue.nextTick(() => {
+            this.opened = true
+          })
+        } else {
+          this.opened = false
         }
       }
     }
