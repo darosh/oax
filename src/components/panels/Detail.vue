@@ -22,7 +22,8 @@
       v-tabs(v-model="tab")
         v-tabs-items(touchless)
           v-tabs-content(v-if="t", v-for="(t, i) in tabs", :key="i", :id="'tab-op-' + i")
-            app-detail-tab(:operation="t")
+            app-detail-header(:operation="t")
+        app-detail-tab(:operation="operation")
 </template>
 
 <script>
@@ -30,22 +31,20 @@
   import * as types from '../../store/types'
   import Vue from 'vue'
 
+  import appDetailHeader from './DetailHeader'
   import appDetailTab from './DetailTab'
 
   export default {
     props: ['operation'],
     components: {
+      appDetailHeader,
       appDetailTab
     },
     data () {
-      const tabs = []
-      Vue.set(tabs, 1000, this.operation)
-
       return {
-        index: 0,
-        id: 1000,
-        tab: 'tab-op-1000',
-        tabs
+        id: 0,
+        tab: `tab-op-0`,
+        tabs: [this.operation]
       }
     },
     computed: {
@@ -64,33 +63,28 @@
       }
     },
     watch: {
-      operation (value, oldValue) {
-        this.index = ((this.SPEC_OPERATIONS.indexOf(value) > this.SPEC_OPERATIONS.indexOf(oldValue)))
-          ? -1 : this.index
+      operation (value) {
+        this.tabs.push(value)
 
-        if (this.index > -1) {
-          this.id--
-        } else {
-          this.id++
-        }
+        Vue.nextTick(() => {
+          this.tab = `tab-op-${this.tabs.length - 1}`
 
-        Vue.set(this.tabs, this.id, value)
-        this.tab = `tab-op-${this.id}`
-        this.index = 0
-
-        if (this.pending) {
-          clearTimeout(this.pending)
-        }
-
-        this.pending = setTimeout(() => {
-          this.pending = null
-
-          for (let i = 0; i < this.tabs; i++) {
-            if ((i !== this.id) && this.tabs[i]) {
-              Vue.set(this.tabs, i, null)
-            }
+          if (this.pending) {
+            clearTimeout(this.pending)
           }
-        }, 315)
+
+          this.pending = setTimeout(() => {
+            this.pending = null
+
+            for (let i = this.tabs.length - 2; i >= 0; i--) {
+              if (this.tabs[i] !== null) {
+                Vue.set(this.tabs, i, null)
+              } else {
+                break
+              }
+            }
+          }, 315)
+        })
       }
     }
   }
