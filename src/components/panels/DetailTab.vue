@@ -22,7 +22,6 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../store/types'
 
-  import appOperation from '../elements/MethodBlock'
   import appInfo from './DetailInfo'
   import appParams from './DetailParams'
   import appScripts from './DetailScripts'
@@ -36,7 +35,6 @@
       markdown
     },
     components: {
-      appOperation,
       appInfo,
       appParams,
       appScripts,
