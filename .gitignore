@@ -5,6 +5,7 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 .publish
+config/*_backup
 
 debug.log
 
