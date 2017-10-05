@@ -27,7 +27,7 @@
                   v-text-field(v-if="sec.authorizationUrl" hide-details readonly v-model="sec.authorizationUrl" label="Authorization URL")
                   v-text-field(v-if="sec.tokenUrl" hide-details readonly v-model="sec.tokenUrl" label="Token URL")
                   v-text-field(v-if="sec._._accessToken" persistent-hint :hint="(sec._validFrom ? 'Valid from ' + sec._validFrom : '') + (sec._validFrom && sec._expiresIn ? ', ' : '') + (sec._expiresIn ? 'Expires in ' + sec._expiresIn : '')" readonly v-model="sec._accessToken" label="Access token")
-              v-btn.ml-3.mb-3(primary @click="authorize(sec)") Authorize
+              v-btn.ml-3.mb-3(color="primary", @click="authorize(sec)") Authorize
             template(v-else-if="sec.type === 'apiKey'")
               h3.pl-3.pr-3.pt-3.title API Key Authentication
               div.pl-3.pr-3.pt-1(v-if="sec._.description" v-markdown="sec._")

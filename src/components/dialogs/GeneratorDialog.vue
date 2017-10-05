@@ -18,9 +18,9 @@
                   =' '
                   b.body-2(v-if="GENERATOR_TYPE") {{GENERATOR_TYPE}}
               v-stepper-content(:step="1")
-                v-btn(:primary="GENERATOR_TYPE === 'client'", @click="go(1, 'client')") Client
+                v-btn(:color="GENERATOR_TYPE === 'client' ? 'primary' : ''", @click="go(1, 'client')") Client
                 span.mr-2 or
-                v-btn(:primary="GENERATOR_TYPE === 'server'", @click="go(1, 'server')") Server
+                v-btn(:color="GENERATOR_TYPE === 'server' ? 'primary' : ''", @click="go(1, 'server')") Server
               v-stepper-step(:step="2", :complete="step > 2", :editable="!!GENERATOR_TYPE")
                 span
                   span Language / Framework
@@ -40,13 +40,13 @@
                     v-flex.pl-3.pr-3.pb-3(xs12 md6 lg4 xl3 v-for="(o, key) in GENERATOR_OPTIONS", :key="key")
                       v-checkbox.pt-0(v-if="o.type === 'boolean'", :label="o.display" persistent-hint, :hint="o.description" v-model="GENERATOR_VALUES[key]" color="primary")
                       v-text-field(v-else :label="o.display", persistent-hint, :hint="o.description" v-model="GENERATOR_VALUES[key]")
-                  v-btn(primary @click="go(3, 'client')") Submit
+                  v-btn(color="primary", @click="go(3, 'client')") Submit
               v-stepper-step(:step="4", :complete="step > 4", :editable="!!(GENERATOR_TYPE && GENERATOR_LANGUAGE && GENERATOR_GENERATED)") Download
               v-stepper-content(:step="4")
                 v-layout.mb-4(row align-center v-if="!GENERATOR_GENERATED")
                   v-progress-circular.mr-2(indeterminate class="primary--text")
                   v-flex Generating code&hellip;
-                v-btn.mb-4(v-else primary :href="GENERATOR_GENERATED") Download
+                v-btn.mb-4(v-else color="primary", :href="GENERATOR_GENERATED") Download
 </template>
 
 <script>

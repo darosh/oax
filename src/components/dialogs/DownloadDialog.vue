@@ -14,7 +14,7 @@
         v-flex(fill-height d-flex)
           iframe(v-if="blob", :src="blob" style="background-color: #fff")
           v-progress-circular.mt-4(v-else indeterminate class="primary--text")
-          v-btn(fab primary dark fixed right bottom :href="blob", :download="'api.' + (json ? 'json' : 'yaml')")
+          v-btn(fab color="primary" dark fixed right bottom :href="blob", :download="'api.' + (json ? 'json' : 'yaml')")
             v-icon file_download
 </template>
 
