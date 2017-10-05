@@ -67,24 +67,16 @@
       operation (value) {
         this.tabs.push(value)
 
+        for (let i = this.tabs.length - 3; i >= 0; i--) {
+          if (this.tabs[i] !== null) {
+            Vue.set(this.tabs, i, null)
+          } else {
+            break
+          }
+        }
+
         Vue.nextTick(() => {
           this.tab = `tab-op-${this.tabs.length - 1}`
-
-          if (this.pending) {
-            clearTimeout(this.pending)
-          }
-
-          this.pending = setTimeout(() => {
-            this.pending = null
-
-            for (let i = this.tabs.length - 2; i >= 0; i--) {
-              if (this.tabs[i] !== null) {
-                Vue.set(this.tabs, i, null)
-              } else {
-                break
-              }
-            }
-          }, 315)
         })
       }
     }

@@ -39,9 +39,9 @@
     },
     watch: {
       SPEC_OPERATION: function (val) {
-        setTimeout(() => {
+        Vue.nextTick(() => {
           this.drawer = !!val
-        }, 100)
+        })
       },
       drawer: function (val) {
         if (val && !this.SPEC_OPERATION) {
