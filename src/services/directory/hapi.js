@@ -11,7 +11,7 @@ export default {
 
     for (let i = 0; i < data.tree.length; i++) {
       apis.push({
-        url: `https://raw.githubusercontent.com/SOM-Research/hapi/master/APIs/generated/mashape/${data.tree[i].path}`,
+        url: `https://raw.githubusercontent.com/SOM-Research/hapi/master/APIs/generated/mashape/${encodeURIComponent(data.tree[i].path)}`,
         key: '#' + (i + 1),
         title: data.tree[i].path.replace(/\.json$/, '')
       })
