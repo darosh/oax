@@ -1,6 +1,7 @@
 export default {
   title: 'Hub of APIs',
   subTitle: 'Specifications derived from Mashape marketplace',
+  home: 'https://github.com/SOM-Research/hapi',
   base: 'https://api.github.com/repos/SOM-Research/hapi/git/trees/8176cf7977ca59cab643136fd70632a65aee900b',
   transform (data) {
     data.tree.sort((a, b) => {

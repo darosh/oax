@@ -72,12 +72,26 @@
 
             v-divider.mb-3
           h4 Acknowledgement
-          p This app wouldn be posssible without following packages
-          span(v-for="(i, k) in libs", :key="k")
-            span(v-if="k") ,
-              =" "
-            a.subheading.nowrap(:href="i.href" target="_blank") {{i.name}}
-            | &nbsp;{{i.version}}
+          p This app wouldn be posssible without following packages, services and OpenAPI specification directories
+          h5 Packages
+          p
+            span(v-for="(i, k) in libs", :key="k")
+              span(v-if="k") ,
+                =" "
+              a.subheading.nowrap(:href="i.href" target="_blank") {{i.name}}
+              | &nbsp;{{i.version}}
+          h5 Services
+          p
+            ul
+              li(v-for="(i, k) in services", :key="k")
+                a(:href="i.home" target="_blank") {{i.title}}
+          h5 Directories
+          p
+            ul
+              li(v-for="(i, k) in directories", :key="k")
+                a(:href="i.home" target="_blank") {{i.title}}
+                br
+                | {{i.subTitle}}
       v-spacer.hidden-xs-only
 </template>
 
@@ -88,6 +102,8 @@
   import dependencies from '../../assets/dependencies.json'
   import appKeyboard from '../parts/Keyboard'
   import keys from '../../assets/keys.json'
+  import * as directories from '../../services/directory'
+  import services from '../../assets/services.json'
 
   export default {
     components: {
@@ -104,6 +120,8 @@
 
       return {
         keys,
+        directories,
+        services,
         appKeys: {...keys.app.Application, ...keys.app.API},
         editorKeys,
         editorActions,

@@ -3,6 +3,7 @@ import { colored } from './openapi-directory-lite'
 export default {
   title: 'OpenAPI Directory',
   subTitle: 'Community driven online collection',
+  home: 'https://apis.guru/openapi-directory/',
   base: 'https://api.apis.guru/v2/list.json',
   keys: true,
   categories: true,

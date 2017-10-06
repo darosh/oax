@@ -3,6 +3,7 @@ import { indexPath, apiPath } from 'openapi-directory-lite'
 export default {
   title: 'OpenAPI Directory Lite',
   subTitle: 'Smaller version with full text search',
+  home: 'https://github.com/darosh/openapi-directory-lite',
   base: indexPath(),
   keys: true,
   categories: true,

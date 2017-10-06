@@ -1,6 +1,7 @@
 const that = {
   title: 'SwaggerHub Registry',
   subTitle: 'Free specification hosting by SmartBear',
+  home: 'https://app.swaggerhub.com/',
   base: 'https://api.swaggerhub.com/specs?specType=API&state=PUBLISHED&sort=UPDATED&order=DESC&limit=25',
   pagination: true,
   search (search) {

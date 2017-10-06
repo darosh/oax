@@ -1,6 +1,7 @@
 export default {
   title: 'OpenAPI Samples',
   subTitle: 'Test suite',
+  home: 'https://github.com/darosh/openapi-samples',
   base: 'https://darosh.github.io/openapi-samples/index.json',
   transform (data) {
     for (let i = 0; i < data.length; i++) {
