@@ -35,7 +35,7 @@
               v-icon cancel
           v-divider(v-if="category")
           v-list.pa-0(two-line v-if="APIS")
-            virtual-scroller.scroller(:class="{filtered: category}", :items="filtered()", item-height="73" prerender="20", key-field="key")
+            virtual-scroller.scroller(:class="{filtered: category}", :items="filtered", item-height="73" prerender="20", key-field="key")
               template(scope="props")
                 .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                   v-progress-circular(class="primary--text" indeterminate )
@@ -145,17 +145,6 @@
         set (value) {
           return this.APIS_SET_COLLECTION(value)
         }
-      }
-    },
-    methods: {
-      ...mapMutations([
-        types.UI_SET_LEFT_DRAWER,
-        types.APIS_SET_COLLECTION
-      ]),
-      icon (item) {
-        return categories[(item.categories.length > 1 && item.categories[0] === 'cloud')
-          ? item.categories[1]
-          : item.categories[0]]
       },
       filtered () {
         if (!this.category &&
@@ -203,6 +192,17 @@
             })
           }
         }
+      }
+    },
+    methods: {
+      ...mapMutations([
+        types.UI_SET_LEFT_DRAWER,
+        types.APIS_SET_COLLECTION
+      ]),
+      icon (item) {
+        return categories[(item.categories.length > 1 && item.categories[0] === 'cloud')
+          ? item.categories[1]
+          : item.categories[0]]
       },
       clicked (url) {
         this.url = url
@@ -235,6 +235,8 @@
         } else if (this.APIS_COLLECTION_OBJECT.search) {
           this.APIS_RUN_LOAD({searchText: this.filter})
         }
+        // TODO: this is markdown print for OAD categorization
+        // console.log(this.filtered.map(f => `[${f.title}](https://darosh.github.io/oax/#/?url=${encodeURIComponent(f.url)})|${f.key.split(':')[0]}|${f.key.split(':')[1] || ' '}| | `).join('\n'))
       },
       collection () {
         this.category = null
