@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container.app-table
-    v-data-table.ma-3-md(:headers="headers", :items="items" hide-actions class="elevation-1 app-table")
+  v-container.gpu(v-once style="width: 100%; max-width: 100%")
+    v-data-table.ma-3-md.elevation-1.app-table(:headers="headers", :items="items" hide-actions)
       template(slot="items" scope="props")
         td.nowrap
           app-header(:item="props.item[0]")
@@ -11,10 +11,11 @@
 
 <script>
   const items = () => import('../../assets/http-header.json')
+  import appHeader from '../elements/Header'
 
   export default {
     components: {
-      appHeader: () => import('../elements/Header')
+      appHeader
     },
     data () {
       return {
@@ -47,6 +48,8 @@
 <style scoped lang="stylus">
   .app-table
     max-width 80em
+    margin-left: auto
+    margin-right: auto
 
   .capitalize::first-letter
     text-transform uppercase

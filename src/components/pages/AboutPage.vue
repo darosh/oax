@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container(v-once fluid style="max-width: 80em")
-    v-layout.gpu.ma-3-md
+  v-container.gpu(v-once style="width: 100%; max-width: 100%")
+    v-layout.ma-3-md
       v-spacer.hidden-xs-only
-      v-flex
+      v-flex(style="max-width: 80em")
         v-card.pa-4.mb-1
           .pt-3.hidden-xs-only
           h3.pb-3.ma-0 OpenAPI Specification Explorer
