@@ -90,7 +90,9 @@
             ul
               li(v-for="(i, k) in directories", :key="k")
                 a(:href="i.home" target="_blank") {{i.title}}
-                br
+                =" "
+                | &mdash;
+                =" "
                 | {{i.subTitle}}
       v-spacer.hidden-xs-only
 </template>
