@@ -39,8 +39,8 @@
     mixins: [layout],
     data () {
       return {
-        half: false,
-        opened: false
+        opened: false,
+        showSlider: true
       }
     },
     components: {
@@ -85,6 +85,15 @@
         } else {
           this.opened = false
         }
+      },
+      // TODO this forces tab slider update
+      UI_LEFT_DRAWER_HALF () {
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'))
+          setTimeout(() => {
+            window.dispatchEvent(new Event('resize'))
+          }, 300)
+        }, 25)
       }
     }
   }
