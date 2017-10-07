@@ -37,6 +37,9 @@ export default {
     }
   },
   methods: {
+    $innerMin (cols) {
+      return (100 / Math.min(cols, Math.max(1, this.$getColumns(this.$content) - (this.VIEW_WIDE ? 2 : 0)))) + '%'
+    },
     $getColumns (w) {
       return w < 380 ? 1 : w < 760 ? 1 : w < 1140 ? 2 : w < 1520 ? 3 : w < (1920 - 16) ? 4 : w < 2280 ? 5 : 6
     }

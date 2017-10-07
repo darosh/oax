@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.pa-0-sm(fluid grid-list-xl)
     v-layout(row wrap)
-      .flex(:style="{'flex-basis': $inner, 'max-width': $inner}", v-if="r._._display", v-for="(r, k) in SPEC_RESOURCES", :key="r.name")
+      .flex(:style="{'flex-basis': $innerMin(SPEC_RESOURCES.length), 'max-width': $innerMin(SPEC_RESOURCES.length)}", v-if="r._._display", v-for="(r, k) in SPEC_RESOURCES", :key="r.name")
         app-tag(:item="SPEC_RESOURCES[k]")
 </template>
 
