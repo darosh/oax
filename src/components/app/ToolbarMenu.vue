@@ -10,7 +10,7 @@
 
     v-divider.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="nextTick(VIEW_SET_DARK)")
+    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_DARK)")
       v-list-tile-action
         v-icon brightness_4
       v-list-tile-content
@@ -20,7 +20,7 @@
 
     v-divider(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}")
 
-    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="nextTick(VIEW_SET_PATH)")
+    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_PATH)")
       v-list-tile-action
         v-icon directions
       v-list-tile-content
@@ -28,7 +28,7 @@
       v-list-tile-action
         v-icon(v-if="VIEW_PATH") check
 
-    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="nextTick(VIEW_SET_SUMMARY)")
+    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_SUMMARY)")
       v-list-tile-action
         v-icon speaker_notes
       v-list-tile-content
@@ -38,7 +38,7 @@
 
     v-divider(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}")
 
-    v-list-tile(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}", @click="nextTick(VIEW_SET_WIDE)")
+    v-list-tile(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_WIDE)")
       v-list-tile-action
         v-icon settings_ethernet
       v-list-tile-content
@@ -137,7 +137,7 @@
       ...mapActions([
         types.SPEC_SET_LOAD_URL
       ]),
-      nextTick: Vue.nextTick
+      nextNextTick: (d) => setTimeout(() => Vue.nextTick(d), 50)
     }
   }
 </script>
