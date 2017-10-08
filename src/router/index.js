@@ -34,7 +34,7 @@ export default new Router({
     {
       path: '/stats',
       component: () => import('../components/pages/StatsPage'),
-      meta: {name: 'Stats'}
+      meta: {name: 'Statistics'}
     }
   ]
 })

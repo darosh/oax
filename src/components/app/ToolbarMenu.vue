@@ -69,6 +69,13 @@
 
       v-divider
 
+      v-list-tile(to="/stats" tag="a")
+        v-list-tile-action
+          v-icon data_usage
+        v-list-tile-title Statistics
+
+      v-divider
+
       v-list-tile(to="/about" tag="a")
         v-list-tile-action
           v-icon help

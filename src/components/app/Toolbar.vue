@@ -91,6 +91,7 @@
         v-btn.hidden-xs-only(flat to="/methods" tag="a") Methods
         v-btn.hidden-xs-only(flat to="/statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat to="/headers" tag="a") Headers
+        v-btn.hidden-xs-only(flat to="/stats" tag="a") Statistics
         v-btn.hidden-xs-only(flat to="/about" tag="a") About
         v-btn.hidden-xs-only(flat href="https://github.com/darosh/oax" tag="a" target="_blank") GitHub
 
