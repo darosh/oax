@@ -30,6 +30,11 @@ export default new Router({
       path: '/headers',
       component: () => import('../components/pages/HeaderPage'),
       meta: {name: 'Headers'}
+    },
+    {
+      path: '/stats',
+      component: () => import('../components/pages/StatsPage'),
+      meta: {name: 'Stats'}
     }
   ]
 })

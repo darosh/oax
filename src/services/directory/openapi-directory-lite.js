@@ -1,5 +1,22 @@
 import { indexPath, apiPath } from 'openapi-directory-lite'
 
+export const colors = [
+  '#CE93D8',
+  '#B39DDB',
+  '#9FA8DA',
+  '#90CAF9',
+  '#81D4FA',
+  '#80DEEA',
+  '#80CBC4',
+  '#A5D6A7',
+  '#C5E1A5',
+  '#E6EE9C',
+  '#FFF59D',
+  '#FFE082',
+  '#FFCC80',
+  '#FFAB91'
+]
+
 export default {
   title: 'OpenAPI Directory Lite',
   subTitle: 'Smaller version with full text search',
@@ -32,23 +49,6 @@ export default {
 }
 
 export function colored (categories) {
-  const colors = [
-    '#CE93D8',
-    '#B39DDB',
-    '#9FA8DA',
-    '#90CAF9',
-    '#81D4FA',
-    '#80DEEA',
-    '#80CBC4',
-    '#A5D6A7',
-    '#C5E1A5',
-    '#E6EE9C',
-    '#FFF59D',
-    '#FFE082',
-    '#FFCC80',
-    '#FFAB91'
-  ]
-
   const sort = []
 
   for (const c in categories) {

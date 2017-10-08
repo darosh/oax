@@ -98,3 +98,6 @@ export {default as arrow_collapse_left} from 'material-design-icons-svg/paths/ar
 export {default as check_circle} from 'material-design-icons-svg/paths/checkbox-marked-circle'
 export {default as view_dashboard} from 'material-design-icons-svg/paths/view-dashboard'
 export {default as eye} from 'material-design-icons-svg/paths/eye'
+export {default as indeterminate_check_box} from 'material-design-icons-svg/paths/minus-box.json'
+export {default as chevron_right} from 'material-design-icons-svg/paths/chevron-right'
+export {default as chevron_left} from 'material-design-icons-svg/paths/chevron-left'
