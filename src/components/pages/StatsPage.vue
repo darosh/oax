@@ -29,10 +29,10 @@
                 app-donut-chart(title="Paths" prop="4"  category="0", :radius="radius", :items="topDomains")
               v-flex(style="flex-grow: 0")
                 app-donut-chart(title="Endpoints" prop="5"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="Summaries" prop="7"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="Descriptions" prop="8"  category="0", :radius="radius", :items="topDomains")
+              <!--v-flex(style="flex-grow: 0")-->
+                <!--app-donut-chart(title="Summaries" prop="7"  category="0", :radius="radius", :items="topDomains")-->
+              <!--v-flex(style="flex-grow: 0")-->
+                <!--app-donut-chart(title="Descriptions" prop="8"  category="0", :radius="radius", :items="topDomains")-->
               v-flex(style="flex-grow: 0")
                 app-donut-chart(title="Definitions" prop="9"  category="0", :radius="radius", :items="topDomains")
               v-flex(style="flex-grow: 0")
