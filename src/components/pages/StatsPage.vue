@@ -1,148 +1,118 @@
 <template lang="pug">
-  v-container.gpu(style="width: 100%; max-width: 100%")
-    v-layout.ma-3-md
-      v-flex
-        h5 Top domains
-        p
-          i Average values per API specification.
-        div
-          div.mb-4(style="float: left")
-            v-data-table.elevation-1(:headers="topDomainsHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page")
-              template(slot="items" scope="props")
-                td(style="white-space: nowrap")
-                  .legend(:style="{'background-color': color(props.item[0])}")
-                  | {{props.item[0]}}
-                td.text-xs-right {{props.item[3]}}
-                td.text-xs-right {{props.item[6]}}
-                td.text-xs-right {{props.item[4]}}
-                td.text-xs-right {{props.item[5]}}
-                //td.text-xs-right {{props.item[7]}}
-                //td.text-xs-right {{props.item[8]}}
-                td.text-xs-right {{props.item[9]}}
-          v-container.pa-0(v-if="topDomains" style="max-width: none")
-            v-layout.pl-3(row wrap)
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="APIs" prop="3"  category="0", :radius="radius", :items="topDomains", :inner=".43", :subtitle="data.length")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="Tags" prop="6"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="Paths" prop="4"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="Endpoints" prop="5"  category="0", :radius="radius", :items="topDomains")
-              <!--v-flex(style="flex-grow: 0")-->
-                <!--app-donut-chart(title="Summaries" prop="7"  category="0", :radius="radius", :items="topDomains")-->
-              <!--v-flex(style="flex-grow: 0")-->
-                <!--app-donut-chart(title="Descriptions" prop="8"  category="0", :radius="radius", :items="topDomains")-->
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="Definitions" prop="9"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-        div(style="clear: both")
-        h5.mt-3(style="clear: both") Protocols
-        div
-          div.mb-4(style="float: left")
-            v-data-table.elevation-1(:headers="topDomainsSchemesHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="0")
-              template(slot="items" scope="props")
-                td
-                  v-checkbox(color="primary" hide-details v-model="props.selected")
-                td(style="white-space: nowrap")
-                  .legend(:style="{'background-color': color(props.item[0])}")
-                  | {{props.item[0]}}
-                td.text-xs-right {{props.item[10]}}{{props.item[10] ? '%' : ''}}
-                td.text-xs-right {{props.item[11]}}{{props.item[11] ? '%' : ''}}
-                td.text-xs-right {{props.item[12]}}{{props.item[12] ? '%' : ''}}
+  v-container.gpu(v-if="topDomains" style="width: 100%; max-width: 100%")
+    div.pa-3
+      h4 Top domains
+      p
+        i Average values per API specification.
+      div.mr-2.mb-2.f-l(style="max-width: 100%")
+        v-data-table.elevation-1(:headers="topDomainsHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page")
+          template(slot="items" scope="props")
+            td(style="white-space: nowrap")
+              .legend(:style="{'background-color': color(props.item[0])}")
+              | {{props.item[0]}}
+            td.text-xs-right {{props.item[3]}}
+            td.text-xs-right {{props.item[6]}}
+            td.text-xs-right {{props.item[4]}}
+            td.text-xs-right {{props.item[5]}}
+            //td.text-xs-right {{props.item[7]}}
+            //td.text-xs-right {{props.item[8]}}
+            td.text-xs-right {{props.item[9]}}
+      app-donut-chart.f-l(title="APIs" prop="3"  category="0", :radius="radius", :items="topDomains", :inner=".43", :subtitle="data.length")
+      app-donut-chart.f-l(title="Tags" prop="6"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="Paths" prop="4"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="Endpoints" prop="5"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="Definitions" prop="9"  category="0", :radius="radius", :items="topDomains")
+      div(style="clear: both")
 
-            table.mt-3.datatable.table.elevation-1
-              thead
-                tr
-                  th HTTPS
-                  th HTTPS+HTTP
-                  th HTTP
-                tr
-                  th(v-for="i in sumSelectionSchemes") {{prc(i, sumSelectionSchemes)}} {{i ? `(${i})` : ''}}
-              tbody
-                tr
-                  td.text-xs-center(v-for="i in sumSelectionSchemes" style="vertical-align: bottom; padding: 0")
-                    div(v-if="i" style="width: 16px; display: block; margin: 8px auto",
-                    :style="{'background-color': '#888', height: bar.domain([0, max(sumSelectionSchemes)])(i) + 'px'}")
+      h4.mt-3 Protocols
+      div.mr-2.mb-2.f-l(style="max-width: 100%")
+        v-data-table.elevation-1(:headers="topDomainsSchemesHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="0")
+          template(slot="items" scope="props")
+            td
+              v-checkbox(color="primary" hide-details v-model="props.selected")
+            td(style="white-space: nowrap")
+              .legend(:style="{'background-color': color(props.item[0])}")
+              | {{props.item[0]}}
+            td.text-xs-right {{props.item[10]}}{{props.item[10] ? '%' : ''}}
+            td.text-xs-right {{props.item[11]}}{{props.item[11] ? '%' : ''}}
+            td.text-xs-right {{props.item[12]}}{{props.item[12] ? '%' : ''}}
 
-          v-container.pa-0(v-if="topDomains" style="max-width: none")
-            v-layout.pl-3(row wrap)
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="HTTPS" prop="10"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="HTTPS+HTTP" prop="11"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="HTTP" prop="12"  category="0", :radius="radius", :items="topDomains")
-        div(style="clear: both")
-        h5.mt-3 Methods
-        p
-          i Average values per API specification.
-        div
-          div.mb-4(style="float: left")
-            v-data-table.elevation-1(:headers="topDomainsHttpHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="0")
-              template(slot="items" scope="props")
-                td
-                  v-checkbox(color="primary" hide-details v-model="props.selected")
-                td(style="white-space: nowrap")
-                  .legend(:style="{'background-color': color(props.item[0])}")
-                  | {{props.item[0]}}
-                td.text-xs-right {{props.item[13] ? round(props.item[13] / props.item[3], 1): null}}
-                td.text-xs-right {{props.item[14] ? round(props.item[14] / props.item[3], 1): null}}
-                td.text-xs-right {{props.item[15] ? round(props.item[15] / props.item[3], 1): null}}
-                td.text-xs-right {{props.item[16] ? round(props.item[16] / props.item[3], 1): null}}
-                td.text-xs-right {{props.item[17] ? round(props.item[17] / props.item[3], 1): null}}
-                td.text-xs-right {{props.item[18] ? round(props.item[18] / props.item[3], 1): null}}
-                td.text-xs-right {{props.item[19] ? round(props.item[19] / props.item[3], 1): null}}
+        table.mt-3.datatable.table.elevation-1
+          thead
+            tr
+              th HTTPS
+              th HTTPS+HTTP
+              th HTTP
+            tr
+              th(v-for="i in sumSelectionSchemes") {{prc(i, sumSelectionSchemes)}} {{i ? `(${i})` : ''}}
+          tbody
+            tr
+              td.text-xs-center(v-for="i in sumSelectionSchemes" style="vertical-align: bottom; padding: 0")
+                div(v-if="i" style="width: 16px; display: block; margin: 8px auto",
+                :style="{'background-color': '#888', height: bar.domain([0, max(sumSelectionSchemes)])(i) + 'px'}")
 
-            table.mt-3.datatable.table.elevation-1
-              thead
-                tr
-                  th GET
-                  th POST
-                  th PUT
-                  th PATCH
-                  th DELETE
-                  th HEAD
-                  th OPTIONS
-                tr
-                  th(v-for="i in sumSelectionMethods") {{prc(i, sumSelectionMethods)}} {{i ? `(${i})` : ''}}
-              tbody
-                tr
-                  td.text-xs-center(v-for="i in sumSelectionMethods" style="vertical-align: bottom; padding: 0")
-                    div(v-if="i" style="width: 16px; display: block; margin: 8px auto",
-                    :style="{'background-color': '#888', height: bar.domain([0, max(sumSelectionMethods)])(i) + 'px'}")
+      app-donut-chart.f-l(title="HTTPS" prop="10"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HTTPS+HTTP" prop="11"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HTTP" prop="12"  category="0", :radius="radius", :items="topDomains")
+      div(style="clear: both")
 
-          v-container.pa-0(v-if="topDomains" style="max-width: none")
-            v-layout.pl-3(row wrap)
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="GET" prop="13"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="POST" prop="14"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="PUT" prop="15"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="PATCH" prop="16"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="DELETE" prop="17"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="HEAD" prop="18"  category="0", :radius="radius", :items="topDomains")
-              v-flex(style="flex-grow: 0")
-                app-donut-chart(title="OPTIONS" prop="19"  category="0", :radius="radius", :items="topDomains")
+      h4.mt-3 Methods
+      p
+        i Average values per API specification.
+      div.mr-2.mb-2.f-l(style="max-width: 100%")
+        v-data-table.elevation-1(:headers="topDomainsHttpHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="0")
+          template(slot="items" scope="props")
+            td
+              v-checkbox(color="primary" hide-details v-model="props.selected")
+            td(style="white-space: nowrap")
+              .legend(:style="{'background-color': color(props.item[0])}")
+              | {{props.item[0]}}
+            td.text-xs-right {{props.item[13] ? round(props.item[13] / props.item[3], 1): null}}
+            td.text-xs-right {{props.item[14] ? round(props.item[14] / props.item[3], 1): null}}
+            td.text-xs-right {{props.item[15] ? round(props.item[15] / props.item[3], 1): null}}
+            td.text-xs-right {{props.item[16] ? round(props.item[16] / props.item[3], 1): null}}
+            td.text-xs-right {{props.item[17] ? round(props.item[17] / props.item[3], 1): null}}
+            td.text-xs-right {{props.item[18] ? round(props.item[18] / props.item[3], 1): null}}
+            td.text-xs-right {{props.item[19] ? round(props.item[19] / props.item[3], 1): null}}
 
-        div(style="clear: both")
+        table.mt-3.datatable.table.elevation-1
+          thead
+            tr
+              th GET
+              th POST
+              th PUT
+              th PATCH
+              th DELETE
+              th HEAD
+              th OPTIONS
+            tr
+              th(v-for="i in sumSelectionMethods") {{prc(i, sumSelectionMethods)}} {{i ? `(${i})` : ''}}
+          tbody
+            tr
+              td.text-xs-center(v-for="i in sumSelectionMethods" style="vertical-align: bottom; padding: 0")
+                div(v-if="i" style="width: 16px; display: block; margin: 8px auto",
+                :style="{'background-color': '#888', height: bar.domain([0, max(sumSelectionMethods)])(i) + 'px'}")
 
-        h5 Categories
-        p
-          i Values filtered in Top domains section.
-        div
-          div.mb-4(style="float: left")
-            v-data-table.elevation-1(:headers="categoriesHeaders", :items="categories", :must-sort="false", :pagination.sync="pageCategories")
-              template(slot="items" scope="props")
-                td.text-xs-left {{props.item[0]}}
-                td.text-xs-right
-                  div(v-if="props.item[1]" style="height: 16px; display: inline-block; margin: -4px 8px",
-                  :style="{'background-color': '#888', width: barHor.domain([0, maxBy(categories, 1)[1]])(props.item[1]) + 'px'}")
-                  span(style="min-width: 2em; display: inline-block") {{props.item[1]}}
+      app-donut-chart.f-l(title="GET" prop="13"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="POST" prop="14"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="PUT" prop="15"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="PATCH" prop="16"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="DELETE" prop="17"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HEAD" prop="18"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="OPTIONS" prop="19"  category="0", :radius="radius", :items="topDomains")
+      div(style="clear: both")
+
+      h4.mt-3 Categories
+      p
+        i Values filtered in Top domains section.
+      div(style="max-width: 100%")
+        v-data-table.elevation-1(:headers="categoriesHeaders", :items="categories", :must-sort="false", :pagination.sync="pageCategories" style="max-width: 420px")
+          template(slot="items" scope="props")
+            td.text-xs-left {{props.item[0]}}
+            td.text-xs-right
+              div(v-if="props.item[1]" style="height: 16px; display: inline-block; margin: -4px 8px",
+              :style="{'background-color': '#888', width: barHor.domain([0, maxBy(categories, 1)[1]])(props.item[1]) + 'px'}")
+              span(style="min-width: 2em; display: inline-block") {{props.item[1]}}
 
 </template>
 
@@ -174,7 +144,7 @@
         bar: scaleLinear().rangeRound([0, 88 + 44]),
         barHor: scaleLinear().rangeRound([0, 88 + 88]),
         selected: null,
-        radius: 88,
+        radius: 92,
         page: {sortBy: '1', descending: true, rowsPerPage: 100},
         pageCategories: {sortBy: '1', descending: true, rowsPerPage: 10},
         data: null,
@@ -312,4 +282,6 @@
     margin-bottom -8px
     margin-right 8px
     border-radius 50%
+  .f-l
+    float: left
 </style>

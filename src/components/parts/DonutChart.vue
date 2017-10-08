@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.pa-1.ma-2(style="border-radius: 50%")
+  v-card.pa-1.mt-0.mb-2.ml-2.mr-2(style="border-radius: 50%", :style="{width: (2*radius + 8)+'px', height: (2*radius + 8)+'px'}")
     svg(:width="2*radius", :height="2*radius" style="display: block")
       g(:transform="'translate('+[radius,radius]+')'")
         text.chart-title(text-anchor="middle" dominant-baseline="middle") {{title}}
