@@ -1,118 +1,108 @@
 <template lang="pug">
   v-container.gpu(v-if="topDomains" style="width: 100%; max-width: 100%")
     div.pa-3
-      h4 Top domains
+      h4 Overview
       p
         i Average values per API specification.
       div.mr-2.mb-2.f-l(style="max-width: 100%")
         v-data-table.elevation-1(:headers="topDomainsHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page")
           template(slot="items" scope="props")
             td(style="white-space: nowrap")
-              .legend(:style="{'background-color': color(props.item[0])}")
-              | {{props.item[0]}}
-            td.text-xs-right {{props.item[3]}}
-            td.text-xs-right {{props.item[6]}}
-            td.text-xs-right {{props.item[4]}}
-            td.text-xs-right {{props.item[5]}}
-            //td.text-xs-right {{props.item[7]}}
-            //td.text-xs-right {{props.item[8]}}
-            td.text-xs-right {{props.item[9]}}
-      app-donut-chart.f-l(title="APIs" prop="3"  category="0", :radius="radius", :items="topDomains", :inner=".43", :subtitle="data.length")
-      app-donut-chart.f-l(title="Tags" prop="6"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="Paths" prop="4"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="Endpoints" prop="5"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="Definitions" prop="9"  category="0", :radius="radius", :items="topDomains")
+              .legend(:style="{'background-color': color(props.item.domain)}")
+              | {{props.item.domain}}
+            td.text-xs-right {{props.item.total}}
+            td.text-xs-right {{props.item.tags}}
+            td.text-xs-right {{props.item.paths}}
+            td.text-xs-right {{props.item.methods}}
+            td.text-xs-right {{props.item.definitions}}
+      app-donut-chart.f-l(title="APIs" prop="total"  category="domain", :radius="radius", :items="topDomains", :inner=".43", :subtitle="data.length")
+      app-donut-chart.f-l(title="Tags" prop="tags"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="Paths" prop="paths"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="Endpoints" prop="methods"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="Definitions" prop="definitions"  category="domain", :radius="radius", :items="topDomains")
       div(style="clear: both")
 
       h4.mt-3 Protocols
       div.mr-2.mb-2.f-l(style="max-width: 100%")
-        v-data-table.elevation-1(:headers="topDomainsSchemesHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="0")
+        v-data-table.elevation-1(:headers="topDomainsSchemesHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="domain")
           template(slot="items" scope="props")
             td
               v-checkbox(color="primary" hide-details v-model="props.selected")
             td(style="white-space: nowrap")
-              .legend(:style="{'background-color': color(props.item[0])}")
-              | {{props.item[0]}}
-            td.text-xs-right {{props.item[10]}}{{props.item[10] ? '%' : ''}}
-            td.text-xs-right {{props.item[11]}}{{props.item[11] ? '%' : ''}}
-            td.text-xs-right {{props.item[12]}}{{props.item[12] ? '%' : ''}}
+              .legend(:style="{'background-color': color(props.item.domain)}")
+              | {{props.item.domain}}
+            td.text-xs-right {{props.item.https}}{{props.item.https ? '%' : ''}}
+            td.text-xs-right {{props.item.both}}{{props.item.both ? '%' : ''}}
+            td.text-xs-right {{props.item.http}}{{props.item.http ? '%' : ''}}
 
         table.mt-3.datatable.table.elevation-1
           thead
             tr
-              th HTTPS
-              th HTTPS+HTTP
-              th HTTP
+              th(v-for="(i, k) in sumSelectionSchemes") {{k === 'both' ? 'HTTPS+HTTP' : k.toUpperCase()}}
             tr
-              th(v-for="i in sumSelectionSchemes") {{prc(i, sumSelectionSchemes)}} {{i ? `(${i})` : ''}}
+              th(v-for="i in sumSelectionSchemes") {{prc(i, sum(values(sumSelectionSchemes)))}} {{i ? `(${i})` : ''}}
           tbody
             tr
               td.text-xs-center(v-for="i in sumSelectionSchemes" style="vertical-align: bottom; padding: 0")
                 div(v-if="i" style="width: 16px; display: block; margin: 8px auto",
-                :style="{'background-color': '#888', height: bar.domain([0, max(sumSelectionSchemes)])(i) + 'px'}")
+                :style="{'background-color': '#888', height: bar.domain([0, max(values(sumSelectionSchemes))])(i) + 'px'}")
 
-      app-donut-chart.f-l(title="HTTPS" prop="10"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="HTTPS+HTTP" prop="11"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="HTTP" prop="12"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HTTPS" prop="https"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HTTPS+HTTP" prop="both"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HTTP" prop="http"  category="domain", :radius="radius", :items="topDomains")
       div(style="clear: both")
 
       h4.mt-3 Methods
       p
         i Average values per API specification.
       div.mr-2.mb-2.f-l(style="max-width: 100%")
-        v-data-table.elevation-1(:headers="topDomainsHttpHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="0")
+        v-data-table.elevation-1(:headers="topDomainsHttpHeaders", :items="topDomains" hide-actions, :must-sort="false", :pagination.sync="page" select-all v-model="topDomainsSelected", item-key="domain")
           template(slot="items" scope="props")
             td
               v-checkbox(color="primary" hide-details v-model="props.selected")
             td(style="white-space: nowrap")
-              .legend(:style="{'background-color': color(props.item[0])}")
-              | {{props.item[0]}}
-            td.text-xs-right {{props.item[13] ? round(props.item[13] / props.item[3], 1): null}}
-            td.text-xs-right {{props.item[14] ? round(props.item[14] / props.item[3], 1): null}}
-            td.text-xs-right {{props.item[15] ? round(props.item[15] / props.item[3], 1): null}}
-            td.text-xs-right {{props.item[16] ? round(props.item[16] / props.item[3], 1): null}}
-            td.text-xs-right {{props.item[17] ? round(props.item[17] / props.item[3], 1): null}}
-            td.text-xs-right {{props.item[18] ? round(props.item[18] / props.item[3], 1): null}}
-            td.text-xs-right {{props.item[19] ? round(props.item[19] / props.item[3], 1): null}}
+              .legend(:style="{'background-color': color(props.item.domain)}")
+              | {{props.item.domain}}
+            td.text-xs-right {{roundedRatio(props.item.get, props.item.total, 1)}}
+            td.text-xs-right {{roundedRatio(props.item.post, props.item.total, 1)}}
+            td.text-xs-right {{roundedRatio(props.item.put, props.item.total, 1)}}
+            td.text-xs-right {{roundedRatio(props.item.patch, props.item.total, 1)}}
+            td.text-xs-right {{roundedRatio(props.item.delete, props.item.total, 1)}}
+            td.text-xs-right {{roundedRatio(props.item.head, props.item.total, 1)}}
+            td.text-xs-right {{roundedRatio(props.item.options, props.item.total, 1)}}
 
         table.mt-3.datatable.table.elevation-1
           thead
             tr
-              th GET
-              th POST
-              th PUT
-              th PATCH
-              th DELETE
-              th HEAD
-              th OPTIONS
+              th(v-if="i" v-for="(i, k) in sumSelectionMethods") {{k.toUpperCase()}}
             tr
-              th(v-for="i in sumSelectionMethods") {{prc(i, sumSelectionMethods)}} {{i ? `(${i})` : ''}}
+              th(v-if="i" v-for="i in sumSelectionMethods") {{prc(i, sum(values(sumSelectionMethods)))}} {{i ? `(${i})` : ''}}
           tbody
             tr
               td.text-xs-center(v-for="i in sumSelectionMethods" style="vertical-align: bottom; padding: 0")
                 div(v-if="i" style="width: 16px; display: block; margin: 8px auto",
-                :style="{'background-color': '#888', height: bar.domain([0, max(sumSelectionMethods)])(i) + 'px'}")
+                :style="{'background-color': '#888', height: bar.domain([0, max(values(sumSelectionMethods))])(i) + 'px'}")
 
-      app-donut-chart.f-l(title="GET" prop="13"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="POST" prop="14"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="PUT" prop="15"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="PATCH" prop="16"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="DELETE" prop="17"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="HEAD" prop="18"  category="0", :radius="radius", :items="topDomains")
-      app-donut-chart.f-l(title="OPTIONS" prop="19"  category="0", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="GET" prop="get"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="POST" prop="post"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="PUT" prop="put"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="PATCH" prop="patch"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="DELETE" prop="delete"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="HEAD" prop="head"  category="domain", :radius="radius", :items="topDomains")
+      app-donut-chart.f-l(title="OPTIONS" prop="options"  category="domain", :radius="radius", :items="topDomains")
       div(style="clear: both")
 
       h4.mt-3 Categories
       p
-        i Values filtered in Top domains section.
+        i Values filtered in sections above.
       div(style="max-width: 100%")
         v-data-table.elevation-1(:headers="categoriesHeaders", :items="categories", :must-sort="false", :pagination.sync="pageCategories" style="max-width: 420px")
           template(slot="items" scope="props")
-            td.text-xs-left {{props.item[0]}}
+            td.text-xs-left {{props.item.category}}
             td.text-xs-right
-              div(v-if="props.item[1]" style="height: 16px; display: inline-block; margin: -4px 8px",
-              :style="{'background-color': '#888', width: barHor.domain([0, maxBy(categories, 1)[1]])(props.item[1]) + 'px'}")
-              span(style="min-width: 2em; display: inline-block") {{props.item[1]}}
+              div(v-if="props.item.count" style="height: 16px; display: inline-block; margin: -4px 8px",
+              :style="{'background-color': '#888', width: barHor.domain([0, maxBy(categories, 'count').count])(props.item.count) + 'px'}")
+              span(style="min-width: 2em; display: inline-block") {{props.item.count}}
 
 </template>
 
@@ -128,12 +118,15 @@
   import sumBy from 'lodash-es/sumBy'
   import values from 'lodash-es/values'
   import flatten from 'lodash-es/flatten'
+
   import { scaleOrdinal, scaleLinear } from 'd3-scale'
   import { colors } from '../../services/directory/openapi-directory-lite'
   import axios from 'axios'
   import appDonutChart from '../parts/DonutChart'
+  import stats from '../mixins/stats'
 
   export default {
+    mixins: [stats],
     components: {
       appDonutChart
     },
@@ -143,130 +136,52 @@
       return {
         bar: scaleLinear().rangeRound([0, 88 + 44]),
         barHor: scaleLinear().rangeRound([0, 88 + 88]),
-        selected: null,
         radius: 92,
-        page: {sortBy: '1', descending: true, rowsPerPage: 100},
-        pageCategories: {sortBy: '1', descending: true, rowsPerPage: 10},
-        data: null,
+        page: {sortBy: 'total', descending: true, rowsPerPage: 100},
+        pageCategories: {sortBy: 'count', descending: true, rowsPerPage: 10},
         categoriesHeaders: [
-          {text: 'Category', value: '0', align: 'left'},
-          {text: 'APIs', value: '1'}
+          {text: 'Category', value: 'category', align: 'left'},
+          {text: 'APIs', value: 'count'}
         ],
         topDomainsHeaders: [
-          {text: 'Domain', value: '0', align: 'left'},
-          {text: 'APIs', value: '3'},
-          {text: 'Tags', value: '6'},
-          {text: 'Paths', value: '4'},
-          {text: 'Endpoints', value: '5'},
-          // {text: 'Summaries', value: '7'},
-          // {text: 'Descriptions', value: '8'},
-          {text: 'Definitions', value: '9'}
+          {text: 'Domain', value: 'domain', align: 'left'},
+          {text: 'APIs', value: 'total'},
+          {text: 'Tags', value: 'tags'},
+          {text: 'Paths', value: 'paths'},
+          {text: 'Endpoints', value: 'methods'},
+          {text: 'Definitions', value: 'definitions'}
         ],
         topDomainsSchemesHeaders: [
-          {text: 'Domain', value: '0', align: 'left'},
-          {text: 'HTTPS', value: '10'},
-          {text: 'HTTPS+HTTP', value: '11'},
-          {text: 'HTTP', value: '12'}
+          {text: 'Domain', value: 'domain', align: 'left'},
+          {text: 'HTTPS', value: 'https'},
+          {text: 'HTTPS+HTTP', value: 'both'},
+          {text: 'HTTP', value: 'http'}
         ],
         topDomainsHttpHeaders: [
-          {text: 'Domain', value: '0', align: 'left'},
-          {text: 'GET', value: '13'},
-          {text: 'POST', value: '14'},
-          {text: 'PUT', value: '15'},
-          {text: 'PATCH', value: '16'},
-          {text: 'DELETE', value: '17'},
-          {text: 'HEAD', value: '18'},
-          {text: 'OPTIONS', value: '19'}
+          {text: 'Domain', value: 'domain', align: 'left'},
+          {text: 'GET', value: 'get'},
+          {text: 'POST', value: 'post'},
+          {text: 'PUT', value: 'put'},
+          {text: 'PATCH', value: 'patch'},
+          {text: 'DELETE', value: 'delete'},
+          {text: 'HEAD', value: 'head'},
+          {text: 'OPTIONS', value: 'options'}
         ]
       }
     },
-    computed: {
-      domains () {
-        return !this.data ? null : orderBy(map(groupBy(this.data, d => d.key[0]), (a, b) => [b, a]),
-          [(d) => d[1].length, 0],
-          ['desc', 'asc'])
-      },
-      total () {
-        return !this.data ? null : this.data.length
-      },
-      topDomains () {
-        if (!this.domains) {
-          return
-        }
-
-        const pick = Math.min(this.domains.length, 6)
-        const min = this.domains[pick][1].length
-        const top = this.domains.filter(d => d[1].length > min)
-        const grouped = [].concat.apply([], this.domains.filter(d => d[1].length <= min).map(d => d[1]))
-
-        top.push(['other', grouped, min])
-
-        top.forEach(t => {
-          t[3] = t[1].length
-          t[4] = round(sumBy(t[1], 'paths') / t[3], 1)
-          t[6] = round(sumBy(t[1], 'tags') / t[3], 1)
-          t[7] = round(sumBy(t[1], 'summaries') / t[3], 1)
-          t[8] = round(sumBy(t[1], 'descriptions') / t[3], 1)
-          t[9] = round(sumBy(t[1], 'definitions') / t[3], 1)
-          t[5] = round(sumBy(t[1], u => sum(values(u.methods))) / t[3], 1)
-
-          const s = countBy(t[1], 'schema')
-          t[10] = s.https ? round(s.https * 100 / t[3], 1) : ''
-          t[11] = s.both ? round(s.both * 100 / t[3], 1) : ''
-          t[12] = s.http ? round(s.http * 100 / t[3], 1) : ''
-
-          t[13] = sumBy(t[1], d => d.methods.get)
-          t[14] = sumBy(t[1], d => d.methods.post)
-          t[15] = sumBy(t[1], d => d.methods.put)
-          t[16] = sumBy(t[1], d => d.methods.patch)
-          t[17] = sumBy(t[1], d => d.methods.delete)
-          t[18] = sumBy(t[1], d => d.methods.head)
-          t[19] = sumBy(t[1], d => d.methods.options)
-        })
-
-        return orderBy(top, [1, 0], ['desc', 'asc'])
-      },
-      topDomainsSelected: {
-        get () { return this.selected ? this.selected : [] },
-        set (value) { this.selected = value}
-      },
-      topDomainsSelections () {
-        return this.topDomains ? [].concat.apply([],
-          (this.topDomainsSelected.length ? this.topDomainsSelected : this.topDomains).map(d => d[1])) : null
-      },
-      sumSelectionMethods () {
-        const t = []
-        t[0] = sumBy(this.topDomainsSelections, d => d.methods.get)
-        t[1] = sumBy(this.topDomainsSelections, d => d.methods.post)
-        t[2] = sumBy(this.topDomainsSelections, d => d.methods.put)
-        t[3] = sumBy(this.topDomainsSelections, d => d.methods.patch)
-        t[4] = sumBy(this.topDomainsSelections, d => d.methods.delete)
-        t[5] = sumBy(this.topDomainsSelections, d => d.methods.head)
-        t[6] = sumBy(this.topDomainsSelections, d => d.methods.options)
-        return t
-      },
-      sumSelectionSchemes () {
-        const s = countBy(this.topDomainsSelections, 'schema')
-        const t = []
-        t[0] = s.https
-        t[1] = s.both
-        t[2] = s.http
-        return t
-      },
-      categories () {
-        return orderBy(
-          map(countBy(flatten(map(this.topDomainsSelections, 'categories'))), (a, b) => [b.replace(/_/g, ' '), a]),
-          [1, 0], ['desc', 'asc']
-        )
-      }
-    },
+    computed: {},
     methods: {
       color: scaleOrdinal().range(colors.filter((d, i) => i % 2).reverse()),
       round,
+      roundedRatio (val, tot, r) {
+        return val ? round(val / tot, r) : null
+      },
       max,
+      sum,
+      values,
       maxBy,
       prc (part, parts) {
-        return part ? round(100 * part / sum(parts)) + '%' : ''
+        return part ? round(100 * part / parts) + '%' : ''
       }
     }
   }
@@ -282,6 +197,7 @@
     margin-bottom -8px
     margin-right 8px
     border-radius 50%
+
   .f-l
     float: left
 </style>
