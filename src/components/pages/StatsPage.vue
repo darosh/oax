@@ -4,8 +4,8 @@
       div.mr-3.mb-3.f-l(style="max-width: 100%")
         v-card
           v-layout.mb-4
-            v-select.mt-3.mr-3.ml-4(:items="groupings" v-model="grouping" label="Group by" bottom hide-details style="max-width: 120px")
-            v-select.mt-3.mr-4.ml-3(:items="topPicks" v-model="pickTop" label="Pick top" bottom hide-details style="max-width: 120px")
+            v-select.mt-3.mr-3.ml-4(:items="groupings" v-model="grouping" label="Group by" bottom hide-details style="max-width: 180px")
+            v-select.mt-3.mr-4.ml-3(:items="topPicks" v-model="pickTop" label="Pick top" bottom hide-details style="max-width: 80px")
           v-divider
           v-data-table(:headers="topHeaders", :items="top", :hide-actions="top.length <= 10", :must-sort="false", :pagination.sync="page" v-model="selection", item-key="title" select-all :rows-per-page-items="[10, 25, { text: 'All', value: -1 }]")
             template(slot="items" scope="props")
@@ -19,30 +19,30 @@
               td.text-xs-right {{props.item.paths}}
               td.text-xs-right {{props.item.methods}}
               td.text-xs-right {{props.item.definitions}}
-        p.mt-2
-          i Average values per API specification.
-      app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :inner=".43", :subtitle="sumBy(selected, 'total')", :color="color")
-      app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color")
-      app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color")
-      app-donut-chart.f-l(title="Endpoints" prop="methods"  category="title", :radius="radius", :items="selected", :color="color")
-      app-donut-chart.f-l(title="Definitions" prop="definitions"  category="title", :radius="radius", :items="selected", :color="color")
+        <!--p.mt-2-->
+          <!--i Average values per API specification.-->
+      app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :subtitle="sumBy(selected, 'total')", :color="color")
+      app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'tagsTotal')")
+      app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'pathsTotal')")
+      app-donut-chart.f-l(title="Endpoints" prop="methods"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'methodsTotal')")
+      app-donut-chart.f-l(title="Definitions" prop="definitions"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'definitionsTotal')")
 
       div(style="clear: both")
 
-      div.mr-3.mb-3.f-l(style="max-width: 100%")
+      div.f-l(style="max-width: 100%")
         v-card
           v-layout.mb-4
-            v-select.mt-3.mr-4.ml-4(:items="groupings" v-model="breakdown" label="Count by" bottom hide-details style="max-width: 120px")
+            v-select.mt-3.mr-4.ml-4(:items="groupings" v-model="breakdown" label="Count by" bottom hide-details style="max-width: 180px")
           v-divider
-          v-data-table.elevation-1(:headers="groupedHeaders", :items="regrouped", :hide-actions="regrouped.length <= 10", :must-sort="false", :pagination.sync="page")
+          v-data-table.elevation-1(:headers="groupedHeaders", :items="regrouped", :hide-actions="regrouped.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
             template(slot="headerCell" scope="props")
               span(:style="{'border-bottom': props.header.color ? '4px solid ' + color(props.header.text) : null}") {{props.header.text}}
             template(slot="items" scope="props")
               td(style="white-space: nowrap") {{props.item.title}}
               td.text-xs-left(style="white-space: nowrap")
                 span.text-xs-right.mr-2(style="margin-bottom: -5px; line-height: 19.5px; min-width: 2em; display: inline-block") {{props.item.total}}
-                div(v-for="s in selected" v-if="props.item[s.title]" style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(regrouped, 'total').total])(props.item[s.title]) + 'px'}")
-              td.text-xs-right(v-for="s in selected") {{props.item[s.title] || ''}}
+                div(v-for="s in selected" v-if="props.item[nodots(s.title)]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(regrouped, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
+              td.text-xs-right(v-for="s in selected") {{props.item[nodots(s.title)] || ''}}
 
       div(style="clear: both")
 </template>
@@ -81,7 +81,7 @@
         radius: 92,
         topPicks: [1, 5, 10, 25, {text: 'All', value: Infinity}],
         page: {sortBy: 'total', descending: true, rowsPerPage: 10},
-        pageCategories: {sortBy: 'count', descending: true, rowsPerPage: 10},
+        pageGrouped: {sortBy: 'total', descending: true, rowsPerPage: 10},
         topHeaders: [
           {text: 'Title', value: 'title', align: 'left'},
           {text: 'APIs', value: 'total'},
@@ -115,7 +115,7 @@
         return [
           {text: 'Title', value: 'title', align: 'left'},
           {text: 'Count', value: 'total', align: 'left'},
-          ...this.selected.map(d => ({text: d.title, value: d.title, color: true}))
+          ...this.selected.map(d => ({text: d.title, value: d.title.replace(/\./g, '_'), color: true}))
         ]
       }
     },

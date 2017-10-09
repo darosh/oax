@@ -11,9 +11,10 @@ import values from 'lodash-es/values'
 export default {
   data () {
     const groupings = [
-      {text: 'Root', select: d => d.root},
+      {text: 'Top level domain', select: d => d.root},
       {text: 'Domain', select: d => d.key[0]},
       {text: 'Protocol', select: d => d.schema},
+      {text: 'Tags', select: d => d.tags},
       {text: 'Paths', select: d => d.paths},
       {text: 'Endpoints', select: d => sum(values(d.methods))},
       {text: 'Definitions', select: d => d.definitions},
@@ -106,11 +107,11 @@ export default {
 
       const data = !this.breakdown.expand ? this.filtered : flatten(this.filtered.map(this.breakdown.expand))
       const records = map(groupBy(data, this.breakdown.select),
-        (records, title) => ({title, records, total: records.length}))
+        (records, title) => ({title, prop: this.nodots(title), records, total: records.length}))
 
       this.selected.forEach(s => {
         records.forEach(record => {
-          record[s.title] = record.records.filter(d => d.column === s.title).length
+          record[this.nodots(s.title)] = record.records.filter(d => d.column === s.title).length
         })
       })
 
@@ -130,12 +131,21 @@ export default {
     },
     aggregate (t) {
       t.total = t.records.length
-      t.paths = round(sumBy(t.records, 'paths') / t.total, 1)
-      t.tags = round(sumBy(t.records, 'tags') / t.total, 1)
-      t.summaries = round(sumBy(t.records, 'summaries') / t.total, 1)
-      t.descriptions = round(sumBy(t.records, 'descriptions') / t.total, 1)
-      t.definitions = round(sumBy(t.records, 'definitions') / t.total, 1)
-      t.methods = round(sumBy(t.records, u => sum(values(u.methods))) / t.total, 1)
+
+      t.pathsTotal = sumBy(t.records, 'paths')
+      t.paths = round(t.pathsTotal / t.total, 1)
+
+      t.tagsTotal = sumBy(t.records, 'tags')
+      t.tags = round(t.tagsTotal / t.total, 1)
+
+      // t.summaries = round(sumBy(t.records, 'summaries') / t.total, 1)
+      // t.descriptions = round(sumBy(t.records, 'descriptions') / t.total, 1)
+
+      t.definitionsTotal = sumBy(t.records, 'definitions')
+      t.definitions = round(t.definitionsTotal / t.total, 1)
+
+      t.methodsTotal = sumBy(t.records, u => sum(values(u.methods)))
+      t.methods = round(t.methodsTotal / t.total, 1)
 
       const s = countBy(t.records, 'schema')
       t.https = s.https ? round(s.https * 100 / t.total, 1) : ''
@@ -143,6 +153,9 @@ export default {
       t.http = s.http ? round(s.http * 100 / t.total, 1) : ''
 
       this.sumMethods(t.records, t)
+    },
+    nodots (t) {
+      return t.replace(/\./g, '_')
     }
   },
   watch: {
