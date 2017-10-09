@@ -15,13 +15,12 @@
   import { colors } from '../../services/directory/openapi-directory-lite'
 
   export default {
-    props: ['radius', 'title', 'subtitle', 'items', 'prop', 'category', 'inner'],
+    props: ['radius', 'title', 'subtitle', 'items', 'prop', 'category', 'inner', 'color'],
     methods: {
       value: pie().padAngle(2 * Math.PI / 360).sort(null).value,
       arc: function (d) {
         return arc().outerRadius(this.radius).innerRadius(this.radius * (this.inner ? this.inner : .715)).cornerRadius(1.5)(d)
       },
-      color: scaleOrdinal().range(colors.filter((d, i) => i % 2).reverse()),
       sumBy,
       round
     }

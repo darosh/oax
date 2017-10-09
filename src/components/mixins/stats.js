@@ -1,24 +1,79 @@
 import countBy from 'lodash-es/countBy'
+import flatten from 'lodash-es/flatten'
 import groupBy from 'lodash-es/groupBy'
 import map from 'lodash-es/map'
 import orderBy from 'lodash-es/orderBy'
 import round from 'lodash-es/round'
 import sum from 'lodash-es/sum'
-// import max from 'lodash-es/max'
-// import maxBy from 'lodash-es/maxBy'
 import sumBy from 'lodash-es/sumBy'
 import values from 'lodash-es/values'
-import flatten from 'lodash-es/flatten'
 
 export default {
   data () {
+    const groupings = [
+      {text: 'Root', select: d => d.root},
+      {text: 'Domain', select: d => d.key[0]},
+      {text: 'Protocol', select: d => d.schema},
+      {text: 'Paths', select: d => d.paths},
+      {text: 'Endpoints', select: d => sum(values(d.methods))},
+      {text: 'Definitions', select: d => d.definitions},
+      {
+        text: 'Category',
+        select: d => d.category,
+        expand: d => (d.categories || ['undefined']).map(category => {
+          return Object.assign({category}, d)
+        })
+      },
+      {
+        text: 'Method',
+        select: d => d.method,
+        expand: d => Object.keys(d.methods).map(method => {
+          return Object.assign({method}, d)
+        })
+      }
+    ]
+
     return {
       data: null,
-      selected: null,
-      pickTop: 6
+      selectionData: null,
+      pickTop: 10,
+      groupings,
+      grouping: groupings[1],
+      breakdown: groupings[2]
     }
   },
   computed: {
+    grouped () {
+      if (!this.data) {
+        return null
+      }
+
+      const data = !this.grouping.expand ? this.data : flatten(this.data.map(this.grouping.expand))
+      const records = map(groupBy(data, this.grouping.select), (records, title) => ({title, records}))
+      return orderBy(records, [(d) => d.records.length, 'title'], ['desc', 'asc'])
+    },
+    top () {
+      if (!this.grouped) {
+        return null
+      }
+
+      let top
+
+      if (this.grouped.length <= this.pickTop) {
+        top = this.grouped
+      } else {
+        const pick = Math.max(0, Math.min(this.grouped.length - 1, this.pickTop - 1))
+        const min = this.grouped[pick].records.length
+        top = this.grouped.filter(d => d.records.length > min)
+
+        const records = [].concat.apply([], this.grouped.filter(d => d.records.length <= min).map(d => d.records))
+        top.push({title: 'other', records, min})
+      }
+
+      top.forEach(this.aggregate)
+
+      return orderBy(top, ['total', 'title'], ['desc', 'asc'])
+    },
     domains () {
       return !this.data
         ? null
@@ -29,57 +84,37 @@ export default {
     total () {
       return !this.data ? null : this.data.length
     },
-    topDomains () {
-      if (!this.domains) {
-        return
+    selection: {
+      get () { return this.selectionData ? this.selectionData : [] },
+      set (value) { this.selectionData = value }
+    },
+    selected () {
+      return this.top ? this.selection.length ? this.selection : this.top : null
+    },
+    filtered () {
+      return this.selected ? [].concat.apply([], this.selected.map(d => {
+        d.records.forEach(r => {
+          r.column = d.title
+        })
+        return d.records
+      })) : null
+    },
+    regrouped () {
+      if (!this.filtered) {
+        return null
       }
 
-      const pick = Math.min(this.domains.length, this.pickTop)
-      const min = this.domains[pick].records.length
-      const top = this.domains.filter(d => d.records.length > min)
-      const records = [].concat.apply([], this.domains.filter(d => d.records.length <= min).map(d => d.records))
+      const data = !this.breakdown.expand ? this.filtered : flatten(this.filtered.map(this.breakdown.expand))
+      const records = map(groupBy(data, this.breakdown.select),
+        (records, title) => ({title, records, total: records.length}))
 
-      top.push({domain: 'other', records, min})
-
-      top.forEach(t => {
-        t.total = t.records.length
-        t.paths = round(sumBy(t.records, 'paths') / t.total, 1)
-        t.tags = round(sumBy(t.records, 'tags') / t.total, 1)
-        t.summaries = round(sumBy(t.records, 'summaries') / t.total, 1)
-        t.descriptions = round(sumBy(t.records, 'descriptions') / t.total, 1)
-        t.definitions = round(sumBy(t.records, 'definitions') / t.total, 1)
-        t.methods = round(sumBy(t.records, u => sum(values(u.methods))) / t.total, 1)
-
-        const s = countBy(t.records, 'schema')
-        t.https = s.https ? round(s.https * 100 / t.total, 1) : ''
-        t.both = s.both ? round(s.both * 100 / t.total, 1) : ''
-        t.http = s.http ? round(s.http * 100 / t.total, 1) : ''
-
-        this.sumMethods(t.records, t)
+      this.selected.forEach(s => {
+        records.forEach(record => {
+          record[s.title] = record.records.filter(d => d.column === s.title).length
+        })
       })
 
-      return orderBy(top, ['total', 'domain'], ['desc', 'asc'])
-    },
-    topDomainsSelected: {
-      get () { return this.selected ? this.selected : [] },
-      set (value) { this.selected = value }
-    },
-    topDomainsSelections () {
-      return this.topDomains ? [].concat.apply([],
-        (this.topDomainsSelected.length ? this.topDomainsSelected : this.topDomains).map(d => d.records)) : null
-    },
-    sumSelectionMethods () {
-      return this.sumMethods(this.topDomainsSelections, {})
-    },
-    sumSelectionSchemes () {
-      return countBy(this.topDomainsSelections, 'schema')
-    },
-    categories () {
-      return orderBy(
-        map(countBy(flatten(map(this.topDomainsSelections, 'categories'))),
-          (count, category) => ({category: category.replace(/_/g, ' '), count})),
-        ['count', 'category'], ['desc', 'asc']
-      )
+      return orderBy(records, ['total', 'title'], ['desc', 'asc'])
     }
   },
   methods: {
@@ -92,6 +127,30 @@ export default {
       target.head = sumBy(records, d => d.methods.head)
       target.options = sumBy(records, d => d.methods.options)
       return target
+    },
+    aggregate (t) {
+      t.total = t.records.length
+      t.paths = round(sumBy(t.records, 'paths') / t.total, 1)
+      t.tags = round(sumBy(t.records, 'tags') / t.total, 1)
+      t.summaries = round(sumBy(t.records, 'summaries') / t.total, 1)
+      t.descriptions = round(sumBy(t.records, 'descriptions') / t.total, 1)
+      t.definitions = round(sumBy(t.records, 'definitions') / t.total, 1)
+      t.methods = round(sumBy(t.records, u => sum(values(u.methods))) / t.total, 1)
+
+      const s = countBy(t.records, 'schema')
+      t.https = s.https ? round(s.https * 100 / t.total, 1) : ''
+      t.both = s.both ? round(s.both * 100 / t.total, 1) : ''
+      t.http = s.http ? round(s.http * 100 / t.total, 1) : ''
+
+      this.sumMethods(t.records, t)
+    }
+  },
+  watch: {
+    grouping: function () {
+      this.selectionData = null
+    },
+    pickTop: function () {
+      this.selectionData = null
     }
   }
 }
