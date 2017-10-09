@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="active" width="480")
+  v-dialog(v-model="active" max-width="480")
     v-card
       v-toolbar.elevation-0(style="background-color: transparent")
         v-toolbar-title Security
