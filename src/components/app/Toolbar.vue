@@ -1,6 +1,6 @@
 <template lang="pug">
   // TODO v-toolbar(fixed scroll-off-screen scroll-target="main")
-  v-toolbar.gpu(fixed app)
+  v-toolbar.gpu(fixed app v-if="APP_ROUTED")
     template(v-if="APP_API_PAGE")
       v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
@@ -128,7 +128,8 @@
         types.VIEW_VIEW,
         types.APP_PAGE_NAME,
         types.SETTINGS_SEARCH,
-        types.VIEW_WIDE
+        types.VIEW_WIDE,
+        types.APP_ROUTED
       ]),
       search: {
         get () {

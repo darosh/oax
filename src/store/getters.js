@@ -11,7 +11,8 @@ const getters = {
     }
   },
   [types.APP_VERSION]: state => version,
-  [types.APP_API_PAGE]: state => state.route.path === '/',
+  [types.APP_ROUTED]: state => state.route.name !== null,
+  [types.APP_API_PAGE]: state => state.route.name === '/',
   [types.APP_PATH]: state => state.route.path,
   [types.APP_PAGE_NAME]: state => state.route.meta.name,
   [types.UI_FAB]: state => (state.route.path === '/') &&
