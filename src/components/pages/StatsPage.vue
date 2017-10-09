@@ -1,6 +1,13 @@
 <template lang="pug">
   v-container.gpu(v-if="topDomains" style="width: 100%; max-width: 100%")
     div.pa-3
+      p
+        i
+          | Statistics from
+          =" "
+          a(href="https://github.com/darosh/openapi-directory-lite" target="_blank") openapi-directory-lite
+          =" "
+          | project.
       h4 Overview
       p
         i Average values per API specification.
