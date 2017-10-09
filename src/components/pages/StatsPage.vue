@@ -61,7 +61,7 @@
   import flatten from 'lodash-es/flatten'
   import findIndex from 'lodash-es/findIndex'
 
-  import { scaleOrdinal, scaleLinear } from 'd3-scale'
+  import { scaleLinear } from 'd3-scale'
   import { colors } from '../../services/directory/openapi-directory-lite'
   import axios from 'axios'
   import appDonutChart from '../parts/DonutChart'
@@ -76,7 +76,6 @@
       axios.get('https://darosh.github.io/openapi-directory-lite/stats/index.json').then(res => this.data = res.data)
 
       return {
-        bar: scaleLinear().rangeRound([0, 88 + 44]),
         barHor: scaleLinear().rangeRound([0, 88 + 88]),
         radius: 92,
         topPicks: [1, 5, 10, 25, {text: 'All', value: Infinity}],
