@@ -31,7 +31,8 @@ export default {
         expand: d => Object.keys(d.methods).map(method => {
           return Object.assign({method}, d)
         })
-      }
+      },
+      {text: 'API', select: d => d.key.join(':')}
     ]
 
     return {
