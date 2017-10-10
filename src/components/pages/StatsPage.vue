@@ -28,8 +28,8 @@
       app-donut-chart.f-l(title="Definitions" prop="definitions"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'definitionsTotal')")
       app-donut-chart.f-l(title="Summaries" prop="summaries"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'summariesTotal')")
       app-donut-chart.f-l(title="Descriptions" prop="descriptions"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'descriptionsTotal')")
-      app-donut-chart.f-l(title="Description size" prop="descriptionLengths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'descriptionLengthsTotal')")
       app-donut-chart.f-l(title="Summary size" prop="summaryLengths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'summaryLengthsTotal')")
+      app-donut-chart.f-l(title="Description size" prop="descriptionLengths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'descriptionLengthsTotal')")
 
       div(style="clear: both")
 
