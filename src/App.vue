@@ -6,7 +6,7 @@
     main
       v-content
         router-view
-    v-dialog(width="300" v-model="log" hide-overlay persistent)
+    v-dialog(max-width="300" v-model="log" hide-overlay persistent)
       v-card
         v-toolbar.transparent.elevation-0
           v-toolbar-title Log

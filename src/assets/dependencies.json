@@ -2,6 +2,8 @@
   "axios": "0.16",
   "circular-json": "0.3",
   "codemirror": "5.30",
+  "d3-scale": "1.0",
+  "d3-shape": "1.2",
   "fast-json-patch": "2.0",
   "highlight.js": "9.12",
   "intersection-observer": "0.4",
