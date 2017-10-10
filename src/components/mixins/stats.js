@@ -1,4 +1,3 @@
-import countBy from 'lodash-es/countBy'
 import flatten from 'lodash-es/flatten'
 import groupBy from 'lodash-es/groupBy'
 import map from 'lodash-es/map'
@@ -41,7 +40,7 @@ export default {
       pickTop: 10,
       groupings,
       grouping: groupings[1],
-      breakdown: groupings[2]
+      counting: groupings[2]
     }
   },
   computed: {
@@ -76,13 +75,6 @@ export default {
 
       return orderBy(top, ['total', 'title'], ['desc', 'asc'])
     },
-    domains () {
-      return !this.data
-        ? null
-        : orderBy(map(groupBy(this.data, d => d.key[0]), (records, domain) => ({domain, records})),
-          [(d) => d.records.length, 'domain'],
-          ['desc', 'asc'])
-    },
     total () {
       return !this.data ? null : this.data.length
     },
@@ -101,13 +93,13 @@ export default {
         return d.records
       })) : null
     },
-    regrouped () {
+    counted () {
       if (!this.filtered) {
         return null
       }
 
-      const data = !this.breakdown.expand ? this.filtered : flatten(this.filtered.map(this.breakdown.expand))
-      const records = map(groupBy(data, this.breakdown.select),
+      const data = !this.counting.expand ? this.filtered : flatten(this.filtered.map(this.counting.expand))
+      const records = map(groupBy(data, this.counting.select),
         (records, title) => ({title, prop: this.nodots(title), records, total: records.length}))
 
       this.selected.forEach(s => {
@@ -120,16 +112,6 @@ export default {
     }
   },
   methods: {
-    sumMethods (records, target) {
-      target.get = sumBy(records, d => d.methods.get)
-      target.post = sumBy(records, d => d.methods.post)
-      target.put = sumBy(records, d => d.methods.put)
-      target.patch = sumBy(records, d => d.methods.patch)
-      target.delete = sumBy(records, d => d.methods.delete)
-      target.head = sumBy(records, d => d.methods.head)
-      target.options = sumBy(records, d => d.methods.options)
-      return target
-    },
     aggregate (t) {
       t.total = t.records.length
 
@@ -139,21 +121,17 @@ export default {
       t.tagsTotal = sumBy(t.records, 'tags')
       t.tags = round(t.tagsTotal / t.total, 1)
 
-      // t.summaries = round(sumBy(t.records, 'summaries') / t.total, 1)
-      // t.descriptions = round(sumBy(t.records, 'descriptions') / t.total, 1)
-
       t.definitionsTotal = sumBy(t.records, 'definitions')
       t.definitions = round(t.definitionsTotal / t.total, 1)
 
       t.methodsTotal = sumBy(t.records, u => sum(values(u.methods)))
       t.methods = round(t.methodsTotal / t.total, 1)
 
-      const s = countBy(t.records, 'schema')
-      t.https = s.https ? round(s.https * 100 / t.total, 1) : ''
-      t.both = s.both ? round(s.both * 100 / t.total, 1) : ''
-      t.http = s.http ? round(s.http * 100 / t.total, 1) : ''
+      t.summariesTotal = sumBy(t.records, 'summaries')
+      t.summaries = round(t.summariesTotal / t.total, 1)
 
-      this.sumMethods(t.records, t)
+      t.descriptionsTotal = sumBy(t.records, 'descriptions')
+      t.descriptions = round(t.descriptionsTotal / t.total, 1)
     },
     nodots (t) {
       return t.replace(/\./g, '_')

@@ -32,20 +32,20 @@
       div.f-l(style="max-width: 100%")
         v-card
           v-layout.mb-4
-            v-select.mt-3.mr-4.ml-4(:items="groupings" v-model="breakdown" label="Count by" bottom hide-details style="max-width: 180px")
+            v-select.mt-3.mr-4.ml-4(:items="groupings" v-model="counting" label="Count by" bottom hide-details style="max-width: 180px")
             v-spacer
             .pt-2.mt-3.mr-2.pr-1
               v-btn(flat icon @click="switchColsRows")
                 v-icon repeat
           v-divider
-          v-data-table.elevation-1(:headers="groupedHeaders", :items="regrouped", :hide-actions="regrouped.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
+          v-data-table.elevation-1(:headers="groupedHeaders", :items="counted", :hide-actions="counted.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
             template(slot="headerCell" scope="props")
               span(:style="{'border-bottom': props.header.color ? '4px solid ' + color(props.header.text) : null}") {{props.header.text}}
             template(slot="items" scope="props")
               td(style="white-space: nowrap") {{props.item.title}}
               td.text-xs-left(style="white-space: nowrap")
                 span.text-xs-right.mr-2(style="margin-bottom: -5px; line-height: 19.5px; min-width: 2em; display: inline-block") {{props.item.total}}
-                div(v-for="s in selected" v-if="props.item[nodots(s.title)]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(regrouped, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
+                div(v-for="s in selected" v-if="props.item[nodots(s.title)]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(counted, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
               td.text-xs-right(v-for="s in selected") {{props.item[nodots(s.title)] || ''}}
 
       div(style="clear: both")
@@ -137,8 +137,8 @@
       },
       switchColsRows() {
         const temp = this.grouping
-        this.grouping = this.breakdown
-        this.breakdown = temp
+        this.grouping = this.counting
+        this.counting = temp
       }
     }
   }
