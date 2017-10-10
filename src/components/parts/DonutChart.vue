@@ -3,11 +3,12 @@
     svg(:width="2*radius", :height="2*radius" style="display: block")
       g(:transform="'translate('+[radius,radius]+')'")
         text.chart-title(text-anchor="middle" dominant-baseline="middle") {{title}}
-        text.chart-subtitle(text-anchor="middle" dominant-baseline="middle" dy="18px") {{subtitle}}
+        text.chart-subtitle(text-anchor="middle" dominant-baseline="middle" dy="18px") {{subtitle < 1000 ? subtitle : format('.2s')(subtitle)}}
         path(v-for="d in value(p => p[prop])(items.filter(d => d[prop]))", :d="arc(d)", :fill="color(d.data[category])")
 </template>
 
 <script>
+  import { format } from 'd3-format'
   import { arc, pie } from 'd3-shape'
   import { scaleOrdinal } from 'd3-scale'
   import sumBy from 'lodash-es/sumBy'
@@ -22,7 +23,8 @@
         return arc().outerRadius(this.radius).innerRadius(this.radius * (this.inner ? this.inner : .715)).cornerRadius(1.5)(d)
       },
       sumBy,
-      round
+      round,
+      format
     }
   }
 </script>

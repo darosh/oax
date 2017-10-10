@@ -31,7 +31,9 @@ export default {
           return Object.assign({method}, d)
         })
       },
-      {text: 'API', select: d => d.key.join(':')}
+      {text: 'API', select: d => d.key.join(':')},
+      {text: 'Summaries', select: d => d.summaries},
+      {text: 'Descriptions', select: d => d.descriptions}
     ]
 
     return {
@@ -132,6 +134,12 @@ export default {
 
       t.descriptionsTotal = sumBy(t.records, 'descriptions')
       t.descriptions = round(t.descriptionsTotal / t.total, 1)
+
+      t.descriptionLengthsTotal = sumBy(t.records, 'descriptionsLength')
+      t.descriptionLengths = round(t.descriptionLengthsTotal / t.descriptionsTotal, 1)
+
+      t.summaryLengthsTotal = sumBy(t.records, 'summariesLength')
+      t.summaryLengths = round(t.summaryLengthsTotal / t.summariesTotal, 1)
     },
     nodots (t) {
       return t.replace(/\./g, '_')
