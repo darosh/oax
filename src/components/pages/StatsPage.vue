@@ -33,6 +33,10 @@
         v-card
           v-layout.mb-4
             v-select.mt-3.mr-4.ml-4(:items="groupings" v-model="breakdown" label="Count by" bottom hide-details style="max-width: 180px")
+            v-spacer
+            .pt-2.mt-3.mr-2.pr-1
+              v-btn(flat icon @click="switchColsRows")
+                v-icon repeat
           v-divider
           v-data-table.elevation-1(:headers="groupedHeaders", :items="regrouped", :hide-actions="regrouped.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
             template(slot="headerCell" scope="props")
@@ -130,6 +134,11 @@
       maxBy,
       prc (part, parts) {
         return part ? round(100 * part / parts) + '%' : ''
+      },
+      switchColsRows() {
+        const temp = this.grouping
+        this.grouping = this.breakdown
+        this.breakdown = temp
       }
     }
   }
