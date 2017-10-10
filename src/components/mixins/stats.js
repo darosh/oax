@@ -130,16 +130,16 @@ export default {
       t.methods = round(t.methodsTotal / t.total, 1)
 
       t.summariesTotal = sumBy(t.records, 'summaries')
-      t.summaries = round(t.summariesTotal / t.total, 1)
+      t.summaries = t.summariesTotal / t.total
 
       t.descriptionsTotal = sumBy(t.records, 'descriptions')
-      t.descriptions = round(t.descriptionsTotal / t.total, 1)
+      t.descriptions = t.descriptionsTotal / t.total
 
       t.descriptionLengthsTotal = sumBy(t.records, 'descriptionsLength')
-      t.descriptionLengths = round(t.descriptionLengthsTotal / t.descriptionsTotal, 1)
+      t.descriptionLengths = t.descriptionLengthsTotal / t.descriptionsTotal
 
       t.summaryLengthsTotal = sumBy(t.records, 'summariesLength')
-      t.summaryLengths = round(t.summaryLengthsTotal / t.summariesTotal, 1)
+      t.summaryLengths = t.summaryLengthsTotal / t.summariesTotal
     },
     nodots (t) {
       return t.replace(/\./g, '_')
