@@ -3,7 +3,7 @@
     v-divider
     v-list.pa-0(two-line)
       virtual-scroller.scroller-recent(:items="RECENT", item-height="73" prerender="20" key-field="url")
-        template(scope="props")
+        template(slot-scope="props")
           div(:key="props.itemKey")
             v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
               v-list-tile-avatar

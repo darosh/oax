@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.gpu(v-once style="width: 100%; max-width: 100%")
     v-data-table.ma-3-md.elevation-1.app-table(:headers="headers", :items="items" hide-actions)
-      template(slot="items" scope="props")
+      template(slot="items" slot-scope="props")
         td
           app-method(:item="props.item[6]")
         td.capitalize(style="min-width: 260px") {{ props.item[0] }}

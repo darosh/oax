@@ -8,7 +8,7 @@
             v-select.mt-3.mr-4.ml-3(:items="topPicks" v-model="pickTop" label="Pick top" bottom hide-details style="max-width: 80px")
           v-divider
           v-data-table(:headers="topHeaders", :items="top", :hide-actions="top.length <= 10", :must-sort="false", :pagination.sync="page" v-model="selection", item-key="title" select-all :rows-per-page-items="[10, 25, { text: 'All', value: -1 }]")
-            template(slot="items" scope="props")
+            template(slot="items" slot-scope="props")
               td
                 v-checkbox(color="primary" hide-details v-model="props.selected")
               td(style="white-space: nowrap")
@@ -43,9 +43,9 @@
                 v-icon repeat
           v-divider
           v-data-table.elevation-1(:headers="groupedHeaders", :items="counted", :hide-actions="counted.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
-            template(slot="headerCell" scope="props")
+            template(slot="headerCell" slot-scope="props")
               span(:style="{'border-bottom': props.header.color ? '4px solid ' + color(props.header.text) : null}") {{props.header.text}}
-            template(slot="items" scope="props")
+            template(slot="items" slot-scope="props")
               td(style="white-space: nowrap") {{props.item.title}}
               td.text-xs-left(style="white-space: nowrap")
                 span.text-xs-right.mr-2(style="margin-bottom: -5px; line-height: 19.5px; min-width: 2em; display: inline-block") {{props.item.total}}
