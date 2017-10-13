@@ -41,10 +41,8 @@ export default {
       selectionData: null,
       pickTop: 10,
       groupings,
-      // grouping: groupings[1],
-      grouping: groupings[2],
-      // counting: groupings[2]
-      counting: groupings[3]
+      grouping: groupings[1],
+      counting: groupings[2]
     }
   },
   computed: {
