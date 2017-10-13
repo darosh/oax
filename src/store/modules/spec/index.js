@@ -1,12 +1,16 @@
-import worker from '../../worker'
-import * as types from '../types'
-import search from '../../models/oas/methods/search'
-import { openAll } from '../../models/oas/methods/tags'
+import * as types from './types'
+import * as typesUI from '../ui/types'
+import * as typesSETTINGS from '../settings/types'
+import * as typesRECENT from '../recent/types'
+
+import worker from '../../../worker/index'
+import search from '../../../models/oas/methods/search'
+import { openAll } from '../../../models/oas/methods/tags'
 import CircularJSON from 'circular-json'
 import { applyPatch } from 'fast-json-patch'
-import { observables } from '../../models/oas/methods/observables'
-import { setError } from '../../services/codemirror-lint-json'
-import { isMemory } from '../../utils/memory'
+import { observables } from '../../../models/oas/methods/observables'
+import { setError } from '../../../services/codemirror-lint-json'
+import { isMemory } from '../../../utils/memory'
 
 export const state = {
   spec: null,
@@ -102,15 +106,15 @@ export const actions = {
   },
   [types.SPEC_SET_EDIT_JSON] ({commit, getters}, {change, doc, router}) {
     if (!isMemory(state.url)) {
-      const url = getters[types.RECENT_FREE_SLOT]
+      const url = getters[typesRECENT.RECENT_FREE_SLOT]
       lastUrl = url
       lastSlot = {url, doc, title: url}
-      commit(types.RECENT_SET_UNSHIFT, lastSlot)
-      commit(types.SETTINGS_SET_URL, url)
+      commit(typesRECENT.RECENT_SET_UNSHIFT, lastSlot)
+      commit(typesSETTINGS.SETTINGS_SET_URL, url)
       commit(types.SPEC_SET, {url})
       router.push({path: '/', query: {url}})
     } else {
-      commit(types.RECENT_SET_DOC, {slot: lastSlot, doc})
+      commit(typesRECENT.RECENT_SET_DOC, {slot: lastSlot, doc})
     }
 
     worker({change}).then(res => {
@@ -147,19 +151,19 @@ export const actions = {
     lastUrl = url
 
     const mem = isMemory(url)
-    const doc = (mem && (getters[types.RECENT].filter(r => r.url === url)[0] || {}).doc) || ''
+    const doc = (mem && (getters[typesRECENT.RECENT].filter(r => r.url === url)[0] || {}).doc) || ''
 
-    commit(types.UI_SET_ERROR, null)
-    commit(types.SETTINGS_SET_URL, url)
+    commit(typesUI.UI_SET_ERROR, null)
+    commit(typesSETTINGS.SETTINGS_SET_URL, url)
     commit(types.SPEC_SET_OPERATION, null)
-    commit(types.UI_SET_DRAWER, false)
+    commit(typesUI.UI_SET_DRAWER, false)
     commit(types.SPEC_SET, {
       spec: null,
       url: url,
       json: doc
     })
 
-    commit(types.UI_SET_LOADING, {text: 'Worker starting', done: 0})
+    commit(typesUI.UI_SET_LOADING, {text: 'Worker starting', done: 0})
 
     worker({
       url: mem ? url : new URL(url, window.location.href).href,
@@ -170,19 +174,19 @@ export const actions = {
         return
       }
 
-      commit(types.UI_SET_LOADING, report(progress))
+      commit(typesUI.UI_SET_LOADING, report(progress))
     }).then((res) => {
       if (url !== lastUrl) {
         return
       }
 
       if (res.err) {
-        commit(types.UI_SET_ERROR, 'ERROR: ' + res.err.message)
-        commit(types.UI_SET_LOADING, false)
+        commit(typesUI.UI_SET_ERROR, 'ERROR: ' + res.err.message)
+        commit(typesUI.UI_SET_LOADING, false)
       } else {
         // const count = (res.bundled._observables || []).length
         // commit(types.UI_SET_LOADING, {text: `Initializing ${count} ${count === 1 ? 'obsevable' : 'obsevables'}`, done: 1})
-        commit(types.UI_SET_LOADING,
+        commit(typesUI.UI_SET_LOADING,
           {text: 'Collecting observables', done: 0.98})
 
         setTimeout(() => {
@@ -192,7 +196,7 @@ export const actions = {
 
           res.bundled._observables = observables(res.bundled)
 
-          commit(types.UI_SET_LOADING, {text: 'Initializing', done: 1})
+          commit(typesUI.UI_SET_LOADING, {text: 'Initializing', done: 1})
 
           setTimeout(() => {
             Object.freeze(res.bundled.tags)
@@ -211,8 +215,8 @@ export const actions = {
                   json: res.json,
                   url: url
                 })
-                commit(types.RECENT_SET_UNSHIFT, {url, title: res.bundled.info.title})
-                commit(types.UI_SET_LOADING, false)
+                commit(typesRECENT.RECENT_SET_UNSHIFT, {url, title: res.bundled.info.title})
+                commit(typesUI.UI_SET_LOADING, false)
               }, 0)
             }, 0)
           }, 0)
@@ -223,8 +227,8 @@ export const actions = {
         return
       }
 
-      commit(types.UI_SET_LOADING, false)
-      commit(types.UI_SET_ERROR, err)
+      commit(typesUI.UI_SET_LOADING, false)
+      commit(typesUI.UI_SET_ERROR, err)
       // console.warn(err)
       throw err
     })

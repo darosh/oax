@@ -1,8 +1,10 @@
 import * as types from './types'
-import { version } from '../../package.json'
-import { configuration } from '../services/configuration'
+import * as typesUI from '../ui/types'
 
-const getters = {
+import { version } from '../../../../package.json'
+import { configuration } from '../../../services/configuration'
+
+export const getters = {
   [types.APP_HOME]: state => {
     if (state.spec.url === configuration.url) {
       return '/'
@@ -15,8 +17,6 @@ const getters = {
   [types.APP_API_PAGE]: state => state.route.name === '/',
   [types.APP_PATH]: state => state.route.path,
   [types.APP_PAGE_NAME]: state => state.route.meta.name,
-  [types.UI_FAB]: state => (state.route.path === '/') &&
+  [typesUI.UI_FAB]: state => (state.route.path === '/') &&
     !!state.spec.operation && state.ui.right
 }
-
-export default getters

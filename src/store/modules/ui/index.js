@@ -1,5 +1,5 @@
-import * as types from '../types'
-import {next} from '../../utils/next'
+import * as types from './types'
+import {next} from '../../../utils/next'
 
 export const STORAGE_KEY = 'oas-ui'
 

@@ -1,4 +1,6 @@
-import * as types from '../types'
+import * as types from './types'
+import * as typesSPEC from '../spec/types'
+
 import axios from 'axios'
 import Vue from 'vue'
 
@@ -117,7 +119,7 @@ export const actions = {
     }
 
     const data = {
-      swaggerUrl: getters[types.SPEC_URL],
+      swaggerUrl: getters[typesSPEC.SPEC_URL],
       options: options
     }
 

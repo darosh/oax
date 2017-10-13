@@ -1,0 +1,10 @@
+// apis
+export const APIS = 'APIS'
+export const APIS_COLLECTION = 'APIS_COLLECTION'
+export const APIS_COLLECTION_OBJECT = 'APIS_COLLECTION_OBJECT'
+export const APIS_CATEGORIES = 'APIS_CATEGORIES'
+// apis set
+export const APIS_SET_COLLECTION = 'APIS_SET_COLLECTION'
+export const APIS_SET = 'APIS_SET'
+export const APIS_RUN_LOAD = 'APIS_RUN_LOAD'
+export const APIS_SET_PUSH = 'APIS_SET_PUSH'

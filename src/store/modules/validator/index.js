@@ -1,4 +1,4 @@
-import * as types from '../types'
+import * as types from './types'
 import axios from 'axios'
 
 export const state = {
