@@ -13,10 +13,10 @@ export default {
       {text: 'Top level domain', select: d => d.root},
       {text: 'Domain', select: d => d.key[0]},
       {text: 'Protocol', select: d => d.schema},
-      {text: 'Tags', select: d => d.tags},
-      {text: 'Paths', select: d => d.paths},
-      {text: 'Endpoints', select: d => sum(values(d.methods))},
-      {text: 'Definitions', select: d => d.definitions},
+      {text: 'Tags', select: d => d.tags, number: true},
+      {text: 'Paths', select: d => d.paths, number: true},
+      {text: 'Endpoints', select: d => sum(values(d.methods)), number: true},
+      {text: 'Definitions', select: d => d.definitions, number: true},
       {
         text: 'Category',
         select: d => d.category,
@@ -32,8 +32,8 @@ export default {
         })
       },
       {text: 'API', select: d => d.key.join(':')},
-      {text: 'Summaries', select: d => d.summaries},
-      {text: 'Descriptions', select: d => d.descriptions}
+      {text: 'Summaries', select: d => d.summaries, number: true},
+      {text: 'Descriptions', select: d => d.descriptions, number: true}
     ]
 
     return {
@@ -41,8 +41,10 @@ export default {
       selectionData: null,
       pickTop: 10,
       groupings,
-      grouping: groupings[1],
-      counting: groupings[2]
+      // grouping: groupings[1],
+      grouping: groupings[2],
+      // counting: groupings[2]
+      counting: groupings[3]
     }
   },
   computed: {
@@ -102,7 +104,13 @@ export default {
 
       const data = !this.counting.expand ? this.filtered : flatten(this.filtered.map(this.counting.expand))
       const records = map(groupBy(data, this.counting.select),
-        (records, title) => ({title, prop: this.nodots(title), records, total: records.length}))
+        (records, title) => ({
+          title: this.counting.number ? parseInt(title) : title,
+          prop: this.nodots(title),
+          records,
+          total: records.length,
+          value: this.counting.number ? parseInt(title) : undefined
+        }))
 
       this.selected.forEach(s => {
         records.forEach(record => {
@@ -142,7 +150,7 @@ export default {
       t.summaryLengths = t.summaryLengthsTotal / t.summariesTotal
     },
     nodots (t) {
-      return t.replace(/\./g, '_')
+      return '$' + t.replace(/\./g, '_')
     }
   },
   watch: {

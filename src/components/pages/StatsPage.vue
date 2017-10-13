@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.gpu(v-if="top" style="width: 100%; max-width: 100%")
-    div.pa-3
-      div.mr-3.mb-3.f-l(style="max-width: 100%")
+    div.pa-0
+      div.pa-3.f-l(style="max-width: 100%")
         v-card
           v-layout.mb-4
             v-select.mt-3.mr-3.ml-4(:items="groupings" v-model="grouping" label="Group by" bottom hide-details style="max-width: 180px")
@@ -20,7 +20,7 @@
               td.text-xs-right {{props.item.methods}}
               td.text-xs-right {{props.item.definitions}}
         <!--p.mt-2-->
-          <!--i Average values per API specification.-->
+        <!--i Average values per API specification.-->
       app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :subtitle="sumBy(selected, 'total')", :color="color")
       app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'tagsTotal')")
       app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'pathsTotal')")
@@ -33,7 +33,7 @@
 
       div(style="clear: both")
 
-      div.f-l(style="max-width: 100%")
+      div.pa-3.f-l(style="max-width: 100%")
         v-card
           v-layout.mb-4
             v-select.mt-3.mr-4.ml-4(:items="groupings" v-model="counting" label="Count by" bottom hide-details style="max-width: 180px")
@@ -52,6 +52,18 @@
                 div(v-for="s in selected" v-if="props.item[nodots(s.title)]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(counted, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
               td.text-xs-right(v-for="s in selected") {{props.item[nodots(s.title)] || ''}}
 
+      div.pa-3.f-l(v-if="histograms" style="max-width: 100%")
+        v-card.pa-3
+          table
+            tbody
+              tr(v-for="(r, j) in histograms")
+                td.pa-0.pr-1.text-xs-center(style="line-height: 13px; font-size: 12px")
+                  span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histograms.length - 1) ? 1 : 0)}}
+                td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.max ? r.max : ''}}
+                td.pa-0
+                  svg(style="display: block" width="320" height="12" v-if="r[0]")
+                    rect(v-for="(h, i) in selected", v-if="r['#'+selected[i].title]", :fill="color(selected[i].title)", :width="r['#'+selected[i].title]", height="13", :transform="'translate('+[r['_'+selected[i].title],0]+')'")
+
       div(style="clear: both")
 </template>
 
@@ -69,7 +81,9 @@
   import flatten from 'lodash-es/flatten'
   import findIndex from 'lodash-es/findIndex'
 
+  import { histogram, extent } from 'd3-array'
   import { scaleLinear } from 'd3-scale'
+  import { stack, area } from 'd3-shape'
   import { colors } from '../../services/directory/openapi-directory-lite'
   import axios from 'axios'
   import appDonutChart from '../parts/DonutChart'
@@ -85,6 +99,7 @@
 
       return {
         barHor: scaleLinear().rangeRound([0, 88 + 88]),
+        area: area(),
         radius: 92,
         topPicks: [1, 5, 10, 25, {text: 'All', value: Infinity}],
         page: {sortBy: 'total', descending: true, rowsPerPage: 10},
@@ -122,8 +137,60 @@
         return [
           {text: 'Title', value: 'title', align: 'left'},
           {text: 'Count', value: 'total', align: 'left'},
-          ...this.selected.map(d => ({text: d.title, value: d.title.replace(/\./g, '_'), color: true}))
+          ...this.selected.map(d => ({text: d.title, value: this.nodots(d.title), color: true}))
         ]
+      },
+      histograms () {
+        if (!this.counting.number) {
+          return null
+        }
+
+        const e = extent(this.counted, d => d.value)
+        const w = 320
+        const x = scaleLinear()
+          .domain(e)
+          .rangeRound([0, w])
+
+        const h = histogram()
+          .value(d => d.value)
+          .domain(x.domain())
+          .thresholds(x.ticks(Math.min(e[1] - e[0], 32)))(this.counted)
+
+        h.forEach(c => {
+          c.x = x(c.x0)
+          c.width = x(c.x1 - c.x0)
+
+          for (let i = 0; i < c.length; i++) {
+            if (c[i]) {
+              this.selected.forEach(s => {
+                c['#' + s.title] = c['#' + s.title] || 0
+                c['#' + s.title] += c[i][this.nodots(s.title)] > 0 ? c[i][this.nodots(s.title)] : 0
+              })
+            }
+          }
+
+          let prev = 0
+
+          this.selected.forEach(s => {
+            c['_' + s.title] = prev
+            prev += c['#' + s.title] > 0 ? c['#' + s.title] : 0
+          })
+
+          c.max = prev
+        })
+
+        const m = (maxBy(h, 'max') || {}).max || 1
+
+        h.forEach(c => {
+          this.selected.forEach(s => {
+            c['_' + s.title] /= m
+            c['#' + s.title] /= m
+            c['_' + s.title] *= 320
+            c['#' + s.title] *= 320
+          })
+        })
+
+        return h
       }
     },
     methods: {
@@ -139,7 +206,7 @@
       prc (part, parts) {
         return part ? round(100 * part / parts) + '%' : ''
       },
-      switchColsRows() {
+      switchColsRows () {
         const temp = this.grouping
         this.grouping = this.counting
         this.counting = temp
