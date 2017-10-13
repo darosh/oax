@@ -100,7 +100,7 @@
       return {
         barHor: scaleLinear().rangeRound([0, 88 + 88]),
         area: area(),
-        radius: 92,
+        radius: 70,
         topPicks: [1, 5, 10, 25, {text: 'All', value: Infinity}],
         page: {sortBy: 'total', descending: true, rowsPerPage: 10},
         pageGrouped: {sortBy: 'total', descending: true, rowsPerPage: 10},

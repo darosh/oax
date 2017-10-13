@@ -2,9 +2,10 @@
   v-card.pa-1.ma-3(style="border-radius: 50%", :style="{width: (2*radius + 8)+'px', height: (2*radius + 8)+'px'}")
     svg(:width="2*radius", :height="2*radius" style="display: block")
       g(:transform="'translate('+[radius,radius]+')'")
-        text.chart-title(text-anchor="middle" dominant-baseline="middle") {{title}}
-        text.chart-subtitle(text-anchor="middle" dominant-baseline="middle" dy="18px") {{subtitle < 1000 ? subtitle : format('.2s')(subtitle)}}
         path(v-for="d in value(p => p[prop])(items.filter(d => d[prop]))", :d="arc(d)", :fill="color(d.data[category])")
+        text.chart-title(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) -18 + 'px'" v-if="titles.length > 1") {{titles[0]}}
+        text.chart-title(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) +0 + 'px'") {{titles[1] || titles[0]}}
+        text.chart-subtitle(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) +18 + 'px'") {{subtitle < 1000 ? subtitle : format('.2s')(subtitle)}}
 </template>
 
 <script>
@@ -25,6 +26,11 @@
       sumBy,
       round,
       format
+    },
+    computed: {
+      titles () {
+        return this.title.split(' ')
+      }
     }
   }
 </script>
