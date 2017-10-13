@@ -42,7 +42,7 @@
               v-btn(flat icon @click="switchColsRows")
                 v-icon repeat
           v-divider
-          v-data-table.elevation-1(:headers="groupedHeaders", :items="counted", :hide-actions="counted.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
+          v-data-table(:headers="groupedHeaders", :items="counted", :hide-actions="counted.length <= 10", :must-sort="false", :pagination.sync="pageGrouped")
             template(slot="headerCell" slot-scope="props")
               span(:style="{'border-bottom': props.header.color ? '4px solid ' + color(props.header.text) : null}") {{props.header.text}}
             template(slot="items" slot-scope="props")
