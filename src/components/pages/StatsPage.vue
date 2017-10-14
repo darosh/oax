@@ -144,15 +144,26 @@
         this.counting = temp
       },
       bookmark () {
-        this.$router.push({
-          path: '/stats', query: {
-            group: this.grouping !== this.defaultCounting ? this.short(this.grouping.text) : undefined,
-            count: this.counting !== this.defaultCounting ? this.short(this.counting.text) : undefined,
-            pick: this.pickTop !== this.defaultPick ? this.pickTop : undefined
-          }
-        })
+        if (this.bookmarkPending) {
+          clearTimeout(this.bookmarkPending)
+        }
+
+        this.bookmarkPending = setTimeout(() => {
+          this.$router.push({
+            path: '/stats', query: {
+              group: this.grouping !== this.defaultGrouping ? this.short(this.grouping.text) : undefined,
+              count: this.counting !== this.defaultCounting ? this.short(this.counting.text) : undefined,
+              pick: this.pickTop !== this.defaultPick ? this.pickTop : undefined
+            }
+          })
+          this.bookmarkPending = false
+        }, 0)
       },
       update () {
+        if (this.bookmarkPending) {
+          return
+        }
+
         this.grouping = this.groupings.find(d => this.short(d.text) === this.$route.query.group) || this.defaultGrouping
         this.counting = this.groupings.find(d => this.short(d.text) === this.$route.query.count) || this.defaultCounting
         this.pickTop = this.topPicks.find(d => d === this.$route.query.pick) || this.defaultPick
