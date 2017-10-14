@@ -55,15 +55,16 @@
           v-layout.mb-4
             v-select.mt-3.mr-4.ml-4(:items="binPicks" v-model="histogramBins" label="Histogram bins" bottom hide-details style="max-width: 180px")
           v-divider
-          table.pa-3
-            tbody
-              tr(v-for="(r, j) in histogram")
-                td.pa-0.pr-1.text-xs-center(style="line-height: 13px; font-size: 12px")
-                  span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
-                td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
-                td.pa-0
-                  svg(style="display: block", :width="histogramY" height="12" v-if="r[0]")
-                    rect(v-for="(h, i) in selected", v-if="r.histSum[selected[i].title]", :fill="color(selected[i].title)", :width="r.histSum[selected[i].title]", height="12", :transform="'translate('+[r.histPos[selected[i].title],0]+')'")
+          .table__overflow
+            table.pa-3
+              tbody
+                tr(v-for="(r, j) in histogram")
+                  td.pa-0.pr-1.text-xs-center(style="white-space: nowrap; line-height: 13px; font-size: 12px")
+                    span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
+                  td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
+                  td.pa-0
+                    svg(style="display: block", :width="histogramY" height="12" v-if="r[0]")
+                      rect(v-for="(h, i) in selected", v-if="r.histSum[selected[i].title]", :fill="color(selected[i].title)", :width="r.histSum[selected[i].title]", height="12", :transform="'translate('+[r.histPos[selected[i].title],0]+')'")
 
       div(style="clear: both")
 </template>
