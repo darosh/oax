@@ -18,6 +18,12 @@ import {IGrouped} from './stats/IGrouped';
 import {ICounted} from "./stats/ICounted";
 import {IHistogram} from "./stats/IHistogram";
 
+const DECS = 'desc'
+const ASC = 'asc'
+const TITLE = 'title'
+const OTHER = 'other'
+const TOTAL = 'total'
+
 export default {
   data(): { data?: IRecord, selectionData?: any[], pickTop: number, groupings: IGrouping[], grouping: IGrouping, counting: IGrouping } {
     return {
@@ -36,8 +42,8 @@ export default {
       }
 
       const data = !this.grouping.expand ? this.data : flatten(this.data.map(this.grouping.expand))
-      const records = map(groupBy(data, this.grouping.select), (records, title) => ({title, records}))
-      return orderBy(records, [(d) => d.records.length, 'title'], ['desc', 'asc'])
+      const records = map(groupBy(data, this.grouping.select), (records, title) => ({title, records, prop: this.nodots(title)}))
+      return orderBy(records, [(d) => d.records.length, TITLE], [DECS, ASC])
     },
     top(): IGrouped[] {
       if (!this.grouped) {
@@ -54,12 +60,12 @@ export default {
         top = (this.grouped as IGrouped[]).filter(d => d.records.length > min)
 
         const records = [].concat.apply([], (this.grouped as IGrouped[]).filter(d => d.records.length <= min).map(d => d.records))
-        top.push({title: 'other', records, min})
+        top.push({title: OTHER, records, prop: this.nodots(OTHER), min})
       }
 
       top.forEach(this.aggregate)
 
-      return orderBy(top, ['total', 'title'], ['desc', 'asc'])
+      return orderBy(top, [TOTAL, TITLE], [DECS, ASC])
     },
     total(): number {
       return !this.data ? null : this.data.length
@@ -105,7 +111,7 @@ export default {
         })
       })
 
-      return orderBy(records, ['total', 'title'], ['desc', 'asc'])
+      return orderBy(records, [TOTAL, TITLE], [DECS, ASC])
     },
     histograms() {
       if (!this.counting.number) {

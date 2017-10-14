@@ -47,8 +47,8 @@
               td(style="white-space: nowrap") {{props.item.title}}
               td.text-xs-left(style="white-space: nowrap")
                 span.text-xs-right.mr-2(style="margin-bottom: -5px; line-height: 19.5px; min-width: 2em; display: inline-block") {{props.item.total}}
-                div(v-for="s in selected" v-if="props.item[nodots(s.title)]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(counted, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
-              td.text-xs-right(v-for="s in selected") {{props.item[nodots(s.title)] || ''}}
+                div(v-for="s in selected" v-if="props.item[s.prop]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(counted, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
+              td.text-xs-right(v-for="s in selected") {{props.item[s.prop] || ''}}
 
       div.pa-3.f-l(v-if="histograms" style="max-width: 100%")
         v-card.pa-3
