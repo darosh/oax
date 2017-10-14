@@ -4,6 +4,8 @@ import {Bin} from "d3-array";
 export interface IHistogram extends Bin<ICounted, number> {
   x: number,
   width: number,
-  max: number,
-  [property: string]: number | any
+  histMax: number,
+  histPos: {[index: string]: number},
+  histSum: {[index: string]: number}
+  // [property: string]: number | any
 }

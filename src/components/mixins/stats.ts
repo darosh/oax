@@ -42,7 +42,11 @@ export default {
       }
 
       const data = !this.grouping.expand ? this.data : flatten(this.data.map(this.grouping.expand))
-      const records = map(groupBy(data, this.grouping.select), (records, title) => ({title, records, prop: this.nodots(title)}))
+      const records = map(groupBy(data, this.grouping.select), (records, title) => ({
+        title,
+        records,
+        prop: this.propName(title)
+      }))
       return orderBy(records, [(d) => d.records.length, TITLE], [DECS, ASC])
     },
     top(): IGrouped[] {
@@ -60,7 +64,7 @@ export default {
         top = (this.grouped as IGrouped[]).filter(d => d.records.length > min)
 
         const records = [].concat.apply([], (this.grouped as IGrouped[]).filter(d => d.records.length <= min).map(d => d.records))
-        top.push({title: OTHER, records, prop: this.nodots(OTHER), min})
+        top.push({title: OTHER, records, prop: this.propName(OTHER), min})
       }
 
       top.forEach(this.aggregate)
@@ -99,7 +103,7 @@ export default {
       const records: ICounted[] = map(groupBy(data, this.counting.select),
         (records, title) => ({
           title: this.counting.number ? parseInt(title) : title,
-          prop: this.nodots(title),
+          prop: this.propName(title),
           records,
           total: records.length,
           value: this.counting.number ? parseInt(title) : undefined
@@ -107,13 +111,13 @@ export default {
 
       (this.selected as IGrouped[]).forEach(s => {
         records.forEach(record => {
-          record[this.nodots(s.title)] = record.records.filter(d => d.column === s.title).length
+          record[this.propName(s.title)] = record.records.filter(d => d.column === s.title).length
         })
       })
 
       return orderBy(records, [TOTAL, TITLE], [DECS, ASC])
     },
-    histograms() {
+    histogram() {
       if (!this.counting.number) {
         return null
       }
@@ -136,8 +140,9 @@ export default {
         for (let i = 0; i < c.length; i++) {
           if (c[i]) {
             (this.selected as IGrouped[]).forEach(s => {
-              c['#' + s.title] = c['#' + s.title] || 0
-              c['#' + s.title] += c[i][this.nodots(s.title)] > 0 ? c[i][this.nodots(s.title)] : 0
+              c.histSum = c.histSum || {}
+              c.histSum[s.title] = c.histSum[s.title] || 0;
+              (c.histSum[s.title] as any) += c[i][this.propName(s.title)] > 0 ? c[i][this.propName(s.title)] : 0
             })
           }
         }
@@ -145,21 +150,25 @@ export default {
         let prev = 0;
 
         (this.selected as IGrouped[]).forEach(s => {
-          c['_' + s.title] = prev
-          prev += c['#' + s.title] > 0 ? c['#' + s.title] : 0
+          c.histPos = c.histPos || {}
+          c.histPos[s.title] = prev
+          prev += (c.histSum && (c.histSum[s.title] > 0)) ? c.histSum[s.title] : 0
         })
 
-        c.max = prev
+        c.histMax = prev
       })
 
-      const m: number = (maxBy((h as IHistogram[]), 'max') || {max: 1}).max;
+      const m: number = (maxBy((h as IHistogram[]), 'histMax') || {histMax: 1}).histMax;
 
       (h as IHistogram[]).forEach(c => {
         (this.selected as IGrouped[]).forEach(s => {
-          c['_' + s.title] /= m
-          c['#' + s.title] /= m
-          c['_' + s.title] *= 320
-          c['#' + s.title] *= 320
+          if (c.histPos && c.histPos[s.title]) {
+            c.histPos[s.title] /= m
+            c.histPos[s.title] *= 320
+
+            c.histSum[s.title] /= m
+            c.histSum[s.title] *= 320
+          }
         })
       })
 
@@ -194,7 +203,7 @@ export default {
       t.summaryLengthsTotal = sumBy(t.records, 'summariesLength')
       t.summaryLengths = t.summaryLengthsTotal / t.summariesTotal
     },
-    nodots(t: string): string {
+    propName(t: string): string {
       return '$' + t.replace(/\./g, '_')
     }
   },

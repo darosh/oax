@@ -47,20 +47,20 @@
               td(style="white-space: nowrap") {{props.item.title}}
               td.text-xs-left(style="white-space: nowrap")
                 span.text-xs-right.mr-2(style="margin-bottom: -5px; line-height: 19.5px; min-width: 2em; display: inline-block") {{props.item.total}}
-                div(v-for="s in selected" v-if="props.item[s.prop]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(counted, 'total').total])(props.item[nodots(s.title)]) + 'px'}")
+                div(v-for="s in selected" v-if="props.item[s.prop]", style="display: inline-block; height: 20px; margin-bottom: -5px", :style="{'background-color': color(s.title),width: barHor.domain([0, maxBy(counted, 'total').total])(props.item[s.prop]) + 'px'}")
               td.text-xs-right(v-for="s in selected") {{props.item[s.prop] || ''}}
 
-      div.pa-3.f-l(v-if="histograms" style="max-width: 100%")
+      div.pa-3.f-l(v-if="histogram" style="max-width: 100%")
         v-card.pa-3
           table
             tbody
-              tr(v-for="(r, j) in histograms")
+              tr(v-for="(r, j) in histogram")
                 td.pa-0.pr-1.text-xs-center(style="line-height: 13px; font-size: 12px")
-                  span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histograms.length - 1) ? 1 : 0)}}
-                td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.max ? r.max : ''}}
+                  span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
+                td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
                 td.pa-0
                   svg(style="display: block" width="320" height="12" v-if="r[0]")
-                    rect(v-for="(h, i) in selected", v-if="r['#'+selected[i].title]", :fill="color(selected[i].title)", :width="r['#'+selected[i].title]", height="13", :transform="'translate('+[r['_'+selected[i].title],0]+')'")
+                    rect(v-for="(h, i) in selected", v-if="r.histSum[selected[i].title]", :fill="color(selected[i].title)", :width="r.histSum[selected[i].title]", height="13", :transform="'translate('+[r.histPos[selected[i].title],0]+')'")
 
       div(style="clear: both")
 </template>
@@ -133,7 +133,7 @@
         return [
           {text: 'Title', value: 'title', align: 'left'},
           {text: 'Count', value: 'total', align: 'left'},
-          ...this.selected.map(d => ({text: d.title, value: this.nodots(d.title), color: true}))
+          ...this.selected.map(d => ({text: d.title, value: d.prop, color: true}))
         ]
       }
     },
