@@ -5,7 +5,7 @@
         path(v-for="d in value(p => p[prop])(items.filter(d => d[prop]))", :d="arc(d)", :fill="color(d.data[category])")
         text.chart-title(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) -18 + 'px'" v-if="titles.length > 1") {{titles[0]}}
         text.chart-title(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) +0 + 'px'") {{titles[1] || titles[0]}}
-        text.chart-subtitle(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) +18 + 'px'") {{subtitle < 1000 ? subtitle : format('.2s')(subtitle)}}
+        text.chart-subtitle(text-anchor="middle" dominant-baseline="middle", :dy="(titles.length > 1 ? 9 : 0) +18 + 'px'") {{subtitle}}
 </template>
 
 <script>
@@ -17,19 +17,22 @@
   import { colors } from '../../services/directory/openapi-directory-lite'
 
   export default {
-    props: ['radius', 'title', 'subtitle', 'items', 'prop', 'category', 'inner', 'color'],
+    props: ['radius', 'title', 'items', 'prop', 'category', 'inner', 'color'],
     methods: {
       value: pie().padAngle(2 * Math.PI / 360).sort(null).value,
       arc: function (d) {
         return arc().outerRadius(this.radius).innerRadius(this.radius * (this.inner ? this.inner : .715)).cornerRadius(1.5)(d)
       },
       sumBy,
-      round,
-      format
+      round
     },
     computed: {
       titles () {
         return this.title.split(' ')
+      },
+      subtitle () {
+        const sum = sumBy(this.items, (this.prop === 'total') ? this.prop : this.prop + 'Total')
+        return sum < 1000 ? sum : format('.2s')(sum)
       }
     }
   }

@@ -19,15 +19,15 @@
               td.text-xs-right {{props.item.paths}}
               td.text-xs-right {{props.item.methods}}
               td.text-xs-right {{props.item.definitions}}
-      app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :subtitle="sumBy(selected, 'total')", :color="color")
-      app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'tagsTotal')")
-      app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'pathsTotal')")
-      app-donut-chart.f-l(title="Endpoints" prop="methods"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'methodsTotal')")
-      app-donut-chart.f-l(title="Definitions" prop="definitions"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'definitionsTotal')")
-      app-donut-chart.f-l(title="Summaries" prop="summaries"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'summariesTotal')")
-      app-donut-chart.f-l(title="Descriptions" prop="descriptions"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'descriptionsTotal')")
-      app-donut-chart.f-l(title="Summary size" prop="summaryLengths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'summaryLengthsTotal')")
-      app-donut-chart.f-l(title="Description size" prop="descriptionLengths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'descriptionLengthsTotal')")
+      app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Endpoints" prop="methods"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Definitions" prop="definitions"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Summaries" prop="summaries"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Descriptions" prop="descriptions"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Summary size" prop="summaryLengths"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Description size" prop="descriptionLengths"  category="title", :radius="radius", :items="selected", :color="color")
 
       div(style="clear: both")
 
@@ -69,23 +69,15 @@
 </template>
 
 <script>
-  import countBy from 'lodash-es/countBy'
-  import groupBy from 'lodash-es/groupBy'
-  import map from 'lodash-es/map'
-  import orderBy from 'lodash-es/orderBy'
-  import round from 'lodash-es/round'
-  import sum from 'lodash-es/sum'
-  import max from 'lodash-es/max'
   import maxBy from 'lodash-es/maxBy'
-  import sumBy from 'lodash-es/sumBy'
-  import values from 'lodash-es/values'
-  import flatten from 'lodash-es/flatten'
   import findIndex from 'lodash-es/findIndex'
 
   import { scaleLinear } from 'd3-scale'
 
   import { colors } from '../../services/directory/openapi-directory-lite'
+
   import axios from 'axios'
+
   import appDonutChart from '../parts/DonutChart'
   import stats from '../mixins/stats.ts'
 
@@ -142,18 +134,7 @@
       }
     },
     methods: {
-      round,
-      roundedRatio (val, tot, r) {
-        return val ? round(val / tot, r) : null
-      },
-      max,
-      sum,
-      values,
-      sumBy,
       maxBy,
-      prc (part, parts) {
-        return part ? round(100 * part / parts) + '%' : ''
-      },
       switchColsRows () {
         const temp = this.grouping
         this.grouping = this.counting
