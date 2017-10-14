@@ -12,8 +12,8 @@ import {histogram, extent, Bin} from 'd3-array'
 import {scaleLinear} from 'd3-scale'
 
 import {groupings} from './stats/groupings'
-import {IRecord} from './stats/IRecord';
-import {IGrouping} from './stats/IGrouping';
+// import {IRecord} from './stats/IRecord';
+// import {IGrouping} from './stats/IGrouping';
 import {IGrouped} from './stats/IGrouped';
 import {ICounted} from "./stats/ICounted";
 import {IHistogram} from "./stats/IHistogram";
@@ -25,14 +25,16 @@ const OTHER = 'other'
 const TOTAL = 'total'
 
 export default {
-  data(): { data?: IRecord, selectionData?: any[], pickTop: number, groupings: IGrouping[], grouping: IGrouping, counting: IGrouping } {
+  data(): any {
     return {
       data: null,
       selectionData: null,
       pickTop: 10,
       groupings,
       grouping: groupings[1],
-      counting: groupings[2]
+      counting: groupings[2],
+      histogramBins: 32,
+      histogramY: 320
     }
   },
   computed: {
@@ -123,15 +125,13 @@ export default {
       }
 
       const e: number[] = extent<number>(this.counted, d => (d as any).value) as number[]
-      const w = 320
       const x = scaleLinear()
         .domain(e)
-        .rangeRound([0, w])
 
       const hist: Array<Bin<ICounted, number>> = histogram<ICounted, number>()
         .value(d => (d as any).value)
         .domain(x.domain() as [number, number])
-        .thresholds(x.ticks(Math.min(e[1] - e[0], 32)))(this.counted);
+        .thresholds(x.ticks(Math.min(e[1] - e[0], this.histogramBins)))(this.counted);
 
       (hist as IHistogram[]).forEach(h => {
         h.x = x(h.x0)
@@ -200,13 +200,16 @@ export default {
       h.histMax = prev
     },
     histogramScale(h: IHistogram, max: number): void {
-      if (h.histPos) {
+      if (h.histPos || h.histSum) {
         (this.selected as IGrouped[]).forEach(s => {
-          if (h.histPos[s.title]) {
+          if (h.histPos && h.histPos[s.title]) {
             h.histPos[s.title] /= max
-            h.histPos[s.title] *= 320
+            h.histPos[s.title] *= this.histogramY
+          }
+
+          if (h.histSum && h.histSum[s.title]) {
             h.histSum[s.title] /= max
-            h.histSum[s.title] *= 320
+            h.histSum[s.title] *= this.histogramY
           }
         })
       }

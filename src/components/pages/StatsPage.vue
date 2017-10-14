@@ -51,16 +51,19 @@
               td.text-xs-right(v-for="s in selected") {{props.item[s.prop] || ''}}
 
       div.pa-3.f-l(v-if="histogram" style="max-width: 100%")
-        v-card.pa-3
-          table
+        v-card
+          v-layout.mb-4
+            v-select.mt-3.mr-4.ml-4(:items="binPicks" v-model="histogramBins" label="Histogram bins" bottom hide-details style="max-width: 180px")
+          v-divider
+          table.pa-3
             tbody
               tr(v-for="(r, j) in histogram")
                 td.pa-0.pr-1.text-xs-center(style="line-height: 13px; font-size: 12px")
                   span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
                 td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
                 td.pa-0
-                  svg(style="display: block" width="320" height="12" v-if="r[0]")
-                    rect(v-for="(h, i) in selected", v-if="r.histSum[selected[i].title]", :fill="color(selected[i].title)", :width="r.histSum[selected[i].title]", height="13", :transform="'translate('+[r.histPos[selected[i].title],0]+')'")
+                  svg(style="display: block", :width="histogramY" height="12" v-if="r[0]")
+                    rect(v-for="(h, i) in selected", v-if="r.histSum[selected[i].title]", :fill="color(selected[i].title)", :width="r.histSum[selected[i].title]", height="12", :transform="'translate('+[r.histPos[selected[i].title],0]+')'")
 
       div(style="clear: both")
 </template>
@@ -100,6 +103,7 @@
         topPicks: [1, 5, 10, 25, {text: 'All', value: Infinity}],
         page: {sortBy: 'total', descending: true, rowsPerPage: 10},
         pageGrouped: {sortBy: 'total', descending: true, rowsPerPage: 10},
+        binPicks: [8, 16, 32, 64],
         topHeaders: [
           {text: 'Title', value: 'title', align: 'left'},
           {text: 'APIs', value: 'total'},
