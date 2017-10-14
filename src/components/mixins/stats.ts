@@ -22,17 +22,25 @@ const TITLE = 'title'
 const OTHER = 'other'
 const TOTAL = 'total'
 
+const defaultGrouping = groupings[1]
+const defaultCounting = groupings[2]
+const defaultPick = 10
+
 export default {
+
   data(): any {
     return {
       data: null,
       selectionData: null,
-      pickTop: 10,
+      pickTop: defaultPick,
       groupings,
-      grouping: groupings[1],
-      counting: groupings[2],
+      grouping: defaultGrouping,
+      counting: defaultCounting,
       histogramBins: 32,
-      histogramY: 320
+      histogramY: 320,
+      defaultGrouping,
+      defaultCounting,
+      defaultPick
     }
   },
   computed: {
