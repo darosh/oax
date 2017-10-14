@@ -128,51 +128,23 @@ export default {
         .domain(e)
         .rangeRound([0, w])
 
-      const h: Array<Bin<ICounted, number>> = histogram<ICounted, number>()
+      const hist: Array<Bin<ICounted, number>> = histogram<ICounted, number>()
         .value(d => (d as any).value)
         .domain(x.domain() as [number, number])
         .thresholds(x.ticks(Math.min(e[1] - e[0], 32)))(this.counted);
 
-      (h as IHistogram[]).forEach(c => {
-        c.x = x(c.x0)
-        c.width = x(c.x1 - c.x0)
+      (hist as IHistogram[]).forEach(h => {
+        h.x = x(h.x0)
+        h.width = x(h.x1 - h.x0)
 
-        for (let i = 0; i < c.length; i++) {
-          if (c[i]) {
-            (this.selected as IGrouped[]).forEach(s => {
-              c.histSum = c.histSum || {}
-              c.histSum[s.title] = c.histSum[s.title] || 0;
-              (c.histSum[s.title] as any) += c[i][this.propName(s.title)] > 0 ? c[i][this.propName(s.title)] : 0
-            })
-          }
-        }
-
-        let prev = 0;
-
-        (this.selected as IGrouped[]).forEach(s => {
-          c.histPos = c.histPos || {}
-          c.histPos[s.title] = prev
-          prev += (c.histSum && (c.histSum[s.title] > 0)) ? c.histSum[s.title] : 0
-        })
-
-        c.histMax = prev
+        this.histogramSums(h)
       })
 
-      const m: number = (maxBy((h as IHistogram[]), 'histMax') || {histMax: 1}).histMax;
+      const max: number = (maxBy((hist as IHistogram[]), 'histMax') || {histMax: 1}).histMax;
 
-      (h as IHistogram[]).forEach(c => {
-        (this.selected as IGrouped[]).forEach(s => {
-          if (c.histPos && c.histPos[s.title]) {
-            c.histPos[s.title] /= m
-            c.histPos[s.title] *= 320
+      (hist as IHistogram[]).forEach(c => this.histogramScale(c, max))
 
-            c.histSum[s.title] /= m
-            c.histSum[s.title] *= 320
-          }
-        })
-      })
-
-      return h
+      return hist
     }
   },
   methods: {
@@ -205,6 +177,39 @@ export default {
     },
     propName(t: string): string {
       return '$' + t.replace(/\./g, '_')
+    },
+    histogramSums(h: IHistogram): void {
+      for (let i = 0; i < h.length; i++) {
+        if (h[i]) {
+          (this.selected as IGrouped[]).forEach(s => {
+            h.histSum = h.histSum || {}
+            h.histSum[s.title] = h.histSum[s.title] || 0;
+            (h.histSum[s.title] as any) += h[i][this.propName(s.title)] > 0 ? h[i][this.propName(s.title)] : 0
+          })
+        }
+      }
+
+      let prev = 0;
+
+      (this.selected as IGrouped[]).forEach(s => {
+        h.histPos = h.histPos || {}
+        h.histPos[s.title] = prev
+        prev += (h.histSum && (h.histSum[s.title] > 0)) ? h.histSum[s.title] : 0
+      })
+
+      h.histMax = prev
+    },
+    histogramScale(h: IHistogram, max: number): void {
+      if (h.histPos) {
+        (this.selected as IGrouped[]).forEach(s => {
+          if (h.histPos[s.title]) {
+            h.histPos[s.title] /= max
+            h.histPos[s.title] *= 320
+            h.histSum[s.title] /= max
+            h.histSum[s.title] *= 320
+          }
+        })
+      }
     }
   },
   watch: {
