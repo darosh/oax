@@ -19,8 +19,6 @@
               td.text-xs-right {{props.item.paths}}
               td.text-xs-right {{props.item.methods}}
               td.text-xs-right {{props.item.definitions}}
-        <!--p.mt-2-->
-        <!--i Average values per API specification.-->
       app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :subtitle="sumBy(selected, 'total')", :color="color")
       app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'tagsTotal')")
       app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color", :subtitle="sumBy(selected, 'pathsTotal')")
@@ -81,13 +79,12 @@
   import flatten from 'lodash-es/flatten'
   import findIndex from 'lodash-es/findIndex'
 
-  import { histogram, extent } from 'd3-array'
   import { scaleLinear } from 'd3-scale'
-  import { stack, area } from 'd3-shape'
+
   import { colors } from '../../services/directory/openapi-directory-lite'
   import axios from 'axios'
   import appDonutChart from '../parts/DonutChart'
-  import stats from '../mixins/stats'
+  import stats from '../mixins/stats.ts'
 
   export default {
     mixins: [stats],
@@ -99,7 +96,6 @@
 
       return {
         barHor: scaleLinear().rangeRound([0, 88 + 88]),
-        area: area(),
         radius: 70,
         topPicks: [1, 5, 10, 25, {text: 'All', value: Infinity}],
         page: {sortBy: 'total', descending: true, rowsPerPage: 10},
@@ -139,58 +135,6 @@
           {text: 'Count', value: 'total', align: 'left'},
           ...this.selected.map(d => ({text: d.title, value: this.nodots(d.title), color: true}))
         ]
-      },
-      histograms () {
-        if (!this.counting.number) {
-          return null
-        }
-
-        const e = extent(this.counted, d => d.value)
-        const w = 320
-        const x = scaleLinear()
-          .domain(e)
-          .rangeRound([0, w])
-
-        const h = histogram()
-          .value(d => d.value)
-          .domain(x.domain())
-          .thresholds(x.ticks(Math.min(e[1] - e[0], 32)))(this.counted)
-
-        h.forEach(c => {
-          c.x = x(c.x0)
-          c.width = x(c.x1 - c.x0)
-
-          for (let i = 0; i < c.length; i++) {
-            if (c[i]) {
-              this.selected.forEach(s => {
-                c['#' + s.title] = c['#' + s.title] || 0
-                c['#' + s.title] += c[i][this.nodots(s.title)] > 0 ? c[i][this.nodots(s.title)] : 0
-              })
-            }
-          }
-
-          let prev = 0
-
-          this.selected.forEach(s => {
-            c['_' + s.title] = prev
-            prev += c['#' + s.title] > 0 ? c['#' + s.title] : 0
-          })
-
-          c.max = prev
-        })
-
-        const m = (maxBy(h, 'max') || {}).max || 1
-
-        h.forEach(c => {
-          this.selected.forEach(s => {
-            c['_' + s.title] /= m
-            c['#' + s.title] /= m
-            c['_' + s.title] *= 320
-            c['#' + s.title] *= 320
-          })
-        })
-
-        return h
       }
     },
     methods: {

@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.309",
+  "version": "1.0.310",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -9,7 +9,10 @@
     "not ie <= 10"
   ],
   "dependencies": {
+    "@types/d3-array": "^1.2.1",
+    "@types/d3-scale": "^1.0.10",
     "@types/highlight.js": "^9.1.10",
+    "@types/lodash-es": "^4.14.7",
     "@types/showdown": "^1.7.1",
     "@types/swagger-schema-official": "^2.0.6",
     "axios": "^0.16.2",
