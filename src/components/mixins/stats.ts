@@ -12,8 +12,6 @@ import {histogram, extent, Bin} from 'd3-array'
 import {scaleLinear} from 'd3-scale'
 
 import {groupings} from './stats/groupings'
-// import {IRecord} from './stats/IRecord';
-// import {IGrouping} from './stats/IGrouping';
 import {IGrouped} from './stats/IGrouped';
 import {ICounted} from "./stats/ICounted";
 import {IHistogram} from "./stats/IHistogram";
