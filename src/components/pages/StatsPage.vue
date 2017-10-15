@@ -80,7 +80,7 @@
               v-icon repeat
               |  button switches rows and columns.
             .body-2.mb-2 Histogram chart
-            p.mb-0 Shows distribution overview of values in <i>Count table</i>.
+            p.mb-0 Shows distribution overview of countable title values in <i>Count table</i>.
           v-divider
           v-card-text
             .body-2.mb-2 Examples
