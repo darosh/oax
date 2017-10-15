@@ -147,7 +147,7 @@ export default {
       })
 
       const max: number = (maxBy((hist as IHistogram[]), 'histMax') || {histMax: 1}).histMax;
-
+      (hist as any).histMax = sumBy((hist as IHistogram[]), 'histMax');
       (hist as IHistogram[]).forEach(c => this.histogramScale(c, max))
 
       return hist

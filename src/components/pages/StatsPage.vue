@@ -61,16 +61,50 @@
                 tr(v-for="(r, j) in histogram")
                   td.pa-0.pr-1.text-xs-center(style="white-space: nowrap; line-height: 13px; font-size: 12px")
                     span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
-                  td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
+                  td.pa-0.pr-2.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
+                  td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? round(100 * r.histMax / histogram.histMax) + '%' : ''}}
                   td.pa-0
                     svg(style="display: block", :width="histogramY" height="12" v-if="r[0]")
                       rect(v-for="(h, i) in selected", v-if="r.histSum[selected[i].title]", :fill="color(selected[i].title)", :width="r.histSum[selected[i].title]", height="12", :transform="'translate('+[r.histPos[selected[i].title],0]+')'")
+
+      div.pa-3.f-l(style="max-width: 538px")
+        v-card
+          v-card-text
+            .body-2.mb-2 Group table
+            p Shows top picked groups. Smaller groups are combined into <i>other</i> group. Works as filter for other charts and tables. Shows average values (<i>Tags</i>, <i>Paths</i>, &hellip;) per API.
+            .body-2.mb-2 Donut charts
+            p Charts average values and displays total value.
+            .body-2.mb-2 Count table
+            p Shows API counts for columns (selected in <i>Group table</i>.)
+              =" "
+              v-icon repeat
+              |  button switches rows and columns.
+            .body-2.mb-2 Histogram chart
+            p.mb-0 Shows distribution overview of values in <i>Count table</i>.
+          v-divider
+          v-card-text
+            .body-2.mb-2 Examples
+            ul
+              li
+                router-link(:to="{path: '/stats', query: {group: 'protocol', count: 'domain'}}") Protocols / Domains
+              li
+                router-link(:to="{path: '/stats', query: {count: 'paths', pick: 5}}") Top 5 Domains / Paths
+          v-divider
+          v-card-text
+            .body-2.mb-2 Data source
+            div
+              a(href="https://apis.guru/openapi-directory/") APIs.guru OpenAPI directory
+              |  via precomputed values from
+              =" "
+              a(href="https://github.com/darosh/openapi-directory-lite") OpenAPI Directory Lite
+              |  repository.
 
       div(style="clear: both")
 </template>
 
 <script>
   import maxBy from 'lodash-es/maxBy'
+  import round from 'lodash-es/round'
   import findIndex from 'lodash-es/findIndex'
 
   import { scaleLinear } from 'd3-scale'
@@ -139,6 +173,7 @@
     },
     methods: {
       maxBy,
+      round,
       switchColsRows () {
         const temp = this.grouping
         this.grouping = this.counting
