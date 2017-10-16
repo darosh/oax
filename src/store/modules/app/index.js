@@ -1,7 +1,7 @@
 import * as types from './types'
 import * as typesUI from '../ui/types'
 
-import { version } from '../../../../package.json'
+import { version } from '../../../assets/dependencies.json'
 import { configuration } from '../../../services/configuration'
 
 export const getters = {
