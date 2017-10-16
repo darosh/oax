@@ -12,7 +12,7 @@
             v-flex
               .subheading.pt-2 Version {{APP_VERSION}}
             v-spacer
-            v-btn.ma-0(flat @click="reload") Reload
+            v-btn.ma-0(flat @click="reload") Update
           v-divider.mb-3
           div.hidden-xs-only
             h4 Keyboard shortcuts
@@ -118,7 +118,10 @@
 
       const editorActions = {}
 
-      Object.keys(editorKeys).forEach(k => editorActions[k] = editorKeys[k].replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().replace(/^del /, 'delete '))
+      Object.keys(editorKeys)
+        .forEach(k => editorActions[k] = editorKeys[k].replace(/([a-z])([A-Z])/g, '$1 $2')
+          .toLowerCase()
+          .replace(/^del /, 'delete '))
 
       return {
         keys,
@@ -151,7 +154,11 @@
     },
     methods: {
       reload () {
-        location.reload()
+        if (window.OAX && window.OAX.registration && window.OAX.registration.update) {
+          window.OAX.registration.update()
+        } else {
+          location.reload(true)
+        }
       }
     }
   }

@@ -17,6 +17,9 @@
     if ('serviceWorker' in navigator &&
       (window.location.protocol === 'https:' || isLocalhost)) {
       navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+        window.OAX = window.OAX || {}
+        window.OAX.registration = registration
+
         // updatefound is fired if service-worker.js changes.
         registration.onupdatefound = function () {
           // updatefound is also fired the very first time the SW is installed,
