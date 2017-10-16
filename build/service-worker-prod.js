@@ -16,48 +16,46 @@
   window.addEventListener('load', function () {
     if ('serviceWorker' in navigator &&
       (window.location.protocol === 'https:' || isLocalhost)) {
-      navigator.serviceWorker.register('service-worker.js').
-        then(function (registration) {
-          // updatefound is fired if service-worker.js changes.
-          registration.onupdatefound = function () {
-            // updatefound is also fired the very first time the SW is installed,
-            // and there's no need to prompt for a reload at that point.
-            // So check here to see if the page is already controlled,
-            // i.e. whether there's an existing service worker.
-            if (navigator.serviceWorker.controller) {
-              // The updatefound event implies that registration.installing is set
-              const installingWorker = registration.installing
+      navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+        // updatefound is fired if service-worker.js changes.
+        registration.onupdatefound = function () {
+          // updatefound is also fired the very first time the SW is installed,
+          // and there's no need to prompt for a reload at that point.
+          // So check here to see if the page is already controlled,
+          // i.e. whether there's an existing service worker.
+          if (navigator.serviceWorker.controller) {
+            // The updatefound event implies that registration.installing is set
+            const installingWorker = registration.installing
 
-              installingWorker.onstatechange = function () {
-                switch (installingWorker.state) {
-                  case 'installed':
-                    // At this point, the old content will have been purged and the
-                    // fresh content will have been added to the cache.
-                    // It's the perfect time to display a "New content is
-                    // available; please refresh." message in the page's interface.
+            installingWorker.onstatechange = function () {
+              switch (installingWorker.state) {
+                case 'installed':
+                  // At this point, the old content will have been purged and the
+                  // fresh content will have been added to the cache.
+                  // It's the perfect time to display a "New content is
+                  // available; please refresh." message in the page's interface.
 
-                    if(window.OAX && window.OAX.state && window.OAX.state.configuration) {
-                      window.OAX.state.configuration.updated = true
-                    } else if (window.OAX && window.OAX.cfg) {
-                      window.OAX.cfg.updated = true
-                    }
+                  if (window.OAX && window.OAX.state && window.OAX.state.configuration) {
+                    window.OAX.state.configuration.updated = true
+                  } else if (window.OAX && window.OAX.cfg) {
+                    window.OAX.cfg.updated = true
+                  }
 
-                    break
+                  break
 
-                  case 'redundant':
-                    throw new Error('The installing ' +
-                      'service worker became redundant.')
+                case 'redundant':
+                  throw new Error('The installing ' +
+                    'service worker became redundant.')
 
-                  default:
-                  // Ignore
-                }
+                default:
+                // Ignore
               }
             }
           }
-        }).
-        catch(function (e) {
-          console.error('Error during service worker registration:', e)
-        })
+        }
+      }).catch(function (e) {
+        console.error('Error during service worker registration:', e)
+      })
     }
   })
 })()
