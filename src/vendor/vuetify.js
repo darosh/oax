@@ -28,6 +28,7 @@ import {
   VSwitch,
   VTabs,
   VTextField,
+  VSnackbar,
   VToolbar,
   VTooltip
 } from 'vuetify'
@@ -61,6 +62,7 @@ Vue.use(Vuetify, {
     VSwitch,
     VTabs,
     VTextField,
+    VSnackbar,
     VToolbar,
     VTooltip
   }

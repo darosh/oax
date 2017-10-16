@@ -35,10 +35,13 @@
                     // fresh content will have been added to the cache.
                     // It's the perfect time to display a "New content is
                     // available; please refresh." message in the page's interface.
-                    if (confirm(
-                        'New version is available.\nDo you want reload now?')) {
-                      location.reload(true)
+
+                    if(window.OAX && window.OAX.state && window.OAX.state.configuration) {
+                      window.OAX.state.configuration.updated = true
+                    } else if (window.OAX && window.OAX.cfg) {
+                      window.OAX.cfg.updated = true
                     }
+
                     break
 
                   case 'redundant':

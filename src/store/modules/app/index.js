@@ -12,6 +12,7 @@ export const getters = {
       return {path: '/', query: {url: state.spec.url}}
     }
   },
+  [types.APP_UPDATED]: state => state.configuration.updated,
   [types.APP_VERSION]: state => version,
   [types.APP_ROUTED]: state => state.route.name !== null,
   [types.APP_API_PAGE]: state => state.route.name === '/',

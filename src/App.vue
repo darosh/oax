@@ -19,6 +19,8 @@
           app-log(style="margin-bottom: 24px", v-else :items="UI_LOG", :log="true")
     app-tour(v-if="UI_HIGHLIGHT")
     appFab
+    v-snackbar(:value="APP_UPDATED" top :timeout="1e10") Update ready
+      a.snackbar-action(@click="reload") Reload
     #cm-full
 </template>
 
@@ -52,6 +54,7 @@
         types.VIEW_SUMMARY,
         types.APP_API_PAGE,
         types.APP_HOME,
+        types.APP_UPDATED,
         types.UI_LOG,
         types.UI_LOADING,
         types.UI_DIALOG,
@@ -148,11 +151,19 @@
         types.UI_SET_EDIT_FOCUS,
         types.UI_SET_NEXT_TAB,
         types.UI_SET_ANIMATION
-      ])
+      ]),
+      reload() {
+        window.location.reload()
+      }
     }
   }
 </script>
 
 <style lang="stylus">
   @import './stylus/index.styl'
+
+  .snackbar-action
+    font-family: 'Roboto Medium'
+    text-transform: uppercase
+    cursor: pointer
 </style>

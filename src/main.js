@@ -20,6 +20,8 @@ sync(store, router)
 
 window.OAX = window.OAX || {}
 
+// window.OAX.configuration = configuration
+
 if (process.env.NODE_ENV !== 'production') {
   window.OAX.select = select
   Vue.mixin(selectMixin)
