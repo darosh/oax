@@ -1,7 +1,6 @@
 import * as types from './types'
 import * as typesUI from '../ui/types'
 
-import { version } from '../../../assets/dependencies.json'
 import { configuration } from '../../../services/configuration'
 
 export const getters = {
@@ -13,7 +12,8 @@ export const getters = {
     }
   },
   [types.APP_UPDATED]: state => state.configuration.updated,
-  [types.APP_VERSION]: state => version,
+  [types.APP_VERSION]: state => process.OAX_VERSION,
+  [types.APP_BUILD]: state => new Date(process.OAX_BUILD),
   [types.APP_ROUTED]: state => state.route.name !== null,
   [types.APP_API_PAGE]: state => state.route.name === '/',
   [types.APP_PATH]: state => state.route.path,

@@ -10,7 +10,7 @@
           v-divider
           v-layout.mt-3.mb-3
             v-flex
-              .subheading.pt-2 Version {{APP_VERSION}}
+              .subheading.pt-2 Version {{APP_VERSION}} ({{APP_BUILD.toLocaleString()}})
             v-spacer
             v-btn.ma-0(flat @click="reload") Update
           v-divider.mb-3
@@ -101,7 +101,7 @@
   import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import appLog from '../app/Log'
-  import { dependencies } from '../../assets/dependencies.json'
+  import dependencies from '../../assets/dependencies.json'
   import appKeyboard from '../parts/Keyboard'
   import keys from '../../assets/keys.json'
   import * as directories from '../../services/directory'
@@ -148,6 +148,7 @@
     computed: {
       ...mapGetters([
         types.APP_VERSION,
+        types.APP_BUILD,
         types.UI_LOG,
         types.UI_LOADING
       ])

@@ -1,5 +1,6 @@
 // app
 export const APP_VERSION = 'APP_VERSION'
+export const APP_BUILD = 'APP_BUILD'
 export const APP_API_PAGE = 'APP_API_PAGE'
 export const APP_ROUTED = 'APP_ROUTED'
 export const APP_PATH = 'APP_PATH'

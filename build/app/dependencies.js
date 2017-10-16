@@ -12,7 +12,4 @@ Object.keys(deps).forEach(d => {
   }
 })
 
-fs.writeFileSync('./src/assets/dependencies.json', JSON.stringify({
-  version: pkg.version,
-  dependencies: deps
-}, null, 2))
+fs.writeFileSync('./src/assets/dependencies.json', JSON.stringify(deps, null, 2))
