@@ -92,7 +92,11 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'oax',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: [
+        'dist/static/css/*.css',
+        'dist/static/js/*.js',
+        'dist/*.worker.js'
+      ],
       minify: true,
       // templateFilePath: path.resolve(__dirname, './service-worker.tmpl'),
       stripPrefix: 'dist/',
