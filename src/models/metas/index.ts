@@ -108,7 +108,7 @@ export function metas(spec: ISpecExtended): IMeta[] {
     },
     {
       stats: stats(),
-      title: 'Operations',
+      title: spec._operations.length === 1 ? 'Operation' : 'Operations',
       icon: 'fake',
       value: 'fake'
     }
