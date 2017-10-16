@@ -37,7 +37,9 @@
 
                   if (window.OAX && window.OAX.state && window.OAX.state.configuration) {
                     window.OAX.state.configuration.updated = true
-                  } else if (window.OAX && window.OAX.cfg) {
+                  } else {
+                    window.OAX = window.OAX || {}
+                    window.OAX.cfg = window.OAX.cfg || {}
                     window.OAX.cfg.updated = true
                   }
 
