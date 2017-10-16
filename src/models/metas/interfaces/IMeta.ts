@@ -6,4 +6,5 @@ export interface IMeta {
   download?: string;
   image?: string;
   dialog?: string;
+  stats?: any;
 }

@@ -1,8 +1,10 @@
-import {Contact, Info, License, Spec} from 'swagger-schema-official';
+import {Contact, Info, License} from 'swagger-schema-official';
 import {IExtra} from '../oas/interfaces/IExtra';
 import {IMeta} from './interfaces/IMeta';
+import countBy from 'lodash-es/countBy';
+import {ISpecExtended} from "../oas/interfaces/ISpecExtended";
 
-export function metas(spec: Spec): IMeta[] {
+export function metas(spec: ISpecExtended): IMeta[] {
   const info: Info = spec.info;
   const contact: Contact = info.contact || {};
   const license: License = info.license || {} as any;
@@ -10,6 +12,22 @@ export function metas(spec: Spec): IMeta[] {
   function origin() {
     const o = (info as IExtra)['x-origin'];
     return (o && o[0] && o[0].url) || (o && o.url);
+  }
+
+  function stats() {
+    const c = countBy(spec._operations, '_method')
+    return {
+      total: spec._operations.length,
+      chart: [
+        ['get', c.get],
+        ['post', c.post],
+        ['put', c.put],
+        ['patch', c.patch],
+        ['delete', c.delete],
+        ['head', c.head],
+        ['options', c.options]
+      ].filter(d => d[1])
+    }
   }
 
   return [
@@ -87,6 +105,12 @@ export function metas(spec: Spec): IMeta[] {
       download: 'Client / Server',
       icon: 'file_download',
       title: 'Code generator'
+    },
+    {
+      stats: stats(),
+      title: 'Operations',
+      icon: 'fake',
+      value: 'fake'
     }
   ];
 }

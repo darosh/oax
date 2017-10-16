@@ -16,10 +16,10 @@ export {trim, summary} from '../../services/markdown';
 const phase = {
   info: [0, 'info', 'Parsing'],
   base: [1, 'base', 'Parsing'],
-  meta: [2, 'meta', 'Parsing'],
-  tags: [3, 'tags', 'Parsing'],
-  operations: [4, 'operations', 'Parsing'],
-  security: [5, 'security', 'Parsing'],
+  tags: [2, 'tags', 'Parsing'],
+  operations: [3, 'operations', 'Parsing'],
+  security: [4, 'security', 'Parsing'],
+  meta: [5, 'meta', 'Parsing'],
   mdInfo: [6, 'info', 'Markdown'],
   mdSecurity: [7, 'security', 'Markdown'],
   mdTags: [8, 'tags', 'Markdown'],
@@ -55,9 +55,6 @@ export function OAS(spec: ISpecExtended,
   log(phase.base, progress);
   base(spec);
 
-  log(phase.meta, progress);
-  spec._metas = metas(spec);
-
   log(phase.tags, progress);
   tags(spec);
 
@@ -66,6 +63,9 @@ export function OAS(spec: ISpecExtended,
 
   log(phase.security, progress);
   security(spec);
+
+  log(phase.meta, progress);
+  spec._metas = metas(spec);
 
   log(phase.mdInfo, progress);
   mdInfo(spec);

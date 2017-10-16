@@ -22,7 +22,7 @@
       app-donut-chart.f-l(title="APIs" prop="total"  category="title", :radius="radius", :items="selected", :color="color")
       app-donut-chart.f-l(title="Tags" prop="tags"  category="title", :radius="radius", :items="selected", :color="color")
       app-donut-chart.f-l(title="Paths" prop="paths"  category="title", :radius="radius", :items="selected", :color="color")
-      app-donut-chart.f-l(title="Endpoints" prop="methods"  category="title", :radius="radius", :items="selected", :color="color")
+      app-donut-chart.f-l(title="Operations" prop="methods"  category="title", :radius="radius", :items="selected", :color="color")
       app-donut-chart.f-l(title="Definitions" prop="definitions"  category="title", :radius="radius", :items="selected", :color="color")
       app-donut-chart.f-l(title="Summaries" prop="summaries"  category="title", :radius="radius", :items="selected", :color="color")
       app-donut-chart.f-l(title="Descriptions" prop="descriptions"  category="title", :radius="radius", :items="selected", :color="color")
@@ -136,7 +136,7 @@
           {text: 'APIs', value: 'total'},
           {text: 'Tags', value: 'tags'},
           {text: 'Paths', value: 'paths'},
-          {text: 'Endpoints', value: 'methods'},
+          {text: 'Operations', value: 'methods'},
           {text: 'Definitions', value: 'definitions'}
         ]
       }
