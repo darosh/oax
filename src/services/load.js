@@ -1,8 +1,7 @@
 import yaml from 'yaml-js'
 
 const axios = require('axios')
-// const schemaBundler = require('json-schema-bundler')
-const schemaBundler = require('json-schema-bundler/src/schema')
+const schemaBundler = require('json-schema-bundler')
 const compactJSON = require('json-stringify-pretty-compact')
 // import {isMemory} from '../utils/memory'
 

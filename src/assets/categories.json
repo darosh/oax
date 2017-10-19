@@ -1,6 +1,6 @@
 {
   "analytics": "data_usage",
-  "backend": "arrow_back",
+  "backend": "dns",
   "cloud": "cloud",
   "collaboration": "group_work",
   "customer_relation": "supervisor_account",
