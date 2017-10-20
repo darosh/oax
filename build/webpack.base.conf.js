@@ -3,10 +3,13 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const rc = require('rc')('oax', {})
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
+Object.keys(rc).forEach(k => rc['process.OAX_FEATURE_' + k] = rc[k])
 
 module.exports = {
   entry: {
@@ -43,6 +46,11 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.OAX_VERSION': JSON.stringify(require('../package').version),
+      'process.OAX_BUILD': JSON.stringify(new Date().toISOString()),
+      ...rc
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity

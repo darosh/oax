@@ -91,7 +91,7 @@
         v-btn.hidden-xs-only(flat to="/methods" tag="a") Methods
         v-btn.hidden-xs-only(flat to="/statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat to="/headers" tag="a") Headers
-        v-btn.hidden-xs-only(flat to="/stats" tag="a") Statistics
+        v-btn.hidden-xs-only(v-if="components.stats" flat to="/stats" tag="a") Statistics
         v-btn.hidden-xs-only(flat to="/about" tag="a") About
         v-btn.hidden-xs-only(flat href="https://github.com/darosh/oax" tag="a" target="_blank") GitHub
 
@@ -104,6 +104,7 @@
 <script>
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import * as types from '../../store/types'
+  import {configuration} from '../../services/configuration'
 
   export default {
     components: {
@@ -111,6 +112,7 @@
     },
     data: function () {
       return {
+        components: configuration.components,
         searching: false
       }
     },

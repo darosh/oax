@@ -9,6 +9,7 @@
     "stage-2"
   ],
   "plugins": [
+    "dynamic-import-webpack",
     "transform-runtime",
     [
       "transform-imports",

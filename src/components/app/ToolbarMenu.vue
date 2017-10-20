@@ -67,9 +67,9 @@
           v-icon web_asset
         v-list-tile-title Headers
 
-      v-divider
+      v-divider(v-if="components.stats")
 
-      v-list-tile(to="/stats" tag="a")
+      v-list-tile(v-if="components.stats" to="/stats" tag="a")
         v-list-tile-action
           v-icon data_usage
         v-list-tile-title Statistics
@@ -90,11 +90,13 @@
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import Vue from 'vue'
+  import {configuration} from '../../services/configuration'
 
   export default {
     props: ['type'],
     data: function () {
       return {
+        components: configuration.components,
         a: this.type === 'a',
         b: this.type === 'b',
         c: this.type === 'c'

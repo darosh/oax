@@ -17,7 +17,7 @@
   import * as types from '../../store/types'
 
   import focus from '../../directives/focus'
-  import appCodeMirror from '../parts/CodeMirror'
+  const appCodeMirror = process.OAX_EDITOR ? () => import('../parts/CodeMirror') : () => {}
   import appBreadcrumbs from '../parts/Breadcrumbs'
 
   export default {

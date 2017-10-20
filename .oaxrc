@@ -1,0 +1,17 @@
+{
+  "DIALOG_HEADERS": false,
+  "DIALOG_METHODS": false,
+  "DIALOG_STATUSES": false,
+  "PAGE_HEADERS": false,
+  "PAGE_METHODS": false,
+  "PAGE_STATUSES": false,
+  "PAGE_STATS": false,
+  "PAGE_ABOUT": false,
+  "PAGE_ABOUT_KEYBOARD": false,
+  "GITHUB": false,
+  "EDIT": false,
+  "DIRECTORY": false,
+  "EDITOR": false,
+  "MARKDOWN": false,
+  "HIGHLIGHT": false
+}
