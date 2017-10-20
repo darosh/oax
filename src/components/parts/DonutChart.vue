@@ -51,19 +51,19 @@
 
 <style lang="stylus" scoped>
   text.chart-title
-    text.subtitle
-    text.chart-mini-title
-      font-family: Roboto
+  text.subtitle
+  text.chart-mini-title
+    font-family: Roboto
 
-    text.chart-title
-      font-size: 16px
-      font-weight: 500
+  text.chart-title
+    font-size: 16px
+    font-weight: 500
 
-    text.chart-subtitle
-      font-size: 13px
-      font-weight: 400
+  text.chart-subtitle
+    font-size: 13px
+    font-weight: 400
 
-    text.chart-mini-title
-      font-size: 11px
-      font-weight: 400
+  text.chart-mini-title
+    font-size: 11px
+    font-weight: 400
 </style>

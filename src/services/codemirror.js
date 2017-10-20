@@ -1,10 +1,10 @@
-import modeJson from '../utils/codemirror-mode-json'
-import lintJson from './codemirror-lint-json'
-
-export default function codeMirror () {
+module.exports = function codeMirror () {
   if (window.CodeMirror) {
     return window.CodeMirror
   }
+
+  const modeJson = require('../utils/codemirror-mode-json').modeJson
+  const lintJson = require('./codemirror-lint-json').lintJson
 
   window.CodeMirror = require('codemirror')
   window.CodeMirror = window.CodeMirror.CodeMirror || window.CodeMirror

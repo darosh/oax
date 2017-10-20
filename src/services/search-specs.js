@@ -3,7 +3,7 @@ const lunr = require('lunr')
 
 let idx = null
 
-export default function (text) {
+export function searchSpecs (text) {
   if (idx && !idx.then) {
     return text ? idx.search(text).map(d => d.ref) : null
   } else if (!idx) {

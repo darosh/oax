@@ -107,7 +107,7 @@
   import round from 'lodash-es/round'
   import findIndex from 'lodash-es/findIndex'
 
-  import { scaleLinear } from 'd3-scale'
+  import { default as scaleLinear } from 'd3-scale/src/linear'
 
   import { colors } from '../../services/directory/openapi-directory-lite'
 

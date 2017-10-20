@@ -1,13 +1,11 @@
-import yaml from 'yaml-js'
-
+const yaml = require('yaml-js')
 const axios = require('axios')
 const schemaBundler = require('json-schema-bundler')
 const compactJSON = require('json-stringify-pretty-compact')
-// import {isMemory} from '../utils/memory'
 
 const cache = {}
 
-export default function load (url, progress = null, doc) {
+export function load (url, progress = null, doc) {
   return new Promise((resolve, reject) => {
     const validUrl = new URL(url.replace(/^memory:\/\//, 'https://')).href
 

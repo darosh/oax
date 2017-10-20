@@ -5,6 +5,9 @@ import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
 
+// import 'vueify/lib/insert-css'
+// import 'babel-runtime/helpers/extends'
+
 import './vendor/vuetify'
 import VueHotkey from 'v-hotkey/src/index'
 

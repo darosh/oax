@@ -1,7 +1,7 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: http://codemirror.net/LICENSE
 
-export default function (CodeMirror) {
+export function modeJson (CodeMirror) {
   'use strict'
 
   CodeMirror.defineMode('javascript', function (config, parserConfig) {

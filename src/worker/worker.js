@@ -1,4 +1,4 @@
-import load from '../services/load'
+import {load} from '../services/load'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 
@@ -10,7 +10,7 @@ import edit from '../utils/edit'
 import { compare } from 'fast-json-patch'
 import yaml from 'yaml-js'
 import jsonParseError from '../utils/json-parse-error'
-import searchSpecs from '../services/search-specs'
+import {searchSpecs} from '../services/search-specs'
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 

@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
@@ -9,6 +10,29 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
+    vendor: [
+      'lodash-es/flatten',
+      'lodash-es/groupBy',
+      'lodash-es/map',
+      'lodash-es/maxBy',
+      'lodash-es/orderBy',
+      'lodash-es/round',
+      'lodash-es/sum',
+      'lodash-es/sumBy',
+      'lodash-es/values',
+      'lodash-es/findIndex',
+      'lodash-es/countBy',
+      'lodash-es/isArray',
+      'lodash-es/union',
+      'lodash-es/defaults',
+      'lodash-es/mergeWith',
+      'd3-format/src/defaultLocale',
+      'd3-shape/src/arc',
+      'd3-shape/src/pie',
+      'd3-array',
+      'd3-scale/src/linear',
+      'd3-scale/src/ordinal'
+    ],
     app: './src/main.js'
   },
   output: {
@@ -18,6 +42,12 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    })
+  ],
   resolve: {
     extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
@@ -60,7 +90,7 @@ module.exports = {
           resolve('node_modules/walk-parse5'),
           resolve('node_modules/vue-virtual-scroller'),
           resolve('node_modules/vue-observe-visibility')
-          ]
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

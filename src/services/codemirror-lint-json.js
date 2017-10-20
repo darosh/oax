@@ -1,7 +1,7 @@
 let lastErr = null
 let lastPromise = null
 
-export default function lintJson (CodeMirror) {
+export function lintJson (CodeMirror) {
   CodeMirror.registerHelper('lint', 'json', lint)
 }
 
