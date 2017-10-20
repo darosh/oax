@@ -10,9 +10,10 @@
 </template>
 
 <script>
-  import { format } from 'd3-format'
-  import { arc, pie } from 'd3-shape'
-  import { scaleOrdinal } from 'd3-scale'
+  import { format } from 'd3-format/src/defaultLocale'
+  import { default as arc } from 'd3-shape/src/arc'
+  import { default as pie } from 'd3-shape/src/pie'
+  import { default as scaleOrdinal } from 'd3-scale/src/ordinal'
   import sumBy from 'lodash-es/sumBy'
   import round from 'lodash-es/round'
   import { colors } from '../../services/directory/openapi-directory-lite'
@@ -30,7 +31,7 @@
       round
     },
     computed: {
-      value() {
+      value () {
         return pie().padAngle((this.mini ? 9 : 2) * Math.PI / 360).sort(null).value
       },
       titles () {
@@ -50,19 +51,19 @@
 
 <style lang="stylus" scoped>
   text.chart-title
-  text.subtitle
-  text.chart-mini-title
+    text.subtitle
+    text.chart-mini-title
       font-family: Roboto
 
-  text.chart-title
-    font-size: 16px
-    font-weight: 500
+    text.chart-title
+      font-size: 16px
+      font-weight: 500
 
-  text.chart-subtitle
-    font-size: 13px
-    font-weight: 400
+    text.chart-subtitle
+      font-size: 13px
+      font-weight: 400
 
-  text.chart-mini-title
-    font-size: 11px
-    font-weight: 400
+    text.chart-mini-title
+      font-size: 11px
+      font-weight: 400
 </style>

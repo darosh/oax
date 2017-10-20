@@ -13,7 +13,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = config.build.env
 
-const babel = require("babel-core");
+const babel = require('babel-core');
 const uglify = require('uglify-js');
 
 let workerJS = uglify.minify(babel.transformFileSync(path.join(__dirname, './service-worker-prod.js')).code).code
