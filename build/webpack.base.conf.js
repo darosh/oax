@@ -3,7 +3,23 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const rc = require('rc')('oax', {})
+const rc = require('rc')('oax', {
+  'DIALOG_HEADERS': true,
+  'DIALOG_METHODS': true,
+  'DIALOG_STATUSES': true,
+  'PAGE_HEADERS': true,
+  'PAGE_METHODS': true,
+  'PAGE_STATUSES': true,
+  'PAGE_STATS': true,
+  'PAGE_ABOUT': true,
+  'PAGE_ABOUT_KEYBOARD': true,
+  'GITHUB': true,
+  'EDIT': true,
+  'DIRECTORY': true,
+  'EDITOR': true,
+  'MARKDOWN': true,
+  'HIGHLIGHT': true
+})
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
