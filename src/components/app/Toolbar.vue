@@ -2,12 +2,12 @@
   // TODO v-toolbar(fixed scroll-off-screen scroll-target="main")
   v-toolbar.gpu(fixed app v-if="APP_ROUTED")
     template(v-if="APP_API_PAGE")
-      v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
+      v-btn(v-if="components.edit && !UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
         v-icon edit
-      v-menu.menu--api(bottom right style="height: 100%; display: flex")
+      v-menu.menu--api(bottom right :class="searching ? 'hidden-sm-and-down' : ''" style="height: 100%; display: flex")
         v-toolbar-items(slot="activator" style="height: 100%")
           v-btn(flat style="height: 100%; min-width: 0")
-            v-toolbar-title(style="margin-left: 0", :class="searching ? 'hidden-sm-and-down' : ''") API
+            v-toolbar-title(style="margin-left: 0") API
               span.secondary--text(v-if="VIEW_VIEW" style="text-transform: none")
                 |  &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas'}[VIEW_VIEW]}}
             v-icon arrow_drop_down
@@ -78,7 +78,7 @@
           v-icon lock
         span Authorization
 
-      v-menu(:class="searching ? 'hidden-xs-only' : ''" bottom left)
+      v-menu(v-if="$vuetify.breakpoint.xsOnly || (components.pageStatuses || components.pageHeaders || components.pageMethods || components.github || components.pageAbout || components.pageStats)", :class="searching ? 'hidden-xs-only' : ''" bottom left)
         v-btn(icon slot="activator")
           v-icon more_vert
         app-toolbar-menu(type="b")
@@ -91,9 +91,9 @@
         v-btn.hidden-xs-only(flat to="/methods" tag="a") Methods
         v-btn.hidden-xs-only(flat to="/statuses" tag="a") Statuses
         v-btn.hidden-xs-only(flat to="/headers" tag="a") Headers
-        v-btn.hidden-xs-only(v-if="components.stats" flat to="/stats" tag="a") Statistics
+        v-btn.hidden-xs-only(v-if="components.pageStats" flat to="/stats" tag="a") Statistics
         v-btn.hidden-xs-only(flat to="/about" tag="a") About
-        v-btn.hidden-xs-only(flat href="https://github.com/darosh/oax" tag="a" target="_blank") GitHub
+        v-btn.hidden-xs-only(v-if="components.github" flat href="https://github.com/darosh/oax" tag="a" target="_blank") GitHub
 
       v-menu.hidden-sm-and-up(bottom left)
         v-btn(icon slot="activator")

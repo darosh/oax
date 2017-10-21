@@ -1,8 +1,8 @@
+import countBy from 'lodash-es/countBy';
 import {Contact, Info, License} from 'swagger-schema-official';
 import {IExtra} from '../oas/interfaces/IExtra';
+import {ISpecExtended} from '../oas/interfaces/ISpecExtended';
 import {IMeta} from './interfaces/IMeta';
-import countBy from 'lodash-es/countBy';
-import {ISpecExtended} from "../oas/interfaces/ISpecExtended";
 
 export function metas(spec: ISpecExtended): IMeta[] {
   const info: Info = spec.info;
@@ -15,7 +15,7 @@ export function metas(spec: ISpecExtended): IMeta[] {
   }
 
   function stats() {
-    const c = countBy(spec._operations, '_method')
+    const c = countBy(spec._operations, '_method');
     return {
       total: spec._operations.length,
       chart: [
@@ -26,8 +26,8 @@ export function metas(spec: ISpecExtended): IMeta[] {
         ['delete', c.delete],
         ['head', c.head],
         ['options', c.options]
-      ].filter(d => d[1])
-    }
+      ].filter((d) => d[1])
+    };
   }
 
   return [

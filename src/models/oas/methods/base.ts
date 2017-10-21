@@ -13,7 +13,7 @@ export function extract(spec: ISpecExtended): string {
   const parts: { [index: string]: string[] } = {};
   let level = 0;
   const current: string[] = [];
-  const paths = Object.keys(spec.paths);
+  const paths = Object.keys(spec.paths || {});
   let done: any = false;
 
   if (!paths.length) {

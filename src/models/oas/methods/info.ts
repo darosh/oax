@@ -3,10 +3,10 @@ import {ISpecExtended} from '../interfaces/ISpecExtended';
 export function info(spec: ISpecExtended, url: string, defaultContentType: string) {
   spec.schemes = spec.schemes || [];
 
-  const parsedUrl = new URL(url)
+  const parsedUrl = new URL(url);
 
   if (spec.schemes.length === 0) {
-    const proto = parsedUrl.protocol.substr(0, parsedUrl.protocol.length - 1)
+    const proto = parsedUrl.protocol.substr(0, parsedUrl.protocol.length - 1);
     spec.schemes.push(proto);
   }
 
@@ -21,7 +21,7 @@ export function info(spec: ISpecExtended, url: string, defaultContentType: strin
   let subUrl;
 
   try {
-    subUrl = new URL(parsedUrl.pathname.substr(1))
+    subUrl = new URL(parsedUrl.pathname.substr(1));
     spec.basePath = subUrl.origin + (spec.basePath || '');
   } catch (ign) {
   }

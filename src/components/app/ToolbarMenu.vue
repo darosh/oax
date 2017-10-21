@@ -36,9 +36,9 @@
       v-list-tile-action
         v-icon(v-if="VIEW_SUMMARY") check
 
-    v-divider(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}")
+    v-divider.hidden-xs-only(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)")
 
-    v-list-tile(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_WIDE)")
+    v-list-tile.hidden-xs-only(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", @click="nextNextTick(VIEW_SET_WIDE)")
       v-list-tile-action
         v-icon settings_ethernet
       v-list-tile-content
@@ -46,41 +46,41 @@
       v-list-tile-action
         v-icon(v-if="VIEW_WIDE") check
 
-    v-divider(v-if="b", :class="{'hidden-sm-and-up': b}")
+    v-divider.hidden-xs-only(v-if="b")
 
     template(v-if="!a")
 
-      v-subheader(style="min-width: 180px") HTTP Reference
+      v-subheader(v-if="components.pageMethods || components.pageStatuses || components.pageHeaders" style="min-width: 180px") HTTP Reference
 
-      v-list-tile(to="/methods" tag="a")
+      v-list-tile(v-if="components.pageMethods" to="/methods" tag="a")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Methods
 
-      v-list-tile(to="/statuses" tag="a")
+      v-list-tile(v-if="components.pageStatuses" to="/statuses" tag="a")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Statuses
 
-      v-list-tile(to="/headers" tag="a")
+      v-list-tile(v-if="components.pageHeaders" to="/headers" tag="a")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Headers
 
-      v-divider(v-if="components.stats")
+      v-divider(v-if="components.pageStats")
 
-      v-list-tile(v-if="components.stats" to="/stats" tag="a")
+      v-list-tile(v-if="components.pageStats" to="/stats" tag="a")
         v-list-tile-action
           v-icon data_usage
         v-list-tile-title Statistics
 
-      v-divider
+      v-divider(v-if="components.pageAbout || components.github")
 
-      v-list-tile(to="/about" tag="a")
+      v-list-tile(v-if="components.pageAbout" to="/about" tag="a")
         v-list-tile-action
           v-icon help
         v-list-tile-title About
-      v-list-tile(href="https://github.com/darosh/oax" tag="a" target="_blank")
+      v-list-tile(v-if="components.github" href="https://github.com/darosh/oax" tag="a" target="_blank")
         v-list-tile-action
           v-icon github_circle
         v-list-tile-title GitHub

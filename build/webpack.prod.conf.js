@@ -10,6 +10,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const ProgressPlugin = require('progress-bar-webpack-plugin')
+// const chalk = require('chalk')
 
 const env = config.build.env
 
@@ -112,7 +114,12 @@ const webpackConfig = merge(baseWebpackConfig, {
           handler: 'networkFirst'
         }
       ]
-    })
+    }),
+
+    // new ProgressPlugin({
+    //   format: '  [:msg] [:bar] ' + chalk.green.bold(':percent'),
+    //   clear: true
+    // })
   ]
 })
 

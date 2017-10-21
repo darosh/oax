@@ -9,7 +9,7 @@
   "PAGE_ABOUT": false,
   "PAGE_ABOUT_KEYBOARD": false,
   "GITHUB": false,
-  "EDIT": false,
+  "EDIT": true,
   "DIRECTORY": false,
   "EDITOR": false,
   "MARKDOWN": false,

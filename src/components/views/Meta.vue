@@ -10,7 +10,7 @@
             span(v-if="item.value || item.download") {{item.value || item.download}}
             img(v-if="item.image", :src="item.image", alt)
           span(v-if="item.value && !item.link") {{item.value}}
-  v-list.list--single(two-line subheader v-else)
+  v-list.list--single(two-line subheader v-else-if="item.stats.total")
     v-list-tile(avatar)
       v-list-tile-avatar
         app-donut-chart.mt-2(:radius="20", :mini="item.stats.total", :items="stats", prop="value", category="title", :color-class="color")

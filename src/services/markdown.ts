@@ -1,41 +1,51 @@
-import {parseFragment, SAXParser, serialize} from 'parse5';
-import {Converter} from 'showdown';
+// import {parseFragment, SAXParser, serialize} from 'parse5';
 
-import hljs from '../utils/highlight';
+const p5 = (process as any).OAX_FEATURE_MARKDOWN ? require('parse5') : null;
+
+const Converter = (process as any).OAX_FEATURE_MARKDOWN ? require('showdown').Converter : null;
+
+const hljs = (process as any).OAX_FEATURE_HIGHLIGHT ? require('../utils/highlight') as any : null;
 
 const walk = require('walk-parse5');
 
 const cache: { [index: string]: { html: string, summary: string } | any } = {};
 
-export const converter = new Converter();
+export const converter = Converter ? new Converter() : null;
 
-converter.setFlavor('github');
-
-converter.setOption('noHeaderId', true as any as string);
-converter.setOption('openLinksInNewWindow', true as any as string);
-converter.setOption('smoothLivePreview', true as any as string);
-converter.setOption('headerLevelStart', 1 as any as string);
-converter.setOption('parseImgDimensions', true as any as string);
+if (converter) {
+  converter.setFlavor('github');
+  converter.setOption('noHeaderId', true as any as string);
+  converter.setOption('openLinksInNewWindow', true as any as string);
+  converter.setOption('smoothLivePreview', true as any as string);
+  converter.setOption('headerLevelStart', 1 as any as string);
+  converter.setOption('parseImgDimensions', true as any as string);
+}
 
 let TEXT = '';
 
-const sax = new SAXParser();
+const sax = p5 ? new p5.SAXParser() : null;
 
-sax.on('text', (t) => {
-  TEXT += t;
-});
+if (sax) {
+  sax.on('text', (t: any) => {
+    TEXT += t;
+  });
+}
 
 function syntax(tree: any) {
+  if (!hljs || !p5) {
+    return;
+  }
+
   walk(tree, (node: any) => {
     if ((node.tagName === 'code') && node.parentNode && (node.parentNode.tagName === 'pre')) {
-      let h = serialize(node).replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+      let h = p5.serialize(node).replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
       if (node.attrs && node.attrs[0] && node.attrs[0].value) {
         const lang = node.attrs[0].value.split(' ')[0];
 
         if (hljs.getLanguage(lang)) {
           h = hljs.highlight(lang, h).value;
-          node.childNodes = (parseFragment(h) as any).childNodes;
+          node.childNodes = (p5.parseFragment(h) as any).childNodes;
           return;
         }
       }
@@ -43,7 +53,7 @@ function syntax(tree: any) {
       if (h.split('\n').length > 4) {
         h = hljs.highlightAuto(h).value;
         if (h.trim()) {
-          node.childNodes = (parseFragment(h) as any).childNodes;
+          node.childNodes = (p5.parseFragment(h) as any).childNodes;
         }
       }
     }
@@ -59,11 +69,16 @@ export function trim(v: string) {
     const t = v.trim();
 
     if (t) {
-      const parsed = parseFragment(converter.makeHtml(t));
-      syntax(parsed);
-      const h = serialize(parsed);
-      cache[v] = cache[v] || {};
-      return cache[v].html = h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
+      if (converter) {
+        const parsed = p5.parseFragment(converter.makeHtml(t));
+        syntax(parsed);
+        const h = p5.serialize(parsed);
+        cache[v] = cache[v] || {};
+        return cache[v].html = h.replace(/<p><\/p>$/g, '').replace(/^<p><\/p>/g, '');
+      } else {
+        cache[v] = cache[v] || {};
+        return cache[v].html = t;
+      }
     }
   }
 
@@ -82,6 +97,10 @@ export function summary(h: string, range = [3, 120]) {
 }
 
 export function text(html: string) {
+  if (!sax) {
+    return html;
+  }
+
   TEXT = '';
   sax.write(html);
 
