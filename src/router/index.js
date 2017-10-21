@@ -7,20 +7,32 @@ const routes = [
   {
     path: '/',
     name: '/',
-    component: () => import('../components/pages/ExplorerPage'),
-    meta: {name: 'API'}
+    components: {
+      default: () => import('../components/pages/ExplorerPage'),
+      toolbar: () => import('../components/toolbars/ExplorerToolbar'),
+      panel: () => import('../components/panels/ExplorerPanel')
+    },
+    meta: {name: 'API', panel: true}
   },
   {
+    name: 'about',
     path: '/about',
-    component: () => import('../components/pages/AboutPage'),
-    meta: {name: 'About'}
+    components: {
+      default: () => import('../components/pages/AboutPage'),
+      toolbar: () => import('../components/toolbars/AboutToolbar'),
+      panel: () => import('../components/panels/AboutPanel')
+    },
+    meta: {name: 'About', panel: true}
   }
 ]
 
 if (process.OAX_FEATURE_PAGE_METHODS) {
   routes.push({
     path: '/methods',
-    component: () => import('../components/pages/MethodPage'),
+    components: {
+      default: () => import('../components/pages/MethodPage'),
+      toolbar: () => import('../components/toolbars/AboutToolbar')
+    },
     meta: {name: 'Methods'}
   })
 }
@@ -28,7 +40,10 @@ if (process.OAX_FEATURE_PAGE_METHODS) {
 if (process.OAX_FEATURE_PAGE_STATUSES) {
   routes.push({
     path: '/statuses',
-    component: () => import('../components/pages/StatusPage'),
+    components: {
+      default: () => import('../components/pages/StatusPage'),
+      toolbar: () => import('../components/toolbars/AboutToolbar')
+    },
     meta: {name: 'Statuses'}
   })
 }
@@ -36,7 +51,10 @@ if (process.OAX_FEATURE_PAGE_STATUSES) {
 if (process.OAX_FEATURE_PAGE_HEADERS) {
   routes.push({
     path: '/headers',
-    component: () => import('../components/pages/HeaderPage'),
+    components: {
+      default: () => import('../components/pages/HeaderPage'),
+      toolbar: () => import('../components/toolbars/AboutToolbar')
+    },
     meta: {name: 'Headers'}
   })
 }
@@ -44,12 +62,22 @@ if (process.OAX_FEATURE_PAGE_HEADERS) {
 if (process.OAX_FEATURE_PAGE_STATS) {
   routes.push({
     path: '/stats',
-    component: () => import('../components/pages/StatsPage'),
+    components: {
+      default: () => import('../components/pages/StatsPage'),
+      toolbar: () => import('../components/toolbars/AboutToolbar')
+    },
     meta: {name: 'Statistics'}
   })
 }
 
 export default new Router({
   mode: (window.location.hostname === 'localhost' && location.port === '8080') ? 'history' : 'hash',
-  routes: routes
+  routes: routes,
+  scrollBehavior (to) {
+    if (to.hash) {
+      document.querySelector(to.hash).scrollIntoView()
+    }
+
+    return false
+  }
 })

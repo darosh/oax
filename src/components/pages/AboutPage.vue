@@ -16,7 +16,7 @@
             v-spacer
             v-btn.ma-0(flat @click="reload") Update
           v-divider.mb-3
-          div.hidden-xs-only
+          div#shortcuts.hidden-xs-only
             h4 Keyboard shortcuts
 
             h5 Key color legend
@@ -27,7 +27,7 @@
               span.key.key-warning Shift
               span.key.key-error Ctrl
 
-            h5 Application shortcuts
+            h5#application-shortcuts Application shortcuts
             app-keyboard(:shortcuts="appKeys").mb-4
 
             div(style="float: left").mr-4
@@ -55,7 +55,7 @@
                         .key(:class="classes[k]") {{k}}
                     td.pl-3 {{notes}}
 
-            h5(style="clear: both") Editor shortcuts
+            h5#editor-shortcuts(style="clear: both") Editor shortcuts
 
             p Editor shortcuts should be identical to <a href="https://codemirror.net/demo/sublime.html" target="_blank">CodeMirror Sublime keymap</a> except some extra keys.
 
@@ -73,7 +73,7 @@
                     td.pl-3 {{editorActions[key]}}
 
             v-divider.mb-3
-          h4 Acknowledgement
+          h4#acknowledgement Acknowledgement
           p This app wouldn be posssible without following packages, services and OpenAPI specification directories
           h5 Packages
           p
@@ -100,6 +100,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import appLog from '../app/Log'
@@ -113,6 +114,13 @@
     components: {
       appLog,
       appKeyboard
+    },
+    mounted () {
+      if (this.$route.hash) {
+        Vue.nextTick(() => {
+          document.querySelector(this.$route.hash).scrollIntoView()
+        })
+      }
     },
     data () {
       const editorKeys = {}

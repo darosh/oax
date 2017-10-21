@@ -49,53 +49,27 @@
     v-divider.hidden-xs-only(v-if="b")
 
     template(v-if="!a")
-
-      v-subheader(v-if="components.pageMethods || components.pageStatuses || components.pageHeaders" style="min-width: 180px") HTTP Reference
-
-      v-list-tile(v-if="components.pageMethods" to="/methods" tag="a")
-        v-list-tile-action
-          v-icon web_asset
-        v-list-tile-title Methods
-
-      v-list-tile(v-if="components.pageStatuses" to="/statuses" tag="a")
-        v-list-tile-action
-          v-icon web_asset
-        v-list-tile-title Statuses
-
-      v-list-tile(v-if="components.pageHeaders" to="/headers" tag="a")
-        v-list-tile-action
-          v-icon web_asset
-        v-list-tile-title Headers
-
-      v-divider(v-if="components.pageStats")
-
-      v-list-tile(v-if="components.pageStats" to="/stats" tag="a")
-        v-list-tile-action
-          v-icon data_usage
-        v-list-tile-title Statistics
-
-      v-divider(v-if="components.pageAbout || components.github")
-
-      v-list-tile(v-if="components.pageAbout" to="/about" tag="a")
-        v-list-tile-action
-          v-icon help
-        v-list-tile-title About
-      v-list-tile(v-if="components.github" href="https://github.com/darosh/oax" tag="a" target="_blank")
-        v-list-tile-action
-          v-icon github_circle
-        v-list-tile-title GitHub
+      template(v-for="(i, k) in links")
+        v-divider(v-if="!i", :key="k")
+        v-subheader(v-else-if="!i.exact && i.header" style="min-width: 180px", :key="k") {{i.header}}
+        v-list-tile(v-else-if="!i.exact", :to="i.to", :href="i.href", :target="i.blank ? '_blank' : null" tag="a", :key="k")
+          v-list-tile-action
+            v-icon {{i.icon}}
+          v-list-tile-title {{i.title}}
 </template>
 
 <script>
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import Vue from 'vue'
-  import {configuration} from '../../services/configuration'
+  import { configuration } from '../../services/configuration'
+  import links from '../../utils/links'
 
   export default {
     props: ['type'],
     data: function () {
       return {
+        links,
         components: configuration.components,
         a: this.type === 'a',
         b: this.type === 'b',

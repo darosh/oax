@@ -102,3 +102,5 @@ export {default as indeterminate_check_box} from 'material-design-icons-svg/path
 export {default as chevron_right} from 'material-design-icons-svg/paths/chevron-right'
 export {default as chevron_left} from 'material-design-icons-svg/paths/chevron-left'
 export {default as repeat} from 'material-design-icons-svg/paths/repeat'
+export {default as menu} from 'material-design-icons-svg/paths/menu'
+export {default as keyboard} from 'material-design-icons-svg/paths/keyboard'

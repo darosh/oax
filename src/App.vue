@@ -29,7 +29,7 @@
   import * as types from './store/types'
 
   import appTour from './components/app/Tour.vue'
-  import appToolbar from './components/app/Toolbar'
+  import appToolbar from './components/toolbars/Toolbar'
 
   export default {
     components: {
