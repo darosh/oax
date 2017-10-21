@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     v-divider
-    div.mt-3.text-xs-center(v-if="!VALIDATOR")
+    .mt-3.text-xs-center(v-if="!VALIDATOR")
       v-progress-circular(class="primary--text" indeterminate)
     div(v-else)
       v-alert.ma-0(v-if="!Object.keys(VALIDATOR).length" color="success" icon="check_circle" value="true") There are no issues.

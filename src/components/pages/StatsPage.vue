@@ -100,6 +100,8 @@
               |  repository.
 
       div(style="clear: both")
+  .mt-3.text-xs-center(v-else)
+    v-progress-circular(class="primary--text" indeterminate)
 </template>
 
 <script>
