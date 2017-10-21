@@ -1,16 +1,15 @@
 <template lang="pug">
   v-list(subheader)
-    div(v-if="a" style="height: 8px")
-    div.hidden-sm-and-up(v-if="b" style="height: 8px")
-    v-list-tile.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click="UI_SET_DIALOG('security')")
+    div(:class="{'hidden-sm-and-up': tools}" v-if="tools || view" style="height: 8px")
+    v-list-tile.hidden-sm-and-up(v-if="tools && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length", @click="UI_SET_DIALOG('security')")
       v-list-tile-action
         v-icon lock
       v-list-tile-content
         v-list-tile-title(style="min-width: 100px") Authorization
 
-    v-divider.hidden-sm-and-up(v-if="b && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length")
+    v-divider.hidden-sm-and-up(v-if="tools && view && SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length")
 
-    v-list-tile(v-if="!c", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_DARK)")
+    v-list-tile(v-if="view", :class="{'hidden-sm-and-up': view && tools}", @click="nextNextTick(VIEW_SET_DARK)")
       v-list-tile-action
         v-icon brightness_4
       v-list-tile-content
@@ -18,9 +17,9 @@
       v-list-tile-action
         v-icon(v-if="VIEW_DARK") check
 
-    v-divider(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}")
+    v-divider(v-if="view && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': view && tools}")
 
-    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_PATH)")
+    v-list-tile(v-if="view && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': view && tools}", @click="nextNextTick(VIEW_SET_PATH)")
       v-list-tile-action
         v-icon directions
       v-list-tile-content
@@ -28,7 +27,7 @@
       v-list-tile-action
         v-icon(v-if="VIEW_PATH") check
 
-    v-list-tile(v-if="!c && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': b}", @click="nextNextTick(VIEW_SET_SUMMARY)")
+    v-list-tile(v-if="view && (VIEW_VIEW < 2)", :class="{'hidden-sm-and-up': view && tools}", @click="nextNextTick(VIEW_SET_SUMMARY)")
       v-list-tile-action
         v-icon speaker_notes
       v-list-tile-content
@@ -36,9 +35,9 @@
       v-list-tile-action
         v-icon(v-if="VIEW_SUMMARY") check
 
-    v-divider.hidden-xs-only(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)")
+    v-divider.hidden-xs-only(:class="{'hidden-sm-and-up': view && tools}" v-if="view && (VIEW_VIEW < 2 || VIEW_VIEW === 3)")
 
-    v-list-tile.hidden-xs-only(v-if="!c && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", @click="nextNextTick(VIEW_SET_WIDE)")
+    v-list-tile.hidden-xs-only(:class="{'hidden-sm-and-up': view && tools}" v-if="view && (VIEW_VIEW < 2 || VIEW_VIEW === 3)", @click="nextNextTick(VIEW_SET_WIDE)")
       v-list-tile-action
         v-icon settings_ethernet
       v-list-tile-content
@@ -46,9 +45,9 @@
       v-list-tile-action
         v-icon(v-if="VIEW_WIDE") check
 
-    v-divider.hidden-xs-only(v-if="b")
+    v-divider.hidden-sm-and-up(v-if="view && navigation")
 
-    template(v-if="!a")
+    template(v-if="navigation")
       template(v-for="(i, k) in links")
         v-divider(v-if="!i", :key="k")
         v-subheader(v-else-if="!i.exact && i.header" style="min-width: 180px", :key="k") {{i.header}}
@@ -62,25 +61,13 @@
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import Vue from 'vue'
-  import { configuration } from '../../services/configuration'
   import links from '../../utils/links'
 
   export default {
-    props: ['type'],
+    props: ['navigation', 'view', 'tools'],
     data: function () {
       return {
-        links,
-        components: configuration.components,
-        a: this.type === 'a',
-        b: this.type === 'b',
-        c: this.type === 'c'
-      }
-    },
-    watch: {
-      type () {
-        this.a = this.type === 'a'
-        this.b = this.type === 'b'
-        this.c = this.type === 'c'
+        links
       }
     },
     computed: {

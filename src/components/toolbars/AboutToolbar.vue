@@ -5,12 +5,12 @@
     v-toolbar-title {{APP_PAGE_NAME}}
     v-spacer
     v-toolbar-items
-      v-btn(v-if="i && !i.header" flat :to="i.exact ? APP_HOME : i.to ? i.to : null", :href="i.href ? i.href : null" tag="a", :exact="i.exact", :class="{'hidden-xs-only': !i.exact}", :target="i.blank ? '_blank' : null" v-for="(i, k) in links", :key="k") {{i.title}}
+      v-btn(v-if="i && !i.header" flat :to="i.exact ? APP_HOME : i.to ? i.to : null", :href="i.href ? i.href : null" tag="a", :exact="i.exact", :class="{'hidden-sm-and-down': !i.exact}", :target="i.blank ? '_blank' : null" v-for="(i, k) in links", :key="k") {{i.title}}
 
-    v-menu.hidden-sm-and-up(bottom left)
+    v-menu.hidden-md-and-up(bottom left)
       v-btn(icon slot="activator")
         v-icon more_vert
-      app-toolbar-menu(type="c")
+      app-toolbar-menu(navigation)
 </template>
 
 <script>

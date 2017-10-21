@@ -61,7 +61,7 @@
           v-btn(icon slot="activator")
             v-icon visibility
           span Switch view
-        app-toolbar-menu(type="a")
+        app-toolbar-menu(view)
 
     v-tooltip(bottom)
       v-btn.hidden-xs-only(slot="activator" v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="UI_SET_DIALOG('security')")
@@ -71,7 +71,7 @@
     v-menu(v-if="$vuetify.breakpoint.xsOnly || (components.pageStatuses || components.pageHeaders || components.pageMethods || components.github || components.pageAbout || components.pageStats)", :class="searching ? 'hidden-xs-only' : ''" bottom left)
       v-btn(icon slot="activator")
         v-icon more_vert
-      app-toolbar-menu(type="b")
+      app-toolbar-menu(navigation view tools)
 </template>
 
 <script>
