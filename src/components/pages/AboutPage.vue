@@ -10,7 +10,9 @@
           v-divider
           v-layout.mt-3.mb-3
             v-flex
-              .subheading.pt-2 Version {{APP_VERSION}} ({{APP_BUILD.toLocaleString()}})
+              .subheading.pt-2 Version {{APP_VERSION}}
+                =" "
+                span.nowrap ({{APP_BUILD.toLocaleString()}})
             v-spacer
             v-btn.ma-0(flat @click="reload") Update
           v-divider.mb-3
