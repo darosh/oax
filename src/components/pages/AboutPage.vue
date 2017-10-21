@@ -55,7 +55,7 @@
                         .key(:class="classes[k]") {{k}}
                     td.pl-3 {{notes}}
 
-            h5#editor-shortcuts(style="clear: both") Editor shortcuts
+            h5#application-shortcuts(style="clear: both") Editor shortcuts
 
             p Editor shortcuts should be identical to <a href="https://codemirror.net/demo/sublime.html" target="_blank">CodeMirror Sublime keymap</a> except some extra keys.
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid)
+  v-container.pa-0-sm.mtb-3-sm(fluid)
     v-layout(row wrap)
       v-flex.hidden-sm-and-up(xs12)
         v-divider
