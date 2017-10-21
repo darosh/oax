@@ -24,6 +24,7 @@ export function info(spec: ISpecExtended, url: string, defaultContentType: strin
     subUrl = new URL(parsedUrl.pathname.substr(1));
     spec.basePath = subUrl.origin + (spec.basePath || '');
   } catch (ign) {
+    // tslint:disable-next-line:empty-block
   }
 
   spec.host = spec.host || parsedUrl.host;

@@ -1,11 +1,15 @@
 // import {parseFragment, SAXParser, serialize} from 'parse5';
 
+// tslint:disable-next-line:no-var-requires
 const p5 = (process as any).OAX_FEATURE_MARKDOWN ? require('parse5') : null;
 
+// tslint:disable-next-line:no-var-requires
 const Converter = (process as any).OAX_FEATURE_MARKDOWN ? require('showdown').Converter : null;
 
+// tslint:disable-next-line:no-var-requires
 const hljs = (process as any).OAX_FEATURE_HIGHLIGHT ? require('../utils/highlight') as any : null;
 
+// tslint:disable-next-line:no-var-requires
 const walk = require('walk-parse5');
 
 const cache: { [index: string]: { html: string, summary: string } | any } = {};

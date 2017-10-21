@@ -11,11 +11,11 @@ export function extras(obj: any) {
 function iter(obj: any, level = 0) {
   const keys = Object.keys(obj);
 
-  for (let i = 0; i < keys.length; i++) {
-    const o = obj[keys[i]];
+  for (const ki of keys) {
+    const o = obj[ki];
 
-    if (keys[i][0] === 'x' && keys[i][1] === '-') {
-      delete obj[keys[i]];
+    if (ki[0] === 'x' && ki[1] === '-') {
+      delete obj[ki];
     } else if ((level < 3) && o && (typeof o === 'object') && (index.indexOf(o) === -1)) {
       index.unshift(o);
       iter(o, level + 1);

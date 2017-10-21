@@ -30,17 +30,17 @@ export default {
 
   data(): any {
     return {
-      data: null,
-      selectionData: null,
-      pickTop: defaultPick,
-      groupings,
-      grouping: defaultGrouping,
       counting: defaultCounting,
+      data: null,
+      defaultCounting,
+      defaultGrouping,
+      defaultPick,
+      grouping: defaultGrouping,
+      groupings,
       histogramBins: 32,
       histogramY: 320,
-      defaultGrouping,
-      defaultCounting,
-      defaultPick
+      pickTop: defaultPick,
+      selectionData: null
     };
   },
   computed: {
@@ -50,12 +50,12 @@ export default {
       }
 
       const data = !this.grouping.expand ? this.data : flatten(this.data.map(this.grouping.expand));
-      const records = map(groupBy(data, this.grouping.select), (records, title) => ({
-        title,
+      const mappedRecords = map(groupBy(data, this.grouping.select), (records, title) => ({
+        prop: this.propName(title),
         records,
-        prop: this.propName(title)
+        title
       }));
-      return orderBy(records, [(d) => d.records.length, TITLE], [DECS, ASC]);
+      return orderBy(mappedRecords, [(d) => d.records.length, TITLE], [DECS, ASC]);
     },
     top(): IGrouped[] {
       if (!this.grouped) {
@@ -109,22 +109,22 @@ export default {
 
       const data = !this.counting.expand ? this.filtered : flatten(this.filtered.map(this.counting.expand));
 
-      const records: ICounted[] = map(groupBy(data, this.counting.select),
+      const mappedRecords: ICounted[] = map(groupBy(data, this.counting.select),
         (records, title) => ({
-          title: this.counting.number ? parseInt(title) : title,
           prop: this.propName(title),
           records,
+          title: this.counting.number ? parseInt(title, 10) : title,
           total: records.length,
-          value: this.counting.number ? parseInt(title) : undefined
+          value: this.counting.number ? parseInt(title, 10) : undefined
         })) as ICounted[];
 
       (this.selected as IGrouped[]).forEach((s) => {
-        records.forEach((record) => {
+        mappedRecords.forEach((record) => {
           record[this.propName(s.title)] = record.records.filter((d) => d.column === s.title).length;
         });
       });
 
-      return orderBy(records, [TOTAL, TITLE], [DECS, ASC]);
+      return orderBy(mappedRecords, [TOTAL, TITLE], [DECS, ASC]);
     },
     histogram() {
       if (!this.counting.number) {
@@ -186,12 +186,12 @@ export default {
       return '$' + t.replace(/\./g, '_');
     },
     histogramSums(h: IHistogram): void {
-      for (let i = 0; i < h.length; i++) {
-        if (h[i]) {
+      for (const hi of h) {
+        if (hi) {
           (this.selected as IGrouped[]).forEach((s) => {
             h.histSum = h.histSum || {};
             h.histSum[s.title] = h.histSum[s.title] || 0;
-            (h.histSum[s.title] as any) += h[i][this.propName(s.title)] > 0 ? h[i][this.propName(s.title)] : 0;
+            (h.histSum[s.title] as any) += hi[this.propName(s.title)] > 0 ? hi[this.propName(s.title)] : 0;
           });
         }
       }

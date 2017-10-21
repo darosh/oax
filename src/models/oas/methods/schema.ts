@@ -1,7 +1,9 @@
 import {Schema} from 'swagger-schema-official';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 
+// tslint:disable-next-line:no-var-requires
 const randExp = require('randexp');
+// tslint:disable-next-line:no-var-requires
 const DRange = require('discontinuous-range');
 
 randExp.prototype.defaultRange = new DRange(97, 122);
@@ -58,6 +60,7 @@ export function value(schemaObject: Schema): any {
     case 'enum':
       return schemaObject.enum[0];
     default:
+      // tslint:disable-next-line:no-console
       console.warn('Unknown schema value', schemaObject);
       return '?';
   }

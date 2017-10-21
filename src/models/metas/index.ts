@@ -17,7 +17,6 @@ export function metas(spec: ISpecExtended): IMeta[] {
   function stats() {
     const c = countBy(spec._operations, '_method');
     return {
-      total: spec._operations.length,
       chart: [
         ['get', c.get],
         ['post', c.post],
@@ -26,7 +25,8 @@ export function metas(spec: ISpecExtended): IMeta[] {
         ['delete', c.delete],
         ['head', c.head],
         ['options', c.options]
-      ].filter((d) => d[1])
+      ].filter((d) => d[1]),
+      total: spec._operations.length
     };
   }
 
@@ -107,9 +107,9 @@ export function metas(spec: ISpecExtended): IMeta[] {
       title: 'Code generator'
     },
     {
+      icon: 'fake',
       stats: stats(),
       title: spec._operations.length === 1 ? 'Operation' : 'Operations',
-      icon: 'fake',
       value: 'fake'
     }
   ];

@@ -87,7 +87,9 @@ export function mdResponses(spec: ISpecExtended, max: number) {
   for (const op of spec._operations) {
     if (op.responses) {
       for (const respName in op.responses) {
-        description(op.responses[respName]._);
+        if (op.responses.hasOwnProperty(respName)) {
+          description(op.responses[respName]._);
+        }
       }
     }
 
