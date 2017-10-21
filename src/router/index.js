@@ -17,7 +17,7 @@ const routes = [
   }
 ]
 
-if (process.OAX_METHODS) {
+if (process.OAX_FEATURE_PAGE_METHODS) {
   routes.push({
     path: '/methods',
     component: () => import('../components/pages/MethodPage'),
@@ -25,7 +25,7 @@ if (process.OAX_METHODS) {
   })
 }
 
-if (process.OAX_STATUSES) {
+if (process.OAX_FEATURE_PAGE_STATUSES) {
   routes.push({
     path: '/statuses',
     component: () => import('../components/pages/StatusPage'),
@@ -33,7 +33,7 @@ if (process.OAX_STATUSES) {
   })
 }
 
-if (process.OAX_HEADERS) {
+if (process.OAX_FEATURE_PAGE_HEADERS) {
   routes.push({
     path: '/headers',
     component: () => import('../components/pages/HeaderPage'),
@@ -41,7 +41,7 @@ if (process.OAX_HEADERS) {
   })
 }
 
-if (process.OAX_STATS) {
+if (process.OAX_FEATURE_PAGE_STATS) {
   routes.push({
     path: '/stats',
     component: () => import('../components/pages/StatsPage'),
