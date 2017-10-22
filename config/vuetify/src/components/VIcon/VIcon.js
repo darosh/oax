@@ -2,7 +2,7 @@ require('../../stylus/components/_icons.styl')
 
 import Themeable from '../../mixins/themeable'
 import Contextualable from '../../mixins/contextualable'
-import * as icons from '../../../../../src/utils/icons'
+import * as icons from '../../../../../assets/utils/icons'
 
 export default {
   name: 'v-icon',

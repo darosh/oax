@@ -52,7 +52,7 @@ module.exports = {
       'd3-scale/src/linear',
       'd3-scale/src/ordinal'
     ],
-    app: './src/main.js'
+    app: './main/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -107,7 +107,10 @@ module.exports = {
         test: /\.(js)$/,
         loader: 'babel-loader',
         include: [
-          resolve('src'),
+          resolve('main'),
+          resolve('assets'),
+          resolve('components'),
+          resolve('store'),
           resolve('node_modules/vuetify/src'),
           resolve('node_modules/v-hotkey'),
           resolve('node_modules/codemirror'),

@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.332",
+  "version": "1.0.333",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -27,9 +27,11 @@
     "intersection-observer": "^0.4.2",
     "json-schema-bundler": "^0.1.11",
     "json-stringify-pretty-compact": "^1.0.4",
+    "lodash": "^4.17.4",
     "lodash-es": "^4.17.4",
     "lunr": "^2.1.4",
     "material-design-icons-svg": "^1.1.2",
+    "nuxt": "^1.0.0-rc11",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "openapi-samples": "github:darosh/openapi-samples",
     "parse5": "^3.0.2",
@@ -46,6 +48,7 @@
     "vuex": "^3.0.0",
     "vuex-router-sync": "^5.0.0",
     "walk-parse5": "^1.0.0",
+    "whatwg-url": "^6.3.0",
     "yaml-js": "^0.2.0"
   },
   "devDependencies": {
@@ -119,6 +122,7 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.2",
+    "vuetify-loader": "^0.1.0",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
@@ -131,6 +135,11 @@
     "npm": ">= 3.0.0"
   },
   "private": true,
+  "resolutions": {
+    "nuxt/vue": "^2.5.2",
+    "nuxt/vue-server-renderer": "^2.5.2",
+    "nuxt/vue-template-compiler": "^2.5.2"
+  },
   "scripts": {
     "app:dependencies": "node ./build/app/dependencies.js",
     "app:http-data": "node build/app/http-data.js header > src/assets/http-header.json && node build/app/http-data.js method > src/assets/http-method.json && node build/app/http-data.js status > src/assets/http-status.json",
@@ -146,6 +155,10 @@
     "doc:test-links": "node ./build/doc/test-links.js",
     "imagemin": "imagemin doc/screenshots/images/*.png --out-dir doc/screenshots/images",
     "lint": "eslint --ext .js,.vue src",
+    "nuxt:build": "nuxt build",
+    "nuxt:dev": "nuxt",
+    "nuxt:generate": "nuxt generate",
+    "nuxt:start": "nuxt start",
     "report": "npm run build --report",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts",
     "vuetify": "node ./build/app/patch.js vuetify"

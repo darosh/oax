@@ -14,3 +14,7 @@ debug.log
 **/.idea/dictionaries/*.xml
 
 package-lock.json
+yarn.lock
+
+# Nuxt build
+.nuxt
