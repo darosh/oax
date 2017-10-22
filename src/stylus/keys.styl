@@ -6,33 +6,16 @@
   margin: 0 5px 0 5px
   text-align center
   font-size: 80%
-  position: relative
-  top: -2px
-  min-width: 1.8em
+  min-width: 1.6em
   color: rgba(0, 0, 0, .78)
   letter-spacing 0.06em
   line-height: 1
   font-weight: 700
   text-decoration: none
   cursor: default
-  border: 1px solid rgba(0, 0, 0, .09)
+  border: 1px solid rgba(0, 0, 0, .18)
   border-radius: 2px
   background: lighten(#ddd, 30%)
-
-.key::before
-  content: ''
-  left: -2px
-  right: -2px
-  top: -1px
-  bottom: -3px
-  border-top-left-radius: 4px
-  border-top-right-radius: 4px
-  border-bottom-left-radius: 3px
-  border-bottom-right-radius: 3px
-  position absolute
-  z-index: -1
-  border-bottom: 2px solid #999
-  background: #aaa
 
 .key path
   fill: rgba(0, 0, 0, .78) !important
@@ -62,11 +45,7 @@
 .application--dark .key
   color: #fff
   background: lighten(#222, 30%)
-  border: 1px solid rgba(#000, .24)
-
-.application--dark .key::before
-  background: rgba(#000, .36)
-  border-bottom: 2px solid rgba(#000, .64)
+  border: 1px solid rgba(#000, .36)
 
 .key.key-primary
   background: $kp
