@@ -22,7 +22,8 @@ module.exports = {
     '~/plugins/vuetify.js',
     '~/plugins/router.js',
     '~/plugins/vuex-router-sync.js',
-    '~/plugins/hotkey.js'
+    '~/plugins/hotkey.js',
+    '~/plugins/vue-virtual-scroller.js'
   ],
   css: [
     '~/assets/style/app.styl'

@@ -86,16 +86,16 @@
   import * as directory from '../../assets/services/directory'
   import layout from '../mixins/layout'
   // import VirtualScroller from 'vue-virtual-scroller/src/components/VirtualScroller'
-  import VirtualScroller from 'vue-virtual-scroller'
+  // import VirtualScroller from 'vue-virtual-scroller'
 
   export default {
     mixins: [keys, layout],
     directives: {
       focus
     },
-    components: {
-      VirtualScroller
-    },
+    // components: {
+    //   VirtualScroller
+    // },
     props: ['value'],
     data () {
       return {

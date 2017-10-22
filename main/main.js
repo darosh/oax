@@ -15,6 +15,9 @@ import { configuration } from '../assets/services/configuration'
 import { selectMixin, select } from '../assets/utils/select'
 import * as types from '../store/types'
 import App from './App'
+import VueVirtualScroller from 'vue-virtual-scroller'
+
+Vue.use(VueVirtualScroller)
 
 Vue.use(VueHotkey)
 Vue.config.productionTip = false
