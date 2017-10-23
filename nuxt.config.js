@@ -41,30 +41,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    babel: {
-      // 'presets': [
-      //   [
-      //     'env',
-      //     {
-      //       'modules': false
-      //     }
-      //   ],
-      //   'stage-2'
-      // ],
-      plugins: [
-        // 'dynamic-import-webpack',
-        // 'transform-runtime',
-        [
-          'transform-imports',
-          {
-            'vuetify': {
-              'transform': 'vuetify/es5/components/${member}',
-              'preventFullImport': true
-            }
-          }
-        ]
-      ]
-    },
+    babel: JSON.parse(require('fs').readFileSync('./.babelrc', 'utf8')),
 
     vendor: [
       '~/plugins/vuetify.js',
