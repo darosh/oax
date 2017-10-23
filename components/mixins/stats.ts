@@ -8,7 +8,7 @@ import {
   sum,
   sumBy,
   values
-} from 'lodash';
+} from '../../plugins/lodash';
 
 import {Bin, extent, histogram} from 'd3-array';
 import {scaleLinear} from 'd3-scale';

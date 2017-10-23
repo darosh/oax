@@ -15,8 +15,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = config.build.env
 
-const babel = require('babel-core');
-const uglify = require('uglify-js');
+const babel = require('babel-core')
+const uglify = require('uglify-js')
 
 let workerJS = uglify.minify(babel.transformFileSync(path.join(__dirname, './service-worker-prod.js')).code).code
 
@@ -117,7 +117,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           handler: 'networkFirst'
         }
       ]
-    }),
+    })
 
     // new ProgressPlugin({
     //   format: '  [:msg] [:bar] ' + chalk.green.bold(':percent'),

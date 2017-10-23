@@ -3,6 +3,8 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+
 const rc = require('rc')('oax', {
   'DIALOG_HEADERS': true,
   'DIALOG_METHODS': true,
@@ -30,11 +32,13 @@ Object.keys(rc).forEach(k => rc['process.OAX_FEATURE_' + k] = rc[k])
 module.exports = {
   entry: {
     vendor: [
-      'lodash',
+      './plugins/lodash.js',
       'd3-format',
       'd3-shape',
       'd3-array',
-      'd3-scale'
+      'd3-scale',
+      // 'js-yaml',
+      'axios'
     ],
     app: './main/main.js'
   },
@@ -51,6 +55,10 @@ module.exports = {
     }
   },
   plugins: [
+    new LodashModuleReplacementPlugin({
+      collections: true,
+      flattening: true
+    }),
     new webpack.DefinePlugin({
       'process.WEBPACK': true,
       'process.OAX_VERSION': JSON.stringify(require('../package').version),
@@ -119,12 +127,6 @@ module.exports = {
           resolve('components'),
           resolve('plugins'),
           resolve('store')
-          // resolve('node_modules/vuetify/src'),
-          // resolve('node_modules/v-hotkey'),
-          // resolve('node_modules/codemirror'),
-          // resolve('node_modules/walk-parse5'),
-          // resolve('node_modules/vue-virtual-scroller'),
-          // resolve('node_modules/vue-observe-visibility')
         ]
       },
       {

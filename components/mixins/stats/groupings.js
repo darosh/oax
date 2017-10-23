@@ -1,4 +1,4 @@
-import { values, sum } from 'lodash'
+import { values, sum } from '../../../plugins/lodash'
 
 export const groupings = [
   {text: 'Top level domain', select: d => d.root},

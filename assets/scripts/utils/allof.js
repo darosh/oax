@@ -1,4 +1,4 @@
-import { isArray, union, defaults, mergeWith } from 'lodash'
+import { isArray, union, defaults, mergeWith } from '../../../plugins/lodash'
 
 import CircularJSON from 'circular-json'
 

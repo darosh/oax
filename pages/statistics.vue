@@ -105,7 +105,7 @@
 </template>
 
 <script>
-  import {maxBy, round, findIndex} from 'lodash'
+  import {maxBy, round, findIndex} from '../plugins/lodash'
   import { scaleLinear } from 'd3-scale'
   import { colors } from '../assets/scripts/services/directory/openapi-directory-lite'
   import axios from 'axios'

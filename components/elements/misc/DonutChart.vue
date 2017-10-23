@@ -12,7 +12,7 @@
 <script>
   import { format } from 'd3-format'
   import { arc, pie } from 'd3-shape'
-  import { sumBy, round } from 'lodash'
+  import { sumBy, round } from '../../../plugins/lodash'
 
   export default {
     props: ['radius', 'title', 'items', 'prop', 'category', 'inner', 'color', 'colorClass', 'noSubtitle', 'mini'],
