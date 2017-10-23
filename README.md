@@ -66,7 +66,7 @@ npm run nuxt:dev # serve with hot reload at localhost:3000
 
 # build for production and launch server
 npm run nuxt:build 
-npm start
+npm run nuxt:start
 
 npm run nuxt:generate # generate static project
 ```
