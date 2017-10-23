@@ -44,8 +44,8 @@ module.exports = {
     babel: JSON.parse(require('fs').readFileSync('./.babelrc', 'utf8')),
 
     vendor: [
-      '~plugins/lodash.js',
-      '~plugins/d3.js',
+      './plugins/lodash.js',
+      './plugins/d3.js',
       'axios'
     ],
 

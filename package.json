@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.343",
+  "version": "1.0.344",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -158,13 +158,14 @@
     "nuxt:build": "nuxt build",
     "nuxt:dev": "nuxt",
     "nuxt:generate": "nuxt generate",
+    "nuxt:spa:dev": "nuxt --spa",
     "nuxt:start": "nuxt start",
+    "postinstall": "npm run vendor:vuetify && npm run vendor:walk-parse5",
     "vendor:vuetify": "cross-env NODE_ENV=es5 babel config/vuetify/src --out-dir config/vuetify/es5 && node ./build/app/patch.js vuetify",
     "vendor:walk-parse5": "cross-env NODE_ENV=es5 babel node_modules/walk-parse5 --out-dir node_modules/walk-parse5",
     "webpack:build": "node build/build.js",
     "webpack:deploy": "npm --no-git-tag-version version patch && npm run data:dependencies && node build/build.js && deploy-to-gh-pages --local ./dist",
     "webpack:dev": "node build/dev-server.js",
-    "webpack:report": "npm run webpack:build --report",
-    "postinstall": "npm run vendor:vuetify && npm run vendor:walk-parse5"
+    "webpack:report": "npm run webpack:build --report"
   }
 }

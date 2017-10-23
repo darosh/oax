@@ -52,12 +52,12 @@ export default {
       }
 
       const data = !this.grouping.expand ? this.data : flatten(this.data.map(this.grouping.expand));
-      const mappedRecords = map(groupBy(data, this.grouping.select), (records, title) => ({
+      const mappedRecords = map(groupBy(data, this.grouping.select), (records:any[], title:string) => ({
         prop: this.propName(title),
         records,
         title
       }));
-      return orderBy(mappedRecords, [(d) => d.records.length, TITLE], [DECS, ASC]);
+      return orderBy(mappedRecords, [(d:any) => d.records.length, TITLE], [DECS, ASC]);
     },
     top(): IGrouped[] {
       if (!this.grouped) {
@@ -112,7 +112,7 @@ export default {
       const data = !this.counting.expand ? this.filtered : flatten(this.filtered.map(this.counting.expand));
 
       const mappedRecords: ICounted[] = map(groupBy(data, this.counting.select),
-        (records, title) => ({
+        (records:any[], title:string) => ({
           prop: this.propName(title),
           records,
           title: this.counting.number ? parseInt(title, 10) : title,
@@ -169,7 +169,7 @@ export default {
       t.definitionsTotal = sumBy(t.records, 'definitions');
       t.definitions = round(t.definitionsTotal / t.total, 1);
 
-      t.methodsTotal = sumBy(t.records, (u) => sum(values(u.methods)));
+      t.methodsTotal = sumBy(t.records, (u:any) => sum(values(u.methods)));
       t.methods = round(t.methodsTotal / t.total, 1);
 
       t.summariesTotal = sumBy(t.records, 'summaries');
