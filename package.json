@@ -163,6 +163,6 @@
     "webpack:build": "node build/build.js",
     "webpack:deploy": "npm --no-git-tag-version version patch && npm run app:dependencies && node build/build.js && deploy-to-gh-pages --local ./dist",
     "webpack:dev": "node build/dev-server.js",
-    "webpack:report": "npm run build --report"
+    "webpack:report": "npm run webpack:build --report"
   }
 }
