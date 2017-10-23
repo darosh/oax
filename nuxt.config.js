@@ -20,6 +20,7 @@ module.exports = {
 
   plugins: [
     '~/plugins/url.js',
+    '~/plugins/icons.js',
     '~/plugins/vuetify.js',
     '~/plugins/router.js',
     '~/plugins/vuex-router-sync.js',
@@ -28,7 +29,7 @@ module.exports = {
   ],
 
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/style/index.styl'
   ],
 
   /*
@@ -98,6 +99,12 @@ module.exports = {
         test: /\.ts$/,
         loader: 'ts-loader'
       })
+
+      config.resolveLoader = {
+        alias: {
+          'vuetify-loader': resolve('./build/loaders/vuetify-loader')
+        }
+      }
 
       config.module.rules.forEach(rule => {
         if (rule.test.toString() === '/\\.styl(us)?$/') {
