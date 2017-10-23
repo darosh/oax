@@ -14,5 +14,5 @@ schema.load().then(() => {
   schema.bundle()
   schema.deref(true, true)
   delete schema.bundled.definitions['http:']
-  fs.writeFileSync('src/assets/swagger-schema.json', compactJson(JSON.parse(circularJson.stringify(schema.bundled)), {maxLength: 120}))
+  fs.writeFileSync('assets/data/swagger-schema.json', compactJson(JSON.parse(circularJson.stringify(schema.bundled)), {maxLength: 120}))
 }).catch(err => console.log(err))
