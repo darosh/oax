@@ -44,8 +44,8 @@
 <script>
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import { first } from '../../assets/utils/first'
-  import { oauth2, name } from '../../assets/utils/security'
+  import { first } from '../../assets/scripts/utils/first'
+  import { oauth2, name } from '../../assets/scripts/utils/security'
   import markdown from '../../components/directives/markdown'
 
   export default {

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import { MethodStyle } from '../../assets/services/method-style'
+  import { MethodStyle } from '../../assets/scripts/services/method-style'
 
   export default {
     props: ['item'],

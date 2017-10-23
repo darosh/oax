@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../../assets/services/response-style'
+  import { ResponseStyle } from '../../assets/scripts/services/response-style'
 
   export default {
     props: ['code'],

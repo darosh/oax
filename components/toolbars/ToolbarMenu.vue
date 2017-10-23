@@ -61,7 +61,7 @@
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import * as types from '../../store/types'
   import Vue from 'vue'
-  import links from '../../assets/utils/links'
+  import links from '../../assets/scripts/utils/links'
 
   export default {
     props: ['navigation', 'view', 'tools'],

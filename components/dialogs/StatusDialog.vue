@@ -22,8 +22,8 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../../assets/services/response-style'
-  import limit from '../../assets/utils/limit'
+  import { ResponseStyle } from '../../assets/scripts/services/response-style'
+  import limit from '../../assets/scripts/utils/limit'
   import dialog from '../mixins/dialog'
 
   const json = () => import('../../assets/data/http-status.json')

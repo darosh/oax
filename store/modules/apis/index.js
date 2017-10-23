@@ -1,7 +1,7 @@
 import * as types from './types'
 import axios from 'axios'
-import { configuration } from '../../../assets/services/configuration'
-import * as directory from '../../../assets/services/directory/index'
+import { configuration } from '../../../assets/scripts/services/configuration'
+import * as directory from '../../../assets/scripts/services/directory/index'
 
 export const state = {
   apis: null,

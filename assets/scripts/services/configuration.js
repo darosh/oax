@@ -1,4 +1,4 @@
-import defaultConfiguration from '../data/configuration'
+import defaultConfiguration from '../../data/configuration'
 
 // window.OAX = window.OAX || {}
 

@@ -30,11 +30,11 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../../assets/services/response-style'
+  import { ResponseStyle } from '../../assets/scripts/services/response-style'
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import { schema } from '../../assets/models/oas/methods/schema'
-  import { execute } from '../../assets/models/oas/methods/execute'
+  import { schema } from '../../assets/scripts/models/oas/methods/schema'
+  import { execute } from '../../assets/scripts/models/oas/methods/execute'
 
   import appModel from '../parts/Model'
   import appExample from '../parts/Example'

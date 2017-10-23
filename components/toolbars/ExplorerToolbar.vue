@@ -78,7 +78,7 @@
 <script>
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import { configuration } from '../../assets/services/configuration'
+  import { configuration } from '../../assets/scripts/services/configuration'
 
   export default {
     components: {

@@ -46,7 +46,7 @@
   import appTagList from '../components/views/TagList'
 
   import markdown from '../components/directives/markdown'
-  import { configuration } from '../assets/services/configuration'
+  import { configuration } from '../assets/scripts/services/configuration'
 
   export default {
     directives: {

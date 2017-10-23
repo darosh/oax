@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import limit from '../../assets/utils/limit'
+  import limit from '../../assets/scripts/utils/limit'
   import dialog from '../mixins/dialog'
 
   const headers = () => import('../../assets/data/http-header.json')

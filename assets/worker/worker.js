@@ -1,16 +1,16 @@
-import { load } from '../services/load'
+import { load } from '../scripts/services/load'
 import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 
-import update from '../utils/update'
+import update from '../scripts/utils/update'
 // import { OAS } from './../models/oas'
 // import { trim, summary } from '../services/markdown'
-import edit from '../utils/edit'
+import edit from '../scripts/utils/edit'
 
 import { compare } from 'fast-json-patch'
 import yaml from 'yaml-js'
-import jsonParseError from '../utils/json-parse-error'
-import { searchSpecs } from '../services/search-specs'
+import jsonParseError from '../scripts/utils/json-parse-error'
+import { searchSpecs } from '../scripts/services/search-specs'
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
@@ -21,8 +21,8 @@ export default function worker (target) {
     if (event.data.md) {
       // require.ensure(['../services/markdown'], function () {
       //   const trim = require('../services/markdown').trim
-      require.ensure(['./../models/oas'], function () {
-        const trim = require('./../models/oas').trim
+      require.ensure(['./../scripts/models/oas'], function () {
+        const trim = require('./../scripts/models/oas').trim
         target.postMessage(JSON.stringify({
           id: event.data.id,
           md: trim(event.data.md)
@@ -31,8 +31,8 @@ export default function worker (target) {
     } else if (event.data.summary) {
       // require.ensure(['../services/markdown'], function () {
       //   const summary = require('../services/markdown').summary
-      require.ensure(['./../models/oas'], function () {
-        const summary = require('./../models/oas').summary
+      require.ensure(['./../scripts/models/oas'], function () {
+        const summary = require('./../scripts/models/oas').summary
         target.postMessage(JSON.stringify({
           id: event.data.id,
           summary: summary(event.data.summary)
@@ -51,8 +51,8 @@ export default function worker (target) {
           url: event.data.url
         }
 
-        require.ensure(['./../models/oas'], function () {
-          const OAS = require('./../models/oas').OAS
+        require.ensure(['./../scripts/models/oas'], function () {
+          const OAS = require('./../scripts/models/oas').OAS
           let toThrow
 
           try {
@@ -128,8 +128,8 @@ export default function worker (target) {
         return
       }
 
-      require.ensure(['./../models/oas'], function () {
-        const OAS = require('./../models/oas').OAS
+      require.ensure(['./../scripts/models/oas'], function () {
+        const OAS = require('./../scripts/models/oas').OAS
         try {
           OAS(json.schema.bundled, json.url)
         } catch (err) {

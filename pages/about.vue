@@ -106,7 +106,7 @@
   import dependencies from '../assets/data/dependencies.json'
   import appKeyboard from '../components/parts/Keyboard'
   import keys from '../assets/data/keys.json'
-  import * as directories from '../assets/services/directory'
+  import * as directories from '../assets/scripts/services/directory'
   import services from '../assets/data/services.json'
 
   export default {
