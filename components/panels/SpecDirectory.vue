@@ -246,7 +246,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../assets/stylus/_variables.styl'
+  @import '../../assets/style/_variables.styl'
 
   $margin-scroll := (80 + 48) px
 

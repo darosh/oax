@@ -160,7 +160,7 @@
 </script>
 
 <style lang="stylus">
-  @import '../assets/stylus/index.styl'
+  @import '../assets/style/index.styl'
 
   .snackbar-action
     font-family: 'Roboto Medium'
