@@ -1,8 +1,7 @@
 import worker from '../../assets/worker/index'
-import store from '../../store'
 import * as types from '../../store/types'
 
-function update (elo, binding) {
+function update (elo, binding, $store) {
   if (binding.value === binding.oldValue) {
     return
   }
@@ -23,9 +22,9 @@ function update (elo, binding) {
     } else {
       el.className += ' markdown'
 
-      store.commit(types.SPEC_FNC, () => {
+      $store.commit(types.SPEC_FNC, () => {
         (v[nameJ] || (v[nameJ] = worker({md: v[name]}))).then(md => {
-          store.commit(types.SPEC_FNC, () => {
+          $store.commit(types.SPEC_FNC, () => {
             delete v[nameJ]
             el.innerHTML = v[name] = md
             v[nameH] = true
@@ -38,9 +37,9 @@ function update (elo, binding) {
       sum(el, binding)
     } else {
       const nameJ = 'description_job'
-      store.commit(types.SPEC_FNC, () => {
+      $store.commit(types.SPEC_FNC, () => {
         (v[nameJ] || (v[nameJ] = worker({md: v.description}))).then(md => {
-          store.commit(types.SPEC_FNC, () => {
+          $store.commit(types.SPEC_FNC, () => {
             delete v[nameJ]
             v.description = md
             v.description_html = true
@@ -52,9 +51,9 @@ function update (elo, binding) {
   }
 }
 
-function sum (el, binding) {
+function sum (el, binding, $store) {
   worker({summary: binding.value.description}).then(s => {
-    store.commit(types.SPEC_FNC, () => {
+    $store.commit(types.SPEC_FNC, () => {
       binding.value.summary = s
     })
     update(el, binding)
@@ -62,10 +61,10 @@ function sum (el, binding) {
 }
 
 export default {
-  update (el, binding) {
-    update(el, binding)
+  update (el, binding, {context: {$store}}) {
+    update(el, binding, $store)
   },
-  bind (el, binding) {
-    update(el, binding)
+  bind (el, binding, {context: {$store}}) {
+    update(el, binding, $store)
   }
 }
