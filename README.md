@@ -35,42 +35,40 @@ OpenAPI version 3.0|![0%](https://placehold.it/12/e05d44?text=+) 0%|
 
 ## Build Setup
 
+### Install
+
+``` bash
+npm install # or yarn
+
+npm run vendor:vuetify # customize vuetify
+
+npm run vendor:walk-parse5 # transpile
+```
+
 ### Webpack
 
 ``` bash
-# install dependencies
-npm install
+npm run webpack:dev # serve with hot reload at localhost:8080
 
-# customize vuetify
-npm run vuetify
+npm run webpack:build # build for production with minification 
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+npm run webpack:report # build for production and view the bundle analyzer report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ### NUXT
 
-``` bash
-# install dependencies
-$ npm install # Or yarn install (yarn required for package.json resolutions)
+_Experimental NUXT build._
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+``` bash
+npm run nuxt:dev # serve with hot reload at localhost:3000
 
 # build for production and launch server
-$ npm run build
-$ npm start
+npm run nuxt:build 
+npm start
 
-# generate static project
-$ npm run generate
+npm run nuxt:generate # generate static project
 ```
 
 For detailed explanation on how things work, check out the [Nuxt.js](https://github.com/nuxt/nuxt.js) and [Vuetify.js](https://vuetifyjs.com/) documentation.
