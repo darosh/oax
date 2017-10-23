@@ -18,3 +18,6 @@ yarn.lock
 .nuxt
 
 config/vuetify/es5
+
+plugins/d3.js
+plugins/lodash.js

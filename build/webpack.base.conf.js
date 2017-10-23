@@ -98,7 +98,7 @@ module.exports = {
           resolve('main'),
           resolve('assets'),
           resolve('components'),
-          resolve('plugins'),
+          // resolve('plugins'),
           resolve('store')
         ],
         options: {

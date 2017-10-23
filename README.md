@@ -39,10 +39,6 @@ OpenAPI version 3.0|![0%](https://placehold.it/12/e05d44?text=+) 0%|
 
 ``` bash
 npm install # or yarn (yarn required for NUXT build)
-
-npm run vendor:vuetify # customize vuetify
-
-npm run vendor:walk-parse5 # transpile walk-parse5
 ```
 
 ### Webpack
