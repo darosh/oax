@@ -1,11 +1,16 @@
+$color-pack = false
+
+@require '../../node_modules/vuetify/src/stylus/settings/_colors'
+
 // Specify overrides (theme and/or base variables etc.)
 // See https://vuetifyjs.com/quick-start
 $theme := {
-  primary: #9c27b0
-  accent: #ce93d8
-  secondary: #424242
-  info: #0D47A1
-  warning: #ffb300
-  error: #B71C1C
-  success: #2E7D32
+  primary: $blue.lighten-1
+  accent: $blue.lighten-1
+  secondary: $grey.darken-1
+
+  info: $blue.darken-2
+  warning: $amber.accent-4
+  error: $red.accent-4
+  success: $green.accent-4
 }

@@ -2,7 +2,7 @@ require('../../stylus/components/_icons.styl')
 
 import Themeable from '../../mixins/themeable'
 import Contextualable from '../../mixins/contextualable'
-import * as icons from '../../../../../assets/scripts/utils/icons'
+import Vue from 'vue'
 
 export default {
   name: 'v-icon',
@@ -24,7 +24,6 @@ export default {
 
   render (h, { props, data, children = [] }) {
     let iconName = ''
-    let iconType = 'svg'
 
     if (children.length) {
       iconName = children.pop().text
@@ -66,12 +65,14 @@ export default {
     svgData.attrs.version = '1.1'
     svgData.attrs.xmlns = 'http://www.w3.org/2000/svg'
 
-    if (!icons[iconName]) {
-      console.info(`Missing icon ${iconName}.`)
+    const $icons = Vue.prototype.$icons
+
+    if (!$icons || !$icons[iconName]) {
+      console.warn(`Missing icon ${iconName}.`)
     }
 
     return h('i', data,
-      [h('svg', svgData, [h('path', {attrs: {d: icons[iconName]}})])]
+      [h('svg', svgData, [h('path', {attrs: {d: ($icons && $icons[iconName]) || 'M4 4 H 20 V 20 H 4 L 4 4'}})])]
     )
   }
 }

@@ -17,6 +17,7 @@ module.exports = {
       {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'}
     ]
   },
+
   plugins: [
     '~/plugins/url.js',
     '~/plugins/vuetify.js',
@@ -25,13 +26,16 @@ module.exports = {
     '~/plugins/hotkey.js',
     '~/plugins/vue-virtual-scroller.js'
   ],
+
   css: [
     '~/assets/style/app.styl'
   ],
+
   /*
   ** Customize the progress bar color
   */
   loading: {color: '#3B8070'},
+
   /*
   ** Build configuration
   */
@@ -60,16 +64,19 @@ module.exports = {
         ]
       ]
     },
+
     vendor: [
       '~/plugins/vuetify.js',
       'lodash',
       'axios'
     ],
+
     extractCSS: true,
-    /*
-    ** Run ESLint on save
-    */
+
     extend (config, ctx) {
+      /*
+      ** Run ESLint on save
+      */
       if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -101,29 +108,10 @@ module.exports = {
             }
           })
         }
-
-        // if (rule.loader === 'babel-loader') {
-        //   console.log(rule)
-        //   delete rule.exclude
-        //   rule.include = [
-        //     resolve('.nuxt'),
-        //     resolve('assets'),
-        //     resolve('components'),
-        //     resolve('layouts'),
-        //     resolve('pages'),
-        //     resolve('plugins'),
-        //     resolve('store'),
-        //     resolve('node_modules/lodash-es'),
-        //     resolve('node_modules/v-hotkey'),
-        //     resolve('node_modules/codemirror'),
-        //     resolve('node_modules/walk-parse5'),
-        //     resolve('node_modules/vue-virtual-scroller'),
-        //     resolve('node_modules/vue-observe-visibility')
-        //   ]
-        // }
       })
     }
   },
+
   router: {
     extendRoutes (routes, resolve) {
     }

@@ -20,9 +20,4 @@
 
 <style lang="stylus">
   @import '../assets/style/index.styl'
-
-  .snackbar-action
-    font-family: 'Roboto Medium'
-    text-transform: uppercase
-    cursor: pointer
 </style>
