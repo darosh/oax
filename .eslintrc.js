@@ -10,9 +10,10 @@ module.exports = {
 
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: [
-    'standard',
+    'standard'
+    // ,
     // TODO: PUG ignored, not supported yet: https://github.com/vuejs/eslint-plugin-vue/pull/180
-    'plugin:vue/recommended'
+    // 'plugin:vue/recommended'
   ],
 
   // required to lint *.vue files
