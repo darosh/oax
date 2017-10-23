@@ -123,7 +123,7 @@ export default {
       types.UI_SET_NEXT_TAB,
       types.UI_SET_ANIMATION
     ]),
-    reload() {
+    reload () {
       window.location.reload()
     }
   }

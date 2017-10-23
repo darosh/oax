@@ -9,10 +9,10 @@
       v-divider
       v-card.pb-3
         div.pt-3(v-for="(response, code) in item.responses", :key="code")
-          .relative.response.hover--block.pl-3.pr-3(@click.stop="UI_SET_DIALOG({type: 'status', param: code})", v-ripple="")
+          .relative.response.hover--block.pl-3.pr-3(@click.stop="UI_SET_DIALOG({type: 'status', param: code})", v-ripple="true")
             app-response-block(:code="code", :text="response._")
           div(v-if="response.headers")
-            .hover--block.pl-3.pr-3(v-for="(header, headerName) in response.headers", :key="headerName" v-ripple="", @click.stop="UI_SET_DIALOG({type: 'header', param: headerName})")
+            .hover--block.pl-3.pr-3(v-for="(header, headerName) in response.headers", :key="headerName" v-ripple="true", @click.stop="UI_SET_DIALOG({type: 'header', param: headerName})")
               div.pl-3
                 app-header(:item="headerName")
                 code(v-text="header.format || header.type")

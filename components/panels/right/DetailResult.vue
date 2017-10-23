@@ -8,13 +8,13 @@
       div.subheading(slot="header") Response status
       v-divider
       v-card.pt-3.pb-3
-        .pl-3.pr-3.hover--block(v-ripple="", @click.stop="UI_SET_DIALOG({type: 'status', param: item._._result.status.toString()})")
+        .pl-3.pr-3.hover--block(v-ripple="true", @click.stop="UI_SET_DIALOG({type: 'status', param: item._._result.status.toString()})")
           app-response-block(:code="item._._result.status.toString()", :text="item._._result.statusText")
     v-expansion-panel-content(v-model="exp3", ripple, v-if="item._._result.headers")
       div.subheading(slot="header") Response headers
       v-divider
       v-card.pt-3.pb-3
-        div.hover--block.pl-3.pr-3(v-for="(header, headerName) in item._._result.headers", :key="headerName" v-ripple="",
+        div.hover--block.pl-3.pr-3(v-for="(header, headerName) in item._._result.headers", :key="headerName" v-ripple="true",
           @click.stop="UI_SET_DIALOG({type: 'header', param: headerName})")
           app-header(:item="headerName")
           span.break {{' ' + header}}

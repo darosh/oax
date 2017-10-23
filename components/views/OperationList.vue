@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid).pl-4.pr-4.pa-3-sm
     v-layout(row wrap).stretch
-      .flex(:style="{'flex-basis': $innerMin(SPEC_OPERATIONS.length), 'max-width': $innerMin(SPEC_OPERATIONS.length)}",  v-ripple="" relative v-if="item._._display" v-for="(item, key) in SPEC_OPERATIONS", :key="item._id", @click.stop="SPEC_SET_OPERATION(item)", :class="{'secondary white--text': SPEC_OPERATION === SPEC_OPERATIONS[key]}").hover--block
+      .flex(:style="{'flex-basis': $innerMin(SPEC_OPERATIONS.length), 'max-width': $innerMin(SPEC_OPERATIONS.length)}",  v-ripple="true" relative v-if="item._._display" v-for="(item, key) in SPEC_OPERATIONS", :key="item._id", @click.stop="SPEC_SET_OPERATION(item)", :class="{'secondary white--text': SPEC_OPERATION === SPEC_OPERATIONS[key]}").hover--block
         v-divider.hidden-xs-only
         .pt-1.pb-1.plr-3-sm
           app-operation(:sum="!VIEW_PATH", :item="SPEC_OPERATIONS[key]")

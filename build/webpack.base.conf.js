@@ -30,27 +30,11 @@ Object.keys(rc).forEach(k => rc['process.OAX_FEATURE_' + k] = rc[k])
 module.exports = {
   entry: {
     vendor: [
-      'lodash-es/flatten',
-      'lodash-es/groupBy',
-      'lodash-es/map',
-      'lodash-es/maxBy',
-      'lodash-es/orderBy',
-      'lodash-es/round',
-      'lodash-es/sum',
-      'lodash-es/sumBy',
-      'lodash-es/values',
-      'lodash-es/findIndex',
-      'lodash-es/countBy',
-      'lodash-es/isArray',
-      'lodash-es/union',
-      'lodash-es/defaults',
-      'lodash-es/mergeWith',
-      'd3-format/src/defaultLocale',
-      'd3-shape/src/arc',
-      'd3-shape/src/pie',
+      'lodash',
+      'd3-format',
+      'd3-shape',
       'd3-array',
-      'd3-scale/src/linear',
-      'd3-scale/src/ordinal'
+      'd3-scale'
     ],
     app: './main/main.js'
   },
@@ -75,7 +59,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
-      '@': resolve('src'),
+      '@': resolve('.'),
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
@@ -87,14 +71,27 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
-        options: {appendTsSuffixTo: [/\.vue$/], silent: true}
+        exclude: /node_modules/,
+        options: {
+          transpileOnly: true,
+          appendTsSuffixTo: [/\.vue$/],
+          silent: true
+        }
       },
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
+        exclude: /node_modules/,
+        include: [
+          resolve('main'),
+          resolve('assets'),
+          resolve('components'),
+          resolve('plugins'),
+          resolve('store')
+        ],
         options: {
+          cache: true,
           formatter: require('eslint-friendly-formatter')
         }
       },
@@ -106,18 +103,22 @@ module.exports = {
       {
         test: /\.(js)$/,
         loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        },
+        exclude: /node_modules/,
         include: [
           resolve('main'),
           resolve('assets'),
           resolve('components'),
           resolve('plugins'),
-          resolve('store'),
-          resolve('node_modules/vuetify/src'),
-          resolve('node_modules/v-hotkey'),
-          resolve('node_modules/codemirror'),
-          resolve('node_modules/walk-parse5'),
-          resolve('node_modules/vue-virtual-scroller'),
-          resolve('node_modules/vue-observe-visibility')
+          resolve('store')
+          // resolve('node_modules/vuetify/src'),
+          // resolve('node_modules/v-hotkey'),
+          // resolve('node_modules/codemirror'),
+          // resolve('node_modules/walk-parse5'),
+          // resolve('node_modules/vue-virtual-scroller'),
+          // resolve('node_modules/vue-observe-visibility')
         ]
       },
       {

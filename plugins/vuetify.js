@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Ripple } from 'vuetify/src/directives/index'
+import { default as Ripple } from 'vuetify/es5/directives/ripple'
 import {
   Vuetify,
   VApp,
@@ -33,8 +33,10 @@ import {
   VTooltip
 } from 'vuetify'
 
+// Vue.directive('ripple', Ripple)
+
 Vue.use(Vuetify, {
-  directives: {Ripple},
+  directives: { Ripple },
   components: {
     VAlert,
     VApp,

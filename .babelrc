@@ -15,10 +15,19 @@
       "transform-imports",
       {
         "vuetify": {
-          "transform": "vuetify/src/components/${member}",
+          "transform": "vuetify/es5/components/${member}",
           "preventFullImport": true
         }
       }
     ]
-  ]
+  ],
+  "env": {
+    "es5": {
+      "presets": [
+        ["es2015",  {"modules": false}],
+        ["stage-2"]
+      ],
+      "plugins": ["./build/babel-transform-stylus-paths.js"]
+    }
+  }
 }

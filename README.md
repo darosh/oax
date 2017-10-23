@@ -35,6 +35,8 @@ OpenAPI version 3.0|![0%](https://placehold.it/12/e05d44?text=+) 0%|
 
 ## Build Setup
 
+### Webpack
+
 ``` bash
 # install dependencies
 npm install
@@ -53,3 +55,22 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+### NUXT
+
+``` bash
+# install dependencies
+$ npm install # Or yarn install (yarn required for package.json resolutions)
+
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, check out the [Nuxt.js](https://github.com/nuxt/nuxt.js) and [Vuetify.js](https://vuetifyjs.com/) documentation.

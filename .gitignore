@@ -18,3 +18,5 @@ yarn.lock
 
 # Nuxt build
 .nuxt
+
+config/vuetify/es5

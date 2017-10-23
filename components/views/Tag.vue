@@ -11,7 +11,7 @@
         v-divider(v-if="item.externalDocs && item.externalDocs.url")
         .pt-3.pb-3
           div(v-if="o._._display", v-for="(o, i) in item._operations", :key="o._id")
-            .hover--block.relative(v-ripple="", @click.stop="SPEC_SET_OPERATION(o)", :class="{'secondary white--text': SPEC_OPERATION === o}")
+            .hover--block.relative(v-ripple="true", @click.stop="SPEC_SET_OPERATION(o)", :class="{'secondary white--text': SPEC_OPERATION === o}")
               app-operation.pl-3.pr-3(:sum="!VIEW_PATH", :item="o")
               div(v-if="VIEW_SUMMARY && VIEW_PATH")
                 .pt-1.pr-3.pb-1(v-if="o._.summary || o._.description" style="padding-left: 84px" v-markdown.summary="o._")

@@ -70,9 +70,9 @@ if (process.OAX_FEATURE_PAGE_STATS) {
   })
 }
 
-export function createRouter() {
+export function createRouter () {
   return new Router({
-    mode: typeof location !== 'undefined' && location.hostname === 'localhost' ? 'history' : 'hash',
+    mode: typeof location !== 'undefined' && location.hostname === 'localhost' && location.port === '8080' ? 'history' : 'hash',
     routes: routes,
     scrollBehavior (to) {
       if (to.hash) {

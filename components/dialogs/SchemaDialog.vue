@@ -9,9 +9,9 @@
           span.subheader Schema
       v-tabs(grow :scrollable="false")
         v-tabs-bar.transparent
-          v-tabs-item(href="tab-schema" v-ripple="") Schema
-          v-tabs-item(href="tab-example" v-ripple="") Example
-          v-tabs-item(href="tab-json" v-ripple="") Raw
+          v-tabs-item(href="tab-schema" v-ripple="true") Schema
+          v-tabs-item(href="tab-example" v-ripple="true") Example
+          v-tabs-item(href="tab-json" v-ripple="true") Raw
           v-tabs-slider(style="width: 33.33%")
         v-divider
         v-tabs-items(touchless)

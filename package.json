@@ -53,11 +53,13 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-filehash": "^6.9.5",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-detective": "^2.0.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-plugin-transform-imports": "^1.4.1",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -69,6 +71,7 @@
     "chalk": "^2.2.0",
     "connect-history-api-fallback": "^1.4.0",
     "copy-webpack-plugin": "^4.1.1",
+    "cross-env": "^5.1.0",
     "css-loader": "^0.28.0",
     "css-mqpacker": "^6.0.1",
     "cssnano": "^3.10.0",
@@ -161,6 +164,8 @@
     "nuxt:start": "nuxt start",
     "report": "npm run build --report",
     "tslint": "tslint --fix -c tslint.json src/**/*.ts",
-    "vuetify": "node ./build/app/patch.js vuetify"
+    "vuetify": "node ./build/app/patch.js vuetify",
+    "vuetify:es5": "cross-env NODE_ENV=es5 babel config/vuetify/src --out-dir config/vuetify/es5",
+    "walk:es5": "cross-env NODE_ENV=es5 babel node_modules/walk-parse5 --out-dir node_modules/walk-parse5"
   }
 }

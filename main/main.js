@@ -2,16 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue'
-
 import '../plugins/hotkey'
 import '../plugins/router'
 import '../plugins/vue-virtual-scroller'
 import '../plugins/vuetify'
-import {default as sync} from '../plugins/vuex-router-sync'
-
-import {createRouter} from './router'
+import { default as sync } from '../plugins/vuex-router-sync'
+import { createRouter } from './router'
 import createStore from '../store'
-
 import { configuration } from '../assets/scripts/services/configuration'
 import { selectMixin, select } from '../assets/scripts/utils/select'
 import * as types from '../store/types'
