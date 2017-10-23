@@ -9,9 +9,7 @@ config/*_backup
 
 debug.log
 
-**/.idea/workspace.xml
-**/.idea/tasks.xml
-**/.idea/dictionaries/*.xml
+.idea
 
 package-lock.json
 yarn.lock

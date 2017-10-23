@@ -51,10 +51,11 @@ module.exports = {
     }
   },
   plugins: [
-    new LodashModuleReplacementPlugin({
-      collections: true,
-      flattening: true
-    }),
+    // TODO: LodashModuleReplacementPlugin
+    // new LodashModuleReplacementPlugin({
+    //   collections: true,
+    //   flattening: true
+    // }),
     new webpack.DefinePlugin({
       'process.WEBPACK': true,
       'process.OAX_VERSION': JSON.stringify(require('../package').version),
