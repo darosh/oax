@@ -33,11 +33,7 @@ module.exports = {
   entry: {
     vendor: [
       './plugins/lodash.js',
-      'd3-format',
-      'd3-shape',
-      'd3-array',
-      'd3-scale',
-      // 'js-yaml',
+      './plugins/d3',
       'axios'
     ],
     app: './main/main.js'

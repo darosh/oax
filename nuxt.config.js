@@ -44,13 +44,8 @@ module.exports = {
     babel: JSON.parse(require('fs').readFileSync('./.babelrc', 'utf8')),
 
     vendor: [
-      // '~/plugins/vuetify.js',
       '~plugins/lodash.js',
-      'd3-format',
-      'd3-shape',
-      'd3-array',
-      'd3-scale',
-      // 'js-yaml',
+      '~plugins/d3.js',
       'axios'
     ],
 

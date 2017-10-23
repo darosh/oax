@@ -10,8 +10,8 @@ import {
   values
 } from '../../plugins/lodash';
 
-import {Bin, extent, histogram} from 'd3-array';
-import {scaleLinear} from 'd3-scale';
+import {extent, histogram, scaleLinear} from '../../plugins/d3';
+import {Bin} from 'd3-array/index';
 
 import {groupings} from './stats/groupings';
 import {ICounted} from './stats/ICounted';
@@ -133,12 +133,12 @@ export default {
         return null;
       }
 
-      const e: number[] = extent<number>(this.counted, (d) => (d as any).value) as number[];
+      const e: number[] = extent<number>(this.counted, (d:any) => (d as any).value) as number[];
       const x = scaleLinear()
         .domain(e);
 
       const hist: Array<Bin<ICounted, number>> = histogram<ICounted, number>()
-        .value((d) => (d as any).value)
+        .value((d:any) => (d as any).value)
         .domain(x.domain() as [number, number])
         .thresholds(x.ticks(Math.min(e[1] - e[0], this.histogramBins)))(this.counted);
 

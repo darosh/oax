@@ -10,8 +10,7 @@
 </template>
 
 <script>
-  import { format } from 'd3-format'
-  import { arc, pie } from 'd3-shape'
+  import { format, arc, pie } from '../../../plugins/d3'
   import { sumBy, round } from '../../../plugins/lodash'
 
   export default {

@@ -106,7 +106,7 @@
 
 <script>
   import {maxBy, round, findIndex} from '../plugins/lodash'
-  import { scaleLinear } from 'd3-scale'
+  import { scaleLinear } from '../plugins/d3'
   import { colors } from '../assets/scripts/services/directory/openapi-directory-lite'
   import axios from 'axios'
   import appDonutChart from '../components/elements/misc/DonutChart'
