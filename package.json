@@ -6,7 +6,7 @@
   "browserslist": [
     "> 5%",
     "last 1 version",
-    "not ie <= 10"
+    "not ie <= 100"
   ],
   "dependencies": {
     "@types/d3-array": "^1.2.1",
@@ -144,28 +144,25 @@
     "nuxt/vue-template-compiler": "^2.5.2"
   },
   "scripts": {
-    "app:dependencies": "node ./build/app/dependencies.js",
-    "app:http-data": "node build/app/http-data.js header > src/assets/http-header.json && node build/app/http-data.js method > src/assets/http-method.json && node build/app/http-data.js status > src/assets/http-status.json",
-    "build": "node build/build.js",
-    "bundle": "node build/schema-bundle.js",
-    "deploy": "npm --no-git-tag-version version patch && npm run app:dependencies && node build/build.js && deploy-to-gh-pages --local ./dist",
-    "deploy-404": "npm --no-git-tag-version version patch && node build/build.js && node ./build/app/copy.js dist/index.html dist/404.html && deploy-to-gh-pages --local ./dist",
-    "deploy-push": "cd ./dist && git push --force \"https://github.com/darosh/oax.git\" master:gh-pages",
-    "dev": "node build/dev-server.js",
+    "data:bundle": "node build/schema-bundle.js",
+    "data:dependencies": "node ./build/app/dependencies.js",
+    "data:http": "node build/app/http-data.js header > src/assets/http-header.json && node build/app/http-data.js method > src/assets/http-method.json && node build/app/http-data.js status > src/assets/http-status.json",
+    "doc:imagemin": "imagemin doc/screenshots/images/*.png --out-dir doc/screenshots/images",
     "doc:screenshots": "node ./build/doc/screenshots.js && node ./build/doc/screenshots-index.js",
     "doc:screenshots-xs": "node ./build/doc/screenshots.js xs && node ./build/doc/screenshots-index.js xs",
     "doc:screenshots-xs+md": "node ./build/doc/screenshots.js xs,md && node ./build/doc/screenshots-index.js xs,md",
     "doc:test-links": "node ./build/doc/test-links.js",
-    "imagemin": "imagemin doc/screenshots/images/*.png --out-dir doc/screenshots/images",
-    "lint": "eslint --ext .js,.vue src",
+    "lint:js": "eslint --ext .js,.vue src",
+    "lint:ts": "tslint --fix -c tslint.json src/**/*.ts",
     "nuxt:build": "nuxt build",
     "nuxt:dev": "nuxt",
     "nuxt:generate": "nuxt generate",
     "nuxt:start": "nuxt start",
-    "report": "npm run build --report",
-    "tslint": "tslint --fix -c tslint.json src/**/*.ts",
-    "vuetify": "node ./build/app/patch.js vuetify",
-    "vuetify:es5": "cross-env NODE_ENV=es5 babel config/vuetify/src --out-dir config/vuetify/es5",
-    "walk:es5": "cross-env NODE_ENV=es5 babel node_modules/walk-parse5 --out-dir node_modules/walk-parse5"
+    "vendor:vuetify": "cross-env NODE_ENV=es5 babel config/vuetify/src --out-dir config/vuetify/es5 && node ./build/app/patch.js vuetify",
+    "vendor:walk-parse5": "cross-env NODE_ENV=es5 babel node_modules/walk-parse5 --out-dir node_modules/walk-parse5",
+    "webpack:build": "node build/build.js",
+    "webpack:deploy": "npm --no-git-tag-version version patch && npm run app:dependencies && node build/build.js && deploy-to-gh-pages --local ./dist",
+    "webpack:dev": "node build/dev-server.js",
+    "webpack:report": "npm run build --report"
   }
 }
