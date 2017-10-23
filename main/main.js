@@ -1,31 +1,27 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import Vue from 'vue'
+
+import '../plugins/hotkey'
+import '../plugins/router'
+import '../plugins/vue-virtual-scroller'
+import '../plugins/vuetify'
+import {default as sync} from '../plugins/vuex-router-sync'
+
 import {createRouter} from './router'
-import storeInit from '../store'
-import { sync } from 'vuex-router-sync'
-
-// import 'vueify/lib/insert-css'
-// import 'babel-runtime/helpers/extends'
-
-import './vuetify'
-import VueHotkey from 'v-hotkey/src/index'
+import createStore from '../store'
 
 import { configuration } from '../assets/scripts/services/configuration'
 import { selectMixin, select } from '../assets/scripts/utils/select'
 import * as types from '../store/types'
 import App from './App'
-import VueVirtualScroller from 'vue-virtual-scroller'
 
-Vue.use(VueVirtualScroller)
-
-Vue.use(VueHotkey)
 Vue.config.productionTip = false
 
-const store = storeInit()
+const store = createStore()
 const router = createRouter()
-
-sync(store, router)
+sync({app: {store, router}})
 
 window.OAX = window.OAX || {}
 

@@ -110,6 +110,7 @@ module.exports = {
           resolve('main'),
           resolve('assets'),
           resolve('components'),
+          resolve('plugins'),
           resolve('store'),
           resolve('node_modules/vuetify/src'),
           resolve('node_modules/v-hotkey'),
