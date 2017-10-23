@@ -1,34 +1,38 @@
 import CircularJSON from 'circular-json'
+
 // import work from 'webworkify-webpack'
-
 // const worker = work(require.resolve('./worker.js'))
-
-/* eslint-disable import/no-webpack-loader-syntax */
 // const Work = require('worker-loader?inline&fallback=false!./worker.js')
 
 let worker
 
-if (typeof window !== 'undefined') {
+if (process.WEBPACK) {
+  /* eslint-disable import/no-webpack-loader-syntax */
   const Work = require('worker-loader!./worker.js')
   worker = new Work()
 } else {
-  let internal
+  if (typeof window !== 'undefined') {
+    const Work = require('worker-loader!./worker.js')
+    worker = new Work()
+  } else {
+    let internal
 
-  worker = {
-    postMessage (data) {
-      if (internal && internal.onmessage) {
-        internal.onmessage({data})
+    worker = {
+      postMessage (data) {
+        if (internal && internal.onmessage) {
+          internal.onmessage({data})
+        }
       }
     }
+
+    internal = require('./worker.js').default({
+      postMessage (data) {
+        if (worker && worker.onmessage) {
+          worker.onmessage({data})
+        }
+      }
+    })
   }
-
-  internal = require('./worker.js').default({
-    postMessage (data) {
-      if (worker && worker.onmessage) {
-        worker.onmessage({data})
-      }
-    }
-  })
 }
 
 const jobs = {}

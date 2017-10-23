@@ -47,6 +47,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      'process.WEBPACK': true,
       'process.OAX_VERSION': JSON.stringify(require('../package').version),
       'process.OAX_BUILD': JSON.stringify(new Date().toISOString()),
       ...rc

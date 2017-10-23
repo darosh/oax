@@ -1,7 +1,7 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
 const postcss = require('postcss')
 const mqpacker = require('css-mqpacker')
-const willChange = require('postcss-will-change')
+// const willChange = require('postcss-will-change')
 const autoprefixer = require('autoprefixer')
 const calc = require('postcss-calc')
 const discardDuplicates = require('postcss-discard-duplicates')
