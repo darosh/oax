@@ -13,6 +13,7 @@
       v-container.pa-0-sm(fluid grid-list-xl v-if="SPEC.info._.description || SPEC.info.title")
         v-layout(column)
           v-flex
+            .hidden-sm-and-up.mt-3
             v-expansion-panel.expansion-panel-round(v-if="SPEC.info._.description" expand :class="{'expansion-panel--disabled': !SPEC.info._.description}")
               v-expansion-panel-content.bg.relative(v-model="exp1", ripple)
                 .title(slot="header") {{SPEC.info.title}}
@@ -20,7 +21,7 @@
                 v-card.bg(v-if="SPEC.info._.description")
                   v-card-text
                     .main-description(v-markdown="SPEC.info._")
-            .title(v-else) {{SPEC.info.title}}
+            .title.pa-3(v-else) {{SPEC.info.title}}
 
       app-meta-list(v-if="SPEC_METAS", :metas="SPEC_METAS")
     app-tag-list(:class="{wide: VIEW_WIDE}" v-if="VIEW_VIEW === 0")
