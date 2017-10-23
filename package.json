@@ -122,7 +122,7 @@
     "ts-loader": "^3.0.5",
     "typescript": "^2.5.3",
     "uglify-js": "^3.1.5",
-    "uglifyjs-webpack-plugin": "1.0.0-rc.0",
+    "uglifyjs-webpack-plugin": "1.0.0",
     "url-loader": "^0.6.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.3",
@@ -164,6 +164,7 @@
     "webpack:build": "node build/build.js",
     "webpack:deploy": "npm --no-git-tag-version version patch && npm run data:dependencies && node build/build.js && deploy-to-gh-pages --local ./dist",
     "webpack:dev": "node build/dev-server.js",
-    "webpack:report": "npm run webpack:build --report"
+    "webpack:report": "npm run webpack:build --report",
+    "postinstall": "npm run vendor:vuetify && npm run vendor:walk-parse5"
   }
 }
