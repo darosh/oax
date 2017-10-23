@@ -50,9 +50,9 @@
   import * as types from '../../store/types'
 
   import dialog from '../mixins/dialog'
-  import appJson from '../parts/Json'
-  import appExample from '../parts/Example'
-  import appModel from '../parts/Model'
+  import appJson from '../elements/api/Json'
+  import appExample from '../elements/api/Example'
+  import appModel from '../elements/api/Model'
 
   export default {
     mixins: [dialog],

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import keyboard from '../../assets/data/keyboard.json'
+  import keyboard from '../../../assets/data/keyboard.json'
 
   export default {
     props: ['shortcuts'],

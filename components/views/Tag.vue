@@ -23,7 +23,7 @@
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
 
-  import appOperation from '../elements/MethodBlock'
+  import appOperation from '../elements/api/MethodBlock'
 
   import markdown from '../../components/directives/markdown'
 

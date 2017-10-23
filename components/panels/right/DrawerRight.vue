@@ -7,8 +7,8 @@
 <script>
   import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
-  import layout from '../mixins/layout'
+  import * as types from '../../../store/types'
+  import layout from '../../mixins/layout'
   import appDetail from './Detail'
 
   export default {

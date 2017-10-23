@@ -18,7 +18,7 @@
 
 <script>
   import { mapMutations } from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '../../../store/types'
 
   export default {
     data () {

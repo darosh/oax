@@ -76,15 +76,15 @@
 </template>
 
 <script>
-  import keys from '../mixins/keys'
+  import keys from '../../mixins/keys'
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
-  import focus from '../directives/focus'
-  import categories from '../../assets/data/categories.json'
-  import worker from '../../assets/worker'
-  import { configuration } from '../../assets/scripts/services/configuration'
-  import * as directory from '../../assets/scripts/services/directory'
-  import layout from '../mixins/layout'
+  import * as types from '../../../store/types'
+  import focus from '../../directives/focus'
+  import categories from '../../../assets/data/categories.json'
+  import worker from '../../../assets/worker'
+  import { configuration } from '../../../assets/scripts/services/configuration'
+  import * as directory from '../../../assets/scripts/services/directory'
+  import layout from '../../mixins/layout'
   // import VirtualScroller from 'vue-virtual-scroller/src/components/VirtualScroller'
   // import VirtualScroller from 'vue-virtual-scroller'
 
@@ -246,7 +246,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../assets/style/_variables.styl'
+  @import '../../../assets/style/_variables.styl'
 
   $margin-scroll := (80 + 48) px
 

@@ -28,12 +28,12 @@
 <script>
   import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '../../../store/types'
   import appSpecDirectory from './SpecDirectory'
   import appSpecRecent from './SpecRecent'
   import appSpecEdit from './SpecEdit'
   import appSpecTest from './SpecTest'
-  import layout from '../mixins/layout'
+  import layout from '../../mixins/layout'
 
   export default {
     mixins: [layout],

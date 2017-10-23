@@ -109,7 +109,7 @@
   import { scaleLinear } from 'd3-scale'
   import { colors } from '../assets/scripts/services/directory/openapi-directory-lite'
   import axios from 'axios'
-  import appDonutChart from '../components/parts/DonutChart'
+  import appDonutChart from '../components/elements/misc/DonutChart'
   import stats from '../components/mixins/stats.ts'
 
   export default {

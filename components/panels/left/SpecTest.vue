@@ -13,8 +13,8 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import * as types from '../../store/types'
-  import appJson from '../parts/Json'
+  import * as types from '../../../store/types'
+  import appJson from '../../elements/api/Json'
 
   export default {
     components: {
@@ -48,7 +48,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../assets/style/_variables'
+  @import '../../../assets/style/_variables.styl'
 
   $margin-scroll := 48px
 

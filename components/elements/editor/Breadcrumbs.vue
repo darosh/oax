@@ -11,7 +11,7 @@
 </script>
 
 <style lang="stylus">
-  @import "../../assets/style/_variables.styl"
+  @import "../../../assets/style/_variables.styl"
 
   $bcbg := $material-light.background
   $bcbg-dark := $material-dark.background

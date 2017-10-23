@@ -20,14 +20,14 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '../../../store/types'
 
   import appInfo from './DetailInfo'
   import appParams from './DetailParams'
   import appScripts from './DetailScripts'
   import appResult from './DetailResult'
 
-  import markdown from '../directives/markdown'
+  import markdown from '../../directives/markdown'
 
   export default {
     props: ['operation'],

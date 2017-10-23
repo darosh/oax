@@ -38,8 +38,8 @@
       // appToolbar: () => import('./components/app/Toolbar'),
       appToolbar,
       //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
-      appFab: () => import('../components/parts/FAB'),
-      appLog: () => import('../components/app/Log')
+      appFab: () => import('../components/elements/misc/FAB'),
+      appLog: () => import('../components/elements/misc/Log')
       // appTour
     },
     data () {

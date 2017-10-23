@@ -16,16 +16,16 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../../assets/scripts/services/response-style'
+  import { ResponseStyle } from '../../../assets/scripts/services/response-style'
   import { mapMutations, mapGetters } from 'vuex'
-  import * as types from '../../store/types'
-  import { schema } from '../../assets/scripts/models/oas/methods/schema'
-  import { execute } from '../../assets/scripts/models/oas/methods/execute'
+  import * as types from '../../../store/types'
+  import { schema } from '../../../assets/scripts/models/oas/methods/schema'
+  import { execute } from '../../../assets/scripts/models/oas/methods/execute'
 
-  import appModel from '../parts/Model'
-  import appExample from '../parts/Example'
-  import appParameter from '../parts/Parameter'
-  import appResponseBlock from '../elements/ResponseBlock'
+  import appModel from '../../elements/api/Model'
+  import appExample from '../../elements/api/Example'
+  import appParameter from '../../elements/api/Parameter'
+  import appResponseBlock from '../../elements/api/ResponseBlock'
 
   export default {
     props: ['item'],

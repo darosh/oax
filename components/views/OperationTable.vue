@@ -29,11 +29,11 @@
   import { mapMutations, mapGetters } from 'vuex'
   import * as types from '../../store/types'
 
-  import appMethod from '../elements/Method'
+  import appMethod from '../elements/api/Method'
 
   import markdown from '../../components/directives/markdown'
-  import appResponse from '../elements/Response'
-  import appPath from '../elements/Path'
+  import appResponse from '../elements/api/Response'
+  import appPath from '../elements/api/Path'
   import { schemas } from '../../assets/scripts/models/oas/methods/schemas'
 
   export default {

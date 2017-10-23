@@ -14,11 +14,11 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import * as types from '../../store/types'
-  import focus from '../directives/focus'
-  import appBreadcrumbs from '../parts/Breadcrumbs'
+  import * as types from '../../../store/types'
+  import focus from '../../directives/focus'
+  import appBreadcrumbs from '../../elements/editor/Breadcrumbs'
 
-  const appCodeMirror = process.OAX_FEATURE_EDITOR ? () => import('../parts/CodeMirror') : () => {}
+  const appCodeMirror = process.OAX_FEATURE_EDITOR ? () => import('../../elements/editor/CodeMirror') : () => {}
 
   export default {
     directives: {
@@ -175,7 +175,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../assets/style/_variables'
+  @import '../../../assets/style/_variables.styl'
 
   $margin-scroll := 48px + 80px + 24px + 1px
 

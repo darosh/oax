@@ -10,7 +10,7 @@ const routes = [
     components: {
       default: () => import('../pages/index'),
       toolbar: () => import('../components/toolbars/ExplorerToolbar'),
-      panel: () => import('../components/panels/ExplorerPanel')
+      panel: () => import('../components/panels/left/ExplorerPanel')
     },
     meta: {name: 'API', panel: true}
   },
@@ -20,7 +20,7 @@ const routes = [
     components: {
       default: () => import('../pages/about'),
       toolbar: () => import('../components/toolbars/AboutToolbar'),
-      panel: () => import('../components/panels/AboutPanel')
+      panel: () => import('../components/panels/left/AboutPanel')
     },
     meta: {name: 'About', panel: true}
   }

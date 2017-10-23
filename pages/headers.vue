@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import appHeader from '../components/elements/Header'
+  import appHeader from '../components/elements/api/Header'
   const items = () => import('../assets/data/http-header.json')
 
   export default {

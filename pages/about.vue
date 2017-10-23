@@ -104,7 +104,7 @@
   import { mapGetters } from 'vuex'
   import * as types from '../store/types'
   import dependencies from '../assets/data/dependencies.json'
-  import appKeyboard from '../components/parts/Keyboard'
+  import appKeyboard from '../components/elements/misc/Keyboard'
   import keys from '../assets/data/keys.json'
   import * as directories from '../assets/scripts/services/directory'
   import services from '../assets/data/services.json'

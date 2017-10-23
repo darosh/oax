@@ -57,11 +57,11 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '../../../store/types'
 
-  import { value, type } from '../../assets/scripts/models/oas/methods/schema'
-  import { allOf, mergeAllOf } from '../../assets/scripts/utils/allof'
-  import { name, names } from '../../assets/scripts/utils/name'
+  import { value, type } from '../../../assets/scripts/models/oas/methods/schema'
+  import { allOf, mergeAllOf } from '../../../assets/scripts/utils/allof'
+  import { name, names } from '../../../assets/scripts/utils/name'
 
   export default {
     name: 'app-model',

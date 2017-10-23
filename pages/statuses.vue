@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import appResponse from '../components/elements/Response'
+  import appResponse from '../components/elements/api/Response'
   const items = () => import('../assets/data/http-status.json')
 
   export default {

@@ -1,35 +1,35 @@
 <template lang="pug">
-  span(:class="'response--badge white--text ' + responseStyle[code[0]]") {{code}}
+  span(:class="methods[item] + ' method--badge white--text'") {{item}}
 </template>
 
 <script>
-  import { ResponseStyle } from '../../assets/scripts/services/response-style'
+  import { MethodStyle } from '../../../assets/scripts/services/method-style'
 
   export default {
-    props: ['code'],
+    props: ['item'],
     data () {
       return {
-        responseStyle: ResponseStyle
+        methods: MethodStyle
       }
     }
   }
 </script>
 
 <style scoped lang="stylus">
-  .response--badge
+  .method--badge
     align-items center
     display inline-flex
     flex 0 1 auto
     font-weight 500
-    font-family "Roboto Mono", monospace
     justify-content center
+    text-transform uppercase
     text-decoration none
     position relative
     vertical-align middle
-    height 20px
-    min-width 42px
-    padding 0 6px
+    height 24px
+    min-width 64px
+    padding 0
     margin 4px 0
     font-size: 13px
-    border-radius: 10px
+    border-radius: 4px
 </style>

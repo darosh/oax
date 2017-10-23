@@ -15,7 +15,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import * as types from '../../store/types'
-  import appLog from '../app/Log'
+  import appLog from '../elements/misc/Log'
 
   export default {
     props: ['value'],

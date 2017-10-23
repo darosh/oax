@@ -28,7 +28,7 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '../../../store/types'
   import Vue from 'vue'
 
   import appDetailHeader from './DetailHeader'

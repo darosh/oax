@@ -15,7 +15,7 @@
   import * as types from '../../store/types'
   import layout from '../mixins/layout'
 
-  import appOperation from '../elements/MethodBlock'
+  import appOperation from '../elements/api/MethodBlock'
 
   import markdown from '../../components/directives/markdown'
 

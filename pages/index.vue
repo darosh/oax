@@ -41,7 +41,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import * as types from '../store/types'
 
-  import appLog from '../components/app/Log'
+  import appLog from '../components/elements/misc/Log'
   import appMetaList from '../components/views/MetaList'
   import appTagList from '../components/views/TagList'
 

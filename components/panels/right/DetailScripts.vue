@@ -14,12 +14,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import * as types from '../../store/types'
-  import { configure } from '../../assets/scripts/models/oas/methods/execute'
-  import axiosScript from '../../assets/scripts/models/scripts/axios-script'
-  import angularScript from '../../assets/scripts/models/scripts/angular-script'
+  import * as types from '../../../store/types'
+  import { configure } from '../../../assets/scripts/models/oas/methods/execute'
+  import axiosScript from '../../../assets/scripts/models/scripts/axios-script'
+  import angularScript from '../../../assets/scripts/models/scripts/angular-script'
   // import jqueryScript from '../../models/scripts/jquery-script'
-  import url from '../../assets/scripts/utils/url'
+  import url from '../../../assets/scripts/utils/url'
 
   export default {
     props: ['item'],

@@ -1,17 +1,17 @@
 import { mapGetters, mapMutations } from 'vuex'
 import * as types from '../store/types'
 
-import appTour from '../components/app/Tour.vue'
+import appTour from '../components/elements/misc/Tour.vue'
 import appToolbar from '../components/toolbars/Toolbar'
 
 export default {
   components: {
-    appDrawerRight: () => import('../components/panels/DrawerRight'),
-    appDrawerLeft: () => import('../components/panels/DrawerLeft'),
+    appDrawerRight: () => import('../components/panels/right/DrawerRight'),
+    appDrawerLeft: () => import('../components/panels/left/DrawerLeft'),
     // appToolbar: () => import('./components/app/Toolbar'),
     appToolbar,
     //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
-    appFab: () => import('../components/parts/FAB'),
+    appFab: () => import('../components/elements/misc/FAB'),
     appLogDialog: () => import('../components/dialogs/LogDialog'),
     appTour
   },

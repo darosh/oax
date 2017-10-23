@@ -7,7 +7,7 @@
 <script>
   import appResponse from './Response'
 
-  import markdown from '../directives/markdown'
+  import markdown from '../../directives/markdown'
 
   export default {
     directives: {

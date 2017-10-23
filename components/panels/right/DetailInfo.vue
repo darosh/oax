@@ -30,18 +30,18 @@
 </template>
 
 <script>
-  import { ResponseStyle } from '../../assets/scripts/services/response-style'
+  import { ResponseStyle } from '../../../assets/scripts/services/response-style'
   import { mapMutations, mapGetters } from 'vuex'
-  import * as types from '../../store/types'
-  import { schema } from '../../assets/scripts/models/oas/methods/schema'
-  import { execute } from '../../assets/scripts/models/oas/methods/execute'
+  import * as types from '../../../store/types'
+  import { schema } from '../../../assets/scripts/models/oas/methods/schema'
+  import { execute } from '../../../assets/scripts/models/oas/methods/execute'
 
-  import appModel from '../parts/Model'
-  import appExample from '../parts/Example'
-  import appResponseBlock from '../elements/ResponseBlock'
+  import appModel from '../../elements/api/Model'
+  import appExample from '../../elements/api/Example'
+  import appResponseBlock from '../../elements/api/ResponseBlock'
 
-  import markdown from '../directives/markdown'
-  import appHeader from '../elements/Header'
+  import markdown from '../../directives/markdown'
+  import appHeader from '../../elements/api/Header'
 
   export default {
     props: ['item'],

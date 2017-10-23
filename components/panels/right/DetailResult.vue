@@ -27,10 +27,10 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '../../../store/types'
 
-  import appResponseBlock from '../elements/ResponseBlock'
-  import appHeader from '../elements/Header'
+  import appResponseBlock from '../../elements/api/ResponseBlock'
+  import appHeader from '../../elements/api/Header'
 
   export default {
     props: ['item'],

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import appMethod from '../components/elements/Method'
+  import appMethod from '../components/elements/api/Method'
   const items = () => import('../assets/data/http-method.json')
 
   export default {
