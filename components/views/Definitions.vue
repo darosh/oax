@@ -1,10 +1,12 @@
 <template lang="pug">
   v-container(fluid grid-list-xl v-if="SPEC").pa-0-sm
+    .hidden-sm-and-up.mt-2
     v-layout(row wrap)
       .flex(:style="{'flex-basis': $inner, 'max-width': $inner}", v-for="(definition, key) in SPEC.definitions", :key="key")
         v-card.clickable(v-ripple="true")
           v-card-title(@click.stop="UI_SET_DIALOG({type: 'schema', param: key})").primary--text.mono-title
             b {{key}}
+    .hidden-sm-and-up.mt-2
 </template>
 
 <script>
