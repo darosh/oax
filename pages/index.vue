@@ -92,16 +92,11 @@
       ])
     },
     created () {
-      this.$store.dispatch(types.SPEC_SET_LOAD_URL, configuration.url)
-      if (this.$route.query.url) {
-        //        this.SPEC_SET_LOAD_URL(this.$route.query.url)
-      }
+      this.SPEC_SET_LOAD_URL(this.$route.query.url || configuration.url)
     },
     watch: {
       $route: function (value) {
-        if (value.query.url) {
-          this.SPEC_SET_LOAD_URL(value.query.url)
-        }
+        this.SPEC_SET_LOAD_URL(value.query.url || configuration.url)
       }
     }
   }
