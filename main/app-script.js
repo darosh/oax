@@ -12,7 +12,7 @@ export default {
     appToolbar,
     //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
     appFab: () => import('../components/parts/FAB'),
-    appLog: () => import('../components/app/Log'),
+    appLogDialog: () => import('../components/dialogs/LogDialog'),
     appTour
   },
   data () {
@@ -28,8 +28,6 @@ export default {
       types.APP_API_PAGE,
       types.APP_HOME,
       types.APP_UPDATED,
-      types.UI_LOG,
-      types.UI_LOADING,
       types.UI_DIALOG,
       types.UI_DLG,
       types.UI_LEFT_DRAWER,
