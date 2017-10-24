@@ -33,7 +33,7 @@ module.exports = {
   entry: {
     vendor: [
       './plugins/lodash.js',
-      './plugins/d3',
+      './plugins/d3.js',
       'axios'
     ],
     app: './main/main.js'

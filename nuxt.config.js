@@ -60,7 +60,7 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules|plugins)/
         })
       }
 
@@ -74,7 +74,12 @@ module.exports = {
 
       config.module.rules.push({
         test: /\.ts$/,
-        loader: 'ts-loader'
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: true,
+          appendTsSuffixTo: [/\.vue$/],
+          silent: true
+        }
       })
 
       config.resolveLoader = {
