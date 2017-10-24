@@ -57,7 +57,7 @@
 
             h5#editor-shortcuts(style="clear: both") Editor shortcuts
 
-            p Editor shortcuts should be identical to <a href="https://codemirror.net/demo/sublime.html" target="_blank">CodeMirror Sublime keymap</a> except some extra keys.
+            p Editor shortcuts should be identical to <a href="https://codemirror.net/demo/sublime.html" target="_blank" rel="noopener">CodeMirror Sublime keymap</a> except some extra keys.
 
             template(v-for="(section, sectionKey) in keys.editor")
               h6(style="clear: both") {{sectionKey}}
@@ -80,18 +80,18 @@
             span(v-for="(i, k) in libs", :key="k")
               span(v-if="k") ,
                 =" "
-              a.subheading.nowrap(:href="i.href" target="_blank") {{i.name}}
+              a.subheading.nowrap(:href="i.href" target="_blank" rel="noopener") {{i.name}}
               | &nbsp;{{i.version}}
           h5 Services
           p
             ul
               li(v-for="(i, k) in services", :key="k")
-                a(:href="i.home" target="_blank") {{i.title}}
+                a(:href="i.home" target="_blank" rel="noopener") {{i.title}}
           h5 Directories
           p
             ul
               li(v-for="(i, k) in directories", :key="k")
-                a(:href="i.home" target="_blank") {{i.title}}
+                a(:href="i.home" target="_blank" rel="noopener") {{i.title}}
                 =" "
                 | &mdash;
                 =" "

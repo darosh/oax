@@ -7,7 +7,7 @@
         v-card-title(v-if="item._.description" v-markdown="item._")
         v-divider(v-if="item._.description")
         v-card-text(v-if="item.externalDocs && item.externalDocs.url")
-          a(:href="item.externalDocs.url" target="_blank") {{item.externalDocs.description || item.externalDocs.url}}
+          a(:href="item.externalDocs.url" target="_blank" rel="noopener") {{item.externalDocs.description || item.externalDocs.url}}
         v-divider(v-if="item.externalDocs && item.externalDocs.url")
         .pt-3.pb-3
           div(v-if="o._._display", v-for="(o, i) in item._operations", :key="o._id")

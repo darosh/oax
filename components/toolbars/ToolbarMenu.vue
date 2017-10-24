@@ -51,7 +51,7 @@
       template(v-for="(i, k) in links")
         v-divider(v-if="!i", :key="k")
         v-subheader(v-else-if="!i.exact && i.header" style="min-width: 180px", :key="k") {{i.header}}
-        v-list-tile(v-else-if="!i.exact", :to="i.to", :href="i.href", :target="i.blank ? '_blank' : null" tag="a", :key="k")
+        v-list-tile(v-else-if="!i.exact", :to="i.to", :href="i.href", :target="i.blank ? '_blank' : null", :rel="i.blank ? 'noopener' : null" tag="a", :key="k")
           v-list-tile-action
             v-icon {{i.icon}}
           v-list-tile-title {{i.title}}

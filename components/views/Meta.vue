@@ -1,12 +1,12 @@
 <template lang="pug">
   v-list.list--single(two-line subheader v-if="!item.stats")
-    v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :ripple="!!(item.link || item.download)", @click.stop="item.dialog ? UI_SET_DIALOG(item.dialog) : null")
+    v-list-tile(avatar :tag="item.link ? 'a' : 'div'", :href="item.link", :target="item.link ? '_blank' : ''", :rel="item.link ? 'noopener' : ''", :ripple="!!(item.link || item.download)", @click.stop="item.dialog ? UI_SET_DIALOG(item.dialog) : null")
       v-list-tile-avatar(:tile="!!item.dialog")
         v-icon.white--text.secondary {{item.icon}}
       v-list-tile-content
         v-list-tile-title {{ item.title }}
         v-list-tile-sub-title
-          a(v-if="item.link || item.image || item.download", :href="item.link", :target="item.link ? '_blank' : ''")
+          a(v-if="item.link || item.image || item.download", :href="item.link", :target="item.link ? '_blank' : ''", :rel="item.link ? 'noopener' : ''")
             span(v-if="item.value || item.download") {{item.value || item.download}}
             img(v-if="item.image", :src="item.image", alt)
           span(v-if="item.value && !item.link") {{item.value}}

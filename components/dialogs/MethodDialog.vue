@@ -28,7 +28,7 @@
         v-btn(flat icon @click.native.stop="next()")
           v-icon keyboard_arrow_right
         v-spacer
-        v-btn.btn--short.primary--text(flat target="_blank", :href="method[2]") Spec
+        v-btn.btn--short.primary--text(flat target="_blank" rel="noopener", :href="method[2]") Spec
         v-btn.btn--short(flat @click.native.stop="UI_SET_DIALOG()") Close
 </template>
 

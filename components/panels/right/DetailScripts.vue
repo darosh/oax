@@ -4,7 +4,7 @@
       div.subheading(slot="header") Request URL
       v-divider
       v-card.pa-3
-        a(:href="url" target="_blank" class="primary--text wrap") {{url}}
+        a(:href="url" target="_blank" rel="noopener" class="primary--text wrap") {{url}}
     v-expansion-panel-content(v-for="(script, scriptIndex) in scripts", :key="scriptIndex" v-model="script.exp", ripple)
       div.subheading(slot="header") {{script.title}}
       v-divider
