@@ -249,7 +249,7 @@
   $margin-scroll := (80 + 48) px
 
   .scroller
-    /*overflow: auto*/
+    overflow: auto
     height 'calc(100vh - %s)' % ($margin-scroll + 64px)
     &.filtered
       height 'calc(100vh - %s)' % ($margin-scroll + $toolbar-height + 50px)
