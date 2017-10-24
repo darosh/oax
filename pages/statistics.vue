@@ -206,7 +206,7 @@
 
         this.grouping = this.groupings.find(d => this.short(d.text) === this.$route.query.group) || this.defaultGrouping
         this.counting = this.groupings.find(d => this.short(d.text) === this.$route.query.count) || this.defaultCounting
-        this.pickTop = this.topPicks.find(d => d === this.$route.query.pick) || this.defaultPick
+        this.pickTop = this.topPicks.find(d => d.toString() === (this.$route.query.pick || '').toString()) || this.defaultPick
       },
       short (t) {
         return t.replace(/ /g, '-').toLowerCase()
