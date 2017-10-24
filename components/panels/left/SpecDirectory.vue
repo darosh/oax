@@ -35,7 +35,7 @@
               v-icon cancel
           v-divider(v-if="category")
           <!--v-list.pa-0(two-line v-if="APIS")-->
-          virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="20", key-field="key" content-tag="ul" content-class="pa-0 list list--two-line")
+          virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="20", key-field="key" content-tag="ul" content-class="pa-0 list list--two-line dividers")
             template(slot-scope="props")
               .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                 v-progress-circular(class="primary--text" indeterminate )
@@ -49,7 +49,6 @@
                   v-list-tile-sub-title {{props.item.key}}
                 v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
                   v-icon file_download
-              v-divider
         v-tabs-content#tab-dir-2.scroller(v-if="APIS_COLLECTION_OBJECT.categories")
           v-container.pa-2(fluid grid-list-md v-if="APIS")
             v-layout(row wrap)

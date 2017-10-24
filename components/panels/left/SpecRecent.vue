@@ -2,20 +2,18 @@
   div
     v-divider
     //v-list.pa-0(two-line)
-    virtual-scroller.scroller-recent(v-if="RECENT", :items="RECENT", item-height="73" prerender="20" key-field="url" content-tag="ul" content-class="pa-0 list list--two-line")
+    virtual-scroller.scroller-recent(v-if="RECENT", :items="RECENT", item-height="73" prerender="20" key-field="url" content-tag="ul" content-class="pa-0 list list--two-line dividers")
       template(slot-scope="props")
-        div(:key="props.itemKey")
-          v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
-            v-list-tile-avatar
-              .icon.white--text(v-if="key(props.item)", :style="{'background-color': color(props.item)}") {{letter(props.item)}}
-              v-icon(v-else class="secondary white--text") link
-            v-list-tile-content
-              v-list-tile-title {{props.item.title}}
-              v-list-tile-sub-title {{key(props.item)}}
-            v-list-tile-action
-              v-btn(icon ripple @click.capture.stop.prevent="RECENT_SET_REMOVE(props.item)")
-                v-icon close
-          v-divider
+        v-list-tile(:key="props.itemKey", ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
+          v-list-tile-avatar
+            .icon.white--text(v-if="key(props.item)", :style="{'background-color': color(props.item)}") {{letter(props.item)}}
+            v-icon(v-else class="secondary white--text") link
+          v-list-tile-content
+            v-list-tile-title {{props.item.title}}
+            v-list-tile-sub-title {{key(props.item)}}
+          v-list-tile-action
+            v-btn(icon ripple @click.capture.stop.prevent="RECENT_SET_REMOVE(props.item)")
+              v-icon close
 </template>
 
 <script>

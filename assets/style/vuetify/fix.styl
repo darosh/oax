@@ -79,3 +79,12 @@ table.table .input-group--selection-controls.checkbox .icon svg
   font-family: 'Roboto Medium'
   text-transform: uppercase
   cursor: pointer
+
+ul.dividers
+  li:not(:first-child)
+    border-top: 1px solid $material-light.dividers
+
+.application--dark
+  ul.dividers
+    li:not(:first-child)
+      border-top: 1px solid $material-dark.dividers
