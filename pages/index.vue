@@ -32,6 +32,7 @@
     app-operation-table(v-else-if="VIEW_VIEW === 2")
     app-definitions(:class="{wide: VIEW_WIDE}" v-else-if="VIEW_VIEW === 3")
     app-documentation(v-else-if="VIEW_VIEW === 4")
+    .hidden-sm-and-up.pb-3
     app-method-dialog
     app-status-dialog
     app-header-dialog
