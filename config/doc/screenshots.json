@@ -55,19 +55,10 @@
       "evalAfter": "OAX.state.ui.dialog = {type: null}"
     },
     {
-      "title": "menu",
-      "eval": "OAX.select.vue('app-toolbar v-menu:9').activate()",
-      "evalAfter": "OAX.select('app-tag-list').scrollIntoView(); OAX.select.vue('app-toolbar v-menu:9').deactivate()"
-    },
-    {
-      "title": "layout",
-      "eval": "OAX.select.vue('app-toolbar v-menu').activate()",
-      "evalAfter": "OAX.select.vue('app-toolbar v-menu').deactivate()"
-    },
-    {
-      "title": "view",
-      "eval": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':9' : ':7')).activate()",
-      "evalAfter": "OAX.select.vue('app-toolbar v-menu' + (OAX.state.ui.width < 800 ? ':9' : ':7')).deactivate()"
+      "title": "operations",
+      "evalBefore": "OAX.state.view.type = 1",
+      "waitPreEvalFnc": "return OAX.select('app-operation-list')",
+      "eval": "OAX.select('app-operation-list').scrollIntoView()"
     },
     {
       "title": "wide",
@@ -82,12 +73,6 @@
       "eval": "OAX.state.view.path = false"
     },
     {
-      "title": "operations",
-      "evalBefore": "OAX.state.view.type = 1",
-      "waitPreEvalFnc": "return OAX.select('app-operation-list')",
-      "eval": "OAX.select('app-operation-list').scrollIntoView()"
-    },
-    {
       "title": "table",
       "eval": "OAX.state.view.type = 2"
     },
@@ -97,15 +82,15 @@
     },
     {
       "title": "right",
-      "eval": "OAX.state.view.type = 2; OAX.state.spec.operation = OAX.state.spec.operations[0]; OAX.state.ui.right = true"
+      "eval": "OAX.state.view.type = 2; OAX.state.spec.operation = OAX.state.spec.spec._operations[0]; OAX.state.ui.right = true"
     },
     {
       "title": "request",
-      "eval": "OAX.select.vue('app-detail').tab = 'tab-params'"
+      "eval": "OAX.select.vue('app-detail-tab').tab = 'tab-params'"
     },
     {
       "title": "code",
-      "eval": "OAX.select.vue('app-detail').tab = 'tab-script'"
+      "eval": "OAX.select.vue('app-detail-tab').tab = 'tab-script'"
     },
     {
       "title": "method",
@@ -132,21 +117,17 @@
     },
     {
       "title": "recent",
-      "eval": "OAX.select.vue('app-drawer-left').tab = 'tab-recent'"
+      "eval": "OAX.select.vue('app-drawer-left').$children[0].$children[0].tab = 'tab-recent'"
     },
     {
       "title": "edit",
-      "eval": "OAX.select.vue('app-drawer-left').tab = 'tab-edit'",
+      "eval": "OAX.select.vue('app-drawer-left').$children[0].$children[0].tab = 'tab-edit'",
       "waitEval": ".CodeMirror-line"
     },
     {
       "title": "fullscreen",
       "eval": "OAX.select.vue('app-spec-edit').fullScreen()",
       "evalAfter": "OAX.select.vue('app-spec-edit').fullScreen()"
-    },
-    {
-      "title": "test",
-      "eval": "OAX.select.vue('app-drawer-left').tab = 'tab-test'"
     },
     {
       "title": "methods",
@@ -159,6 +140,10 @@
     {
       "title": "headers",
       "url": "/headers"
+    },
+    {
+      "title": "statistics",
+      "url": "/statistics"
     },
     {
       "title": "about",
