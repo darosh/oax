@@ -123,7 +123,7 @@
     "ts-loader": "^3.0.5",
     "typescript": "^2.5.3",
     "uglify-js": "^3.1.5",
-    "uglifyjs-webpack-plugin": "1.0.0",
+    "uglifyjs-webpack-plugin": "1.0.1",
     "url-loader": "^0.6.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.3",
