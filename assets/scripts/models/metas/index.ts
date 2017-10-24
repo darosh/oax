@@ -1,5 +1,5 @@
-import {countBy} from '../../../../plugins/lodash';
 import {Contact, Info, License} from 'swagger-schema-official';
+import {countBy} from '../../../../plugins/lodash';
 import {IExtra} from '../oas/interfaces/IExtra';
 import {ISpecExtended} from '../oas/interfaces/ISpecExtended';
 import {IMeta} from './interfaces/IMeta';

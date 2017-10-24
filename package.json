@@ -68,7 +68,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.26.0",
     "caniuse-lite": "^1.0.30000697",
-    "chalk": "^2.2.0",
+    "chalk": "^2.3.0",
     "connect-history-api-fallback": "^1.4.0",
     "copy-webpack-plugin": "^4.1.1",
     "cross-env": "^5.1.0",
@@ -133,7 +133,7 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.20.0",
     "webpack-merge": "^4.1.0",
-    "worker-loader": "^1.0.0"
+    "worker-loader": "^1.1.0"
   },
   "engines": {
     "node": ">= 4.0.0",
@@ -162,8 +162,8 @@
     "nuxt:spa:dev": "nuxt --spa",
     "nuxt:start": "nuxt start",
     "postinstall": "npm run vendor:vuetify && npm run vendor:walk-parse5 && npm run vendor:d3 && npm run vendor:lodash",
-    "vendor:d3": "rollup --config rollup.config.js plugins/d3.esm.js --output.format umd --name \"d3\" --output.file plugins/d3.js",
-    "vendor:lodash": "rollup --config rollup.config.js plugins/lodash.esm.js --output.format cjs --name \"lodash\" --output.file plugins/lodash.js",
+    "vendor:d3": "rollup --config rollup.config.js plugins/d3.esm.js --output.format es --output.file plugins/d3.js",
+    "vendor:lodash": "rollup --config rollup.config.js plugins/lodash.esm.js --output.format es --output.file plugins/lodash.js",
     "vendor:vuetify": "cross-env NODE_ENV=es5 babel config/vuetify/src --out-dir config/vuetify/es5 && node ./build/app/patch.js vuetify",
     "vendor:walk-parse5": "cross-env NODE_ENV=es5 babel node_modules/walk-parse5 --out-dir node_modules/walk-parse5",
     "webpack:build": "node build/build.js",

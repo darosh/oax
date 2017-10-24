@@ -10,8 +10,8 @@ import {
   values
 } from '../../plugins/lodash';
 
-import {extent, histogram, scaleLinear} from '../../plugins/d3';
 import {Bin} from 'd3-array/index';
+import {extent, histogram, scaleLinear} from '../../plugins/d3';
 
 import {groupings} from './stats/groupings';
 import {ICounted} from './stats/ICounted';
@@ -52,12 +52,12 @@ export default {
       }
 
       const data = !this.grouping.expand ? this.data : flatten(this.data.map(this.grouping.expand));
-      const mappedRecords = map(groupBy(data, this.grouping.select), (records:any[], title:string) => ({
+      const mappedRecords = map(groupBy(data, this.grouping.select), (records: any[], title: string) => ({
         prop: this.propName(title),
         records,
         title
       }));
-      return orderBy(mappedRecords, [(d:any) => d.records.length, TITLE], [DECS, ASC]);
+      return orderBy(mappedRecords, [(d: any) => d.records.length, TITLE], [DECS, ASC]);
     },
     top(): IGrouped[] {
       if (!this.grouped) {
@@ -112,7 +112,7 @@ export default {
       const data = !this.counting.expand ? this.filtered : flatten(this.filtered.map(this.counting.expand));
 
       const mappedRecords: ICounted[] = map(groupBy(data, this.counting.select),
-        (records:any[], title:string) => ({
+        (records: any[], title: string) => ({
           prop: this.propName(title),
           records,
           title: this.counting.number ? parseInt(title, 10) : title,
@@ -133,12 +133,13 @@ export default {
         return null;
       }
 
-      const e: number[] = extent<number>(this.counted, (d:any) => (d as any).value) as number[];
+      const e: number[] = extent/*<number>*/(this.counted, (d: any) => (d as any).value) as number[];
       const x = scaleLinear()
         .domain(e);
 
-      const hist: Array<Bin<ICounted, number>> = histogram<ICounted, number>()
-        .value((d:any) => (d as any).value)
+      const hist: Array<Bin<ICounted, number>> = histogram/*<ICounted, number>*/()
+        .value((d: any) => d.value)
+
         .domain(x.domain() as [number, number])
         .thresholds(x.ticks(Math.min(e[1] - e[0], this.histogramBins)))(this.counted);
 
@@ -169,7 +170,7 @@ export default {
       t.definitionsTotal = sumBy(t.records, 'definitions');
       t.definitions = round(t.definitionsTotal / t.total, 1);
 
-      t.methodsTotal = sumBy(t.records, (u:any) => sum(values(u.methods)));
+      t.methodsTotal = sumBy(t.records, (u: any) => sum(values(u.methods)));
       t.methods = round(t.methodsTotal / t.total, 1);
 
       t.summariesTotal = sumBy(t.records, 'summaries');
