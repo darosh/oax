@@ -27,7 +27,7 @@ export default {
       if (!this.cached[url]) {
         Vue.set(this.cached, url, value)
 
-        if (!value) {
+        if (!value && window.caches) {
           window.caches.match(url).then(r => {
             if (r) {
               Vue.set(this.cached, url, true)
