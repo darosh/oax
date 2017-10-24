@@ -16,6 +16,7 @@ import * as types from '../store/types'
 import App from './App'
 
 Vue.config.productionTip = false
+// Vue.config.performance = true
 
 const store = createStore()
 const router = createRouter()
