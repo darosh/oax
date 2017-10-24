@@ -137,9 +137,8 @@ export default {
       const x = scaleLinear()
         .domain(e);
 
-      const hist: Array<Bin<ICounted, number>> = histogram/*<ICounted, number>*/()
-        .value((d: any) => d.value)
-
+      const hist: Array<Bin<ICounted, number>> = (histogram/*<ICounted, number>*/()
+        .value((d: any) => d.value) as any)
         .domain(x.domain() as [number, number])
         .thresholds(x.ticks(Math.min(e[1] - e[0], this.histogramBins)))(this.counted);
 
