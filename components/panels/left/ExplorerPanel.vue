@@ -1,11 +1,11 @@
 <template lang="pug">
   div
     v-toolbar.elevation-0(style="background-color: transparent")
-      v-btn(icon @click.stop="UI_SET_LEFT_DRAWER(false)")
+      v-btn(aria-label="Close specification edit" icon @click.stop="UI_SET_LEFT_DRAWER(false)")
         v-icon close
       v-toolbar-title Specification
       v-spacer(v-if="$half < $vuetify.breakpoint.width")
-      v-btn.mr-3(v-if="$half < $vuetify.breakpoint.width" icon @click="UI_SET_LEFT_DRAWER_HALF(!UI_LEFT_DRAWER_HALF)")
+      v-btn.mr-3(aria-label="Wide specification edit" v-if="$half < $vuetify.breakpoint.width" icon @click="UI_SET_LEFT_DRAWER_HALF(!UI_LEFT_DRAWER_HALF)")
         v-icon {{UI_LEFT_DRAWER_HALF ? 'arrow_collapse_left' : 'arrow_collapse_right'}}
     v-tabs.app--tabs(:scrollable="false" grow v-model="tab")
       v-tabs-bar.transparent

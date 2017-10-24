@@ -1,7 +1,7 @@
 <template lang="pug">
   v-layout.ma-0.toolbar__content(row style="height: 100%")
     //v-btn(v-if="components.edit && !UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
-    v-btn(v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
+    v-btn(aria-label="Edit specification" v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
       v-icon edit
     v-menu.menu--api(bottom right :class="searching ? 'hidden-sm-and-down' : ''" style="height: 100%; display: flex")
       v-toolbar-items(slot="activator" style="height: 100%")
@@ -48,29 +48,29 @@
     v-spacer(style="flex: 1 0 auto")
 
     template(v-if="SPEC")
-      v-btn(icon @click.native.stop="searchBegin")
+      v-btn(aria-label="Search" icon @click.native.stop="searchBegin")
         v-icon search
       div(class="searching", :class="{'searching--closed': !searching}")
         v-text-field(spellcheck="false" id="search" append-icon="close", :append-icon-cb="searchEnd" v-model="search", name="search", label="Search", single-line)
       v-tooltip(bottom)
-        v-btn(slot="activator", :class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_RUN_RESOURCES(!SPEC_TAG_OPENED)")
+        v-btn(aria-label="Expand/Collapse" slot="activator", :class="searching ? 'hidden-xs-only' : ''" v-if="VIEW_VIEW === 0" icon @click.native.stop="SPEC_RUN_RESOURCES(!SPEC_TAG_OPENED)")
           v-icon(v-if="SPEC_TAG_OPENED") keyboard_arrow_up
           v-icon(v-else) keyboard_arrow_down
         span Expand/Collapse
       v-menu.hidden-xs-only(bottom left)
         v-tooltip(bottom slot="activator")
-          v-btn(icon slot="activator")
+          v-btn(aria-label="Switch view" icon slot="activator")
             v-icon visibility
           span Switch view
         app-toolbar-menu(view)
 
     v-tooltip(bottom)
-      v-btn.hidden-xs-only(slot="activator" v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="UI_SET_DIALOG('security')")
+      v-btn.hidden-xs-only(aria-label="Authorization" slot="activator" v-if="SPEC && SPEC.securityDefinitions && Object.keys(SPEC.securityDefinitions).length" icon @click.native.stop="UI_SET_DIALOG('security')")
         v-icon lock
       span Authorization
 
     v-menu(v-if="$vuetify.breakpoint.xsOnly || (components.pageStatuses || components.pageHeaders || components.pageMethods || components.github || components.pageAbout || components.pageStats)", :class="searching ? 'hidden-xs-only' : ''" bottom left)
-      v-btn(icon slot="activator")
+      v-btn(aria-label="Menu" icon slot="activator")
         v-icon more_vert
       app-toolbar-menu(navigation view tools)
 </template>

@@ -4,7 +4,7 @@
     v-layout(style="z-index: 9").pt-3.pb-3.pl-3.pr-3.ma-0.elevation-2.relative
       v-text-field.mr-2(spellcheck="false" solo label="Search" v-model="filter" hide-details single-line prepend-icon="search", :append-icon="filter ? 'close' : null", :append-icon-cb="() => filter = null" v-focus.wait="UI_LEFT_DRAWER && value")
       v-menu(bottom left)
-        v-btn.ml-1.mr-0(slot="activator" icon)
+        v-btn.ml-1.mr-0(aria-label="Select directory" slot="activator" icon)
           v-icon {{'numeric_' + collection + '_box'}}
         v-list(subheader two-line)
           v-subheader API Collection
@@ -15,11 +15,11 @@
               v-list-tile-title {{directory[d].title}}
               v-list-tile-sub-title {{directory[d].subTitle}}
       v-tooltip(left)
-        v-btn.ml-1.mr-0(slot="activator" v-if="APIS_COLLECTION_OBJECT.fullText" icon @click="fullText = !fullText")
+        v-btn.ml-1.mr-0(aria-label="Search in specifications" slot="activator" v-if="APIS_COLLECTION_OBJECT.fullText" icon @click="fullText = !fullText")
           v-icon(:primary="fullText") file_find
         span Search in specifications
       v-tooltip(left)
-        v-btn.ml-1.mr-0(slot="activator" v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter")
+        v-btn.ml-1.mr-0(aria-label="Filter categories" slot="activator" v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter")
           v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
         span Filter categories
     .pt-3.text-xs-center(v-if="!APIS")
