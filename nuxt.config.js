@@ -60,7 +60,17 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules|plugins)/
+          exclude: /node_modules/,
+          include: [
+            resolve('main'),
+            resolve('assets'),
+            resolve('components'),
+            resolve('plugins'),
+            resolve('store')
+          ],
+          options: {
+            cache: true
+          }
         })
       }
 

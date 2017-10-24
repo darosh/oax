@@ -3,7 +3,6 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const rc = require('rc')('oax', {
   'DIALOG_HEADERS': true,
@@ -51,11 +50,6 @@ module.exports = {
     }
   },
   plugins: [
-    // TODO: LodashModuleReplacementPlugin
-    // new LodashModuleReplacementPlugin({
-    //   collections: true,
-    //   flattening: true
-    // }),
     new webpack.DefinePlugin({
       'process.WEBPACK': true,
       'process.OAX_VERSION': JSON.stringify(require('../package').version),
@@ -98,7 +92,7 @@ module.exports = {
           resolve('main'),
           resolve('assets'),
           resolve('components'),
-          // resolve('plugins'),
+          resolve('plugins'),
           resolve('store')
         ],
         options: {

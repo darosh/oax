@@ -9,7 +9,6 @@
     "stage-2"
   ],
   "plugins": [
-    "lodash",
     "dynamic-import-webpack",
     [
       "transform-imports",

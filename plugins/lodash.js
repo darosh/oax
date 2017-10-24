@@ -1,8 +1,6 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.lodash = {})));
-}(this, (function (exports) { 'use strict';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 /**
  * A faster alternative to `Function#apply`, this function invokes `func`
@@ -5048,7 +5046,3 @@ exports.sumBy = sumBy_1;
 exports.union = union_1;
 exports.values = values_1;
 exports.countBy = countBy_1;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
