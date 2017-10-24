@@ -1,7 +1,7 @@
 import {Contact, Info, License} from 'swagger-schema-official';
 import {countBy} from '../../../../plugins/lodash';
-import {IExtra} from '../oas/interfaces/IExtra';
-import {ISpecExtended} from '../oas/interfaces/ISpecExtended';
+import {IExtra} from '../../specification/interfaces/IExtra';
+import {ISpecExtended} from '../../specification/interfaces/ISpecExtended';
 import {IMeta} from './interfaces/IMeta';
 
 export function metas(spec: ISpecExtended): IMeta[] {

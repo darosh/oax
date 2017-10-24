@@ -13,7 +13,7 @@
 <script>
   import { mapMutations } from 'vuex'
   import * as types from '../../../store/types'
-  import { type } from '../../../assets/scripts/models/oas/methods/schema'
+  import { type } from '../../../assets/scripts/specification/methods/schema'
   import markdown from '../../directives/markdown'
 
   export default {

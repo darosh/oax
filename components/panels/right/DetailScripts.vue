@@ -15,9 +15,9 @@
 <script>
   import { mapGetters } from 'vuex'
   import * as types from '../../../store/types'
-  import { configure } from '../../../assets/scripts/models/oas/methods/execute'
-  import axiosScript from '../../../assets/scripts/models/scripts/axios-script'
-  import angularScript from '../../../assets/scripts/models/scripts/angular-script'
+  import { configure } from '../../../assets/scripts/specification/methods/execute'
+  import axiosScript from '../../../assets/scripts/utils/code-formatters/axios-script'
+  import angularScript from '../../../assets/scripts/utils/code-formatters/angular-script'
   // import jqueryScript from '../../models/scripts/jquery-script'
   import url from '../../../assets/scripts/utils/url'
 

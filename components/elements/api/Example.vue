@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { value } from '../../../assets/scripts/models/oas/methods/schema'
+  import { value } from '../../../assets/scripts/specification/methods/schema'
   import appJson from './Json'
 
   export default {

@@ -1,7 +1,7 @@
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
 
-import {description, summary, summaryHtml, text} from '../../../services/markdown';
+import {description, summary, summaryHtml, text} from '../../services/markdown';
 import {IOperationObservable} from '../interfaces/IOperationExtended';
 import {IBaseSecurityExtended} from '../interfaces/ISecurityExtended';
 

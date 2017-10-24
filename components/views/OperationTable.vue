@@ -34,7 +34,7 @@
   import markdown from '../../components/directives/markdown'
   import appResponse from '../elements/api/Response'
   import appPath from '../elements/api/Path'
-  import { schemas } from '../../assets/scripts/models/oas/methods/schemas'
+  import { schemas } from '../../assets/scripts/specification/methods/schemas'
 
   export default {
     directives: {

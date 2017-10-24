@@ -1,4 +1,4 @@
-import {metas} from '../metas/index';
+import {metas} from '../utils/metas';
 import {ISpecExtended} from './interfaces/ISpecExtended';
 import {base} from './methods/base';
 import {info} from './methods/info';
@@ -10,7 +10,7 @@ import {tags} from './methods/tags';
 // import {observables} from './methods/observables';
 
 // TODO: this is export for worker code splitting
-export {trim, summary} from '../../services/markdown';
+export {trim, summary} from '../services/markdown';
 
 /* tslint:disable */
 const phase = {

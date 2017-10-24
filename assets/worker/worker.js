@@ -3,8 +3,6 @@ import CircularJSON from 'circular-json'
 import serializeError from 'serialize-error'
 
 import update from '../scripts/utils/update'
-// import { OAS } from './../models/oas'
-// import { trim, summary } from '../services/markdown'
 import edit from '../scripts/utils/edit'
 
 import { compare } from 'fast-json-patch'
@@ -21,8 +19,8 @@ export default function worker (target) {
     if (event.data.md) {
       // require.ensure(['../services/markdown'], function () {
       //   const trim = require('../services/markdown').trim
-      require.ensure(['./../scripts/models/oas'], function () {
-        const trim = require('./../scripts/models/oas').trim
+      require.ensure(['./../scripts/specification'], function () {
+        const trim = require('./../scripts/specification').trim
         target.postMessage(JSON.stringify({
           id: event.data.id,
           md: trim(event.data.md)
@@ -31,8 +29,8 @@ export default function worker (target) {
     } else if (event.data.summary) {
       // require.ensure(['../services/markdown'], function () {
       //   const summary = require('../services/markdown').summary
-      require.ensure(['./../scripts/models/oas'], function () {
-        const summary = require('./../scripts/models/oas').summary
+      require.ensure(['./../scripts/specification'], function () {
+        const summary = require('./../scripts/specification').summary
         target.postMessage(JSON.stringify({
           id: event.data.id,
           summary: summary(event.data.summary)
@@ -51,8 +49,8 @@ export default function worker (target) {
           url: event.data.url
         }
 
-        require.ensure(['./../scripts/models/oas'], function () {
-          const OAS = require('./../scripts/models/oas').OAS
+        require.ensure(['./../scripts/specification'], function () {
+          const OAS = require('./../scripts/specification').OAS
           let toThrow
 
           try {
@@ -128,8 +126,8 @@ export default function worker (target) {
         return
       }
 
-      require.ensure(['./../scripts/models/oas'], function () {
-        const OAS = require('./../scripts/models/oas').OAS
+      require.ensure(['./../scripts/specification'], function () {
+        const OAS = require('./../scripts/specification').OAS
         try {
           OAS(json.schema.bundled, json.url)
         } catch (err) {

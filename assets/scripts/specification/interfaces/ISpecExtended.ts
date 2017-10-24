@@ -1,5 +1,5 @@
 import {Spec} from 'swagger-schema-official';
-import {IMeta} from '../../metas/interfaces/IMeta';
+import {IMeta} from '../../../utils/metas/interfaces/IMeta';
 import {IInfoExtended} from './IInfoExtended';
 import {IMap} from './IMap';
 import {IOperationExtended} from './IOperationExtended';
