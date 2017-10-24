@@ -60,7 +60,9 @@
               tbody
                 tr(v-for="(r, j) in histogram")
                   td.pa-0.pr-1.text-xs-center(style="white-space: nowrap; line-height: 13px; font-size: 12px")
-                    span(:style="{opacity: r[0] ? 1 : 0.36}") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
+                    span(:style="{opacity: r[0] ? 1 : 0.36}")
+                      span(v-if="r.x0 !== r.x1 - (j < (histogram.length - 1) ? 1 : 0)") {{r.x0}}&ndash;{{r.x1 - (j < (histogram.length - 1) ? 1 : 0)}}
+                      span(v-else) {{r.x0}}
                   td.pa-0.pr-2.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? r.histMax : ''}}
                   td.pa-0.pr-1.text-xs-right(style="line-height: 13px; font-size: 12px") {{r.histMax ? round(100 * r.histMax / histogram.histMax) + '%' : ''}}
                   td.pa-0
