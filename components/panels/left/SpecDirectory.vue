@@ -34,23 +34,22 @@
             v-btn(icon @click="category = null")
               v-icon cancel
           v-divider(v-if="category")
-          v-list.pa-0(two-line v-if="APIS")
-            virtual-scroller.scroller(:class="{filtered: category}", :items="filtered", item-height="73" prerender="20", key-field="key")
-              template(slot-scope="props")
-                .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
-                  v-progress-circular(class="primary--text" indeterminate )
-                  .hidden(:dummy="APIS_RUN_LOAD({next: true, searchText: filter})")
-                div(v-else :key="props.itemKey")
-                  v-list-tile(ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
-                    v-list-tile-avatar
-                      v-icon(v-if="props.item.categories && icon(props.item)", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
-                      .icon.white--text(v-else :style="{'background-color': color(props.item)}") {{letter(props.item)}}
-                    v-list-tile-content
-                      v-list-tile-title.main--text {{props.item.title}}
-                      v-list-tile-sub-title {{props.item.key}}
-                    v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
-                      v-icon file_download
-                  v-divider
+          <!--v-list.pa-0(two-line v-if="APIS")-->
+          virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="20", key-field="key" content-tag="ul" content-class="pa-0 list list--two-line")
+            template(slot-scope="props")
+              .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
+                v-progress-circular(class="primary--text" indeterminate )
+                .hidden(:dummy="APIS_RUN_LOAD({next: true, searchText: filter})")
+              v-list-tile(v-else :key="props.itemKey" ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
+                v-list-tile-avatar
+                  v-icon(v-if="props.item.categories && icon(props.item)", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
+                  .icon.white--text(v-else :style="{'background-color': color(props.item)}") {{letter(props.item)}}
+                v-list-tile-content
+                  v-list-tile-title.main--text {{props.item.title}}
+                  v-list-tile-sub-title {{props.item.key}}
+                v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
+                  v-icon file_download
+              v-divider
         v-tabs-content#tab-dir-2.scroller(v-if="APIS_COLLECTION_OBJECT.categories")
           v-container.pa-2(fluid grid-list-md v-if="APIS")
             v-layout(row wrap)
