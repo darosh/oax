@@ -64,14 +64,14 @@ exports.styleLoaders = function (options) {
   for (const extension in loaders) {
     const loader = loaders[extension]
 
-    // if(extension === 'styl') {
-    //   loader.push({
-    //     loader: 'vuetify-loader',
-    //     options: {
-    //       theme: resolve('./assets/style/theme.styl')
-    //     }
-    //   })
-    // }
+    if(extension === 'styl') {
+      loader.push({
+        loader: 'vuetify-loader',
+        options: {
+          theme: resolve('./assets/style/theme.styl')
+        }
+      })
+    }
 
     output.push({
       test: new RegExp('\\.' + extension + '$'),
