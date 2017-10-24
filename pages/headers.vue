@@ -23,7 +23,7 @@
         headers: [
           {text: 'Title', value: '0', align: 'left'},
           {text: 'Description', value: '1', align: 'left'},
-          {text: 'Specification', value: '2'}
+          {text: 'Specification', value: '2', align: 'left'}
         ]
       }
     },

@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.gpu(v-once style="width: 100%; max-width: 100%")
-    v-data-table.ma-3-md.elevation-1.app-table(:headers="headers", :items="items" hide-actions)
+    v-data-table.ma-3-md.elevation-1.app-table(pagination.sync="pagination", :headers="headers", :items="items" hide-actions :must-sort="false")
       template(slot="items" slot-scope="props")
         td
           app-response(:code="props.item[4]")
@@ -21,11 +21,12 @@
     data () {
       return {
         items: [],
+        pagination: {sortBy: '2'},
         headers: [
-          {text: 'Code', value: '4', align: 'left'},
+          {text: 'Code', value: '5', align: 'left'},
           {text: 'Title', value: '0', align: 'left'},
           {text: 'Description', value: '1', align: 'left'},
-          {text: 'Specification', value: '2'}
+          {text: 'Specification', value: '2', align: 'left'}
         ]
       }
     },
@@ -34,13 +35,14 @@
         Object.keys(res).map(k => {
           const item = res[k].slice()
           item.push(k)
-          const obj = {}
+          item.push('_' + k.replace(/xx/, '0'))
+          // const obj = {}
+          //
+          // for (const i in item) {
+          //   obj[i] = item[i]
+          // }
 
-          for (const i in item) {
-            obj[i] = item[i]
-          }
-
-          this.items.push(obj)
+          this.items.push(item)
         })
       })
     }

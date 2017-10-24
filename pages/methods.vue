@@ -7,11 +7,11 @@
         td.capitalize(style="min-width: 260px") {{ props.item[0] }}
         td
           a(:href="props.item[2]" target="_blank" rel="noopener") {{ props.item[1] }}
-        td
+        td.text-xs-right
           v-icon {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
-        td
+        td.text-xs-right
           v-icon {{props.item[4] ? 'check_box' : 'check_box_outline_blank'}}
-        td
+        td.text-xs-right
           v-icon {{props.item[5] ? 'check_box' : 'check_box_outline_blank'}}
 </template>
 
@@ -29,7 +29,7 @@
         headers: [
           {text: 'Method', value: '6', align: 'left'},
           {text: 'Description', value: '0', align: 'left'},
-          {text: 'Specification', value: '1'},
+          {text: 'Specification', value: '1', align: 'left'},
           {text: 'Safe', value: '3'},
           {text: 'Idempotent', value: '4'},
           {text: 'Cacheable', value: '5'}
