@@ -1,5 +1,6 @@
 import * as types from './types'
 import axios from 'axios'
+import { isMemory } from '@/assets/scripts/utils/memory'
 
 export const state = {
   result: null
@@ -29,11 +30,20 @@ export const actions = {
 
     commit(types.VALIDATOR_SET, null)
 
-    if (url) {
+    if (url && !isMemory(url)) {
       lastUrl = url
       lastJson = null
 
-      axios.get('https://online.swagger.io/validator/debug', {params: {url}}).then(res => {
+      axios.get('https://online.swagger.io/validator/debug', {
+        params: {url}
+        // ,
+        // onDownloadProgress: event => {
+        //   console.log(event.lengthComputable, event.loaded, event.total)
+        // },
+        // onUploadProgress: event => {
+        //   console.log('up', event.lengthComputable, event.loaded, event.total)
+        // }
+      }).then(res => {
         urlCache[url] = res.data
 
         if (lastUrl === url) {
@@ -44,7 +54,18 @@ export const actions = {
       lastUrl = null
       lastJson = json
 
-      axios.post('https://online.swagger.io/validator/debug', {data: json}).then(res => {
+      axios.post('https://online.swagger.io/validator/debug', {
+        data: json
+      }
+      // , {
+      //   onDownloadProgress: event => {
+      //     console.log(event.lengthComputable, event.loaded, event.total)
+      //   },
+      //   onUploadProgress: event => {
+      //     console.log('up', event.lengthComputable, event.loaded, event.total)
+      //   }
+      // }
+      ).then(res => {
         jsonCache[json] = res.data
 
         if (lastJson === json) {
