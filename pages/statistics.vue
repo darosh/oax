@@ -89,6 +89,8 @@
                 router-link(:to="{path: '/statistics', query: {group: 'protocol', count: 'domain'}}") Protocols / Domains
               li
                 router-link(:to="{path: '/statistics', query: {count: 'paths', pick: 5}}") Top 5 Domains / Paths
+              li
+                router-link(:to="{path: '/statistics', query: {count: 'category', pick: 5}}") Top 5 Domains / Categories
           v-divider
           v-card-text
             .body-2.mb-2 Data source
