@@ -14,14 +14,17 @@
         v-layout(column)
           v-flex
             .hidden-sm-and-up.mt-3
-            v-expansion-panel.expansion-panel-round(v-if="SPEC.info._.description" expand :class="{'expansion-panel--disabled': !SPEC.info._.description}")
+            v-expansion-panel.mb-2.expansion-panel-round(v-if="SPEC.info._.description" expand :class="{'expansion-panel--disabled': !SPEC.info._.description}")
               v-expansion-panel-content.bg.relative(v-model="exp1", ripple)
                 .title(slot="header") {{SPEC.info.title}}
                 v-divider(v-if="SPEC.info._.description")
                 v-card.bg(v-if="SPEC.info._.description")
                   v-card-text
                     .main-description(v-markdown="SPEC.info._")
-            .title.pa-3(v-else) {{SPEC.info.title}}
+            .title.pt-3.pb-3(v-else)
+              span.pl-3.hidden-md-and-up(style="display: inline-block; width: 16px")
+              span.pl-3.hidden-sm-and-up(style="display: inline-block; width: 8px")
+              | {{SPEC.info.title}}
 
       app-meta-list(v-if="SPEC_METAS", :metas="SPEC_METAS")
     app-tag-list(:class="{wide: VIEW_WIDE}" v-if="VIEW_VIEW === 0")

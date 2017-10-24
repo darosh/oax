@@ -80,11 +80,20 @@ table.table .input-group--selection-controls.checkbox .icon svg
   text-transform: uppercase
   cursor: pointer
 
-ul.dividers
-  li:not(:first-child)
+.dividers
+  > :not(:first-child)
     border-top: 1px solid $material-light.dividers
 
 .application--dark
-  ul.dividers
-    li:not(:first-child)
+  .dividers
+    > :not(:first-child)
+      border-top: 1px solid $material-dark.dividers
+
+.dividers-bottom
+  > *
+    border-bottom: 1px solid $material-light.dividers
+
+.application--dark
+  .dividers-bottom
+    > *
       border-top: 1px solid $material-dark.dividers

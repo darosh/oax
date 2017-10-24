@@ -1,11 +1,13 @@
+$transProps = flex-basis, max-width, WIDTH
+
 #oax
   main .content .layout .flex
       transition: none
-      will-change: flex-basis, max-width, width
+      will-change: $transProps
 
   .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
       transition: all 0s linear $delay
-      transition-property: flex-basis, max-width, width
+      transition-property: $transProps
 
   .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
   .navigation-drawer--close.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
@@ -13,7 +15,7 @@
 
   .navigation-drawer--open:not(.navigation-drawer--is-mobile) + .navigation-drawer--open:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
       transition: all 0s linear $delay
-      transition-property: flex-basis, max-width, width
+      transition-property: $transProps
 
   .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--is-mobile) ~ main .content .layout .flex
     transition: none !important
