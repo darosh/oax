@@ -5,14 +5,14 @@
         td
           app-method(:item="props.item[6]")
         td.capitalize(style="min-width: 260px") {{ props.item[0] }}
+        td.text-xs-center.pl-4
+          v-icon.ml-3 {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
+        td.text-xs-center.pl-4
+          v-icon.ml-3 {{props.item[4] ? 'check_box' : 'check_box_outline_blank'}}
+        td.text-xs-center.pl-4
+          v-icon.ml-3 {{props.item[5] ? 'check_box' : 'check_box_outline_blank'}}
         td
           a(:href="props.item[2]" target="_blank" rel="noopener") {{ props.item[1] }}
-        td.text-xs-right
-          v-icon {{props.item[3] ? 'check_box' : 'check_box_outline_blank'}}
-        td.text-xs-right
-          v-icon {{props.item[4] ? 'check_box' : 'check_box_outline_blank'}}
-        td.text-xs-right
-          v-icon {{props.item[5] ? 'check_box' : 'check_box_outline_blank'}}
 </template>
 
 <script>
@@ -29,10 +29,10 @@
         headers: [
           {text: 'Method', value: '6', align: 'left'},
           {text: 'Description', value: '0', align: 'left'},
-          {text: 'Specification', value: '1', align: 'left'},
           {text: 'Safe', value: '3'},
           {text: 'Idempotent', value: '4'},
-          {text: 'Cacheable', value: '5'}
+          {text: 'Cacheable', value: '5'},
+          {text: 'Specification', value: '1', align: 'left'}
         ]
       }
     },
