@@ -1,13 +1,12 @@
 import CircularJSON from 'circular-json'
 
-// import work from 'webworkify-webpack'
-// const worker = work(require.resolve('./worker.js'))
-// const Work = require('worker-loader?inline&fallback=false!./worker.js')
-
 let worker
 
 if (process.WEBPACK) {
   /* eslint-disable import/no-webpack-loader-syntax */
+  // const Work = require('./worker.js')
+  // const Work = require('worker-loader?publicPath=/worker/!./worker.js')
+  // const Work = require('worker-loader?fallback=false&inline!./worker.js')
   const Work = require('worker-loader!./worker.js')
   worker = new Work()
 } else {

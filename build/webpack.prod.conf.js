@@ -128,7 +128,10 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin({
+    defaultSizes: 'gzip',
+    generateStatsFile: false
+  }))
 }
 
 module.exports = webpackConfig

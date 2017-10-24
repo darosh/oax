@@ -105,6 +105,14 @@ module.exports = {
         loader: 'vue-loader',
         options: vueLoaderConfig
       },
+      // TODO: publicPath does not work
+      // {
+      //   test: /worker\.js$/,
+      //   loader: 'worker-loader',
+      //   options: {
+      //     publicPath: '/worker/'
+      //   }
+      // },
       {
         test: /\.(js)$/,
         loader: 'babel-loader',
