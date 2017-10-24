@@ -25,5 +25,7 @@ export const groupings = [
   {text: 'API', select: d => d.key.join(':')},
   {text: 'Summaries', select: d => d.summaries, number: true},
   {text: 'Descriptions', select: d => d.descriptions, number: true},
-  {text: 'Language', select: d => d.language}
+  {text: 'Language', select: d => d.language},
+  {text: 'Month', select: d => d.month},
+  {text: 'Year', select: d => d.year, number: true}
 ]
