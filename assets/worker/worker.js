@@ -158,7 +158,7 @@ export default function worker (target) {
 
       postMessage(JSON.stringify({
         id: event.data.id,
-        blob: URL.createObjectURL(new Blob([data]))
+        blob: URL.createObjectURL(new Blob([data], {type: 'text/plain'}))
       }))
       // })
     } else if (event.data.searchSpecs !== undefined) {
