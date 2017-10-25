@@ -5,11 +5,11 @@
         v-icon close
       v-toolbar-title Contents
     v-list
-      v-list-tile(tag="a", :to="{path:'about', hash:i[0]}" v-for="(i, k) in keys", :key="k")
+      v-list-tile(ripple tag="a", :to="{path:'about', hash:i[0]}" v-for="(i, k) in keys", :key="k")
         v-list-tile-action
           v-icon keyboard
         v-list-tile-title {{i[1]}}
-      v-list-tile(tag="a", :to="{path:'about', hash:'acknowledgement'}")
+      v-list-tile(ripple tag="a", :to="{path:'about', hash:'acknowledgement'}")
         v-list-tile-action
           v-icon web_asset
         v-list-tile-title Acknowledgement
