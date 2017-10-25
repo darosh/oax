@@ -18,14 +18,15 @@
           v-icon lock_open
         span Operation authorization
     v-divider
-    div.toolbar--scroll(style="overflow-x: hidden" v-if="UI_RIGHT_DRAWER")
-      transition(name="translate-fade" mode="out-in")
+    div.toolbar--scroll(style="overflow-x: hidden")
+      transition(:name="transition" mode="out-in")
         div(:key="operation._id")
           app-detail-header(:operation="operation")
           app-detail-tab(:operation="operation")
 </template>
 
 <script>
+  import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
   import appDetailHeader from './DetailHeader'
@@ -33,6 +34,11 @@
 
   export default {
     props: ['operation'],
+    data () {
+      return {
+        transition: ''
+      }
+    },
     components: {
       appDetailHeader,
       appDetailTab
@@ -52,6 +58,13 @@
       close () {
         this.UI_SET_DRAWER(false)
       }
+    },
+    watch: {
+      UI_RIGHT_DRAWER (value) {
+        Vue.nextTick(() => {
+          this.transition = value ? 'translate-fade' : ''
+        })
+      }
     }
   }
 </script>
@@ -60,13 +73,12 @@
   @import "../../../assets/style/_variables.styl"
 
   .translate-fade-enter-active
-    transition: all 0.2s $transition.swing
+    transition: all 0.15s $transition.swing
 
   .translate-fade-leave-active
-    transition: all 0.1s $transition.ease-in-out
+    transition: all 0.05s $transition.ease-in-out
 
-  .translate-fade-enter
-    opacity: 0
+  .translate-fade-enter,
   .translate-fade-leave-active
     opacity: 0
 
