@@ -18,7 +18,7 @@
           v-icon lock_open
         span Operation authorization
     v-divider
-    div.toolbar--scroll(style="overflow-x: hidden")
+    div.toolbar--scroll(style="overflow-x: hidden", :class="{'no-trans': !transition}")
       transition(:name="transition" mode="out-in")
         div(:key="operation._id")
           app-detail-header(:operation="operation")
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
   import appDetailHeader from './DetailHeader'
   import appDetailTab from './DetailTab'
+  import Vue from 'vue'
 
   export default {
     props: ['operation'],
@@ -61,9 +61,13 @@
     },
     watch: {
       UI_RIGHT_DRAWER (value) {
-        Vue.nextTick(() => {
-          this.transition = value ? 'translate-fade' : ''
-        })
+        if (value) {
+          Vue.nextTick(() => {
+            this.transition = 'translate-fade'
+          })
+        } else {
+          this.transition = ''
+        }
       }
     }
   }
@@ -87,4 +91,9 @@
 
   .translate-fade-leave-active
     transform: translateX(-96px)
+
+  .no-trans
+    .translate-fade-enter-active
+    .translate-fade-leave-active
+      trasition: none
 </style>
