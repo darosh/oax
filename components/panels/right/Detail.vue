@@ -18,10 +18,11 @@
           v-icon lock_open
         span Operation authorization
     v-divider
-    div.toolbar--scroll
+    div.toolbar--scroll(style="overflow-x: hidden" v-if="UI_RIGHT_DRAWER")
       transition(name="translate-fade" mode="out-in")
-        app-detail-header(style="min-height: 32px", :key="operation._id", :operation="operation")
-      app-detail-tab(:operation="operation")
+        div(:key="operation._id")
+          app-detail-header(:operation="operation")
+          app-detail-tab(:operation="operation")
 </template>
 
 <script>
@@ -59,20 +60,19 @@
   @import "../../../assets/style/_variables.styl"
 
   .translate-fade-enter-active
-    transition: all 0.3s $transition.swing
+    transition: all 0.2s $transition.swing
 
   .translate-fade-leave-active
-    transition: all 0.2s $transition.ease-in-out
+    transition: all 0.1s $transition.ease-in-out
 
   .translate-fade-enter
     opacity: 0
-
   .translate-fade-leave-active
     opacity: 0
 
   .translate-fade-enter
-    transform: translateX(50%)
+    transform: translateX(48px)
 
   .translate-fade-leave-active
-    transform: translateX(-20%)
+    transform: translateX(-96px)
 </style>
