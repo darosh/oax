@@ -19,18 +19,14 @@
         span Operation authorization
     v-divider
     div.toolbar--scroll
-      v-tabs(v-model="tab" v-if="UI_RIGHT_DRAWER")
-        v-tabs-items(touchless)
-          v-tabs-content(v-if="t", v-for="(t, i) in tabs", :key="i", :id="'tab-op-' + i")
-            app-detail-header(:operation="t")
+      transition(name="translate-fade" mode="out-in")
+        app-detail-header(:key="operation._id", :operation="operation")
       app-detail-tab(:operation="operation")
 </template>
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
-  import Vue from 'vue'
-
   import appDetailHeader from './DetailHeader'
   import appDetailTab from './DetailTab'
 
@@ -39,13 +35,6 @@
     components: {
       appDetailHeader,
       appDetailTab
-    },
-    data () {
-      return {
-        id: 0,
-        tab: `tab-op-0`,
-        tabs: [this.operation]
-      }
     },
     computed: {
       ...mapGetters([
@@ -62,23 +51,28 @@
       close () {
         this.UI_SET_DRAWER(false)
       }
-    },
-    watch: {
-      operation (value) {
-        this.tabs.push(value)
-
-        for (let i = this.tabs.length - 3; i >= 0; i--) {
-          if (this.tabs[i] !== null) {
-            Vue.set(this.tabs, i, null)
-          } else {
-            break
-          }
-        }
-
-        Vue.nextTick(() => {
-          this.tab = `tab-op-${this.tabs.length - 1}`
-        })
-      }
     }
   }
 </script>
+
+<style lang="stylus">
+  @import "../../../assets/style/_variables.styl"
+
+  .translate-fade-enter-active
+    transition: all 0.3s $transition.swing
+
+  .translate-fade-leave-active
+    transition: all 0.2s $transition.ease-in-out
+
+  .translate-fade-enter
+    opacity: 0
+
+  .translate-fade-leave-active
+    opacity: 0
+
+  .translate-fade-enter
+    transform: translateX(50%)
+
+  .translate-fade-leave-active
+    transform: translateX(-20%)
+</style>
