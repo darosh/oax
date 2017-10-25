@@ -22,7 +22,7 @@ const routes = [
       toolbar: () => import('../components/toolbars/AboutToolbar'),
       panel: () => import('../components/panels/left/AboutPanel')
     },
-    meta: {name: 'About', panel: true}
+    meta: {name: 'About', panel: true, panelWidth: 280}
   }
 ]
 

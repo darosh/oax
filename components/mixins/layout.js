@@ -12,7 +12,7 @@ export default {
     $mobile () { return 1140 },
     $half () { return 1520 },
     $panel () {
-      return Math.min(480, Math.round(this.$vuetify.breakpoint.width / this.$columns)) - 12
+      return Math.min(480, this.$route.meta.panelWidth || Math.round(this.$vuetify.breakpoint.width / this.$columns)) - 12
     },
     $panelLeft () {
       const w = this.$vuetify.breakpoint.width
