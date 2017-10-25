@@ -6,9 +6,11 @@
         v-progress-linear(:value="Math.round(UI_LOADING[0].done * 100)", :height="4", class="primary--text")
         app-log(:items="UI_LOADING")
       v-spacer
+
     v-alert.ma-0(error v-if="UI_ERROR" icon="warning" value="true")
       .pre(v-if="!UI_ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="UI_ERROR.message") {{UI_ERROR.message}}
+
     div(v-if="!SETTINGS_SEARCH && SPEC && SPEC.info && (VIEW_VIEW < 1)")
       v-container.pa-0-sm(fluid grid-list-xl v-if="SPEC.info._.description || SPEC.info.title")
         v-layout(column)
@@ -27,6 +29,7 @@
               | {{SPEC.info.title}}
 
       app-meta-list(v-if="SPEC_METAS", :metas="SPEC_METAS")
+
     app-tag-list(:class="{wide: VIEW_WIDE}" v-if="VIEW_VIEW === 0")
     app-operation-list(:class="{wide: VIEW_WIDE}" v-else-if="VIEW_VIEW === 1")
     app-operation-table(v-else-if="VIEW_VIEW === 2")
@@ -39,7 +42,7 @@
     app-security-dialog
     app-download-dialog
     app-generator-dialog
-    //app-schema-dialog
+    app-schema-dialog
 </template>
 
 <script>
@@ -70,8 +73,8 @@
       appHeaderDialog: () => import('../components/dialogs/HeaderDialog'),
       appSecurityDialog: () => import('../components/dialogs/SecurityDialog'),
       appDownloadDialog: () => import('../components/dialogs/DownloadDialog'),
-      appGeneratorDialog: () => import('../components/dialogs/GeneratorDialog')
-      // appSchemaDialog: () => import('../components/dialogs/SchemaDialog')
+      appGeneratorDialog: () => import('../components/dialogs/GeneratorDialog'),
+      appSchemaDialog: () => import('../components/dialogs/SchemaDialog')
     },
     data () {
       return {
@@ -108,9 +111,7 @@
 </script>
 
 <style scoped lang="stylus">
-  .
-  expansion-panel--disabled > > >
-  .header__icon
+  .expansion-panel--disabled >>> .header__icon
     opacity 0.44
 
   .pre
