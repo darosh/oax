@@ -20,7 +20,7 @@
     v-divider
     div.toolbar--scroll
       transition(name="translate-fade" mode="out-in")
-        app-detail-header(key="operation._id", :operation="operation")
+        app-detail-header(style="min-height: 32px", :key="operation._id", :operation="operation")
       app-detail-tab(:operation="operation")
 </template>
 
