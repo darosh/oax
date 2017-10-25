@@ -44,11 +44,6 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
-  resolveLoader: {
-    alias: {
-      'vuetify-loader': path.join(__dirname, './loaders/vuetify-loader')
-    }
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.WEBPACK': true,
