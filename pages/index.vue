@@ -109,11 +109,3 @@
     }
   }
 </script>
-
-<style scoped lang="stylus">
-  .expansion-panel--disabled >>> .header__icon
-    opacity 0.44
-
-  .pre
-    white-space pre
-</style>

@@ -46,15 +46,5 @@
 </script>
 
 <style scoped lang="stylus">
-  .app-table
-    max-width 80em
-    margin-left: auto
-    margin-right: auto
-
-  .capitalize::first-letter
-    text-transform uppercase
-
-  .nowrap
-    white-space nowrap
-    word-break keep-all
+  @import "../assets/style/app/table.styl"
 </style>

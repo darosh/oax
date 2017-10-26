@@ -55,11 +55,5 @@
 </script>
 
 <style scoped lang="stylus">
-  .app-table
-    max-width 80em
-    margin-left: auto
-    margin-right: auto
-
-  .capitalize::first-letter
-    text-transform uppercase
+  @import "../assets/style/app/table.styl"
 </style>

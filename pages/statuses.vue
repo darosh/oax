@@ -5,7 +5,7 @@
         td
           app-response(:code="props.item[4]")
         td.capitalize.nowrap(v-html="props.item[0]")
-        td.capitalize(v-html="props.item[1]")
+        td.nop.capitalize(v-html="props.item[1]")
         td
           a(:href="props.item[3]" target="_blank" rel="noopener") {{ props.item[2] }}
 </template>
@@ -50,14 +50,5 @@
 </script>
 
 <style scoped lang="stylus">
-  .app-table
-    max-width 80em
-    margin-left: auto
-    margin-right: auto
-
-  .capitalize::first-letter
-    text-transform uppercase
-
-  >>> p
-    margin 0
+  @import "../assets/style/app/table.styl"
 </style>

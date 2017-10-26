@@ -227,7 +227,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .legend
     display inline-block
     width 24px
