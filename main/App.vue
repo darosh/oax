@@ -3,9 +3,8 @@
     app-drawer-left
     app-drawer-right
     app-toolbar
-    main
-      v-content
-        router-view
+    v-content#main
+      router-view
     app-log-dialog(:value="log")
     app-tour(v-if="UI_HIGHLIGHT")
     appFab
