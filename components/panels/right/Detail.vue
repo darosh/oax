@@ -74,7 +74,7 @@
 </script>
 
 <style lang="stylus">
-  @import "../../../assets/style/_variables.styl"
+  @import "../../../assets/style/config/variables.styl"
 
   .translate-fade-enter-active
     transition: all 0.15s $transition.swing

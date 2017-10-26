@@ -55,7 +55,7 @@
 </script>
 
 <style scoped lang="stylus">
-  @import '../../../assets/style/_variables.styl'
+  @import '../../../assets/style/config/variables.styl'
 
   $margin-scroll := 48px
 

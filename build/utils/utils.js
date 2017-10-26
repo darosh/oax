@@ -68,7 +68,7 @@ exports.styleLoaders = function (options) {
       loader.push({
         loader: 'vuetify-loader',
         options: {
-          theme: resolve('../assets/style/theme.styl')
+          theme: resolve('../assets/style/config/theme.styl')
         }
       })
     }

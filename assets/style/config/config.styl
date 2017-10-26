@@ -1,7 +1,7 @@
 //$color-pack = false
 
 //@require '../../node_modules/vuetify/src/stylus/settings/_colors'
-@require './theme.styl'
+@require 'theme.styl'
 
 //$theme := {
 //  primary: $blue.lighten-1
@@ -29,12 +29,12 @@ $ks := desaturate(lighten($theme.success, 60%), 30%)
 $kw := desaturate(lighten($theme.warning, 60%), 10%)
 $ke := desaturate(lighten($theme.error, 75%), 10%)
 
-@require '../../node_modules/vuetify/src/stylus/settings/_theme.styl'
+@require '../../../node_modules/vuetify/src/stylus/settings/_theme.styl'
 
 $material-light.tabs.active = $theme.primary
 $material-dark.tabs.active = $theme.primary
 
-@require '../../node_modules/vuetify/src/stylus/settings/_variables.styl'
+@require '../../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
 $mobile-portrait := "only screen and (max-width: %s) and (orientation: portrait)" % ($grid-breakpoints.md - 1)
 $mobile-landscape := "only screen and (max-width: %s) and (orientation: landscape)" % ($grid-breakpoints.md - 1)
