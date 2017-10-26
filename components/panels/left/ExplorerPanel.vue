@@ -7,7 +7,7 @@
       v-spacer(v-if="$half < $vuetify.breakpoint.width")
       v-btn.mr-3(aria-label="Wide specification edit" v-if="$half < $vuetify.breakpoint.width" icon @click="UI_SET_LEFT_DRAWER_HALF(!UI_LEFT_DRAWER_HALF)")
         v-icon {{UI_LEFT_DRAWER_HALF ? 'arrow_collapse_left' : 'arrow_collapse_right'}}
-    v-tabs.app--tabs(:scrollable="false" grow v-model="tab")
+    v-tabs(:scrollable="false" grow v-model="tab")
       v-tabs-bar.transparent
         v-tabs-item.relative(ripple href="tab-dir") Directory
         v-tabs-item.relative(ripple href="tab-recent") Recent

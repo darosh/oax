@@ -1,0 +1,15 @@
+@require "../config/variables.styl"
+
+.table-stripes
+  td
+    padding 8px 8px 10px 8px
+    vertical-align top
+
+  border-collapse collapse
+
+  tr:nth-child(odd)
+    background-color: rgba(#000, $material-light.divider-percent/2)
+
+.application--dark .table-stripes
+  tr:nth-child(odd)
+    background-color: rgba(#fff, $material-dark.divider-percent*2)

@@ -1,18 +1,4 @@
-//$color-pack = false
-
-//@require '../../node_modules/vuetify/src/stylus/settings/_colors'
 @require 'theme.styl'
-
-//$theme := {
-//  primary: $blue.lighten-1
-//  accent: $blue.lighten-1
-//  secondary: $grey.darken-1
-//
-//  info: $blue.darken-2
-//  warning: $amber.accent-4
-//  error: $red.accent-4
-//  success: $green.accent-4
-//}
 
 $oax-text := {
   info: $blue.darken-2
@@ -21,29 +7,19 @@ $oax-text := {
   success: $green.darken-1
 }
 
-$delay := .325s
-$delay-out := 0s
-
 $kp := desaturate(lighten($theme.info, 70%), 30%)
 $ks := desaturate(lighten($theme.success, 60%), 30%)
 $kw := desaturate(lighten($theme.warning, 60%), 10%)
 $ke := desaturate(lighten($theme.error, 75%), 10%)
 
-@require '../../../node_modules/vuetify/src/stylus/settings/_theme.styl'
+$delay := .325s
+$delay-out := 0s
 
-$material-light.tabs.active = $theme.primary
-$material-dark.tabs.active = $theme.primary
+$toolbar-height = 64px
+$toolbar-mobile-portrait-height = 56px
+$toolbar-mobile-landscape-height = 48px
 
 @require '../../../node_modules/vuetify/src/stylus/settings/_variables.styl'
 
 $mobile-portrait := "only screen and (max-width: %s) and (orientation: portrait)" % ($grid-breakpoints.md - 1)
 $mobile-landscape := "only screen and (max-width: %s) and (orientation: landscape)" % ($grid-breakpoints.md - 1)
-
-.info
-  fill: $theme.info
-.warning
-  fill: $theme.warning
-.error
-  fill: $theme.error
-.success
-  fill: $theme.success

@@ -13,75 +13,12 @@ pre.app-pre
 .input-group__hint
   transition none !important
 
-//.dialog__content
-//  z-index 11
-
-@media $display-breakpoints.md-and-up
-  .ma-3-md
-    margin: 24px
-
-@media $display-breakpoints.sm-and-down
-  .pa-0-sm
-    padding: 0 !important
-
-@media $display-breakpoints.sm-only
-  #oax #main > .container
-    padding: 0
-
-@media $display-breakpoints.xs-only
-  #oax
-    .container
-      padding 0
-
-    .pa-3-sm
-      padding 0 !important
-
-    .plr-3-sm
-      padding-left 16px !important
-      padding-right 16px !important
-
-    .container.grid-list-xl
-      padding 16px
-
-    .container.grid-list-xl > .layout > .flex
-      padding 8px
-
 .application--dark .menu__content
   background-color #212121
-
-//.application--dark .datatable thead th.column.sortable
-//.application--dark .datatable thead th.column.sortable.active
-//.application--dark .datatable thead th.column.sortable.active i
-//  color #fff
 
 .list__tile__title
 .icon
   transition none
-
-.application--dark tbody tr:hover
-  background-color: $grey.darken-3 !important
-
-.input-group__hint > *:last-child
-.input-group__hint > *:last-child > *:last-child
-.input-group__hint > *:last-child > *:last-child > *:last-child
-.md > *:last-child
-.md > *:last-child > *:last-child
-.md > *:last-child > *:last-child > *:last-child
-.md > *:last-child > *:last-child > *:last-child > *:last-child
-  margin-bottom 0
-
-.nowrap
-  white-space nowrap
-
-//.overlay--active + .overlay--active:last-child
-//  z-index 5
-
-.app--tabs .tabs__items
-  border-width 0 !important
-
-pre
-  font-family "Roboto Mono", monospace
-  font-size 12px
 
 @media all and (max-width: $grid-breakpoints.sm)
   .layout
@@ -91,18 +28,8 @@ pre
   .toolbar__content > :not(.btn):last-child
     margin-right 7px
 
-.application--light .input-group--text-field.input-group--solo
-  background-color $body-bg-light
-
-.application--dark .input-group--text-field.input-group--solo
-  background-color $body-bg-dark
-
 .relative
   position relative
-
-$toolbar-height = 64px
-$toolbar-mobile-portrait-height = 56px
-$toolbar-mobile-landscape-height = 48px
 
 .toolbar--scroll
   overflow auto
@@ -143,21 +70,12 @@ a
   > table
     max-width 100%
 
-//@media $display-breakpoints.xl-only
-//  min-width 888px
-
 #webpack-hot-middleware-clientOverlay
   font-size 150% !important
 
 #oax .no-animation
   *
     transition none !important
-
-::selection
-  background-color: rgba($theme.primary, .25)
-
-.application--dark ::selection
-  color: #fff
 
 #oax .datatable__progress th
   height 1px
@@ -166,27 +84,6 @@ a
 #oax .btn--short
 #oax .btn--short > *
   min-width 72px
-
-.app-example
-  .link
-    cursor: pointer
-
-  .click
-    cursor: pointer
-    opacity: .64
-
-  ul
-    padding: 0 0 0 16px
-  ul li
-    list-style none
-    position relative
-
-  .expander
-    position absolute
-    margin-left -8px
-
-//.dialog__content
-//  z-index: 6 !important
 
 .table__no--overflow.table__overflow
   width: fit-content
@@ -197,20 +94,6 @@ a
   .gpu
     transform: translate3d(0,0,0)
     backface-visibility: hidden
-
-  .table-stripes
-    td
-      padding 8px 8px 10px 8px
-      vertical-align top
-
-    border-collapse collapse
-
-    tr:nth-child(odd)
-      background-color: rgba(#000, $material-light.divider-percent/2)
-
-  .application--dark .table-stripes
-    tr:nth-child(odd)
-      background-color: rgba(#fff, $material-dark.divider-percent*2)
 
 #oax .tabs__item
   padding 0 18px

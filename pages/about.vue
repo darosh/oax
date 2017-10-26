@@ -172,3 +172,7 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  @import "../assets/style/app/table-stripes.styl"
+</style>

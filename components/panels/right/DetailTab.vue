@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-tabs.app--tabs(grow v-model="tab", :scrollable="false")
+  v-tabs(grow v-model="tab", :scrollable="false")
     v-tabs-bar.transparent
       v-tabs-item(ripple href="tab-info") Response
       v-tabs-item(ripple href="tab-params") Request
