@@ -1,7 +1,7 @@
 const path = require('path')
-const utils = require('./utils')
+const utils = require('./utils/utils')
 const webpack = require('webpack')
-const config = require('../config')
+const config = require('./config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -18,7 +18,7 @@ const env = config.build.env
 const babel = require('babel-core')
 const uglify = require('uglify-js')
 
-let workerJS = uglify.minify(babel.transformFileSync(path.join(__dirname, './service-worker-prod.js')).code).code
+let workerJS = uglify.minify(babel.transformFileSync(path.join(__dirname, './assets/service-worker-prod.js')).code).code
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {

@@ -27,7 +27,7 @@
         ["es2015",  {"modules": false}],
         ["stage-2"]
       ],
-      "plugins": ["./build/babel-transform-stylus-paths.js"]
+      "plugins": ["./build/plugins/babel-transform-stylus-paths.js"]
     }
   }
 }

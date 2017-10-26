@@ -1,6 +1,6 @@
-require('./check-versions')()
+require('./utils/check-versions')()
 
-const config = require('../config')
+const config = require('./config/index')
 
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)

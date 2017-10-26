@@ -1,14 +1,18 @@
-var fse = require('fs-extra')
-var path = require('path')
-var recursive = require('recursive-readdir')
+const fse = require('fs-extra')
+const path = require('path')
+const recursive = require('recursive-readdir')
 
 const name = process.argv[2]
 
-const sourceDir = `config/${name}`
-const sourceBackup = `config/${name}_backup`
+const sourceDir = `build/${name}`
+const sourceBackup = `build/${name}_backup`
 const targetDir = `node_modules/${name}`
 
 recursive(sourceDir, function (err, files) {
+  if (err) {
+    throw err
+  }
+
   files.forEach(f => {
     const r = path.relative(sourceDir, f)
 
@@ -16,11 +20,11 @@ recursive(sourceDir, function (err, files) {
     const t = path.join(sourceBackup, r)
 
     if (fse.pathExistsSync(s) && !fse.pathExistsSync(t)) {
-      console.log(`backup "${s}" to ${t}`)
+      console.log(`backup "${s}" -> ${t}`)
       fse.copySync(s, t)
     }
 
-    console.log(`patch "${f}" to ${s}`)
+    console.log(`patch "${f}" -> ${s}`)
     fse.copySync(f, s)
   })
 })

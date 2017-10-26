@@ -1,0 +1,15 @@
+{
+  "name": "oax-doc",
+  "private": true,
+  "scripts": {
+    "doc:imagemin": "imagemin doc/screenshots/images/*.png --out-dir doc/screenshots/images",
+    "doc:screenshots": "node ./build/doc/screenshots.js && node ./build/doc/screenshots-index.js",
+    "doc:screenshots-xs": "node ./build/doc/screenshots.js xs && node ./build/doc/screenshots-index.js xs",
+    "doc:screenshots-xs+md": "node ./build/doc/screenshots.js xs,md && node ./build/doc/screenshots-index.js xs,md",
+    "doc:test-links": "node ./build/doc/test-links.js"
+  },
+  "devDependencies": {
+    "imagemin-cli": "^3.0.0",
+    "puppeteer": "^0.12.0"
+  }
+}
