@@ -8,7 +8,7 @@
         v-btn(flat style="height: 100%; min-width: 0")
           v-toolbar-title(style="margin-left: 0") API
             span.secondary--text(v-if="VIEW_VIEW" style="text-transform: none")
-              |  &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas'}[VIEW_VIEW]}}
+              |  &ndash; {{{1:'Operations', 2: 'Table', 3: 'Schemas', 5: 'Paths'}[VIEW_VIEW]}}
           v-icon arrow_drop_down
       v-list(subheader)
         v-subheader API View
@@ -44,6 +44,14 @@
             v-list-tile-title Schemas
           v-list-tile-action
             v-icon(v-if="VIEW_VIEW === 3") check
+
+        v-list-tile(@click="VIEW_SET_VIEW(5)")
+          v-list-tile-action
+            v-icon widgets
+          v-list-tile-content
+            v-list-tile-title Paths
+          v-list-tile-action
+            v-icon(v-if="VIEW_VIEW === 5") check
 
     v-spacer(style="flex: 1 0 auto")
 

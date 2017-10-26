@@ -35,6 +35,7 @@
     app-operation-table(v-else-if="VIEW_VIEW === 2")
     app-definitions(:class="{wide: VIEW_WIDE}" v-else-if="VIEW_VIEW === 3")
     app-documentation(v-else-if="VIEW_VIEW === 4")
+    app-paths(v-else-if="VIEW_VIEW === 5")
     .hidden-sm-and-up.pb-3
     app-method-dialog
     app-status-dialog
@@ -67,6 +68,7 @@
       appOperationList: () => import('../components/views/OperationList'),
       appOperationTable: () => import('../components/views/OperationTable'),
       appDocumentation: () => import('../components/views/Documentation'),
+      appPaths: () => import('../components/views/Paths'),
       appDefinitions: () => import('../components/views/Definitions'),
       appMethodDialog: () => import('../components/dialogs/MethodDialog'),
       appStatusDialog: () => import('../components/dialogs/StatusDialog'),
