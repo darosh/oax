@@ -10,7 +10,7 @@
   import * as types from '../../../store/types'
   import dagreD3 from '../../../plugins/dagre-d3'
   import { Graph } from '../../../plugins/graphlib'
-  import { select, curveBasis } from '../../../plugins/d3'
+  import { select, monotoneX } from '../../../plugins/d3'
   import { MethodStyle } from '../../../assets/scripts/services/method-style'
 
   const ICONS = {
@@ -96,10 +96,12 @@
           ps.push(p)
         })
 
+        console.log(ps)
+
         for (let j = 0; j < max; j++) {
           const middles = {}
 
-          for (let i = 1; i < ps.length; i++) {
+          for (let i = 0; i < ps.length; i++) {
             const pj = ps[i][j]
 
             if (!pj) {
@@ -172,8 +174,10 @@
 
           g.setNode(index, {
             labelType: 'html',
-            label: '<div class="card" style="position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">' +
-            item.name + '</div>' +
+            label: `<div class="card${item.param ? ' param' : ' slug'}${item.methods
+              ? ' endpoint'
+              : ' empty'}" style="position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
+            item.name.replace(/{/g, '{&thinsp;').replace(/}/g, '&thinsp;}') + '</div>' +
             '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
             height: 33,
             'class': item.last ? item.param ? 'last-param' : 'last' : item.param ? 'param' : 'intermediate',
@@ -191,7 +195,8 @@
           const t = data.nodes.indexOf(link[1])
 
           g.setEdge(s, t, {
-            curve: curveBasis
+            curve: monotoneX
+            // arrowhead: 'vee'
           })
         })
 
@@ -219,36 +224,18 @@
 
   .node rect {
     fill: none;
-    /*stroke: #666;*/
-    /*stroke-opacity: 0.66;*/
     stroke-width: 0;
-    /*shape-rendering: geometricPrecision;*/
-  }
-
-  .last rect {
-    /*fill: #ffdfb3;*/
-  }
-
-  .last-param rect {
-    /*fill: #fae3d4;*/
-  }
-
-  .param rect {
-    /*fill: #f0f0f0;*/
-  }
-
-  .node text {
-    /*fill: #333;*/
   }
 
   .edgePath path {
-    stroke: #666;
-    stroke-opacity: 0.5;
-    stroke-width: 1.5px;
+    stroke: #888;
+    stroke-opacity: 0.75;
+    stroke-width: 0.75px;
   }
 
-  .legend-methods md-icon:not(:first-child) {
-    margin-left: 24px;
+  .edgePath defs path {
+    fill: #888;
+    fill-opacity: .87;
   }
 
   .material-icons > span {
@@ -261,5 +248,15 @@
     background-color: #666;
     border-radius: 8px;
     margin: 0 1px;
+  }
+
+  .param {
+    border-radius: 16px;
+    min-width: 64px;
+  }
+
+  .empty {
+    box-shadow: inset 0 1px 16px rgba(0,0,0,0.2), inset 0 2px 2px rgba(0,0,0,0.14), inset 0 3px 1px -2px rgba(0,0,0,0.12);;
+    /*border: 0.75px solid rgba(192, 192, 192, 0.5);*/
   }
 </style>

@@ -1,7 +1,7 @@
 {
   "name": "oax",
   "description": "OpenAPI Specification Explorer",
-  "version": "1.0.373",
+  "version": "1.0.374",
   "author": "Jan Forst <ensonador@gmail.com>",
   "browserslist": [
     "> 5%",
@@ -165,7 +165,7 @@
     "vendor:dagre": "rollup --config rollup.dagre.config.js plugins/dagre.esm.js --output.format es --output.file plugins/dagre.js",
     "vendor:dagre-d3": "rollup --config rollup.dagre-d3.config.js node_modules/dagre-d3/index.js --output.format es --output.file plugins/dagre-d3.js",
     "vendor:graphlib": "rollup --config rollup.graphlib.config.js plugins/graphlib.esm.js --output.format es --output.file plugins/graphlib.js",
-    "vendor:lodash": "rollup --config rollup.lodash.config.js plugins/lodash.esm.js --output.format es --output.file plugins/lodash.js",
+    "vendor:lodash": "rollup --config rollup.config.js plugins/lodash.esm.js --output.format es --output.file plugins/lodash.js",
     "vendor:vuetify": "cross-env NODE_ENV=es5 babel build/vuetify/src --out-dir build/vuetify/es5 && node ./build/utils/patch.js vuetify",
     "vendor:walk-parse5": "cross-env NODE_ENV=es5 babel node_modules/walk-parse5 --out-dir node_modules/walk-parse5",
     "webpack:build": "node build",

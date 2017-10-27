@@ -1,10 +1,12 @@
 {
   "axios": "0.16",
+  "ciena-graphlib": "1.0",
   "circular-json": "0.4",
   "codemirror": "5.31",
   "d3-array": "1.2",
   "d3-format": "1.2",
   "d3-scale": "1.0",
+  "d3-selection": "1.1",
   "d3-shape": "1.2",
   "fast-json-patch": "2.0",
   "highlight.js": "9.12",
@@ -29,6 +31,7 @@
   "vuex": "3.0",
   "vuex-router-sync": "5.0",
   "walk-parse5": "1.0",
+  "webpack-common-shake": "1.5",
   "whatwg-url": "6.3",
   "yaml-js": "0.2"
 }
