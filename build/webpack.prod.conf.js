@@ -10,6 +10,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const ShakePlugin = require('webpack-common-shake').Plugin;
 // const ProgressPlugin = require('progress-bar-webpack-plugin')
 // const chalk = require('chalk')
 
@@ -38,6 +39,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+
+    new ShakePlugin(),
 
     new UglifyJsPlugin({
       uglifyOptions: {

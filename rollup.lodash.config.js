@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs'
 
 export default {
   plugins: [
-    resolve({}),
-    commonjs({})
+    resolve(),
+    commonjs()
   ]
 }

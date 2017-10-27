@@ -1,22 +1,21 @@
 <template lang="pug">
-  div(v-if="paths")
-    svg(width="100", height="100")
+  div
+    svg
       g
-    div(v-for="p in paths.nodes") {{p}}
 </template>
 
 <script>
+  import Vue from 'vue'
   import { mapGetters } from 'vuex'
   import * as types from '../../../store/types'
-  import dagreD3 from 'dagre-d3-webpack'
-  import { select } from '../../../plugins/d3'
-
-  // eslint-disable-next-line new-cap
-  const RENDER = new dagreD3.render()
+  import dagreD3 from '../../../plugins/dagre-d3'
+  import { Graph } from '../../../plugins/graphlib'
+  import { select, curveBasis } from '../../../plugins/d3'
+  import { MethodStyle } from '../../../assets/scripts/services/method-style'
 
   const ICONS = {
-    get: 'arrow_forward',
-    post: 'arrow_backward',
+    get: 'keyboard_arrow_right',
+    post: 'keyboard_arrow_left',
     put: 'chevron_left',
     patch: 'first_page',
     delete: 'close',
@@ -25,15 +24,24 @@
   }
 
   export default {
+    data () {
+      return {
+        el: null
+      }
+    },
     mounted () {
-      this.chart(this.paths)
+      this.el = this.$el
+
+      if (this.SPEC) {
+        this.chart(this.paths)
+      }
     },
     computed: {
       ...mapGetters([
         types.SPEC
       ]),
       paths () {
-        if (!this.SPEC) {
+        if (!this.SPEC || !this.el) {
           return null
         }
 
@@ -49,8 +57,10 @@
         let id = 0
 
         paths.forEach(function (path) {
-          const parts = path.split('/')
-          parts.shift()
+          let parts = path.split('/').filter(d => d)
+
+          parts = parts.length ? parts : ['/']
+
           const p = []
           // let previous = root
 
@@ -105,9 +115,9 @@
         }
 
         ps.forEach(function (p, i) {
-          if (!i) {
-            return
-          }
+          // if (!i) {
+          //   return
+          // }
 
           let previous
           previous = root
@@ -133,12 +143,19 @@
     },
     methods: {
       chart (data) {
-        const SVG = select(this.$el.querySelector('svg'))
-        const ROOT = select(this.$el.querySelector('g'))
+        if (!data || !this.el) {
+          return
+        }
 
-        const g = new dagreD3.graphlib.Graph({multigraph: false}).setGraph({
+        this.SVG = select(this.el.querySelector('svg'))
+        this.ROOT = select(this.el.querySelector('g'))
+
+        // eslint-disable-next-line new-cap
+        const RENDER = new dagreD3.render()
+
+        const g = new Graph({multigraph: false}).setGraph({
           rankdir: 'LR',
-          nodesep: 16,
+          nodesep: 24,
           ranksep: 48
         })
 
@@ -148,23 +165,24 @@
           let x = ''
 
           if (item.methods) {
-            x = '<span class="material-icons">' + item.methods.map(function (m) {
-              return ICONS[m]
-            }).join('</span><span class="material-icons">') + '</span>'
+            x = item.methods.map(function (m) {
+              return `<span class="elevation-3 ${MethodStyle[m]}"><svg width="16" height="16" viewBox="0 0 24 24"><path d="${Vue.prototype.$icons[ICONS[m]]}"></path></svg></span>`
+            }).join('')
           }
 
           g.setNode(index, {
             labelType: 'html',
-            label: '<div style="margin-top:19px; font-size: 14px; text-align: center">' + item.name + '</div>' +
-            '<div style="text-align: center; margin-top:-2px; height: 19px">' + x + '</div>',
-            height: 22,
+            label: '<div class="card" style="position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">' +
+            item.name + '</div>' +
+            '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
+            height: 33,
             'class': item.last ? item.param ? 'last-param' : 'last' : item.param ? 'param' : 'intermediate',
             rx: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
             ry: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
-            paddingLeft: 10,
-            paddingRight: 10,
+            paddingLeft: 0,
+            paddingRight: 0,
             paddingTop: 0,
-            paddingBottom: 4
+            paddingBottom: 0
           })
         })
 
@@ -173,25 +191,75 @@
           const t = data.nodes.indexOf(link[1])
 
           g.setEdge(s, t, {
-            lineInterpolate: 'basis'
+            curve: curveBasis
           })
         })
 
-        console.log(g)
+        RENDER(this.ROOT, g)
 
-        RENDER(ROOT, g)
-
-        ROOT.attr('transform', 'translate(' + [2, 2.5] + ')')
-        SVG.attr('height', ((g.graph().height > 0) ? g.graph().height : 0) + 4 + 14)
+        this.ROOT.attr('transform', 'translate(' + [2, 2.5] + ')')
+        this.SVG.attr('height', ((g.graph().height > 0) ? g.graph().height : 0) + 4 + 14)
           .attr('width', ((g.graph().width > 0) ? g.graph().width : 0) + 4)
-
-        setTimeout(function () {
-          try {
-            select(self.frameElement).style('height', (48 + document.body.getBoundingClientRect().height) + 'px')
-          } catch (ign) {
-          }
-        }, 50)
+      }
+    },
+    watch: {
+      SPEC: function () {
+        if (this.SPEC) {
+          this.chart(this.paths)
+        }
       }
     }
   }
 </script>
+
+<style>
+  text {
+    font-size: 14px;
+  }
+
+  .node rect {
+    fill: none;
+    /*stroke: #666;*/
+    /*stroke-opacity: 0.66;*/
+    stroke-width: 0;
+    /*shape-rendering: geometricPrecision;*/
+  }
+
+  .last rect {
+    /*fill: #ffdfb3;*/
+  }
+
+  .last-param rect {
+    /*fill: #fae3d4;*/
+  }
+
+  .param rect {
+    /*fill: #f0f0f0;*/
+  }
+
+  .node text {
+    /*fill: #333;*/
+  }
+
+  .edgePath path {
+    stroke: #666;
+    stroke-opacity: 0.5;
+    stroke-width: 1.5px;
+  }
+
+  .legend-methods md-icon:not(:first-child) {
+    margin-left: 24px;
+  }
+
+  .material-icons > span {
+    display: inline-block;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    fill: #fff;
+    background-color: #666;
+    border-radius: 8px;
+    margin: 0 1px;
+  }
+</style>

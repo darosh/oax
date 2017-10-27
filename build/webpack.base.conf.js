@@ -33,6 +33,9 @@ module.exports = {
     vendor: [
       './plugins/lodash.js',
       './plugins/d3.js',
+      './plugins/dagre.js',
+      './plugins/dagre-d3.js',
+      './plugins/graphlib.js',
       'axios'
     ],
     app: './main/main.js'
@@ -87,7 +90,7 @@ module.exports = {
           resolve('main'),
           resolve('assets'),
           resolve('components'),
-          resolve('plugins'),
+          // resolve('plugins'),
           resolve('store')
         ],
         options: {
