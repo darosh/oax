@@ -177,7 +177,7 @@
             label: `<div class="card${item.param ? ' param' : ' slug'}${item.methods
               ? ' endpoint'
               : ' empty'}" style="position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
-            item.name.replace(/{/g, '{&thinsp;').replace(/}/g, '&thinsp;}') + '</div>' +
+            item.name.replace(/{/g, '{&hairsp;').replace(/}/g, '&hairsp;}') + '</div>' +
             '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
             height: 33,
             'class': item.last ? item.param ? 'last-param' : 'last' : item.param ? 'param' : 'intermediate',
