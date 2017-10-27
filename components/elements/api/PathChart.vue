@@ -6,7 +6,7 @@
 
 <script>
   import Vue from 'vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
   import dagreD3 from '../../../plugins/dagre-d3'
   import { Graph } from '../../../plugins/graphlib'
@@ -38,7 +38,8 @@
     },
     computed: {
       ...mapGetters([
-        types.SPEC
+        types.SPEC,
+        types.SPEC_OPERATIONS
       ]),
       paths () {
         if (!this.SPEC || !this.el) {
@@ -73,6 +74,7 @@
               path: p.map(function (d) {
                 return d.name
               }).join('/'),
+              end: (parts.length - 1 === i) ? path : null,
               param: /\{.+}/.test(part),
               id: id++
             }
@@ -95,8 +97,6 @@
 
           ps.push(p)
         })
-
-        console.log(ps)
 
         for (let j = 0; j < max; j++) {
           const middles = {}
@@ -144,6 +144,9 @@
       }
     },
     methods: {
+      ...mapMutations([
+        types.SPEC_SET_OPERATION
+      ]),
       chart (data) {
         if (!data || !this.el) {
           return
@@ -180,13 +183,17 @@
             item.name.replace(/{/g, '{&hairsp;').replace(/}/g, '&hairsp;}') + '</div>' +
             '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
             height: item.methods ? 33 : 24,
-            'class': item.last ? item.param ? 'last-param' : 'last' : item.param ? 'param' : 'intermediate',
+            'class': `${item.methods
+              ? ' endpoint'
+              : ' empty'}`,
             rx: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
             ry: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
             paddingLeft: 0,
             paddingRight: 0,
             paddingTop: 0,
-            paddingBottom: 0
+            paddingBottom: 0,
+            data: item.path,
+            id: item.methods ? 'path-' + index : undefined
           })
         })
 
@@ -196,7 +203,6 @@
 
           g.setEdge(s, t, {
             curve: monotoneX
-            // arrowhead: 'vee'
           })
         })
 
@@ -205,6 +211,20 @@
         this.ROOT.attr('transform', 'translate(' + [2, 2.5] + ')')
         this.SVG.attr('height', ((g.graph().height > 0) ? g.graph().height : 0) + 4 + 14)
           .attr('width', ((g.graph().width > 0) ? g.graph().width : 0) + 4)
+
+        for (const el of this.el.querySelectorAll('.nodes > g')) {
+          if (!el.id) {
+            continue
+          }
+
+          ((el) => {
+            el.onclick = () => {
+              const d = data.nodes[el.id.split('-')[1]]
+              console.log(d.end)
+              // this.SPEC_SET_OPERATION(this.SPEC_OPERATIONS[el.id.split('-')[1]])
+            }
+          })(el)
+        }
       }
     },
     watch: {
@@ -256,10 +276,22 @@
   }
 
   .empty {
-    box-shadow: inset 0 1px 16px rgba(0,0,0,0.2), inset 0 2px 2px rgba(0,0,0,0.14), inset 0 3px 1px -2px rgba(0,0,0,0.12);;
+    box-shadow: inset 0 1px 16px rgba(0, 0, 0, 0.2), inset 0 2px 2px rgba(0, 0, 0, 0.14), inset 0 3px 1px -2px rgba(0, 0, 0, 0.12);;
     /*border: 0.75px solid rgba(192, 192, 192, 0.5);*/
     height: 24px;
     padding: 0;
     line-height: 14px;
+  }
+
+  .nodes > g.empty {
+    cursor: default;
+  }
+
+  .nodes > g.endpoint {
+    cursor: pointer;
+  }
+
+  .nodes > g.endpoint:hover .card {
+    background-color: rgba(128, 128, 128, .25);
   }
 </style>
