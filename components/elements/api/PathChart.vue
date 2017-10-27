@@ -179,7 +179,7 @@
               : ' empty'}" style="position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
             item.name.replace(/{/g, '{&hairsp;').replace(/}/g, '&hairsp;}') + '</div>' +
             '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
-            height: 33,
+            height: item.methods ? 33 : 24,
             'class': item.last ? item.param ? 'last-param' : 'last' : item.param ? 'param' : 'intermediate',
             rx: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
             ry: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
@@ -258,5 +258,8 @@
   .empty {
     box-shadow: inset 0 1px 16px rgba(0,0,0,0.2), inset 0 2px 2px rgba(0,0,0,0.14), inset 0 3px 1px -2px rgba(0,0,0,0.12);;
     /*border: 0.75px solid rgba(192, 192, 192, 0.5);*/
+    height: 24px;
+    padding: 0;
+    line-height: 14px;
   }
 </style>
