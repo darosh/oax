@@ -12,6 +12,7 @@
   import { Graph } from '../../../plugins/graphlib'
   import { select, monotoneX } from '../../../plugins/d3'
   import { MethodStyle } from '../../../assets/scripts/services/method-style'
+  import getPaths from '../../../assets/scripts/utils/paths'
 
   const ICONS = {
     get: 'keyboard_arrow_right',
@@ -46,101 +47,7 @@
           return null
         }
 
-        const swagger = this.SPEC
-
-        const nodes = []
-        const methods = ['get', 'post', 'put', 'path', 'delete', 'head', 'options']
-        const links = []
-        const root = null
-        const ps = []
-        const paths = Object.keys(swagger.paths)
-        let max = Number.MIN_VALUE
-        let id = 0
-
-        paths.forEach(function (path) {
-          let parts = path.split('/').filter(d => d)
-
-          parts = parts.length ? parts : ['/']
-
-          const p = []
-          // let previous = root
-
-          max = Math.max(max, parts.length)
-
-          for (let i = 0; i < parts.length; i++) {
-            const part = parts[i]
-            const n = {
-              name: part,
-              path: p.map(function (d) {
-                return d.name
-              }).join('/'),
-              end: (parts.length - 1 === i) ? path : null,
-              param: /\{.+}/.test(part),
-              id: id++
-            }
-
-            if (i === (parts.length - 1)) {
-              n.last = true
-
-              methods.forEach(function (m) {
-                if (swagger.paths[path][m]) {
-                  n.methods = n.methods || []
-                  n.methods.push(m)
-                }
-              })
-            }
-
-            p.push(n)
-
-            // previous = n
-          }
-
-          ps.push(p)
-        })
-
-        for (let j = 0; j < max; j++) {
-          const middles = {}
-
-          for (let i = 0; i < ps.length; i++) {
-            const pj = ps[i][j]
-
-            if (!pj) {
-              continue
-            }
-
-            middles[pj.path] = middles[pj.path] || {}
-            middles[pj.path][pj.name] = middles[pj.path][pj.name] || pj
-            middles[pj.path][pj.name].last = middles[pj.path][pj.name].last || pj.last
-
-            ps[i][j] = middles[pj.path][pj.name]
-          }
-        }
-
-        ps.forEach(function (p, i) {
-          // if (!i) {
-          //   return
-          // }
-
-          let previous
-          previous = root
-
-          p.forEach(function (n, j) {
-            if (nodes.indexOf(n) === -1) {
-              nodes.push(n)
-            }
-
-            if (previous) {
-              links.push([previous, n])
-            }
-            previous = n
-          })
-        })
-
-        return {
-          org: root,
-          nodes: nodes,
-          links: links
-        }
+        return getPaths(this.SPEC)
       }
     },
     methods: {
