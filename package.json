@@ -33,7 +33,7 @@
     "json-stringify-pretty-compact": "^1.0.4",
     "lodash": "^4.17.4",
     "lunr": "^2.1.4",
-    "material-design-icons-svg": "^1.1.2",
+    "material-icons-bundle": "github:darosh/material-icons-bundle",
     "nuxt": "^1.0.0-rc11",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "openapi-samples": "github:darosh/openapi-samples",

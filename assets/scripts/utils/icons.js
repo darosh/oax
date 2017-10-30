@@ -1,106 +1,103 @@
 /* eslint-disable camelcase */
 
-export {default as account_balance} from 'material-design-icons-svg/paths/bank.json'
-export {default as arrow_drop_down} from 'material-design-icons-svg/paths/menu-down.json'
-export {default as arrow_upward} from 'material-design-icons-svg/paths/arrow-up.json'
-export {default as assignment_ind} from 'material-design-icons-svg/paths/clipboard-account.json'
-export {default as assignment} from 'material-design-icons-svg/paths/clipboard-text.json'
-export {default as brightness_4} from 'material-design-icons-svg/paths/brightness-4.json'
-export {default as build} from 'material-design-icons-svg/paths/wrench.json'
-export {default as business} from 'material-design-icons-svg/paths/domain.json'
-export {default as cancel} from 'material-design-icons-svg/paths/close-circle.json'
-export {default as check_box_outline_blank} from 'material-design-icons-svg/paths/checkbox-blank-outline.json'
-export {default as check_box} from 'material-design-icons-svg/paths/checkbox-marked.json'
-export {default as check} from 'material-design-icons-svg/paths/check.json'
-export {default as close} from 'material-design-icons-svg/paths/close.json'
-export {default as cloud_download} from 'material-design-icons-svg/paths/cloud-download.json'
-export {default as cloud} from 'material-design-icons-svg/paths/cloud.json'
-export {default as code} from 'material-design-icons-svg/paths/code-tags.json'
-export {default as data_usage} from 'material-design-icons-svg/paths/chart-donut.json'
-export {default as developer_board} from 'material-design-icons-svg/paths/developer-board.json'
-export {default as directions} from 'material-design-icons-svg/paths/directions.json'
-export const dns = 'M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'
-export {default as edit} from 'material-design-icons-svg/paths/pencil.json'
-export {default as email} from 'material-design-icons-svg/paths/email.json'
-export {default as file_download} from 'material-design-icons-svg/paths/download.json'
-export {default as filter_list} from 'material-design-icons-svg/paths/filter.json'
-export {default as filter_outline} from 'material-design-icons-svg/paths/filter-outline.json'
-export {default as github_circle} from 'material-design-icons-svg/paths/github-circle.json'
-export const group_work = 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 17.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM9.5 8c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8zm6.5 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'
-export {default as help_outline} from 'material-design-icons-svg/paths/help-circle-outline.json'
-export {default as help} from 'material-design-icons-svg/paths/help-circle.json'
-export {default as home} from 'material-design-icons-svg/paths/home.json'
-export {default as hourglass_empty} from 'material-design-icons-svg/paths/calendar-clock.json'
-export {default as keyboard_arrow_down} from 'material-design-icons-svg/paths/chevron-down.json'
-export {default as keyboard_arrow_left} from 'material-design-icons-svg/paths/chevron-left.json'
-export {default as keyboard_arrow_right} from 'material-design-icons-svg/paths/chevron-right.json'
-export {default as keyboard_arrow_up} from 'material-design-icons-svg/paths/chevron-up.json'
-export {default as keyboard_backspace} from 'material-design-icons-svg/paths/keyboard-backspace.json'
-export {default as link} from 'material-design-icons-svg/paths/link.json'
-export {default as list} from 'material-design-icons-svg/paths/view-list.json'
-export {default as local_shipping} from 'material-design-icons-svg/paths/truck.json'
-export {default as location_on} from 'material-design-icons-svg/paths/map-marker.json'
-export {default as lock_open} from 'material-design-icons-svg/paths/lock-open-outline.json'
-export {default as lock} from 'material-design-icons-svg/paths/lock.json'
-export {default as mail} from 'material-design-icons-svg/paths/email.json'
-export {default as message} from 'material-design-icons-svg/paths/message-text.json'
-export {default as monetization_on} from 'material-design-icons-svg/paths/currency-usd.json'
-export {default as more_vert} from 'material-design-icons-svg/paths/dots-vertical.json'
-export {default as movie} from 'material-design-icons-svg/paths/movie.json'
-export {default as person_add} from 'material-design-icons-svg/paths/account-plus.json'
-export {default as person} from 'material-design-icons-svg/paths/account.json'
-export {default as phone} from 'material-design-icons-svg/paths/phone-in-talk.json'
-export {default as play_arrow} from 'material-design-icons-svg/paths/play.json'
-export {default as radio_button_checked} from 'material-design-icons-svg/paths/radiobox-marked.json'
-export {default as radio_button_unchecked} from 'material-design-icons-svg/paths/radiobox-blank.json'
-export {default as school} from 'material-design-icons-svg/paths/school.json'
-export {default as search} from 'material-design-icons-svg/paths/magnify.json'
-export {default as security} from 'material-design-icons-svg/paths/security.json'
-export {default as settings_ethernet} from 'material-design-icons-svg/paths/unfold-more-vertical.json'
-export {default as share} from 'material-design-icons-svg/paths/share-variant.json'
-export {default as shopping_cart} from 'material-design-icons-svg/paths/cart.json'
-export {default as show_chart} from 'material-design-icons-svg/paths/trending-up.json'
-export {default as skip_next} from 'material-design-icons-svg/paths/skip-next.json'
-export {default as skip_previous} from 'material-design-icons-svg/paths/skip-previous.json'
-export {default as speaker_notes} from 'material-design-icons-svg/paths/message-text.json'
-export const storage = 'M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z'
-export {default as text_fields} from 'material-design-icons-svg/paths/format-size.json'
-// export {default as toys} from 'material-design-icons-svg/paths/google-photos.json'
-export const toys = 'M12 12c0-3 2.5-5.5 5.5-5.5S23 9 23 12H12zm0 0c0 3-2.5 5.5-5.5 5.5S1 15 1 12h11zm0 0c-3 0-5.5-2.5-5.5-5.5S9 1 12 1v11zm0 0c3 0 5.5 2.5 5.5 5.5S15 23 12 23V12z'
-export {default as view_column} from 'material-design-icons-svg/paths/view-column.json'
-export {default as view_module} from 'material-design-icons-svg/paths/view-module.json'
-export {default as view_stream} from 'material-design-icons-svg/paths/view-stream.json'
-export {default as visibility} from 'material-design-icons-svg/paths/eye.json'
-export {default as vpn_key} from 'material-design-icons-svg/paths/account-key.json'
-export {default as warning} from 'material-design-icons-svg/paths/alert.json'
-export {default as web_asset} from 'material-design-icons-svg/paths/file-document-box.json'
-export {default as do_not_disturb_alt} from 'material-design-icons-svg/paths/cancel.json'
-export {default as widgets} from 'material-design-icons-svg/paths/widgets.json'
-export {default as keyboard_return} from 'material-design-icons-svg/paths/keyboard-return.json'
-export {default as arrow_left_thick} from 'material-design-icons-svg/paths/arrow-left-thick.json'
-export {default as arrow_right_thick} from 'material-design-icons-svg/paths/arrow-right-thick.json'
-export {default as arrow_down_thick} from 'material-design-icons-svg/paths/arrow-down-thick.json'
-export {default as arrow_up_thick} from 'material-design-icons-svg/paths/arrow-up-thick.json'
-export {default as file_find} from 'material-design-icons-svg/paths/file-find.json'
-// export {default as numeric_1_box_outline} from 'material-design-icons-svg/paths/numeric-1-box-outline'
-// export {default as numeric_2_box_outline} from 'material-design-icons-svg/paths/numeric-2-box-outline'
-// export {default as numeric_3_box_outline} from 'material-design-icons-svg/paths/numeric-3-box-outline'
-// export {default as numeric_4_box_outline} from 'material-design-icons-svg/paths/numeric-4-box-outline'
-export {default as numeric_1_box} from 'material-design-icons-svg/paths/numeric-1-box.json'
-export {default as numeric_2_box} from 'material-design-icons-svg/paths/numeric-2-box.json'
-export {default as numeric_3_box} from 'material-design-icons-svg/paths/numeric-3-box.json'
-export {default as numeric_4_box} from 'material-design-icons-svg/paths/numeric-4-box.json'
-export {default as numeric_5_box} from 'material-design-icons-svg/paths/numeric-5-box.json'
-export {default as numeric_6_box} from 'material-design-icons-svg/paths/numeric-6-box.json'
-export {default as emoticon} from 'material-design-icons-svg/paths/emoticon.json'
-export {default as arrow_collapse_right} from 'material-design-icons-svg/paths/arrow-collapse-right.json'
-export {default as arrow_collapse_left} from 'material-design-icons-svg/paths/arrow-collapse-left.json'
-export {default as check_circle} from 'material-design-icons-svg/paths/checkbox-marked-circle.json'
-export {default as view_dashboard} from 'material-design-icons-svg/paths/view-dashboard.json'
-export {default as eye} from 'material-design-icons-svg/paths/eye.json'
-export {default as indeterminate_check_box} from 'material-design-icons-svg/paths/minus-box.json'
-export {default as chevron_right} from 'material-design-icons-svg/paths/chevron-right.json'
-export {default as chevron_left} from 'material-design-icons-svg/paths/chevron-left.json'
-export {default as repeat} from 'material-design-icons-svg/paths/repeat.json'
-export {default as menu} from 'material-design-icons-svg/paths/menu.json'
-export {default as keyboard} from 'material-design-icons-svg/paths/keyboard.json'
+export {
+  account_balance,
+  arrow_collapse_left,
+  arrow_collapse_right,
+  arrow_down_thick,
+  arrow_drop_down,
+  arrow_left_thick,
+  arrow_right_thick,
+  arrow_up_thick,
+  arrow_upward,
+  assignment,
+  assignment_ind,
+  brightness_4,
+  build,
+  business,
+  cancel,
+  check,
+  check_box,
+  check_box_outline_blank,
+  check_circle,
+  chevron_left,
+  chevron_right,
+  close,
+  cloud,
+  cloud_download,
+  code,
+  data_usage,
+  developer_board,
+  directions,
+  dns,
+  do_not_disturb_alt,
+  edit,
+  email,
+  emoticon,
+  eye,
+  file_download,
+  file_find,
+  filter_list,
+  filter_outline,
+  github_circle,
+  group_work,
+  help,
+  help_outline,
+  home,
+  hourglass_empty,
+  indeterminate_check_box,
+  keyboard,
+  keyboard_arrow_down,
+  keyboard_arrow_left,
+  keyboard_arrow_right,
+  keyboard_arrow_up,
+  keyboard_backspace,
+  keyboard_return,
+  link,
+  list,
+  local_shipping,
+  location_on,
+  lock,
+  lock_open,
+  mail,
+  menu,
+  message,
+  monetization_on,
+  more_vert,
+  movie,
+  numeric_1_box,
+  numeric_2_box,
+  numeric_3_box,
+  numeric_4_box,
+  numeric_5_box,
+  numeric_6_box,
+  person,
+  person_add,
+  phone,
+  play_arrow,
+  radio_button_checked,
+  radio_button_unchecked,
+  repeat,
+  school,
+  search,
+  security,
+  settings_ethernet,
+  share,
+  shopping_cart,
+  show_chart,
+  skip_next,
+  skip_previous,
+  speaker_notes,
+  storage,
+  text_fields,
+  toys,
+  view_column,
+  view_dashboard,
+  view_module,
+  view_stream,
+  visibility,
+  vpn_key,
+  warning,
+  web_asset,
+  widgets
+} from 'material-icons-bundle'
