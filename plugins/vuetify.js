@@ -36,6 +36,16 @@ import {
 // Vue.directive('ripple', Ripple)
 
 Vue.use(Vuetify, {
+  theme: {
+    primary: '#2196F3',
+    accent: '#42A5F5',
+    secondary: '#757575',
+
+    info: '#1976D2',
+    warning: '#ffab00',
+    error: '#D50000',
+    success: '#00C853'
+  },
   directives: { Ripple },
   components: {
     VAlert,
