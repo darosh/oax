@@ -5,3 +5,4 @@ plugins/lodash.js
 plugins/dagre-d3.js
 plugins/dagre.js
 plugins/graphlib.js
+plugins/icons-bundle.js
