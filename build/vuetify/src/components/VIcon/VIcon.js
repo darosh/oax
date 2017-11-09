@@ -22,7 +22,7 @@ export default {
     xLarge: Boolean
   },
 
-  render (h, { props, data, children = [] }) {
+  render (h, {props, data, children = []}) {
     let iconName = ''
 
     if (children.length) {
@@ -35,7 +35,7 @@ export default {
       delete data.domProps.innerHTML
     }
 
-    data.staticClass = ('icon ' + (data.staticClass || '')).trim();
+    data.staticClass = ('icon ' + (data.staticClass || '')).trim()
 
     const classes = {
       'icon--large': props.large,
@@ -71,8 +71,12 @@ export default {
       console.warn(`Missing icon ${iconName}.`)
     }
 
-    return h('i', data,
-      [h('svg', svgData, [h('path', {attrs: {d: ($icons && $icons[iconName]) || 'M4 4 H 20 V 20 H 4 L 4 4'}})])]
-    )
+    const pathData = ($icons && $icons[iconName]) || 'M4 4 H 20 V 20 H 4 L 4 4'
+
+    svgData.domProps = {
+      innerHTML: pathData[0] === '<' ? `<g>${pathData}</g>` : `<path d="${pathData}" />`
+    }
+
+    return h('i', data, [h('svg', svgData)])
   }
 }
