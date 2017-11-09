@@ -15,8 +15,8 @@
   import getPaths from '../../../assets/scripts/utils/paths'
 
   const ICONS = {
-    get: 'keyboard_arrow_right',
-    post: 'keyboard_arrow_left',
+    get: 'arrow_right',
+    post: 'arrow_left',
     put: 'chevron_left',
     patch: 'first_page',
     delete: 'close',
@@ -78,7 +78,9 @@
 
           if (item.methods) {
             x = item.methods.map(function (m) {
-              return `<span class="elevation-3 ${MethodStyle[m]}"><svg width="16" height="16" viewBox="0 0 24 24"><path d="${Vue.prototype.$icons[ICONS[m]]}"></path></svg></span>`
+              const i = Vue.prototype.$icons[ICONS[m]]
+              return `<span class="elevation-3 ${MethodStyle[m]}"><svg width="16" height="16" viewBox="0 0 24 24">${i[0] ===
+              '<' ? `<g>${i}</g>` : `<path d="${i}" />`}</svg></span>`
             }).join('')
           }
 
