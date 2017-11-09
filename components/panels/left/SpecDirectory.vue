@@ -35,7 +35,7 @@
               v-icon cancel
           v-divider(v-if="category")
           <!--v-list.pa-0(two-line v-if="APIS")-->
-          virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="20", key-field="key" content-tag="ul" content-class="pa-0 list list--two-line dividers")
+          virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="20", pool-size="73" buffer="73" key-field="key" content-tag="ul" content-class="pa-0 list list--two-line dividers")
             template(slot-scope="props")
               .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
                 v-progress-circular(class="primary--text" indeterminate )
