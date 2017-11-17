@@ -1,7 +1,6 @@
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const resolve = (dir) => require('path').join(__dirname, '..', dir)
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -64,15 +63,6 @@ exports.styleLoaders = function (options) {
 
   for (const extension in loaders) {
     const loader = loaders[extension]
-
-    if (extension === 'styl') {
-      loader.push({
-        loader: 'vuetify-loader',
-        options: {
-          theme: resolve('../assets/style/config/theme.styl')
-        }
-      })
-    }
 
     output.push({
       test: new RegExp('\\.' + extension + '$'),
