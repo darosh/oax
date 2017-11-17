@@ -19,6 +19,7 @@ yarn.lock
 
 build/vuetify/es5
 
+plugins/d3.js
 plugins/lodash.js
 plugins/graphlib.js
 plugins/dagre.js
