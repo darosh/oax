@@ -24,7 +24,11 @@ export default {
       log: false,
       opened: false,
       showSlider: true,
-      openedRight: false
+      openedRight: false,
+      leftOpening: false,
+      leftClosing: false,
+      rightOpening: false,
+      rightClosing: false
     }
   },
   computed: {
@@ -124,6 +128,18 @@ export default {
       return {
         'no-animation': !this.UI_ANIMATION
       }
+    },
+    classesLeft () {
+      return {
+        'navigation-drawer--opening': this.leftOpening,
+        'navigation-drawer--closing': this.leftClosing
+      }
+    },
+    classesRight () {
+      return {
+        'navigation-drawer--opening': this.rightOpening,
+        'navigation-drawer--closing': this.rightClosing
+      }
     }
   },
   methods: {
@@ -162,7 +178,14 @@ export default {
         this.drawer = !!val
       })
     },
+    menu: function (val) {
+      this[!val ? 'leftClosing' : 'leftOpening'] = true
+      setTimeout(() => { this[!val ? 'leftClosing' : 'leftOpening'] = false }, 350)
+    },
     drawer: function (val) {
+      this[!val ? 'rightClosing' : 'rightOpening'] = true
+      setTimeout(() => { this[!val ? 'rightClosing' : 'rightOpening'] = false }, 350)
+
       if (val && !this.SPEC_OPERATION) {
         Vue.nextTick(() => {
           this.UI_SET_DRAWER(false)
