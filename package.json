@@ -44,7 +44,7 @@
     "showdown": "^1.8.2",
     "swagger-schema-official": "^2.0.0-bab6bed",
     "v-hotkey": "^0.2.0",
-    "vue": "^2.5.4",
+    "vue": "^2.5.3",
     "vue-router": "^3.0.1",
     "vue-virtual-scroller": "0.10.5",
     "vuetify": "^0.17.1",
@@ -131,7 +131,7 @@
     "url-loader": "^0.6.2",
     "vue-loader": "^13.5.0",
     "vue-style-loader": "^3.0.3",
-    "vue-template-compiler": "^2.5.4",
+    "vue-template-compiler": "^2.5.3",
     "vuetify-loader": "^0.1.1",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.1",
@@ -146,9 +146,9 @@
   },
   "private": true,
   "resolutions": {
-    "nuxt/vue": "^2.5.4",
-    "nuxt/vue-server-renderer": "^2.5.4",
-    "nuxt/vue-template-compiler": "^2.5.4"
+    "nuxt/vue": "^2.5.3",
+    "nuxt/vue-server-renderer": "^2.5.3",
+    "nuxt/vue-template-compiler": "^2.5.3"
   },
   "scripts": {
     "data:bundle": "node build/data/schema-bundle.js",
