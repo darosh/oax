@@ -1,7 +1,10 @@
 <template lang="pug">
   v-app(v-hotkey="keymap" , :class="classes", :dark="VIEW_DARK")
-    app-drawer-left
-    app-drawer-right
+    v-navigation-drawer.pb-0(app fixed stateless v-model="menu", :width="$panelLeft" style="overflow: hidden")
+      router-view(name="panel")
+    v-navigation-drawer.pb-0(app fixed stateless right v-model="drawer", :width="$panel" style="overflow: hidden")
+      div(style="height: 100%; overflow: auto")
+        app-detail(v-if="SPEC_OPERATION", :operation="SPEC_OPERATION")
     app-toolbar
     v-content#main
       router-view

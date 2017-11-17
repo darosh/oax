@@ -3,38 +3,58 @@ import * as types from '../store/types'
 
 import appTour from '../components/elements/misc/Tour.vue'
 import appToolbar from '../components/toolbars/Toolbar'
+import layout from '../components/mixins/layout'
+import Vue from 'vue'
 
 export default {
+  mixins: [layout],
   components: {
-    appDrawerRight: () => import('../components/panels/right/DrawerRight'),
-    appDrawerLeft: () => import('../components/panels/left/DrawerLeft'),
+    // appDrawerRight: () => import('../components/panels/right/DrawerRight'),
+    // appDrawerLeft: () => import('../components/panels/left/DrawerLeft'),
     // appToolbar: () => import('./components/app/Toolbar'),
     appToolbar,
     //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
     appFab: () => import('../components/elements/misc/FAB'),
     appLogDialog: () => import('../components/dialogs/LogDialog'),
+    appDetail: () => import('../components/panels/right/Detail'),
     appTour
   },
   data () {
     return {
-      log: false
+      log: false,
+      opened: false,
+      showSlider: true,
+      openedRight: false
     }
   },
   computed: {
     ...mapGetters([
-      types.VIEW_DARK,
-      types.VIEW_PATH,
-      types.VIEW_SUMMARY,
       types.APP_API_PAGE,
       types.APP_HOME,
       types.APP_UPDATED,
+      types.UI_ANIMATION,
       types.UI_DIALOG,
       types.UI_DLG,
+      types.UI_HIGHLIGHT,
       types.UI_LEFT_DRAWER,
+      types.UI_LEFT_DRAWER_HALF,
+      types.UI_LEFT_TAB,
       types.UI_RIGHT_DRAWER,
-      types.UI_ANIMATION,
-      types.UI_HIGHLIGHT
+      types.VIEW_DARK,
+      types.VIEW_PATH,
+      types.VIEW_SUMMARY,
+      types.SPEC_OPERATION
     ]),
+    menu: {
+      get () { return this.UI_LEFT_DRAWER && this.$route.meta.panel && this.opened },
+      set (value) {
+        this.UI_SET_LEFT_DRAWER(!!value)
+      }
+    },
+    drawer: {
+      get () { return this.APP_API_PAGE && this.UI_RIGHT_DRAWER && this.openedRight },
+      set (value) { this.UI_SET_DRAWER(value) }
+    },
     keymap () {
       return {
         'esc': () => {
@@ -108,23 +128,55 @@ export default {
   },
   methods: {
     ...mapMutations([
-      types.VIEW_SET_VIEW,
-      types.VIEW_SET_SUMMARY,
-      types.VIEW_SET_PATH,
-      types.VIEW_SET_WIDE,
-      types.UI_SET_DIALOG,
-      types.UI_SET_LEFT_DRAWER,
-      types.SPEC_SET_NEXT_OPERATION,
       types.SPEC_SET_PREV_OPERATION,
+      types.UI_SET_ANIMATION,
+      types.UI_SET_DIALOG,
       types.UI_SET_DRAWER,
-      types.VIEW_SET_DARK,
-      types.UI_SET_LEFT_TAB,
       types.UI_SET_EDIT_FOCUS,
+      types.UI_SET_LEFT_DRAWER,
+      types.UI_SET_LEFT_DRAWER_HALF,
+      types.UI_SET_LEFT_TAB,
       types.UI_SET_NEXT_TAB,
-      types.UI_SET_ANIMATION
+      types.VIEW_SET_DARK,
+      types.VIEW_SET_PATH,
+      types.VIEW_SET_SUMMARY,
+      types.VIEW_SET_VIEW,
+      types.VIEW_SET_WIDE
     ]),
     reload () {
       window.location.reload()
+    }
+  },
+  watch: {
+    UI_LEFT_DRAWER (value) {
+      if (value) {
+        Vue.nextTick(() => {
+          this.opened = true
+        })
+      } else {
+        this.opened = false
+      }
+    },
+    SPEC_OPERATION: function (val) {
+      Vue.nextTick(() => {
+        this.drawer = !!val
+      })
+    },
+    drawer: function (val) {
+      if (val && !this.SPEC_OPERATION) {
+        Vue.nextTick(() => {
+          this.UI_SET_DRAWER(false)
+        })
+      }
+    },
+    UI_RIGHT_DRAWER: function (value) {
+      if (value) {
+        Vue.nextTick(() => {
+          this.openedRight = true
+        })
+      } else {
+        this.openedRight = false
+      }
     }
   }
 }
