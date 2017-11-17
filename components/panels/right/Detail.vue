@@ -18,11 +18,10 @@
           v-icon lock_open
         span Operation authorization
     v-divider
-    div.toolbar--scroll(style="overflow-x: hidden", :class="{'no-trans': !transition}")
-      transition(:name="transition" mode="out-in")
-        div(:key="operation._id")
-          app-detail-header(:operation="operation")
-          app-detail-tab(:operation="operation")
+    transition-group(:name="transitionName" mode="in-out" tag="div")
+      div.translate-fade-item.toolbar--scroll(style="overflow-x: hidden", :style="{width: $panel + 'px'}", :key="operation._id")
+        app-detail-header(:operation="operation")
+        app-detail-tab(:operation="operation")
 </template>
 
 <script>
@@ -30,13 +29,16 @@
   import * as types from '../../../store/types'
   import appDetailHeader from './DetailHeader'
   import appDetailTab from './DetailTab'
+  import layout from '../../mixins/layout'
   import Vue from 'vue'
 
   export default {
+    mixins: [layout],
     props: ['operation'],
     data () {
       return {
-        transition: ''
+        transition: false,
+        invert: false
       }
     },
     components: {
@@ -47,7 +49,10 @@
       ...mapGetters([
         types.SPEC_OPERATIONS,
         types.UI_RIGHT_DRAWER
-      ])
+      ]),
+      transitionName () {
+        return this.transition ? (this.invert ? 'translate-fade-invert' : 'translate-fade') : ''
+      }
     },
     methods: {
       ...mapMutations([
@@ -60,13 +65,16 @@
       }
     },
     watch: {
+      operation (val, oldVal) {
+        this.invert = (!val || !oldVal) ? false : (val._id < oldVal._id)
+      },
       UI_RIGHT_DRAWER (value) {
         if (value) {
           Vue.nextTick(() => {
-            this.transition = 'translate-fade'
+            this.transition = true
           })
         } else {
-          this.transition = ''
+          this.transition = false
         }
       }
     }
@@ -77,23 +85,25 @@
   @import "../../../assets/style/config/variables.styl"
 
   .translate-fade-enter-active
-    transition: all 0.15s $transition.swing
-
   .translate-fade-leave-active
-    transition: all 0.05s $transition.ease-in-out
+  .translate-fade-invert-enter-active
+  .translate-fade-invert-leave-active
+    position: absolute
+    transition: all 0.3s $transition.swing
 
-  .translate-fade-enter,
-  .translate-fade-leave-active
+  .translate-fade-leave-to
     opacity: 0
+    transform: translateX(-100%)
+
+  .translate-fade-invert-leave-to
+    opacity: 0
+    transform: translateX(100%)
 
   .translate-fade-enter
-    transform: translateX(48px)
+    opacity: 0
+    transform: translateX(100%)
 
-  .translate-fade-leave-active
-    transform: translateX(-96px)
-
-  .no-trans
-    .translate-fade-enter-active
-    .translate-fade-leave-active
-      trasition: none
+  .translate-fade-invert-enter
+    opacity: 0
+    transform: translateX(-100%)
 </style>
