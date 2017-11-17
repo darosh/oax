@@ -68,7 +68,7 @@ export default {
     svgData.attrs.version = '1.1'
     svgData.attrs.xmlns = 'http://www.w3.org/2000/svg'
 
-    const $icons = Vue.prototype.$icons
+    const $icons = typeof window !== 'undefined' ? window.$icons : global.$icons
 
     if (!$icons || !$icons[iconName]) {
       console.warn(`Missing icon ${iconName}.`)

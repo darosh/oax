@@ -1,4 +1,7 @@
-import Vue from 'vue'
 import * as icons from './icons-bundle'
 
-Vue.prototype.$icons = icons
+if (typeof window !== 'undefined') {
+  window.$icons = Object.freeze(icons)
+} else {
+  global.$icons = Object.freeze(icons)
+}
