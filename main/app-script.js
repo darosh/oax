@@ -1,23 +1,20 @@
 import { mapGetters, mapMutations } from 'vuex'
 import * as types from '../store/types'
 
-import appTour from '../components/elements/misc/Tour.vue'
-import appToolbar from '../components/toolbars/Toolbar'
-import layout from '../components/mixins/layout'
 import Vue from 'vue'
+import layout from '../components/mixins/layout'
+import appToolbar from '../components/toolbars/Toolbar'
+import appDetail from '../components/panels/right/Detail'
+// import appTour from '../components/elements/misc/Tour.vue'
 
 export default {
   mixins: [layout],
   components: {
-    // appDrawerRight: () => import('../components/panels/right/DrawerRight'),
-    // appDrawerLeft: () => import('../components/panels/left/DrawerLeft'),
-    // appToolbar: () => import('./components/app/Toolbar'),
     appToolbar,
-    //      appDownloadDialog: () => import('./components/dialogs/DownloadDialog'),
+    appDetail,
+    // appTour,
     appFab: () => import('../components/elements/misc/FAB'),
-    appLogDialog: () => import('../components/dialogs/LogDialog'),
-    appDetail: () => import('../components/panels/right/Detail'),
-    appTour
+    appLogDialog: () => import('../components/dialogs/LogDialog')
   },
   data () {
     return {
