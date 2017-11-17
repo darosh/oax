@@ -178,6 +178,9 @@ export default {
         this.drawer = !!val
       })
     },
+    $panelLeft: function (val) {
+      this.$vuetify.application.left = this.menu ? val : 0
+    },
     menu: function (val) {
       this[!val ? 'leftClosing' : 'leftOpening'] = true
       setTimeout(() => { this[!val ? 'leftClosing' : 'leftOpening'] = false }, 350)
