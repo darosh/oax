@@ -154,7 +154,9 @@ export default {
       types.VIEW_SET_PATH,
       types.VIEW_SET_SUMMARY,
       types.VIEW_SET_VIEW,
-      types.VIEW_SET_WIDE
+      types.VIEW_SET_WIDE,
+      types.SPEC_SET_NEXT_OPERATION,
+      types.SPEC_SET_PREV_OPERATION
     ]),
     reload () {
       window.location.reload()
