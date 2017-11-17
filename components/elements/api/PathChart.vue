@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
   import dagreD3 from '../../../plugins/dagre-d3'
@@ -71,6 +70,8 @@
           ranksep: 48
         })
 
+        const $icons = typeof window !== 'undefined' ? window.$icons : global.$icons
+
         data.nodes.forEach(function (item, index) {
           const radius = 13
 
@@ -78,7 +79,7 @@
 
           if (item.methods) {
             x = item.methods.map(function (m) {
-              const i = Vue.prototype.$icons[ICONS[m]]
+              const i = $icons[ICONS[m]]
               return `<span class="elevation-3 ${MethodStyle[m]}"><svg width="16" height="16" viewBox="0 0 24 24">${i[0] ===
               '<' ? `<g>${i}</g>` : `<path d="${i}" />`}</svg></span>`
             }).join('')
