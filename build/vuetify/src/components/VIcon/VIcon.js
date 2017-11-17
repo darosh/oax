@@ -56,7 +56,10 @@ export default {
     const iconClasses = Object.keys(classes).filter(k => classes[k]).join(' ')
     iconClasses && (data.staticClass += ` ${iconClasses}`)
 
-    if (props.disabled) data.attrs.disabled = props.disabled
+    if (props.disabled) {
+      data.attrs = data.attrs || {}
+      data.attrs.disabled = props.disabled
+    }
 
     const svgData = {attrs: {}}
     svgData.attrs.width = 24
