@@ -298,7 +298,7 @@
     right: 0
     line-height: 1.2
 
-  .application--dark
+  .theme--dark
     .btn--category__counter
       background-color: rgba(64, 64, 64, .64)
     .btn--category__icon .icon
