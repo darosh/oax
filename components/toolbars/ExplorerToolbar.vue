@@ -47,7 +47,7 @@
 
         v-list-tile(@click="VIEW_SET_VIEW(5)")
           v-list-tile-action
-            v-icon widgets
+            v-icon file_tree
           v-list-tile-content
             v-list-tile-title Paths
           v-list-tile-action

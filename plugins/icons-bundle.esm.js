@@ -39,6 +39,7 @@ export {
   eye,
   file_download,
   file_find,
+  file_tree,
   filter_list,
   filter_outline,
   first_page,
