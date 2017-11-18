@@ -8,8 +8,8 @@
         path(marker-end="url(#arrow)" v-for="e in layout._edgeLabels", :d="line.curve(e.curve)(e.points)")
 
     div(style="position: absolute; transform: translateX(-50%) translateY(-50%)" v-for="n in layout._nodes", :style="{left: n.x + 'px', top: n.y + 'px'}")
-      div(:class="n.classes", :style="{width: n.width + 'px'}") {{n.name}}
-      div.material-icons(v-if="n.methods" style="text-align: center; margin-top:-8px; height: 16px")
+      div(v-ripple="!!n.methods", :class="n.classes", :style="{width: n.width + 'px'}") {{n.name}}
+      div.material-icons(v-if="n.methods")
         span.elevation-3(v-for="m in n.methods", :class="MethodStyle[m]")
           svg(width="16" height="16" viewBox="0 0 24 24")
             g(v-if="icons[m][0] === '<'" v-html="icons[m]")
@@ -148,7 +148,7 @@
 <style scoped>
   .card-path {
     white-space: nowrap;
-    position: initial;
+    position: relative;
     margin-top: 8px;
     font-size: 14px;
     text-align: center;
@@ -165,6 +165,13 @@
   .edgePath defs path {
     fill: #888;
     fill-opacity: .87;
+  }
+
+  .material-icons {
+    position: relative;
+    text-align: center;
+    margin-top:-8px;
+    height: 16px
   }
 
   .material-icons > span {
