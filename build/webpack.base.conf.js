@@ -34,7 +34,6 @@ module.exports = {
       './plugins/lodash.js',
       './plugins/d3.js',
       './plugins/dagre.js',
-      './plugins/dagre-d3.js',
       './plugins/graphlib.js',
       'axios'
     ],

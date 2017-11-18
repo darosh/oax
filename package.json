@@ -25,7 +25,6 @@
     "d3-selection": "^1.1.0",
     "d3-shape": "^1.2.0",
     "dagre": "github:darosh/dagre",
-    "dagre-d3": "github:darosh/dagre-d3v4-webpack",
     "fast-json-patch": "^2.0.6",
     "highlight.js": "^9.12.0",
     "intersection-observer": "^0.4.3",
@@ -34,7 +33,6 @@
     "lodash": "^4.17.4",
     "lunr": "^2.1.4",
     "material-icons-bundle": "github:darosh/material-icons-bundle",
-    "nuxt": "^1.0.0-rc11",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
     "openapi-samples": "github:darosh/openapi-samples",
     "parse5": "^3.0.3",
@@ -144,11 +142,6 @@
     "npm": ">= 3.0.0"
   },
   "private": true,
-  "resolutions": {
-    "nuxt/vue": "^2.5.2",
-    "nuxt/vue-server-renderer": "2.5.3",
-    "nuxt/vue-template-compiler": "2.5.3"
-  },
   "scripts": {
     "data:bundle": "node build/data/schema-bundle.js",
     "data:dependencies": "node ./build/data/dependencies.js",
@@ -160,10 +153,9 @@
     "nuxt:generate": "nuxt generate",
     "nuxt:spa:dev": "nuxt --spa",
     "nuxt:start": "nuxt start",
-    "postinstall": "npm run vendor:vuetify && npm run vendor:d3 && npm run vendor:walk-parse5 && npm run vendor:lodash && npm run vendor:graphlib && npm run vendor:dagre && npm run vendor:dagre-d3 && npm run vendor:icons-bundle",
+    "postinstall": "npm run vendor:vuetify && npm run vendor:d3 && npm run vendor:walk-parse5 && npm run vendor:lodash && npm run vendor:graphlib && npm run vendor:dagre && npm run vendor:icons-bundle",
     "vendor:d3": "rollup --config rollup.config.js plugins/d3.esm.js --output.format es --output.file plugins/d3.js",
     "vendor:dagre": "rollup --config rollup.dagre.config.js plugins/dagre.esm.js --output.format es --output.file plugins/dagre.js",
-    "vendor:dagre-d3": "rollup --config rollup.dagre-d3.config.js node_modules/dagre-d3/index.js --output.format es --output.file plugins/dagre-d3.js",
     "vendor:graphlib": "rollup --config rollup.graphlib.config.js plugins/graphlib.esm.js --output.format es --output.file plugins/graphlib.js",
     "vendor:icons-bundle": "rollup --config rollup.config.js plugins/icons-bundle.esm.js --output.format es --output.file plugins/icons-bundle.js",
     "vendor:lodash": "rollup --config rollup.config.js plugins/lodash.esm.js --output.format es --output.file plugins/lodash.js",

@@ -1,17 +1,25 @@
 <template lang="pug">
-  div
-    svg
-      g
+  div(style="position: relative" v-if="layout")
+    svg(:width="layout._label.width", :height="layout._label.height" style="position: absolute")
+      g.edgePath
+        defs
+          marker#arrow(viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto")
+            path(d="M 0 0 L 10 5 L 0 10 z" style="stroke-width: 0;")
+        path(marker-end="url(#arrow)" v-for="e in layout._edgeLabels", :d="line.curve(e.curve)(e.points)")
+
+    div(style="position: absolute; transform: translateX(-50%) translateY(-50%)" v-for="n in layout._nodes" v-html="n.label" :style="{left: n.x + 'px', top: n.y + 'px'}")
 </template>
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
-  import dagreD3 from '../../../plugins/dagre-d3'
+  // import dagreD3 from '../../../plugins/dagre-d3'
   import { Graph } from '../../../plugins/graphlib'
-  import { select, monotoneX } from '../../../plugins/d3'
+  import { monotoneX, line } from '../../../plugins/d3'
   import { MethodStyle } from '../../../assets/scripts/services/method-style'
   import getPaths from '../../../assets/scripts/utils/paths'
+
+  const dagre = require('../../../plugins/dagre.js')
 
   const ICONS = {
     get: 'arrow_right',
@@ -26,14 +34,18 @@
   export default {
     data () {
       return {
-        el: null
+        el: null,
+        layout: null,
+        line: line()
+          .x(function (d) { return d.x })
+          .y(function (d) { return d.y })
       }
     },
     mounted () {
       this.el = this.$el
 
       if (this.SPEC) {
-        this.chart(this.paths)
+        this.layout = this.chart(this.paths)
       }
     },
     computed: {
@@ -58,11 +70,11 @@
           return
         }
 
-        this.SVG = select(this.el.querySelector('svg'))
-        this.ROOT = select(this.el.querySelector('g'))
+        // this.SVG = select(this.el.querySelector('svg'))
+        // this.ROOT = select(this.el.querySelector('g'))
 
         // eslint-disable-next-line new-cap
-        const RENDER = new dagreD3.render()
+        // const RENDER = new dagreD3.render()
 
         const g = new Graph({multigraph: false}).setGraph({
           rankdir: 'LR',
@@ -85,14 +97,17 @@
             }).join('')
           }
 
+          const w = Math.max(item.name.replace(/[{}], '__'/g).length * 8 + 12 * 2, (item.methods ? item.methods.length : 0) * 17 + 2 * 12)
+
           g.setNode(index, {
             labelType: 'html',
             label: `<div class="card${item.param ? ' param' : ' slug'}${item.methods
               ? ' endpoint'
-              : ' empty'}" style="position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
+              : ' empty'}" style="white-space: nowrap; width: ${w}px; position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
             item.name.replace(/{/g, '{&hairsp;').replace(/}/g, '&hairsp;}') + '</div>' +
             '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
             height: item.methods ? 33 : 24,
+            width: w,
             'class': `${item.methods
               ? ' endpoint'
               : ' empty'}`,
@@ -116,31 +131,44 @@
           })
         })
 
-        RENDER(this.ROOT, g)
+        // RENDER(this.ROOT, g)
+        dagre.default.layout(g)
 
-        this.ROOT.attr('transform', 'translate(' + [2, 2.5] + ')')
-        this.SVG.attr('height', ((g.graph().height > 0) ? g.graph().height : 0) + 4 + 14)
-          .attr('width', ((g.graph().width > 0) ? g.graph().width : 0) + 4)
+        // console.log(window.r = RENDER)
+        console.log(window.g = g)
 
-        for (const el of this.el.querySelectorAll('.nodes > g')) {
-          if (!el.id) {
-            continue
-          }
+        Object.keys(g._edgeLabels).forEach(k => {
+          const n = g._nodes[k.split('\x01')[0]]
+          g._edgeLabels[k].points[0] = {x: n.x, y: n.y}
+        })
 
-          ((el) => {
-            el.onclick = () => {
-              const d = data.nodes[el.id.split('-')[1]]
-              console.log(d.end)
-              // this.SPEC_SET_OPERATION(this.SPEC_OPERATIONS[el.id.split('-')[1]])
-            }
-          })(el)
-        }
+        // this.ROOT.attr('transform', 'translate(' + [2, 2.5] + ')')
+        // this.SVG.attr('height', ((g.graph().height > 0) ? g.graph().height : 0) + 4 + 14)
+        //   .attr('width', ((g.graph().width > 0) ? g.graph().width : 0) + 4)
+        //
+        // for (const el of this.el.querySelectorAll('.nodes > g')) {
+        //   if (!el.id) {
+        //     continue
+        //   }
+        //
+        //   ((el) => {
+        //     el.onclick = () => {
+        //       const d = data.nodes[el.id.split('-')[1]]
+        //       console.log(d.end)
+        //       // this.SPEC_SET_OPERATION(this.SPEC_OPERATIONS[el.id.split('-')[1]])
+        //     }
+        //   })(el)
+        // }
+
+        return g
       }
     },
     watch: {
       SPEC: function () {
         if (this.SPEC) {
-          this.chart(this.paths)
+          this.layout = this.chart(this.paths)
+        } else {
+          this.layout = null
         }
       }
     }
@@ -158,6 +186,7 @@
   }
 
   .edgePath path {
+    fill: none;
     stroke: #888;
     stroke-opacity: 0.75;
     stroke-width: 0.75px;

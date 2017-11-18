@@ -52,19 +52,3 @@ npm run webpack:report # build for production and view the bundle analyzer repor
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-### NUXT
-
-_Experimental NUXT build._
-
-``` bash
-npm run nuxt:dev # serve with hot reload at localhost:3000
-
-# build for production and launch server
-npm run nuxt:build 
-npm run nuxt:start
-
-npm run nuxt:generate # generate static project
-```
-
-For detailed explanation on how things work, check out the [Nuxt.js](https://github.com/nuxt/nuxt.js) and [Vuetify.js](https://vuetifyjs.com/) documentation.

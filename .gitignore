@@ -23,5 +23,4 @@ plugins/d3.js
 plugins/lodash.js
 plugins/graphlib.js
 plugins/dagre.js
-plugins/dagre-d3.js
 plugins/icons-bundle.js
