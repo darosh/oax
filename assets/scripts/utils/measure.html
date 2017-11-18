@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" id="oax">
+<head>
+  <meta charset="utf-8">
+  <title>Measure Text</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+</head>
+<body style="font-family: Roboto">
+x<span id="measure" style="font-size: 13px"></span>x
+<div></div>
+<script>
+  const a = 32
+  const b = 127
+  const e = document.getElementById('measure')
+  const j = {}
+
+  e.innerText = '\u200A'
+  const th = e.getBoundingClientRect().width
+  console.log(th)
+  j['\u2009'] = Math.ceil(th * 10) / 10
+
+  let sum = 0
+
+  for (let i = a; i < b; i++) {
+    const c = String.fromCharCode(i)
+    e.innerText = c
+    const w = e.getBoundingClientRect().width
+    e.innerText = c + c
+    const ww = e.getBoundingClientRect().width
+    const r = ww === w ? w : ww - w
+    console.log(c, r)
+    sum += r
+    j[c] = Math.ceil(r * 10) / 10
+  }
+
+  j['undefined'] = Math.ceil((sum / (b - a)) * 10) / 10
+
+  document.write(JSON.stringify(j))
+</script>
+</body>
+</html>

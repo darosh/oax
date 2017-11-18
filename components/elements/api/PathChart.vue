@@ -13,11 +13,11 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
-  // import dagreD3 from '../../../plugins/dagre-d3'
   import { Graph } from '../../../plugins/graphlib'
   import { monotoneX, line } from '../../../plugins/d3'
   import { MethodStyle } from '../../../assets/scripts/services/method-style'
   import getPaths from '../../../assets/scripts/utils/paths'
+  import measure from '../../../assets/scripts/utils/measure'
 
   const dagre = require('../../../plugins/dagre.js')
 
@@ -34,16 +34,13 @@
   export default {
     data () {
       return {
-        el: null,
         layout: null,
         line: line()
           .x(function (d) { return d.x })
           .y(function (d) { return d.y })
       }
     },
-    mounted () {
-      this.el = this.$el
-
+    created () {
       if (this.SPEC) {
         this.layout = this.chart(this.paths)
       }
@@ -54,7 +51,7 @@
         types.SPEC_OPERATIONS
       ]),
       paths () {
-        if (!this.SPEC || !this.el) {
+        if (!this.SPEC) {
           return null
         }
 
@@ -66,12 +63,9 @@
         types.SPEC_SET_OPERATION
       ]),
       chart (data) {
-        if (!data || !this.el) {
+        if (!data) {
           return
         }
-
-        // this.SVG = select(this.el.querySelector('svg'))
-        // this.ROOT = select(this.el.querySelector('g'))
 
         // eslint-disable-next-line new-cap
         // const RENDER = new dagreD3.render()
@@ -97,14 +91,16 @@
             }).join('')
           }
 
-          const w = Math.max(item.name.replace(/[{}], '__'/g).length * 8 + 12 * 2, (item.methods ? item.methods.length : 0) * 17 + 2 * 12)
+          const w = Math.max(measure(item.name.replace(/([{}])/g, '$1\u200A')) + 12 * 2, (item.methods
+            ? item.methods.length
+            : 0) * 17 + 2 * 12)
 
           g.setNode(index, {
             labelType: 'html',
             label: `<div class="card${item.param ? ' param' : ' slug'}${item.methods
               ? ' endpoint'
               : ' empty'}" style="white-space: nowrap; width: ${w}px; position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
-            item.name.replace(/{/g, '{&hairsp;').replace(/}/g, '&hairsp;}') + '</div>' +
+            item.name.replace(/{/g, '{\u200A').replace(/}/g, '\u200A}') + '</div>' +
             '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
             height: item.methods ? 33 : 24,
             width: w,
@@ -131,11 +127,7 @@
           })
         })
 
-        // RENDER(this.ROOT, g)
         dagre.default.layout(g)
-
-        // console.log(window.r = RENDER)
-        console.log(window.g = g)
 
         Object.keys(g._edgeLabels).forEach(k => {
           const n = g._nodes[k.split('\x01')[0]]
