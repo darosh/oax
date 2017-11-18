@@ -1,13 +1,19 @@
 <template lang="pug">
   div(style="position: relative" v-if="layout")
-    svg(:width="layout._label.width", :height="layout._label.height" style="position: absolute")
+    svg(:width="layout._label.width + 24", :height="layout._label.height + 24" style="position: absolute")
       g.edgePath
         defs
           marker#arrow(viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto")
             path(d="M 0 0 L 10 5 L 0 10 z" style="stroke-width: 0;")
         path(marker-end="url(#arrow)" v-for="e in layout._edgeLabels", :d="line.curve(e.curve)(e.points)")
 
-    div(style="position: absolute; transform: translateX(-50%) translateY(-50%)" v-for="n in layout._nodes" v-html="n.label" :style="{left: n.x + 'px', top: n.y + 'px'}")
+    div(style="position: absolute; transform: translateX(-50%) translateY(-50%)" v-for="n in layout._nodes", :style="{left: n.x + 'px', top: n.y + 'px'}")
+      div(:class="n.classes", :style="{width: n.width + 'px'}") {{n.name}}
+      div.material-icons(v-if="n.methods" style="text-align: center; margin-top:-8px; height: 16px")
+        span.elevation-3(v-for="m in n.methods", :class="MethodStyle[m]")
+          svg(width="16" height="16" viewBox="0 0 24 24")
+            g(v-if="icons[m][0] === '<'" v-html="icons[m]")
+            path(v-else :d="icons[m]")
 </template>
 
 <script>
@@ -33,7 +39,14 @@
 
   export default {
     data () {
+      const $icons = typeof window !== 'undefined' ? window.$icons : global.$icons
+
       return {
+        MethodStyle,
+        icons: Object.keys(ICONS).reduce((r, i) => {
+          r[i] = $icons[ICONS[i]]
+          return r
+        }, {}),
         layout: null,
         line: line()
           .x(function (d) { return d.x })
@@ -67,46 +80,26 @@
           return
         }
 
-        // eslint-disable-next-line new-cap
-        // const RENDER = new dagreD3.render()
-
         const g = new Graph({multigraph: false}).setGraph({
           rankdir: 'LR',
           nodesep: 24,
           ranksep: 48
         })
 
-        const $icons = typeof window !== 'undefined' ? window.$icons : global.$icons
-
         data.nodes.forEach(function (item, index) {
           const radius = 13
-
-          let x = ''
-
-          if (item.methods) {
-            x = item.methods.map(function (m) {
-              const i = $icons[ICONS[m]]
-              return `<span class="elevation-3 ${MethodStyle[m]}"><svg width="16" height="16" viewBox="0 0 24 24">${i[0] ===
-              '<' ? `<g>${i}</g>` : `<path d="${i}" />`}</svg></span>`
-            }).join('')
-          }
-
-          const w = Math.max(measure(item.name.replace(/([{}])/g, '$1\u200A')) + 12 * 2, (item.methods
+          const name = item.name.replace(/{/g, '{\u200A').replace(/}/g, '\u200A}')
+          const width = Math.max(measure(name) + 12 * 2, (item.methods
             ? item.methods.length
             : 0) * 17 + 2 * 12)
 
+          const classes = `card card-path${item.param ? ' param' : ' slug'}${item.methods
+            ? ' endpoint'
+            : ' empty'}`
+
           g.setNode(index, {
-            labelType: 'html',
-            label: `<div class="card${item.param ? ' param' : ' slug'}${item.methods
-              ? ' endpoint'
-              : ' empty'}" style="white-space: nowrap; width: ${w}px; position: initial; margin-top:8px; font-size: 14px; text-align: center; padding: 6px 12px">` +
-            item.name.replace(/{/g, '{\u200A').replace(/}/g, '\u200A}') + '</div>' +
-            '<div class="material-icons" style="text-align: center; margin-top:-8px; height: 16px">' + x + '</div>',
             height: item.methods ? 33 : 24,
-            width: w,
-            'class': `${item.methods
-              ? ' endpoint'
-              : ' empty'}`,
+            width,
             rx: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
             ry: item.last ? 0 : item.param ? Math.floor(radius / 2) : radius,
             paddingLeft: 0,
@@ -114,6 +107,9 @@
             paddingTop: 0,
             paddingBottom: 0,
             data: item.path,
+            name,
+            classes,
+            methods: item.methods,
             id: item.methods ? 'path-' + index : undefined
           })
         })
@@ -134,24 +130,6 @@
           g._edgeLabels[k].points[0] = {x: n.x, y: n.y}
         })
 
-        // this.ROOT.attr('transform', 'translate(' + [2, 2.5] + ')')
-        // this.SVG.attr('height', ((g.graph().height > 0) ? g.graph().height : 0) + 4 + 14)
-        //   .attr('width', ((g.graph().width > 0) ? g.graph().width : 0) + 4)
-        //
-        // for (const el of this.el.querySelectorAll('.nodes > g')) {
-        //   if (!el.id) {
-        //     continue
-        //   }
-        //
-        //   ((el) => {
-        //     el.onclick = () => {
-        //       const d = data.nodes[el.id.split('-')[1]]
-        //       console.log(d.end)
-        //       // this.SPEC_SET_OPERATION(this.SPEC_OPERATIONS[el.id.split('-')[1]])
-        //     }
-        //   })(el)
-        // }
-
         return g
       }
     },
@@ -167,14 +145,14 @@
   }
 </script>
 
-<style>
-  text {
+<style scoped>
+  .card-path {
+    white-space: nowrap;
+    position: initial;
+    margin-top: 8px;
     font-size: 14px;
-  }
-
-  .node rect {
-    fill: none;
-    stroke-width: 0;
+    text-align: center;
+    padding: 6px 0;
   }
 
   .edgePath path {
@@ -208,21 +186,20 @@
 
   .empty {
     box-shadow: inset 0 1px 16px rgba(0, 0, 0, 0.2), inset 0 2px 2px rgba(0, 0, 0, 0.14), inset 0 3px 1px -2px rgba(0, 0, 0, 0.12);;
-    /*border: 0.75px solid rgba(192, 192, 192, 0.5);*/
     height: 24px;
-    padding: 0;
     line-height: 14px;
+    margin-top: 0;
   }
 
-  .nodes > g.empty {
+  .empty {
     cursor: default;
   }
 
-  .nodes > g.endpoint {
+  .endpoint {
     cursor: pointer;
   }
 
-  .nodes > g.endpoint:hover .card {
-    background-color: rgba(128, 128, 128, .25);
+  .endpoint.card:hover {
+    background-color: rgb(164, 164, 164);
   }
 </style>
