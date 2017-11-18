@@ -37,6 +37,8 @@ export default function paths (spec) {
           if (spec.paths[path][m]) {
             n.methods = n.methods || []
             n.methods.push(m)
+            n.ops = n.ops || []
+            n.ops.push(spec.paths[path][m])
           }
         })
 

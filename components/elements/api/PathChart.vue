@@ -8,7 +8,7 @@
         path(marker-end="url(#arrow)" v-for="e in layout._edgeLabels", :d="line.curve(e.curve)(e.points)")
 
     div(style="position: absolute; transform: translateX(-50%) translateY(-50%)" v-for="n in layout._nodes", :style="{left: n.x + 'px', top: n.y + 'px'}")
-      div(v-ripple="!!n.methods", :class="n.classes", :style="{width: n.width + 'px'}") {{n.name}}
+      div(@click="setOp(n)" v-ripple="!!n.methods", :class="n.classes", :style="{width: n.width + 'px'}") {{n.name}}
       div.material-icons(v-if="n.methods")
         span.elevation-3(v-for="m in n.methods", :class="MethodStyle[m]")
           svg(width="16" height="16" viewBox="0 0 24 24")
@@ -61,6 +61,7 @@
     computed: {
       ...mapGetters([
         types.SPEC,
+        types.SPEC_OPERATION,
         types.SPEC_OPERATIONS
       ]),
       paths () {
@@ -75,6 +76,9 @@
       ...mapMutations([
         types.SPEC_SET_OPERATION
       ]),
+      setOp (n) {
+        this.SPEC_SET_OPERATION(n.ops[(n.ops.indexOf(this.SPEC_OPERATION) + 1) % n.ops.length])
+      },
       chart (data) {
         if (!data) {
           return
@@ -106,7 +110,8 @@
             paddingRight: 0,
             paddingTop: 0,
             paddingBottom: 0,
-            data: item.path,
+            data: item.end,
+            ops: item.ops,
             name,
             classes,
             methods: item.methods,
@@ -170,7 +175,7 @@
   .material-icons {
     position: relative;
     text-align: center;
-    margin-top:-8px;
+    margin-top: -8px;
     height: 16px
   }
 
@@ -204,9 +209,5 @@
 
   .endpoint {
     cursor: pointer;
-  }
-
-  .endpoint.card:hover {
-    background-color: rgb(164, 164, 164);
   }
 </style>
