@@ -132,30 +132,30 @@
 
         dagre.default.layout(g)
 
-        // console.log(g)
-
-        // Object.keys(g._edgeLabels).forEach(k => {
-        //   const n = g._nodes[k.split('\x01')[0]]
-        //   g._edgeLabels[k].points[0] = {x: n.x, y: n.y}
-        // })
-
         Object.keys(g._out).forEach(from => {
           const keys = Object.keys(g._out[from])
 
           if (keys.length) {
-            const ys = keys.map(to => g._nodes[g._out[from][to].w].y)
+            const ys = keys.map(to => g._nodes[g._out[from][to].w].y).sort((a, b) => a - b)
             const n = g._nodes[from]
             const fy = n.y
-            const min = Math.min.apply(null, ys)
-            const max = Math.max.apply(null, ys)
+            let mid = ys.indexOf(fy)
 
+            if (mid === -1) {
+              ys.push(fy)
+              ys.sort((a, b) => a - b)
+              mid = ys.indexOf(fy)
+            }
+
+            const h = n.width / 2
             const scale = scaleLinear()
-              .range([0, n.width / 2, 0])
-              .domain([min, fy, max])
+              .range([0, 1, 0])
+              .domain([0, mid, ys.length - 1])
 
             keys.forEach(k => {
               const y = g._nodes[g._out[from][k].w].y
-              g._edgeLabels[k].points[0] = {x: n.x + scale(y), y: n.y}
+              const s = ys.length === 1 ? h : Math.sin(scale(ys.indexOf(y)) * Math.PI / 2.5) * h
+              g._edgeLabels[k].points[0] = {x: n.x + s, y: n.y}
             })
           }
         })
