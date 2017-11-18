@@ -5,7 +5,7 @@
         defs
           marker#arrow(viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" orient="auto")
             path(d="M 0 0 L 10 5 L 0 10 z" style="stroke-width: 0;")
-        path(marker-end="url(#arrow)" v-for="e in layout._edgeLabels", :d="line.curve(e.curve)(e.points)")
+        path(marker-end="url(#arrow)" v-for="e in layout._edgeLabels", :d="line(e.points)")
 
     div(style="position: absolute; transform: translateX(-50%) translateY(-50%)" v-for="n in layout._nodes", :style="{left: n.x + 'px', top: n.y + 'px'}")
       div(@click="setOp(n)" v-ripple="!!n.methods", :class="n.classes", :style="{width: n.width + 'px'}") {{n.name}}
@@ -20,7 +20,7 @@
   import { mapGetters, mapMutations } from 'vuex'
   import * as types from '../../../store/types'
   import { Graph } from '../../../plugins/graphlib'
-  import { monotoneX, line } from '../../../plugins/d3'
+  import { monotoneX, line, scaleLinear } from '../../../plugins/d3'
   import { MethodStyle } from '../../../assets/scripts/services/method-style'
   import getPaths from '../../../assets/scripts/utils/paths'
   import measure from '../../../assets/scripts/utils/measure'
@@ -49,6 +49,7 @@
         }, {}),
         layout: null,
         line: line()
+          .curve(monotoneX)
           .x(function (d) { return d.x })
           .y(function (d) { return d.y })
       }
@@ -123,19 +124,43 @@
           const s = data.nodes.indexOf(link[0])
           const t = data.nodes.indexOf(link[1])
 
-          g.setEdge(s, t, {
-            curve: monotoneX
-          })
+          g.setEdge(s, t, {})
+          // g.setEdge(s, t, {
+          // curve: monotoneX
+          // })
         })
 
         dagre.default.layout(g)
 
-        Object.keys(g._edgeLabels).forEach(k => {
-          const n = g._nodes[k.split('\x01')[0]]
-          g._edgeLabels[k].points[0] = {x: n.x, y: n.y}
+        // console.log(g)
+
+        // Object.keys(g._edgeLabels).forEach(k => {
+        //   const n = g._nodes[k.split('\x01')[0]]
+        //   g._edgeLabels[k].points[0] = {x: n.x, y: n.y}
+        // })
+
+        Object.keys(g._out).forEach(from => {
+          const keys = Object.keys(g._out[from])
+
+          if (keys.length) {
+            const ys = keys.map(to => g._nodes[g._out[from][to].w].y)
+            const n = g._nodes[from]
+            const fy = n.y
+            const min = Math.min.apply(null, ys)
+            const max = Math.max.apply(null, ys)
+
+            const scale = scaleLinear()
+              .range([0, n.width / 2, 0])
+              .domain([min, fy, max])
+
+            keys.forEach(k => {
+              const y = g._nodes[g._out[from][k].w].y
+              g._edgeLabels[k].points[0] = {x: n.x + scale(y), y: n.y}
+            })
+          }
         })
 
-        return g
+        return Object.freeze(g)
       }
     },
     watch: {
