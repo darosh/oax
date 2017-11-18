@@ -201,7 +201,8 @@
     position: relative;
     text-align: center;
     margin-top: -8px;
-    height: 16px
+    height: 16px;
+    pointer-events: none;
   }
 
   .material-icons > span {
@@ -218,7 +219,6 @@
 
   .param {
     border-radius: 16px;
-    min-width: 64px;
   }
 
   .empty {
