@@ -5,7 +5,7 @@
       v-flex(style="max-width: 80em")
         v-card.pa-4.mb-1
           .pt-3.hidden-xs-only
-          h3.pb-3.ma-0 OpenAPI Specification Explorer
+          h3.pb-3.ma-0.display-2 OpenAPI Specification Explorer
           .pb-3.hidden-xs-only
           v-divider
           v-layout.mt-3.mb-3
@@ -17,9 +17,9 @@
             v-btn.ma-0(flat @click="reload") Update
           v-divider.mb-3
           div#shortcuts.hidden-xs-only
-            h4 Keyboard shortcuts
+            h4.display-1.mb-3 Keyboard shortcuts
 
-            h5 Key color legend
+            h5.headline.mb-3 Key color legend
 
             span.keyboard.mb-4(style="display: inline-block")
               span.key.key-primary Single
@@ -27,11 +27,11 @@
               span.key.key-warning Shift
               span.key.key-error Ctrl
 
-            h5#application-shortcuts Application shortcuts
+            h5.headline.mb-3#application-shortcuts Application shortcuts
             app-keyboard(:shortcuts="appKeys").mb-4
 
             div(style="float: left").mr-4
-              h6 Application
+              h6.title.mb-3 Application
               table.table-stripes.mb-4
                 tbody
                   tr(v-for="(notes, key) in keys.app.Application", :key="key")
@@ -45,7 +45,7 @@
                         li(v-for="n in notes") {{n}}
 
             div
-              h6 API
+              h6.title.mb-3 API
               table.table-stripes.mb-4
                 tbody
                   tr(v-for="(notes, key) in keys.app.API", :key="key")
@@ -55,12 +55,12 @@
                         .key(:class="classes[k]") {{k}}
                     td.pl-3 {{notes}}
 
-            h5#editor-shortcuts(style="clear: both") Editor shortcuts
+            h5.headline.mb-3#editor-shortcuts(style="clear: both") Editor shortcuts
 
             p Editor shortcuts should be identical to <a href="https://codemirror.net/demo/sublime.html" target="_blank" rel="noopener">CodeMirror Sublime keymap</a> except some extra keys.
 
             template(v-for="(section, sectionKey) in keys.editor")
-              h6(style="clear: both") {{sectionKey}}
+              h6.title.mb-3(style="clear: both") {{sectionKey}}
               app-keyboard(:shortcuts="section" style="float:left").mb-4.mr-4
               table.table-stripes.mb-4
                 tbody
@@ -73,21 +73,21 @@
                     td.pl-3 {{editorActions[key]}}
 
             v-divider.mb-3
-          h4#acknowledgement Acknowledgement
+          h4.display-1.mb-3#acknowledgement Acknowledgement
           p This app wouldn be posssible without following packages, services and OpenAPI specification directories
-          h5 Packages
+          h5.headline.mb-3 Packages
           p
             span(v-for="(i, k) in libs", :key="k")
               span(v-if="k") ,
                 =" "
               a.subheading.nowrap(:href="i.href" target="_blank" rel="noopener") {{i.name}}
               | &nbsp;{{i.version}}
-          h5 Services
+          h5.headline.mb-3 Services
           p
             ul
               li(v-for="(i, k) in services", :key="k")
                 a(:href="i.home" target="_blank" rel="noopener") {{i.title}}
-          h5 Directories
+          h5.headline.mb-3 Directories
           p
             ul
               li(v-for="(i, k) in directories", :key="k")
