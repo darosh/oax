@@ -41,7 +41,7 @@
                         .key(:class="classes[k]") {{k}}
                     td.pl-3(v-if="!Array.isArray(notes)") {{notes}}
                     td.pl-3(v-else) one of:
-                      ul
+                      ul.unordered-list
                         li(v-for="n in notes") {{n}}
 
             div
@@ -84,12 +84,12 @@
               | &nbsp;{{i.version}}
           h5.headline.mb-3 Services
           p
-            ul
+            ul.unordered-list
               li(v-for="(i, k) in services", :key="k")
                 a(:href="i.home" target="_blank" rel="noopener") {{i.title}}
           h5.headline.mb-3 Directories
           p
-            ul
+            ul.unordered-list
               li(v-for="(i, k) in directories", :key="k")
                 a(:href="i.home" target="_blank" rel="noopener") {{i.title}}
                 =" "
