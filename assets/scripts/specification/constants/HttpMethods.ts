@@ -7,3 +7,13 @@ export const HttpMethods: { [httpMethod: string]: boolean } = {
   post: true,
   put: true
 };
+
+export const HttpMethodsArray: string[] = [
+  'get',
+  'post',
+  'put',
+  'patch',
+  'delete',
+  'options',
+  'head'
+];

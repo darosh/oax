@@ -1,5 +1,5 @@
 import {Path, Spec} from 'swagger-schema-official';
-import {HttpMethods} from '../constants/HttpMethods';
+import {HttpMethods, HttpMethodsArray} from '../constants/HttpMethods';
 import {IExtra} from '../interfaces/IExtra';
 import {IMap} from '../interfaces/IMap';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
@@ -195,8 +195,10 @@ export function operations(spec: Spec) {
     if (spec.paths.hasOwnProperty(pathName)) {
       const path: Path = spec.paths[pathName];
 
-      for (const httpMethod in path) {
-        if (HttpMethods[httpMethod]) {
+      // for (const httpMethod in path) {
+      //   if (HttpMethods[httpMethod]) {
+      for (const httpMethod of HttpMethodsArray) {
+        if (path[httpMethod]) {
           const operation: IOperationExtended = (path as IExtra)[httpMethod];
           operation.tags = operation.tags || [];
           operation._method = httpMethod;
