@@ -42,9 +42,10 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
+    globalObject: 'self',
     publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    ? config.build.assetsPublicPath
+    : config.dev.assetsPublicPath
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -53,10 +54,10 @@ module.exports = {
       'process.OAX_BUILD': JSON.stringify(new Date().toISOString()),
       ...rc
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity
-    })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   minChunks: Infinity
+    // })
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json', '.ts'],

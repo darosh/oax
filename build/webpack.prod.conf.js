@@ -6,11 +6,11 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const ShakePlugin = require('webpack-common-shake').Plugin;
+// const ShakePlugin = require('webpack-common-shake').Plugin;
 // const ProgressPlugin = require('progress-bar-webpack-plugin')
 // const chalk = require('chalk')
 
@@ -22,6 +22,7 @@ const uglify = require('uglify-js')
 let workerJS = uglify.minify(babel.transformFileSync(path.join(__dirname, './assets/service-worker-prod.js')).code).code
 
 const webpackConfig = merge(baseWebpackConfig, {
+  mode: 'production',
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -40,7 +41,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       'process.env': env
     }),
 
-    new ShakePlugin(),
+    // new ShakePlugin(),
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -55,9 +56,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
 
     // extract css into its own file
-    new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css')
-    }),
+    // new ExtractTextPlugin({
+    //   filename: utils.assetsPath('css/[name].[contenthash].css')
+    // }),
 
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
