@@ -12,16 +12,16 @@ import { searchSpecs } from '../scripts/services/search-specs'
 
 let json = {text: null, lines: null, schema: null, url: null, obj: null}
 
-export default function worker (target) {
-  target.postMessage(JSON.stringify({id: -1}))
+export default function worker (_self) {
+  _self.postMessage(JSON.stringify({id: -1}))
 
-  target.onmessage = function (event) {
+  _self.onmessage = function (event) {
     if (event.data.md) {
       // require.ensure(['../services/markdown'], function () {
       //   const trim = require('../services/markdown').trim
       require.ensure(['./../scripts/specification'], function () {
         const trim = require('./../scripts/specification').trim
-        target.postMessage(JSON.stringify({
+        _self.postMessage(JSON.stringify({
           id: event.data.id,
           md: trim(event.data.md)
         }))
@@ -31,14 +31,14 @@ export default function worker (target) {
       //   const summary = require('../services/markdown').summary
       require.ensure(['./../scripts/specification'], function () {
         const summary = require('./../scripts/specification').summary
-        target.postMessage(JSON.stringify({
+        _self.postMessage(JSON.stringify({
           id: event.data.id,
           summary: summary(event.data.summary)
         }))
       })
     } else if (event.data.url) {
       load(event.data.url, event.data.progress ? (progress) => {
-        target.postMessage(JSON.stringify({
+        _self.postMessage(JSON.stringify({
           id: event.data.id,
           url: event.data.url,
           progress
@@ -56,7 +56,7 @@ export default function worker (target) {
           try {
             OAS(res.bundled, event.data.url,
               event.data.progress ? (progress) => {
-                target.postMessage(
+                _self.postMessage(
                   JSON.stringify({
                     id: event.data.id,
                     url: event.data.url,
@@ -68,7 +68,7 @@ export default function worker (target) {
             ret.err = serializeError(err)
           }
 
-          target.postMessage(JSON.stringify({
+          _self.postMessage(JSON.stringify({
             id: event.data.id,
             url: event.data.url,
             progress: {section: 'Worker finishing'}
@@ -83,14 +83,14 @@ export default function worker (target) {
           ret.json = res.json
           // ret.blob = URL.createObjectURL(new Blob([res.json]))
 
-          target.postMessage(CircularJSON.stringify(ret))
+          _self.postMessage(CircularJSON.stringify(ret))
 
           if (toThrow) {
             throw toThrow
           }
         })
       }).catch(res => {
-        target.postMessage(CircularJSON.stringify({
+        _self.postMessage(CircularJSON.stringify({
           id: event.data.id,
           url: event.data.url,
           err: serializeError(res)
@@ -114,7 +114,7 @@ export default function worker (target) {
         ret.err = serializeError(err)
         ret.err.line = jsonParseError(err, json.text)
         ret.err.json = true
-        target.postMessage(CircularJSON.stringify(ret))
+        _self.postMessage(CircularJSON.stringify(ret))
         return
       }
 
@@ -122,7 +122,7 @@ export default function worker (target) {
         update(json.schema, parsed)
       } catch (err) {
         ret.err = serializeError(err)
-        target.postMessage(CircularJSON.stringify(ret))
+        _self.postMessage(CircularJSON.stringify(ret))
         return
       }
 
@@ -143,7 +143,7 @@ export default function worker (target) {
         // ret.bundled = json.schema.bundled
         ret.patch = patch
 
-        target.postMessage(CircularJSON.stringify(ret))
+        _self.postMessage(CircularJSON.stringify(ret))
       })
     } else if (event.data.blob) {
       // require.ensure([], function () {
@@ -179,7 +179,7 @@ export default function worker (target) {
     }
   }
 
-  return target
+  return _self
 }
 
 if (typeof self !== 'undefined' && !self.document) {
