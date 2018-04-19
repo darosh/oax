@@ -8,21 +8,18 @@
       v-btn.mr-3(aria-label="Wide specification edit" v-if="$half < $vuetify.breakpoint.width" icon @click="UI_SET_LEFT_DRAWER_HALF(!UI_LEFT_DRAWER_HALF)")
         v-icon {{UI_LEFT_DRAWER_HALF ? 'arrow_collapse_left' : 'arrow_collapse_right'}}
     v-tabs(:scrollable="false" grow v-model="tab")
-      v-tabs-bar.transparent
-        v-tabs-item.relative(ripple href="tab-dir") Directory
-        v-tabs-item.relative(ripple href="tab-recent") Recent
-        v-tabs-item.relative(ripple href="tab-edit") Edit
-        v-tabs-item.relative(ripple href="tab-test") Validator
-        v-tabs-slider
-      v-tabs-items(touchless)
-        v-tabs-content#tab-dir
-          app-spec-directory(:value="tab === 'tab-dir'")
-        v-tabs-content#tab-recent
-          app-spec-recent
-        v-tabs-content#tab-edit
-          app-spec-edit(:value="tab === 'tab-edit'")
-        v-tabs-content#tab-test
-          app-spec-test(v-if="tab === 'tab-test'")
+      v-tab.relative(ripple href="#tab-dir") Directory
+      v-tab.relative(ripple href="#tab-recent") Recent
+      v-tab.relative(ripple href="#tab-edit") Edit
+      v-tab.relative(ripple href="#tab-test") Validator
+      v-tab-item#tab-dir
+        app-spec-directory(:value="tab === 'tab-dir'")
+      v-tab-item#tab-recent
+        app-spec-recent
+      v-tab-item#tab-edit
+        app-spec-edit(:value="tab === 'tab-edit'")
+      v-tab-item#tab-test
+        app-spec-test(v-if="tab === 'tab-test'")
 </template>
 
 <script>

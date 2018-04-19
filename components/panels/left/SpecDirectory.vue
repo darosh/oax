@@ -24,53 +24,52 @@
         span Filter categories
     .pt-3.text-xs-center(v-if="!APIS")
       v-progress-circular(class="primary--text" indeterminate)
-    v-tabs(v-model="tab")
-      v-tabs-items(touchless)
-        v-tabs-content#tab-dir-1
-          v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
-            v-toolbar-title.subheading(style="margin-top: 2px") {{category === true ? 'Unclassified' : APIS_CATEGORIES[category].title}}
-              <!--div.body-1(style="width: 50%") {{APIS_CATEGORIES[category].description}}-->
-            v-spacer
-            v-btn(icon @click="category = null")
-              v-icon cancel
-          v-divider(v-if="category")
-          <!--v-list.pa-0(two-line v-if="APIS")-->
-          virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="24", pool-size="292" buffer="292" key-field="key" content-tag="ul" content-class="pa-0 list list--two-line dividers")
-            template(slot-scope="props")
-              .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
-                v-progress-circular(class="primary--text" indeterminate )
-                .hidden(:dummy="APIS_RUN_LOAD({next: true, searchText: filter})")
-              v-list-tile(v-else :key="props.itemKey" ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
-                v-list-tile-avatar
-                  v-icon(v-if="props.item.categories && icon(props.item)", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
-                  .icon.white--text(v-else :style="{'background-color': color(props.item)}") {{letter(props.item)}}
-                v-list-tile-content
-                  v-list-tile-title.main--text {{props.item.title}}
-                  v-list-tile-sub-title {{props.item.key}}
-                v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
-                  v-icon file_download
-        v-tabs-content#tab-dir-2.scroller(v-if="APIS_COLLECTION_OBJECT.categories")
-          v-container.pa-2(fluid grid-list-md v-if="APIS")
-            v-layout(row wrap)
-              v-flex(:style="{'flex-basis': mini, 'max-width': mini}",  d-flex, @click="setCategory(null)")
-                v-card.btn--category(v-ripple="true")
-                  div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
-                  div.btn--category__icon.text-xs-center
-                  div.btn--category__counter.pa-1.pl-2.subheading All
-                  div.btn--category__text.pa-1.pl-2.subheading.white--text {{APIS.length}}
-              v-flex(:style="{'flex-basis': mini, 'max-width': mini}", v-for="(item, key) in APIS_CATEGORIES", :key="key" d-flex, @click="setCategory(key)")
-                v-card.btn--category(v-ripple="true")
-                  div.btn--category__background(:style="{'background-color': item.color}")
-                  div.btn--category__icon.text-xs-center
-                    v-icon(v-if="categories[key]" large) {{categories[key]}}
-                  div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
-                  div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
-              v-flex(v-if="APIS_COLLECTION_OBJECT.unclassified", :style="{'flex-basis': mini, 'max-width': mini}", d-flex, @click="setCategory(true)")
-                v-card.btn--category(v-ripple="true")
-                  div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
-                  div.btn--category__icon.text-xs-center
-                  div.btn--category__counter.pa-1.pl-2.subheading Unclassified
-                  div.btn--category__text.pa-1.pl-2.subheading.white--text {{uncategorized}}
+    v-tabs-items(v-model="tab")
+      v-tab-item#tab-dir-1
+        v-toolbar.elevation-0(dense v-if="category && APIS_CATEGORIES")
+          v-toolbar-title.subheading(style="margin-top: 2px") {{category === true ? 'Unclassified' : APIS_CATEGORIES[category].title}}
+            <!--div.body-1(style="width: 50%") {{APIS_CATEGORIES[category].description}}-->
+          v-spacer
+          v-btn(icon @click="category = null")
+            v-icon cancel
+        v-divider(v-if="category")
+        <!--v-list.pa-0(two-line v-if="APIS")-->
+        virtual-scroller.scroller(v-if="APIS", :class="{filtered: category}", :items="filtered", item-height="73" prerender="24", pool-size="292" buffer="292" key-field="key" content-tag="ul" content-class="pa-0 list list--two-line dividers")
+          template(slot-scope="props")
+            .pt-2.text-xs-center(v-if="props.itemKey === last", :key="props.itemKey")
+              v-progress-circular(class="primary--text" indeterminate )
+              .hidden(:dummy="APIS_RUN_LOAD({next: true, searchText: filter})")
+            v-list-tile(v-else :key="props.itemKey" ripple avatar @click="clicked(props.item.url)", :to="{path: '/', query: {url: props.item.url}}" exact)
+              v-list-tile-avatar
+                v-icon(v-if="props.item.categories && icon(props.item)", class="white--text", :style="{'background-color': color(props.item)}") {{icon(props.item)}}
+                .icon.white--text(v-else :style="{'background-color': color(props.item)}") {{letter(props.item)}}
+              v-list-tile-content
+                v-list-tile-title.main--text {{props.item.title}}
+                v-list-tile-sub-title {{props.item.key}}
+              v-list-tile-action(v-if="cache(props.item.url), cached[props.item.url]")
+                v-icon file_download
+      v-tab-item#tab-dir-2.scroller(v-if="APIS_COLLECTION_OBJECT.categories")
+        v-container.pa-2(fluid grid-list-md v-if="APIS")
+          v-layout(row wrap)
+            v-flex(:style="{'flex-basis': mini, 'max-width': mini}",  d-flex, @click="setCategory(null)")
+              v-card.btn--category(v-ripple="true")
+                div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
+                div.btn--category__icon.text-xs-center
+                div.btn--category__counter.pa-1.pl-2.subheading All
+                div.btn--category__text.pa-1.pl-2.subheading.white--text {{APIS.length}}
+            v-flex(:style="{'flex-basis': mini, 'max-width': mini}", v-for="(item, key) in APIS_CATEGORIES", :key="key" d-flex, @click="setCategory(key)")
+              v-card.btn--category(v-ripple="true")
+                div.btn--category__background(:style="{'background-color': item.color}")
+                div.btn--category__icon.text-xs-center
+                  v-icon(v-if="categories[key]" large) {{categories[key]}}
+                div.btn--category__counter.pa-1.pl-2.subheading {{item.title}}
+                div.btn--category__text.pa-1.pl-2.subheading.black--text {{item.count}}
+            v-flex(v-if="APIS_COLLECTION_OBJECT.unclassified", :style="{'flex-basis': mini, 'max-width': mini}", d-flex, @click="setCategory(true)")
+              v-card.btn--category(v-ripple="true")
+                div.btn--category__background(style="background-color: rgba(128,128,128,.64)")
+                div.btn--category__icon.text-xs-center
+                div.btn--category__counter.pa-1.pl-2.subheading Unclassified
+                div.btn--category__text.pa-1.pl-2.subheading.white--text {{uncategorized}}
 </template>
 
 <script>

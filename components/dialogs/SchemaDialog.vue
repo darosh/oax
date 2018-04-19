@@ -7,33 +7,32 @@
         v-spacer
         v-toolbar-title
           span.subheader Schema
-      v-tabs(grow :scrollable="false")
-        v-tabs-bar.transparent
-          v-tabs-item(href="tab-schema" v-ripple="true") Schema
-          v-tabs-item(href="tab-example" v-ripple="true") Example
-          v-tabs-item(href="tab-json" v-ripple="true") Raw
-          v-tabs-slider(style="width: 33.33%")
-        v-divider
-        v-tabs-items(touchless)
-          v-tabs-content#tab-schema
-            pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
-              v-layout.ma-0
-                v-spacer
-                v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColSchema = !expColSchema") {{expColSchema ? 'Collapse' : 'Expand'}}
-              .mt-4
-              app-model(v-if="json", :item="json" v-model="expColSchema")
-          v-tabs-content#tab-example
-            pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
-              v-layout.ma-0
-                v-spacer
-                v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColExample = !expColExample") {{expColExample ? 'Collapse' : 'Expand'}}
-              app-example(v-if="json", :item="json" v-model="expColExample")
-          v-tabs-content#tab-json
-            pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
-              v-layout.ma-0
-                v-spacer
-                v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColJson = !expColJson") {{expColJson ? 'Collapse' : 'Expand'}}
-              app-json(v-if="json", :item="json" v-model="expColJson")
+      // TODO: missing initial tab bar
+      v-tabs(grow :scrollable="false" v-model="tab")
+        v-tab(href="#tab-schema" v-ripple="true") Schema
+        v-tab(href="#tab-example" v-ripple="true") Example
+        v-tab(href="#tab-json" v-ripple="true") Raw
+      v-divider
+      v-tabs-items(touchless v-model="tab")
+        v-tab-item#tab-schema
+          pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
+            v-layout.ma-0
+              v-spacer
+              v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColSchema = !expColSchema") {{expColSchema ? 'Collapse' : 'Expand'}}
+            .mt-4
+            app-model(v-if="json", :item="json" v-model="expColSchema")
+        v-tab-item#tab-example
+          pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
+            v-layout.ma-0
+              v-spacer
+              v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColExample = !expColExample") {{expColExample ? 'Collapse' : 'Expand'}}
+            app-example(v-if="json", :item="json" v-model="expColExample")
+        v-tab-item#tab-json
+          pre.app-example.pa-3(style="max-height: calc(70vh); overflow: auto")
+            v-layout.ma-0
+              v-spacer
+              v-btn.btn--mini.transparent.elevation-0.btn--tool.mt-0.mr-0(@click.stop="expColJson = !expColJson") {{expColJson ? 'Collapse' : 'Expand'}}
+            app-json(v-if="json", :item="json" v-model="expColJson")
       v-card-actions
         v-btn(flat icon @click.native.stop="next(true)")
           v-icon keyboard_arrow_left
@@ -69,7 +68,8 @@
         expColJson: null,
         expColExample: null,
         expColSchema: null,
-        initialized: true
+        initialized: true,
+        tab: 'tab-schema'
       }
     },
     computed: {

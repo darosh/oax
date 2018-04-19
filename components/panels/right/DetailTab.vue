@@ -1,20 +1,19 @@
 <template lang="pug">
-  v-tabs(grow v-model="tab", :scrollable="false")
-    v-tabs-bar.transparent
-      v-tabs-item(ripple href="tab-info") Response
-      v-tabs-item(ripple href="tab-params") Request
-      v-tabs-item.relative(ripple href="tab-script") Code
-      v-tabs-item.relative(ripple href="tab-result", :disabled="!operation._._result") Result
-      v-tabs-slider
+  div
+    v-tabs(grow v-model="tab", :scrollable="false")
+      v-tab(ripple href="#tab-info") Response
+      v-tab(ripple href="#tab-params") Request
+      v-tab.relative(ripple href="#tab-script") Code
+      v-tab.relative(ripple href="#tab-result", :disabled="!operation._._result") Result
     v-divider
-    v-tabs-items(touchless)
-      v-tabs-content#tab-info
+    v-tabs-items(v-model="tab")
+      v-tab-item#tab-info
         app-info(:item="operation")
-      v-tabs-content#tab-params
+      v-tab-item#tab-params
         app-params(:item="operation")
-      v-tabs-content#tab-script
+      v-tab-item#tab-script
         app-scripts(:item="operation")
-      v-tabs-content#tab-result
+      v-tab-item#tab-result
         app-result(:item="operation")
 </template>
 
