@@ -1,21 +1,21 @@
 #oax
-  #main .content
+  #main
     transition: padding 0s linear $delay-out
 
-  .navigation-drawer--open.navigation-drawer--right ~ #main .content
+  .navigation-drawer--open.navigation-drawer--right ~ #main
     transition-delay: $delay-out, $delay
     transition-duration:  0s, 0s
     transition-property: padding-left, padding-right
 
-  .navigation-drawer--open:not(.navigation-drawer--closing):not(.navigation-drawer--right) ~ #main .content
+  .navigation-drawer--open:not(.navigation-drawer--closing):not(.navigation-drawer--right) ~ #main
     transition-delay: $delay, $delay-out
     transition-duration:  0s, 0s
     transition-property: padding-left, padding-right
 
-  .navigation-drawer--open:not(.navigation-drawer--right) + .navigation-drawer--open.navigation-drawer--right ~ #main .content
+  .navigation-drawer--open:not(.navigation-drawer--right) + .navigation-drawer--open.navigation-drawer--right ~ #main
     transition-delay: $delay, $delay
     transition-duration:  0s, 0s
     transition-property: padding-left, padding-right
 
-  .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--right) ~ #main .content
+  .navigation-drawer--open.navigation-drawer--closing:not(.navigation-drawer--right) ~ #main
     transition: none !important
