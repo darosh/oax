@@ -17,6 +17,8 @@ export const state = {
   operation: null,
   observables: null,
   json: null,
+  // TODO WORKAROUND doc PROPERTY
+  doc: null,
   url: null,
   expandingItems: 0
 }
@@ -135,6 +137,8 @@ export const actions = {
 
       commit(types.SPEC_SET, {
         spec: res.bundled,
+        // TODO WORKAROUND doc PROPERTY
+        doc,
         observables: null
       })
     }).catch(err => {

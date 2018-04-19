@@ -29,13 +29,15 @@
       ]),
       update () {
         if (this.SPEC_URL) {
-          this.VALIDATOR_RUN({url: this.SPEC_URL})
+          // TODO WORKAROUND doc PROPERTY
+          this.VALIDATOR_RUN({url: this.SPEC_URL, json: this.$store.state.spec.doc})
         }
       }
     },
     computed: {
       ...mapGetters([
         types.SPEC_URL,
+        types.SPEC_JSON,
         types.VALIDATOR
       ])
     },

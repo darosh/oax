@@ -54,9 +54,7 @@ export const actions = {
       lastUrl = null
       lastJson = json
 
-      axios.post('https://online.swagger.io/validator/debug', {
-        data: json
-      }
+      axios.post('https://online.swagger.io/validator/debug', json
       // , {
       //   onDownloadProgress: event => {
       //     console.log(event.lengthComputable, event.loaded, event.total)
