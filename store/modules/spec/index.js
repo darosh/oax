@@ -258,6 +258,7 @@ export const getters = {
   [types.SPEC_RESOURCES]: (state) => ((state.spec && state.spec.tags) || null),
   [types.SPEC]: (state) => state.spec,
   [types.SPEC_JSON]: (state) => state.json,
+  [types.SPEC_DOC]: (state) => state.doc,
   [types.SPEC_URL]: (state) => state.url,
   [types.SPEC_EXPANDING_ITEMS]: (state) => state.expandingItems
 }

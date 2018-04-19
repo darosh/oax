@@ -3,6 +3,7 @@ import * as typesSPEC from '../spec/types'
 
 import axios from 'axios'
 import Vue from 'vue'
+import { isMemory } from '../../../assets/scripts/utils/memory'
 
 const URL = {
   client: 'https://generator.swagger.io/api/gen/clients',
@@ -118,8 +119,18 @@ export const actions = {
       options[o] = state.values[o]
     }
 
+    let swaggerUrl = getters[typesSPEC.SPEC_URL]
+    let spec
+
+    if (isMemory(swaggerUrl)) {
+      swaggerUrl = undefined
+      // TODO DOC WORKAROUND
+      spec = JSON.parse(getters[typesSPEC.SPEC_DOC])
+    }
+
     const data = {
-      swaggerUrl: getters[typesSPEC.SPEC_URL],
+      swaggerUrl,
+      spec,
       options: options
     }
 

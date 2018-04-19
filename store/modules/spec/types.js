@@ -1,6 +1,7 @@
 // spec
 export const SPEC = 'SPEC'
 export const SPEC_JSON = 'SPEC_JSON'
+export const SPEC_DOC = 'SPEC_DOC'
 export const SPEC_METAS = 'SPEC_METAS'
 export const SPEC_OPERATION = 'SPEC_OPERATION'
 export const SPEC_OPERATIONS = 'SPEC_OPERATIONS'
