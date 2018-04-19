@@ -8,7 +8,6 @@
   "d3-scale": "2.0",
   "d3-shape": "1.2",
   "dagre": "github:darosh/dagre",
-  "discontinuous-range": "1.0",
   "fast-json-patch": "2.0",
   "highlight.js": "9.12",
   "intersection-observer": "0.5",
