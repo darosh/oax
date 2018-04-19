@@ -3,10 +3,12 @@ import {IOperationExtended} from '../interfaces/IOperationExtended';
 
 // tslint:disable-next-line:no-var-requires
 const randExp = require('randexp');
-// tslint:disable-next-line:no-var-requires
-const DRange = require('discontinuous-range');
+// const DRange = require('discontinuous-range');
 
-randExp.prototype.defaultRange = new DRange(97, 122);
+// randExp.defaultRange.subtract(32, 126);
+// randExp.defaultRange.add(97, 122);
+
+// randExp.prototype.defaultRange = new DRange(97, 122);
 randExp.prototype.randInt = (from: number, to: number) => {
   return (from + 1 <= to) ? from + 1 : from;
 };
@@ -43,7 +45,7 @@ export function value(schemaObject: Schema): any {
       return schemaObject.enum
         ? schemaObject.enum[0]
         : schemaObject.pattern
-          ? randExp.randexp(new RegExp(schemaObject.pattern))
+          ? rx(new RegExp(schemaObject.pattern))
           : 'string';
     case 'byte':
       return btoa('string');
@@ -96,4 +98,12 @@ export function type(schemaObject: Schema): any {
   }
 
   return typeValue;
+}
+
+function rx(p: RegExp) {
+  const randexp = new randExp(p);
+  randexp.defaultRange.subtract(32, 126);
+  randexp.defaultRange.add(0, 65535);
+
+  return randexp.gen();
 }
