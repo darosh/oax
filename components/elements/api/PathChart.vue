@@ -78,7 +78,9 @@
         types.SPEC_SET_OPERATION
       ]),
       setOp (n) {
-        this.SPEC_SET_OPERATION(n.ops[(n.ops.indexOf(this.SPEC_OPERATION) + 1) % n.ops.length])
+        if (n.ops && n.ops.length) {
+          this.SPEC_SET_OPERATION(n.ops[(n.ops.indexOf(this.SPEC_OPERATION) + 1) % n.ops.length])
+        }
       },
       chart (data) {
         if (!data) {

@@ -69,6 +69,7 @@ export default function paths (spec) {
       middles[pj.path][pj.name] = middles[pj.path][pj.name] || pj
       middles[pj.path][pj.name].last = middles[pj.path][pj.name].last || pj.last
       middles[pj.path][pj.name].methods = middles[pj.path][pj.name].methods || pj.methods
+      middles[pj.path][pj.name].ops = middles[pj.path][pj.name].ops || pj.ops
 
       ps[i][j] = middles[pj.path][pj.name]
     }
