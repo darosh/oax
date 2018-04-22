@@ -47,7 +47,7 @@ export default {
       types.SPEC_OPERATION
     ]),
     menu: {
-      get () { return this.UI_LEFT_DRAWER && this.$route.meta.panel && this.opened },
+      get () { return !!(this.UI_LEFT_DRAWER && this.$route.meta.panel && this.opened) },
       set (value) {
         this.UI_SET_LEFT_DRAWER(!!value)
       }
