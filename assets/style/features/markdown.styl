@@ -248,30 +248,43 @@
 
 .task-list-item input:before
   visibility: visible !important
-  font-family: 'Material Icons'
-  font-weight: normal
-  font-style: normal
-  font-size: 22px
-  line-height: 22.5px
-  letter-spacing: normal
-  text-transform: none
-  display: inline-block
-  white-space: nowrap
-  word-wrap: normal
-  direction: ltr
-  -webkit-font-feature-settings: 'liga'
-  -webkit-font-smoothing: antialiased
+  // font-family: 'Material Icons'
+  // font-weight: normal
+  // font-style: normal
+  // font-size: 22px
+  // line-height: 22.5px
+  // letter-spacing: normal
+  // text-transform: none
+  // display: inline-block
+  // white-space: nowrap
+  // word-wrap: normal
+  // direction: ltr
+  // -webkit-font-feature-settings: 'liga'
+  // -webkit-font-smoothing: antialiased
   color: $material-light.icons.active
+  width: 24px
+  height : 24px
+  position: relative
+  top: -1px
+  display inline-block
+  content: ''
 
 .task-list-item input[checked]:before
-  content: 'check_box'
+  background: url("data:image/svg+xml;utf8,<svg fill='rgba(0,0,0,0.54)' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><path d='M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' /></svg>")
 
 .task-list-item input:not([checked]):before
-  content: 'check_box_outline_blank'
+  background: url("data:image/svg+xml;utf8,<svg fill='rgba(0,0,0,0.54)' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z' /></svg>")
 
-.application--dark
-  .task-list-item input:before
-    color: $material-dark.icons.active !important
+.theme--dark
+  .task-list-item input[checked]:before
+    background: url("data:image/svg+xml;utf8,<svg fill='#fff' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><path d='M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' /></svg>")
+
+  .task-list-item input:not([checked]):before
+    background: url("data:image/svg+xml;utf8,<svg fill='#fff' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z' /></svg>")
+
+.theme--dark
+  // .task-list-item input:before
+  //   color: $material-dark.icons.active !important
 
   .markdown
     table
