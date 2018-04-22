@@ -81,8 +81,8 @@ export default {
       'icon--disabled': props.disabled,
       'icon--left': props.left,
       'icon--right': props.right,
-      'application--dark': props.dark,
-      'application--light': props.light
+      'theme--dark': props.dark,
+      'theme--light': props.light
     }, props.color ? Colorable.methods.addTextColorClassChecks.call(props, {}, props.color) : {})
 
     // Order classes

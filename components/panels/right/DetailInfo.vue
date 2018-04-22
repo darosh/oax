@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panel(expand :class="VIEW_DARK ? 'application--dark' : 'application--light'")
+  v-expansion-panel(expand :class="VIEW_DARK ? 'theme--dark' : 'theme--light'")
     v-expansion-panel-content(v-if="item._.description" v-model="exp1", ripple)
       div.subheading(slot="header") Description
       v-divider

@@ -50,7 +50,7 @@
     text-align: center
     margin-right: ($bc-height/2 + 1px)
 
-  .application--dark
+  .theme--dark
     .breadcrumbs
       background-color: lighten($bcbg-dark, 18%)
     .breadcrumbs li span
@@ -75,7 +75,7 @@
     border-color: $bcbg-alt
     border-left-color: transparent
 
-  .application--dark
+  .theme--dark
     .breadcrumbs li:last-child span
       background-color: $bcbg-alt-dark
     .breadcrumbs li:last-child span:before
