@@ -94,6 +94,7 @@ export {
   skip_previous,
   speaker_notes,
   storage,
+  supervisor_account,
   text_fields,
   toys,
   view_column,
