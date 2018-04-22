@@ -35,60 +35,60 @@ THE SOFTWARE.
  */
 
 /**
- * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 2.1.6
- * Copyright (C) 2018 Oliver Nightingale
+ * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 2.1.4
+ * Copyright (C) 2017 Oliver Nightingale
  * @license MIT
  */
 
 /*!
  * lunr.utils
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.tokenizer
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.Pipeline
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.Vector
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.stemmer
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
  */
 
 /*!
  * lunr.stopWordFilter
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.trimmer
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.TokenSet
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.Index
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
  * lunr.Builder
- * Copyright (C) 2018 Oliver Nightingale
+ * Copyright (C) 2017 Oliver Nightingale
  */
 
 /*!
