@@ -3,6 +3,7 @@
     v-data-table.ma-3-md.table__no--overflow.elevation-1(v-if="SPEC_OPERATIONS", :headers="headers", :items="items" hide-actions)
       template(slot="items" slot-scope="props")
         td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op._id}}
+        td(@click="SPEC_SET_OPERATION(props.item.op)") {{props.item.op.operationId}}
         td(@click="SPEC_SET_OPERATION(props.item.op)")
           app-method(:item="props.item.op._method")
         td(@click="SPEC_SET_OPERATION(props.item.op)")
@@ -49,6 +50,7 @@
       return {
         headers: [
           {text: '#', value: 'op._id', align: 'left'},
+          {text: 'Id', value: 'op.operationId', align: 'left'},
           {text: 'Method', value: 'op._method', align: 'left'},
           {text: 'Path', value: 'op._pathName', align: 'left'},
           {text: 'Tags', value: 'op.tags', align: 'left'},
