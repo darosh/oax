@@ -86,7 +86,7 @@
           v-divider
           v-card-text
             .body-2.mb-2 Examples
-            ul
+            ul.pl-3
               li
                 router-link(:to="{path: '/statistics', query: {group: 'protocol', count: 'domain'}}") Protocols / Domains
               li
