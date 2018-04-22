@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.gpu(v-once style="width: 100%; max-width: 100%")
+  v-container.pa-0-sm-nl.gpu(v-once style="width: 100%; max-width: 100%")
     v-layout.ma-3-md
       v-spacer.hidden-xs-only
       v-flex(style="max-width: 80em")

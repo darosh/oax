@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.gpu(v-if="top" style="width: 100%; max-width: 100%")
+  v-container.pa-0-sm.gpu(v-if="top" style="width: 100%; max-width: 100%")
     div.pa-2.pa-0-sm
       div.pa-3.f-l(style="max-width: 100%")
         v-card

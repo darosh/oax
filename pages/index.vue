@@ -1,21 +1,21 @@
 <template lang="pug">
-  v-container.gpu(fluid :class="UI_ERROR ? 'pa-0' : ''")
-    v-layout.ma-0(v-if="UI_LOADING")
+  v-container.pa-0-sm.gpu(fluid :class="UI_ERROR ? 'pa-0' : ''")
+    v-layout(v-if="UI_LOADING")
       v-spacer
-      v-flex.pt-2.pl-4.pr-4(xs12 sm6 md4 lg3 xl2 style="min-width: 300px; max-width: 600")
+      v-flex.pt-2.px-4(xs12 sm6 md4 lg3 xl2 style="min-width: 300px; max-width: 600")
         v-progress-linear(:value="Math.round(UI_LOADING[0].done * 100)", :height="4", class="primary--text")
-        app-log(:items="UI_LOADING")
+        app-log(:items="UI_LOADING" style="max-height: 5000em")
       v-spacer
 
     v-alert.ma-0(error v-if="UI_ERROR" icon="warning" value="true")
       .pre(v-if="!UI_ERROR.message") {{JSON.stringify(ERROR, null, 2)}}
       span(v-if="UI_ERROR.message") {{UI_ERROR.message}}
 
-    div(v-if="!SETTINGS_SEARCH && SPEC && SPEC.info && (VIEW_VIEW < 1)")
+    template(v-if="!SETTINGS_SEARCH && SPEC && SPEC.info && (VIEW_VIEW < 1)")
       v-container.pa-0-sm(fluid grid-list-xl v-if="SPEC.info._.description || SPEC.info.title")
         v-layout(column)
           v-flex
-            .hidden-sm-and-up.mt-3
+            //- .hidden-sm-and-up.mt-3
             v-expansion-panel.mb-2.expansion-panel-round(v-if="SPEC.info._.description" expand :class="{'expansion-panel--disabled': !SPEC.info._.description}")
               v-expansion-panel-content.bg.relative(v-model="exp1", ripple)
                 .title(slot="header") {{SPEC.info.title}}
@@ -36,7 +36,7 @@
     app-definitions(:class="{wide: VIEW_WIDE}" v-else-if="VIEW_VIEW === 3")
     app-documentation(v-else-if="VIEW_VIEW === 4")
     app-paths(v-else-if="VIEW_VIEW === 5")
-    .hidden-sm-and-up.pb-3
+    //- .hidden-sm-and-up.pb-3
     app-method-dialog
     app-status-dialog
     app-header-dialog
