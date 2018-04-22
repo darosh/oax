@@ -87,7 +87,7 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-const server = app.listen(port, 'localhost')
+const server = app.listen(port, '0.0.0.0')
 
 module.exports = {
   ready: readyPromise,
