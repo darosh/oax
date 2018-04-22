@@ -1,5 +1,5 @@
 <template lang="pug">
-  app-path-chart(v-if="SPEC")
+  app-path-chart.ma-3(v-if="SPEC")
 </template>
 
 <script>
