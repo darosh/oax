@@ -16,11 +16,11 @@
               v-list-tile-sub-title {{directory[d].subTitle}}
       v-tooltip(left)
         v-btn.ml-1.mr-0(aria-label="Search in specifications" slot="activator" v-if="APIS_COLLECTION_OBJECT.fullText" icon @click="fullText = !fullText")
-          v-icon(:primary="fullText") file_find
+          v-icon(:color="fullText ? 'primary' : null") file_find
         span Search in specifications
       v-tooltip(left)
         v-btn.ml-1.mr-0(aria-label="Filter categories" slot="activator" v-if="APIS_COLLECTION_OBJECT.categories" icon @click="showFilter = !showFilter")
-          v-icon(:primary="showFilter") {{category ? 'filter_list' : 'filter_outline'}}
+          v-icon(:color="showFilter ? 'primary' : null") {{category ? 'filter_list' : 'filter_outline'}}
         span Filter categories
     .pt-3.text-xs-center(v-if="!APIS")
       v-progress-circular(class="primary--text" indeterminate)
@@ -297,7 +297,7 @@
     right: 0
     line-height: 1.2
 
-  .application--dark
+  .theme--dark
     .btn--category__counter
       background-color: rgba(64, 64, 64, .64)
     .btn--category__icon .icon
