@@ -1,8 +1,9 @@
 <template lang="pug">
   v-app(v-hotkey="keymap" , :class="classes", :dark="VIEW_DARK")
-    v-navigation-drawer.pb-0(app fixed stateless v-model="menu", :class="classesLeft", :width="$panelLeft", :mobile-break-point="$mobile" style="overflow: hidden")
+    // :mobile-break-point="$mobile"
+    v-navigation-drawer.pb-0(app fixed left disable-resize-watcher disable-route-watcher v-model="menu", :class="classesLeft", :width="$panelLeft", style="overflow: hidden")
       router-view(name="panel")
-    v-navigation-drawer.pb-0(app fixed stateless right v-model="drawer", :class="classesRight", :width="$panel", :mobile-break-point="$mobile" style="overflow: hidden")
+    v-navigation-drawer.pb-0(app fixed right disable-resize-watcher disable-route-watcher v-model="drawer", :class="classesRight", :width="$panel", style="overflow: hidden")
       div(style="height: 100%; overflow: auto")
         app-detail(v-if="SPEC_OPERATION", :operation="SPEC_OPERATION")
     app-toolbar
