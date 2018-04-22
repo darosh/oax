@@ -94,7 +94,7 @@
 </script>
 
 <style scoped>
-  >>> table {
+  * >>> table {
     /*table-layout: fixed;*/
     transform: translate3d(0, 0, 0);
     cursor: pointer;
