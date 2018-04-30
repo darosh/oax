@@ -102,7 +102,8 @@
       ])
     },
     created () {
-      this.SPEC_SET_LOAD_URL(this.$route.query.url || configuration.url)
+      const url = localStorage.getItem('DGAE_RECENT_API')
+      this.SPEC_SET_LOAD_URL(this.$route.query.url || url || configuration.url)
     },
     watch: {
       $route: function (value) {

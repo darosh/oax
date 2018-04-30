@@ -8,9 +8,8 @@ export const mutations = {
   [types.RECENT_SET_UNSHIFT] (state, payload) {
     const past = state.recent.filter(item => item.url === payload.url)
 
-    // if (past[0]) {
-    //   state.recent.splice(state.recent.indexOf(past[0]), 1)
-    // }
+    // store most recent url in localstorage to load at next visit
+    localStorage.setItem('DGAE_RECENT_API', payload.url)
 
     if (!past[0]) {
       state.recent.unshift(payload)

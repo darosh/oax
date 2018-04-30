@@ -50,6 +50,9 @@ window.OAX.app = new Vue({
         .filter(v => v[0] === 'url')[0]
       url = qoq ? decodeURIComponent(qoq[1]) : url
     }
+    if (!url) {
+      url = localStorage.getItem('DGAE_RECENT_API')
+    }
 
     store.dispatch(types.SPEC_SET_LOAD_URL, url || configuration.url)
     this.online()
