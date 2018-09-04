@@ -1,8 +1,11 @@
 <template lang="pug">
   v-layout.ma-0.toolbar__content(row style="height: 100%")
     //v-btn(v-if="components.edit && !UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
-    v-btn(aria-label="Edit specification" v-if="!UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
-      v-icon edit
+    div(aria-label="Edit specification" v-if="!UI_LEFT_DRAWER" icon, :class="searching ? 'hidden-xs-only' : ''")
+      h3 Huawei API Discovery
+        v-btn(flat style="height: 100%; min-width: 0", @click.stop="UI_SET_LEFT_DRAWER()")
+          span Select Service &nbsp;
+            v-icon menu
     v-menu.menu--api(bottom right :class="searching ? 'hidden-sm-and-down' : ''" style="height: 100%; display: flex")
       v-toolbar-items(slot="activator" style="height: 100%")
         v-btn(flat style="height: 100%; min-width: 0")

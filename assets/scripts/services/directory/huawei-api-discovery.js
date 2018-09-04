@@ -1,10 +1,10 @@
 import { colored } from './openapi-directory-lite'
 
 export default {
-  title: 'OpenAPI Directory',
-  subTitle: 'Community driven online collection',
-  home: 'https://apis.guru/openapi-directory/',
-  base: 'https://api.apis.guru/v2/list.json',
+  title: 'Huawei OpenAPI Discovery',
+  subTitle: 'Huawei Cloud serivce collection',
+  home: 'http://159.138.29.201/discovery/v1/',
+  base: 'http://159.138.29.201/discovery/v1/schemas/',
   keys: true,
   categories: true,
   unclassified: true,
@@ -12,18 +12,14 @@ export default {
   transform (data) {
     const apis = []
 
-    for (let key in data) {
-      if (data.hasOwnProperty(key)) {
-        let v = data[key]
-        apis.push({
-          title: v.versions[v.preferred].info.title,
-          key,
-          url: v.versions[v.preferred].swaggerYamlUrl,
-          categories: v.versions[v.preferred].info['x-apisguru-categories']
-        })
-      }
+    for (let i = 0; i < data.schemas.length; i++) {
+      apis.push({
+        title: data.schemas[i].title,
+        url: data.schemas[i].payload_href,
+        categories: [],
+        key: data.schemas[i].name
+      })
     }
-
     apis.sort((a, b) => a.key.localeCompare(b.key))
 
     let cats = {}
