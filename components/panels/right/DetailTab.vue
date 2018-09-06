@@ -1,16 +1,16 @@
 <template lang="pug">
   div
     v-tabs(grow v-model="tab", :scrollable="false")
-      v-tab(ripple href="#tab-info") Response
       v-tab(ripple href="#tab-params") Request
+      v-tab(ripple href="#tab-info") Response
       v-tab.relative(ripple href="#tab-script") Code
       v-tab.relative(ripple href="#tab-result", :disabled="!operation._._result") Result
     v-divider
     v-tabs-items(v-model="tab")
-      v-tab-item#tab-info
-        app-info(:item="operation")
       v-tab-item#tab-params
         app-params(:item="operation")
+      v-tab-item#tab-info
+        app-info(:item="operation")
       v-tab-item#tab-script
         app-scripts(:item="operation")
       v-tab-item#tab-result
@@ -45,7 +45,8 @@
       ]),
       tab: {
         // TODO get () { return this.operation._._result ? this.UI_TAB : 'tab-info' },
-        get () { return ((this.UI_TAB === 'tab-result') && !this.operation._._result) ? 'tab-info' : this.UI_TAB },
+        // ((this.UI_TAB === 'tab-result') && !this.operation._._result) ? 'tab-params' : this.UI_TAB
+        get () { return this.UI_TAB },
         set (value) { this.UI_SET_TAB(value) }
       }
     },

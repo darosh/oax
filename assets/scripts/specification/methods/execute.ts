@@ -14,9 +14,11 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
   headers['Content-Type'] = operation._._produces;
 
   for (const param of (operation.parameters as Parameter[]) || []) {
+    console.log('going to assemble parameters')
+    console.log(param)
     // This is my 1st as-any-as ever! :-)))
     const value = (param as any as IParameterExtended)._._value;
-
+    console.log(value)
     if (!value || (!value && (param.in !== 'path'))) {
       continue;
     }
@@ -37,7 +39,10 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
         body.append(param.name, value);
         break;
       case 'body':
-        body = body || value;
+        console.log('this is in assembly request body')
+        // body = body || value;
+        body = body || {}
+        body[param.name] = value
         break;
     }
   }
@@ -75,6 +80,10 @@ function merge(a = '', b = '') {
 }
 
 export function execute(operation: IOperationExtended, spec: ISpecExtended): AxiosPromise {
+  console.log('starting to execute command')
+  console.log(operation)
+  console.log(spec)
   const config = configure(operation, spec);
+  console.log(config)
   return axios.request(config);
 }

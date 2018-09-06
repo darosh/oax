@@ -2,7 +2,7 @@
   v-layout.ma-0.toolbar__content(row style="height: 100%")
     //v-btn(v-if="components.edit && !UI_LEFT_DRAWER" icon, @click.stop="UI_SET_LEFT_DRAWER()", :class="searching ? 'hidden-xs-only' : ''")
     div(aria-label="Edit specification" v-if="!UI_LEFT_DRAWER" icon, :class="searching ? 'hidden-xs-only' : ''")
-      h3 Huawei API Discovery
+      h3 Huawei Cloud API Explorer
         v-btn(flat style="height: 100%; min-width: 0", @click.stop="UI_SET_LEFT_DRAWER()")
           span Select Service &nbsp;
             v-icon menu

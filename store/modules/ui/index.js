@@ -14,7 +14,7 @@ export const state = {
   log: false,
   fabMethod: null,
   fabPending: false,
-  tab: 'tab-info',
+  tab: 'tab-params',
   right: false,
   left: false,
   leftHalf: false,
@@ -22,7 +22,21 @@ export const state = {
   animation: true,
   highlight: null,
   leftTab: null,
-  editFocus: null
+  editFocus: null,
+  regions: [
+    {value: 'cn-north-1a', name: '华北-北京-可用区1'},
+    {value: 'cn-north-1b', name: '华北-北京-可用区2'},
+    {value: 'cn-east-2a', name: '华东-上海-可用区1'},
+    {value: 'cn-east-2b', name: '华东-上海-可用区2'},
+    {value: 'cn-east-2c', name: '华东-上海-可用区3'},
+    {value: 'cn-south-1a', name: '华南-广州-可用区1'},
+    {value: 'cn-south-1b', name: '华南-广州-可用区2'},
+    {value: 'cn-south-1c', name: '华南-广州-可用区3'},
+    {value: 'ap-southeast-1a', name: '亚太-香港-可用区1'},
+    {value: 'ap-southeast-1b', name: '亚太-香港-可用区2'},
+    {value: 'cn-northeast-1', name: '东北-大连-可用区1'}
+  ],
+  selected_region: null
   // highlight: {
   //   el: 'app-meta',
   //   text: 'Metadata'
@@ -92,6 +106,12 @@ export const mutations = {
   [types.UI_SET_NEXT_TAB] (state, payload) {
     const tabs = ['tab-dir', 'tab-recent', 'tab-edit', 'tab-test']
     state.leftTab = next(state.leftTab, tabs)
+  },
+  [types.UI_SET_SELECTED_REGION] (state, payload) {
+    let selected = state.regions.find(function (value) {
+      return value.name === payload.name
+    })
+    state.selected_region = selected === undefined ? null : selected.value
   }
 }
 
@@ -102,7 +122,7 @@ export const getters = {
   [types.UI_ERROR]: state => state.error,
   [types.UI_LOADING]: state => state.loading,
   [types.UI_LOG]: state => state.log,
-  [types.UI_FAB_METHOD]: state => state.fabMethod,
+  [types.UI_FAB_METHOD]: state => { console.log(state.fabMethod); return state.fabMethod },
   [types.UI_FAB_PENDING]: state => state.fabPending,
   [types.UI_TAB]: state => state.tab,
   [types.UI_RIGHT_DRAWER]: state => state.right,
@@ -112,7 +132,17 @@ export const getters = {
   [types.UI_ANIMATION]: state => state.animation,
   [types.UI_HIGHLIGHT]: state => state.highlight,
   [types.UI_LEFT_TAB]: state => state.leftTab,
-  [types.UI_EDIT_FOCUS]: state => state.editFocus
+  [types.UI_EDIT_FOCUS]: state => state.editFocus,
+  [types.UI_GET_REGIONS]: state => state.regions,
+  [types.UI_GET_SELECTED_REGION] (state) {
+    let region = state.regions.find(function (value) {
+      return value.value === state.selected_region
+    })
+    if (region === undefined || region.length === 0) {
+      return null
+    }
+    return region.name
+  }
 }
 
 export default {

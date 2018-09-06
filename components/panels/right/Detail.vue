@@ -20,6 +20,8 @@
     v-divider
     transition-group(:name="transitionName" mode="in-out" tag="div")
       div.translate-fade-item.toolbar--scroll(style="overflow-x: hidden", :style="{width: $panel + 'px'}", :key="operation._id")
+        v-container
+          v-select(:items="regionName()" solo label="Select Region" v-model="selected_value")
         app-detail-header(:operation="operation")
         app-detail-tab(:operation="operation")
 </template>
@@ -48,20 +50,36 @@
     computed: {
       ...mapGetters([
         types.SPEC_OPERATIONS,
-        types.UI_RIGHT_DRAWER
+        types.UI_RIGHT_DRAWER,
+        types.UI_GET_REGIONS,
+        types.UI_GET_SELECTED_REGION
       ]),
       transitionName () {
         return this.transition ? (this.invert ? 'translate-fade-invert' : 'translate-fade') : ''
+      },
+      selected_value: {
+        get () {
+          return this.UI_GET_SELECTED_REGION
+        },
+        set (value) {
+          this.UI_SET_SELECTED_REGION({ name: value })
+        }
       }
     },
     methods: {
       ...mapMutations([
         types.UI_SET_DRAWER,
         types.SPEC_SET_PREV_OPERATION,
-        types.SPEC_SET_NEXT_OPERATION
+        types.SPEC_SET_NEXT_OPERATION,
+        types.UI_SET_SELECTED_REGION
       ]),
       close () {
         this.UI_SET_DRAWER(false)
+      },
+      regionName () {
+        return this.UI_GET_REGIONS.map(function (value) {
+          return value.name
+        })
       }
     },
     watch: {

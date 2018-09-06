@@ -46,7 +46,7 @@
           {text: 'Model', value: 2}
         ],
         schemaViewInternal: 1,
-        exp1: true,
+        exp1: false,
         exp2: true
       }
     },

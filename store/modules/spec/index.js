@@ -81,7 +81,17 @@ export const mutations = {
     payload.operation._._error = payload.error
   },
   [types.SPEC_SET_VALUE] (state, payload) {
+    console.log('in method')
+    console.log(payload)
     payload.item._._value = payload.value
+  },
+  [types.SPEC_SET_NESTED_VALUE] (state, payload) {
+    console.log('in set attribute method')
+    console.log(payload)
+    if (payload.item._._value == null) {
+      payload.item._._value = {}
+    }
+    payload.item._._value[payload.value.name] = payload.value.value
   },
   [types.SPEC_SET_RESOURCE] (state, payload) {
     payload.resource._._opened = payload.opened
@@ -180,6 +190,7 @@ export const actions = {
 
       commit(typesUI.UI_SET_LOADING, report(progress))
     }).then((res) => {
+      console.log(res)
       if (url !== lastUrl) {
         return
       }
