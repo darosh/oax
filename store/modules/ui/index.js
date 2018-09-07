@@ -24,19 +24,13 @@ export const state = {
   leftTab: null,
   editFocus: null,
   regions: [
-    {value: 'cn-north-1a', name: '华北-北京-可用区1'},
-    {value: 'cn-north-1b', name: '华北-北京-可用区2'},
-    {value: 'cn-east-2a', name: '华东-上海-可用区1'},
-    {value: 'cn-east-2b', name: '华东-上海-可用区2'},
-    {value: 'cn-east-2c', name: '华东-上海-可用区3'},
-    {value: 'cn-south-1a', name: '华南-广州-可用区1'},
-    {value: 'cn-south-1b', name: '华南-广州-可用区2'},
-    {value: 'cn-south-1c', name: '华南-广州-可用区3'},
-    {value: 'ap-southeast-1a', name: '亚太-香港-可用区1'},
-    {value: 'ap-southeast-1b', name: '亚太-香港-可用区2'},
-    {value: 'cn-northeast-1', name: '东北-大连-可用区1'}
+    {value: 'cn-north-1', name: '华北-北京'},
+    {value: 'cn-east-2', name: '华东-上海'},
+    {value: 'cn-south-1', name: '华南-广州'},
+    {value: 'ap-southeast-1', name: '亚太-香港'},
+    {value: 'cn-northeast-1', name: '东北-大连'}
   ],
-  selected_region: null
+  selected_region: 'cn-north-1'
   // highlight: {
   //   el: 'app-meta',
   //   text: 'Metadata'
@@ -142,6 +136,12 @@ export const getters = {
       return null
     }
     return region.name
+  },
+  [types.UI_GET_LOGIN_REGION] (state) {
+    if (state.selected_region === null) {
+      return ''
+    }
+    return state.selected_region
   }
 }
 

@@ -40,7 +40,8 @@
     data () {
       return {
         transition: false,
-        invert: false
+        invert: false,
+        region_selected: false
       }
     },
     components: {

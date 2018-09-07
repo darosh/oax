@@ -19,6 +19,7 @@ export const UI_LEFT_TAB = 'UI_LEFT_TAB'
 export const UI_EDIT_FOCUS = 'UI_EDIT_FOCUS'
 export const UI_GET_REGIONS = 'UI_GET_REGIONS'
 export const UI_GET_SELECTED_REGION = 'UI_GET_SELECTED_REGION'
+export const UI_GET_LOGIN_REGION = 'UI_GET_LOGIN_REGION'
 // ui set
 export const UI_SET_DIALOG = 'UI_SET_DIALOG'
 export const UI_SET_DRAWER = 'UI_SET_DRAWER'
