@@ -55,7 +55,7 @@
       appHeader
     },
     created () {
-      this.UI_SET_FAB_METHOD(this.execute)
+      // this.UI_SET_FAB_METHOD(this.execute)
     },
     data () {
       return {

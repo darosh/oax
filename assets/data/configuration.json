@@ -9,5 +9,6 @@
   "allowDownload": false,
   "updated": false,
   "limitSpecButtonText": 8,
-  "directory": ["openAPIDirectory", "openAPIDirectoryLite", "swaggerHubRegistry", "apisIoOpenAPIs", "openAPISamples", "hapi"]
+  "directory": ["HuaweiAPIDIscovery"],
+  "proxyUrl": "http://159.138.29.201/discovery/v1/proxy/"
 }

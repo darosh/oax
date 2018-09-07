@@ -26,50 +26,6 @@ const routes = [
   }
 ]
 
-if (process.OAX_FEATURE_PAGE_METHODS) {
-  routes.push({
-    path: '/methods',
-    components: {
-      default: () => import('../pages/methods'),
-      toolbar: () => import('../components/toolbars/AboutToolbar')
-    },
-    meta: {name: 'Methods'}
-  })
-}
-
-if (process.OAX_FEATURE_PAGE_STATUSES) {
-  routes.push({
-    path: '/statuses',
-    components: {
-      default: () => import('../pages/statuses'),
-      toolbar: () => import('../components/toolbars/AboutToolbar')
-    },
-    meta: {name: 'Statuses'}
-  })
-}
-
-if (process.OAX_FEATURE_PAGE_HEADERS) {
-  routes.push({
-    path: '/headers',
-    components: {
-      default: () => import('../pages/headers'),
-      toolbar: () => import('../components/toolbars/AboutToolbar')
-    },
-    meta: {name: 'Headers'}
-  })
-}
-
-if (process.OAX_FEATURE_PAGE_STATS) {
-  routes.push({
-    path: '/statistics',
-    components: {
-      default: () => import('../pages/statistics'),
-      toolbar: () => import('../components/toolbars/AboutToolbar')
-    },
-    meta: {name: 'Statistics'}
-  })
-}
-
 export function createRouter () {
   return new Router({
     mode: typeof location !== 'undefined' && location.hostname === 'localhost' && location.port === '8080' ? 'history' : 'hash',

@@ -46,14 +46,15 @@
           {text: 'Model', value: 2}
         ],
         schemaViewInternal: 1,
-        exp1: true,
+        exp1: false,
         exp2: true
       }
     },
     computed: {
       ...mapGetters([
         types.SPEC,
-        types.VIEW_DARK
+        types.VIEW_DARK,
+        types.UI_GET_LOGIN_REGION
       ]),
       schema () {
         return schema(this.item)
@@ -77,7 +78,7 @@
         const item = this.item
         this.UI_SET_FAB_PENDING(true)
         this.SPEC_SET_RESULT({operation: item, error: null, result: null})
-        execute(this.item, this.SPEC).then(res => {
+        execute(this.item, this.SPEC, this.UI_GET_LOGIN_REGION).then(res => {
           this.UI_SET_FAB_PENDING(false)
           this.SPEC_SET_RESULT({operation: item, error: null, result: res})
           this.SPEC_SET_OPERATION(item)

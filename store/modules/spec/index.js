@@ -12,6 +12,60 @@ import { observables } from '../../../assets/scripts/specification/methods/obser
 import { setError } from '../../../assets/scripts/services/codemirror-lint-json'
 import { isMemory } from '../../../assets/scripts/utils/memory'
 
+var HTTP_STATUS_CODES = {
+  200: 'OK',
+  201: 'Created',
+  202: 'Accepted',
+  203: 'Non-Authoritative Information',
+  204: 'No Content',
+  205: 'Reset Content',
+  206: 'Partial Content',
+  300: 'Multiple Choices',
+  301: 'Moved Permanently',
+  302: 'Found',
+  303: 'See Other',
+  304: 'Not Modified',
+  305: 'Use Proxy',
+  307: 'Temporary Redirect',
+  400: 'Bad Request',
+  401: 'Unauthorized',
+  402: 'Payment Required',
+  403: 'Forbidden',
+  404: 'Not Found',
+  405: 'Method Not Allowed',
+  406: 'Not Acceptable',
+  407: 'Proxy Authentication Required',
+  408: 'Request Timeout',
+  409: 'Conflict',
+  410: 'Gone',
+  411: 'Length Required',
+  412: 'Precondition Failed',
+  413: 'Request Entity Too Large',
+  414: 'Request-URI Too Long',
+  415: 'Unsupported Media Type',
+  416: 'Requested Range Not Satisfiable',
+  417: 'Expectation Failed',
+  500: 'Internal Server Error',
+  501: 'Not Implemented',
+  502: 'Bad Gateway',
+  503: 'Service Unavailable',
+  504: 'Gateway Timeout',
+  505: 'HTTP Version Not Supported'
+}
+
+var unwrapContent = function (result) {
+  console.log('this is the result')
+  console.log(result)
+  if (result === null) {
+    return result
+  }
+  let content = result.data || {}
+  result.status = content.status_code
+  result.statusText = HTTP_STATUS_CODES[content.status_code]
+  result.data = content.content
+  return result
+}
+
 export const state = {
   spec: null,
   operation: null,
@@ -77,11 +131,22 @@ export const mutations = {
     search(state.tags, payload)
   },
   [types.SPEC_SET_RESULT] (state, payload) {
-    payload.operation._._result = payload.result
+    payload.operation._._result = unwrapContent(payload.result)
     payload.operation._._error = payload.error
+    console.log(payload.operation)
   },
   [types.SPEC_SET_VALUE] (state, payload) {
+    console.log('in method')
+    console.log(payload)
     payload.item._._value = payload.value
+  },
+  [types.SPEC_SET_NESTED_VALUE] (state, payload) {
+    console.log('in set attribute method')
+    console.log(payload)
+    if (payload.item._._value == null) {
+      payload.item._._value = {}
+    }
+    payload.item._._value[payload.value.name] = payload.value.value
   },
   [types.SPEC_SET_RESOURCE] (state, payload) {
     payload.resource._._opened = payload.opened
@@ -180,6 +245,7 @@ export const actions = {
 
       commit(typesUI.UI_SET_LOADING, report(progress))
     }).then((res) => {
+      console.log(res)
       if (url !== lastUrl) {
         return
       }

@@ -4,8 +4,9 @@ import {IExtra} from '../interfaces/IExtra';
 import {IOperationExtended} from '../interfaces/IOperationExtended';
 import {IParameterExtended} from '../interfaces/IParameterExtended';
 import {ISpecExtended} from '../interfaces/ISpecExtended';
+import {configuration} from '../../services/configuration'
 
-export function configure(operation: IOperationExtended, spec: ISpecExtended) {
+export function configure(operation: IOperationExtended, spec: ISpecExtended, region: String) {
   let path: string = operation._pathName;
   const query: IExtra = {};
   const headers: IExtra = {};
@@ -14,9 +15,11 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
   headers['Content-Type'] = operation._._produces;
 
   for (const param of (operation.parameters as Parameter[]) || []) {
+    console.log('going to assemble parameters')
+    console.log(param)
     // This is my 1st as-any-as ever! :-)))
     const value = (param as any as IParameterExtended)._._value;
-
+    console.log(value)
     if (!value || (!value && (param.in !== 'path'))) {
       continue;
     }
@@ -37,14 +40,17 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
         body.append(param.name, value);
         break;
       case 'body':
-        body = body || value;
+        console.log('this is in assembly request body')
+        // body = body || value;
+        body = body || {}
+        body[param.name] = value
         break;
     }
   }
 
   const config: any = {
     method: operation._method,
-    url: spec._._scheme + '://' + merge(merge(spec.host, spec.basePath), path)
+    url: merge(spec.basePath, path).replace(/\/$/, '')
   };
 
   if (Object.keys(headers).length) {
@@ -52,12 +58,18 @@ export function configure(operation: IOperationExtended, spec: ISpecExtended) {
   }
 
   if (Object.keys(query).length) {
-    config.params = query;
+    config.parameter = query;
   }
 
   if (body) {
-    config.data = body;
+    config.body = body;
   }
+
+  config.region = region
+
+  // TODO: update this to reflect real service
+  config.service = 'nova'
+
 
   return config;
 }
@@ -74,7 +86,10 @@ function merge(a = '', b = '') {
   }
 }
 
-export function execute(operation: IOperationExtended, spec: ISpecExtended): AxiosPromise {
-  const config = configure(operation, spec);
-  return axios.request(config);
+export function execute(operation: IOperationExtended, spec: ISpecExtended, region: String): AxiosPromise {
+  console.log('starting to execute command')
+  console.log(operation)
+  const config = configure(operation, spec, region)
+  console.log(config)
+  return axios.post(configuration.proxyUrl, config)
 }

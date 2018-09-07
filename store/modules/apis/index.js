@@ -6,7 +6,7 @@ import * as directory from '../../../assets/scripts/services/directory/index'
 export const state = {
   apis: null,
   categories: null,
-  collection: 2
+  collection: 1
 }
 
 export const mutations = {
