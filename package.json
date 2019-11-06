@@ -29,7 +29,7 @@
     "intersection-observer": "0.5.0",
     "json-schema-bundler": "0.1.11",
     "json-stringify-pretty-compact": "1.1.0",
-    "lodash": "4.17.5",
+    "lodash": "4.17.13",
     "lunr": "2.1.4",
     "material-icons-bundle": "github:darosh/material-icons-bundle",
     "openapi-directory-lite": "github:darosh/openapi-directory-lite",
