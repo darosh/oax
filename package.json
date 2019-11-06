@@ -15,7 +15,7 @@
     "@types/highlight.js": "9.12.2",
     "@types/showdown": "1.7.3",
     "@types/swagger-schema-official": "2.0.9",
-    "axios": "0.18.0",
+    "axios": "0.18.1",
     "ciena-graphlib": "1.0.8",
     "circular-json": "0.5.3",
     "codemirror": "5.36.0",
