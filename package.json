@@ -105,7 +105,7 @@
     "postcss-loader": "2.1.4",
     "postcss-will-change": "2.0.0",
     "progress-bar-webpack-plugin": "1.11.0",
-    "pug": "2.0.3",
+    "pug": "3.0.1",
     "rc": "1.2.6",
     "recursive-readdir": "2.2.2",
     "rimraf": "2.6.2",
