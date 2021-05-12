@@ -18,7 +18,7 @@
     "axios": "0.18.0",
     "ciena-graphlib": "1.0.8",
     "circular-json": "0.5.3",
-    "codemirror": "5.36.0",
+    "codemirror": "5.58.2",
     "d3-array": "1.2.1",
     "d3-format": "1.2.2",
     "d3-scale": "2.0.0",
